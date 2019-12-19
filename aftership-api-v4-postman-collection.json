@@ -1,0 +1,425 @@
+{
+    "id": "5106646474f0aacfa7e45cf7d68c747a",
+    "name": "AfterShip API v4",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "c9fc84a09d498ad5d9e65ee160c680ab",
+            "name": "\/couriers",
+            "url": "https:\/\/api.aftership.com\/v4\/couriers",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "f8b840dd25800f53671e23a3c152b943",
+            "name": "\/couriers\/all",
+            "url": "https:\/\/api.aftership.com\/v4\/couriers\/all",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "89ed119517666b9a533a9e11f0cd10a2",
+            "name": "\/couriers\/detect",
+            "url": "https:\/\/api.aftership.com\/v4\/couriers\/detect",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "e4380fe7c81c79202af7dba81f26166e",
+            "name": "\/last_checkpoint\/:slug\/:tracking_number",
+            "url": "https:\/\/api.aftership.com\/v4\/last_checkpoint\/{slug}\/{tracking_number}",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "slug",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "tracking_number",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "290566a2eb0f9ea6edb9fb1f4935e4d8",
+            "name": "\/notifications\/:slug\/:tracking_number",
+            "url": "https:\/\/api.aftership.com\/v4\/notifications\/{slug}\/{tracking_number}",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "slug",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "tracking_number",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "67bcd1f1c25692e021941e4cc826f555",
+            "name": "\/notifications\/:slug\/:tracking_number\/add",
+            "url": "https:\/\/api.aftership.com\/v4\/notifications\/{slug}\/{tracking_number}\/add",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "slug",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "tracking_number",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "ea01155e8d4332a29831dedb3389f8d6",
+            "name": "\/notifications\/:slug\/:tracking_number\/remove",
+            "url": "https:\/\/api.aftership.com\/v4\/notifications\/{slug}\/{tracking_number}\/remove",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "slug",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "tracking_number",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "de6a2df6b31979734826baa96362229e",
+            "name": "\/notifications\/:id",
+            "url": "https:\/\/api.aftership.com\/v4\/notifications\/{id}",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "93f1d91b1c40579c6d42660fd4084dd1",
+            "name": "\/trackings",
+            "url": "https:\/\/api.aftership.com\/v4\/trackings",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "ce1462243928e173909d202d00d1650d",
+            "name": "\/trackings",
+            "url": "https:\/\/api.aftership.com\/v4\/trackings",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "6510cf13275827bd65f024c9e589fa3f",
+            "name": "\/trackings\/:slug\/:tracking_number",
+            "url": "https:\/\/api.aftership.com\/v4\/trackings\/{slug}\/{tracking_number}",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "slug",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "tracking_number",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "2f75d57a60c7661a9d698942315ce87f",
+            "name": "\/trackings\/:slug\/:tracking_number",
+            "url": "https:\/\/api.aftership.com\/v4\/trackings\/{slug}\/{tracking_number}",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "slug",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "tracking_number",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        },
+        {
+            "id": "77f20bc508ab2ea918ffb4d0055b6151",
+            "name": "\/trackings\/:slug\/:tracking_number\/retrack",
+            "url": "https:\/\/api.aftership.com\/v4\/trackings\/{slug}\/{tracking_number}\/retrack",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "slug",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "tracking_number",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "5106646474f0aacfa7e45cf7d68c747a",
+            "rawModeData": ""
+        }
+    ]
+}

@@ -1,0 +1,397 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0",
+        "title": "AfterShip API v4",
+        "description": "TODO: Add Description",
+        "termsOfService": "http:\/\/exmple.com\/license\/"
+    },
+    "servers": [
+        "https:\/\/api.aftership.com\/v4"
+    ],
+    "paths": {
+        "\/couriers": {
+            "get": {
+                "summary": "\/couriers",
+                "description": "",
+                "operationId": "\/couriers",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/couriers\/all": {
+            "get": {
+                "summary": "\/couriers\/all",
+                "description": "",
+                "operationId": "\/couriers\/all",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/couriers\/detect": {
+            "post": {
+                "summary": "\/couriers\/detect",
+                "description": "",
+                "operationId": "\/couriers\/detect",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/last_checkpoint\/{slug}\/{tracking_number}": {
+            "get": {
+                "summary": "\/last_checkpoint\/:slug\/:tracking_number",
+                "description": "",
+                "operationId": "\/lastCheckpoint\/:slug\/:trackingNumber",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "tracking_number",
+                        "in": "path",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/notifications\/{slug}\/{tracking_number}": {
+            "get": {
+                "summary": "\/notifications\/:slug\/:tracking_number",
+                "description": "",
+                "operationId": "\/notifications\/:slug\/:trackingNumber",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "tracking_number",
+                        "in": "path",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/notifications\/{slug}\/{tracking_number}\/add": {
+            "post": {
+                "summary": "\/notifications\/:slug\/:tracking_number\/add",
+                "description": "",
+                "operationId": "\/notifications\/:slug\/:trackingNumber\/add",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "tracking_number",
+                        "in": "path",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/notifications\/{slug}\/{tracking_number}\/remove": {
+            "post": {
+                "summary": "\/notifications\/:slug\/:tracking_number\/remove",
+                "description": "",
+                "operationId": "\/notifications\/:slug\/:trackingNumber\/remove",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "tracking_number",
+                        "in": "path",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/notifications\/{id}": {
+            "delete": {
+                "summary": "\/notifications\/:id",
+                "description": "",
+                "operationId": "\/notifications\/:id",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/trackings": {
+            "post": {
+                "summary": "\/trackings",
+                "description": "",
+                "operationId": "\/trackings",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            },
+            "get": {
+                "summary": "\/trackings",
+                "description": "",
+                "operationId": "\/trackings1",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/trackings\/{slug}\/{tracking_number}": {
+            "delete": {
+                "summary": "\/trackings\/:slug\/:tracking_number",
+                "description": "",
+                "operationId": "\/trackings\/:slug\/:trackingNumber",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "tracking_number",
+                        "in": "path",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "summary": "\/trackings\/:slug\/:tracking_number",
+                "description": "",
+                "operationId": "\/trackings\/:slug\/:trackingNumber1",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "tracking_number",
+                        "in": "path",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/trackings\/{slug}\/{tracking_number}\/retrack": {
+            "post": {
+                "summary": "\/trackings\/:slug\/:tracking_number\/retrack",
+                "description": "",
+                "operationId": "\/trackings\/:slug\/:trackingNumber\/retrack",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "tracking_number",
+                        "in": "path",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "\/couriers\/detectrequest": {
+                "type": "object",
+                "properties": {
+                    "tracking": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "tracking": {
+                "type": "object",
+                "properties": {
+                    "tracking_number": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "\/notifications\/:slug\/:tracking_number\/add_request": {
+                "type": "object",
+                "properties": {
+                    "notification": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "notification": {
+                "type": "object",
+                "properties": {
+                    "emails": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "smses": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "emails": {
+                "type": "array"
+            },
+            "smses": {
+                "type": "array"
+            },
+            "\/trackingsrequest": {
+                "type": "object",
+                "properties": {
+                    "tracking": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "Tracking1": {
+                "type": "object",
+                "properties": {
+                    "slug": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tracking_number": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "smses": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "emails": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "custom_fields": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "custom_fields": {
+                "type": "object"
+            },
+            "CustomFields": {
+                "type": "object",
+                "properties": {
+                    "product_name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "product_price": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "\/trackings\/:slug\/:tracking_number_request1": {
+                "type": "object",
+                "properties": {
+                    "tracking": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "Tracking3": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

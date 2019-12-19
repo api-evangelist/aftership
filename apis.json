@@ -1,0 +1,81 @@
+{
+    "name": "AfterShip",
+    "description": "AfterShip is an automated tracking solution and API for eCommerce. Support tracking 460 international couriers worldwide.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/10212-aftership.jpg",
+    "tags": [
+        "aggregation",
+        "api provider",
+        "have api",
+        "have openapi",
+        "target"
+    ],
+    "created": "2019-12-18",
+    "modified": "2019-12-18",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/aftership\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "AfterShip API v4",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/10212-aftership.jpg",
+            "humanURL": "https:\/\/www.aftership.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/aftership-api-v4-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/aftership-api-v4.json"
+                }
+            ]
+        },
+        {
+            "name": "AfterShip",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/10212-aftership.jpg",
+            "humanURL": "https:\/\/www.aftership.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/aftership-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/aftership.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.aftership.com\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/aftership"
+        },
+        {
+            "type": "Email",
+            "url": "support@aftership.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/AfterShip"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/aftership"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.aftership.com\/"
+        }
+    ]
+}

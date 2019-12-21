@@ -2,8 +2,8 @@
     "openapi": "3.0.0",
     "info": {
         "version": "1.0",
-        "title": "AfterShip API v4",
-        "description": "TODO: Add Description",
+        "title": "AfterShip",
+        "description": "Delight customers with effortless tracking and proactive delivery updates. Support 620 couriers worldwide.",
         "termsOfService": "http:\/\/exmple.com\/license\/"
     },
     "servers": [

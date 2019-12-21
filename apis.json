@@ -15,7 +15,7 @@
     "specificationVersion": "0.14",
     "apis": [
         {
-            "name": "AfterShip API v4",
+            "name": "AfterShip",
             "description": null,
             "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/10212-aftership.jpg",
             "humanURL": "https:\/\/www.aftership.com\/",
@@ -29,24 +29,14 @@
                 {
                     "type": "x-openapi",
                     "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/aftership\/master\/aftership-api-v4-openapi.json"
-                }
-            ]
-        },
-        {
-            "name": "AfterShip",
-            "description": null,
-            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/10212-aftership.jpg",
-            "humanURL": "https:\/\/www.aftership.com\/",
-            "baseURL": "",
-            "tags": [],
-            "properties": [
-                {
-                    "type": "x-openapi",
-                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/aftership.json"
                 },
                 {
-                    "type": "x-openapi",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/aftership\/master\/aftership-openapi.json"
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/aftership\/master\/aftership-api-v4-postman-collection.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/aftership\/master\/aftership-api-v4-postman-collection.json"
                 }
             ]
         }

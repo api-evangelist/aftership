@@ -1,5 +1,5 @@
 {
-    "id": "23280aaceafb0dc8fb9594956a1d1962",
+    "id": "10368637fff7878dd94ccfb247e06da3",
     "name": "AfterShip API v4",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "3754207b2de04dd2359bd30fd0834ae6",
+            "id": "c7a58d379448d4c2c14bbb2f6d7e7f10",
             "name": "\/couriers",
             "url": "https:\/\/api.aftership.com\/v4\/couriers",
             "description": "",
@@ -29,11 +29,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "611d413dd8f4ab970e5f3b329ac8c8d5",
+            "id": "49814f93700bae45d0edd3d80ae69699",
             "name": "\/couriers\/all",
             "url": "https:\/\/api.aftership.com\/v4\/couriers\/all",
             "description": "",
@@ -52,11 +52,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "8606c37aeacbf64a55a04a0bdc767cc5",
+            "id": "6b310239b58a695a91b75617bbb46bf3",
             "name": "\/couriers\/detect",
             "url": "https:\/\/api.aftership.com\/v4\/couriers\/detect",
             "description": "",
@@ -75,11 +75,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "53925fcd8f21b3655850ed30ef1f91fa",
+            "id": "277d28c291f1b75408fd8cae4ef0fbd9",
             "name": "\/last_checkpoint\/:slug\/:tracking_number",
             "url": "https:\/\/api.aftership.com\/v4\/last_checkpoint\/{slug}\/{tracking_number}",
             "description": "",
@@ -113,11 +113,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "b14e9400df88775f8ce11ca5ffce8385",
+            "id": "259d6899f974e76780f41cc0e32951b7",
             "name": "\/notifications\/:slug\/:tracking_number",
             "url": "https:\/\/api.aftership.com\/v4\/notifications\/{slug}\/{tracking_number}",
             "description": "",
@@ -151,11 +151,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "9187f0207beecbec23d8dd2732fda143",
+            "id": "e1d590c68814874df4d30d6f0733d7a1",
             "name": "\/notifications\/:slug\/:tracking_number\/add",
             "url": "https:\/\/api.aftership.com\/v4\/notifications\/{slug}\/{tracking_number}\/add",
             "description": "",
@@ -189,11 +189,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "a8006056f4a97c7a8b3f9c0fb8be1dd8",
+            "id": "112a1d62c7df6649ccf05b9129a3ac28",
             "name": "\/notifications\/:slug\/:tracking_number\/remove",
             "url": "https:\/\/api.aftership.com\/v4\/notifications\/{slug}\/{tracking_number}\/remove",
             "description": "",
@@ -227,11 +227,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "cfaf215f5cf84f28518803f7f207621c",
+            "id": "a1f89af24cc371dab24262f4dd763bde",
             "name": "\/notifications\/:id",
             "url": "https:\/\/api.aftership.com\/v4\/notifications\/{id}",
             "description": "",
@@ -258,11 +258,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "fadeb39b366e68db06e53c660ec6877c",
+            "id": "c4ccc2bc51c0efcca247239913a573a0",
             "name": "\/trackings",
             "url": "https:\/\/api.aftership.com\/v4\/trackings",
             "description": "",
@@ -281,11 +281,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "6098e997c8757c0d519294df4bee57b1",
+            "id": "ef0112287d42d4e867001db605601511",
             "name": "\/trackings",
             "url": "https:\/\/api.aftership.com\/v4\/trackings",
             "description": "",
@@ -304,11 +304,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "584c13fd36c3f8212325f8d3bcc157d7",
+            "id": "753a6349e3e14c144a5c3b8ef483c815",
             "name": "\/trackings\/:slug\/:tracking_number",
             "url": "https:\/\/api.aftership.com\/v4\/trackings\/{slug}\/{tracking_number}",
             "description": "",
@@ -342,11 +342,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "935cc1c90151776d77e48266aa7680ea",
+            "id": "2efc170729b12fef7e9daf8f7f9192bb",
             "name": "\/trackings\/:slug\/:tracking_number",
             "url": "https:\/\/api.aftership.com\/v4\/trackings\/{slug}\/{tracking_number}",
             "description": "",
@@ -380,11 +380,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         },
         {
-            "id": "34250ed840608aa6182c21a854e976f2",
+            "id": "bbd4826b0addf77c2102586784f97cdd",
             "name": "\/trackings\/:slug\/:tracking_number\/retrack",
             "url": "https:\/\/api.aftership.com\/v4\/trackings\/{slug}\/{tracking_number}\/retrack",
             "description": "",
@@ -418,7 +418,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "23280aaceafb0dc8fb9594956a1d1962",
+            "collectionId": "10368637fff7878dd94ccfb247e06da3",
             "rawModeData": ""
         }
     ]

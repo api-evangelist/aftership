@@ -1,7 +1,7 @@
 aid: aftership
 url: https://raw.githubusercontent.com/api-evangelist/aftership/refs/heads/main/apis.yml
 name: AfterShip
-x-type: company
+kind: company
 description: >-
   AfterShip is an e-commerce shipment tracking and post-purchase platform. APIs cover trackings, couriers, notifications, returns, and email.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg

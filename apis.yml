@@ -16,6 +16,12 @@ modified: '2026-05-08'
 specificationVersion: '0.19'
 apis: []
 common:
+  - type: TrustCenter
+    url: security/aftership-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/aftership-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/aftership-domain-security.yml
   - type: GitHubOrganization
     url: https://github.com/AfterShip
   - type: LinkedIn

@@ -2,56 +2,535 @@ aid: aftership
 url: https://raw.githubusercontent.com/api-evangelist/aftership/refs/heads/main/apis.yml
 name: AfterShip
 kind: company
-description: >-
-  AfterShip is an e-commerce shipment tracking and post-purchase platform. APIs cover trackings, couriers, notifications, returns, and email.
+description: AfterShip is a post-purchase experience platform for ecommerce brands, retailers, marketplaces and
+  3PLs, founded in 2012 and headquartered in Hong Kong. Its products cover shipment tracking across 1,400+ carriers,
+  branded tracking pages, AI-predicted estimated delivery dates, automated returns and exchanges, warranty and claims
+  management, shipping-label generation and rate shopping (Postmen), shipment protection, address validation, AI
+  email parsing, product personalization and discovery, and marketplace feed management. AfterShip publishes ten
+  versioned, date-based REST APIs on api.aftership.com, each with a downloadable OpenAPI 3.1 description, seven
+  first-party SDKs, webhooks, an OAuth 2.0 authorization server, and public and OAuth-gated MCP servers for AI agents.
 accessModel:
-  pricing: unknown
-  onboarding: unknown
-  trial: false
-  try_now: false
-  public: false
-  label: Unknown
-  confidence: low
+  pricing: freemium
+  onboarding: self-service
+  trial: true
+  try_now: true
+  public: true
+  label: Public, self-service with a free tier; API access begins on the Premium tier
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - https://www.aftership.com/pricing
+  - plans/aftership-plans-pricing.yml
+  generated: '2026-08-27'
+  method: searched
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aftership.png
 tags:
-  - Shipping
-  - Tracking
-  - E-Commerce
-  - Post-Purchase
-  - Notification
+- Shipping
+- Tracking
+- E-Commerce
+- Post-Purchase
+- Notifications
+- Logistics
+- Returns
+- Warranty
+- Address Validation
+- Fulfillment
+- Carriers
+- Webhooks
+- MCP
+- Retail
 tags_raw:
-  - Shipping
-  - Tracking
-  - E-Commerce
-  - Post-Purchase
-  - Notifications
+- Shipping
+- Tracking
+- E-Commerce
+- Post-Purchase
+- Notifications
+- Logistics
+- Returns
+- Warranty
+- Address Validation
+- Fulfillment
+- Carriers
+- Webhooks
+- MCP
+- Retail
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-08-27'
 specificationVersion: '0.23'
-apis: []
+apis:
+- name: AfterShip Address API
+  description: Address validation and correction so packages are delivered to a deliverable, normalized address.
+  humanURL: https://www.aftership.com/docs/address/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/address/2024-07/
+  tags:
+  - Address
+  - Validation
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-address-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/address/quickstart/api-quick-start
+- name: AfterShip Address Validations (Beta) API
+  description: The Address Validations (Beta) API from AfterShip — 1 operation(s) for address validations (beta).
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: &id001
+  - Shipping
+  - Labels
+  - Rates
+  - Carriers
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-address-validations-beta-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Cancel Labels API
+  description: The Cancel Labels API from AfterShip — 2 operation(s) for cancel labels.
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-cancel-labels-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Cancel Pickups API
+  description: The Cancel Pickups API from AfterShip — 2 operation(s) for cancel pickups.
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-cancel-pickups-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Claim Items API
+  description: Public endpoints for updating item-level claim data.
+  humanURL: https://www.aftership.com/docs/warranty/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/warranty/2026-07
+  tags: &id002
+  - Warranty
+  - Claims
+  - Post-Purchase
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-claim-items-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/warranty/quickstart/api-quick-start
+- name: AfterShip Claim Shipments API
+  description: Public endpoints for creating and polling claim shipment resources.
+  humanURL: https://www.aftership.com/docs/warranty/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/warranty/2026-07
+  tags: *id002
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-claim-shipments-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/warranty/quickstart/api-quick-start
+- name: AfterShip Claims API
+  description: The Claims API from AfterShip — 10 operation(s) for claims.
+  humanURL: https://www.aftership.com/docs/warranty/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/admin/2022-01
+  tags: &id004
+  - Administration
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-claims-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/warranty/quickstart/api-quick-start
+- name: AfterShip Courier API
+  description: The Courier API from AfterShip — 2 operation(s) for courier.
+  humanURL: https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/tracking/2026-07
+  tags: &id003
+  - Tracking
+  - Shipping
+  - Couriers
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-courier-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+- name: AfterShip Courier connection API
+  description: The Courier connection API from AfterShip — 2 operation(s) for courier connection.
+  humanURL: https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/tracking/2026-07
+  tags: *id003
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-courier-connection-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+- name: AfterShip Couriers API
+  description: The Couriers API from AfterShip — 1 operation(s) for couriers.
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-couriers-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Coverages API
+  description: The Coverages API from AfterShip — 5 operation(s) for coverages.
+  humanURL: https://www.aftership.com/docs/protection/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/admin/2022-01
+  tags: *id004
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-coverages-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/protection/quickstart/api-quick-start
+- name: AfterShip Discoveries API
+  description: The Discoveries API from AfterShip — 4 operation(s) for discoveries.
+  humanURL: https://www.aftership.com/docs/personalization/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/personalization/2025-01
+  tags:
+  - Personalization
+  - Recommendations
+  - AI
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-discoveries-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/personalization/quickstart/api-quick-start
+- name: AfterShip Email Parses API
+  description: The Email Parses API from AfterShip — 2 operation(s) for email parses.
+  humanURL: https://www.aftership.com/docs/parser/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/admin/2022-01
+  tags: *id004
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-email-parses-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/parser/quickstart/api-quick-start
+- name: AfterShip Estimated delivery date API
+  description: The Estimated delivery date API from AfterShip — 2 operation(s) for estimated delivery date.
+  humanURL: https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/tracking/2026-07
+  tags: *id003
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-estimated-delivery-date-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+- name: AfterShip Fulfillments API
+  description: The Fulfillments API from AfterShip — 3 operation(s) for fulfillments.
+  humanURL: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/commerce/2026-07
+  tags: &id005
+  - Commerce
+  - Orders
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-fulfillments-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+- name: AfterShip Item tags API
+  description: The Item tags API from AfterShip — 1 operation(s) for item tags.
+  humanURL: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/returns/2026-07
+  tags: &id006
+  - Returns
+  - RMA
+  - E-Commerce
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-item-tags-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+- name: AfterShip Labels API
+  description: The Labels API from AfterShip — 2 operation(s) for labels.
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-labels-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Locations API
+  description: The Locations API from AfterShip — 2 operation(s) for locations.
+  humanURL: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/commerce/2026-07
+  tags: *id005
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-locations-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Manifests API
+  description: The Manifests API from AfterShip — 2 operation(s) for manifests.
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-manifests-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Memberships API
+  description: The Memberships API from AfterShip — 2 operation(s) for memberships.
+  humanURL: https://www.aftership.com/docs/members/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/admin/2022-01
+  tags: *id004
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-memberships-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/members/quickstart/api-quick-start
+- name: AfterShip Orders API
+  description: The Orders API from AfterShip — 4 operation(s) for orders.
+  humanURL: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/commerce/2026-07
+  tags: *id005
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-orders-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+- name: AfterShip Pickups API
+  description: The Pickups API from AfterShip — 2 operation(s) for pickups.
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-pickups-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Products API
+  description: The Products API from AfterShip — 4 operation(s) for products.
+  humanURL: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/commerce/2026-07
+  tags: *id005
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+- name: AfterShip Rates API
+  description: The Rates API from AfterShip — 2 operation(s) for rates.
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-rates-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Return Dropoffs API
+  description: The Return Dropoffs API from AfterShip — 1 operation(s) for return dropoffs.
+  humanURL: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/returns/2026-07
+  tags: *id006
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-return-dropoffs-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+- name: AfterShip Return items API
+  description: The Return items API from AfterShip — 2 operation(s) for return items.
+  humanURL: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/returns/2026-07
+  tags: *id006
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-return-items-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+- name: AfterShip Returns API
+  description: Create, approve, reject, resolve and receive returns by return ID or RMA number, manage return items,
+    item tags and returns-page deep links.
+  humanURL: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/returns/2026-07
+  tags: *id006
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-returns-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+- name: AfterShip Returns Page API
+  description: The Returns Page API from AfterShip — 1 operation(s) for returns page.
+  humanURL: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/returns/2026-07
+  tags: *id006
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-returns-page-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/returns/quickstart/api-quick-start
+- name: AfterShip Roles API
+  description: The Roles API from AfterShip — 1 operation(s) for roles.
+  humanURL: https://www.aftership.com/docs/members/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/admin/2022-01
+  tags: *id004
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-roles-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/members/quickstart/api-quick-start
+- name: AfterShip Shipper Accounts API
+  description: The Shipper Accounts API from AfterShip — 5 operation(s) for shipper accounts.
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-shipper-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Specific Shipper Accounts API
+  description: The Specific Shipper Accounts API from AfterShip — 2 operation(s) for specific shipper accounts.
+  humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/postmen/v3
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-specific-shipper-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
+  sandboxURL: https://sandbox-api.aftership.com/postmen/v3
+- name: AfterShip Stores API
+  description: The Stores API from AfterShip — 2 operation(s) for stores.
+  humanURL: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/commerce/2026-07
+  tags: *id005
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-stores-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
+- name: AfterShip Tracking API
+  description: 'Shipment tracking across 1,400+ carriers: create and query trackings, detect couriers, manage courier
+    connections, and predict estimated delivery dates.'
+  humanURL: https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/tracking/2026-07
+  tags: *id003
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-tracking-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+- name: AfterShip Warranty Registrations API
+  description: Public endpoints for querying and correcting warranty registration data.
+  humanURL: https://www.aftership.com/docs/warranty/quickstart/api-quick-start
+  baseURL: https://api.aftership.com/warranty/2026-07
+  tags: *id002
+  properties:
+  - type: OpenAPI
+    url: openapi/aftership-warranty-registrations-api-openapi.yml
+  - type: Documentation
+    url: https://www.aftership.com/docs/warranty/quickstart/api-quick-start
 common:
-  - type: TrustCenter
-    url: security/aftership-trust-center.yml
-  - type: VulnerabilityDisclosure
-    url: security/aftership-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/aftership-domain-security.yml
-  - type: GitHubOrganization
-    url: https://github.com/AfterShip
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/aftership
-  - type: Website
-    url: https://www.aftership.com/
-  - type: Plans
-    url: plans/aftership-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/aftership-rate-limits.yml
-  - type: FinOps
-    url: finops/aftership-finops.yml
+- type: AgenticAccess
+  url: agentic-access/aftership-agentic-access.yml
+- type: Authentication
+  url: authentication/aftership-authentication.yml
+- type: TrustCenter
+  url: security/aftership-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/aftership-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/aftership-domain-security.yml
+- type: GitHubOrganization
+  url: https://github.com/AfterShip
+- type: LinkedIn
+  url: https://www.linkedin.com/company/aftership
+- type: Website
+  url: https://www.aftership.com/
+- type: Plans
+  url: plans/aftership-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/aftership-rate-limits.yml
+- type: FinOps
+  url: finops/aftership-finops.yml
+- type: Packages
+  url: packages/aftership-packages.yml
+- type: SDKs
+  url: packages/aftership-packages.yml
+- type: WellKnown
+  url: well-known/aftership-well-known.yml
+- type: MCPServer
+  url: mcp/aftership-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/aftership-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/aftership-llms.txt
+- type: Conformance
+  url: conformance/aftership-conformance.yml
+- type: Compliance
+  url: conformance/aftership-conformance.yml
+- type: ErrorCatalog
+  url: errors/aftership-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/aftership-lifecycle.yml
+- type: StatusPage
+  url: https://www.aftershipstatus.com/
+- type: Deprecation
+  url: lifecycle/aftership-lifecycle.yml
+- type: OAuthScopes
+  url: scopes/aftership-scopes.yml
+- type: Security
+  url: security/aftership-vulnerability-disclosure.yml
+- type: Sandbox
+  url: sandbox/aftership-sandbox.yml
+- type: Conventions
+  url: conventions/aftership-conventions.yml
+- type: ChangeLog
+  url: changelog/aftership-changelog.yml
+- type: Components
+  url: components/aftership-components.yml
+- type: DataModel
+  url: data-model/aftership-data-model.yml
+- type: Webhooks
+  url: asyncapi/aftership-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/aftership-tracking-api-overlay.yaml
+- type: DeveloperPortal
+  url: https://www.aftership.com/docs
+- type: Documentation
+  url: https://www.aftership.com/docs
+- type: APIReference
+  url: https://www.aftership.com/docs/tracking/reference/api-overview
+- type: GettingStarted
+  url: https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+- type: Support
+  url: https://support.aftership.com/en
+- type: HelpCenter
+  url: https://www.aftership.com/help-center
+- type: Blog
+  url: https://www.aftership.com/blog
+- type: Pricing
+  url: https://www.aftership.com/pricing
+- type: SignUp
+  url: https://www.aftership.com/sso/authorize?continue=register&pd=tracking
+- type: Login
+  url: https://accounts.aftership.com/
+- type: TermsOfService
+  url: https://www.aftership.com/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.aftership.com/legal/privacy
+- type: Postman
+  url: https://www.postman.com/aftership/workspace/api-aftership-com
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-27'
+  status: enriched
+  artifacts_added: 101
+  pass: local-v1

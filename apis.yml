@@ -9,6 +9,17 @@ description: AfterShip is a post-purchase experience platform for ecommerce bran
   email parsing, product personalization and discovery, and marketplace feed management. AfterShip publishes ten
   versioned, date-based REST APIs on api.aftership.com, each with a downloadable OpenAPI 3.1 description, seven
   first-party SDKs, webhooks, an OAuth 2.0 authorization server, and public and OAuth-gated MCP servers for AI agents.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-service

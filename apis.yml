@@ -445,6 +445,9 @@ apis:
   - type: Documentation
     url: https://www.aftership.com/docs/warranty/quickstart/api-quick-start
 common:
+- type: CapabilityMap
+  url: capabilities/aftership-capability-edges.yml
+  name: AfterShip Business Capability Map
 - type: AgenticAccess
   url: agentic-access/aftership-agentic-access.yml
 - type: Authentication

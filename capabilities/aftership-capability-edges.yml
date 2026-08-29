@@ -3,7 +3,7 @@ provider: AfterShip
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
-- Software & Technology
+- Transportation & Logistics
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -11,62 +11,57 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 6
+edge_count: 5
 edges:
+- tag: Estimated delivery date
+  spec_file: aftership-estimated-delivery-date-api-openapi.yml
+  capability_id: BC-2510.30
+  capability_id_l1: BC-2510
+  capability_name: ETA Prediction Management
+  confidence: 0.95
+  evidence: POST /estimated-delivery-date/predict  predict  Prediction for the Estimated Delivery Date
+  reason: Operations do exactly ETA prediction — single and batch prediction of estimated delivery date,
+    with Estimated_delivery_date_Request/Response schemas. No other reading fits.
+- tag: Tracking
+  spec_file: aftership-tracking-api-openapi.yml
+  capability_id: BC-2510.20
+  capability_id_l1: BC-2510
+  capability_name: Shipment Tracking Management
+  confidence: 0.92
+  evidence: 'GET /trackings  get-trackings  Get trackings; POST /trackings/{id}/retrack  Retrack an expired
+    tracking by ID; schemas: Tracking, Checkpoint'
+  reason: Operations create and resolve shipment tracking records with carrier checkpoints, which is squarely
+    shipment tracking/visibility for the vendor's post-purchase tracking product.
 - tag: Fulfillments
   spec_file: aftership-fulfillments-api-openapi.yml
   capability_id: BC-520.40
   capability_id_l1: BC-520
   capability_name: Order Fulfilment Management
-  confidence: 0.85
-  evidence: POST /fulfillments  Create a fulfillment; POST /fulfillments/{id}/update-status  Update fulfillment
-    status; schemas Fulfillment.v1, Tracking.v1, Pickup_location.v1
-  reason: CRUD plus status transitions over fulfilment records with tracking and pickup details — plainly
-    order fulfilment orchestration.
-- tag: Pickups
-  spec_file: aftership-pickups-api-openapi.yml
-  capability_id: BC-520.50
-  capability_id_l1: BC-520
-  capability_name: Logistics Operations Management
   confidence: 0.75
-  evidence: 'POST /pickups  post-pickups  Create a pickup; schemas: Pickup_parcel.v3, Address.v3, Dimension.v3'
-  reason: Scheduling carrier parcel pickups with parcel dimensions and addresses is transport execution
-    within logistics operations.
-- tag: Tracking
-  spec_file: aftership-tracking-api-openapi.yml
-  capability_id: BC-520.50
-  capability_id_l1: BC-520
-  capability_name: Logistics Operations Management
+  evidence: POST /fulfillments  create-fulfillment  Create a fulfillment; POST /fulfillments/{id}/update-status  Update
+    fulfillment status; schemas Fulfillment.v1, Tracking.v1, Pickup_location.v1
+  reason: Lifecycle of order fulfilments (create, retrieve, update, status change) with tracking, pickup
+    location and weight — order fulfilment orchestration. Slight ambiguity versus outbound/dispatch capabilities
+    keeps this below 0.8.
+- tag: Rates
+  spec_file: aftership-rates-api-openapi.yml
+  capability_id: BC-2520.50
+  capability_id_l1: BC-2520
+  capability_name: Rating Engine Operations Management
   confidence: 0.75
-  evidence: POST /trackings create-tracking "Create a tracking"; POST /trackings/{id}/retrack "Retrack
-    an expired tracking by ID"; schema "Checkpoint"
-  reason: Operations create and maintain shipment tracking records with carrier checkpoints — shipment
-    visibility within logistics operations. Some ambiguity versus order fulfilment, so 0.75.
-- tag: Cancel Labels
-  spec_file: aftership-cancel-labels-api-openapi.yml
-  capability_id: BC-520.50
-  capability_id_l1: BC-520
-  capability_name: Logistics Operations Management
-  confidence: 0.7
-  evidence: POST /cancel-labels  Cancel a label; Get the cancelled labels
-  reason: Shipping-label lifecycle (cancellation of carrier labels) is transport/logistics execution within
-    the supply chain.
-- tag: Cancel Pickups
-  spec_file: aftership-cancel-pickups-api-openapi.yml
-  capability_id: BC-520.50
-  capability_id_l1: BC-520
-  capability_name: Logistics Operations Management
-  confidence: 0.7
-  evidence: POST /cancel-pickups  Cancel a pickup; Get the cancelled pickups
-  reason: Carrier pickup scheduling/cancellation is transport execution — logistics operations.
-- tag: Manifests
-  spec_file: aftership-manifests-api-openapi.yml
-  capability_id: BC-520.50
-  capability_id_l1: BC-520
-  capability_name: Logistics Operations Management
-  confidence: 0.7
-  evidence: 'POST /manifests  post-manifests  Create a manifest; schemas: Manifest.v3, Files.v3 (Postmen
-    shipping API)'
-  reason: Carrier manifests are close-out documents produced when handing parcels to a carrier — shipping/logistics
-    execution, part of Logistics Operations Management. Not a document-management or accounting capability
-    despite the generic noun.
+  evidence: POST /rates post-rates 'Calculate rates'; schemas Rate.v3, Rate_record.v3, Shipment.v3, Parcel.v3,
+    Money.v3
+  reason: Postmen rate-shopping endpoint that computes shipping charges for a given shipment/parcel across
+    carriers. This is operation of a freight rating engine that calculates and validates charges, matching
+    BC-2520.50.
+- tag: Returns
+  spec_file: aftership-returns-api-openapi.yml
+  capability_id: BC-2460.50
+  capability_id_l1: BC-2460
+  capability_name: Returns and Reverse Operations Management
+  confidence: 0.72
+  evidence: POST /returns/{return_id}/approve 'Approve Return'; POST /returns/{return_id}/receive-items
+    'Receive items by Return ID'; schemas Receiving, Restock, Refund, Exchange, Return_method
+  reason: Full RMA lifecycle — create, approve, reject, resolve, receive items — with Receiving, Restock,
+    Refund and Exchange schemas. This is the receipt, triage and disposition of returned goods, i.e. returns
+    and reverse-logistics operations.

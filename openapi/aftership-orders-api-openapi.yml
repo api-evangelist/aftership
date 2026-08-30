@@ -1,0 +1,2450 @@
+openapi: 3.2.0
+info:
+  title: Overview Orders API
+  version: 2026-07
+  summary: API Overview
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-automizely-com-commerce/nodes/reference/api.json?branch=testing%2F2026-07&deref=optimizedBundle)'
+servers:
+- url: https://api.aftership.com/commerce/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Orders
+paths:
+  /orders:
+    post:
+      summary: Create an order
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: ''
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Order.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20100
+                      type: Created
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: '5187092316403'
+                      store:
+                        id: 0ecb8ff7efa84d7d8f763ed7b21851d1
+                      name: '#1086'
+                      number: '1086'
+                      currency: HKD
+                      status: open
+                      financial_status: unpaid
+                      fulfillment_status: unfulfilled
+                      order_total: '97'
+                      shipping_total: '5'
+                      tax_total: '10'
+                      discount_total: '1'
+                      subtotal: '90'
+                      items:
+                      - id: '13097711141107'
+                        sku: SKU001
+                        quantity: 1
+                        unit_weight:
+                          unit: kg
+                          value: 10
+                        unit_price:
+                          currency: USD
+                          amount: '10'
+                        product_title: Power Mobile Phone
+                        product_variant_title: Power Mobile Phone Pro
+                        discount: '10'
+                        tax: '10'
+                        product_id: '8021450916083'
+                        product_variant_id: '43768285298931'
+                        hs_code: '554521'
+                        origin_country_region: USA
+                        image_urls:
+                        - https://www.example.com/product/phone/image.jpg
+                        product_tags:
+                        - mobile-phone
+                        product_categories:
+                        - mobile-phone
+                        returnable_quantity: 1
+                      note: Created by AfterShip
+                      source_created_at: '2021-04-15T20:02:09Z'
+                      source_updated_at: '2021-04-16T20:02:09Z'
+                      created_at: '2021-04-15T20:02:09Z'
+                      updated_at: '2021-04-16T20:02:09Z'
+                      customer:
+                        id: '5127837778090'
+                        first_name: John
+                        last_name: Doe
+                        emails:
+                        - john.doe@example.com
+                        locale: en-US
+                        phones:
+                        - '+11234567890'
+                      shipping_address:
+                        type: business
+                        street_1: 1234 Elm Street
+                        street_2: Apt 5
+                        street_3: ''
+                        city: New York
+                        state: NY
+                        postal_code: '10001'
+                        country_region: USA
+                        company: My Company
+                        first_name: John
+                        last_name: Doe
+                        email: john.doe@example.com
+                        phone: '+11234567890'
+                      billing_address:
+                        type: business
+                        street_1: 1234 Elm Street
+                        street_2: Apt 5
+                        street_3: ''
+                        city: New York
+                        state: NY
+                        postal_code: '10001'
+                        country_region: USA
+                        company: My Company
+                        first_name: John
+                        last_name: Doe
+                        email: john.doe@example.com
+                        phone: '+11234567890'
+                      tags:
+                      - mobile-phone
+                      shipping_method: standard shipping
+                      delivery_method: shipping
+                      pickup_location:
+                        location_id: string
+                        address:
+                          type: business
+                          street_1: 1234 Elm Street
+                          street_2: Apt 5
+                          street_3: ''
+                          city: New York
+                          state: NY
+                          postal_code: '10001'
+                          country_region: USA
+                          company: My Company
+                          first_name: John
+                          last_name: Doe
+                          email: john.doe@example.com
+                          phone: '+11234567890'
+                          coordinate:
+                            latitude: 43
+                            longitude: -75
+                        opening_hours:
+                          sunday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          monday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          tuesday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          wednesday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          thursday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          friday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          saturday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                      pickup_info:
+                        instructions: string
+                        estimated_ready_for_pickup_at:
+                          min: '2019-08-24T14:15:22Z'
+                          max: '2019-08-24T14:15:22Z'
+                        pickup_deadline_at: '2019-08-24T14:15:22Z'
+      operationId: create-order
+      description: "Create an order. \n\n> Please refer to the common scenario documentation for the usage of AfterShip Tracking, Shipping and Returns.\n\n> If you receive **41204 error (The store could not be found)**, please create a store with the [Create a store](https://www.aftership.com/docs/commerce/2025-04/hadtz8qj5if6w-create-a-store) endpoint before calling this API.\n\n\n<div style=\"visibility:hidden; height: 0\">[url](../docs/common_scenarios/tracking/bopis.md)</div>"
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      tags:
+      - Orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - currency
+              - number
+              - status
+              - order_total
+              - items
+              - delivery_method
+              properties:
+                id:
+                  type: string
+                  description: A custom identifier for the order. If not provided, the system will generate a UUID. Must be unique within the store and immutable. You can use this ID to manage the resource in subsequent API calls.
+                  maxLength: 128
+                  example: my-custom-id-123
+                  pattern: ^[a-zA-Z0-9_-]+$
+                  x-stoplight:
+                    id: mjrpj72to49gw
+                name:
+                  type: string
+                  description: The order name.
+                  maxLength: 256
+                  example: '#1086'
+                currency:
+                  type:
+                  - string
+                  description: Specifies the currency for the order, adhering to the [ISO 4217 Currency Codes standard](https://en.wikipedia.org/wiki/ISO_4217).
+                  example: USD
+                  pattern: ^[A-Z]{3}$
+                number:
+                  type: string
+                  description: The order number.
+                  maxLength: 64
+                  example: '1086'
+                status:
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                  - canceled
+                  description: The status of the order.
+                financial_status:
+                  type:
+                  - string
+                  - 'null'
+                  enum:
+                  - partially_paid
+                  - paid
+                  - partially_refunded
+                  - refunded
+                  - unpaid
+                  description: The status of payments associated with the order. Defaults to `null` if not provided.
+                fulfillment_status:
+                  type:
+                  - string
+                  - 'null'
+                  enum:
+                  - unfulfilled
+                  - partially_fulfilled
+                  - fulfilled
+                  description: 'The fulfillment status associated with the order. If not provided, this value is determined automatically. Since fulfillment has not been created at the time of order creation, it defaults to unfulfilled.
+
+
+                    If you provide a value for this field when creating an order, you are responsible for updating the status manually from then onward. If you want AfterShip to manage the status automatically, do not provide this field when creating orders.'
+                order_total:
+                  type: string
+                  description: "Final amount paid by the customer, including of charges.\n\nFormula: \n`order_total = subtotal + shipping_total + tax_total`"
+                  maxLength: 100
+                  example: '97'
+                subtotal:
+                  type: string
+                  description: "Total after discounts, excluding taxes and shipping\n\nFormula: \n`subtotal = sum of all items' price`\n\n`1 item price = items.*.unit_price * items.*.quantity - items.*.discount`"
+                  maxLength: 100
+                  example: '90'
+                shipping_total:
+                  type: string
+                  description: The total shipping fee applied to the price of the order.
+                  maxLength: 100
+                  example: '5'
+                tax_total:
+                  type: string
+                  description: The sum of all the taxes applied to the order.
+                  maxLength: 100
+                  example: '10'
+                discount_total:
+                  type: string
+                  description: The total discounts applied to the order. The value should be equal to the sum of all item discounts.
+                  maxLength: 100
+                  example: '1'
+                items:
+                  type: array
+                  description: Purchased items of the order.
+                  maxItems: 300
+                  minItems: 1
+                  items:
+                    $ref: '#/components/schemas/Order_item.v1'
+                note:
+                  type: string
+                  description: A note that the shop owner can optionally attach to the order.
+                  maxLength: 5000
+                  example: Created by AfterShip
+                source_created_at:
+                  type: string
+                  description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the order was created in your e-commerce system.
+                  example: '2021-04-15T20:02:09Z'
+                source_updated_at:
+                  type: string
+                  description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the order was updated in your e-commerce system.
+                  example: '2021-04-16T20:02:09Z'
+                customer:
+                  $ref: '#/components/schemas/Customer.v1'
+                  description: Customer information of the order.
+                shipping_address:
+                  $ref: '#/components/schemas/Address.v1'
+                  description: Shipping address of the order.
+                billing_address:
+                  $ref: '#/components/schemas/Address.v1'
+                  description: Billing address of the order.
+                tags:
+                  type: array
+                  description: Tags attached to the order.
+                  maxItems: 100
+                  items:
+                    type: string
+                    example: mobile-phone
+                shipping_method:
+                  type: string
+                  description: The name of the shipping method.
+                  maxLength: 256
+                  example: standard shipping
+                delivery_method:
+                  type: string
+                  x-stoplight:
+                    id: ewm9fia1h0hfj
+                  enum:
+                  - shipping
+                  - pickup
+                  description: 'Delivery method of the order.
+
+
+                    For orders requiring shipping to buyers, please specify `shipping`. For Buy Online, Pick Up In Store (BOPIS) orders, please specify `pickup`.
+
+
+                    For further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../docs/common_scenarios/tracking/bopis.md).
+
+                    '
+                  example: shipping
+                pickup_location:
+                  type: object
+                  x-stoplight:
+                    id: 2oi1vnzlgtdc3
+                  description: 'To indicate the pickup location of the order when the delivery method of the order is `pickup`.
+
+
+                    For further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../docs/common_scenarios/tracking/bopis.md).'
+                  required:
+                  - location_id
+                  properties:
+                    location_id:
+                      type: string
+                      x-stoplight:
+                        id: s961j2vomx6rx
+                      description: The unique identifier for the address. You can find or create the corresponding value [here](https://organization.automizely.com/warehouses).
+                      example: b1cd63f641844a8e94208bad3c011ea3
+                pickup_info:
+                  $ref: '#/components/schemas/Pickup.v1'
+                  x-stoplight:
+                    id: xuy8sphna6ej7
+                  description: 'To indicate the detailed pickup instruction of the order when the delivery method of the order is `pickup`.
+
+
+                    For further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../docs/common_scenarios/tracking/bopis.md).'
+                status_timestamps:
+                  $ref: '#/components/schemas/Status_timestamps.v1'
+                  x-stoplight:
+                    id: 8vvvtyweol0o1
+                custom_fields:
+                  $ref: '#/components/schemas/Order_custom_fields.v1'
+                  x-stoplight:
+                    id: ep64tykxqyu8q
+            examples:
+              Example 1:
+                value:
+                  id: '5187092316403'
+                  name: '#1086'
+                  number: '1086'
+                  currency: USD
+                  status: open
+                  financial_status: partially_paid
+                  fulfillment_status: unfulfilled
+                  order_total: '97'
+                  shipping_total: '5'
+                  tax_total: '10'
+                  discount_total: '1'
+                  subtotal: '90'
+                  items:
+                  - id: '13097711141107'
+                    sku: SKU001
+                    quantity: 1
+                    unit_weight:
+                      unit: kg
+                      value: 10
+                    unit_price:
+                      currency: USD
+                      amount: '10'
+                    product_title: Power Mobile Phone
+                    product_variant_title: Power Mobile Phone Pro
+                    discount: '10'
+                    tax: '10'
+                    product_id: '8021450916083'
+                    product_variant_id: '43768285298931'
+                    hs_code: '554521'
+                    origin_country_region: USA
+                    image_urls:
+                    - https://www.example.com/product/phone/image.jpg
+                    product_tags:
+                    - mobile-phone
+                    product_categories:
+                    - mobile-phone
+                    returnable_quantity: 1
+                  note: Created by AfterShip
+                  source_created_at: '2021-04-15T20:02:09Z'
+                  source_updated_at: '2021-04-16T20:02:09Z'
+                  customer:
+                    id: '5127837778090'
+                    first_name: John
+                    last_name: Doe
+                    emails:
+                    - john.doe@example.com
+                    locale: en-US
+                    phones:
+                    - '+11234567890'
+                  shipping_address:
+                    type: business
+                    street_1: 1234 Elm Street
+                    street_2: Apt 5
+                    street_3: ''
+                    city: New York
+                    state: NY
+                    postal_code: '10001'
+                    country_region: USA
+                    company: My Company
+                    first_name: John
+                    last_name: Doe
+                    email: john.doe@example.com
+                    phone: '+11234567890'
+                  billing_address:
+                    type: business
+                    street_1: 1234 Elm Street
+                    street_2: Apt 5
+                    street_3: ''
+                    city: New York
+                    state: NY
+                    postal_code: '10001'
+                    country_region: USA
+                    company: My Company
+                    first_name: John
+                    last_name: Doe
+                    email: john.doe@example.com
+                    phone: '+11234567890'
+                  tags:
+                  - mobile-phone
+                  shipping_method: standard shipping
+                  delivery_method: shipping
+                  pickup_location:
+                    location_id: b1cd63f641844a8e94208bad3c011ea3
+                  pickup_info:
+                    instructions: string
+                    estimated_ready_for_pickup_at:
+                      min: '2019-08-24T14:15:22Z'
+                      max: '2019-08-24T14:15:22Z'
+                    pickup_deadline_at: '2019-08-24T14:15:22Z'
+      x-stoplight:
+        id: hwj8tr3xn41rq
+    get:
+      summary: Get orders
+      operationId: get-orders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                    x-stoplight:
+                      id: uhj872nkb4v0x
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: zfgwol14rqk1u
+                    properties:
+                      orders:
+                        type: array
+                        x-stoplight:
+                          id: e5ryg71wgv6j0
+                        minItems: 0
+                        maxItems: 50
+                        items:
+                          $ref: '#/components/schemas/Order.v1'
+                          x-stoplight:
+                            id: dw6s26g5cmgjt
+                      pagination:
+                        $ref: '#/components/schemas/Pagination.v2'
+                        x-stoplight:
+                          id: 3uev4y3k91nv0
+                      parameter_string:
+                        type: string
+                        x-stoplight:
+                          id: 38ln8athl4tux
+                        description: A string that includes the request parameters.
+                        example: limit=10&page=1
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      orders:
+                      - id: '5187092316403'
+                        store:
+                          id: 0ecb8ff7efa84d7d8f763ed7b21851d1
+                        name: '#1086'
+                        number: '1086'
+                        currency: HKD
+                        status: open
+                        financial_status: unpaid
+                        fulfillment_status: unfulfilled
+                        order_total: '97'
+                        shipping_total: '5'
+                        tax_total: '10'
+                        discount_total: '1'
+                        subtotal: '90'
+                        items:
+                        - id: '13097711141107'
+                          sku: SKU001
+                          quantity: 1
+                          unit_weight:
+                            unit: kg
+                            value: 10
+                          unit_price:
+                            currency: USD
+                            amount: '10'
+                          product_title: Power Mobile Phone
+                          product_variant_title: Power Mobile Phone Pro
+                          discount: '10'
+                          tax: '10'
+                          product_id: '8021450916083'
+                          product_variant_id: '43768285298931'
+                          hs_code: '554521'
+                          origin_country_region: USA
+                          image_urls:
+                          - https://www.example.com/product/phone/image.jpg
+                          product_tags:
+                          - mobile-phone
+                          product_categories:
+                          - mobile-phone
+                          returnable_quantity: 1
+                        note: Created by AfterShip
+                        source_created_at: '2021-04-15T20:02:09Z'
+                        source_updated_at: '2021-04-16T20:02:09Z'
+                        created_at: '2021-04-15T20:02:09Z'
+                        updated_at: '2021-04-16T20:02:09Z'
+                        customer:
+                          id: '5127837778090'
+                          first_name: John
+                          last_name: Doe
+                          emails:
+                          - john.doe@example.com
+                          locale: en-US
+                          phones:
+                          - '+11234567890'
+                        shipping_address:
+                          type: business
+                          street_1: 1234 Elm Street
+                          street_2: Apt 5
+                          street_3: ''
+                          city: New York
+                          state: NY
+                          postal_code: '10001'
+                          country_region: USA
+                          company: My Company
+                          first_name: John
+                          last_name: Doe
+                          email: john.doe@example.com
+                          phone: '+11234567890'
+                        billing_address:
+                          type: business
+                          street_1: 1234 Elm Street
+                          street_2: Apt 5
+                          street_3: ''
+                          city: New York
+                          state: NY
+                          postal_code: '10001'
+                          country_region: USA
+                          company: My Company
+                          first_name: John
+                          last_name: Doe
+                          email: john.doe@example.com
+                          phone: '+11234567890'
+                        tags:
+                        - mobile-phone
+                        shipping_method: standard shipping
+                        delivery_method: shipping
+                        pickup_location:
+                          location_id: e9ec84ff351e45e089a7b75ae497e1ae
+                          address:
+                            type: business
+                            street_1: 1234 Elm Street
+                            street_2: Apt 5
+                            street_3: ''
+                            city: New York
+                            state: NY
+                            postal_code: '10001'
+                            country_region: USA
+                            company: My Company
+                            first_name: John
+                            last_name: Doe
+                            email: john.doe@example.com
+                            phone: '+11234567890'
+                            coordinate:
+                              latitude: 43
+                              longitude: -75
+                          opening_hours:
+                            sunday:
+                              open: true
+                              from: '10:30'
+                              to: '20:30'
+                            monday:
+                              open: true
+                              from: '10:30'
+                              to: '20:30'
+                            tuesday:
+                              open: true
+                              from: '10:30'
+                              to: '20:30'
+                            wednesday:
+                              open: true
+                              from: '10:30'
+                              to: '20:30'
+                            thursday:
+                              open: true
+                              from: '10:30'
+                              to: '20:30'
+                            friday:
+                              open: true
+                              from: '10:30'
+                              to: '20:30'
+                            saturday:
+                              open: true
+                              from: '10:30'
+                              to: '20:30'
+                        pickup_info:
+                          instructions: Shop open from Mon to Fri
+                          estimated_ready_for_pickup_at:
+                            min: '2021-04-15T20:02:09Z'
+                            max: '2021-04-15T20:02:09Z'
+                          pickup_deadline_at: '2021-04-15T20:02:09Z'
+                      pagination:
+                        page: 0
+                        limit: 0
+                        has_next_page: true
+                      parameter_string: limit=10&page=1
+      x-stoplight:
+        id: kr3dy6e5ma49n
+      description: Get order results with multiple orders.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: ids[]
+        description: 'Each element should be less than 128 characters. Count of the elements should be less than 50. Every id should be used as an  independent query param, as the following url example shows: /orders?ids[]=5247009653041&ids[]=5081836323059 '
+      - schema:
+          type: integer
+          maximum: 50
+          minimum: 1
+        in: query
+        name: limit
+        description: The maximum number of results to show on a page.  Default is 10.
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+        in: query
+        name: page
+        description: Current page of the collection. Default is 1.
+      - schema:
+          type: string
+          enum:
+          - -source_created_at
+          - +source_created_at
+          - -source_updated_at
+          - +source_updated_at
+          example: -source_created_at
+        in: query
+        name: sort
+        description: Sort the results list by the given value.  Default is '-source_created_at' .
+      - $ref: '#/components/parameters/as-store-id'
+      tags:
+      - Orders
+  /orders/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: The ID of the order.
+    get:
+      summary: Get order by ID
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Order.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: '5187092316403'
+                      store:
+                        id: 0ecb8ff7efa84d7d8f763ed7b21851d1
+                      name: '#1086'
+                      number: '1086'
+                      currency: HKD
+                      status: open
+                      financial_status: unpaid
+                      fulfillment_status: unfulfilled
+                      order_total: '97'
+                      shipping_total: '5'
+                      tax_total: '10'
+                      discount_total: '1'
+                      subtotal: '90'
+                      items:
+                      - id: '13097711141107'
+                        sku: SKU001
+                        quantity: 1
+                        unit_weight:
+                          unit: kg
+                          value: 10
+                        unit_price:
+                          currency: USD
+                          amount: '10'
+                        product_title: Power Mobile Phone
+                        product_variant_title: Power Mobile Phone Pro
+                        discount: '10'
+                        tax: '10'
+                        product_id: '8021450916083'
+                        product_variant_id: '43768285298931'
+                        hs_code: '554521'
+                        origin_country_region: USA
+                        image_urls:
+                        - https://www.example.com/product/phone/image.jpg
+                        product_tags:
+                        - mobile-phone
+                        product_categories:
+                        - mobile-phone
+                        returnable_quantity: 1
+                      note: Created by AfterShip
+                      source_created_at: '2021-04-15T20:02:09Z'
+                      source_updated_at: '2021-04-16T20:02:09Z'
+                      created_at: '2021-04-15T20:02:09Z'
+                      updated_at: '2021-04-16T20:02:09Z'
+                      customer:
+                        id: '5127837778090'
+                        first_name: John
+                        last_name: Doe
+                        emails:
+                        - john.doe@example.com
+                        locale: en-US
+                        phones:
+                        - '+11234567890'
+                      shipping_address:
+                        type: business
+                        street_1: 1234 Elm Street
+                        street_2: Apt 5
+                        street_3: ''
+                        city: New York
+                        state: NY
+                        postal_code: '10001'
+                        country_region: USA
+                        company: My Company
+                        first_name: John
+                        last_name: Doe
+                        email: john.doe@example.com
+                        phone: '+11234567890'
+                      billing_address:
+                        type: business
+                        street_1: 1234 Elm Street
+                        street_2: Apt 5
+                        street_3: ''
+                        city: New York
+                        state: NY
+                        postal_code: '10001'
+                        country_region: USA
+                        company: My Company
+                        first_name: John
+                        last_name: Doe
+                        email: john.doe@example.com
+                        phone: '+11234567890'
+                      tags:
+                      - mobile-phone
+                      shipping_method: standard shipping
+                      delivery_method: shipping
+                      pickup_location:
+                        location_id: e9ec84ff351e45e089a7b75ae497e1ae
+                        address:
+                          type: business
+                          street_1: 1234 Elm Street
+                          street_2: Apt 5
+                          street_3: ''
+                          city: New York
+                          state: NY
+                          postal_code: '10001'
+                          country_region: USA
+                          company: My Company
+                          first_name: John
+                          last_name: Doe
+                          email: john.doe@example.com
+                          phone: '+11234567890'
+                          coordinate:
+                            latitude: 43
+                            longitude: -75
+                        opening_hours:
+                          sunday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          monday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          tuesday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          wednesday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          thursday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          friday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                          saturday:
+                            open: true
+                            from: '10:30'
+                            to: '20:30'
+                      pickup_info:
+                        instructions: Shop open from Mon to Fri
+                        estimated_ready_for_pickup_at:
+                          min: '2021-04-15T20:02:09Z'
+                          max: '2021-04-15T20:02:09Z'
+                        pickup_deadline_at: '2021-04-15T20:02:09Z'
+      operationId: get-order-by-id
+      description: Get an order by ID.
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      tags:
+      - Orders
+      x-stoplight:
+        id: egf6ns3d62ie7
+    patch:
+      summary: Update order by ID
+      operationId: update-order-by-id
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Order.v1'
+              examples:
+                Response Example:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by Automizely.
+                    data:
+                      id: '3712367526058'
+                      store:
+                        id: 0ecb8ff7efa84d7d8f763ed7b21851d1
+                      number: '1002'
+                      name: '#1002'
+                      currency: USD
+                      status: closed
+                      delivery_method: shipping
+                      financial_status: paid
+                      fulfillment_status: fulfilled
+                      shipping_method: Free Shipping
+                      order_total: '9'
+                      shipping_total: '0'
+                      tax_total: '0'
+                      discount_total: '1'
+                      subtotal: '10'
+                      items:
+                      - id: '9716591689898'
+                        sku: ''
+                        title: iPhone pro max
+                        product_variant_title: iPhone pro max Red
+                        quantity: 1
+                        unit_weight:
+                          unit: g
+                          value: 1
+                        product_tags:
+                        - Discounted
+                        product_categories:
+                        - Pants
+                        image_urls:
+                        - https://google.com/xxx.png
+                        unit_price:
+                          currency: USD
+                          amount: '5'
+                        discount: '0.5'
+                        tax: '0'
+                        product_id: '6582419718314'
+                        product_variant_id: '39468493078698'
+                        hs_code: '1'
+                        origin_country_region: USA
+                      note: test
+                      created_at: '2021-04-15T20:02:09Z'
+                      updated_at: '2021-04-26T13:42:19Z'
+                      source_created_at: '2021-04-15T20:02:09Z'
+                      source_updated_at: '2021-04-26T13:42:19Z'
+                      customer:
+                        id: '5127837778090'
+                        first_name: John
+                        last_name: Doe
+                        emails:
+                        - john.doe@example.com
+                        phones:
+                        - '+11234567890'
+                        locale: fr-FR
+                      shipping_address:
+                        company: AS
+                        first_name: John
+                        last_name: Doe
+                        email: john.doe@example.com
+                        street_1: 40 level
+                        street_2: Das tower
+                        street_3: ''
+                        city: SHENZHEN
+                        state: Alabama
+                        country_region: CHN
+                        postal_code: '59390'
+                        phone: '+11234567890'
+                        type: business
+                      billing_address:
+                        company: AS
+                        first_name: John
+                        last_name: Doe
+                        email: john.doe@example.com
+                        street_1: 40 level
+                        street_2: Das tower
+                        street_3: ''
+                        city: SHENZHEN
+                        state: Alabama
+                        country_region: CHN
+                        postal_code: '59390'
+                        phone: '+11234567890'
+                        type: business
+                      tags: []
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  type: string
+                  description: A note that the shop owner can optionally attach to the order.
+                  maxLength: 5000
+                  example: created by AfterShip
+                source_updated_at:
+                  type: string
+                  description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the order was updated in your e-commerce system.
+                  example: '2021-04-16T20:02:09Z'
+                customer:
+                  $ref: '#/components/schemas/Customer.v1'
+                  description: Customer information of the order.
+                shipping_address:
+                  $ref: '#/components/schemas/Address.v1'
+                  description: Shipping address of the order.
+                billing_address:
+                  $ref: '#/components/schemas/Address.v1'
+                  description: Billing address of the order.
+                tags:
+                  type: array
+                  description: Tags attached to the order.
+                  maxItems: 100
+                  items:
+                    type: string
+                    example: this is a tag
+                status:
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                  - canceled
+                  description: The status of this order.
+                financial_status:
+                  type:
+                  - string
+                  - 'null'
+                  enum:
+                  - unpaid
+                  - partially_paid
+                  - paid
+                  - partially_refunded
+                  - refunded
+                  description: The status of payments associated with the order.
+                fulfillment_status:
+                  type:
+                  - string
+                  - 'null'
+                  enum:
+                  - unfulfilled
+                  - partially_fulfilled
+                  - fulfilled
+                  description: The status of fulfillment associated with the order.
+                status_timestamps:
+                  $ref: '#/components/schemas/Status_timestamps.v1'
+                  x-stoplight:
+                    id: orh4bj01er23a
+                custom_fields:
+                  $ref: '#/components/schemas/Order_custom_fields.v1'
+                  x-stoplight:
+                    id: 6zx6j1tzyj7uz
+                currency:
+                  type: string
+                  x-stoplight:
+                    id: aq0fyvfm7zzse
+                  description: Specifies the currency for the order, adhering to the ISO 4217 Currency Codes standard
+                order_total:
+                  type: string
+                  x-stoplight:
+                    id: xcjiik389th6n
+                  description: The total price of the order.
+                shipping_total:
+                  type: string
+                  x-stoplight:
+                    id: nhajinwtm1j3x
+                  description: The total shipping fee applied to the price of the order.
+                tax_total:
+                  type: string
+                  x-stoplight:
+                    id: 8h0lmbuekdz93
+                  description: The sum of all the taxes applied to the order.
+                discount_total:
+                  type: string
+                  x-stoplight:
+                    id: 7sg2agrvxuiqp
+                  description: The total discounts applied to the order. The value should be equal to the sum of all item discounts.
+                subtotal:
+                  type: string
+                  x-stoplight:
+                    id: jf60g3gi201qo
+                  description: The price of the order after discounts but before shipping and taxes.
+        description: ''
+      tags:
+      - Orders
+      description: Update an order by ID.
+      x-stoplight:
+        id: 4mq75615nodwt
+  /orders/{id}/items:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: The ID of the order.
+    post:
+      summary: Create an order item
+      operationId: create-order-item
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Order_item.v1'
+      description: Create a new order item.
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order_item.v1'
+      tags:
+      - Orders
+  /orders/{id}/items/{item_id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: The ID of the order.
+    - schema:
+        type: string
+      name: item_id
+      in: path
+      required: true
+      description: The ID of the order item.
+    get:
+      summary: Get order item by ID
+      operationId: get-order-item
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Order_item.v1'
+      description: Get an order item by ID.
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      tags:
+      - Orders
+    patch:
+      summary: Update order item by ID
+      operationId: update-order-item
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Order_item.v1'
+      description: Update an order item by ID.
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                  description: The ID of the product in your system.
+                  maxLength: 128
+                product_variant_id:
+                  type: string
+                  description: The ID of the product variant in your system.
+                  maxLength: 128
+                product_title:
+                  type: string
+                  description: The title of the product.
+                  maxLength: 1024
+                product_variant_title:
+                  type: string
+                  description: The title of the product variant.
+                  maxLength: 1024
+                sku:
+                  type: string
+                  description: The SKU of the product variant.
+                  maxLength: 256
+                quantity:
+                  type: integer
+                  description: The quantity of the item ordered.
+                unit_price:
+                  $ref: '#/components/schemas/Money.v1'
+                  description: The unit price of the item.
+                unit_weight:
+                  $ref: '#/components/schemas/Weight.v1'
+                  description: The unit weight of the item.
+                image_urls:
+                  type: array
+                  description: URLs of the product images.
+                  items:
+                    type: string
+                    maxLength: 2048
+                discount:
+                  type: string
+                  x-stoplight:
+                    id: c8pl97bvku8ae
+                  description: The total amount of the discount allocated to the line item. Including the discount applied only on this item and the allocated discount for the order level discount.
+                tax:
+                  type: string
+                  x-stoplight:
+                    id: 0e2edj72pue93
+                  description: The total amount of the tax allocated to the line item.
+                hs_code:
+                  type: string
+                  x-stoplight:
+                    id: 8pzm6gt743ogt
+                  description: Harmonized System (HS) Codes.
+                origin_country_region:
+                  type: string
+                  x-stoplight:
+                    id: 27f5ws0pye8jo
+                  description: The origin country of this product. The field should in ISO 3166-1 alpha-3 format.
+                product_tags:
+                  type: array
+                  x-stoplight:
+                    id: 9hf3yn280b66v
+                  description: Product tags of this variant.
+                  items:
+                    x-stoplight:
+                      id: 5izqgoiatrxct
+                    type: string
+                product_categories:
+                  type: array
+                  x-stoplight:
+                    id: 8tsdhyi8tkmcd
+                  description: Product categories of this variant.
+                  items:
+                    x-stoplight:
+                      id: 046g4zolxw34q
+                    type: string
+                returnable_quantity:
+                  type: integer
+                  x-stoplight:
+                    id: gwnhna37rfhge
+                  description: This field allows you to set the maximum returnable quantity for an order item when importing the order. When a shopper requests a return, they will not be able to select a quantity exceeding this specified limit.
+      tags:
+      - Orders
+    delete:
+      summary: Delete an order item
+      operationId: delete-order-item
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Order_item.v1'
+      description: Delete an order item by ID.
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      tags:
+      - Orders
+components:
+  schemas:
+    Money.v1:
+      description: The unit price of the item.
+      title: Money
+      x-stoplight:
+        id: b2024e5c6f23f
+      examples:
+      - currency: USD
+        amount: '10'
+      type: object
+      x-tags:
+      - Primitive
+      additionalProperties: false
+      properties:
+        currency:
+          type: string
+          enum:
+          - AED
+          - AFN
+          - ALL
+          - AMD
+          - ANG
+          - AOA
+          - ARS
+          - AUD
+          - AWG
+          - AZN
+          - BAM
+          - BBD
+          - BDT
+          - BGN
+          - BHD
+          - BIF
+          - BMD
+          - BND
+          - BOB
+          - BOV
+          - BRL
+          - BSD
+          - BTN
+          - BWP
+          - BYN
+          - BZD
+          - CAD
+          - CDF
+          - CHE
+          - CHF
+          - CHW
+          - CLF
+          - CLP
+          - CNY
+          - COP
+          - COU
+          - CRC
+          - CUC
+          - CUP
+          - CVE
+          - CZK
+          - DJF
+          - DKK
+          - DOP
+          - DZD
+          - EGP
+          - ERN
+          - ETB
+          - EUR
+          - FJD
+          - FKP
+          - GBP
+          - GEL
+          - GHS
+          - GIP
+          - GMD
+          - GNF
+          - GTQ
+          - GYD
+          - HKD
+          - HNL
+          - HRK
+          - HTG
+          - HUF
+          - IDR
+          - ILS
+          - INR
+          - IQD
+          - IRR
+          - ISK
+          - JMD
+          - JOD
+          - JPY
+          - KES
+          - KGS
+          - KHR
+          - KMF
+          - KPW
+          - KRW
+          - KWD
+          - KYD
+          - KZT
+          - LAK
+          - LBP
+          - LKR
+          - LRD
+          - LSL
+          - LYD
+          - MAD
+          - MDL
+          - MGA
+          - MKD
+          - MMK
+          - MNT
+          - MOP
+          - MRU
+          - MUR
+          - MVR
+          - MWK
+          - MXN
+          - MXV
+          - MYR
+          - MZN
+          - NAD
+          - NGN
+          - NIO
+          - NOK
+          - NPR
+          - NZD
+          - OMR
+          - PAB
+          - PEN
+          - PGK
+          - PHP
+          - PKR
+          - PLN
+          - PYG
+          - QAR
+          - RON
+          - RSD
+          - RUB
+          - RWF
+          - SAR
+          - SBD
+          - SCR
+          - SDG
+          - SEK
+          - SGD
+          - SHP
+          - SLL
+          - SOS
+          - SRD
+          - SSP
+          - STN
+          - SVC
+          - SYP
+          - SZL
+          - THB
+          - TJS
+          - TMT
+          - TND
+          - TOP
+          - TRY
+          - TTD
+          - TWD
+          - TZS
+          - UAH
+          - UGX
+          - USD
+          - USN
+          - UYI
+          - UYU
+          - UYW
+          - UZS
+          - VES
+          - VND
+          - VUV
+          - WST
+          - XAF
+          - XAU
+          - XBA
+          - XBB
+          - XBC
+          - XBD
+          - XCD
+          - XDR
+          - XOF
+          - XPD
+          - XPF
+          - XPT
+          - XSU
+          - XTS
+          - XUA
+          - XXX
+          - YER
+          - ZAR
+          - ZMW
+          - ZWL
+          description: Currency code for the amount, adhering to the ISO 4217 standard.
+          example: USD
+        amount:
+          type: string
+          description: The amount value in string format.
+          example: '10'
+    Customer.v1:
+      description: Customer information of the order.
+      type: object
+      x-stoplight:
+        id: 015a374050fbe
+      title: Customer
+      examples:
+      - id: '5127837778090'
+        first_name: John
+        last_name: Doe
+        emails:
+        - john.doe@example.com
+        locale: en-US
+        phones:
+        - '+13525554500'
+      x-tags:
+      - Primitive
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          description: A unique identifier for the customer of your store platform. It could be the customer ID of your system, or a URL friendly name or slug which is unique in your system.
+          maxLength: 32
+          example: '5127837778090'
+          x-stoplight:
+            id: 14lpgm5ogh4tc
+        first_name:
+          type: string
+          description: The customer's first name.
+          maxLength: 256
+          example: John
+        last_name:
+          type: string
+          description: The customer's last name.
+          maxLength: 256
+          example: Doe
+        emails:
+          type: array
+          description: The customer's email.
+          maxItems: 100
+          items:
+            type: string
+            maxLength: 256
+        phones:
+          type: array
+          description: The customer's phone number.
+          maxItems: 100
+          items:
+            type: string
+        locale:
+          type: string
+          description: 'The language code of the customer, eg: en-US.'
+          maxLength: 128
+          example: en-US
+    Order.v1:
+      x-stoplight:
+        id: 47628562601d9
+      type: object
+      title: Order
+      x-tags:
+      - Resource
+      description: 'The `Order` model represents a customer''s order object of your store. It includes details such as the order ID of your store, customer information, products, quantities, pricing, order status, and so on. This model is essential for managing and tracking orders through the API.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/common_scenarios/tracking/bopis.md)</div>'
+      additionalProperties: false
+      required:
+      - id
+      - number
+      - currency
+      - status
+      - order_total
+      - delivery_method
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the order. If a custom ID was provided in the request, that value is used; otherwise, a system-generated UUID is assigned. You can use this ID to manage this resource in related API calls.
+          maxLength: 32
+          example: '5187092316403'
+          x-stoplight:
+            id: 8us4in94n6bjs
+        store:
+          type: object
+          x-stoplight:
+            id: 1m62f1y5411hp
+          description: Indicate which store the order belongs to.
+          properties:
+            id:
+              type: string
+              x-stoplight:
+                id: nzslg67cs6zdb
+              description: The store ID by AfterShip. Please refer to the store resource for the details.
+              example: my-store-1
+              readOnly: true
+        name:
+          type: string
+          description: The order name. Default is the same value as `number`.
+          maxLength: 256
+          example: '#1086'
+        number:
+          type: string
+          description: The order number.
+          maxLength: 64
+          example: '1086'
+        currency:
+          type: string
+          description: Specifies the currency for the order, adhering to the [ISO 4217 Currency Codes standard](https://en.wikipedia.org/wiki/ISO_4217).
+          example: HKD
+          pattern: ^[A-Z]{3}$
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+          - canceled
+          description: The status of the order.
+          example: open
+        financial_status:
+          type:
+          - string
+          - 'null'
+          enum:
+          - unpaid
+          - partially_paid
+          - paid
+          - partially_refunded
+          - refunded
+          description: The status of payments associated with the order.
+        fulfillment_status:
+          type: string
+          enum:
+          - unfulfilled
+          - partially_fulfilled
+          - fulfilled
+          description: 'The fulfillment status associated with the order. If not provided, this value is determined automatically. Since fulfillment has not been created at the time of order creation, it defaults to unfulfilled.
+
+
+            If you provide a value for this field when creating an order, you are responsible for updating the status manually from then onward. If you want AfterShip to manage the status automatically, do not provide this field when creating orders.'
+          example: unfulfilled
+        order_total:
+          type: string
+          description: 'The total price of the order.Final amount paid by the customer, including of charges.<br /><br />
+
+            Formula:<br />
+
+            `order_total = subtotal + shipping_total + tax_total`'
+          maxLength: 100
+          example: '97'
+        shipping_total:
+          type: string
+          description: The total shipping fee applied to the price of the order.
+          maxLength: 100
+          example: '5'
+        tax_total:
+          type: string
+          description: The sum of all the taxes applied to the order.
+          maxLength: 100
+          example: '10'
+        discount_total:
+          type: string
+          description: The total discounts applied to the order. The value should be equal to the sum of all item discounts.
+          maxLength: 100
+          example: '1'
+        subtotal:
+          type: string
+          description: 'Total after discounts, excluding taxes and shipping.<br />
+
+            <br />
+
+            Formula: <br />
+
+            `subtotal = sum of all items'' price`<br />
+
+            <br />
+
+            `1 item price = items.*.unit_price * items.*.quantity - items.*.discount`'
+          maxLength: 100
+          example: '90'
+        items:
+          type: array
+          description: Purchased items of the order.
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Order_item.v1'
+        note:
+          type: string
+          description: A note that the shop owner can optionally attach to the order.
+          maxLength: 5000
+          example: Created by AfterShip
+        source_created_at:
+          type: string
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the order was created in your e-commerce system.
+          example: '2021-04-15T20:02:09Z'
+        source_updated_at:
+          type: string
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the order was updated in your e-commerce system.
+          example: '2021-04-16T20:02:09Z'
+        created_at:
+          type: string
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the order was created in AfterShip system.
+          example: '2021-04-15T20:02:09Z'
+        updated_at:
+          type: string
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the order was created in AfterShip system.
+          example: '2021-04-16T20:02:09Z'
+        customer:
+          $ref: '#/components/schemas/Customer.v1'
+          description: Customer information of the order.
+        shipping_address:
+          $ref: '#/components/schemas/Address.v1'
+          description: Shipping address of the order.
+        billing_address:
+          $ref: '#/components/schemas/Address.v1'
+          description: Billing address of the order.
+        tags:
+          type: array
+          description: Tags attached to the order.
+          maxItems: 100
+          items:
+            type: string
+            example: mobile-phone
+        shipping_method:
+          type: string
+          description: The name of the shipping method.
+          maxLength: 256
+          example: standard shipping
+        delivery_method:
+          x-stoplight:
+            id: kg7aygp88v4vr
+          enum:
+          - shipping
+          - pickup
+          type: string
+          description: 'Delivery method of the order.
+
+
+            For orders requiring shipping to buyers, please specify `shipping`. For Buy Online, Pick Up In Store (BOPIS) orders, please specify `pickup`.
+
+
+            For further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../../docs/common_scenarios/tracking/bopis.md).
+
+            '
+          example: shipping
+        pickup_location:
+          $ref: '#/components/schemas/Pickup_location.v1'
+          x-stoplight:
+            id: fgqz9c0104ma3
+          description: 'To indicate the pickup location of the order when the delivery method of the order is `pickup`.
+
+
+            For further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../../docs/common_scenarios/tracking/bopis.md).'
+        pickup_info:
+          $ref: '#/components/schemas/Pickup.v1'
+          x-stoplight:
+            id: j6bk78z88rumj
+          description: 'To indicate the detailed pickup instruction of the order when the delivery method of the order is `pickup`.
+
+
+            For further details on the pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../../docs/common_scenarios/tracking/bopis.md).'
+        status_timestamps:
+          $ref: '#/components/schemas/Status_timestamps.v1'
+          x-stoplight:
+            id: 1fkw5cyni92ii
+        custom_fields:
+          $ref: '#/components/schemas/Order_custom_fields.v1'
+          x-stoplight:
+            id: g34whtdv9ibgv
+    Pickup_location.v1:
+      x-stoplight:
+        id: ou78lfdhqjx26
+      description: The location information where the fulfillment is designated to be pickup from. Mandatory when the delivery method of the fulfillment is `pickup`.
+      title: PickupLocation
+      type: object
+      x-tags:
+      - Primitive
+      properties:
+        location_id:
+          type: string
+          x-stoplight:
+            id: o6v7ot5p5owq0
+          description: The unique identifier for the address. You can find or create the corresponding value [here](https://organization.automizely.com/warehouses).
+          example: e9ec84ff351e45e089a7b75ae497e1ae
+        address:
+          $ref: '#/components/schemas/Address_with_coordinate.v1'
+          x-stoplight:
+            id: xd0n6n4djzcml
+          description: Address of the pickup location.
+        opening_hours:
+          $ref: '#/components/schemas/Opening_hours.v1'
+          x-stoplight:
+            id: xwxu19pd0nc0h
+          description: Opening hours information of the pickup location.
+    Pickup.v1:
+      x-stoplight:
+        id: xuy8sphna6ej7
+      description: 'To indicate the detailed pickup instruction of the order when the delivery method of the order is `pickup`.
+
+
+        For further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../docs/common_scenarios/tracking/bopis.md).'
+      title: Pickup
+      type: object
+      x-tags:
+      - Primitive
+      properties:
+        instructions:
+          type: string
+          description: 'Instructions for the pickup process.
+
+
+            The value specified in this field will take precedence if provided through the API. If not specified, it will default to the pickup location''s instructions set in the AfterShip Admin Portal.'
+          example: Shop open from Mon to Fri
+        estimated_ready_for_pickup_at:
+          type: object
+          description: 'The expected date and time when the items in this fulfillment order will be ready for pickup.
+
+
+            This information will be displayed on the Brand Tracking Page and included in customer notifications.'
+          x-stoplight:
+            id: la1jawtei2np5
+          properties:
+            min:
+              type: string
+              format: date-time
+              description: The earliest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+              example: '2021-04-15T20:02:09Z'
+            max:
+              type: string
+              format: date-time
+              description: The latest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+              example: '2021-04-15T20:02:09Z'
+        pickup_deadline_at:
+          type: string
+          x-stoplight:
+            id: lvr0jt3nk49b5
+          format: date-time
+          description: 'The latest time by which the pickup must be completed, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+
+
+            This information will be displayed on the Brand Tracking Page.
+
+
+            '
+          example: '2021-04-15T20:02:09Z'
+    Opening_hours.v1:
+      description: The regular opening hours of the location.
+      title: OpeningHours
+      x-stoplight:
+        id: n7s4wz0dwk5ai
+      type: object
+      properties:
+        sunday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        monday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        tuesday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        wednesday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        thursday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        friday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        saturday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+      x-tags:
+      - Primitive
+    Order_item.v1:
+      title: OrderItem
+      x-stoplight:
+        id: 82b3e826a399d
+      type: object
+      description: 'The `OrderItem` model represents an individual product within an order. It includes details such as the product ID, quantity, price and so on. This model ensures accurate item-level tracking for every order placed.
+
+
+        '
+      x-tags:
+      - Primitive
+      examples:
+      - id: '13097711141107'
+        sku: SKU001
+        quantity: 1
+        unit_weight:
+          unit: kg
+          value: 10
+        unit_price:
+          currency: USD
+          amount: '10'
+        product_title: Power Mobile Phone
+        product_variant_title: Power Mobile Phone Pro
+        discount: '10'
+        tax: '10'
+        product_id: '8021450916083'
+        product_variant_id: '43768285298931'
+        hs_code: '554521'
+        origin_country_region: USA
+        image_urls:
+        - https://www.example.com/product/phone/image.jpg
+        product_tags:
+        - mobile-phone
+        product_categories:
+        - mobile-phone
+        returnable_quantity: 1
+      required:
+      - id
+      - quantity
+      - product_title
+      properties:
+        id:
+          type: string
+          description: 'A unique identifier for the line item within the order. This should be provided when creating an order.
+
+
+            Please note:
+
+
+            1. This is **NOT** the `product.id` of the `Product` resource.
+
+            2. This ID should be the same as `fulfillment.*.line_items.id`.'
+          maxLength: 32
+          example: '13097711141107'
+          x-stoplight:
+            id: idx4rym3su9ir
+        sku:
+          type: string
+          description: The item's SKU (stock keeping unit).
+          maxLength: 256
+          example: SKU001
+          x-stoplight:
+            id: 47qw9lt2yocsm
+        quantity:
+          type: integer
+          description: The number of items that have been purchased.
+          x-stoplight:
+            id: w4ek1dc410qax
+          example: 1
+        unit_weight:
+          $ref: '#/components/schemas/Weight.v1'
+          description: The item's weight.
+          x-stoplight:
+            id: 8htopnlftk8mn
+        unit_price:
+          $ref: '#/components/schemas/Money.v1'
+          description: "The price of the item excluding discounts and taxes.\nPlease note that the item total price needs to meet the following formula:  \n\n> item total price paid = unit_price*quantity - discount + tax"
+          x-stoplight:
+            id: ntn31dl89ci84
+        product_title:
+          type: string
+          x-stoplight:
+            id: 547mn5j3ip5gf
+          description: The title of the product.
+          example: Power Mobile Phone
+        product_variant_title:
+          type: string
+          description: The title of the product variant.
+          maxLength: 1024
+          x-stoplight:
+            id: fvndkafxl3v9a
+          example: Power Mobile Phone Pro
+        discount:
+          type: string
+          description: The total amount of the discount allocated to the line item. Including the discount applied only on this item and the allocated discount for the order level discount.
+          maxLength: 100
+          example: '10'
+          x-stoplight:
+            id: y4fsgrc3ubkr9
+        tax:
+          type: string
+          description: The total amount of the tax allocated to the line item.
+          maxLength: 100
+          example: '10'
+          x-stoplight:
+            id: 3icpeo9spxeob
+        product_id:
+          type: string
+          description: 'The ID of the product in your system.
+
+
+            Note that it should be the same as the `product.id` of the `Product` resource.'
+          maxLength: 128
+          example: '8021450916083'
+          x-stoplight:
+            id: bqyjpv8jlmid3
+        product_variant_id:
+          type: string
+          description: 'The ID of the product variant in source system.
+
+
+            Note that it should be the same as the `product.variants.id` of the `Product` resource.'
+          maxLength: 32
+          example: '43768285298931'
+          x-stoplight:
+            id: ofcsdp3bto7aa
+        hs_code:
+          type: string
+          description: Harmonized System (HS) Codes.
+          maxLength: 256
+          example: '554521'
+          x-stoplight:
+            id: bvzc3g8rnn5v0
+        origin_country_region:
+          type: string
+          description: The origin country of this product. The field should in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          example: USA
+          pattern: ^[A-Z]{3}$
+          x-stoplight:
+            id: 9f4khsya41r8z
+        image_urls:
+          type: array
+          description: Image urls of this variant.
+          maxItems: 100
+          x-stoplight:
+            id: 2n94mnl2jjrgq
+          items:
+            type: string
+            maxLength: 2048
+            example: https://www.example.com/product/phone/image.jpg
+            x-stoplight:
+              id: 82i1l3lhip5bp
+        product_tags:
+          type: array
+          description: Product tags of this variant.
+          x-stoplight:
+            id: o2lfm6bkgozxt
+          items:
+            type: string
+            maxLength: 256
+            x-stoplight:
+              id: in8gcwxr3goqp
+            example: mobile-phone
+        product_categories:
+          type: array
+          description: Product categories of this variant.
+          x-stoplight:
+            id: e52kc6v5tart0
+          items:
+            type: string
+            maxLength: 256
+            example: mobile-phone
+            x-stoplight:
+              id: efyop56o4dltc
+        returnable_quantity:
+          type: integer
+          x-stoplight:
+            id: lgak2pxhsvtmx
+          example: 1
+          description: This field allows you to set the maximum returnable quantity for an order item when importing the order. When a shopper requests a return, they will not be able to select a quantity exceeding this specified limit.
+    Opening_hour_period.v1:
+      title: OpeningHourPeriod
+      x-stoplight:
+        id: 2g4w1syylsphw
+      type: object
+      additionalProperties: false
+      description: The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day.
+      x-tags:
+      - Primitive
+      properties:
+        open:
+          type: boolean
+          default: false
+          x-stoplight:
+            id: qbb3rmmdfdhxy
+          description: Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`.
+        from:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: fvyfkui68t3gt
+          description: The start time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
+          example: '10:30'
+        to:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: sk5yjthy1achl
+          description: The end time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
+          example: '20:30'
+      examples:
+      - open: true
+        from: '10:30'
+        to: '20:30'
+    Address.v1:
+      description: Billing address of the order.
+      type: object
+      x-stoplight:
+        id: 7cc87e0eb2a0d
+      title: Address
+      examples:
+      - type: business
+        street_1: 1234 Elm Street
+        street_2: Apt 5
+        street_3: null
+        city: New York
+        state: NY
+        postal_code: '10001'
+        country_region: USA
+        company: My Company
+        first_name: John
+        last_name: Doe
+        email: john.doe@example.com
+        phone: '+13525554500'
+      x-tags:
+      - Primitive
+      additionalProperties: false
+      required:
+      - street_1
+      - state
+      - country_region
+      properties:
+        type:
+          type: string
+          title: The Type Schema
+          description: The type of address.
+          enum:
+          - business
+          - residential
+        street_1:
+          type: string
+          title: The Street_1 Schema
+          description: First line of the street address.
+          maxLength: 256
+        street_2:
+          type:
+          - string
+          - 'null'
+          title: The Street_2 Schema
+          description: Second line of the street address.
+          maxLength: 256
+        street_3:
+          type:
+          - string
+          - 'null'
+          title: The Street_3 Schema
+          description: Third line of the street address.
+          maxLength: 256
+        city:
+          type: string
+          title: The City Schema
+          description: The location's city, town, or village.
+          maxLength: 256
+        state:
+          type: string
+          title: The State Schema
+          description: The state or region of the location, such as a province, state, or prefecture.
+          maxLength: 256
+        postal_code:
+          type: string
+          title: The Postal_code Schema
+          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
+          maxLength: 256
+        country_region:
+          type: string
+          title: The Country Schema
+          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format. API will automatically convert input to uppercase.
+          example: USA
+          pattern: ^[A-Z]{3}$
+        company:
+          type: string
+          title: The Company Schema
+          description: The name of the company associated to the address.
+          maxLength: 256
+        first_name:
+          type: string
+          title: The First_name Schema
+          description: The first name of the person associated to the address.
+          maxLength: 256
+        last_name:
+          type: string
+          title: The Last_name Schema
+          description: The last name of the person associated to the address.
+          maxLength: 256
+        email:
+          type: string
+          title: The Email Schema
+          description: The email address of the person associated to the address.
+          maxLength: 256
+        phone:
+          type: string
+          description: The phone number of the person associated to the address.
+          maxLength: 256
+    Meta.v1:
+      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
+      type: object
+      x-examples: {}
+      title: Meta
+      x-tags:
+      - Envelope
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      additionalProperties: false
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        errors:
+          type: array
+          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+
+
+            '
+          items:
+            $ref: '#/components/schemas/Error.v1'
+    Order_custom_fields.v1:
+      x-stoplight:
+        id: ep64tykxqyu8q
+      title: OrderCustomFields
+      type: object
+      additionalProperties:
+        type: string
+        maxLength: 200
+        x-stoplight:
+          id: 1vm3fgpkplp4f
+      maxProperties: 10
+      propertyNames:
+        pattern: ^[a-z0-9-_]{1,20}$
+        x-stoplight:
+          id: yjneg9em10bet
+      description: "Custom fields that accept an object with string field. In order to protect the privacy of your customers, do not include any <a href=\"https://www.aftership.com/legal/dpa#:~:text=Personal%20Data%20means,that%20natural%20person\">personal data</a> in custom fields.\n\nCustom fields for orders with the following constraints:\n- Maximum count for a key-value pair in a custom field object: 10\n- Maximum character limit for a key name: 20\n- Maximum value length: 200 characters\n- Supported value type: String only, no array, no (nested) object, no number, no null, no empty string\n- Allowed character set for key: `[a-z0-9-_]` only. A-Z is not allowed.\n- Allowed character set for value: No limit.\n\nNote: \n- When using the update order API, providing a new object will completely overwrite the existing one. Passing an empty object {} will overwrite it with an empty object.\n- The key-value pairs of this field will be copied to `fulfillment.trackings.*.custom_fields`"
+    Status_timestamps.v1:
+      x-stoplight:
+        id: 8vvvtyweol0o1
+      title: StatusTimestamps
+      type: object
+      description: 'This object tracks the timestamps for each status change.
+
+
+        - Explicit Input: If provides a timestamp, including null, it is stored as given.
+
+        - Default Behavior: If no timestamp is specified and a status is set, the current time is automatically stored for that status. Example: If status is set to `open` and `opened_at` is not provided, `opened_at` will be assigned the current time.'
+      properties:
+        opened_at:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: fyfeos9fgfbuk
+          format: date-time
+          description: Datetime when the status was set to `open`.
+        canceled_at:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: a5vzpw8hx3bah
+          format: date-time
+          description: Datetime when the status was set to `canceld`.
+        closed_at:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: io9n4lfgu3kgv
+          format: date-time
+          description: Datetime when the status was set to `closed`.
+    Pagination.v2:
+      title: Pagination
+      x-stoplight:
+        id: 6twr4wc3wp9lu
+      type: object
+      examples:
+      - page: 1
+        limit: 10
+        has_next_page: false
+      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: integer
+          x-stoplight:
+            id: 5ld3b35057z8s
+          description: Page number.
+        limit:
+          type: integer
+          x-stoplight:
+            id: qmvbmlfjchyh5
+          description: Maximum object count per page.
+        has_next_page:
+          type: boolean
+          x-stoplight:
+            id: qtm2ifhlv0r4i
+          description: To indicate if next page is available.
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
+    Weight.v1:
+      description: The unit weight of the item.
+      title: Weight
+      x-stoplight:
+        id: 6ffc0efbd7bf5
+      type: object
+      examples:
+      - unit: kg
+        value: 10
+      x-tags:
+      - Primitive
+      properties:
+        unit:
+          type: string
+          enum:
+          - kg
+          - lb
+          - oz
+          - g
+          description: 'The weight unit eg: g or kg.'
+        value:
+          type: number
+          description: The value of the weight.
+          example: 10
+    Address_with_coordinate.v1:
+      description: The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.
+      type: object
+      x-stoplight:
+        id: nu2sh0erm8041
+      title: AddressWithCoordinate
+      examples:
+      - type: business
+        street_1: 1234 Elm Street
+        street_2: Apt 5
+        street_3: null
+        city: New York
+        state: NY
+        postal_code: '10001'
+        country_region: USA
+        company: My Company
+        first_name: John
+        last_name: Doe
+        email: john.doe@example.com
+        phone: '+13525554500'
+        coordinate:
+          latitude: 43
+          longitude: -75
+      x-tags:
+      - Primitive
+      additionalProperties: false
+      required:
+      - street_1
+      - state
+      - country_region
+      properties:
+        type:
+          type: string
+          title: The Type Schema
+          description: The type of address.
+          enum:
+          - business
+          - residential
+        street_1:
+          type: string
+          title: The Street_1 Schema
+          description: First line of the street address.
+          maxLength: 256
+        street_2:
+          type:
+          - string
+          - 'null'
+          title: The Street_2 Schema
+          description: Second line of the street address.
+          maxLength: 256
+        street_3:
+          type:
+          - string
+          - 'null'
+          title: The Street_3 Schema
+          description: Third line of the street address.
+          maxLength: 256
+        city:
+          type: string
+          title: The City Schema
+          description: The location's city, town, or village.
+          maxLength: 256
+        state:
+          type: string
+          title: The State Schema
+          description: The state or region of the location, such as a province, state, or prefecture.
+          maxLength: 256
+        postal_code:
+          type: string
+          title: The Postal_code Schema
+          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
+          maxLength: 256
+        country_region:
+          type: string
+          title: The Country Schema
+          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          example: USA
+          pattern: ^[A-Z]{3}$
+        company:
+          type: string
+          title: The Company Schema
+          description: The name of the company associated to the address.
+          maxLength: 256
+        first_name:
+          type: string
+          title: The First_name Schema
+          description: The first name of the person associated to the address.
+          maxLength: 256
+        last_name:
+          type: string
+          title: The Last_name Schema
+          description: The last name of the person associated to the address.
+          maxLength: 256
+        email:
+          type: string
+          title: The Email Schema
+          description: The email address of the person associated to the address.
+          maxLength: 256
+        phone:
+          type: string
+          description: The phone number of the person associated to the address.
+          maxLength: 256
+        coordinate:
+          type: object
+          description: The coordinate of the address.
+          properties:
+            longitude:
+              type: number
+              description: The longitude of the address.
+            latitude:
+              type: number
+              description: The latitude of the address.
+  parameters:
+    as-store-id:
+      name: as-store-id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: This value equals to `store.id` of `Store` Resource. You can obtain this id by making a GET /stores call to get existing stores or a POST /stores to create a new store.
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+x-stoplight:
+  id: 07dbd324ec273

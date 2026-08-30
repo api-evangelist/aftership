@@ -1,0 +1,3245 @@
+openapi: 3.2.0
+info:
+  title: Overview Returns API
+  version: 2026-07
+  summary: API Overview
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-returnscenter-com-public/nodes/reference/api.json?branch=production/2026-07&deref=optimizedBundle)'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+servers:
+- url: https://api.aftership.com/returns/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Returns
+paths:
+  /returns/{return_id}:
+    parameters:
+    - schema:
+        type: string
+      name: return_id
+      in: path
+      required: true
+    get:
+      summary: Get return detail by ID
+      tags:
+      - Returns
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                    x-stoplight:
+                      id: el0o4rso5a6kq
+                  data:
+                    $ref: '#/components/schemas/Return'
+                    x-stoplight:
+                      id: ympm52xcp4z4g
+      operationId: get-returns-return_id
+      x-stoplight:
+        id: b2nyvcdrrc1vy
+  /returns/rma/{rma_number}:
+    parameters:
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    get:
+      summary: Get return detail by RMA number
+      tags:
+      - Returns
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                    x-stoplight:
+                      id: nco31dsog301a
+                  data:
+                    $ref: '#/components/schemas/Return'
+                    x-stoplight:
+                      id: z8fipngfua8qh
+      operationId: get-returns-rma-rma_number
+      x-stoplight:
+        id: 0b0ebp5o3529p
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+  /returns:
+    get:
+      summary: Get returns
+      tags:
+      - Returns
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                    x-stoplight:
+                      id: lak23lmm39dy8
+                  data:
+                    x-stoplight:
+                      id: zstw2s4v48unz
+                    type: object
+                    properties:
+                      returns:
+                        type: array
+                        x-stoplight:
+                          id: buf8ymw0e9dhe
+                        items:
+                          $ref: '#/components/schemas/Return'
+                          x-stoplight:
+                            id: jmu7wxmzzkmcn
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+                        x-stoplight:
+                          id: qkut8x4mvr8k5
+      operationId: get-returns
+      x-stoplight:
+        id: wpx1lk91k5ima
+      parameters:
+      - schema:
+          type: string
+          format: date-time
+          example: '2024-01-01T00:00:00Z'
+        in: query
+        name: created_at_max
+        description: End date and time of returns created. The default value is the current time.  Please make sure the value of the parameter is properly escaped in URL encoding.
+      - schema:
+          type: string
+          example: '2024-01-01T00:00:00Z'
+          format: date-time
+        in: query
+        name: created_at_min
+        description: Start date and time of returns created. AfterShip will only respond with data from the past 365 days at most. The default value is 365 days ago.  Please make sure the value of the parameter is properly escaped in URL encoding.
+      - schema:
+          type: string
+          enum:
+          - submitted
+          - approved
+          - done
+          - rejected
+          - expired
+        in: query
+        name: approval_status
+        description: The approval status of the return.
+      - schema:
+          type: string
+          format: email
+        description: The customer email used when submitting a return.  Please make sure the value of the parameter is properly escaped in URL encoding.
+        in: query
+        name: customer_email
+      - schema:
+          type: string
+          enum:
+          - exchange
+          - refund
+          - upsell
+          - store_credit
+        in: query
+        name: outcome
+        description: The return is considered a match if the `outcomes` field in the resource contains at least one of the specified `outcome` values.
+      - schema:
+          type: string
+          enum:
+          - happy_returns
+          - retail_reworks
+          - retailer_label
+          - carrier_pickup
+          - customer_courier
+          - in_store
+          - green_return
+          - carrier_dropoff
+        in: query
+        name: return_method
+        description: The return method of the return.
+      - schema:
+          type: string
+          example: '#1001'
+        in: query
+        name: order_name
+        description: The order name of the origin order associated with the return.
+      - schema:
+          type: number
+          default: '1'
+          minLength: 1
+          minimum: 1
+          maximum: 200
+        in: query
+        name: page
+      - schema:
+          type: number
+          default: '10'
+          minLength: 1
+          maxLength: 20
+          minimum: 1
+          maximum: 50
+        in: query
+        name: limit
+    post:
+      summary: Create Return
+      tags:
+      - Returns
+      responses:
+        '201':
+          $ref: '#/components/responses/CreateReturn'
+        '422':
+          $ref: '#/components/responses/CreateReturnError422'
+        '429':
+          $ref: '#/components/responses/CreateReturnError429'
+      operationId: post-returns
+      x-stoplight:
+        id: 7cpmq51370gbp
+      requestBody:
+        $ref: '#/components/requestBodies/CreateReturn'
+      description: This API is used to create a Return. Currently, it only supports the "Refund" resolution and does not support "Replace with the same item" or "Exchange for anything."
+  /returns/rma/{rma_number}/approve:
+    parameters:
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    post:
+      summary: Approve Return By RMA number
+      tags:
+      - Returns
+      responses:
+        '202':
+          $ref: '#/components/responses/ApproveReturn'
+        '404':
+          $ref: '#/components/responses/ApproveReturnError404'
+        '409':
+          $ref: '#/components/responses/ApproveReturnError409'
+        '422':
+          $ref: '#/components/responses/ApproveReturnError422'
+      operationId: post-returns-rma-rma_number-approve
+      x-stoplight:
+        id: ccrb7gu8w7wmz
+      requestBody:
+        $ref: '#/components/requestBodies/ApproveReturn'
+      description: Through the approve return API, you can transition a return to approved status.
+  /returns/{return_id}/approve:
+    parameters:
+    - schema:
+        type: string
+      name: return_id
+      in: path
+      required: true
+    post:
+      summary: Approve Return By Return ID
+      tags:
+      - Returns
+      responses:
+        '202':
+          $ref: '#/components/responses/ApproveReturn'
+      operationId: post-returns-return_id-approve
+      x-stoplight:
+        id: wzs37duotktiy
+      requestBody:
+        $ref: '#/components/requestBodies/ApproveReturn'
+      description: Through the approve return API, you can transition a return to approved status.
+  /returns/rma/{rma_number}/resolve:
+    parameters:
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    post:
+      summary: Resolve Return By RMA number
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/ResolveReturn'
+        '404':
+          $ref: '#/components/responses/ResolveReturnError404'
+        '409':
+          $ref: '#/components/responses/ResolveReturnError409'
+      operationId: post-returns-rma-rma_number-resolve
+      x-stoplight:
+        id: ccrb7gu8w7wmd
+      requestBody:
+        $ref: '#/components/requestBodies/ResolveReturn'
+      description: Through the resolve return API, you can transition a return to approved status.
+  /returns/{return_id}/resolve:
+    parameters:
+    - schema:
+        type: string
+      name: return_id
+      in: path
+      required: true
+    post:
+      summary: Resolve Return By Return ID
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/ResolveReturn'
+        '404':
+          $ref: '#/components/responses/ResolveReturnError404'
+        '409':
+          $ref: '#/components/responses/ResolveReturnError409'
+      operationId: post-returns-return_id-resolve
+      x-stoplight:
+        id: wzs37duotktiz
+      requestBody:
+        $ref: '#/components/requestBodies/ResolveReturn'
+      description: Through the resolve return API, you can transition a return to resolved status.
+  /returns/rma/{rma_number}/reject:
+    parameters:
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    post:
+      summary: Reject Return By RMA number
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/RejectReturn'
+        '404':
+          $ref: '#/components/responses/RejectReturnError404'
+        '409':
+          $ref: '#/components/responses/RejectReturnError409'
+        '422':
+          $ref: '#/components/responses/RejectReturnError422'
+      operationId: post-returns-rma-rma_number-reject
+      x-stoplight:
+        id: ccrb7gu8w7wm1
+      requestBody:
+        $ref: '#/components/requestBodies/RejectReturn'
+      description: Through the reject return API, you can transition a return to rejected status.
+  /returns/{return_id}/reject:
+    parameters:
+    - schema:
+        type: string
+      name: return_id
+      in: path
+      required: true
+    post:
+      summary: Reject Return By Return ID
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/RejectReturn'
+        '404':
+          $ref: '#/components/responses/RejectReturnError404'
+        '409':
+          $ref: '#/components/responses/RejectReturnError409'
+        '422':
+          $ref: '#/components/responses/RejectReturnError422'
+      operationId: post-returns-return_id-reject
+      x-stoplight:
+        id: wzs37du1tktiy
+      requestBody:
+        $ref: '#/components/requestBodies/RejectReturn'
+      description: Through the reject return API, you can transition a return to rejected status.
+  /returns/rma/{rma_number}/receive-items:
+    parameters:
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    post:
+      summary: Receive items by RMA number
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/ReceiveItems'
+        '404':
+          $ref: '#/components/responses/ReceiveItemsError404'
+        '422':
+          $ref: '#/components/responses/ReceiveItemsError422'
+      operationId: post-returns-rma-rma_number-receive-items
+      x-stoplight:
+        id: zkc70irqc66m6
+      description: 'For a normal receive operation, the `external_id` in the receive items represents the item id on the e-commerce platform. You can also use our `get return` API to retrieve all return items and match the corresponding external_id in your code using relevant information such as sku.
+
+
+        For merchants using the bundle feature, there are two cases:
+
+
+        - If the shopper submits a return for an whole bundle, the `external_id` in the items for the receive operation can be found in `return_items[*].bundled_items` within the return resource.
+
+        - If the shopper submits a return for a child item within the bundle, the `external_id` in the items for the receive operation can be found in `return_items` within the return resource.
+
+
+        In other words, in the context of bundles, the `external_id` for the receive operation should always be the child item ID within the bundle.'
+      requestBody:
+        $ref: '#/components/requestBodies/ReceiveItems'
+  /returns/{return_id}/receive-items:
+    parameters:
+    - schema:
+        type: string
+      name: return_id
+      in: path
+      required: true
+    post:
+      summary: Receive items by Return ID
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/ReceiveItems'
+        '404':
+          $ref: '#/components/responses/ReceiveItemsError404'
+        '422':
+          $ref: '#/components/responses/ReceiveItemsError422'
+      operationId: post-returns-return_id-receive-items
+      x-stoplight:
+        id: zkc70irq886m6
+      description: 'For a normal receive operation, the `external_id` in the receive items represents the item id on the e-commerce platform. You can also use our `get return` API to retrieve all return items and match the corresponding external_id in your code using relevant information such as sku.
+
+
+        For merchants using the bundle feature, there are two cases:
+
+
+        - If the shopper submits a return for an whole bundle, the `external_id` in the items for the receive operation can be found in `return_items[*].bundled_items` within the return resource.
+
+        - If the shopper submits a return for a child item within the bundle, the `external_id` in the items for the receive operation can be found in `return_items` within the return resource.
+
+
+        In other words, in the context of bundles, the `external_id` for the receive operation should always be the child item ID within the bundle.'
+      requestBody:
+        $ref: '#/components/requestBodies/ReceiveItems'
+  /returns/rma/{rma_number}/attach-shipments:
+    parameters:
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    post:
+      summary: Attach shipments by RMA number
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/AttachShipments'
+        '404':
+          $ref: '#/components/responses/AttachShipmentsError404'
+        '422':
+          $ref: '#/components/responses/AttachShipmentsError422'
+      operationId: post-returns-rma-rma_number-attach-shipments
+      x-stoplight:
+        id: 9o8olke4jh081
+      description: Through this API, merchants can upload a shipment on their own. Although the design allows for the possibility of uploading multiple shipments, currently, merchants can only upload one shipment.
+      requestBody:
+        $ref: '#/components/requestBodies/AttachShipments'
+  /returns/{return_id}/attach-shipments:
+    parameters:
+    - schema:
+        type: string
+      name: return_id
+      in: path
+      required: true
+    post:
+      summary: Attach shipments by Return ID
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/AttachShipments'
+        '404':
+          $ref: '#/components/responses/AttachShipmentsError404'
+        '422':
+          $ref: '#/components/responses/AttachShipmentsError422'
+      operationId: post-returns-return_id-attach-shipments
+      x-stoplight:
+        id: 9o8o12e4jh081
+      description: Through this API, merchants can upload a shipment on their own. Although the design allows for the possibility of uploading multiple shipments, currently, merchants can only upload one shipment.
+      requestBody:
+        $ref: '#/components/requestBodies/AttachShipments'
+  /returns/{return_id}/remove-items:
+    parameters:
+    - schema:
+        type: string
+      name: return_id
+      in: path
+      required: true
+    - schema:
+        type: string
+      name: return_id
+      in: path
+      required: true
+    post:
+      summary: Remove return items by Return ID
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/RemoveItems'
+        '404':
+          $ref: '#/components/responses/RemoveItemsError404'
+        '422':
+          $ref: '#/components/responses/RemoveItemsError422'
+      operationId: post-returns-return_id-remove-items
+      x-stoplight:
+        id: 6bmzc1i5h7dzb
+      requestBody:
+        $ref: '#/components/requestBodies/RemoveItems'
+      description: 'When a shopper changes their mind and no longer wants to return all items, you can use this API to remove specific items from the return. This functionality is the same as the "Remove Return Items from an Existing RMA" feature in the Admin Portal. For more information, please refer to: [https://support.aftership.com/en/returns/article/remove-return-items-from-an-existing-rma-133vwu0](https://support.aftership.com/en/returns/article/remove-return-items-from-an-existing-rma-133vwu0)
+
+        '
+  /returns/rma/{rma_number}/remove-items:
+    parameters:
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    post:
+      summary: Remove return items by RMA number
+      tags:
+      - Returns
+      responses:
+        '200':
+          $ref: '#/components/responses/RemoveItems'
+        '404':
+          $ref: '#/components/responses/RemoveItemsError404'
+        '422':
+          $ref: '#/components/responses/RemoveItemsError422'
+      operationId: post-returns-rma-rma_number-remove-items
+      x-stoplight:
+        id: holrqur45r266
+      requestBody:
+        $ref: '#/components/requestBodies/RemoveItems'
+      description: 'When a shopper changes their mind and no longer wants to return all items, you can use this API to remove specific items from the return. This functionality is the same as the "Remove Return Items from an Existing RMA" feature in the Admin Portal. For more information, please refer to: [https://support.aftership.com/en/returns/article/remove-return-items-from-an-existing-rma-133vwu0](https://support.aftership.com/en/returns/article/remove-return-items-from-an-existing-rma-133vwu0)
+
+        '
+components:
+  schemas:
+    Return_shipment:
+      x-stoplight:
+        id: r3rb6iy8jfovb
+      type: object
+      title: ReturnShipment
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the shipment.
+          x-stoplight:
+            id: 5arkrapxn89hr
+        tracking_number:
+          type: string
+          example: ABC123456789
+          description: The tracking number for the shipment.
+          x-stoplight:
+            id: k4pdwkggoupzh
+        tracking_status:
+          type:
+          - string
+          - 'null'
+          example: InTransit
+          description: The current status of the shipment. All possible tracking statuses can be found on https://www.aftership.com/docs/tracking/enum/delivery-statuses
+          x-stoplight:
+            id: 0vb66rt2nnqj2
+        slug:
+          type: string
+          example: usps
+          description: A unique identifier for the shipment. All supported slugs can be found on [https://track.aftership.com/couriers/download](https://track.aftership.com/couriers/download#_ga=2.55753835.1395222502.1626745658-1175677371.1626745658)
+          x-stoplight:
+            id: ldhe5ns08yxzu
+        items:
+          type: array
+          description: The list of items included in the shipment.
+          x-stoplight:
+            id: l9ybuje9mobz7
+          items:
+            type: object
+            x-stoplight:
+              id: t47uz4de5jq1j
+            properties:
+              external_order_item_id:
+                type: string
+                example: '10579097059534'
+                description: The ID of the item on the e-commerce platform.
+                x-stoplight:
+                  id: 7q11pploq6xi2
+              quantity:
+                type: integer
+                example: 2
+                description: The number of items included in the shipment.
+                x-stoplight:
+                  id: pekdf7ixjd3d1
+        label:
+          type:
+          - object
+          - 'null'
+          description: The shipping label associated with the shipment.
+          x-stoplight:
+            id: pi9n73mcfjcmw
+          properties:
+            url:
+              type:
+              - string
+              - 'null'
+              example: https://cdn.example.com/x/y/z.pdf
+              description: The URL for accessing the shipment label.
+              x-stoplight:
+                id: c0h625s1htqk3
+            aftership_shipping_slug:
+              type: string
+              example: usps
+              description: The slug used for Aftership Shipping integration.
+              x-stoplight:
+                id: re5xq39imnh56
+            slug:
+              type: string
+              example: usps
+              description: The slug used for Aftership Tracking integration.
+              x-stoplight:
+                id: 1fc5ort9wbvs3
+            total_charge:
+              description: The total charge associated with the shipment label.
+              oneOf:
+              - type: object
+                $ref: '#/components/schemas/Money'
+                x-stoplight:
+                  id: jadnogdp3uhau
+              - type:
+                - 'null'
+                x-stoplight:
+                  id: h7nls43c3295z
+              x-stoplight:
+                id: 4qi90nqfzrt24
+            qr_code_url:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: nxlqfzhh3peoi
+              description: The URL for accessing the shipment QR Code.
+        packing_slip_url:
+          type:
+          - string
+          - 'null'
+          example: https://cdn.example.com/x/y/z.pdf
+          description: The URL for the packing slip related to the shipment.
+          x-stoplight:
+            id: dniwhofyjpowk
+        shipping_documents_url:
+          type:
+          - string
+          - 'null'
+          example: https://cdn.example.com/x/y/z.pdf
+          description: The URL for the shipping documents.
+          x-stoplight:
+            id: wj4w0x3dlgsn8
+        shipping_documents_components:
+          type: array
+          description: The components of the shipping documents.
+          x-stoplight:
+            id: y0k2tz5xqt3w7
+          items:
+            x-stoplight:
+              id: uyvpszy1ukoyj
+            enum:
+            - label
+            - packing_slip
+            - conditional_shipping_document
+        conditional_shipping_document_urls:
+          type: array
+          description: The URLs for any conditional shipping documents.
+          x-stoplight:
+            id: a1ppsy1s1dp3d
+          items:
+            type: string
+            example: https://cdn.example.com/x/y/z.pdf
+            description: The URLs for any conditional shipping documents.
+            x-stoplight:
+              id: 5js43ilpgi6bv
+        source:
+          type: string
+          enum:
+          - shopper_upload
+          - merchant_upload
+          - merchant_api
+          - merchant_generate
+          description: The source of the shipment label.
+          x-stoplight:
+            id: ybftkb2uvrqtw
+        created_at:
+          type: string
+          x-stoplight:
+            id: n8k5y1jb99emm
+          description: The date-time (ISO string in UTC) when the shipment was created
+        tracking_status_updated_at:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: ckc1cmg8mxnc9
+          description: The date-time (ISO string in UTC)  when the last time the shipment's tracking status was updated.
+        ship_from:
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+          - type: 'null'
+        ship_to:
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+          - type: 'null'
+        invoice_url:
+          type:
+          - string
+          - 'null'
+          example: https://cdn.example.com/x/y/invoice.pdf
+          description: The URL for the invoice associated with the shipment.
+          x-stoplight:
+            id: n4kqw2mxe8pzj
+    Instant_exchange:
+      type: object
+      x-stoplight:
+        id: seoh4kukxl01u
+      title: InstantExchange
+      properties:
+        status:
+          x-stoplight:
+            id: r59povuw4wgof
+          enum:
+          - pending
+          - charged
+          - canceled
+          - failed
+          description: The status of the instant exchange payment. "pending" means the shopper has authorized the charge, "charged" means the merchant has successfully collected the payment, and "canceled" means the payment is no longer required and has been canceled.
+        payment:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: string
+              description: The unique identifier for the payment.
+            external_id:
+              type: string
+              description: The identifier for this payment on the third-party payment platform.
+            total:
+              description: The total amount and currency of this payment.
+              oneOf:
+              - type: object
+                $ref: '#/components/schemas/Money'
+                x-stoplight:
+                  id: 44db4xhavpl8o
+              - type:
+                - 'null'
+                x-stoplight:
+                  id: yeo77qd6efa8q
+            gateway:
+              type: string
+              enum:
+              - stripe
+              description: The payment gateway used for this transaction. Currently, we only support Stripe.
+    Order:
+      x-stoplight:
+        id: c6emqfzr1b3sp
+      type: object
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: crbdqq21eqthj
+        external_id:
+          type: string
+          example: '4254002020558'
+          description: The order ID of the original order on the e-commerce platform.
+        order_number:
+          type: string
+          example: '10001'
+          description: The order number of the original order on the e-commerce platform.
+        order_name:
+          type: string
+          example: '#10001'
+          description: The order name of the original order on the e-commerce platform.
+        customer:
+          type: object
+          description: The basic information of the customer. Currently, only the customer’s email address is returned.
+          properties:
+            emails:
+              type: array
+              minItems: 1
+              description: A list of email addresses associated with the customer.
+              items:
+                type: string
+                example: customer@example.com
+            locale:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: 6ib05xw495kjo
+              description: 'The language code of the customer, eg: en-US.
+
+
+                '
+        country_region:
+          type: string
+          example: USA
+          description: The sales region of the original order, represented by the ISO 3166-1 alpha-3 country code.
+          x-stoplight:
+            id: uwg74gkpt0yr7
+        store:
+          type: object
+          description: The brief information of the store associated with the original order.
+          properties:
+            platform:
+              type: string
+              example: shopify
+              description: The e-commerce platform where the store is located. ([See platform defination](/docs/enum/platforms.md))
+              enum:
+              - shopify
+              - sfcc
+              - automizely-private
+              - bigcommerce
+              - magento-2
+              - woocommerce
+              - shoplazza
+              - wix
+              - shopware-6
+              - squarespace
+            external_id:
+              type: string
+              example: cool-shoe-store
+              description: The identifier of the store on the e-commerce platform.
+        placed_at:
+          type:
+          - string
+          - 'null'
+          example: '2024-09-27T10:45:30Z'
+          description: The date and time when the order was placed, in ISO 8601 format (UTC).
+          format: date-time
+    Pagination:
+      x-stoplight:
+        id: qkut8x4mvr8k5
+      type: object
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+        has_next_page:
+          type: boolean
+      x-examples:
+        Example 1:
+          total: 256
+          page: 6
+          limit: 50
+          has_next_page: false
+    Receiving:
+      x-stoplight:
+        id: b6lxmjgycvc07
+      title: Receiving
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the receiving operation
+          example: fcd437b4532b44739f52e304f850f360
+        items:
+          type: array
+          description: The items involved in this receive operation
+          items:
+            type: object
+            properties:
+              external_id:
+                type: string
+                description: The ID of the item. If the returned item is an entire bundle, the external_id here actually refers to the child item within the bundle, as we only allow the received operation on items within the bundle, not on the bundle itself.
+                example: '13910507487475'
+              external_product_id:
+                type: string
+                description: The ID of the product on the e-commerce platform
+                example: '8524159222003'
+              external_variant_id:
+                type: string
+                description: The ID of the variant on the e-commerce platform
+                example: '45258012197107'
+              sku:
+                type: string
+                description: The SKU of the item on the e-commerce platform
+                example: snowboard-powder
+              quantity:
+                type: number
+                description: The number of items received in this receive operation
+                example: 3
+              gradings:
+                type: array
+                description: Grading information. The merchant can assign a quality inspection grade to the item for this receive operation. Each item can be assigned multiple grades, but the total number cannot exceed the quantity of this receive operation.
+                items:
+                  type: object
+                  properties:
+                    grade:
+                      type: string
+                      enum:
+                      - a
+                      - b
+                      - c
+                      - d
+                      description: The quality inspection grade
+                      example: b
+                    quantity:
+                      type: number
+                      description: The quantity of items
+                      example: 2
+                    notes:
+                      type:
+                      - string
+                      - 'null'
+                      description: The notes of the inspection, can be filled with any information you require
+                      example: The items have minor scratches and some packaging damage.
+                    image_urls:
+                      type:
+                      - array
+                      - 'null'
+                      description: The URL to images of quality inspection, such as images of items, evidence of quality inspection, etc.
+                      items:
+                        type: string
+                        format: uri
+                        example: https://example.com/image1.jpg
+                    inspector:
+                      type:
+                      - string
+                      - 'null'
+                      description: The inspector of the inspection, can be filled with any identifier you require
+                      example: John Doe
+                    inspected_at:
+                      type:
+                      - string
+                      - 'null'
+                      format: date-time
+                      description: The date of the inspection
+                      example: '2023-10-01T10:30:00Z'
+        received_at:
+          type: string
+          format: date-time
+          description: The date-time (ISO string in UTC) when the items were received
+          example: '2023-07-15T00:00:00Z'
+    Return_item:
+      x-stoplight:
+        id: 9kxjirjxt007p
+      type: object
+      title: ReturnItem
+      x-internal: false
+      properties:
+        id:
+          type: string
+          example: '10579097059534'
+          description: The ID of the item.
+          x-stoplight:
+            id: 8qgyrtsvdbqj1
+        external_order_item_id:
+          type: string
+          example: '10579097059534'
+          description: The ID of the item on the e-commerce platform.
+          x-stoplight:
+            id: ermjek6xti21b
+        external_product_id:
+          type: string
+          example: '7002111410382'
+          description: The ID of the product on the e-commerce platform.
+          x-stoplight:
+            id: ht7ov6l0rzg7l
+        external_variant_id:
+          type: string
+          example: '41681852399822'
+          description: The ID of the variant on the e-commerce platform.
+          x-stoplight:
+            id: v4j06695712jw
+        sku:
+          type: string
+          example: t-shirt-blue-xl
+          description: The SKU of the item.
+          x-stoplight:
+            id: 4h2vj0wf1fc9o
+        product_title:
+          type: string
+          example: T-Shirt
+          description: The title of the product.
+          x-stoplight:
+            id: 8i96q9ejn037n
+        intended_return_quantity:
+          type: integer
+          example: 2
+          description: The number of items that the customer plans or expects to return.
+          x-stoplight:
+            id: cf2xpcveyjhie
+        variant_title:
+          type:
+          - string
+          - 'null'
+          example: Blue - XL
+          description: The title of the variant.
+          x-stoplight:
+            id: rle3p0bkghuzy
+        return_reason:
+          type: string
+          example: Wrong size
+          description: The return reason provided by the customer.
+          x-stoplight:
+            id: 7osq3ur1uzwcx
+        return_reason_comment:
+          type: string
+          example: Too Small
+          description: Additional information provided by the customer regarding the reason for the return.
+          x-stoplight:
+            id: vrmncvwdkjfm5
+        return_subreason:
+          type: string
+          example: Too small
+          description: If the return reason supports sub-reasons, this is the sub-reason provided by the customer.
+          x-stoplight:
+            id: aj4upgbmsl0ah
+        ordered_quantity:
+          type: integer
+          example: 3
+          description: The purchase quantity of the item in the original order.
+          x-stoplight:
+            id: aonj70wgv6cpd
+        refund_quantity:
+          type: integer
+          example: 2
+          description: The number of items that need to be refunded.
+          x-stoplight:
+            id: mohkqco5hocj4
+        return_quantity:
+          type: integer
+          example: 2
+          description: The number of items that need to be returned.
+          x-stoplight:
+            id: wq2q2ooibmqxr
+        received_quantity:
+          type: integer
+          example: 0
+          description: The number of items that have been received by the merchant.
+          x-stoplight:
+            id: ya7la00p35awf
+        restocked_quantity:
+          type: integer
+          example: 0
+          description: The number of items that have been restocked by the merchant.
+          x-stoplight:
+            id: cxr5gp7x2d5a0
+        removed_quantity:
+          type: integer
+          example: 0
+          description: The number of items that have been removed by the merchant.
+          x-stoplight:
+            id: gchhc1eiicphl
+        unit_display_price:
+          description: The display price of each item.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: cqxqoix5eypsx
+          - x-stoplight:
+              id: tlqy24brncw68
+            type:
+            - 'null'
+          x-stoplight:
+            id: 0z313s55xkp1z
+        unit_discounted_price_including_tax:
+          description: The tax-inclusive discounted price for each item, representing the actual amount paid by the buyer.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: m8fc8vf2krfpx
+          - x-stoplight:
+              id: r92b8kt4t6zyx
+            type:
+            - 'null'
+          x-stoplight:
+            id: i9yyfzcrte8d8
+        unit_discount:
+          description: The discount allocated to each item.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: xjvbecngb7vis
+          - x-stoplight:
+              id: kj4r4633yoevz
+            type:
+            - 'null'
+          x-stoplight:
+            id: 1dn8ajtxryrds
+        unit_tax:
+          description: The tax allocated to each item.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: u1nk16ip7bpxj
+          - x-stoplight:
+              id: y7q8d6toejurz
+            type:
+            - 'null'
+          x-stoplight:
+            id: ipwjndigalglo
+        properties:
+          type: array
+          description: Custom properties filled in by the customer when purchasing the product.
+          x-stoplight:
+            id: sfi42vf3k54ft
+          items:
+            type: object
+            x-stoplight:
+              id: 3pda0g4yslqqu
+            properties:
+              name:
+                type: string
+                example: monogram
+                description: Custom property name.
+                x-stoplight:
+                  id: 17oj3pip2m153
+              value:
+                type: string
+                example: joe
+                description: Custom property value.
+                x-stoplight:
+                  id: 0uxxza5377nup
+        shopper_uploaded_image_urls:
+          type: array
+          description: The images provided by the customer when submitting a return.
+          x-stoplight:
+            id: 3x59w4vwjjwd0
+          items:
+            type: string
+            example: https://cdn.example.com/x/y/z.jpg
+            x-stoplight:
+              id: hg16an4lr5pwl
+        product_image_urls:
+          type: array
+          description: The images of the product.
+          x-stoplight:
+            id: s7nrg3m1msvqs
+          items:
+            type: string
+            example: https://cdn.example.com/x/y/z.jpg
+            x-stoplight:
+              id: k5jy5l292154b
+        product_categories:
+          type: array
+          description: The product categories configured on the e-commerce platform.
+          x-stoplight:
+            id: o7c3fdivpkqcy
+          items:
+            type: string
+            example: clothing
+            x-stoplight:
+              id: cw30yb9nr4a92
+        product_tags:
+          type: array
+          description: The product tags configured on the e-commerce platform.
+          x-stoplight:
+            id: vyn5guy5vpxf9
+          items:
+            type: string
+            example: clothing
+            x-stoplight:
+              id: 3tge4x61tizib
+        item_tags:
+          type: array
+          description: The tags applied by the merchant to this return item.
+          x-stoplight:
+            id: geup1h97kn00w
+          items:
+            $ref: '#/components/schemas/Item_tag'
+            x-stoplight:
+              id: kjx3797vzy7x1
+        merchant_uploaded_image_urls:
+          type: array
+          description: The images uploaded by the merchant for this return item.
+          x-stoplight:
+            id: 85g4si2ngk5eh
+          items:
+            type: string
+            example: https://cdn.example.com/x/y/z.jpg
+            x-stoplight:
+              id: dzl08raonlnp6
+        bundled_items:
+          type: array
+          description: When the item being returned is a whole bundle, this array will represent its child items.
+          x-stoplight:
+            id: vyh66x2vtumab
+          items:
+            type: object
+            x-stoplight:
+              id: tftfpwsxf8cwo
+            properties:
+              external_id:
+                type: string
+                description: The ID of the item on the e-commerce platform.
+                x-stoplight:
+                  id: s5lpf09r07kra
+              external_product_id:
+                type: string
+                description: The ID of the product on the e-commerce platform.
+                x-stoplight:
+                  id: 1pldjafyiept0
+              external_variant_id:
+                type: string
+                description: The ID of the variant on the e-commerce platform.
+                x-stoplight:
+                  id: 6gjn8i1iutnm5
+              sku:
+                type: string
+                description: The SKU of the item.
+                x-stoplight:
+                  id: ukm2h7b8re6hv
+              product_title:
+                type: string
+                description: The title of the product.
+                x-stoplight:
+                  id: 9f775ewsdyes4
+              variant_title:
+                type:
+                - string
+                - 'null'
+                description: The title of the variant.
+                x-stoplight:
+                  id: i9o1ujhvhfj2b
+              unit_display_price:
+                oneOf:
+                - type: object
+                  $ref: '#/components/schemas/Money'
+                  x-stoplight:
+                    id: 1mjeby2x7r278
+                - x-stoplight:
+                    id: afgkpofk42xd8
+                  type:
+                  - 'null'
+                description: The display price of each item.
+                x-stoplight:
+                  id: x1kob53ndccyh
+              unit_discounted_price_including_tax:
+                oneOf:
+                - type: object
+                  $ref: '#/components/schemas/Money'
+                  x-stoplight:
+                    id: lvqoe62n04z5c
+                - x-stoplight:
+                    id: po4kl95mxnkg8
+                  type:
+                  - 'null'
+                description: The tax-inclusive discounted price for each item, representing the actual amount paid by the buyer.
+                x-stoplight:
+                  id: jnrr8mjbo8ywo
+              unit_discount:
+                oneOf:
+                - type: object
+                  $ref: '#/components/schemas/Money'
+                  x-stoplight:
+                    id: ne6fvupxraec2
+                - x-stoplight:
+                    id: ej38q887538d2
+                  type:
+                  - 'null'
+                description: The discount allocated to each item.
+                x-stoplight:
+                  id: 14rf7r5k2k0dn
+              unit_tax:
+                oneOf:
+                - type: object
+                  $ref: '#/components/schemas/Money'
+                  x-stoplight:
+                    id: uu7wn74wiemqm
+                - x-stoplight:
+                    id: 9xg7vwmw3f46l
+                  type:
+                  - 'null'
+                description: The tax allocated to each item.
+                x-stoplight:
+                  id: k89kygp8v9ibc
+              product_categories:
+                type: array
+                description: The product categories configured on the e-commerce platform.
+                x-stoplight:
+                  id: qgfztkadw0npo
+                items:
+                  type: string
+                  x-stoplight:
+                    id: p7h7svklmdjpn
+              product_tags:
+                type: array
+                description: The product tags configured on the e-commerce platform.
+                x-stoplight:
+                  id: sspcgczz7g7sk
+                items:
+                  type: string
+                  x-stoplight:
+                    id: wnr5mql4c8lk8
+              intended_return_quantity:
+                type: number
+                description: The number of items that the customer plans or expects to return.
+                x-stoplight:
+                  id: i8gzk2brj4yyh
+              return_quantity:
+                type: number
+                description: The number of items that need to be returned.
+                x-stoplight:
+                  id: v1ggsc7kl8u1e
+              received_quantity:
+                type: number
+                description: The number of items that have been received by the merchant.
+                x-stoplight:
+                  id: hce5gccf8eswn
+              ordered_quantity:
+                type: number
+                description: The purchase quantity of the item in the original order.
+                x-stoplight:
+                  id: sw0ltz2my5f5t
+        exchange_variant:
+          type:
+          - object
+          - 'null'
+          description: Exchange variant associated with this return item. Available only when using replacement.
+          x-stoplight:
+            id: tjq9ggrfnis07
+          properties:
+            external_product_id:
+              type: string
+              description: The ID of the product on the e-commerce platform.
+              x-stoplight:
+                id: 5jrfod76kj3pw
+            external_variant_id:
+              type: string
+              description: The ID of the variant on the e-commerce platform.
+              x-stoplight:
+                id: d4hg34nim04l2
+            sku:
+              type: string
+              description: The SKU of the item.
+              x-stoplight:
+                id: oxrm5bp6d0bxw
+            product_title:
+              type: string
+              description: The title of the product.
+              x-stoplight:
+                id: 8c1zcwsletcgd
+            title:
+              type: string
+              description: The title of the variant.
+              x-stoplight:
+                id: akp2uyxtybosq
+            unit_display_price:
+              oneOf:
+              - type: object
+                $ref: '#/components/schemas/Money'
+                x-stoplight:
+                  id: 4jjcpmvgmkb1z
+              - x-stoplight:
+                  id: v7zqzrln1uztv
+                type:
+                - 'null'
+              description: The display price of each item.
+              x-stoplight:
+                id: l8miv9gxtlgeo
+        parent_item_id:
+          type:
+          - string
+          - 'null'
+          description: When the item being returned is one of the child items in a bundle, this ID will represent its parent item, which is the bundle ID.
+          x-stoplight:
+            id: xx6fbtjg6rc2h
+        green_return:
+          type: boolean
+          x-stoplight:
+            id: swlaoo3bwpteo
+          default: false
+          description: Whether this return item is marked as a green return item. When true, no physical return is required for this item.
+    Refund:
+      x-stoplight:
+        id: jy7axzp9nmy7v
+      title: Refund
+      type: object
+      properties:
+        destination:
+          type: string
+          enum:
+          - original_payment
+          - store_credit
+          - refundid
+          description: The refund destination.
+        external_id:
+          type: string
+          description: The identifier for this refund on the e-commerce platform.
+        gateway:
+          type: string
+          enum: []
+          description: The payment gateway used for processing the refund.
+        store_credit_reference:
+          type:
+          - string
+          - 'null'
+          description: The identifier of the issued store credit on the platform, such as a gift card code. Available only when using refund to store credit.
+        total:
+          description: The amount and currency of the refund.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: gpogs6usf81z2
+          - type:
+            - 'null'
+            x-stoplight:
+              id: mqgzjr9b0t6ob
+        items:
+          type: array
+          description: The details of the refund items.
+          items:
+            type: object
+            properties:
+              external_order_item_id:
+                type: string
+                description: The ID of the item on the e-commerce platform.
+              external_product_id:
+                type: string
+                description: The ID of the product on the e-commerce platform.
+              external_variant_id:
+                type: string
+                description: The ID of the variant on the e-commerce platform.
+              sku:
+                type: string
+                description: The SKU of the item.
+              title:
+                type: string
+                description: The title of the product.
+              refund_quantity:
+                type: number
+                description: The quantity of refunds for the item.
+        transactions:
+          type: array
+          x-stoplight:
+            id: n1sdfjcq04cwt
+          description: The refund transaction records on the e-commerce platform. Shopify only for now.
+          items:
+            x-stoplight:
+              id: kg9mxwhps8str
+            type: object
+            properties:
+              external_id:
+                type: string
+                x-stoplight:
+                  id: swypi05z4mpb0
+                description: The ID on the e-commerce platform for this refund transaction.
+              parent_external_id:
+                type: string
+                x-stoplight:
+                  id: 3vlwxktmvv9nt
+                description: 'The ID on the e-commerce platform of the original transaction in the order that this refund corresponds to.
+
+                  '
+              payment_gateway:
+                type: string
+                x-stoplight:
+                  id: vumge7eskw8wu
+                description: The payment gateway used for the refund.
+              refunded_amount:
+                $ref: '#/components/schemas/Money'
+                x-stoplight:
+                  id: pjyv95l52zmv7
+                description: 'The amount of this refund transaction.
+
+                  '
+    Item_tag:
+      x-stoplight:
+        id: q94m5j9owjozk
+      title: ItemTag
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the item tag.
+          example: da1c35a503364bf8bb851ffaa49028c4
+        name:
+          type: string
+          description: The name of the item tag.
+          example: Defective
+        created_at:
+          type: string
+          x-stoplight:
+            id: nuzjnjy1v00m2
+          description: The create time of the item-tag.
+          example: '2023-07-15T00:00:00Z'
+    Restock:
+      x-stoplight:
+        id: 8ot5nksvht5cw
+      type: object
+      examples:
+      - items:
+        - source_order_item_id: '13892318167283'
+          quantity: 1
+          location:
+            source_id: '75333206259'
+            name: My Custom Location
+      properties:
+        items:
+          type: array
+          x-stoplight:
+            id: vv0wt0crptqgk
+          items:
+            x-stoplight:
+              id: qfea5fm4dap5a
+            type: object
+            properties:
+              external_order_item_id:
+                type: string
+                x-stoplight:
+                  id: ik2pc0qq5yioe
+                example: '13892318167283'
+              quantity:
+                type: number
+                x-stoplight:
+                  id: u3m2t5dfnbtd8
+                example: 1
+              location:
+                type:
+                - object
+                - 'null'
+                x-stoplight:
+                  id: w9pgfdzccchsv
+                properties:
+                  external_id:
+                    type: string
+                    x-stoplight:
+                      id: 2a5282k4t4wkd
+                    example: '75333206259'
+                  name:
+                    type: string
+                    x-stoplight:
+                      id: pgijq1mc4e6xm
+                    example: My Custom Location
+    Return_method:
+      x-stoplight:
+        id: i9a7uqiwwflbr
+      type: object
+      title: ReturnMethod
+      properties:
+        type:
+          type: string
+          enum:
+          - retailer_label
+          - customer_courier
+          - happy_returns
+          - in_store
+          - green_return
+          - carrier_dropoff
+          - retail_reworks
+          - carrier_pickup
+          description: The type of return method.
+        name:
+          type: string
+          description: The name of the return method.
+        zone:
+          type: object
+          description: Details about the zone.
+          properties:
+            name:
+              type: string
+              description: The name of the zone.
+        rule:
+          type: object
+          description: Details about the rule.
+          properties:
+            name:
+              type: string
+              description: The name of the rule.
+    Dropoff_shipment:
+      x-stoplight:
+        id: 29fh0z7bhc6hm
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the dropoff shipment.
+        external_id:
+          type: string
+          description: The ID of the shipment on the e-commerce platform.
+        service_provider_carrier_code:
+          type: string
+          description: The identifier provided by the dropoff provider representing the logistics carrier for the package, which may differ from the slug provided by AfterShip Tracking.
+        tracking_number:
+          type: string
+          description: The tracking number for the dropoff shipment.
+        items:
+          type: array
+          description: The list of items included in the dropoff shipment.
+          items:
+            type: object
+            properties:
+              external_order_item_id:
+                type: string
+                description: The ID of the item on the e-commerce platform.
+              quantity:
+                type: number
+                description: The number of items included in the dropoff shipment.
+              return_bag_barcodes:
+                type: array
+                description: The barcode on the corresponding item when the dropoff provider sends the package to the merchant.
+                items:
+                  type: string
+      title: DropoffShipment
+    Meta_20200:
+      x-stoplight:
+        id: 7bz9e6u2tzs3r
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          example: 20200
+          x-stoplight:
+            id: ut1an8dnpf9u1
+          default: 20200
+        type:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: 9tfu7l7i66ka7
+          example: Accepted
+        message:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: hgmc7qer52m4s
+          example: The request has been accepted for processing.
+    Meta:
+      title: Meta
+      x-stoplight:
+        id: dxay0rufhj07b
+      type: object
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: 'Response type string for the reference. '
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Meta_20000:
+      description: Meta data object.
+      x-stoplight:
+        id: 35d0c02d30f62
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          x-stoplight:
+            id: qxyxke3nejh32
+        type:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: 9a7ftn28bils7
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: pf8hdo8p7yqdz
+          example: The request was successfully processed by AfterShip.
+    Cost_of_return:
+      type: object
+      x-stoplight:
+        id: y2f9q9tz7b97p
+      title: CostOfReturn
+      properties:
+        charged:
+          oneOf:
+          - $ref: '#/components/schemas/Money'
+          - type: 'null'
+          description: This field indicates the cost of return that has already been charged. If payment or refund has not yet occurred, this value will be null, as the cost of return has not been actually charged yet.
+        value:
+          $ref: '#/components/schemas/Money'
+          description: This field indicates the cost of return that should be charged.
+    Money:
+      type: object
+      title: Money
+      properties:
+        amount:
+          type: string
+          example: '99.99'
+          description: The amount represented with two decimal places.
+        currency:
+          type: string
+          example: USD
+          description: The currency code, using ISO 4217 standards.
+    Meta_20100:
+      x-stoplight:
+        id: j2ma59pd3ad4u
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20100
+          example: 20100
+          x-stoplight:
+            id: 4mulf0jqqaqdm
+        type:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: emncqaq4949tf
+          example: Created
+        message:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: zr92gwd3jfayh
+          example: The request has been fulfilled and a new resource has been created.
+    Exchange:
+      type: object
+      x-stoplight:
+        id: 8n689pupnq8fh
+      title: Exchange
+      properties:
+        order:
+          type:
+          - object
+          - 'null'
+          description: The order details associated with the exchange. This field will only have a value after an order has been created.
+          properties:
+            external_id:
+              type: string
+              description: The identifier for the source order.
+            order_number:
+              type: string
+              description: The order number associated with the original order.
+            customer:
+              type: object
+              description: Contains the customer's basic information.
+              properties:
+                emails:
+                  type: array
+                  description: A list of email addresses associated with the customer.
+                  items:
+                    type: string
+                locale:
+                  type:
+                  - string
+                  - 'null'
+                  x-stoplight:
+                    id: e53mtt4fe256v
+            country:
+              type: string
+              description: The country related to the order.
+            store:
+              type: object
+              description: Contains brief information about the store.
+              properties:
+                platform:
+                  type: string
+                  description: The e-commerce platform where the store is located.
+                external_id:
+                  type: string
+                  description: The identifier of the store on the e-commerce platform.
+        items:
+          type: array
+          description: The list of items included in the exchange.
+          items:
+            type: object
+            properties:
+              external_product_id:
+                type: string
+                description: The ID of the product on the e-commerce platform.
+              external_variant_id:
+                type: string
+                description: The ID of the variant on the e-commerce platform.
+              sku:
+                type: string
+                description: The SKU of the item.
+              title:
+                type: string
+                description: The title of the product.
+              variant_to_replace:
+                type:
+                - object
+                - 'null'
+                description: This field only has a value when using replacement. In the context of replacement, this field refers to the information of the item used for replacement in the original order.
+                properties:
+                  external_id:
+                    type: string
+                    description: The id of the variant on the e-commerce platform.
+                  external_product_id:
+                    type: string
+                    description: The id of the product on the e-commerce platform.
+                  title:
+                    type: string
+                    description: The title of the varient.
+                  sku:
+                    type: string
+                    description: The sku of the item.
+              quantity:
+                type: number
+                nullable: false
+                description: This field indicates the quantity of the exchange item.
+              unit_display_price:
+                description: The display price of each item.
+                oneOf:
+                - type: object
+                  $ref: '#/components/schemas/Money'
+                  x-stoplight:
+                    id: kz8ffcugbg1po
+                - type:
+                  - 'null'
+                  x-stoplight:
+                    id: e4daz1wgnfxtb
+              product_title:
+                type: string
+                x-stoplight:
+                  id: bkqvmmtgmr2qe
+              variant_title:
+                type: string
+                x-stoplight:
+                  id: 0o38vt7r4wf3v
+              product_image_urls:
+                type: array
+                description: A list of image URLs for the product.
+                items:
+                  type: string
+                x-stoplight:
+                  id: e6f7g8h9i0j1k
+        tax_total:
+          oneOf:
+          - $ref: '#/components/schemas/Money'
+          - type: 'null'
+          description: The total amount of tax applied to the exchange.
+        bonus_credits:
+          type: array
+          description: The bonus credits applied to the exchange.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - extra_credit
+                - pre_discount_credit
+                description: The type of bonus credit.
+              value:
+                oneOf:
+                - $ref: '#/components/schemas/Money'
+                - type: 'null'
+                description: This field is available when the type is pre_discount_credit or when the type is extra_credit with a mode of fixed amount.
+              rate:
+                type:
+                - number
+                - 'null'
+                description: This field is available when the type is extra_credit with a mode of percentage.
+              used:
+                $ref: '#/components/schemas/Money'
+                description: Indicates the actual amount of bonus credit used.
+        bonus_credits_used_total:
+          description: The total value of bonus credits used in the exchange.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: upg6z4yewpcx1
+          - x-stoplight:
+              id: k1k9lwv4xbcd0
+            type:
+            - 'null'
+        exchange_total_including_tax:
+          oneOf:
+          - $ref: '#/components/schemas/Money'
+          - type: 'null'
+          description: Total value including tax for the exchange.
+        charge_by:
+          x-stoplight:
+            id: z1jq3blfrqjof
+          type: string
+          enum:
+          - aftership
+          - other
+          description: The party responsible for collecting the fee incurred by the exchange.
+    Dropoff:
+      x-stoplight:
+        id: suypn47zwslqj
+      title: Dropoff
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the dropoff.
+          nullable: false
+          x-stoplight:
+            id: lbtp35qudr2ge
+        qr_code_url:
+          type: string
+          description: The QR code URL provided by the dropoff service provider to the shopper.
+          nullable: false
+          x-stoplight:
+            id: o91erddureyez
+        dropoff_number:
+          type: string
+          description: The identifier of this dropoff resource on the dropoff service provider's side (e.g., Express Code from Happy Returns).
+          nullable: false
+          x-stoplight:
+            id: 47rhr30ryrg2p
+        service_provider:
+          type: string
+          enum:
+          - happy-returns
+          - retail-reworks
+          description: The dropoff service provider used for this operation.
+          nullable: false
+          x-stoplight:
+            id: trk619v8ht66g
+        created_at:
+          type: string
+          format: date-time
+          description: The creation time of the dropoff record.
+          nullable: false
+          x-stoplight:
+            id: cki52lrmfkun4
+        status:
+          type: string
+          enum:
+          - created
+          - dropped
+          - partially_dropped
+          description: The current status of the dropoff.
+          x-stoplight:
+            id: 2fd15xo10wonz
+        items:
+          type: array
+          description: The list of items included in the dropoff operation.
+          items:
+            type: object
+            properties:
+              external_order_item_id:
+                type: string
+                description: The ID of the item on the e-commerce platform.
+                x-stoplight:
+                  id: 383ubdcctiyjo
+              quantity:
+                type: number
+                description: The number of items included in the dropoff.
+                x-stoplight:
+                  id: 7ew44n8e0vhgc
+            x-stoplight:
+              id: btzmrmtuwzly4
+          x-stoplight:
+            id: 1psoblvyrcaqf
+        shipments:
+          description: The list of shipments associated with this dropoff.
+          type: array
+          items:
+            $ref: '#/components/schemas/Dropoff_shipment'
+            x-stoplight:
+              id: 29fh0z7bhc6hm
+          x-stoplight:
+            id: 6tzkxfpx4jexk
+    Error:
+      type: object
+      examples:
+      - info: quantity must be 1 or greater
+        path: items[0].quantity
+      properties:
+        path:
+          type: string
+          x-stoplight:
+            id: d9hc9ncjy3jkh
+          example: items[0].quantity
+        info:
+          type: string
+          x-stoplight:
+            id: kk25irujeobgd
+          example: quantity must be 1 or greater
+      description: Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      title: Error
+    Address:
+      type: object
+      x-stoplight:
+        id: 7cc87e0eb2a0d
+      title: Address
+      examples:
+      - street_1: 1234 Elm Street
+        street_2: Apt 5
+        city: New York
+        state:
+          name: New York
+        postal_code: '10001'
+        country_region:
+          code: USA
+      required:
+      - contact_name
+      - street_1
+      - city
+      - state
+      - postal_code
+      - country_region
+      properties:
+        contact_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lwugfye8q3bt0
+          description: 'The name of the contact person associated with the address.
+
+            '
+        company_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: jozyy6y4x6hal
+          description: 'The name of the company or organization associated with the address.
+
+            '
+        street_1:
+          type:
+          - string
+          - 'null'
+          title: The Street_1 Schema
+          description: First line of the street address.
+        street_2:
+          type:
+          - string
+          - 'null'
+          title: The Street_2 Schema
+          description: Second line of the street address.
+        city:
+          type:
+          - string
+          - 'null'
+          title: The City Schema
+          description: The location's city, town, or village.
+        state:
+          title: The State Schema
+          description: The state or region of the location, such as a province, state, or prefecture.
+          type:
+          - object
+          - 'null'
+          properties:
+            name:
+              type: string
+              x-stoplight:
+                id: 2n3yyt164fwtn
+              description: 'The state or region of the location, such as a province, state, or prefecture.
+
+
+                '
+        postal_code:
+          type:
+          - string
+          - 'null'
+          title: The Postal_code Schema
+          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
+        country_region:
+          title: The Country Schema
+          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          example: USA
+          type:
+          - object
+          - 'null'
+          properties:
+            code:
+              type: string
+              x-stoplight:
+                id: ttabbo8vl3xur
+              description: 'The address country/region in ISO 3166-1 alpha-3 format.
+
+
+                '
+        phone:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lio9zgakvzqhp
+          description: 'The contact phone number associated with the address.
+
+            '
+        email:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: ox7s3omkrkk3f
+          description: The email associated with the address.
+    Return:
+      type: object
+      x-stoplight:
+        id: 0jq12hby7re52
+      description: '<div style="display:none; height: 0">[url](/docs/enum/platforms.md)</div>'
+      title: Return
+      properties:
+        id:
+          type: string
+          example: b3eedf69b7c0410d8975d4350c007705
+          x-stoplight:
+            id: uguvcl6vpq542
+        organization:
+          type: object
+          x-stoplight:
+            id: vowslkac1g97c
+          properties:
+            id:
+              type: string
+              x-stoplight:
+                id: bkx7w9udgrh5d
+              example: 4f94e5fe178c46a9b976b7d4e646d65a
+        rma_number:
+          type: string
+          example: A1B2C3D4
+          x-stoplight:
+            id: ch89c3c9iyzl1
+        contact_email:
+          type: string
+          description: The contact email address for the return.
+          x-stoplight:
+            id: a2c3d4e5f6g7h
+        filed_by:
+          enum:
+          - shopper
+          - merchant
+          - customer_support
+          x-stoplight:
+            id: uo7dlr7kjz8p3
+        approval_status:
+          type: string
+          enum:
+          - submitted
+          - approved
+          - done
+          - rejected
+          - expired
+          x-stoplight:
+            id: hqacreuxv6tce
+        approved_at:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when this return was approved.
+          x-stoplight:
+            id: j6nsqp702fyjq
+        auto_approved:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the return was automatically approved.
+          x-stoplight:
+            id: owm1dix0l0cbv
+        rejected_at:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when this return was rejected.
+          x-stoplight:
+            id: ddbro31280khu
+        reject_reason:
+          type:
+          - string
+          - 'null'
+          description: The reason for the return rejection.
+          x-stoplight:
+            id: 66gazjsdhzw4r
+        auto_rejected:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the return was automatically rejected.
+          x-stoplight:
+            id: o03wtszj1504j
+        resolved_at:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when this return was resolved.
+          x-stoplight:
+            id: 184pdspa8y0y0
+        auto_resolved:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the return was automatically resolved.
+          x-stoplight:
+            id: 0cszxadqktjys
+        refunded_at:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when this return was refunded.
+          x-stoplight:
+            id: 1ma2eumogk7mc
+        auto_refunded:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the return was automatically refunded.
+          x-stoplight:
+            id: 71chosr31lm1t
+        auto_received:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the return has triggered an automatic receive.
+          x-stoplight:
+            id: pz7kr7ucvo50h
+        expired_at:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when this return was expired.
+          x-stoplight:
+            id: ojym85rr7c653
+        shop_now:
+          type: boolean
+          description: Whether the "Shop Now" feature (also known as "Exchange for other items") has been used.
+          x-stoplight:
+            id: 5ukd741ftug2v
+        merchant_note:
+          type:
+          - string
+          - 'null'
+          example: This is an internal note
+          x-stoplight:
+            id: sdjg0gvce8is4
+        return_total_including_tax:
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: wze17i0uncp4r
+          - type:
+            - 'null'
+            x-stoplight:
+              id: ddx4ecapbacyv
+          x-stoplight:
+            id: jz57sfh4zcti1
+        return_tax:
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: rab8xfsh3afnt
+          - type:
+            - 'null'
+            x-stoplight:
+              id: 4b819ad0r2uf6
+          description: The tax amount associated with the return.
+          x-stoplight:
+            id: 0cn90pqlp634v
+        refund_destination:
+          x-stoplight:
+            id: raid0ie9oeoig
+          type:
+          - string
+          - 'null'
+          enum:
+          - original_payment
+          - store_credit
+        refunded_total:
+          description: The total amount refunded for the return.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: pua85mv3dg2uc
+          - x-stoplight:
+              id: mbeuze1biu93p
+            type:
+            - 'null'
+          x-stoplight:
+            id: iohmf9fw7le3d
+        estimated_refund_total:
+          x-stoplight:
+            id: jjqsxnc3hyrou
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: w0fjam88nlahu
+          - type:
+            - 'null'
+            x-stoplight:
+              id: jkrat9zipxh1f
+        checkout_total:
+          x-stoplight:
+            id: 1ciuvzwdo67tq
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: iyjakb570i3ix
+          - type:
+            - 'null'
+            x-stoplight:
+              id: ihiegpmowh4fu
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+          description: The shipping address for the return.
+          x-stoplight:
+            id: d5f6g7h8i9j0k
+        order:
+          $ref: '#/components/schemas/Order'
+          x-stoplight:
+            id: c6emqfzr1b3sp
+        return_items:
+          type: array
+          x-stoplight:
+            id: 1gvqxtsx3dekd
+          items:
+            $ref: '#/components/schemas/Return_item'
+            x-stoplight:
+              id: rsbuiw94xkgco
+        return_method:
+          $ref: '#/components/schemas/Return_method'
+          x-stoplight:
+            id: i9a7uqiwwflbr
+        exchange:
+          x-stoplight:
+            id: oj71bdjlpsjka
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Exchange'
+            x-stoplight:
+              id: 8n689pupnq8fh
+          - type:
+            - 'null'
+            x-stoplight:
+              id: aqbb3efa8kqm7
+        instant_exchange:
+          x-stoplight:
+            id: a1qg226i6zk9k
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Instant_exchange'
+            x-stoplight:
+              id: seoh4kukxl01u
+          - type:
+            - 'null'
+            x-stoplight:
+              id: lx2esa1bl5r99
+        receivings:
+          type: array
+          x-stoplight:
+            id: k3pj2dvgtqwjv
+          items:
+            $ref: '#/components/schemas/Receiving'
+            x-stoplight:
+              id: b6lxmjgycvc07
+        is_gift_return:
+          type: boolean
+          description: Indicates whether this is a gift return.
+          x-stoplight:
+            id: gqc983nzid86p
+        shipments:
+          type: array
+          x-stoplight:
+            id: to0ct81w40c7b
+          items:
+            $ref: '#/components/schemas/Return_shipment'
+            x-stoplight:
+              id: r3rb6iy8jfovb
+        restocks:
+          type: array
+          x-stoplight:
+            id: a5qt9sjt4xsk7
+          items:
+            $ref: '#/components/schemas/Restock'
+            x-stoplight:
+              id: 8ot5nksvht5cw
+        cost_of_return:
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Cost_of_return'
+            x-stoplight:
+              id: y2f9q9tz7b97p
+          - type:
+            - 'null'
+            x-stoplight:
+              id: aeu0gleqy56v2
+          x-stoplight:
+            id: 5s46h8gbz3r23
+        refunds:
+          type: array
+          x-stoplight:
+            id: 3edmngrl663cc
+          items:
+            $ref: '#/components/schemas/Refund'
+            x-stoplight:
+              id: jy7axzp9nmy7v
+        dropoffs:
+          type: array
+          x-stoplight:
+            id: 7gaiuxe9ql9ma
+          items:
+            $ref: '#/components/schemas/Dropoff'
+            x-stoplight:
+              id: suypn47zwslqj
+        outcomes:
+          type: array
+          x-stoplight:
+            id: djjr4pyxr2rwk
+          description: Expected result of the return
+          items:
+            x-stoplight:
+              id: omw05ks21ryrx
+            type: string
+            enum:
+            - exchange
+            - refund
+            - upsell
+            - store_credit
+        created_at:
+          type: string
+          x-stoplight:
+            id: 30km8fnulhob8
+          example: '2024-01-01T00:00:00.001Z'
+        shipping_status:
+          x-stoplight:
+            id: ibdwsbv6z734e
+          type: string
+          enum:
+          - no_label
+          - pending
+          - in_transit
+          - delivered
+          - partially_received
+          - received
+          - partially_dropped
+          - dropped
+          - void
+          description: The shipping status at the return level.
+        exceptions:
+          type: array
+          x-stoplight:
+            id: 1v4ub45v9mg69
+          description: Exceptions in the return that require manual handling
+          items:
+            x-stoplight:
+              id: cens5ey3u5gvx
+            type: string
+            enum:
+            - exchange_failed
+            - restock_failed
+            - generate_label_failed
+            - refund_failed
+            - charge_failed
+            - flagged
+  requestBodies:
+    ResolveReturn:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              notify_customer:
+                type: boolean
+                x-stoplight:
+                  id: d7nqczcdo05jx
+    ApproveReturn:
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                notify_customer: true
+                generate_label: true
+                custom_label_reference: RMA#xxxxxx
+            properties:
+              notify_customer:
+                type: boolean
+                description: Whether to send a notification to the customer.
+              generate_label:
+                type: boolean
+                description: Whether to execute the creation of labels according to the default configuration during the approval process.
+              customize_label_info:
+                type: object
+                x-stoplight:
+                  id: jn74dzcie20f8
+                properties:
+                  label_reference:
+                    type: string
+                    x-stoplight:
+                      id: ig7duanv64ng8
+                    description: If generate_label is set to true, this field can be used to customize the reference on the label.
+                  ship_from:
+                    $ref: '#/components/schemas/Address'
+                    x-stoplight:
+                      id: u1w48bdlm5ejr
+                    description: ' If generate_label is set to true, this field is used to specify the sender''s address'
+                  ship_to:
+                    $ref: '#/components/schemas/Address'
+                    x-stoplight:
+                      id: m93henexo8kbb
+                    description: ' If generate_label is set to true, this field is used to specify the receipent''s address.'
+    CreateReturn:
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                order:
+                  external_id: '10579097059534'
+                  store:
+                    platform: shopify
+                    external_id: store-id
+                return_items:
+                - external_order_item_id: '10579097059534'
+                  intended_return_quantity: 3
+                  return_reason: Arrive to late
+                  return_subreason: Arrive to late
+                  return_reason_comment: Really late
+                  shopper_uploaded_image_urls:
+                  - ''
+                  resolution: refund
+                return_method:
+                  type: retailer_label
+                refund_destination: original_payment
+            required:
+            - order
+            - return_items
+            - refund_destination
+            properties:
+              order:
+                type: object
+                required:
+                - external_id
+                - store
+                properties:
+                  external_id:
+                    type: string
+                    description: The order ID of the original order on the e-commerce platform.
+                    example: '4254002020558'
+                  store:
+                    type: object
+                    required:
+                    - platform
+                    - external_id
+                    properties:
+                      platform:
+                        type: string
+                        description: The e-commerce platform where the store is located. ([See platform defination](/docs/enum/platforms.md))
+                        example: shopify
+                        enum:
+                        - shopify
+                        - sfcc
+                        - automizely-private
+                        - bigcommerce
+                        - magento-2
+                        - woocommerce
+                        - shoplazza
+                        - wix
+                        - shopware-6
+                        - squarespace
+                      external_id:
+                        type: string
+                        description: The identifier of the store on the e-commerce platform.
+                        example: cool-shoe-store
+              return_items:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - external_order_item_id
+                  - intended_return_quantity
+                  - return_reason
+                  - resolution
+                  properties:
+                    external_order_item_id:
+                      type: string
+                      description: The ID of the item on the e-commerce platform.
+                      example: '10579097059534'
+                    intended_return_quantity:
+                      type: integer
+                      description: The number of items that the customer plans or expects to return.
+                      minimum: 1
+                    return_reason:
+                      type: string
+                      description: The return reason provided by the customer.
+                      example: Wrong size
+                    return_subreason:
+                      type: string
+                      description: If the return reason supports sub-reasons, this is the sub-reason provided by the customer.
+                      example: Too small
+                    return_reason_comment:
+                      type: string
+                      description: Additional information provided by the customer regarding the reason for the return.
+                      example: To Small
+                    shopper_uploaded_image_urls:
+                      type: array
+                      description: The images provided by the customer when submitting a return.
+                      items:
+                        type: string
+                        example: https://example.com/1.jpeg
+                    resolution:
+                      type: string
+                      description: The resolution for processing this item, currently only supports refund.
+                      enum:
+                      - refund
+              return_method:
+                type: object
+                required:
+                - type
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - retailer_label
+                    - customer_courier
+                    - happy_returns
+                    - in_store
+                    - green_return
+                    - retail_reworks
+                    - carrier_pickup
+              refund_destination:
+                type: string
+                enum:
+                - original_payment
+                - store_credit
+                description: The destination for the refund
+      description: ''
+    RemoveItems:
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                items:
+                - external_id: '15708957409523'
+                  quantity: 1
+                edit_reason: missing item
+                notify_customer: true
+            required:
+            - items
+            - edit_reason
+            - notify_customer
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - external_id
+                  - quantity
+                  properties:
+                    external_id:
+                      type: string
+                    quantity:
+                      type: integer
+                      minimum: 1
+              edit_reason:
+                type: string
+                maxLength: 200
+              notify_customer:
+                type: boolean
+      description: ''
+    AttachShipments:
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                shipments:
+                - tracking_number: '9400100000000000000000'
+                  slug: usps
+                  label:
+                    url: https://example.com/label1.pdf
+                    total_charge:
+                      amount: '198.21'
+                      currency: USD
+                notify_customer: true
+            required:
+            - shipments
+            properties:
+              shipments:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - tracking_number
+                  - slug
+                  - label
+                  properties:
+                    tracking_number:
+                      type: string
+                    slug:
+                      type: string
+                    label:
+                      type: object
+                      required:
+                      - url
+                      properties:
+                        url:
+                          type: string
+                        total_charge:
+                          type: object
+                          $ref: '#/components/schemas/Money'
+              notify_customer:
+                type: boolean
+    RejectReturn:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - reject_reason
+            properties:
+              notify_customer:
+                type: boolean
+                x-stoplight:
+                  id: 3h2qjztgmteqg
+              reject_reason:
+                type: string
+                minLength: 1
+                maxLength: 1000
+    ReceiveItems:
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                items:
+                - external_id: '12127384174838'
+                  quantity: 3
+                  gradings:
+                  - grade: a
+                    quantity: 1
+                    inspector: Inspector_001
+                    notes: All items passed inspection
+                    inspected_at: '2019-08-24T14:15:22Z'
+                    image_urls:
+                    - http://example.com/image.jpeg
+                notify_customer: true
+            required:
+            - items
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - external_id
+                  - quantity
+                  properties:
+                    external_id:
+                      type: string
+                      example: '12127384174838'
+                    quantity:
+                      type: integer
+                      example: 3
+                    gradings:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - grade
+                        - quantity
+                        properties:
+                          grade:
+                            type: string
+                            example: a
+                          quantity:
+                            type: integer
+                            example: 1
+                          inspector:
+                            type: string
+                            example: Inspector_001
+                          notes:
+                            type: string
+                            example: All items passed inspection
+                          inspected_at:
+                            type: string
+                            example: '2019-08-24T14:15:22Z'
+                          image_urls:
+                            type: array
+                            items:
+                              type: string
+                              example: '"http://example.com/image.jpeg"'
+              notify_customer:
+                type: boolean
+  responses:
+    ApproveReturnError404:
+      description: When the RMA does not exist (including when the RMA does not belong to the org), a 404 will be returned.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Return not found:
+              value:
+                meta:
+                  code: 40400
+                  type: NotFound
+                  message: Return not found
+                data: null
+    RejectReturnError422:
+      description: When the requested data contains fields that do not comply with the validation rules, a 422 will be returned. We will provide the path of the invalid fields and errors in the `meta.errors`.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Validation error:
+              value:
+                meta:
+                  code: 42200
+                  type: UnprocessableEntity
+                  message: Unprocessable entity
+                  errors:
+                  - info: reject_reason is a required field
+                    path: reject_reason
+                data: null
+    ResolveReturn:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20200'
+                x-stoplight:
+                  id: 7bz9e6u2tzs4t
+              data:
+                $ref: '#/components/schemas/Return'
+                x-stoplight:
+                  id: pxr4nt847nq2y
+    RejectReturnError404:
+      description: When the RMA does not exist (including when the RMA does not belong to the org), a 404 will be returned.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Return not found:
+              value:
+                meta:
+                  code: 40400
+                  type: NotFound
+                  message: Return not found
+                data: null
+    RemoveItemsError422:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta'
+                x-stoplight:
+                  id: d0eds9nz5pa9c
+          examples:
+            Remove too many items:
+              value:
+                meta:
+                  code: 42200
+                  type: UnprocessableEntity
+                  message: Cannot remove more items than available in the return
+                data: null
+    ApproveReturnError409:
+      description: We will check whether the current approval status can be transitioned to `approved` before executing the status change. If the current approval status cannot be transitioned to `approved`, a 409 will be returned.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Status transition conflict:
+              value:
+                meta:
+                  code: 40900
+                  type: Conflict
+                  message: Approval status can only be changed from submitted to approved
+                data: null
+    AttachShipmentsError422:
+      description: 'A 422 will be returned when:
+
+        - When the requested data contains fields that do not comply with the validation rules. We will provide the path of the invalid fields and errors in the `meta.errors`.
+
+        - When uploading more than one shipment.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Validation error:
+              value:
+                meta:
+                  code: 42200
+                  type: UnprocessableEntity
+                  message: Unprocessable entity
+                  errors:
+                  - info: custom_label_reference must be a maximum of 60 characters in length
+                    path: custom_label_reference
+                data: null
+            Upload more than 1 shipment:
+              value:
+                meta:
+                  code: 42200
+                  type: UnprocessableEntity
+                  message: Unprocessable entity
+                  errors:
+                  - info: shipments must contain at maximum 1 item
+                    path: shipments
+                data: null
+    ResolveReturnError404:
+      description: When the RMA does not exist (including when the RMA does not belong to the org), a 404 will be returned.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Return not found:
+              value:
+                meta:
+                  code: 40400
+                  type: NotFound
+                  message: Return not found
+                data: null
+    ReceiveItems:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20000'
+                x-stoplight:
+                  id: 7bz9e6u2tzs4r
+              data:
+                $ref: '#/components/schemas/Return'
+                x-stoplight:
+                  id: pxr4nt847nq2x
+    ReceiveItemsError422:
+      description: 'A 422 will be returned when:
+
+        - When the quantity of received items exceeds the submitted return quantity.
+
+        - When the total quantity in gradings exceeds the quantity of the item.
+
+        - When the item does not exist in the submitted return.
+
+        - When the requested data contains fields that do not comply with the validation rules. We will provide the path of the invalid fields and errors in the `meta.errors`.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Exceeded receive quantity:
+              value:
+                meta:
+                  code: 42213
+                  type: UnprocessableEntity
+                  message: Exceeds the acceptable return item quantity
+                data: null
+            Exceeded grading quantity:
+              value:
+                meta:
+                  code: 42247
+                  type: UnprocessableEntity
+                  message: Grading quantity should not exceed the receive item quantity
+                data: null
+            Item not belongs to return:
+              value:
+                meta:
+                  code: 42225
+                  type: UnprocessableEntity
+                  message: Return item not exists
+                data: null
+    ApproveReturnError422:
+      description: When the requested data contains fields that do not comply with the validation rules, a 422 will be returned. We will provide the path of the invalid fields and errors in the `meta.errors`.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Validation error:
+              value:
+                meta:
+                  code: 42200
+                  type: UnprocessableEntity
+                  message: Unprocessable entity
+                  errors:
+                  - info: custom_label_reference must be a maximum of 60 characters in length
+                    path: custom_label_reference
+                data: null
+    RejectReturn:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20200'
+                x-stoplight:
+                  id: 7bz9e6u2tzs3r
+              data:
+                $ref: '#/components/schemas/Return'
+                x-stoplight:
+                  id: pxr4nt847nq1x
+    AttachShipmentsError404:
+      description: When the RMA does not exist (including when the RMA does not belong to the org), a 404 will be returned.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Return not found:
+              value:
+                meta:
+                  code: 40400
+                  type: NotFound
+                  message: Return not found
+                data: null
+    ResolveReturnError409:
+      description: We will check whether the current approval status can be transitioned to `done` before executing the status change. If the current approval status cannot be transitioned to `done`, a 409 will be returned.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Status transition conflict:
+              value:
+                meta:
+                  code: 40900
+                  type: Conflict
+                  message: Approval status can only be changed from approve, expired to done
+                data: null
+    ApproveReturn:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20200'
+                x-stoplight:
+                  id: 7bz9e6u2tzs2e
+              data:
+                $ref: '#/components/schemas/Return'
+                x-stoplight:
+                  id: pxr4nt847nq0f
+    RemoveItemsError404:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta'
+                x-stoplight:
+                  id: 6r4w762lmi4db
+          examples:
+            Return not found:
+              value:
+                meta:
+                  code: 40400
+                  type: NotFound
+                  message: Return not found
+                data: null
+    RemoveItems:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20000'
+                x-stoplight:
+                  id: bt5gtqmbbgb49
+              data:
+                $ref: '#/components/schemas/Return'
+                x-stoplight:
+                  id: fn8ihro4qn2yy
+    CreateReturnError422:
+      description: 'A 422 will be returned when:
+
+        - When the requested data contains fields that do not comply with the validation rules. We will provide the path of the invalid fields and errors in the `meta.errors`.
+
+        - When the submitted return violates the merchant''s configured return policy.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Validation error:
+              value:
+                meta:
+                  code: 42200
+                  type: UnprocessableEntity
+                  message: Unprocessable entity
+                  errors:
+                  - info: external_order_item_id is a required field
+                    path: return_items[0].external_order_item_id
+                data: null
+            Item mismatch:
+              value:
+                meta:
+                  code: 42200
+                  type: UnprocessableEntity
+                  message: Request items mismatch order items
+                data: null
+    AttachShipments:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20000'
+              data:
+                $ref: '#/components/schemas/Return'
+    ReceiveItemsError404:
+      description: When the RMA does not exist (including when the RMA does not belong to the org), a 404 will be returned.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Return not found:
+              value:
+                meta:
+                  code: 40400
+                  type: NotFound
+                  message: Return not found
+                data: null
+    CreateReturnError429:
+      description: 'A 429 will be returned when:
+
+        - When another return request for the same order is already in progress during the call.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Too many requests:
+              value:
+                meta:
+                  code: 42900
+                  type: TooManyRequests
+                  message: Too many requests
+                data: null
+    RejectReturnError409:
+      description: We will check whether the current approval status can be transitioned to `rejected` before executing the status change. If the current approval status cannot be transitioned to `rejected`, a 409 will be returned.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Status transition conflict:
+              value:
+                meta:
+                  code: 40900
+                  type: Conflict
+                  message: Approval status can only be changed from approve, expired to rejected
+                data: null
+    CreateReturn:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20100'
+                x-stoplight:
+                  id: j2ma59pd3ad4u
+              data:
+                $ref: '#/components/schemas/Return'
+                x-stoplight:
+                  id: 82na0r9mgimww
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

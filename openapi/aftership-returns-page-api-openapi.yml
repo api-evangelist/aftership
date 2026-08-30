@@ -1,0 +1,121 @@
+openapi: 3.2.0
+info:
+  title: Overview Returns Page API
+  version: 2026-07
+  summary: API Overview
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-returnscenter-com-public/nodes/reference/api.json?branch=production/2026-07&deref=optimizedBundle)'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+servers:
+- url: https://api.aftership.com/returns/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Returns Page
+paths:
+  /returns/link:
+    parameters: []
+    post:
+      summary: Create Returns Page Deep Link
+      tags:
+      - Returns Page
+      responses:
+        '201':
+          $ref: '#/components/responses/CreateReturnsPageDeepLink'
+      operationId: post-create-return-deep-link
+      x-stoplight:
+        id: di9kogky6z3z5
+      requestBody:
+        $ref: '#/components/requestBodies/CreateReturnsPageDeepLink'
+      description: 'This API is used to generate a deep link that redirects the user to a returns page with pre-filled information. It is suitable for scenarios where a return submission link needs to be constructed and sent to the shopper, allowing them to submit an RMA more conveniently without having to manually open the returns page and entering order details.
+
+        '
+components:
+  responses:
+    CreateReturnsPageDeepLink:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20100'
+                x-stoplight:
+                  id: 133gcrm601701
+              data:
+                type: object
+                x-stoplight:
+                  id: 4p5arwlo7blvx
+                properties:
+                  url:
+                    type: string
+                    x-stoplight:
+                      id: 8f4dzmt7hgujj
+          examples: {}
+  requestBodies:
+    CreateReturnsPageDeepLink:
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                order_number: '1025'
+                email: zy.liao@aftership.com
+                postal_code: '07302'
+            required:
+            - order_number
+            properties:
+              order_number:
+                type: string
+              customer_email:
+                type: string
+                format: email
+                x-stoplight:
+                  id: v4zxoxphxd33g
+              postal_code:
+                type: string
+  schemas:
+    Meta_20100:
+      x-stoplight:
+        id: j2ma59pd3ad4u
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20100
+          example: 20100
+          x-stoplight:
+            id: 4mulf0jqqaqdm
+        type:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: emncqaq4949tf
+          example: Created
+        message:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: zr92gwd3jfayh
+          example: The request has been fulfilled and a new resource has been created.
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

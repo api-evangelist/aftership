@@ -1,0 +1,174 @@
+openapi: 3.2.0
+info:
+  title: Aftership Item tags API
+  version: 2026-07
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  description: 'Operations tagged Item tags across 2 of this provider''s published API definitions: aftership-returns-api-openapi.yml, aftership-warranty-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.aftership.com/returns/2026-07
+  description: API Endpoint
+- url: https://api.aftership.com/warranty/2026-07
+  description: API Endpoint
+tags:
+- name: Item tags
+paths:
+  /item-tags:
+    get:
+      summary: Get item tags
+      responses:
+        '200':
+          $ref: '#/components/responses/GetItemTags'
+      operationId: get-item-tags
+      x-stoplight:
+        id: sxu3emct2h6is
+      description: By using the get item-tags API, you can retrieve all available item tags under the organization. These tags can be applied to return items. Since the number of item tags that each organization can create is limited, we do not provide pagination functionality in this API. And currently, we also do not offer APIs for creating, editing, or deleting item tags; if needed, please perform these actions through the [admin.returnscenter.com](https://admin.returnscenter.com). For more information about the functionality of item tags, you can visit https://support.returnscenter.com/en/article/how-to-tag-returned-items-and-upload-images-for-better-management-1s79bl/.
+      tags:
+      - Item tags
+      security:
+      - as-api-key: []
+    servers:
+    - url: https://api.aftership.com/returns/2026-07
+      description: API Endpoint
+components:
+  responses:
+    GetItemTags:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20000'
+                x-stoplight:
+                  id: xs8boemac1ob7
+              data:
+                type: object
+                x-stoplight:
+                  id: 13548clbkzgxh
+                properties:
+                  item_tags:
+                    type: array
+                    x-stoplight:
+                      id: v5dchx2j6kb09
+                    items:
+                      $ref: '#/components/schemas/Item_tag'
+                      x-stoplight:
+                        id: q94m5j9owjozk
+  schemas:
+    Meta_20000:
+      description: Meta data object.
+      x-stoplight:
+        id: 35d0c02d30f62
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          x-stoplight:
+            id: qxyxke3nejh32
+        type:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: 9a7ftn28bils7
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: pf8hdo8p7yqdz
+          example: The request was successfully processed by AfterShip.
+    Item_tag:
+      x-stoplight:
+        id: q94m5j9owjozk
+      title: ItemTag
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the item tag.
+          example: da1c35a503364bf8bb851ffaa49028c4
+        name:
+          type: string
+          description: The name of the item tag.
+          example: Defective
+        created_at:
+          type: string
+          x-stoplight:
+            id: nuzjnjy1v00m2
+          description: The create time of the item-tag.
+          example: '2023-07-15T00:00:00Z'
+    ItemTag:
+      title: ItemTag
+      x-stoplight:
+        id: 8wwwff48758hx
+      type: object
+      description: A merchant-defined tag that can be added to claim items.
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: r4fbyaanpn8i9
+          description: The unique identifier for the item tag.
+        name:
+          type: string
+          x-stoplight:
+            id: 4r1fyg1jjzxon
+          description: The name of the item tag.
+        created_at:
+          type: string
+          x-stoplight:
+            id: a41sqbbkajk6n
+          description: The date and time, formatted in ISO 8601, when the item tag was created.
+          format: date-time
+          example: '2026-05-19T10:00:00Z'
+    Meta_20000_2:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+        type:
+          type: string
+          minLength: 1
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: as-api-key
+x-refined-from:
+- aftership-returns-api-openapi.yml
+- aftership-warranty-api-openapi.yml
+x-stoplight:
+  id: 02gep2e9lkucy

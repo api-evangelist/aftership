@@ -1,0 +1,83 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.aftership.com/docs/tracking/webhook/webhook-overview
+asyncapi_published: false
+asyncapi_probe:
+- url: https://api.aftership.com/asyncapi.yaml
+  status: 404
+- url: https://api.aftership.com/asyncapi.json
+  status: 404
+- url: https://www.aftership.com/asyncapi.yaml
+  status: 403
+  note: Cloudflare bot challenge on the www host; the same path 404s through the apex.
+- source: github.com/AfterShip code search for "asyncapi"
+  status: no results
+note: AfterShip documents a rich webhook surface across at least two products but publishes no AsyncAPI document.
+  The catalog below is transcribed from the provider's own webhook documentation; nothing is derived or invented.
+surfaces:
+- api: AfterShip Tracking API
+  transport: HTTP POST, application/json
+  docs: https://www.aftership.com/docs/tracking/webhook/webhook-overview
+  reference: https://www.aftership.com/docs/tracking/webhook/webhook-specifications
+  signature: https://www.aftership.com/docs/tracking/webhook/webhook-signature
+  oauth: https://www.aftership.com/docs/tracking/webhook/webhook-oauth2
+  outgoing_ips: https://www.aftership.com/docs/tracking/webhook/webhook-outgoing-ips
+  versioning: https://www.aftership.com/docs/tracking/webhook/webhook-versioning
+  changelog: https://www.aftership.com/docs/tracking/webhook/webhook-changelog
+  configuration:
+    max_destinations: 10
+    allowed_ports:
+    - 80
+    - 443
+    - 8080
+    custom_headers_per_url: 5
+    validation: A "Send test webhook" action must receive an HTTP 2xx for the destination to validate.
+  security:
+  - HMAC webhook signature
+  - custom headers (basic auth, bearer token, or secret key)
+  - published outgoing IP allowlist
+  - HTTPS
+  retry:
+    max_attempts: 14
+    strategy: exponential backoff
+    formula: 2^(retry number) x 30s
+    first_retry_seconds: 30
+    max_delay_seconds: 122880
+    total_window_seconds: 245730
+    success_criteria: HTTP response code between 200 and 299
+  payload_fields:
+  - ts (UTC unix timestamp of the event)
+  - event (event code)
+  - event_id (UUID v4)
+  - is_tracking_first_tag (first update under a delivery tag)
+  - msg (event detail object)
+  events:
+  - event: tracking_update
+    type: Update
+    description: Fires when the tracking is updated and matches a configured trigger.
+    shipment_statuses:
+    - Info received
+    - In Transit
+    - Out for Delivery
+    - Available for pickup
+    - Delivered
+    - Failed attempt
+    - Expired
+    - Exception
+  - event: edd_revise
+    type: Estimated delivery date (EDD)
+    description: Fires on all EDD updates.
+  - event: tracking_pending_time
+    type: Pending time
+    description: Fires when a shipment has been pending for a user-defined threshold (24, 48, 72, ... hours or days).
+- api: AfterShip Warranty API
+  transport: HTTP POST, application/json
+  docs: https://www.aftership.com/docs/warranty/19e49d2ef35ff-after-ship-warranty-webhooks
+  reference: https://www.aftership.com/docs/warranty/353a366127c45-receive-a-webhook-delivery-of-warranty-update
+  security:
+  - Webhook Signature
+  - published outgoing IP allowlist
+  events:
+  - event: warranty update
+    description: Delivery of a warranty registration or claim update to a subscriber endpoint.
+event_count: 4

@@ -1,0 +1,479 @@
+openapi: 3.2.0
+info:
+  title: Overview Courier API
+  version: '1.0'
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com/nodes/reference/api.json?branch=production%252F2026-07&deref=optimizedBundle)
+
+    <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/terms
+  summary: API Overview
+servers:
+- url: https://api.aftership.com/tracking/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Courier
+paths:
+  /couriers:
+    get:
+      summary: Get couriers
+      responses:
+        '200':
+          description: Couriers object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Courier_response.v1'
+              examples:
+                get-user-couriers:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      total: 1
+                      couriers:
+                      - slug: ups-api
+                        name: UPS
+                        phone: +1 800 742 5877
+                        other_name: United Parcel Service
+                        web_url: https://www.ups.com
+                        required_fields: []
+                        optional_fields: []
+                        default_language: en
+                        support_languages:
+                        - en
+                        service_from_country_regions: []
+                        credentials:
+                          fields:
+                          - name: user_id
+                            type: string
+                            required: true
+                          - name: password
+                            type: string
+                            required: true
+                          - name: access_license_number
+                            type: string
+                            required: true
+      operationId: get-couriers
+      description: 'Return a list of couriers.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>'
+      parameters:
+      - schema:
+          type: string
+          enum:
+          - application/json
+          example: application/json
+          default: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      - schema:
+          type: boolean
+        in: query
+        name: active
+        description: get user activated couriers
+      - schema:
+          type: string
+          example: usps
+          pattern: ^[a-z0-9-]+$
+          minLength: 1
+        in: query
+        name: slug
+        description: 'Unique courier code Use comma for multiple values. (Example: dhl,ups,usps)'
+      tags:
+      - Courier
+      x-stoplight:
+        id: ukw8ouy82dp1k
+  /couriers/detect:
+    post:
+      summary: Detect courier
+      operationId: detect-courier
+      responses:
+        '200':
+          description: Couriers object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Courier_response.v1'
+              examples:
+                get couriers:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      total: 1
+                      couriers:
+                      - slug: ups-api
+                        name: UPS
+                        phone: +1 800 742 5877
+                        other_name: United Parcel Service
+                        web_url: https://www.ups.com
+                        required_fields: []
+                        optional_fields: []
+                        default_language: en
+                        support_languages:
+                        - en
+                        service_from_country_regions: []
+                        credentials:
+                          fields:
+                          - name: user_id
+                            type: string
+                            required: true
+                          - name: password
+                            type: string
+                            required: true
+                          - name: access_license_number
+                            type: string
+                            required: true
+                cannot detect courier:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      total: 0
+                      couriers: []
+      description: 'Return a list of matched couriers based on tracking number format and [selected couriers](https://admin.aftership.com/settings/couriers) or a list of couriers.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>'
+      parameters:
+      - schema:
+          type: string
+          example: application/json
+          enum:
+          - application/json
+          default: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - tracking_number
+              properties:
+                tracking_number:
+                  type: string
+                  description: Tracking number of a shipment.
+                  example: RA123456879US
+                slug:
+                  description: If not specified, Aftership will automatically detect the courier based on the tracking number format and your [selected couriers](https://admin.aftership.com/settings/couriers). Use array to input a list of couriers for auto detect. Cannot be used with slug_group at the same time.
+                  type: array
+                  items:
+                    x-stoplight:
+                      id: bii35cnx55i15
+                    type: string
+                destination_postal_code:
+                  description: The postal code of receiver's address. Required by some couriers. Refer to [this page](../../docs/enum/additional_tracking_fields.md) for more details
+                  type: string
+                tracking_ship_date:
+                  type: string
+                  description: Shipping date in `YYYYMMDD` format. Required by some couriers. Refer to [this page](../../docs/enum/additional_tracking_fields.md) for more details
+                tracking_account_number:
+                  type: string
+                  description: Account number of the shipper for a specific courier. Required by some couriers. Refer to [this page](../../docs/enum/additional_tracking_fields.md) for more details
+                tracking_key:
+                  type: string
+                  description: Key of the shipment for a specific courier. Required by some couriers. Refer to [this page](../../docs/enum/additional_tracking_fields.md) for more details
+                destination_state:
+                  type: string
+                  description: "State of the destination shipping address of the \nshipment. Required by some couriers."
+                slug_group:
+                  type: string
+                  description: Slug group is a group of slugs which belong to same courier. For example, when you inpit "fedex-group" as slug_group, AfterShip will detect the tracking with "fedex-uk", "fedex-fims", and other slugs which belong to "fedex". It cannot be used with slug at the same time. ([See slug_groups definition](../../docs/enum/slug_groups.md))
+                  example: fedex-group
+                origin_country_region:
+                  type: string
+                  description: Enter [ISO Alpha-3](https://support.aftership.com/en/article/iso3-country-code-rlpi07/) (three letters) to specify the origin of the shipment (e.g. USA for United States).
+                destination_country_region:
+                  type: string
+                  description: Enter [ISO Alpha-3](https://support.aftership.com/en/article/iso3-country-code-rlpi07/) (three letters) to specify the destination of the shipment (e.g. USA for United States).
+            examples:
+              with tracking number only:
+                value:
+                  tracking_number: '906587618687'
+              with tracking number and slug:
+                value:
+                  tracking_number: '906587618686'
+                  slug:
+                  - usps
+              with multiple slug:
+                value:
+                  tracking_number: '906587618687'
+                  slug:
+                  - usps,ups
+              with additional fields:
+                value:
+                  tracking_number: '906587618687'
+                  destination_postal_code: DA15BU
+                  tracking_ship_date: '20131231'
+                  tracking_account_number: '1234567890'
+                  slug:
+                  - dhl
+                  - ups
+                  - fedex
+        description: Detect courier request
+      x-stoplight:
+        id: 2qae9fa825r4t
+      tags:
+      - Courier
+components:
+  schemas:
+    Credential_field:
+      x-stoplight:
+        id: pdnkudi6x3v5e
+      title: credential_field
+      type: object
+      examples:
+      - name: username
+        type: string
+        required: true
+      properties:
+        name:
+          type: string
+          x-stoplight:
+            id: qeajuoafnpc4x
+          description: The display name of the credential field that users must provide when creating a carrier connection.
+          example: username
+        type:
+          type: string
+          x-stoplight:
+            id: kl9858csb43ay
+          description: The data type of the credential field, indicating what kind of input is expected.
+          example: string
+        required:
+          type: boolean
+          x-stoplight:
+            id: fe9gi4g81r95f
+          description: It indicates whether the credentials field must be provided or not when creating a carrier connection.
+    Courier_response.v1:
+      title: Courier response
+      type: object
+      description: Model of all couriers endpoint response
+      required:
+      - meta
+      - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+              description: Total count of courier objects
+            couriers:
+              description: Array of [Courier](../../model/resource/courier.json) object.
+              type: array
+              items:
+                $ref: '#/components/schemas/Courier'
+                x-stoplight:
+                  id: dh84q02xjf082
+    Courier:
+      x-stoplight:
+        id: dh84q02xjf082
+      title: Courier
+      type: object
+      description: 'Courier object
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
+      x-tags:
+      - Resource
+      examples:
+      - slug: ups-api
+        name: UPS
+        phone: +1 800 742 5877
+        other_name: United Parcel Service
+        web_url: https://www.ups.com
+        required_fields: []
+        optional_fields: []
+        default_language: en
+        support_languages:
+        - en
+        service_from_country_regions: []
+        credentials:
+          fields:
+          - name: user_id
+            type: string
+            required: true
+          - name: password
+            type: string
+            required: true
+          - name: access_license_number
+            type: string
+            required: true
+      properties:
+        slug:
+          type: string
+          description: Unique code of courier. Get the slugs from [here](../../reference/api.json/paths/~1couriers/get).
+          example: postnl-3s
+          pattern: ^[a-z0-9-]+$
+          x-stoplight:
+            id: mzakwc7om47vb
+        name:
+          type: string
+          description: Name of courier
+          example: PostNL International 3S
+          x-stoplight:
+            id: 6mknhl154gjzu
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Contact phone number of courier
+          example: +31 (0)900 0990
+          x-stoplight:
+            id: h48o2lon0t2fa
+        other_name:
+          type:
+          - string
+          - 'null'
+          description: Other name of courier
+          example: TNT Post parcel service United Kingdom
+          x-stoplight:
+            id: fbpgwz6ol8g3h
+        web_url:
+          type: string
+          description: Website link of courier
+          format: uri
+          example: http://www.postnl.nl/voorthuis/
+          nullable: true
+          x-stoplight:
+            id: baczpwcd13r99
+        required_fields:
+          type: array
+          description: The extra fields need for tracking, such as `tracking_account_number`, `tracking_postal_code`, `tracking_ship_date`, `tracking_key`, `tracking_destination_country_region`
+          minItems: 0
+          nullable: true
+          x-stoplight:
+            id: 5oa8tnsiixss8
+          items:
+            $ref: '#/components/schemas/Additional_fields.v1'
+            x-stoplight:
+              id: v0x73k8xspiqw
+        optional_fields:
+          type: array
+          description: The extra fields which are optional for tracking. Basically it's the same as required_fields, but the difference is that only some of the tracking numbers require these fields.
+          minItems: 0
+          nullable: true
+          x-stoplight:
+            id: mfv2fyoq3yvke
+          items:
+            $ref: '#/components/schemas/Additional_fields.v1'
+            x-stoplight:
+              id: bkwkfbsrhgwn5
+        default_language:
+          type: string
+          description: Default language of tracking results
+          minLength: 2
+          maxLength: 2
+          pattern: ^[a-z]{2}$
+          example: en
+          nullable: true
+          x-stoplight:
+            id: mdfm0cpgzgq0e
+        support_languages:
+          type: array
+          description: Other supported languages
+          minItems: 1
+          nullable: true
+          x-stoplight:
+            id: w4rrvom5g6ggu
+          items:
+            type: string
+            minLength: 2
+            maxLength: 2
+            pattern: ^[a-z]{2}$
+            example: en
+            x-stoplight:
+              id: 1bneo988dbmbm
+        service_from_country_regions:
+          type: array
+          description: Country/Region code (ISO Alpha-3) where the courier provides service
+          minItems: 1
+          nullable: true
+          x-stoplight:
+            id: zlnhlze1c88mg
+          items:
+            type: string
+            minLength: 3
+            maxLength: 3
+            pattern: ^[A-Z]{3}$
+            example: NLD
+            x-stoplight:
+              id: 642xkrivaraks
+        credentials:
+          type: object
+          x-stoplight:
+            id: zvw9dpmmwxytx
+          description: Refers to the authentication details required for each specific carrier (such as API keys, username, password, etc.) that the user must provide to create a carrier connection. The content varies by carrier.
+          properties:
+            fields:
+              type: array
+              x-stoplight:
+                id: a9kuffmc3pk61
+              description: Through this field, users can get the specific authentication information needed when creating a courier connection to one specific carrier, such as API keys, usernames, and passwords. Each field includes properties like name, data type, and whether it's required.
+              items:
+                $ref: '#/components/schemas/Credential_field'
+                x-stoplight:
+                  id: pdnkudi6x3v5e
+    Meta.v1:
+      title: meta
+      type: object
+      description: Meta data
+      required:
+      - code
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: meta code
+        message:
+          type: string
+          description: error message, only exist if the response status is not 2xx
+        type:
+          type: string
+          enum:
+          - BadRequest
+          - Unauthorized
+          - Forbidden
+          - NotFound
+          - TooManyRequests
+          - InternalError
+          description: error type, only exist if the response status is not 2xx
+    Additional_fields.v1:
+      x-stoplight:
+        id: v0x73k8xspiqw
+      type: string
+      title: additional_fields
+      description: 'All available additional fields<div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
+      enum:
+      - tracking_account_number
+      - destination_postal_code
+      - destination_state
+      - tracking_key
+      - origin_country_region
+      - destination_country_region
+      - tracking_ship_date
+      example: tracking_account_number
+      pattern: ^[a-z_0-9]+$
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+      description: '> Legacy API keys with `aftership-api-key` headers are not supported anymore start from `2023-10` version. For more information, check [authentication](../../docs/quickstart/authentication.md).'
+x-stoplight:
+  id: fcd9acb5f448a

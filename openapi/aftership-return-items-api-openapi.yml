@@ -1,0 +1,700 @@
+openapi: 3.2.0
+info:
+  title: Overview Return items API
+  version: 2026-07
+  summary: API Overview
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-returnscenter-com-public/nodes/reference/api.json?branch=production/2026-07&deref=optimizedBundle)'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+servers:
+- url: https://api.aftership.com/returns/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Return items
+paths:
+  /returns/{return_id}/items/{item_id}:
+    parameters:
+    - schema:
+        type: string
+      name: return_id
+      in: path
+      required: true
+    - schema:
+        type: string
+      name: item_id
+      in: path
+      required: true
+    patch:
+      summary: Update return items by Return ID
+      responses:
+        '200':
+          $ref: '#/components/responses/UpdateReturnItems'
+        '404':
+          $ref: '#/components/responses/UpdateReturnItemsError404'
+      operationId: patch-returns-return_id-items-item_id
+      x-stoplight:
+        id: w1h9tozhfx3wi
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateReturnItems'
+      tags:
+      - Return items
+  /returns/rma/{rma_number}/items/{item_id}:
+    parameters:
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    - schema:
+        type: string
+      name: item_id
+      in: path
+      required: true
+    patch:
+      summary: Update return items By RMA number
+      responses:
+        '200':
+          $ref: '#/components/responses/UpdateReturnItems'
+        '404':
+          $ref: '#/components/responses/UpdateReturnItemsError404'
+      operationId: patch-returns-rma-rma_number-items-item_id
+      x-stoplight:
+        id: w1h9tozhfx3w3
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateReturnItems'
+      tags:
+      - Return items
+components:
+  schemas:
+    Meta:
+      title: Meta
+      x-stoplight:
+        id: dxay0rufhj07b
+      type: object
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: 'Response type string for the reference. '
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Item_tag:
+      x-stoplight:
+        id: q94m5j9owjozk
+      title: ItemTag
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the item tag.
+          example: da1c35a503364bf8bb851ffaa49028c4
+        name:
+          type: string
+          description: The name of the item tag.
+          example: Defective
+        created_at:
+          type: string
+          x-stoplight:
+            id: nuzjnjy1v00m2
+          description: The create time of the item-tag.
+          example: '2023-07-15T00:00:00Z'
+    Meta_20000:
+      description: Meta data object.
+      x-stoplight:
+        id: 35d0c02d30f62
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          x-stoplight:
+            id: qxyxke3nejh32
+        type:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: 9a7ftn28bils7
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: pf8hdo8p7yqdz
+          example: The request was successfully processed by AfterShip.
+    Money:
+      type: object
+      title: Money
+      properties:
+        amount:
+          type: string
+          example: '99.99'
+          description: The amount represented with two decimal places.
+        currency:
+          type: string
+          example: USD
+          description: The currency code, using ISO 4217 standards.
+    Error:
+      type: object
+      examples:
+      - info: quantity must be 1 or greater
+        path: items[0].quantity
+      properties:
+        path:
+          type: string
+          x-stoplight:
+            id: d9hc9ncjy3jkh
+          example: items[0].quantity
+        info:
+          type: string
+          x-stoplight:
+            id: kk25irujeobgd
+          example: quantity must be 1 or greater
+      description: Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      title: Error
+    Return_item:
+      x-stoplight:
+        id: 9kxjirjxt007p
+      type: object
+      title: ReturnItem
+      x-internal: false
+      properties:
+        id:
+          type: string
+          example: '10579097059534'
+          description: The ID of the item.
+          x-stoplight:
+            id: 8qgyrtsvdbqj1
+        external_order_item_id:
+          type: string
+          example: '10579097059534'
+          description: The ID of the item on the e-commerce platform.
+          x-stoplight:
+            id: ermjek6xti21b
+        external_product_id:
+          type: string
+          example: '7002111410382'
+          description: The ID of the product on the e-commerce platform.
+          x-stoplight:
+            id: ht7ov6l0rzg7l
+        external_variant_id:
+          type: string
+          example: '41681852399822'
+          description: The ID of the variant on the e-commerce platform.
+          x-stoplight:
+            id: v4j06695712jw
+        sku:
+          type: string
+          example: t-shirt-blue-xl
+          description: The SKU of the item.
+          x-stoplight:
+            id: 4h2vj0wf1fc9o
+        product_title:
+          type: string
+          example: T-Shirt
+          description: The title of the product.
+          x-stoplight:
+            id: 8i96q9ejn037n
+        intended_return_quantity:
+          type: integer
+          example: 2
+          description: The number of items that the customer plans or expects to return.
+          x-stoplight:
+            id: cf2xpcveyjhie
+        variant_title:
+          type:
+          - string
+          - 'null'
+          example: Blue - XL
+          description: The title of the variant.
+          x-stoplight:
+            id: rle3p0bkghuzy
+        return_reason:
+          type: string
+          example: Wrong size
+          description: The return reason provided by the customer.
+          x-stoplight:
+            id: 7osq3ur1uzwcx
+        return_reason_comment:
+          type: string
+          example: Too Small
+          description: Additional information provided by the customer regarding the reason for the return.
+          x-stoplight:
+            id: vrmncvwdkjfm5
+        return_subreason:
+          type: string
+          example: Too small
+          description: If the return reason supports sub-reasons, this is the sub-reason provided by the customer.
+          x-stoplight:
+            id: aj4upgbmsl0ah
+        ordered_quantity:
+          type: integer
+          example: 3
+          description: The purchase quantity of the item in the original order.
+          x-stoplight:
+            id: aonj70wgv6cpd
+        refund_quantity:
+          type: integer
+          example: 2
+          description: The number of items that need to be refunded.
+          x-stoplight:
+            id: mohkqco5hocj4
+        return_quantity:
+          type: integer
+          example: 2
+          description: The number of items that need to be returned.
+          x-stoplight:
+            id: wq2q2ooibmqxr
+        received_quantity:
+          type: integer
+          example: 0
+          description: The number of items that have been received by the merchant.
+          x-stoplight:
+            id: ya7la00p35awf
+        restocked_quantity:
+          type: integer
+          example: 0
+          description: The number of items that have been restocked by the merchant.
+          x-stoplight:
+            id: cxr5gp7x2d5a0
+        removed_quantity:
+          type: integer
+          example: 0
+          description: The number of items that have been removed by the merchant.
+          x-stoplight:
+            id: gchhc1eiicphl
+        unit_display_price:
+          description: The display price of each item.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: cqxqoix5eypsx
+          - x-stoplight:
+              id: tlqy24brncw68
+            type:
+            - 'null'
+          x-stoplight:
+            id: 0z313s55xkp1z
+        unit_discounted_price_including_tax:
+          description: The tax-inclusive discounted price for each item, representing the actual amount paid by the buyer.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: m8fc8vf2krfpx
+          - x-stoplight:
+              id: r92b8kt4t6zyx
+            type:
+            - 'null'
+          x-stoplight:
+            id: i9yyfzcrte8d8
+        unit_discount:
+          description: The discount allocated to each item.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: xjvbecngb7vis
+          - x-stoplight:
+              id: kj4r4633yoevz
+            type:
+            - 'null'
+          x-stoplight:
+            id: 1dn8ajtxryrds
+        unit_tax:
+          description: The tax allocated to each item.
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/Money'
+            x-stoplight:
+              id: u1nk16ip7bpxj
+          - x-stoplight:
+              id: y7q8d6toejurz
+            type:
+            - 'null'
+          x-stoplight:
+            id: ipwjndigalglo
+        properties:
+          type: array
+          description: Custom properties filled in by the customer when purchasing the product.
+          x-stoplight:
+            id: sfi42vf3k54ft
+          items:
+            type: object
+            x-stoplight:
+              id: 3pda0g4yslqqu
+            properties:
+              name:
+                type: string
+                example: monogram
+                description: Custom property name.
+                x-stoplight:
+                  id: 17oj3pip2m153
+              value:
+                type: string
+                example: joe
+                description: Custom property value.
+                x-stoplight:
+                  id: 0uxxza5377nup
+        shopper_uploaded_image_urls:
+          type: array
+          description: The images provided by the customer when submitting a return.
+          x-stoplight:
+            id: 3x59w4vwjjwd0
+          items:
+            type: string
+            example: https://cdn.example.com/x/y/z.jpg
+            x-stoplight:
+              id: hg16an4lr5pwl
+        product_image_urls:
+          type: array
+          description: The images of the product.
+          x-stoplight:
+            id: s7nrg3m1msvqs
+          items:
+            type: string
+            example: https://cdn.example.com/x/y/z.jpg
+            x-stoplight:
+              id: k5jy5l292154b
+        product_categories:
+          type: array
+          description: The product categories configured on the e-commerce platform.
+          x-stoplight:
+            id: o7c3fdivpkqcy
+          items:
+            type: string
+            example: clothing
+            x-stoplight:
+              id: cw30yb9nr4a92
+        product_tags:
+          type: array
+          description: The product tags configured on the e-commerce platform.
+          x-stoplight:
+            id: vyn5guy5vpxf9
+          items:
+            type: string
+            example: clothing
+            x-stoplight:
+              id: 3tge4x61tizib
+        item_tags:
+          type: array
+          description: The tags applied by the merchant to this return item.
+          x-stoplight:
+            id: geup1h97kn00w
+          items:
+            $ref: '#/components/schemas/Item_tag'
+            x-stoplight:
+              id: kjx3797vzy7x1
+        merchant_uploaded_image_urls:
+          type: array
+          description: The images uploaded by the merchant for this return item.
+          x-stoplight:
+            id: 85g4si2ngk5eh
+          items:
+            type: string
+            example: https://cdn.example.com/x/y/z.jpg
+            x-stoplight:
+              id: dzl08raonlnp6
+        bundled_items:
+          type: array
+          description: When the item being returned is a whole bundle, this array will represent its child items.
+          x-stoplight:
+            id: vyh66x2vtumab
+          items:
+            type: object
+            x-stoplight:
+              id: tftfpwsxf8cwo
+            properties:
+              external_id:
+                type: string
+                description: The ID of the item on the e-commerce platform.
+                x-stoplight:
+                  id: s5lpf09r07kra
+              external_product_id:
+                type: string
+                description: The ID of the product on the e-commerce platform.
+                x-stoplight:
+                  id: 1pldjafyiept0
+              external_variant_id:
+                type: string
+                description: The ID of the variant on the e-commerce platform.
+                x-stoplight:
+                  id: 6gjn8i1iutnm5
+              sku:
+                type: string
+                description: The SKU of the item.
+                x-stoplight:
+                  id: ukm2h7b8re6hv
+              product_title:
+                type: string
+                description: The title of the product.
+                x-stoplight:
+                  id: 9f775ewsdyes4
+              variant_title:
+                type:
+                - string
+                - 'null'
+                description: The title of the variant.
+                x-stoplight:
+                  id: i9o1ujhvhfj2b
+              unit_display_price:
+                oneOf:
+                - type: object
+                  $ref: '#/components/schemas/Money'
+                  x-stoplight:
+                    id: 1mjeby2x7r278
+                - x-stoplight:
+                    id: afgkpofk42xd8
+                  type:
+                  - 'null'
+                description: The display price of each item.
+                x-stoplight:
+                  id: x1kob53ndccyh
+              unit_discounted_price_including_tax:
+                oneOf:
+                - type: object
+                  $ref: '#/components/schemas/Money'
+                  x-stoplight:
+                    id: lvqoe62n04z5c
+                - x-stoplight:
+                    id: po4kl95mxnkg8
+                  type:
+                  - 'null'
+                description: The tax-inclusive discounted price for each item, representing the actual amount paid by the buyer.
+                x-stoplight:
+                  id: jnrr8mjbo8ywo
+              unit_discount:
+                oneOf:
+                - type: object
+                  $ref: '#/components/schemas/Money'
+                  x-stoplight:
+                    id: ne6fvupxraec2
+                - x-stoplight:
+                    id: ej38q887538d2
+                  type:
+                  - 'null'
+                description: The discount allocated to each item.
+                x-stoplight:
+                  id: 14rf7r5k2k0dn
+              unit_tax:
+                oneOf:
+                - type: object
+                  $ref: '#/components/schemas/Money'
+                  x-stoplight:
+                    id: uu7wn74wiemqm
+                - x-stoplight:
+                    id: 9xg7vwmw3f46l
+                  type:
+                  - 'null'
+                description: The tax allocated to each item.
+                x-stoplight:
+                  id: k89kygp8v9ibc
+              product_categories:
+                type: array
+                description: The product categories configured on the e-commerce platform.
+                x-stoplight:
+                  id: qgfztkadw0npo
+                items:
+                  type: string
+                  x-stoplight:
+                    id: p7h7svklmdjpn
+              product_tags:
+                type: array
+                description: The product tags configured on the e-commerce platform.
+                x-stoplight:
+                  id: sspcgczz7g7sk
+                items:
+                  type: string
+                  x-stoplight:
+                    id: wnr5mql4c8lk8
+              intended_return_quantity:
+                type: number
+                description: The number of items that the customer plans or expects to return.
+                x-stoplight:
+                  id: i8gzk2brj4yyh
+              return_quantity:
+                type: number
+                description: The number of items that need to be returned.
+                x-stoplight:
+                  id: v1ggsc7kl8u1e
+              received_quantity:
+                type: number
+                description: The number of items that have been received by the merchant.
+                x-stoplight:
+                  id: hce5gccf8eswn
+              ordered_quantity:
+                type: number
+                description: The purchase quantity of the item in the original order.
+                x-stoplight:
+                  id: sw0ltz2my5f5t
+        exchange_variant:
+          type:
+          - object
+          - 'null'
+          description: Exchange variant associated with this return item. Available only when using replacement.
+          x-stoplight:
+            id: tjq9ggrfnis07
+          properties:
+            external_product_id:
+              type: string
+              description: The ID of the product on the e-commerce platform.
+              x-stoplight:
+                id: 5jrfod76kj3pw
+            external_variant_id:
+              type: string
+              description: The ID of the variant on the e-commerce platform.
+              x-stoplight:
+                id: d4hg34nim04l2
+            sku:
+              type: string
+              description: The SKU of the item.
+              x-stoplight:
+                id: oxrm5bp6d0bxw
+            product_title:
+              type: string
+              description: The title of the product.
+              x-stoplight:
+                id: 8c1zcwsletcgd
+            title:
+              type: string
+              description: The title of the variant.
+              x-stoplight:
+                id: akp2uyxtybosq
+            unit_display_price:
+              oneOf:
+              - type: object
+                $ref: '#/components/schemas/Money'
+                x-stoplight:
+                  id: 4jjcpmvgmkb1z
+              - x-stoplight:
+                  id: v7zqzrln1uztv
+                type:
+                - 'null'
+              description: The display price of each item.
+              x-stoplight:
+                id: l8miv9gxtlgeo
+        parent_item_id:
+          type:
+          - string
+          - 'null'
+          description: When the item being returned is one of the child items in a bundle, this ID will represent its parent item, which is the bundle ID.
+          x-stoplight:
+            id: xx6fbtjg6rc2h
+        green_return:
+          type: boolean
+          x-stoplight:
+            id: swlaoo3bwpteo
+          default: false
+          description: Whether this return item is marked as a green return item. When true, no physical return is required for this item.
+  responses:
+    UpdateReturnItems:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20000'
+                x-stoplight:
+                  id: gb6g16v7bzjyo
+              data:
+                $ref: '#/components/schemas/Return_item'
+                x-stoplight:
+                  id: 9kxjirjxt007p
+    UpdateReturnItemsError404:
+      description: 'A 404 will be returned:
+
+        - When the RMA does not exist (including when the RMA does not belong to the org)
+
+        - When the item not include in RMA'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Return not found:
+              value:
+                meta:
+                  code: 40406
+                  type: NotFound
+                  message: Return not found
+                data: null
+            Item not found:
+              value:
+                meta:
+                  code: 40425
+                  type: NotFound
+                  message: Return item not found
+                data: null
+  requestBodies:
+    UpdateReturnItems:
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - title: TagItem
+              properties:
+                item_tags:
+                  type: array
+                  x-stoplight:
+                    id: ddhfn711zdw8y
+                  items:
+                    x-stoplight:
+                      id: ytbgyofr5v9qf
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        x-stoplight:
+                          id: hhj1egia6vj8u
+            - title: UpdateImages
+              x-stoplight:
+                id: ko17fcdhsmw6l
+              properties:
+                merchant_uploaded_image_urls:
+                  type: array
+                  x-stoplight:
+                    id: epb556iayxnmv
+                  items:
+                    x-stoplight:
+                      id: i5s32dd9u9yhj
+                    type: string
+            type: object
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

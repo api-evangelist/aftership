@@ -1,0 +1,1407 @@
+openapi: 3.2.0
+info:
+  title: Aftership Locations API
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  version: '1.0'
+  description: 'Operations tagged Locations across 2 of this provider''s published API definitions: aftership-commerce-api-openapi.yml, aftership-shipping-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.aftership.com/commerce/2026-07
+  description: API Endpoint
+- description: Sandbox
+  url: https://sandbox-api.aftership.com/postmen/v3
+- url: https://api.aftership.com/postmen/v3
+  description: Production
+security:
+- as-api-key: []
+tags:
+- name: Locations
+paths:
+  /locations:
+    post:
+      summary: Create a location
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Location.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20100
+                      type: Created
+                      message: The request was successful, we created a new resource and the response body contains the representation.
+                    data:
+                      id: warehouse_1
+                      name: SF Warehouse
+                      source: manual
+                      address:
+                        company: AfterShip
+                        first_name: John Doe
+                        last_name: ''
+                        phone: '+14155551234'
+                        email: john@example.com
+                        street_1: 123 Main St
+                        street_2: Suite 100
+                        street_3: ''
+                        city: San Francisco
+                        state: CA
+                        country_region: USA
+                        postal_code: '94105'
+                        coordinate:
+                          latitude: 37.7749
+                          longitude: -122.4194
+                      timezone_identifier: America/New_York
+                      opening_hours:
+                        sunday:
+                          open: false
+                          from: null
+                          to: null
+                        monday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        tuesday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        wednesday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        thursday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        friday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        saturday:
+                          open: false
+                          from: null
+                          to: null
+                      order_processing:
+                        enabled: true
+                        order_cutoff_time: '14:00'
+                        order_processing_duration_days: 0
+                      pickup_setting:
+                        enabled: true
+                        instructions: Please pick up at the front desk.
+                        order_processing_duration_seconds_min: 3600
+                        order_processing_duration_seconds_max: 7200
+                      created_at: '2026-01-01T00:00:00Z'
+                      updated_at: '2026-04-24T00:00:00Z'
+      operationId: create-location
+      description: Create a manual location. Locations created through Commerce API are organization-level resources and are not bound to a store. A custom `id` can be provided, but it cannot start with the reserved prefix `app-`.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - name
+              - address
+              properties:
+                id:
+                  type: string
+                  description: A custom identifier for the location. If not provided, the system will generate a UUID. Must be unique within the organization and immutable. Cannot start with the reserved prefix `app-`.
+                  maxLength: 128
+                  pattern: ^[a-zA-Z0-9_-]+$
+                  example: warehouse_1
+                name:
+                  type: string
+                  description: The location name.
+                  maxLength: 256
+                  example: SF Warehouse
+                address:
+                  $ref: '#/components/schemas/Address_with_coordinate.v1'
+                  description: The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.
+                timezone_identifier:
+                  type: string
+                  description: The name of the timezone where the location is located, as defined by the [IANA timezone database standard](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+                  maxLength: 256
+                  example: America/New_York
+                opening_hours:
+                  $ref: '#/components/schemas/Opening_hours.v1'
+                  description: The regular opening hours of the location.
+                order_processing:
+                  type: object
+                  additionalProperties: false
+                  description: The order processing setting for this location. When `enabled` is `true`, `order_cutoff_time` and `order_processing_duration_days` are required.
+                  properties:
+                    enabled:
+                      type: boolean
+                      description: Whether order processing is enabled for this location.
+                      example: true
+                    order_cutoff_time:
+                      type: string
+                      description: The daily cutoff time for processing orders in `HH:mm` format.
+                      example: '14:00'
+                    order_processing_duration_days:
+                      type: integer
+                      description: The number of business days needed to process an order. Use `0` when fulfillment can be completed within 1 business day.
+                      minimum: 0
+                      example: 0
+                pickup_setting:
+                  type: object
+                  additionalProperties: false
+                  description: The pickup setting for this location. When `enabled` is `true`, `order_processing_duration_seconds_min` and `order_processing_duration_seconds_max` are required.
+                  properties:
+                    enabled:
+                      type: boolean
+                      description: Whether pickup is enabled for this location.
+                      example: true
+                    instructions:
+                      type: string
+                      description: Pickup instructions shown to the customer.
+                      maxLength: 2048
+                      example: Please pick up at the front desk.
+                    order_processing_duration_seconds_min:
+                      type: integer
+                      description: The minimum number of seconds needed before the order is ready for pickup.
+                      minimum: 0
+                      example: 3600
+                    order_processing_duration_seconds_max:
+                      type: integer
+                      description: The maximum number of seconds needed before the order is ready for pickup.
+                      minimum: 0
+                      example: 7200
+            examples:
+              Example 1:
+                value:
+                  id: warehouse_1
+                  name: SF Warehouse
+                  address:
+                    company: AfterShip
+                    first_name: John
+                    last_name: Doe
+                    phone: '+14155551234'
+                    email: john@example.com
+                    street_1: 123 Main St
+                    street_2: Suite 100
+                    street_3: ''
+                    city: San Francisco
+                    state: CA
+                    country_region: USA
+                    postal_code: '94105'
+                    coordinate:
+                      latitude: 37.7749
+                      longitude: -122.4194
+                  timezone_identifier: America/New_York
+                  opening_hours:
+                    sunday:
+                      open: false
+                      from: null
+                      to: null
+                    monday:
+                      open: true
+                      from: 09:00
+                      to: '18:00'
+                    tuesday:
+                      open: true
+                      from: 09:00
+                      to: '18:00'
+                    wednesday:
+                      open: true
+                      from: 09:00
+                      to: '18:00'
+                    thursday:
+                      open: true
+                      from: 09:00
+                      to: '18:00'
+                    friday:
+                      open: true
+                      from: 09:00
+                      to: '18:00'
+                    saturday:
+                      open: false
+                      from: null
+                      to: null
+                  order_processing:
+                    enabled: true
+                    order_cutoff_time: '14:00'
+                    order_processing_duration_days: 0
+                  pickup_setting:
+                    enabled: true
+                    instructions: Please pick up at the front desk.
+                    order_processing_duration_seconds_min: 3600
+                    order_processing_duration_seconds_max: 7200
+        description: ''
+      tags:
+      - Locations
+      x-stoplight:
+        id: create-location
+    get:
+      summary: Get locations
+      operationId: get-locations
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                    properties:
+                      locations:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Location.v1'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination.v2'
+                      parameter_string:
+                        type: string
+                        description: A string that includes the request parameters.
+                        example: source=manual&page=1&limit=10
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      locations:
+                      - id: warehouse_1
+                        name: SF Warehouse
+                        source: manual
+                        address:
+                          company: AfterShip
+                          first_name: John Doe
+                          last_name: ''
+                          phone: '+14155551234'
+                          email: john@example.com
+                          street_1: 123 Main St
+                          street_2: Suite 100
+                          street_3: ''
+                          city: San Francisco
+                          state: CA
+                          country_region: USA
+                          postal_code: '94105'
+                          coordinate:
+                            latitude: 37.7749
+                            longitude: -122.4194
+                        timezone_identifier: America/New_York
+                        opening_hours:
+                          sunday:
+                            open: false
+                            from: null
+                            to: null
+                          monday:
+                            open: true
+                            from: 09:00
+                            to: '18:00'
+                          tuesday:
+                            open: true
+                            from: 09:00
+                            to: '18:00'
+                          wednesday:
+                            open: true
+                            from: 09:00
+                            to: '18:00'
+                          thursday:
+                            open: true
+                            from: 09:00
+                            to: '18:00'
+                          friday:
+                            open: true
+                            from: 09:00
+                            to: '18:00'
+                          saturday:
+                            open: false
+                            from: null
+                            to: null
+                        order_processing:
+                          enabled: true
+                          order_cutoff_time: '14:00'
+                          order_processing_duration_days: 0
+                        pickup_setting:
+                          enabled: true
+                          instructions: Please pick up at the front desk.
+                          order_processing_duration_seconds_min: 3600
+                          order_processing_duration_seconds_max: 7200
+                        created_at: '2026-01-01T00:00:00Z'
+                        updated_at: '2026-04-24T00:00:00Z'
+                      pagination:
+                        page: 1
+                        limit: 10
+                        has_next_page: false
+                      parameter_string: source=manual&page=1&limit=10
+      description: Get location results with multiple locations.
+      parameters:
+      - schema:
+          type: string
+          enum:
+          - manual
+          - platform
+        in: query
+        name: source
+        description: Filter locations by source. `manual` means locations created through Commerce API. `platform` means locations imported from ecommerce platforms.
+      - schema:
+          type: integer
+          default: 1
+          minimum: 1
+          maximum: 200
+        in: query
+        name: page
+        description: Current page of the collection. Default is 1.
+      - schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 50
+        in: query
+        name: limit
+        description: The maximum number of results to show on a page. Default is 10, maximum is 50.
+      tags:
+      - Locations
+      x-stoplight:
+        id: get-locations
+    parameters: []
+    servers:
+    - url: https://api.aftership.com/commerce/2026-07
+      description: API Endpoint
+  /locations/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: Location ID. Use the `id` value returned in a `Location` resource response, such as from `GET /locations`, as this path parameter.
+    get:
+      summary: Get location by ID
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Location.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: warehouse_1
+                      name: SF Warehouse
+                      source: manual
+                      address:
+                        company: AfterShip
+                        first_name: John Doe
+                        last_name: ''
+                        phone: '+14155551234'
+                        email: john@example.com
+                        street_1: 123 Main St
+                        street_2: Suite 100
+                        street_3: ''
+                        city: San Francisco
+                        state: CA
+                        country_region: USA
+                        postal_code: '94105'
+                        coordinate:
+                          latitude: 37.7749
+                          longitude: -122.4194
+                      timezone_identifier: America/New_York
+                      opening_hours:
+                        sunday:
+                          open: false
+                          from: null
+                          to: null
+                        monday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        tuesday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        wednesday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        thursday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        friday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        saturday:
+                          open: false
+                          from: null
+                          to: null
+                      order_processing:
+                        enabled: true
+                        order_cutoff_time: '14:00'
+                        order_processing_duration_days: 0
+                      pickup_setting:
+                        enabled: true
+                        instructions: Please pick up at the front desk.
+                        order_processing_duration_seconds_min: 3600
+                        order_processing_duration_seconds_max: 7200
+                      created_at: '2026-01-01T00:00:00Z'
+                      updated_at: '2026-04-24T00:00:00Z'
+      operationId: get-location-by-id
+      description: Get a location by ID. Use the `id` value returned in a `Location` resource response, such as from `GET /locations`, as this path parameter.
+      parameters: []
+      tags:
+      - Locations
+      x-stoplight:
+        id: get-location-by-id
+    patch:
+      summary: Update location by ID
+      operationId: update-location-by-id
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Location.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: warehouse_1
+                      name: SF Warehouse
+                      source: manual
+                      address:
+                        company: AfterShip
+                        first_name: John Doe
+                        last_name: ''
+                        phone: '+14155551234'
+                        email: john@example.com
+                        street_1: 123 Main St
+                        street_2: Suite 100
+                        street_3: ''
+                        city: San Francisco
+                        state: CA
+                        country_region: USA
+                        postal_code: '94105'
+                        coordinate:
+                          latitude: 37.7749
+                          longitude: -122.4194
+                      timezone_identifier: America/New_York
+                      opening_hours:
+                        sunday:
+                          open: false
+                          from: null
+                          to: null
+                        monday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        tuesday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        wednesday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        thursday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        friday:
+                          open: true
+                          from: 09:00
+                          to: '18:00'
+                        saturday:
+                          open: false
+                          from: null
+                          to: null
+                      order_processing:
+                        enabled: true
+                        order_cutoff_time: '14:00'
+                        order_processing_duration_days: 0
+                      pickup_setting:
+                        enabled: true
+                        instructions: Please pick up at the front desk.
+                        order_processing_duration_seconds_min: 3600
+                        order_processing_duration_seconds_max: 7200
+                      created_at: '2026-01-01T00:00:00Z'
+                      updated_at: '2026-04-24T00:00:00Z'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                name:
+                  type: string
+                  description: The location name. This field cannot be patched for platform-sourced locations.
+                  maxLength: 256
+                  example: SF Warehouse
+                address:
+                  type: object
+                  additionalProperties: false
+                  description: Patch the address and contact information of the location. The `address` object itself cannot be `null`; omit a field to keep its current value. For platform-sourced locations, only `email` and `phone` can be patched. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.
+                  properties:
+                    company:
+                      type: string
+                      description: The name of the company associated to the address.
+                      maxLength: 256
+                      example: AfterShip
+                    first_name:
+                      type: string
+                      description: The first name of the person associated to the address.
+                      maxLength: 256
+                      example: John
+                    last_name:
+                      type: string
+                      description: The last name of the person associated to the address.
+                      maxLength: 256
+                      example: Doe
+                    phone:
+                      type: string
+                      description: The phone number of the person associated to the address.
+                      maxLength: 256
+                      example: '+14155551234'
+                    email:
+                      type: string
+                      description: The email address of the person associated to the address.
+                      maxLength: 256
+                      example: john@example.com
+                    street_1:
+                      type: string
+                      description: First line of the street address.
+                      maxLength: 256
+                      example: 123 Main St
+                    street_2:
+                      type: string
+                      description: Second line of the street address.
+                      maxLength: 256
+                      example: Suite 100
+                    street_3:
+                      type: string
+                      description: Third line of the street address.
+                      maxLength: 256
+                      example: ''
+                    city:
+                      type: string
+                      description: The location's city, town, or village.
+                      maxLength: 256
+                      example: San Francisco
+                    state:
+                      type: string
+                      description: The state or region of the location, such as a province, state, or prefecture.
+                      maxLength: 256
+                      example: CA
+                    country_region:
+                      type: string
+                      description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+                      pattern: ^[A-Z]{3}$
+                      example: USA
+                    postal_code:
+                      type: string
+                      description: The postal code of the location.
+                      maxLength: 256
+                      example: '94105'
+                    coordinate:
+                      type: object
+                      additionalProperties: false
+                      description: The coordinate of the address. If `coordinate` is provided, both `latitude` and `longitude` are required.
+                      required:
+                      - latitude
+                      - longitude
+                      properties:
+                        latitude:
+                          type: number
+                          description: The latitude of the address.
+                          example: 37.7749
+                        longitude:
+                          type: number
+                          description: The longitude of the address.
+                          example: -122.4194
+                timezone_identifier:
+                  type: string
+                  description: The name of the timezone where the location is located, as defined by the [IANA timezone database standard](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+                  maxLength: 256
+                  example: America/New_York
+                opening_hours:
+                  $ref: '#/components/schemas/Opening_hours.v1'
+                  description: Patch the regular opening hours of the location. The `opening_hours` object itself cannot be `null`. You may provide only the weekdays to update, but each provided weekday object is replaced atomically and must include `open`. When `open` is `false`, `from` and `to` must be `null` or omitted. When `open` is `true`, `from` and `to` must both be provided in `HH:mm` format or both be `null` for 24-hour operation.
+                order_processing:
+                  type: object
+                  additionalProperties: false
+                  description: Patch the order processing setting for this location. The `order_processing` object itself cannot be `null`. Omitted fields keep their current values. Sending only `enabled` toggles the setting without clearing `order_cutoff_time` or `order_processing_duration_days`; when enabling order processing, the final setting must include a valid cutoff time and processing duration.
+                  properties:
+                    enabled:
+                      type: boolean
+                      description: Whether order processing is enabled for this location.
+                      example: true
+                    order_cutoff_time:
+                      type: string
+                      description: The daily cutoff time for processing orders in `HH:mm` format.
+                      example: '14:00'
+                    order_processing_duration_days:
+                      type: integer
+                      description: The number of business days needed to process an order. Use `0` when fulfillment can be completed within 1 business day.
+                      minimum: 0
+                      example: 0
+                pickup_setting:
+                  type: object
+                  additionalProperties: false
+                  description: Patch the pickup setting for this location. The `pickup_setting` object itself cannot be `null`. Omitted fields keep their current values. Sending only `enabled` toggles the setting without clearing existing pickup fields; when enabling pickup, the final setting must include valid minimum and maximum processing durations. This field cannot be patched for platform-sourced locations.
+                  properties:
+                    enabled:
+                      type: boolean
+                      description: Whether pickup is enabled for this location.
+                      example: true
+                    instructions:
+                      type: string
+                      description: Pickup instructions shown to the customer.
+                      maxLength: 2048
+                      example: Please pick up at the front desk.
+                    order_processing_duration_seconds_min:
+                      type: integer
+                      description: The minimum number of seconds needed before the order is ready for pickup.
+                      minimum: 0
+                      example: 3600
+                    order_processing_duration_seconds_max:
+                      type: integer
+                      description: The maximum number of seconds needed before the order is ready for pickup.
+                      minimum: 0
+                      example: 7200
+            examples:
+              Example 1:
+                value:
+                  address:
+                    city: San Francisco
+                  timezone_identifier: America/New_York
+                  opening_hours:
+                    monday:
+                      open: true
+                      from: 09:00
+                      to: '18:00'
+                  order_processing:
+                    enabled: true
+                    order_cutoff_time: '14:00'
+                    order_processing_duration_days: 0
+      description: Update a location by ID. Use the `id` value returned in a `Location` resource response, such as from `GET /locations`, as this path parameter. Omit a field to keep its current value. Top-level objects and scalar fields cannot be set to `null`. For platform-sourced locations, only `address.email`, `address.phone`, `timezone_identifier`, `opening_hours`, and `order_processing` can be patched; other fields are managed by the ecommerce platform.
+      parameters: []
+      tags:
+      - Locations
+      x-stoplight:
+        id: update-location-by-id
+    servers:
+    - url: https://api.aftership.com/commerce/2026-07
+      description: API Endpoint
+components:
+  schemas:
+    Opening_hours.v1:
+      description: The regular opening hours of the location.
+      title: OpeningHours
+      x-stoplight:
+        id: n7s4wz0dwk5ai
+      type: object
+      properties:
+        sunday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        monday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        tuesday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        wednesday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        thursday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        friday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        saturday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+      x-tags:
+      - Primitive
+    Opening_hour_period.v1:
+      title: OpeningHourPeriod
+      x-stoplight:
+        id: 2g4w1syylsphw
+      type: object
+      additionalProperties: false
+      description: The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day.
+      x-tags:
+      - Primitive
+      properties:
+        open:
+          type: boolean
+          default: false
+          x-stoplight:
+            id: qbb3rmmdfdhxy
+          description: Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`.
+        from:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: fvyfkui68t3gt
+          description: The start time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
+          example: '10:30'
+        to:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: sk5yjthy1achl
+          description: The end time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
+          example: '20:30'
+      examples:
+      - open: true
+        from: '10:30'
+        to: '20:30'
+    Meta.v1:
+      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
+      type: object
+      x-examples: {}
+      title: Meta
+      x-tags:
+      - Envelope
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      additionalProperties: false
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        errors:
+          type: array
+          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+
+
+            '
+          items:
+            $ref: '#/components/schemas/Error.v1'
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
+    Pagination.v2:
+      title: Pagination
+      x-stoplight:
+        id: 6twr4wc3wp9lu
+      type: object
+      examples:
+      - page: 1
+        limit: 10
+        has_next_page: false
+      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: integer
+          x-stoplight:
+            id: 5ld3b35057z8s
+          description: Page number.
+        limit:
+          type: integer
+          x-stoplight:
+            id: qmvbmlfjchyh5
+          description: Maximum object count per page.
+        has_next_page:
+          type: boolean
+          x-stoplight:
+            id: qtm2ifhlv0r4i
+          description: To indicate if next page is available.
+    Location.v1:
+      x-stoplight:
+        id: location-resource-v1
+      type: object
+      x-tags:
+      - Resource
+      title: Location
+      description: A `Location` represents a warehouse, store, or other physical place used for fulfillment, order processing, and pickup settings. Location resources are scoped to the organization and are not bound to a store.
+      additionalProperties: false
+      examples:
+      - id: warehouse_1
+        name: SF Warehouse
+        source: manual
+        address:
+          company: AfterShip
+          first_name: John Doe
+          last_name: ''
+          phone: '+14155551234'
+          email: john@example.com
+          street_1: 123 Main St
+          street_2: Suite 100
+          street_3: ''
+          city: San Francisco
+          state: CA
+          country_region: USA
+          postal_code: '94105'
+          coordinate:
+            latitude: 37.7749
+            longitude: -122.4194
+        timezone_identifier: America/New_York
+        opening_hours:
+          sunday:
+            open: false
+            from: null
+            to: null
+          monday:
+            open: true
+            from: 09:00
+            to: '18:00'
+          tuesday:
+            open: true
+            from: 09:00
+            to: '18:00'
+          wednesday:
+            open: true
+            from: 09:00
+            to: '18:00'
+          thursday:
+            open: true
+            from: 09:00
+            to: '18:00'
+          friday:
+            open: true
+            from: 09:00
+            to: '18:00'
+          saturday:
+            open: false
+            from: null
+            to: null
+        order_processing:
+          enabled: true
+          order_cutoff_time: '14:00'
+          order_processing_duration_days: 0
+        pickup_setting:
+          enabled: true
+          instructions: Please pick up at the front desk.
+          order_processing_duration_seconds_min: 3600
+          order_processing_duration_seconds_max: 7200
+        created_at: '2026-01-01T00:00:00Z'
+        updated_at: '2026-04-24T00:00:00Z'
+      required:
+      - id
+      - name
+      - source
+      - address
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the location. For locations created through Commerce API, this is the custom ID supplied when creating the location, or a system-generated UUID if no custom ID was provided. For ecommerce platform-sourced locations, the ID is returned in the format `app-<platform>-<app_key>-<external_id>`.
+          example: warehouse_1
+          readOnly: true
+        name:
+          type: string
+          description: The location name.
+          maxLength: 256
+          example: SF Warehouse
+        source:
+          type: string
+          description: The source of the location. `manual` means the location was created through Commerce API. `platform` means the location was imported from an ecommerce platform.
+          enum:
+          - manual
+          - platform
+          readOnly: true
+          example: manual
+        address:
+          $ref: '#/components/schemas/Address_with_coordinate.v1'
+          description: The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.
+        timezone_identifier:
+          type: string
+          description: The name of the timezone where the location is located, as defined by the [IANA timezone database standard](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+          maxLength: 256
+          example: America/New_York
+        opening_hours:
+          $ref: '#/components/schemas/Opening_hours.v1'
+          description: The regular opening hours of the location.
+        order_processing:
+          type: object
+          additionalProperties: false
+          description: The order processing setting for this location.
+          properties:
+            enabled:
+              type: boolean
+              description: Whether order processing is enabled for this location.
+              example: true
+            order_cutoff_time:
+              type: string
+              description: The daily cutoff time for processing orders in `HH:mm` format.
+              example: '14:00'
+            order_processing_duration_days:
+              type: integer
+              description: The number of business days needed to process an order. Use `0` when fulfillment can be completed within 1 business day.
+              minimum: 0
+              example: 0
+        pickup_setting:
+          type: object
+          additionalProperties: false
+          description: The pickup setting for this location.
+          properties:
+            enabled:
+              type: boolean
+              description: Whether pickup is enabled for this location.
+              example: true
+            instructions:
+              type: string
+              description: Pickup instructions shown to the customer.
+              maxLength: 2048
+              example: Please pick up at the front desk.
+            order_processing_duration_seconds_min:
+              type: integer
+              description: The minimum number of seconds needed before the order is ready for pickup.
+              minimum: 0
+              example: 3600
+            order_processing_duration_seconds_max:
+              type: integer
+              description: The maximum number of seconds needed before the order is ready for pickup.
+              minimum: 0
+              example: 7200
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time when the location was created in AfterShip, formatted in ISO 8601.
+          example: '2026-01-01T00:00:00Z'
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time when the location was updated in AfterShip, formatted in ISO 8601.
+          example: '2026-04-24T00:00:00Z'
+          readOnly: true
+    Address_with_coordinate.v1:
+      description: The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.
+      type: object
+      x-stoplight:
+        id: nu2sh0erm8041
+      title: AddressWithCoordinate
+      examples:
+      - type: business
+        street_1: 1234 Elm Street
+        street_2: Apt 5
+        street_3: null
+        city: New York
+        state: NY
+        postal_code: '10001'
+        country_region: USA
+        company: My Company
+        first_name: John
+        last_name: Doe
+        email: john.doe@example.com
+        phone: '+13525554500'
+        coordinate:
+          latitude: 43
+          longitude: -75
+      x-tags:
+      - Primitive
+      additionalProperties: false
+      required:
+      - street_1
+      - state
+      - country_region
+      properties:
+        type:
+          type: string
+          title: The Type Schema
+          description: The type of address.
+          enum:
+          - business
+          - residential
+        street_1:
+          type: string
+          title: The Street_1 Schema
+          description: First line of the street address.
+          maxLength: 256
+        street_2:
+          type:
+          - string
+          - 'null'
+          title: The Street_2 Schema
+          description: Second line of the street address.
+          maxLength: 256
+        street_3:
+          type:
+          - string
+          - 'null'
+          title: The Street_3 Schema
+          description: Third line of the street address.
+          maxLength: 256
+        city:
+          type: string
+          title: The City Schema
+          description: The location's city, town, or village.
+          maxLength: 256
+        state:
+          type: string
+          title: The State Schema
+          description: The state or region of the location, such as a province, state, or prefecture.
+          maxLength: 256
+        postal_code:
+          type: string
+          title: The Postal_code Schema
+          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
+          maxLength: 256
+        country_region:
+          type: string
+          title: The Country Schema
+          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          example: USA
+          pattern: ^[A-Z]{3}$
+        company:
+          type: string
+          title: The Company Schema
+          description: The name of the company associated to the address.
+          maxLength: 256
+        first_name:
+          type: string
+          title: The First_name Schema
+          description: The first name of the person associated to the address.
+          maxLength: 256
+        last_name:
+          type: string
+          title: The Last_name Schema
+          description: The last name of the person associated to the address.
+          maxLength: 256
+        email:
+          type: string
+          title: The Email Schema
+          description: The email address of the person associated to the address.
+          maxLength: 256
+        phone:
+          type: string
+          description: The phone number of the person associated to the address.
+          maxLength: 256
+        coordinate:
+          type: object
+          description: The coordinate of the address.
+          properties:
+            longitude:
+              type: number
+              description: The longitude of the address.
+            latitude:
+              type: number
+              description: The latitude of the address.
+    Meta.v3:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+    Location.v3:
+      title: Location
+      type: object
+      x-stoplight:
+        id: 6hplpvu74ra5v
+      examples:
+      - location_id: '103753'
+        name: THE UPS STORE
+        distance: 0.1
+        distance_unit: km
+        phone: '2128100834'
+        services:
+        - Direct To Retail
+        - Retail to Retail
+        - PUDO
+        - Early Pickup Delivery Time
+        - DCO DCR intercept accepted
+        - Accepts Restricted Articles
+        - Accepts Mobile Barcodes
+        - Accepts No Box No Label
+        address:
+          street: 33 PARK PL
+          postal_code: 10007-2485
+          city: NEW YORK
+          state: NY
+          country: USA
+          longitude: -74.0095291
+          latitude: 40.71355056
+        business_hours:
+        - day_of_week: Mon
+          open_time: 08:30
+          close_time: '19:00'
+        - day_of_week: Tue
+          open_time: 08:30
+          close_time: '19:00'
+        - day_of_week: Wed
+          open_time: 08:30
+          close_time: '19:00'
+        - day_of_week: Thu
+          open_time: 08:30
+          close_time: '19:00'
+        - day_of_week: Fri
+          open_time: 08:30
+          close_time: '19:00'
+        - day_of_week: Sat
+          open_time: '10:00'
+          close_time: '17:00'
+        - day_of_week: Sun
+          open_time: '11:00'
+          close_time: '16:00'
+        location_type: the_ups_store
+        business_classification: pack_and_ship
+        drop_off_link: https://www.ups.com/dropoff
+        instructions: null
+      x-tags:
+      - Resource
+      description: 'Location object: the description of location information'
+      properties:
+        location_id:
+          type: string
+          description: Location ID
+        name:
+          type: string
+          description: Name of location
+        distance:
+          type: number
+          description: Distance of location
+          example: 0.3259
+        distance_unit:
+          type: string
+          enum:
+          - km
+          - mi
+          description: Distance unit of location
+          example: km
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Contact phone of location
+        services:
+          type: array
+          x-stoplight:
+            id: c4dvb0faf36px
+          description: Supported services of location
+          items:
+            x-stoplight:
+              id: mntwqb8v27gyj
+            type: string
+        address:
+          type: object
+          properties:
+            street:
+              type:
+              - string
+              - 'null'
+              description: Street of address
+              example: 33 PARK PL
+            postal_code:
+              type:
+              - string
+              - 'null'
+              description: Postal code of address
+              example: 10007-2485
+            city:
+              type:
+              - string
+              - 'null'
+              description: City of address
+              example: NEW YORK
+            state:
+              type:
+              - string
+              - 'null'
+              description: State of address
+              example: NY
+            country:
+              type: string
+              description: Country in ISO 3166-1 alpha 3 code
+              example: USA
+            latitude:
+              type:
+              - number
+              - 'null'
+              description: Latitude number
+              example: -74.0095291
+            longitude:
+              type:
+              - number
+              - 'null'
+              description: Longitude number
+              example: 40.71355056
+        business_hours:
+          type: array
+          description: Bussiness Hours of location
+          items:
+            type: object
+            properties:
+              day_of_week:
+                type: string
+                enum:
+                - Mon
+                - Tue
+                - Wed
+                - Thu
+                - Fri
+                - Sat
+                - Sun
+                example: Mon
+              open_time:
+                type: string
+                description: Location open time, HH:MM
+                example: 09:00
+              close_time:
+                type: string
+                description: Location end time, HH:MM
+                example: '17:00'
+        instructions:
+          type:
+          - string
+          - 'null'
+          description: Walking directions or handling instructions for this location
+        location_type:
+          type:
+          - string
+          - 'null'
+          description: Location type
+          example: the_ups_store
+        business_classification:
+          type:
+          - string
+          - 'null'
+          description: Business classification type of location
+          example: pack_and_ship
+        courier_specific:
+          x-stoplight:
+            id: fgepy967m0glu
+          description: Carrier-specific data for this location. Returns null if no carrier-specific fields are available for the slug.
+          oneOf:
+          - additionalProperties: false
+            properties:
+              ups:
+                type: object
+                x-stoplight:
+                  id: 4h6mzq8zseo58
+                description: UPS-specific fields for this location. Only present when the slug = ups.
+                properties:
+                  public_access_point_id:
+                    type:
+                    - string
+                    - 'null'
+                    x-stoplight:
+                      id: yw0ts646340zu
+                    description: The UPS Public Access Point ID for this location. Used to identify a specific UPS Access Point. Returns null if UPS does not return this value for the location.
+          type:
+          - object
+          - 'null'
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+x-refined-from:
+- aftership-commerce-api-openapi.yml
+- aftership-shipping-api-openapi.yml
+x-stoplight:
+  id: 02gep2e9lkucy

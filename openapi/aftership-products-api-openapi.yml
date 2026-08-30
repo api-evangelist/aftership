@@ -1,0 +1,1006 @@
+openapi: 3.2.0
+info:
+  title: Overview Products API
+  version: 2026-07
+  summary: API Overview
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-automizely-com-commerce/nodes/reference/api.json?branch=testing%2F2026-07&deref=optimizedBundle)'
+servers:
+- url: https://api.aftership.com/commerce/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Products
+paths:
+  /products:
+    post:
+      summary: Create a product
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: ''
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Product.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20100
+                      type: Created
+                      message: The request was successful, we created a new resource and the response body contains the representation.
+                    data:
+                      id: '546735673'
+                      store:
+                        id: 0ecb8ff7efa84d7d8f763ed7b21851d1
+                      title: Power Mobile Phone
+                      slug: power-mobile-phone
+                      categories:
+                      - mobile-phone
+                      tags:
+                      - mobile-phone
+                      image_urls:
+                      - https://example.com/product/image.png
+                      url: https://example.com/product/image.png
+                      published: true
+                      description: string
+                      variants:
+                      - id: '5634477687'
+                        available_quantity: 1
+                        sku: SKU001
+                        title: Power Mobile Phone
+                        price: '10'
+                        image_urls:
+                        - https://example.com/product/image.png
+                        compare_at_price: string
+                        weight:
+                          unit: kg
+                          value: 10
+                        allow_backorder: true
+                        options:
+                        - name: color
+                          value: white
+                      source_created_at: '2021-04-15T20:02:09Z'
+                      source_updated_at: '2021-04-15T20:02:09Z'
+                      created_at: '2021-04-15T20:02:09Z'
+                      updated_at: '2021-04-15T20:02:09Z'
+      operationId: create-product
+      description: 'Create a product.
+
+
+        > If you receive an error message stating **"Precondition failed, the store not found."**, please first create a store using the [Create a store](https://www.aftership.com/docs/commerce/2025-04/hadtz8qj5if6w-create-a-store) API.'
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - image_urls
+              - variants
+              properties:
+                id:
+                  type: string
+                  description: A custom identifier for the product. If not provided, the system will generate a UUID. Must be unique within the store and immutable. You can use this ID to manage the resource in subsequent API calls.
+                  maxLength: 128
+                  example: my-custom-id-123
+                  pattern: ^[a-zA-Z0-9_-]+$
+                title:
+                  type: string
+                  description: The title of the product.
+                  maxLength: 1024
+                  example: Power Mobile Phone
+                slug:
+                  type: string
+                  description: URL friendly unique identifier for the product.
+                  maxLength: 1024
+                  example: power-mobile-phone
+                categories:
+                  type: array
+                  description: The categories associated with the product, used for filtering and search purposes.
+                  maxItems: 100
+                  items:
+                    type: string
+                    example: mobile-phone
+                tags:
+                  type: array
+                  description: The tags associated with the product, used for filtering and search purposes.
+                  maxItems: 100
+                  items:
+                    type: string
+                    example: mobile-phone
+                image_urls:
+                  type: array
+                  description: URLs of the product images.
+                  maxItems: 100
+                  items:
+                    type: string
+                    maxLength: 2048
+                    example: https://example.com/product/image.png
+                url:
+                  type: string
+                  description: The URL of the product page in your online storefront.
+                  maxLength: 2048
+                  example: https://example.com/product/
+                published:
+                  type: boolean
+                  description: To indicate whether the product has been published.
+                  default: true
+                description:
+                  type: string
+                  description: Description of the product.
+                  maxLength: 10240
+                variants:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  description: Product variant information.
+                  maxItems: 500
+                  items:
+                    $ref: '#/components/schemas/Product_variant.v1'
+                source_created_at:
+                  type: string
+                  description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was created in your e-commerce system.
+                  example: '2021-04-15T20:02:09Z'
+                source_updated_at:
+                  type: string
+                  description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was updated in your e-commerce system.
+                  example: '2021-04-15T20:02:09Z'
+            examples:
+              Example 1:
+                value:
+                  id: '546735673'
+                  title: Power Mobile Phone
+                  slug: power-mobile-phone
+                  categories:
+                  - mobile-phone
+                  tags:
+                  - mobile-phone
+                  image_urls:
+                  - https://example.com/product/image.png
+                  url: https://example.com/product/
+                  published: true
+                  description: string
+                  variants:
+                  - id: '5634477687'
+                    available_quantity: 1
+                    sku: string
+                    title: Power Mobile Phone
+                    price: '10'
+                    image_urls:
+                    - https://example.com/product/image.png
+                    compare_at_price: string
+                    weight:
+                      unit: kg
+                      value: 10
+                    allow_backorder: true
+                    options:
+                    - name: color
+                      value: white
+                  source_created_at: '2021-04-15T20:02:09Z'
+                  source_updated_at: '2021-04-15T20:02:09Z'
+        description: ''
+      tags:
+      - Products
+      x-stoplight:
+        id: j3pzfhenf72sv
+    get:
+      summary: Get products
+      operationId: get-products
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                    x-stoplight:
+                      id: meta_object_id
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: data_object_id
+                    properties:
+                      products:
+                        type: array
+                        x-stoplight:
+                          id: products_array_id
+                        items:
+                          $ref: '#/components/schemas/Product.v1'
+                          x-stoplight:
+                            id: product_item_id
+                      pagination:
+                        $ref: '#/components/schemas/Pagination.v2'
+                        x-stoplight:
+                          id: pagination_object_id
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      products:
+                      - id: product_id_1
+                        title: Example Product 1
+                        slug: example-product-1
+                        published: true
+                      - id: product_id_2
+                        title: Example Product 2
+                        slug: example-product-2
+                        published: false
+                      pagination:
+                        page: 1
+                        limit: 10
+                        has_next_page: true
+      description: Get product results with multiple products.
+      parameters:
+      - schema:
+          type: integer
+          default: 1
+          minimum: 1
+          maximum: 200
+        in: query
+        name: page
+        description: Page number
+      - schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 50
+        in: query
+        name: limit
+        description: Number of products per page
+      - schema:
+          type: string
+          items:
+            type: string
+          maxItems: 50
+        in: query
+        name: ids[]
+        description: Array of product ID
+      - schema:
+          type: string
+          items:
+            type: string
+          maxItems: 50
+        in: query
+        name: slugs[]
+        description: Array of product slug
+      - schema:
+          type: string
+        in: query
+        name: search
+        description: Search term (fuzzy search in title)
+      - schema:
+          type: boolean
+        in: query
+        name: published
+        description: Filter by published status
+      - $ref: '#/components/parameters/as-store-id'
+      tags:
+      - Products
+      x-stoplight:
+        id: rloip27l58tm1
+  /products/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: The ID of the product.
+    get:
+      summary: Get product by ID
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Product.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: '546735673'
+                      store:
+                        id: 0ecb8ff7efa84d7d8f763ed7b21851d1
+                      title: Power Mobile Phone
+                      slug: power-mobile-phone
+                      categories:
+                      - mobile-phone
+                      tags:
+                      - mobile-phone
+                      image_urls:
+                      - https://example.com/product/image.png
+                      url: https://example.com/product/image.png
+                      published: true
+                      description: string
+                      variants:
+                      - id: '5634477687'
+                        available_quantity: 1
+                        sku: SKU001
+                        title: Power Mobile Phone
+                        price: '10'
+                        image_urls:
+                        - https://example.com/product/image.png
+                        compare_at_price: string
+                        weight:
+                          unit: kg
+                          value: 10
+                        allow_backorder: true
+                        options:
+                        - name: color
+                          value: white
+                      source_created_at: '2021-04-15T20:02:09Z'
+                      source_updated_at: '2021-04-15T20:02:09Z'
+                      created_at: '2021-04-15T20:02:09Z'
+                      updated_at: '2021-04-15T20:02:09Z'
+      operationId: get-product-by-id
+      description: Get a product by id.
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      tags:
+      - Products
+      x-stoplight:
+        id: 5pvl2tnkxwt0x
+    patch:
+      summary: Update product by ID
+      operationId: update-product-by-id
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Product.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: '546735673'
+                      store:
+                        id: 0ecb8ff7efa84d7d8f763ed7b21851d1
+                      title: Power Mobile Phone
+                      slug: power-mobile-phone
+                      categories:
+                      - mobile-phone
+                      tags:
+                      - mobile-phone
+                      image_urls:
+                      - https://example.com/product/image.png
+                      url: https://example.com/product/image.png
+                      published: true
+                      description: string
+                      variants:
+                      - id: '5634477687'
+                        available_quantity: 1
+                        sku: SKU001
+                        title: Power Mobile Phone
+                        price: '10'
+                        image_urls:
+                        - https://example.com/product/image.png
+                        compare_at_price: string
+                        weight:
+                          unit: kg
+                          value: 10
+                        allow_backorder: true
+                        options:
+                        - name: color
+                          value: white
+                      source_created_at: '2021-04-15T20:02:09Z'
+                      source_updated_at: '2021-04-15T20:02:09Z'
+                      created_at: '2021-04-15T20:02:09Z'
+                      updated_at: '2021-04-15T20:02:09Z'
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      description: Update product by ID.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: The title of the product.
+                  maxLength: 1024
+                  example: Power Mobile Phone
+                slug:
+                  type: string
+                  description: URL friendly unique identifier for the product.
+                  maxLength: 1024
+                  example: power-mobile-phone
+                categories:
+                  type: array
+                  description: The categories associated with the product, used for filtering and search purposes.
+                  maxItems: 100
+                  items:
+                    type: string
+                    maxLength: 256
+                    example: mobile-phone
+                tags:
+                  type: array
+                  description: The tags associated with the product, used for filtering and search purposes.
+                  maxItems: 100
+                  items:
+                    type: string
+                    example: mobile-phone
+                image_urls:
+                  type: array
+                  description: URLs of the product images.
+                  maxItems: 100
+                  items:
+                    type: string
+                    maxLength: 2048
+                    example: https://example.com/product/image.png
+                url:
+                  type: string
+                  description: The URL of the product page in your online storefront.
+                  maxLength: 2048
+                  example: https://example.com/product/
+                published:
+                  type: boolean
+                  description: To indicate whether the product has been published.
+                description:
+                  type: string
+                  description: Description of the product.
+                  maxLength: 10240
+                source_updated_at:
+                  type: string
+                  description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was updated in your e-commerce system.
+                  example: '2021-04-15T20:02:09Z'
+                variants:
+                  type: array
+                  x-stoplight:
+                    id: 8pemo4er5lll6
+                  description: Array of product variants. When provided, all existing variants will be replaced by this array. Any variants not included in the request will be deleted.
+                  items:
+                    $ref: '#/components/schemas/Product_variant.v1'
+                    x-stoplight:
+                      id: 3adlhgb76quwh
+            examples:
+              Example 1:
+                value:
+                  title: Power Mobile Phone
+                  slug: power-mobile-phone
+                  categories:
+                  - mobile-phone
+                  tags:
+                  - mobile-phone
+                  image_urls:
+                  - https://example.com/product/image.png
+                  url: https://example.com/product/
+                  published: true
+                  description: string
+                  source_updated_at: '2021-04-15T20:02:09Z'
+      tags:
+      - Products
+      x-stoplight:
+        id: sk8tcmdv5qhz8
+  /products/{id}/variants:
+    post:
+      summary: Create a new product variant
+      description: 'Create a new variant for the specified product. '
+      tags:
+      - Products
+      operationId: create-product-variant
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product_variant.v1'
+      responses:
+        '201':
+          description: Variant created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                    properties:
+                      variant:
+                        $ref: '#/components/schemas/Product_variant.v1'
+  /products/{id}/variants/{variant_id}:
+    get:
+      summary: Get variant by ID
+      description: Get a specific variant of a product by its ID.
+      tags:
+      - Products
+      operationId: get-product-variant
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Product_variant.v1'
+    patch:
+      summary: Update product variant
+      description: Update a specific variant of a product by its ID.
+      tags:
+      - Products
+      operationId: update-product-variant
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                available_quantity:
+                  type: integer
+                  description: Available quantity of the product variant.
+                  example: 1
+                sku:
+                  type: string
+                  description: The product SKU of the product variant.
+                  maxLength: 1024
+                  example: SKU001
+                title:
+                  type: string
+                  description: The title of the product variant.
+                  maxLength: 1024
+                  example: Power Mobile Phone
+                price:
+                  type: string
+                  description: The price of the product variant.
+                  maxLength: 100
+                  example: '10'
+                image_urls:
+                  type: array
+                  maxItems: 100
+                  description: The product image URL of the product variant.
+                  items:
+                    type: string
+                    maxLength: 1024
+                    example: https://example.com/product/image.png
+                compare_at_price:
+                  type: string
+                  description: The original price of the item before an adjustment or a sale.
+                  maxLength: 100
+                weight:
+                  $ref: '#/components/schemas/Weight.v1'
+                  description: The weight information of the product variant.
+                allow_backorder:
+                  type: boolean
+                  description: To specify whether customers are permitted to place an order for this out-of-stock product variant.
+                options:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  description: The custom product variant properties, such as size, color, and material.
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The field name of the custom product property.
+                        maxLength: 256
+                        example: color
+                      value:
+                        type: string
+                        description: The value of the custom product property.
+                        maxLength: 256
+                        example: white
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - meta
+                - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Product_variant.v1'
+    delete:
+      summary: Delete product variant
+      description: Delete a specific variant of a product by its ID.
+      tags:
+      - Products
+      operationId: delete-product-variant
+      parameters:
+      - $ref: '#/components/parameters/as-store-id'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - meta
+                - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Product_variant.v1'
+components:
+  parameters:
+    as-store-id:
+      name: as-store-id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: This value equals to `store.id` of `Store` Resource. You can obtain this id by making a GET /stores call to get existing stores or a POST /stores to create a new store.
+  schemas:
+    Meta.v1:
+      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
+      type: object
+      x-examples: {}
+      title: Meta
+      x-tags:
+      - Envelope
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      additionalProperties: false
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        errors:
+          type: array
+          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+
+
+            '
+          items:
+            $ref: '#/components/schemas/Error.v1'
+    Product_variant.v1:
+      title: product_variant.v1
+      x-stoplight:
+        id: 9x15f6937soxi
+      type: object
+      required:
+      - id
+      - sku
+      - price
+      properties:
+        id:
+          type: string
+          description: A unique identifier for the product variant in your system.
+          maxLength: 32
+          example: '5634477687'
+          x-stoplight:
+            id: fv6ts8zm4xms8
+        sku:
+          type: string
+          description: The product SKU of the product variant.
+          maxLength: 1024
+          example: SKU001
+        price:
+          type: string
+          description: The price of the product variant.
+          maxLength: 100
+          example: '10'
+        available_quantity:
+          type: integer
+          description: Available quantity of the product variant.
+          example: 1
+        image_urls:
+          type: array
+          maxItems: 100
+          description: The product image URL of the product variant.
+          items:
+            type: string
+            maxLength: 1024
+            example: https://example.com/product/image.png
+        title:
+          type: string
+          description: The title of the product variant.
+          maxLength: 1024
+          example: Power Mobile Phone
+        compare_at_price:
+          type: string
+          description: The original price of the item before an adjustment or a sale.
+          maxLength: 100
+        weight:
+          $ref: '#/components/schemas/Weight.v1'
+          description: The weight information of the product variant.
+        allow_backorder:
+          type: boolean
+          description: To specify whether customers are permitted to place an order for this out-of-stock product variant.
+        options:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          description: The custom product variant properties, such as size, color, and material.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The field name of the custom product property.
+                maxLength: 256
+                example: color
+              value:
+                type: string
+                description: The value of the custom product property.
+                maxLength: 256
+                example: white
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
+    Pagination.v2:
+      title: Pagination
+      x-stoplight:
+        id: 6twr4wc3wp9lu
+      type: object
+      examples:
+      - page: 1
+        limit: 10
+        has_next_page: false
+      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: integer
+          x-stoplight:
+            id: 5ld3b35057z8s
+          description: Page number.
+        limit:
+          type: integer
+          x-stoplight:
+            id: qmvbmlfjchyh5
+          description: Maximum object count per page.
+        has_next_page:
+          type: boolean
+          x-stoplight:
+            id: qtm2ifhlv0r4i
+          description: To indicate if next page is available.
+    Weight.v1:
+      description: The unit weight of the item.
+      title: Weight
+      x-stoplight:
+        id: 6ffc0efbd7bf5
+      type: object
+      examples:
+      - unit: kg
+        value: 10
+      x-tags:
+      - Primitive
+      properties:
+        unit:
+          type: string
+          enum:
+          - kg
+          - lb
+          - oz
+          - g
+          description: 'The weight unit eg: g or kg.'
+        value:
+          type: number
+          description: The value of the weight.
+          example: 10
+    Product.v1:
+      x-stoplight:
+        id: 180c3db461386
+      type: object
+      title: Product
+      x-tags:
+      - Resource
+      description: The `Product` model represents an individual item of your store. It includes essential attributes such as product title, price, variants, SKU, and so on. This model is crucial for cataloging and managing the store's inventory effectively.
+      additionalProperties: false
+      examples:
+      - id: '546735673'
+        store:
+          id: my-store-1
+        title: Power Mobile Phone
+        slug: power-mobile-phone
+        categories:
+        - mobile-phone
+        tags:
+        - mobile-phone
+        image_urls:
+        - https://example.com/product/image.png
+        url: https://example.com/product/image.png
+        published: true
+        description: string
+        variants:
+        - id: '5634477687'
+          available_quantity: 1
+          sku: SKU001
+          title: Power Mobile Phone
+          price: '10'
+          image_urls:
+          - https://example.com/product/image.png
+          compare_at_price: string
+          weight:
+            unit: kg
+            value: 10
+          allow_backorder: true
+          options:
+          - name: color
+            value: white
+        source_created_at: '2021-04-15T20:02:09Z'
+        source_updated_at: '2021-04-15T20:02:09Z'
+        created_at: '2021-04-15T20:02:09Z'
+        updated_at: '2021-04-15T20:02:09Z'
+      required:
+      - id
+      - title
+      - image_urls
+      - variants
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the product. If a custom ID was provided in the request, that value is used; otherwise, a system-generated UUID is assigned. You can use this ID to manage this resource in related API calls.
+          example: fbc7245f23494576829c4b00609cf1ab
+          readOnly: true
+        store:
+          type: object
+          x-stoplight:
+            id: 1m62f1y5411hp
+          description: Indicate which store the product belongs to.
+          properties:
+            id:
+              type: string
+              x-stoplight:
+                id: nzslg67cs6zdb
+              description: The store ID by AfterShip. Please refer to the store resource for the details.
+              example: 0ecb8ff7efa84d7d8f763ed7b21851d1
+              readOnly: true
+        title:
+          type: string
+          description: The title of the product.
+          example: Power Mobile Phone
+        slug:
+          type: string
+          description: URL friendly unique identifier for the product.
+          example: power-mobile-phone
+        categories:
+          type: array
+          description: The categories associated with the product, used for filtering and search purposes.
+          items:
+            type: string
+            example: mobile-phone
+        tags:
+          type: array
+          description: The tags associated with the product, used for filtering and search purposes.
+          items:
+            type: string
+            example: mobile-phone
+        image_urls:
+          type: array
+          description: URLs of the product images.
+          items:
+            type: string
+            example: https://example.com/product/image.png
+        url:
+          type: string
+          description: The URL of the product page in your online storefront.
+          example: https://example.com/product/image.png
+        published:
+          type: boolean
+          description: To indicate whether the product has been published.
+          default: true
+        description:
+          type: string
+          description: Description of the product.
+        variants:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          description: Product variant information.
+          items:
+            $ref: '#/components/schemas/Product_variant.v1'
+        source_created_at:
+          type: string
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was created in your e-commerce system.
+          example: '2021-04-15T20:02:09Z'
+        source_updated_at:
+          type: string
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was updated in your e-commerce system.
+          example: '2021-04-15T20:02:09Z'
+        created_at:
+          type: string
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was created in AfterShip system.
+          example: '2021-04-15T20:02:09Z'
+        updated_at:
+          type: string
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was updated in AfterShip system.
+          example: '2021-04-15T20:02:09Z'
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+x-stoplight:
+  id: 07dbd324ec273

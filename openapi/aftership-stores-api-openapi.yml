@@ -1,0 +1,859 @@
+openapi: 3.2.0
+info:
+  title: Overview Stores API
+  version: 2026-07
+  summary: API Overview
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-automizely-com-commerce/nodes/reference/api.json?branch=testing%2F2026-07&deref=optimizedBundle)'
+servers:
+- url: https://api.aftership.com/commerce/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Stores
+paths:
+  /stores:
+    post:
+      summary: Create a store
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: ''
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Store.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20100
+                      type: Created
+                      message: The request was successful, we created a new resource and the response body contains the representation.
+                    data:
+                      id: my-store-1
+                      created_at: '2024-05-06T12:32:00+01:00'
+                      updated_at: '2024-05-06T12:32:00+01:00'
+                      source_created_at: '2024-05-06T12:32:00+01:00'
+                      source_updated_at: '2024-05-06T12:32:00+01:00'
+                      platform: aftership
+                      name: My Store
+                      owner_email: store_owner@example.com
+                      timezone_identifier: America/New_York
+                      support_email: support@example.com
+                      weight_unit: lb
+                      currency: USD
+                      phone: '+11234567890'
+                      address:
+                        street_1: 98 Circle
+                        street_2: ''
+                        street_3: ''
+                        city: Daug City
+                        state: New York
+                        country_region: USA
+                        postal_code: '10001'
+                        latitude: 43
+                        longitude: -75
+                      url: https://www.exmaple.com
+                      description: My shop
+                      categories:
+                      - shoes
+                      - bags
+      operationId: create-store
+      description: 'Create a new store.
+
+
+        > **Important:** After creating a new store in Commerce API, please contact our support team to configure and enable the specific Commerce API features you need (such as `tracking`, `returns`, etc.) for this store. This configuration is separate from any AfterShip products you may have already subscribed to. <br/>The returned `store.id` value is essential, as you''ll need to include it in the header of all subsequent Commerce API requests as `as-store-id` to identify which store you''re operating on.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - name
+              - currency
+              properties:
+                id:
+                  type: string
+                  description: "This ID will be used as the `as-store-id` header value when calling other resource endpoints.\n\nA custom identifier for the store. If not provided, the system will generate a UUID. Must be unique within the organization and immutable. \n\nCannot start with the reserved prefix `app-`. \n\nYou can use this ID to manage the resource in subsequent API calls. \n\nThis ID will be used as the `as-store-id` header value when calling other resource endpoints."
+                  maxLength: 128
+                  pattern: ^[a-zA-Z0-9_-]+$
+                  example: my-store-1
+                source_created_at:
+                  type: string
+                  description: Timestamp marking the creation of the store, formatted in [ISO 8601 standard](https://en.wikipedia.org/wiki/ISO_8601).
+                  example: '2024-05-06T12:32:00+01:00'
+                source_updated_at:
+                  type: string
+                  description: The timestamp indicating the last update to the store, formatted in [ISO 8601 standard](https://en.wikipedia.org/wiki/ISO_8601).
+                  example: '2024-05-06T12:32:00+01:00'
+                name:
+                  type: string
+                  description: The shop's name.
+                  maxLength: 256
+                  example: My Store
+                support_email:
+                  type: string
+                  description: Support email address for your store.
+                  maxLength: 256
+                  example: support@example.com
+                owner_email:
+                  type: string
+                  description: The email address of the store owner.
+                  maxLength: 256
+                  example: store_owner@example.com
+                timezone_identifier:
+                  type: string
+                  description: The name of the timezone of your store located, as defined by the [IANA timezone database standard](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+                  maxLength: 256
+                  default: America/New_York
+                weight_unit:
+                  type: string
+                  description: Unit of measurement for weight used by the store, such as "lb" or "kg"
+                  maxLength: 64
+                  example: lb
+                currency:
+                  type: string
+                  description: 'Indicates the currency used by the store. The currency should be specified using the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) three-letter currency code (e.g., ''USD'' for US Dollar, ''EUR'' for Euro). '
+                  maxLength: 3
+                  example: USD
+                phone:
+                  type: string
+                  description: The store's phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+                  maxLength: 256
+                  example: '+11234567890'
+                url:
+                  type: string
+                  description: The URL of the store.
+                  maxLength: 2048
+                  example: https://www.example.com
+                description:
+                  type: string
+                  description: The text description of the store.
+                  maxLength: 10240
+                  example: My shop
+                categories:
+                  type: array
+                  description: The supported product category name of the store.
+                  maxItems: 100
+                  items:
+                    type: string
+                    maxLength: 256
+                address:
+                  description: The physical address of the store.
+                  type: object
+                  properties:
+                    street_1:
+                      type: string
+                      title: The Street_1 Schema
+                      description: First line of the store's street address.
+                      maxLength: 256
+                    street_2:
+                      type: string
+                      title: The Street_2 Schema
+                      description: Second line of the store's street address.
+                      maxLength: 256
+                    street_3:
+                      type: string
+                      title: The Street_3 Schema
+                      description: Third line of the store's street address.
+                      maxLength: 256
+                    city:
+                      type: string
+                      title: The City Schema
+                      description: The city, town, or village where the store is located.
+                      maxLength: 256
+                    state:
+                      type: string
+                      title: The State Schema
+                      description: Indicates the state or region where the store is located, such as a province, state, or prefecture.
+                      maxLength: 256
+                    postal_code:
+                      type: string
+                      title: The Postal_code Schema
+                      description: The postal code of the store (also known as zip code, postcode, Eircode, etc.).
+                      maxLength: 256
+                    country_region:
+                      type: string
+                      title: The Country Schema
+                      description: The store's country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+                      example: USA
+                      pattern: ^[A-Z]{3}$
+                    coordinate:
+                      type: object
+                      description: Store address coordinate.
+                      properties:
+                        longitude:
+                          type: number
+                          description: The longitude of the store address.
+                        latitude:
+                          type: number
+                          description: The latitude of the store address.
+            examples:
+              Example 1:
+                value:
+                  id: my-store-1
+                  source_created_at: '2024-05-06T12:32:00+01:00'
+                  source_updated_at: '2024-05-06T12:32:00+01:00'
+                  name: My Store
+                  support_email: support@example.com
+                  owner_email: store_owner@example.com
+                  timezone_identifier: America/New_York
+                  weight_unit: lb
+                  currency: USD
+                  phone: '+11234567890'
+                  url: https://www.example.com
+                  description: My shop
+                  categories:
+                  - shoes
+                  - bags
+                  address:
+                    street_1: 98 Bofors Circle
+                    city: New York
+                    state: New York
+                    postal_code: '10001'
+                    country_region: USA
+                    coordinate:
+                      latitude: 40
+                      longitude: 74
+        description: ''
+      tags:
+      - Stores
+      x-stoplight:
+        id: hadtz8qj5if6w
+    get:
+      summary: Get stores
+      operationId: get-stores
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                    x-stoplight:
+                      id: 43pbqr696s1vw
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: i1m9d2a1owenx
+                    properties:
+                      stores:
+                        x-stoplight:
+                          id: klhs7crx4ougd
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Store.v1'
+                          x-stoplight:
+                            id: 1gviwx15qjg0o
+                      pagination:
+                        $ref: '#/components/schemas/Pagination.v2'
+                        x-stoplight:
+                          id: gftlh15a2uix6
+                      parameter_string:
+                        type: string
+                        x-stoplight:
+                          id: kflov9vr92k0c
+                        description: A string that includes the request parameters.
+                        example: page=1&limit=10
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      stores:
+                      - id: my-store-1
+                        created_at: '2024-05-06T12:32:00+01:00'
+                        updated_at: '2024-05-06T12:32:00+01:00'
+                        source_created_at: '2024-05-06T12:32:00+01:00'
+                        source_updated_at: '2024-05-06T12:32:00+01:00'
+                        platform: aftership
+                        name: My Store
+                        owner_email: store_owner@example.com
+                        timezone_identifier: America/New_York
+                        support_email: support@example.com
+                        weight_unit: lb
+                        currency: USD
+                        phone: '+11234567890'
+                        address:
+                          street_1: 98 Circle
+                          street_2: ''
+                          street_3: ''
+                          city: Daug City
+                          state: New York
+                          country_region: USA
+                          postal_code: '10001'
+                          latitude: 43
+                          longitude: -75
+                        url: https://www.exmaple.com
+                        description: My shop
+                        categories:
+                        - shoes
+                        - bags
+                      pagination:
+                        page: 1
+                        limit: 10
+                        has_next_page: true
+                      parameter_string: page=1&limit=10
+      x-stoplight:
+        id: yc24p1srfyqiv
+      description: Get store results with multiple stores.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: limit
+        description: The maximum number of results to show on a page.  Default is 10.
+      - schema:
+          type: string
+        in: query
+        name: page
+        description: Current page of the collection. Default is 1.
+      - schema:
+          type: string
+        in: query
+        name: ids[]
+        description: 'Each element must contain fewer than 128 characters. The total number of elements should not exceed 50. Each `id` should be used as an independent query parameter in the URL, as demonstrated in the following example: `GET /stores?ids[]=5247009653041&ids[]=5081836323059`'
+      tags:
+      - Stores
+  /stores/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: The ID of the store.
+    get:
+      summary: Get store by ID
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Store.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: my-store-1
+                      created_at: '2024-05-06T12:32:00+01:00'
+                      updated_at: '2024-05-06T12:32:00+01:00'
+                      source_created_at: '2024-05-06T12:32:00+01:00'
+                      source_updated_at: '2024-05-06T12:32:00+01:00'
+                      platform: aftership
+                      name: My Store
+                      owner_email: store_owner@example.com
+                      timezone_identifier: America/New_York
+                      support_email: support@example.com
+                      weight_unit: lb
+                      currency: USD
+                      phone: '+11234567890'
+                      address:
+                        street_1: 98 Circle
+                        street_2: ''
+                        street_3: ''
+                        city: Daug City
+                        state: New York
+                        country_region: USA
+                        postal_code: '10001'
+                        latitude: 43
+                        longitude: -75
+                      url: https://www.exmaple.com
+                      description: My shop
+                      categories:
+                      - shoes
+                      - bags
+      operationId: get-store-by-id
+      description: Get a store by ID.
+      parameters: []
+      tags:
+      - Stores
+      x-stoplight:
+        id: kepefe38naajo
+    patch:
+      summary: Update store by ID
+      operationId: update-store-by-id
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Store.v1'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: my-store-1
+                      created_at: '2024-05-06T12:32:00+01:00'
+                      updated_at: '2024-05-06T12:32:00+01:00'
+                      source_created_at: '2024-05-06T12:32:00+01:00'
+                      source_updated_at: '2024-05-06T12:32:00+01:00'
+                      platform: aftership
+                      name: My Store
+                      owner_email: store_owner@example.com
+                      timezone_identifier: America/New_York
+                      support_email: support@example.com
+                      weight_unit: lb
+                      currency: USD
+                      phone: '+11234567890'
+                      address:
+                        street_1: 98 Circle
+                        street_2: ''
+                        street_3: ''
+                        city: Daug City
+                        state: New York
+                        country_region: USA
+                        postal_code: '10001'
+                        latitude: 43
+                        longitude: -75
+                      url: https://www.exmaple.com
+                      description: My shop
+                      categories:
+                      - shoes
+                      - bags
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                source_updated_at:
+                  type: string
+                  description: The timestamp indicating the last update to the store, formatted in [ISO 8601 standard](https://en.wikipedia.org/wiki/ISO_8601).
+                  example: '2024-05-06T12:32:00+01:00'
+                name:
+                  type: string
+                  description: The shop's name.
+                  maxLength: 256
+                  example: My Store
+                support_email:
+                  type: string
+                  description: Support email address for your store.
+                  maxLength: 256
+                  example: support@example.com
+                owner_email:
+                  type: string
+                  description: The email address of the store owner.
+                  maxLength: 256
+                  example: store_owner@example.com
+                timezone_identifier:
+                  type: string
+                  description: The name of the timezone of your store located, as defined by the [IANA timezone database standard](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+                  maxLength: 256
+                  example: America/New_York
+                weight_unit:
+                  type: string
+                  description: Unit of measurement for weight used by the store, such as "lb" or "kg"
+                  maxLength: 64
+                  example: lb
+                phone:
+                  type: string
+                  description: The store's phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+                  maxLength: 256
+                  example: '+11234567890'
+                address:
+                  description: The physical address of the store.
+                  type: object
+                  properties:
+                    street_1:
+                      type: string
+                      title: The Street_1 Schema
+                      description: First line of the store's street address.
+                      maxLength: 256
+                    street_2:
+                      type: string
+                      title: The Street_2 Schema
+                      description: Second line of the store's street address.
+                      maxLength: 256
+                    street_3:
+                      type: string
+                      title: The Street_3 Schema
+                      description: Third line of the store's street address.
+                      maxLength: 256
+                    city:
+                      type: string
+                      title: The City Schema
+                      description: The city, town, or village where the store is located.
+                      maxLength: 256
+                    state:
+                      type: string
+                      title: The State Schema
+                      description: Indicates the state or region where the store is located, such as a province, state, or prefecture.
+                      maxLength: 256
+                    postal_code:
+                      type: string
+                      title: The Postal_code Schema
+                      description: The postal code of the store (also known as zip code, postcode, Eircode, etc.).
+                      maxLength: 256
+                    country_region:
+                      type: string
+                      title: The Country Schema
+                      description: The store's country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+                      example: USA
+                      pattern: ^[A-Z]{3}$
+                    coordinate:
+                      type: object
+                      description: Store address coordinate.
+                      properties:
+                        longitude:
+                          type: number
+                          description: The longitude of the store address.
+                        latitude:
+                          type: number
+                          description: The latitude of the store address.
+            examples:
+              Example 1:
+                value:
+                  source_updated_at: '2024-05-06T12:32:00+01:00'
+                  name: My Store
+                  support_email: support@example.com
+                  owner_email: store_owner@example.com
+                  timezone_identifier: America/New_York
+                  weight_unit: lb
+                  phone: '+11234567890'
+                  address:
+                    street_1: 98 Bofors Circle
+                    city: New York
+                    state: New York
+                    postal_code: '10001'
+                    country_region: USA
+                    coordinate:
+                      latitude: 40
+                      longitude: 74
+      description: Update a store by ID.
+      tags:
+      - Stores
+      x-stoplight:
+        id: 7e8bomqsyg6ku
+components:
+  schemas:
+    Store.v1:
+      x-stoplight:
+        id: 67b89e472d9db
+      type: object
+      x-tags:
+      - Resource
+      title: Store
+      description: 'A `Store` represents your actual retail outlet or an online store. All other resources within the API, including orders and products, are linked to a specific store.
+
+
+        Before you can utilize any features of the Commerce API, you must first create a store. After the store has been created, you will obtain a store ID. This ID is necessary for creating subsequent resources within the API.
+
+
+        > **Activating the store** <br />  <br /> Please contact the support team or your customer success manager together with your Storeto activate the connection between your store and AfterShip products.'
+      additionalProperties: false
+      examples:
+      - id: my-store-1
+        created_at: '2024-05-06T12:32:00+01:00'
+        updated_at: '2024-05-06T12:32:00+01:00'
+        source_created_at: '2024-05-06T12:32:00+01:00'
+        source_updated_at: '2024-05-06T12:32:00+01:00'
+        platform: aftership
+        name: My Store
+        support_email: support@example.com
+        owner_email: store_owner@example.com
+        timezone_identifier: America/New_York
+        weight_unit: lb
+        currency: USD
+        phone: '+13525554500'
+        url: https://www.example.com
+        description: My shop
+        categories:
+        - shoes
+        address:
+          street_1: 98 Circle
+          street_2: null
+          street_3: null
+          city: Daug City
+          state: New York
+          postal_code: '10001'
+          country_region: USA
+          coordinate:
+            latitude: 40
+            longitude: 74
+      required:
+      - name
+      - currency
+      properties:
+        id:
+          type: string
+          description: 'The id should be used as the `as-store-id` header value when calling other resource endpoints.
+
+
+            The unique identifier of the store. If a custom ID was provided in the request, that value is used; otherwise, a system-generated UUID is assigned. You can use this ID to manage this resource in related API calls.'
+          maxLength: 32
+          example: c10c3a0b90c24436bd158a0abbaf16d0
+          readOnly: true
+        created_at:
+          type: string
+          description: The timestamp indicating when a store was created in AfterShip, formatted in ISO 8601 standard.
+          example: '2024-05-06T12:32:00+01:00'
+        updated_at:
+          type: string
+          description: The timestamp indicating when a store was updated in AfterShip, formatted in ISO 8601 standard.
+          example: '2024-05-06T12:32:00+01:00'
+        source_created_at:
+          type: string
+          description: Timestamp marking the creation of the store, formatted in [ISO 8601 standard](https://en.wikipedia.org/wiki/ISO_8601).
+          example: '2024-05-06T12:32:00+01:00'
+        source_updated_at:
+          type: string
+          description: The timestamp indicating the last update to the store, formatted in [ISO 8601 standard](https://en.wikipedia.org/wiki/ISO_8601).
+          example: '2024-05-06T12:32:00+01:00'
+        platform:
+          description: Identifies the platform associated with the store. For instance, a value of 'shopify' signifies that the store is based on Shopify, whereas a value of 'aftership' indicates the store originates from AfterShip.
+          example: aftership
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: The shop's name.
+          maxLength: 256
+          example: My Store
+        support_email:
+          type: string
+          description: Support email address for your store.
+          maxLength: 256
+          example: support@example.com
+        owner_email:
+          type: string
+          description: The email address of the store owner.
+          maxLength: 256
+          example: store_owner@example.com
+        timezone_identifier:
+          type: string
+          description: The name of the timezone of your store located, as defined by the [IANA timezone database standard](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+          maxLength: 256
+          example: America/New_York
+        weight_unit:
+          type: string
+          description: Unit of measurement for weight used by the store, such as "lb" or "kg"
+          maxLength: 64
+          example: lb
+        currency:
+          type: string
+          description: 'Indicates the currency used by the store. The currency should be specified using the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) three-letter currency code (e.g., ''USD'' for US Dollar, ''EUR'' for Euro). '
+          maxLength: 3
+          example: USD
+        phone:
+          type: string
+          description: The store's phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+          maxLength: 256
+          example: '+13525554500'
+        url:
+          type: string
+          description: The URL of the store.
+          maxLength: 2083
+          example: https://www.example.com
+        description:
+          type: string
+          description: The text description of the store.
+          maxLength: 10240
+          example: My shop
+        categories:
+          type: array
+          description: The supported product category name of the store.
+          maxItems: 100
+          items:
+            type: string
+            maxLength: 256
+            example: shoes
+        address:
+          description: The physical address of the store.
+          type: object
+          additionalProperties: false
+          properties:
+            street_1:
+              type: string
+              title: The Street_1 Schema
+              description: First line of the store's street address.
+              maxLength: 256
+              example: 98 Circle
+            street_2:
+              type:
+              - string
+              - 'null'
+              title: The Street_2 Schema
+              description: Second line of the store's street address.
+              maxLength: 256
+            street_3:
+              type:
+              - string
+              - 'null'
+              title: The Street_3 Schema
+              description: Third line of the store's street address.
+              maxLength: 256
+            city:
+              type: string
+              title: The City Schema
+              description: The city, town, or village where the store is located.
+              maxLength: 256
+              example: Daug City
+            state:
+              type: string
+              title: The State Schema
+              description: Indicates the state or region where the store is located, such as a province, state, or prefecture.
+              maxLength: 256
+              example: New York
+            postal_code:
+              type: string
+              title: The Postal_code Schema
+              description: The postal code of the store (also known as zip code, postcode, Eircode, etc.).
+              maxLength: 256
+              example: '10001'
+            country_region:
+              type: string
+              title: The Country Schema
+              description: The store's country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+              example: USA
+              pattern: ^[A-Z]{3}$
+            coordinate:
+              type: object
+              description: Store address coordinate.
+              additionalProperties: false
+              properties:
+                latitude:
+                  type: number
+                  description: The latitude of the store address.
+                  example: 40
+                longitude:
+                  type: number
+                  description: The longitude of the store address.
+                  example: 74
+    Meta.v1:
+      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
+      type: object
+      x-examples: {}
+      title: Meta
+      x-tags:
+      - Envelope
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      additionalProperties: false
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        errors:
+          type: array
+          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+
+
+            '
+          items:
+            $ref: '#/components/schemas/Error.v1'
+    Pagination.v2:
+      title: Pagination
+      x-stoplight:
+        id: 6twr4wc3wp9lu
+      type: object
+      examples:
+      - page: 1
+        limit: 10
+        has_next_page: false
+      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: integer
+          x-stoplight:
+            id: 5ld3b35057z8s
+          description: Page number.
+        limit:
+          type: integer
+          x-stoplight:
+            id: qmvbmlfjchyh5
+          description: Maximum object count per page.
+        has_next_page:
+          type: boolean
+          x-stoplight:
+            id: qtm2ifhlv0r4i
+          description: To indicate if next page is available.
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+x-stoplight:
+  id: 07dbd324ec273

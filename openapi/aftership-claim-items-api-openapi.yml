@@ -1,0 +1,448 @@
+openapi: 3.2.0
+info:
+  title: Overview Claim Items API
+  version: 2026-07
+  summary: API Overview
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-prod-wt-public/nodes/reference/api.json?branch=master&deref=optimizedBundle)'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+servers:
+- url: https://api.aftership.com/warranty/2026-07
+  description: API Endpoint
+security:
+- ApiKeyAuth: []
+tags:
+- name: Claim Items
+  description: Public endpoints for updating item-level claim data.
+paths:
+  /claims/{claim_id}/items/{item_id}:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    - name: item_id
+      in: path
+      required: true
+      description: The unique identifier of the claim item.
+      schema:
+        type: string
+      example: c83fd9f0c4e343de9d21fbf0acf5ebd9
+    patch:
+      tags:
+      - Claim Items
+      summary: Update a claim item
+      operationId: update-claim-item
+      description: Updates item tags or merchant-uploaded images for a claim item. Send either item_tags or merchant_image_urls in one request, not both.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - title: Update item tags
+                type: object
+                properties:
+                  item_tags:
+                    type: array
+                    maxItems: 10
+                    description: Item tags to apply to the claim item. Only item_tags[].id is required in the request. Passing an empty array removes all item tags from the item.
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The unique identifier of the item tag.
+                      required:
+                      - id
+                required:
+                - item_tags
+              - title: Update merchant-uploaded images
+                type: object
+                properties:
+                  merchant_image_urls:
+                    type: array
+                    maxItems: 6
+                    description: Merchant-uploaded image URLs to attach to the claim item. Passing an empty array removes all merchant-uploaded images from the item.
+                    items:
+                      type: string
+                required:
+                - merchant_image_urls
+            examples:
+              update_tags:
+                summary: Update item tags
+                value:
+                  item_tags:
+                  - id: tag_id
+              update_images:
+                summary: Update merchant-uploaded images
+                value:
+                  merchant_image_urls:
+                  - https://example.com/warranty/inspection-photo-1.jpg
+      responses:
+        '200':
+          description: The updated claim item resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim_item'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                  source_id: '13501508419800'
+                  title: School Bags
+                  product_title: School Bags
+                  variant_title: '02'
+                  quantity: 1
+                  unit_price:
+                    currency: USD
+                    amount: '280.00'
+                  discounted_price:
+                    currency: USD
+                    amount: '280.00'
+                  tax:
+                    currency: USD
+                    amount: '0.00'
+                  discounted_price_including_tax:
+                    currency: USD
+                    amount: '280.00'
+                  product_tags:
+                  - electronics
+                  - warranty-eligible
+                  image:
+                    url: https://cdn.example.com/products/school-bag.jpg
+                  source_variant_id: null
+                  sku: 21q9grbnf06
+                  issue_description:
+                    reason: damaged
+                    subreason: null
+                    description: The zipper broke after two weeks.
+                    files:
+                    - url: https://files.example.com/warranty/damage.jpg
+                      type: image/jpeg
+                  process_item_resolution_method: replace_item
+                  process_item_details: null
+                  product_source: order
+                  shopper_notes: null
+                  item_tags:
+                  - id: tag_id
+                    name: Needs inspection
+                    created_at: '2026-05-19T10:00:00Z'
+                  merchant_uploaded_image_urls: []
+                  created_at: '2026-05-19T10:00:00Z'
+                  updated_at: '2026-05-19T10:03:00Z'
+components:
+  schemas:
+    ItemTag:
+      title: ItemTag
+      x-stoplight:
+        id: 8wwwff48758hx
+      type: object
+      description: A merchant-defined tag that can be added to claim items.
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: r4fbyaanpn8i9
+          description: The unique identifier for the item tag.
+        name:
+          type: string
+          x-stoplight:
+            id: 4r1fyg1jjzxon
+          description: The name of the item tag.
+        created_at:
+          type: string
+          x-stoplight:
+            id: a41sqbbkajk6n
+          description: The date and time, formatted in ISO 8601, when the item tag was created.
+          format: date-time
+          example: '2026-05-19T10:00:00Z'
+    Money:
+      description: The store credit value.
+      title: Money
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount represented with two decimal places.
+          example: '99.99'
+        currency:
+          type: string
+          description: The currency code, using ISO 4217 standards.
+          example: USD
+    Claim_item:
+      type: object
+      x-examples:
+        Example 1:
+          id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+          source_id: '13501508419800'
+          title: School Bags
+          product_title: School Bags
+          variant_title: '02'
+          quantity: 1
+          unit_price:
+            currency: HKD
+            amount: '280.00'
+          discounted_price:
+            currency: HKD
+            amount: '280.00'
+          tax:
+            currency: HKD
+            amount: '0.00'
+          discounted_price_including_tax:
+            currency: HKD
+            amount: '280.00'
+          product_tags:
+          - electronics
+          - warranty-eligible
+          image:
+            url: https://cdn.shopify.com/s/files/1/0657/7592/7512/products/e0119a5bcc59d3af6ecd04d474b7a777.jpg?v=1681437817
+          source_variant_id: null
+          sku: 21q9grbnf06
+          issue_description:
+            reason: Option1
+            description: Details here
+            files:
+            - url: https://files.am-usercontent.io/returns-warranty/e6f77e704c71767c1bd04a4981cfe4c8/d9763692fb69439f9dac93b5b1d63caf.6627b229255c20260d7eb6fd632b3380.JPG
+              type: image/jpeg
+          process_item_resolution_method: replace_item
+          process_item_details: null
+          store_credit: null
+          replacement_order:
+            order_name: '1536'
+            items:
+            - external_id: '11723274518734'
+              product_title: Slim Phone Case
+              variant_title: Black / Metal
+              sku: '9990004'
+              quantity: 1
+              unit_price:
+                amount: '50.00'
+                currency: USD
+          product_source: order
+          shopper_notes: null
+          created_at: '2023-12-21T07:25:39.158885Z'
+          updated_at: '2023-12-21T07:31:06.384863Z'
+      title: ClaimItem
+      properties:
+        id:
+          type: string
+        source_id:
+          type: string
+        title:
+          type: string
+        product_title:
+          type: string
+        variant_title:
+          type: string
+        quantity:
+          type: integer
+        unit_price:
+          type: object
+          properties:
+            currency:
+              type: string
+            amount:
+              type: string
+        discounted_price:
+          type: object
+          properties:
+            currency:
+              type: string
+            amount:
+              type: string
+        tax:
+          type:
+          - object
+          - 'null'
+          description: Tax amount for the item. Only populated for order flow; null for non-order flows.
+          properties:
+            currency:
+              type: string
+            amount:
+              type: string
+        discounted_price_including_tax:
+          type:
+          - object
+          - 'null'
+          description: Discounted price including tax (presentment). Only populated for order flow; null for non-order flows.
+          properties:
+            currency:
+              type: string
+            amount:
+              type: string
+        product_tags:
+          type: array
+          description: Platform product tags. Populated for order and store product flows; empty array for CSV or no-source flows.
+          items:
+            type: string
+        image:
+          type: object
+          properties:
+            url:
+              type: string
+        source_variant_id:
+          type:
+          - string
+          - 'null'
+        sku:
+          type: string
+        issue_description:
+          type: object
+          properties:
+            reason:
+              type: string
+            subreason:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: 8mq63hp3hkoa1
+            description:
+              type:
+              - string
+              - 'null'
+            files:
+              type:
+              - array
+              - 'null'
+              items:
+                x-stoplight:
+                  id: jd8itav7wje17
+                type: object
+        process_item_resolution_method:
+          type: string
+          enum:
+          - repair_item
+          - replace_item
+          - send_repair_kit
+          - issue_store_credit
+          - other
+        process_item_details:
+          type:
+          - string
+          - 'null'
+        store_credit:
+          type:
+          - object
+          - 'null'
+          description: The store credit created for this claim item.
+          properties:
+            value:
+              $ref: '#/components/schemas/Money'
+              description: The store credit value.
+        replacement_order:
+          type:
+          - object
+          - 'null'
+          description: The replacement order created for this claim item.
+          properties:
+            order_name:
+              type: string
+              description: The replacement order name from the e-commerce platform.
+              example: '1536'
+            items:
+              type: array
+              description: Replacement order items.
+              items:
+                type: object
+                properties:
+                  external_id:
+                    type: string
+                    description: The identifier of the replacement order item on the e-commerce platform.
+                    example: '11723274518734'
+                  product_title:
+                    type: string
+                    description: The product title of the replacement item.
+                    example: Slim Phone Case
+                  variant_title:
+                    type:
+                    - string
+                    - 'null'
+                    description: The variant title of the replacement item.
+                    example: Black / Metal
+                  sku:
+                    type:
+                    - string
+                    - 'null'
+                    description: The SKU of the replacement item.
+                    example: '9990004'
+                  quantity:
+                    type: integer
+                    description: The quantity of the replacement item.
+                    example: 1
+                  unit_price:
+                    $ref: '#/components/schemas/Money'
+                    description: The unit price of the replacement item.
+        product_source:
+          type: string
+        shopper_notes:
+          type:
+          - string
+          - 'null'
+        item_tags:
+          type: array
+          description: Merchant item tags applied to this claim item.
+          items:
+            $ref: '#/components/schemas/ItemTag'
+        merchant_uploaded_image_urls:
+          type: array
+          x-stoplight:
+            id: qa9ytrxgst8fg
+          items:
+            x-stoplight:
+              id: k8itzg50h5wee
+            type: string
+          description: Merchant-uploaded image URLs attached to this claim item.
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim item was created.
+          example: '2026-05-19T10:00:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim item was last updated.
+          example: '2026-05-19T10:00:00Z'
+      description: A claim item resource.
+    Meta_20000:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+        type:
+          type: string
+          minLength: 1
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: as-api-key

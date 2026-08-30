@@ -1,0 +1,188 @@
+openapi: 3.2.0
+info:
+  title: Overview Return Dropoffs API
+  version: 2026-07
+  summary: API Overview
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-returnscenter-com-public/nodes/reference/api.json?branch=production/2026-07&deref=optimizedBundle)'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+servers:
+- url: https://api.aftership.com/returns/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Return Dropoffs
+paths:
+  /returns/rma/{rma_number}/dropoffs/{dropoff_id}/drops:
+    parameters:
+    - schema:
+        type: string
+      name: rma_number
+      in: path
+      required: true
+    - schema:
+        type: string
+      name: dropoff_id
+      description: This dropoff ID can be found in the QR code generated at AfterShip Returns.
+      in: path
+      required: true
+    post:
+      summary: Record dropped-off return items
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20100'
+                    x-stoplight:
+                      id: 5osyuob71ts5h
+                  data:
+                    $ref: '#/components/schemas/Dropoff_drop'
+                    x-stoplight:
+                      id: 5hreiwh469yc9
+      operationId: post-returns-rma-rma_number-dropoffs-dropoff_id-drops
+      x-stoplight:
+        id: wsspdoqi8pvre
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dropoff_drops_request_post_drop'
+      description: 'This endpoint applies to dropoffs powered by AfterShip QR Code: When a shopper drops some return items at the location, the merchant''s sytem should scan the QR code, extract the rma_number, dropoff_id, and then call this endpoint to mark the items as dropped.
+
+
+        For 3rd party droppoff service providers to call this endpoint on behalf of merchant: please note that you need to extract the `organization_id` and use an API Key of that specific organization. '
+      tags:
+      - Return Dropoffs
+components:
+  schemas:
+    Dropoff_drop:
+      x-stoplight:
+        id: 5hreiwh469yc9
+      title: dropoff_drop.v2
+      type: object
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: qs584afzsamn0
+        items:
+          x-stoplight:
+            id: 3c3tnv4c70phd
+          type: array
+          items:
+            $ref: '#/components/schemas/Dropoff_drop_item'
+            x-stoplight:
+              id: 0ujwxp64fype8
+        dropped_at:
+          type: string
+          x-stoplight:
+            id: vmaco91wtu9h4
+          format: date-time
+        created_at:
+          type: string
+          x-stoplight:
+            id: be7jb7f3ioeuh
+          format: date-time
+        return:
+          type: object
+          x-stoplight:
+            id: u3mywmrly96sf
+          properties:
+            id:
+              type: string
+              x-stoplight:
+                id: wd0jiu7eoe2h3
+            rma_number:
+              type: string
+              x-stoplight:
+                id: 63k6hfyfgson1
+        dropoff:
+          type: object
+          x-stoplight:
+            id: hdf8vwh2ibffe
+          properties:
+            id:
+              type: string
+              x-stoplight:
+                id: whs8vwq0ktnz9
+    Dropoff_drop_item:
+      x-stoplight:
+        id: 32js15uchnk68
+      title: dropoff_drop_item.v2
+      type: object
+      properties:
+        external_order_item_id:
+          type: string
+          x-stoplight:
+            id: c4ccz3bk66kd1
+        quantity:
+          type: integer
+          x-stoplight:
+            id: s1osc9vs02t47
+          minimum: 1
+    Dropoff_drops_request_post_drop:
+      title: dropoff_drops_request_post_drop
+      x-stoplight:
+        id: 6fgkguamawsn7
+      type: object
+      properties:
+        items:
+          type: array
+          x-stoplight:
+            id: 91x74zkiliwox
+          items:
+            $ref: '#/components/schemas/Dropoff_drop_item'
+            x-stoplight:
+              id: 32js15uchnk68
+        dropped_at:
+          type: string
+          x-stoplight:
+            id: y64hd47deeshb
+          format: date-time
+    Meta_20100:
+      x-stoplight:
+        id: j2ma59pd3ad4u
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20100
+          example: 20100
+          x-stoplight:
+            id: 4mulf0jqqaqdm
+        type:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: emncqaq4949tf
+          example: Created
+        message:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: zr92gwd3jfayh
+          example: The request has been fulfilled and a new resource has been created.
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

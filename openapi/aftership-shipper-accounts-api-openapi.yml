@@ -1,0 +1,1762 @@
+openapi: 3.2.0
+info:
+  title: Overview Shipper Accounts API
+  version: '1.0'
+  summary: API Overview
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+servers:
+- description: Sandbox
+  url: https://sandbox-api.aftership.com/postmen/v3
+- url: https://api.aftership.com/postmen/v3
+  description: Production
+security:
+- as-api-key: []
+tags:
+- name: Shipper Accounts
+paths:
+  /shipper-accounts:
+    parameters: []
+    get:
+      summary: Get shipper accounts
+      responses:
+        '200':
+          description: Get shipper accounts
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      next_token: '1'
+                      limit: 30
+                      shipper_accounts:
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: royal-mail
+                        slug: royal-mail
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-08-25T08:48:46+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: USA
+                          contact_name: jesus
+                          phone: null
+                          fax: null
+                          email: null
+                          company_name: jesus company
+                          street1: one street in the USA
+                          street2: null
+                          street3: null
+                          city: Los Angeles
+                          state: CA
+                          postal_code: '90210'
+                          type: null
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: will_not_delete
+                        slug: aramex
+                        status: enabled
+                        timezone: America/Vancouver
+                        type: user
+                        created_at: '2016-07-29T10:37:18+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: JOR
+                          contact_name: Sir Foo
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: foo@foo.com
+                          company_name: Foo Store
+                          street1: 100 MAIN ST
+                          street2: PO BOX 1022
+                          street3: SEATTLE WA 98104
+                          city: Seattle
+                          state: TX
+                          postal_code: '77055'
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: ups
+                        slug: ups
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-07-14T09:36:35+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: CHN
+                          contact_name: hello
+                          phone: 0601997749
+                          fax: null
+                          email: test@test.com
+                          company_name: 天俞
+                          street1: 150 Kennedy Road
+                          street2: Flat 25, 12/F, Acacia Building
+                          street3: null
+                          city: Wan Chai
+                          state: null
+                          postal_code: 000852
+                          type: business
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: Bring sandbox
+                        slug: bring
+                        status: enabled
+                        timezone: Europe/Amsterdam
+                        type: user
+                        created_at: '2016-07-12T08:57:03+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: NOR
+                          contact_name: Sir Foo
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: test@test.com
+                          company_name: Demo Parcel Norway Customer
+                          street1: 100 MAIN ST
+                          street2: PO BOX 1022
+                          street3: SEATTLE WA 98104
+                          city: Seattle
+                          state: TX
+                          postal_code: '7600'
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: Bring sandbox
+                        slug: bring
+                        status: enabled
+                        timezone: Europe/Amsterdam
+                        type: user
+                        created_at: '2016-07-12T08:56:54+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: NOR
+                          contact_name: Sir Foo
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: test@test.com
+                          company_name: Demo Parcel Norway Customer
+                          street1: 100 MAIN ST
+                          street2: PO BOX 1022
+                          street3: SEATTLE WA 98104
+                          city: Seattle
+                          state: TX
+                          postal_code: '7600'
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: dpd-uk
+                        slug: dpd-uk
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-06-30T05:02:52+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: USA
+                          contact_name: jesus
+                          phone: null
+                          fax: null
+                          email: null
+                          company_name: jesus
+                          street1: one street in the USA
+                          street2: null
+                          street3: null
+                          city: Los Angeles
+                          state: CA
+                          postal_code: '90210'
+                          type: null
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: fedex-smartpost
+                        slug: fedex-smartpost
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-06-29T08:53:44+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: USA
+                          contact_name: Sir Foo
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: foo@foo.com
+                          company_name: Foo Store
+                          street1: 100 MAIN ST
+                          street2: PO BOX 1022
+                          street3: SEATTLE WA 98104
+                          city: Seattle
+                          state: TX
+                          postal_code: '77055'
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: bluedart
+                        slug: bluedart
+                        status: enabled
+                        timezone: Asia/Kolkata
+                        type: user
+                        created_at: '2016-06-27T09:04:41+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: HKG
+                          contact_name: Buckinghamshire Livingstone West
+                          phone: null
+                          fax: null
+                          email: test@test.com
+                          company_name: The Royal Family
+                          street1: No.1 Northwesthamsexshirecaster Boulevard
+                          street2: Turing Test Town
+                          street3: null
+                          city: Thisisalongnameingshumshire
+                          state: Sussex
+                          postal_code: '560084'
+                          type: residential
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: dpd-uk
+                        slug: dpd-uk
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-06-24T05:59:57+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: USA
+                          contact_name: jesus
+                          phone: null
+                          fax: null
+                          email: null
+                          company_name: asas
+                          street1: one street in the USA
+                          street2: null
+                          street3: null
+                          city: Los Angeles
+                          state: NY
+                          postal_code: '90210'
+                          type: null
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: gls-ireland
+                        slug: gls-ireland
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-06-23T09:47:59+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: BEL
+                          contact_name: Buckinghamshire Livingstone West
+                          phone: null
+                          fax: null
+                          email: test@test.com
+                          company_name: The Royal Family
+                          street1: Elsensesteenweg 21
+                          street2: null
+                          street3: null
+                          city: Brussel
+                          state: Abcde
+                          postal_code: '1050'
+                          type: residential
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: sf-express
+                        slug: sf-express
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-06-23T09:43:37+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: HKG
+                          contact_name: Sir Pudgu
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: foo@foo.com
+                          company_name: Foo Store
+                          street1: Tsuen Wan
+                          street2: null
+                          street3: null
+                          city: Mississauga
+                          state: null
+                          postal_code: L4W5M8
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: ups-mi
+                        slug: ups-mi
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-06-23T09:29:56+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: HKG
+                          contact_name: Elmira Zulauf
+                          phone: 2433-1212
+                          fax: null
+                          email: null
+                          company_name: Kemmer-Gerhold
+                          street1: 662 Flatley Manors
+                          street2: null
+                          street3: null
+                          city: Hong Kong
+                          state: null
+                          postal_code: null
+                          type: business
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: purolator
+                        slug: purolator
+                        status: enabled
+                        timezone: America/Vancouver
+                        type: user
+                        created_at: '2016-06-17T08:06:05+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: CAN
+                          contact_name: Sir Foo
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: foo@foo.com
+                          company_name: Foo Store
+                          street1: Tsuen Wan
+                          street2: null
+                          street3: null
+                          city: Mississauga
+                          state: BC
+                          postal_code: L4W 5M8
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: ups
+                        slug: ups
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-06-16T09:02:27+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: HKG
+                          contact_name: Sir Foo
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: foo@foo.com
+                          company_name: Foo Store
+                          street1: Tsuen Wan
+                          street2: null
+                          street3: null
+                          city: Hong Kong
+                          state: null
+                          postal_code: '77055'
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: canpar-01
+                        slug: canpar
+                        status: enabled
+                        timezone: Canada/Central
+                        type: user
+                        created_at: '2016-06-14T07:17:23+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: CAN
+                          contact_name: Ada
+                          phone: '+16476942677'
+                          fax: null
+                          email: test@test.com
+                          company_name: Testing Company
+                          street1: 330-340 W 34th St
+                          street2: Can Ada stop, Canada
+                          street3: null
+                          city: Central
+                          state: AB
+                          postal_code: T5A 1H1
+                          type: residential
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: bring 2
+                        slug: bring
+                        status: enabled
+                        timezone: Africa/Abidjan
+                        type: user
+                        created_at: '2016-06-08T11:40:45+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: SWE
+                          contact_name: qqqqq
+                          phone: null
+                          fax: null
+                          email: null
+                          company_name: wwww
+                          street1: eee
+                          street2: null
+                          street3: null
+                          city: null
+                          state: null
+                          postal_code: null
+                          type: business
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: fedex
+                        slug: fedex
+                        status: enabled
+                        timezone: Asia/Kolkata
+                        type: user
+                        created_at: '2016-06-08T10:13:18+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: IND
+                          contact_name: Sir Foo
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: edward@aftership.com
+                          company_name: Demo Parcel Norway Customer
+                          street1: 100 MAIN ST
+                          street2: PO BOX 1022
+                          street3: SEATTLE WA 98104
+                          city: Bangalore
+                          state: Karnataka
+                          postal_code: '560034'
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: bondscouriers
+                        slug: bondscouriers
+                        status: enabled
+                        timezone: Australia/Brisbane
+                        type: user
+                        created_at: '2016-06-07T08:50:05+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: AUS
+                          contact_name: Buckinghamshire Livingstone West
+                          phone: null
+                          fax: null
+                          email: test@test.com
+                          company_name: SICAB PTY LTD
+                          street1: Level 2, Suite 4, 55 Norton St.
+                          street2: null
+                          street3: null
+                          city: Leichhardt
+                          state: NSW
+                          postal_code: '1050'
+                          type: residential
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: bluedart
+                        slug: courex
+                        status: enabled
+                        timezone: Asia/Singapore
+                        type: user
+                        created_at: '2016-06-07T08:48:51+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: SGP
+                          contact_name: Buckinghamshire Livingstone West
+                          phone: null
+                          fax: null
+                          email: test@test.com
+                          company_name: The Royal Family
+                          street1: No.1 Northwesthamsexshirecaster Boulevard
+                          street2: Turing Test Town
+                          street3: null
+                          city: Thisisalongnameingshumshire
+                          state: Sussex
+                          postal_code: '560084'
+                          type: residential
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: delhivery description
+                        slug: delhivery
+                        status: enabled
+                        timezone: Asia/Kolkata
+                        type: user
+                        created_at: '2016-05-13T10:09:43+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: IND
+                          contact_name: Buckinghamshire Livingstone West
+                          phone: null
+                          fax: null
+                          email: test@test.com
+                          company_name: The Royal Family
+                          street1: 113 Barthal, Dundahera
+                          street2: null
+                          street3: null
+                          city: New Delhi
+                          state: Delhi
+                          postal_code: '110070'
+                          type: residential
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: endicia
+                        slug: endicia
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-05-13T10:08:18+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: USA
+                          contact_name: jesus
+                          phone: null
+                          fax: null
+                          email: null
+                          company_name: My Company
+                          street1: one street in the USA
+                          street2: null
+                          street3: null
+                          city: Los Angeles
+                          state: CA
+                          postal_code: '90210'
+                          type: null
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: Bring sandbox
+                        slug: bring
+                        status: enabled
+                        timezone: Europe/Amsterdam
+                        type: user
+                        created_at: '2016-05-10T09:42:23+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: NOR
+                          contact_name: Sir Foo
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: test@test.com
+                          company_name: Demo Parcel Norway Customer
+                          street1: 100 MAIN ST
+                          street2: PO BOX 1022
+                          street3: SEATTLE WA 98104
+                          city: Seattle
+                          state: TX
+                          postal_code: '7600'
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: DHL Express
+                        slug: dhl
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-04-28T11:00:37+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: NLD
+                          contact_name: Hombre Amsterdam
+                          phone: +31 (0)20 683 8558
+                          fax: null
+                          email: support@hombreamsterdam.com
+                          company_name: Hombre Amsterdam
+                          street1: Jan Evertsenstraat 70
+                          street2: null
+                          street3: null
+                          city: Amsterdam
+                          state: null
+                          postal_code: 1056 EE
+                          type: business
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: dhl-global-mail-asia account
+                        slug: dhl-global-mail-asia
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-04-06T09:07:25+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: HKG
+                          contact_name: Buyer Name
+                          phone: '+85221234568'
+                          fax: null
+                          email: test@test.com
+                          company_name: Testing Company
+                          street1: 330-340 W 34th St
+                          street2: Super smart building, Hong Kong
+                          street3: null
+                          city: Hong Kong
+                          state: null
+                          postal_code: null
+                          type: residential
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: fedex-for-cod-india
+                        slug: fedex
+                        status: enabled
+                        timezone: Asia/Kolkata
+                        type: user
+                        created_at: '2016-03-10T07:09:51+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: IND
+                          contact_name: Sir Foo
+                          phone: +1 206-654-3100
+                          fax: +1 206-654-3100
+                          email: edward@aftership.com
+                          company_name: Demo Parcel Norway Customer
+                          street1: 100 MAIN ST
+                          street2: PO BOX 1022
+                          street3: SEATTLE WA 98104
+                          city: Bangalore
+                          state: Karnataka
+                          postal_code: '560034'
+                          type: business
+                          tax_id: 911-70-1234
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: will_not_delete
+                        slug: fedex
+                        status: enabled
+                        timezone: America/Vancouver
+                        type: user
+                        created_at: '2016-03-07T09:44:47+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: CAN
+                          contact_name: Ada
+                          phone: '+16476942677'
+                          fax: null
+                          email: test@test.com
+                          company_name: Testing Company
+                          street1: 330-340 W 34th St
+                          street2: Can Ada stop, Canada
+                          street3: null
+                          city: Central
+                          state: AB
+                          postal_code: T5A 1H1
+                          type: residential
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: bpost
+                        slug: bpost
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-02-17T10:28:52+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: BEL
+                          contact_name: Buckinghamshire Livingstone West
+                          phone: null
+                          fax: null
+                          email: test@test.com
+                          company_name: The Royal Family
+                          street1: Elsensesteenweg 21
+                          street2: null
+                          street3: null
+                          city: Brussel
+                          state: Abcde
+                          postal_code: '1050'
+                          type: residential
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: tnt
+                        slug: tnt
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: user
+                        created_at: '2016-02-12T10:30:50+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: HKG
+                          contact_name: Sir Foo
+                          phone: '11111111'
+                          fax: +1 206-654-3100
+                          email: foo@foo.com
+                          company_name: Foo Store
+                          street1: Workshop A, 10/F, Wah Shing Industrial Building
+                          street2: 18 Cheung Shun Street, Lai Chi Kok
+                          street3: null
+                          city: Lai Chi Kok
+                          state: null
+                          postal_code: null
+                          type: business
+                          tax_id: null
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: myhermes-uk
+                        slug: hermes
+                        status: enabled
+                        timezone: Europe/London
+                        type: user
+                        created_at: '2016-02-12T10:28:31+00:00'
+                        updated_at: '2016-09-23T04:56:25+00:00'
+                        address:
+                          country: GBR
+                          contact_name: Buckinghamshire Livingstone West
+                          phone: null
+                          fax: null
+                          email: test@test.com
+                          company_name: The Royal Family
+                          street1: No.1 Northwesthamsexshirecaster Boulevard
+                          street2: Turing Test Town
+                          street3: null
+                          city: Thisisalongnameingshumshire
+                          state: Sussex
+                          postal_code: B17 0WD
+                          type: residential
+                          tax_id: null
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    type: object
+                    properties:
+                      next_token:
+                        type: string
+                      limit:
+                        type: integer
+                      shipper_accounts:
+                        type: array
+                        description: The array contains shipper_account object information. Please refer to [shipper account](../model/resource/shipper_account.v3.json) object for details.
+                        items:
+                          $ref: '#/components/schemas/Shipper_account.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      next_token: string
+                      limit: 0
+                      shipper_accounts:
+                      - id: 00000000-0000-0000-0000-000000000000
+                        description: My Shipper Account
+                        slug: dhl
+                        status: enabled
+                        timezone: Asia/Hong_Kong
+                        type: default
+                        created_at: '2016-02-12T10:30:50+00:00'
+                        updated_at: '2016-09-23T04:56:26+00:00'
+                        address:
+                          country: HKG
+                          contact_name: Sir Foo
+                          phone: '11111111'
+                          fax: +1 206-654-3100
+                          email: foo@foo.com
+                          company_name: Foo Store
+                          street1: Workshop A, 10/F, Wah Shing Industrial Building
+                          street2: 18 Cheung Shun Street, Lai Chi Kok
+                          city: Lai Chi Kok
+                          type: business
+                          postal_code: null
+                          state: null
+                          street3: null
+                          tax_id: null
+      operationId: get-shipper-accounts
+      description: 'This endpoint allows you retrieve a list of shipper accounts associated with you profile on [admin.postmen.com](https://admin.postmen.com/carriers) via API, granting you centralized control over multiple carrier services.
+
+
+
+
+        <div style="visibility:hidden; height: 0">
+
+        The array contains shipper_account object information. Please refer to [shipper acount](../model/resource/shipper_account.v3.json) object for details.
+
+        </div>'
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: slug
+        description: Courier slug
+      - schema:
+          type: string
+        in: query
+        name: limit
+        description: Number of records per page
+      - schema:
+          type: string
+        in: query
+        name: next_token
+        description: Next token
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      x-internal: false
+      tags:
+      - Shipper Accounts
+      security:
+      - as-api-key: []
+    post:
+      summary: Create a shipper account
+      operationId: post-shipper-accounts
+      responses:
+        '200':
+          description: Create a shipper account
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      description: My Shipper Account
+                      slug: dhl
+                      status: enabled
+                      timezone: Asia/Hong_Kong
+                      type: user
+                      created_at: '2016-02-12T10:30:50+00:00'
+                      updated_at: '2016-09-23T04:56:26+00:00'
+                      address:
+                        country: HKG
+                        contact_name: Sir Foo
+                        phone: '11111111'
+                        fax: +1 206-654-3100
+                        email: foo@foo.com
+                        company_name: Foo Store
+                        street1: Workshop A, 10/F, Wah Shing Industrial Building
+                        street2: 18 Cheung Shun Street, Lai Chi Kok
+                        city: Lai Chi Kok
+                        type: business
+                        postal_code: null
+                        state: null
+                        street3: null
+                        tax_id: null
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    $ref: '#/components/schemas/Shipper_account.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      description: My Shipper Account
+                      slug: dhl
+                      status: enabled
+                      timezone: Asia/Hong_Kong
+                      type: default
+                      created_at: '2016-02-12T10:30:50+00:00'
+                      updated_at: '2016-09-23T04:56:26+00:00'
+                      address:
+                        country: HKG
+                        contact_name: Sir Foo
+                        phone: '11111111'
+                        fax: +1 206-654-3100
+                        email: foo@foo.com
+                        company_name: Foo Store
+                        street1: Workshop A, 10/F, Wah Shing Industrial Building
+                        street2: 18 Cheung Shun Street, Lai Chi Kok
+                        city: Lai Chi Kok
+                        type: business
+                        postal_code: null
+                        state: null
+                        street3: null
+                        tax_id: null
+      description: 'This endpoint allows you to create your shipper account via API. You can integrate our API with your system and manage the shipper account according to your needs.
+
+
+        Please ensure that your account credentials are correct. Different carriers have different requirements for account credentials, you can refer to [Shipper account''s credentials](../docs/enum/shipper-accounts-credentials.md) for more details.
+
+
+        <div style="visibility:hidden; height: 0">
+
+        Please refer to [Shipper account''s credentials](../docs/enum/shipper-accounts-credentials.md)
+
+        </div>'
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  slug: dhl
+                  description: My Shipper Account
+                  timezone: Asia/Hong_Kong
+                  credentials:
+                    account_number: '******'
+                    password: '******'
+                    site_id: '******'
+                  address:
+                    country: HKG
+                    contact_name: Sir Foo
+                    phone: '11111111'
+                    fax: +1 206-654-3100
+                    email: foo@foo.com
+                    company_name: Foo Store
+                    street1: Workshop A, 10/F, Wah Shing Industrial Building
+                    street2: 18 Cheung Shun Street, Lai Chi Kok
+                    city: Lai Chi Kok
+                    type: business
+                    postal_code: null
+                    state: null
+                    street3: null
+                    tax_id: null
+              properties:
+                slug:
+                  type: string
+                description:
+                  type: string
+                timezone:
+                  type: string
+                credentials:
+                  type: object
+                  description: Please refer to [Shipper account's credentials](../docs/enum/shipper-accounts-credentials.md)
+                address:
+                  $ref: '#/components/schemas/Address.v3'
+            examples:
+              example-1:
+                value:
+                  slug: dhl
+                  description: My Shipper Account
+                  timezone: Asia/Hong_Kong
+                  credentials:
+                    account_number: '******'
+                    password: '******'
+                    site_id: '******'
+                  address:
+                    contact_name: AfterShip Shipping
+                    company_name: AfterShip Shipping
+                    street1: 230 W 200 S LBBY
+                    city: Salt Lake City
+                    state: UT
+                    postal_code: '84101'
+                    country: USA
+                    phone: '123456789'
+                    email: test@test.com
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: Create a shipper account
+      tags:
+      - Shipper Accounts
+      security:
+      - as-api-key: []
+  /shipper-accounts/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: Shipper account id
+    get:
+      summary: Get a shipper account
+      responses:
+        '200':
+          description: Get a shipper account
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      description: My Shipper Account
+                      slug: dhl
+                      status: enabled
+                      timezone: Asia/Hong_Kong
+                      type: user
+                      created_at: '2016-02-12T10:30:50+00:00'
+                      updated_at: '2016-09-23T04:56:26+00:00'
+                      address:
+                        country: HKG
+                        contact_name: Sir Foo
+                        phone: '11111111'
+                        fax: +1 206-654-3100
+                        email: foo@foo.com
+                        company_name: Foo Store
+                        street1: Workshop A, 10/F, Wah Shing Industrial Building
+                        street2: 18 Cheung Shun Street, Lai Chi Kok
+                        street3: null
+                        city: Lai Chi Kok
+                        state: null
+                        postal_code: null
+                        type: business
+                        tax_id: null
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    $ref: '#/components/schemas/Shipper_account.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      description: My Shipper Account
+                      slug: dhl
+                      status: enabled
+                      timezone: Asia/Hong_Kong
+                      type: default
+                      created_at: '2016-02-12T10:30:50+00:00'
+                      updated_at: '2016-09-23T04:56:26+00:00'
+                      address:
+                        country: HKG
+                        contact_name: Sir Foo
+                        phone: '11111111'
+                        fax: +1 206-654-3100
+                        email: foo@foo.com
+                        company_name: Foo Store
+                        street1: Workshop A, 10/F, Wah Shing Industrial Building
+                        street2: 18 Cheung Shun Street, Lai Chi Kok
+                        city: Lai Chi Kok
+                        type: business
+                        postal_code: null
+                        state: null
+                        street3: null
+                        tax_id: null
+      operationId: get-shipper-accounts-id
+      description: This endpoint allows you get a specific shipper account details by shipper account id.
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      tags:
+      - Shipper Accounts
+      security:
+      - as-api-key: []
+    delete:
+      summary: Delete a shipper account
+      operationId: delete-shipper-accounts-id
+      responses:
+        '200':
+          description: Delete a shipper account
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+      description: Delete a shipper account
+      tags:
+      - Shipper Accounts
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      security:
+      - as-api-key: []
+  /shipper-accounts/{id}/info:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: Shipper account id
+    put:
+      summary: Update a shipper account's information
+      operationId: put-shipper-accounts-id-info
+      responses:
+        '200':
+          description: Update a shipper account's information
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      description: My Shipper Account
+                      slug: dhl
+                      status: enabled
+                      timezone: Asia/Hong_Kong
+                      type: user
+                      created_at: '2016-02-12T10:30:50+00:00'
+                      updated_at: '2016-09-23T04:56:26+00:00'
+                      address:
+                        country: HKG
+                        contact_name: Sir Foo
+                        phone: '11111111'
+                        fax: +1 206-654-3100
+                        email: foo@foo.com
+                        company_name: Foo Store
+                        street1: Workshop A, 10/F, Wah Shing Industrial Building
+                        street2: 18 Cheung Shun Street, Lai Chi Kok
+                        city: Lai Chi Kok
+                        type: business
+                        street3: null
+                        state: null
+                        postal_code: null
+                        tax_id: null
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    $ref: '#/components/schemas/Shipper_account.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      description: My Shipper Account
+                      slug: dhl
+                      status: enabled
+                      timezone: Asia/Hong_Kong
+                      type: default
+                      created_at: '2016-02-12T10:30:50+00:00'
+                      updated_at: '2016-09-23T04:56:26+00:00'
+                      address:
+                        country: HKG
+                        contact_name: Sir Foo
+                        phone: '11111111'
+                        fax: +1 206-654-3100
+                        email: foo@foo.com
+                        company_name: Foo Store
+                        street1: Workshop A, 10/F, Wah Shing Industrial Building
+                        street2: 18 Cheung Shun Street, Lai Chi Kok
+                        city: Lai Chi Kok
+                        type: business
+                        postal_code: null
+                        state: null
+                        street3: null
+                        tax_id: null
+      description: 'This endpoint allows you to update the account information for your specific shipper account, including details such as address, description, and timezone.
+
+
+        If you wish to update the credentials for your shipper account, please refer to [Update a shipper account''s credentials](#).'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  description: My Shipper Account
+                  timezone: Asia/Hong_Kong
+                  address:
+                    country: HKG
+                    contact_name: Sir Foo
+                    phone: '11111111'
+                    fax: +1 206-654-3100
+                    email: foo@foo.com
+                    company_name: Foo Store
+                    street1: Workshop A, 10/F, Wah Shing Industrial Building
+                    street2: 18 Cheung Shun Street, Lai Chi Kok
+                    city: Lai Chi Kok
+                    type: business
+                    street3: null
+                    state: null
+                    postal_code: null
+                    tax_id: null
+              properties:
+                description:
+                  type: string
+                timezone:
+                  type: string
+                address:
+                  $ref: '#/components/schemas/Address.v3'
+            examples:
+              example-1:
+                value:
+                  description: My Shipper Account
+                  timezone: Asia/Hong_Kong
+                  address:
+                    country: HKG
+                    contact_name: Sir Foo
+                    phone: '11111111'
+                    fax: +1 206-654-3100
+                    email: foo@foo.com
+                    company_name: Foo Store
+                    street1: Workshop A, 10/F, Wah Shing Industrial Building
+                    street2: 18 Cheung Shun Street, Lai Chi Kok
+                    city: Lai Chi Kok
+                    type: business
+                    street3: null
+                    state: null
+                    postal_code: null
+                    tax_id: null
+        description: Update a shipper account's information
+      tags:
+      - Shipper Accounts
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      security:
+      - as-api-key: []
+  /shipper-accounts/{id}/credentials:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: Shipper account id
+    patch:
+      summary: Update a shipper account's credentials
+      operationId: patch-shipper-accounts-id-credentials
+      responses:
+        '200':
+          description: Update a shipper account's credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    $ref: '#/components/schemas/Shipper_account.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      description: My Shipper Account
+                      slug: dhl
+                      status: enabled
+                      timezone: Asia/Hong_Kong
+                      type: default
+                      created_at: '2016-02-12T10:30:50+00:00'
+                      updated_at: '2016-09-23T04:56:26+00:00'
+                      address:
+                        country: HKG
+                        contact_name: Sir Foo
+                        phone: '11111111'
+                        fax: +1 206-654-3100
+                        email: foo@foo.com
+                        company_name: Foo Store
+                        street1: Workshop A, 10/F, Wah Shing Industrial Building
+                        street2: 18 Cheung Shun Street, Lai Chi Kok
+                        city: Lai Chi Kok
+                        type: business
+                        postal_code: null
+                        state: null
+                        street3: null
+                        tax_id: null
+      description: 'This endpoint allows you to update the credentials for your specific shipper account. Please note that different carriers have different account credentials. For more details, you can refer to  [Shipper account''s credentials](../docs/enum/shipper-accounts-credentials.md).
+
+
+        <div style="visibility:hidden; height: 0">
+
+        The object contains shipper_account credentials information. Please refer to [shipper acount credentials](../docs/enum/shipper-accounts-credentials.md) object for details.
+
+        </div>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  account_number: '12345678'
+                  password: '123456789'
+                  site_id: site_id
+              properties:
+                account_number:
+                  type: string
+                  description: 'The object contains shipper_account credentials information. Please refer to [shipper account credentials](../docs/enum/shipper-accounts-credentials.md) object for details.
+
+                    '
+                password:
+                  type: string
+                  description: 'The object contains shipper_account credentials information. Please refer to [shipper account credentials](../docs/enum/shipper-accounts-credentials.md) object for details.
+
+                    '
+                site_id:
+                  type: string
+                  description: 'The object contains shipper_account credentials information. Please refer to [shipper account credentials](../docs/enum/shipper-accounts-credentials.md) object for details.
+
+                    '
+            examples:
+              example-1:
+                value:
+                  account_number: '12345678'
+                  password: '123456789'
+                  site_id: site_id
+        description: Update a shipper account's credentials
+      tags:
+      - Shipper Accounts
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      security:
+      - as-api-key: []
+  /shipper-accounts/{id}/settings:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: Shipper account id
+    patch:
+      summary: Update a shipper account's settings
+      operationId: patch-shipper-accounts-id-settings
+      responses:
+        '200':
+          description: Update a shipper account's settings
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 88dvqwwwbgkgb
+                    properties:
+                      electronic_trade_documents_enabled:
+                        type: boolean
+                      commercial_invoice_signature:
+                        type: string
+                        x-stoplight:
+                          id: yuyogp211g2ij
+                      commercial_invoice_letterhead:
+                        type: string
+                        x-stoplight:
+                          id: xmfrp0o4n4azj
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      electronic_trade_documents_enabled: true
+                      commercial_invoice_signature: '********'
+                      commercial_invoice_letterhead: '********'
+      description: This endpoint allows you to update the settings for your specific shipper account. Only applies to FedEx currently.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  electronic_trade_documents_enabled: true
+                  commercial_invoice_signature: '********'
+                  commercial_invoice_letterhead: '********'
+              properties:
+                electronic_trade_documents_enabled:
+                  type: boolean
+                  description: Set to true to enable FedEx Electronic Trade Documents (ETD), provide both commercial_invoice_letterhead and commercial_invoice_signature are required. Otherwise ETD is disabled and any provided image fields are ignored.
+                  x-stoplight:
+                    id: uyjjceifgximo
+                commercial_invoice_letterhead:
+                  type: string
+                  description: Letterhead image to generate courier's electronic commercial invoice. Only Base64-encoded PNG images are supported, the max resolution is 700 pixels wide by 50 pixels long.
+                  x-stoplight:
+                    id: uyjjceifgximo
+                commercial_invoice_signature:
+                  type: string
+                  description: Signature image to generate courier's electronic commercial invoice. Only Base64-encoded PNG images are supported, the max resolution is 240 pixels wide by 25 pixels long.
+                  x-stoplight:
+                    id: zpl24802bw2a4
+            examples:
+              example-1:
+                value:
+                  electronic_trade_documents_enabled: true
+                  commercial_invoice_signature: '********'
+                  commercial_invoice_letterhead: '********'
+        description: Update a shipper account's settings
+      tags:
+      - Shipper Accounts
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      security:
+      - as-api-key: []
+      x-stoplight:
+        id: 0xlo21h5n3o1j
+components:
+  schemas:
+    Address.v3:
+      type: object
+      x-stoplight:
+        id: c01e28f80783b
+      x-examples:
+        example-1:
+          country: HKG
+          contact_name: Sir Foo
+          phone: '11111111'
+          fax: +1 206-654-3100
+          email: foo@foo.com
+          company_name: Foo Store
+          street1: Workshop A, 10/F, Wah Shing Industrial Building
+          street2: 18 Cheung Shun Street, Lai Chi Kok
+          city: Lai Chi Kok
+          type: business
+          postal_code: null
+          state: null
+          street3: null
+          tax_id: null
+      title: Address
+      description: 'Address object: the description of address information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - street1
+      - country
+      - contact_name
+      properties:
+        street1:
+          type: string
+          description: 'address_line1 of address
+
+            '
+        country:
+          type: string
+          description: Country in ISO 3166-1 alpha 3 code
+        contact_name:
+          type: string
+          description: contact_name of address
+        phone:
+          type: string
+          description: contact_phone of address
+        fax:
+          type:
+          - string
+          - 'null'
+          description: fax_number of address
+        email:
+          type:
+          - string
+          - 'null'
+          description: email of address
+        company_name:
+          type:
+          - string
+          - 'null'
+          description: company_name of address
+        street2:
+          type:
+          - string
+          - 'null'
+          description: address_line2 of address
+        street3:
+          type:
+          - string
+          - 'null'
+          description: address_line3 of address
+        city:
+          type:
+          - string
+          - 'null'
+          description: city of address
+        state:
+          type:
+          - string
+          - 'null'
+          description: state of address
+        postal_code:
+          type:
+          - string
+          - 'null'
+          description: postal_code of address
+        type:
+          type:
+          - string
+          - 'null'
+          description: type of address
+          enum:
+          - residential
+          - business
+        tax_id:
+          type:
+          - string
+          - 'null'
+          description: tax id
+        tax_id_type:
+          type:
+          - string
+          - 'null'
+          description: 'tax id type. Only applies to DHL Express, DHL eCommerce US, DHL eCommerce UK.
+
+            - vat: Value-Added tax
+
+            - gst: Goods and Service Tax
+
+            - eori: European Union Registration and Identification
+
+            - ioss: Import One Stop Shop
+
+            - pan: Pan-Aarav
+
+            - ukims: UK Internal Market Scheme
+
+            - other: Other
+
+            '
+          x-stoplight:
+            id: 7rtl96ei81zeb
+          enum:
+          - vat
+          - gst
+          - eori
+          - ioss
+          - pan
+          - ukims
+          - other
+        identification_number:
+          type:
+          - string
+          - 'null'
+          description: identification number
+          x-stoplight:
+            id: u1nqwj1dvhw67
+        identification_type:
+          type:
+          - string
+          - 'null'
+          description: 'identification type
+
+            - mil: Military Number
+
+            - nid: National Identity Card
+
+            - pas: Passport
+
+            - other: Other'
+          x-stoplight:
+            id: gh9ttmhi0xmik
+          enum:
+          - mil
+          - nid
+          - pas
+          - other
+        eori_number:
+          type:
+          - string
+          - 'null'
+          description: eori number
+        location:
+          type:
+          - object
+          - 'null'
+          properties:
+            lat:
+              type: number
+              description: latitude number
+            lng:
+              type: number
+              description: longitude number
+    Shipper_account.v3:
+      title: ShipperAccount
+      x-stoplight:
+        id: btwx9pxk00w1m
+      type: object
+      x-tags:
+      - Resource
+      examples: []
+      description: 'ShipperAccount object: the description of shipper account information'
+      properties:
+        id:
+          type: string
+          description: 'Shipper Account ID
+
+            '
+        address:
+          $ref: '#/components/schemas/Address.v3'
+        slug:
+          type: string
+          description: Couirer slug
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+          - deleted
+        description:
+          type: string
+          description: 'The description of the account
+
+            '
+        type:
+          type: string
+          description: The type of the shipper_account
+          enum:
+          - default
+          - user
+        timezone:
+          type: string
+          description: 'Shipper account timezone
+
+            '
+        created_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+        updated_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+    Meta.v3:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

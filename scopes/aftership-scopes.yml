@@ -1,0 +1,85 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.aftership.com/docs/tracking/quickstart/authentication/oauth/available-scopes
+docs: https://www.aftership.com/docs/tracking/quickstart/authentication/oauth/available-scopes
+note: Scopes are published as an OAuth reference page, not inside any OpenAPI securityScheme — every AfterShip spec
+  declares only the as-api-key apiKey scheme. The list below is transcribed verbatim from the AfterShip Tracking
+  API "Available Scopes" page; operationIds are matched from openapi/aftership-tracking-api-openapi.yml.
+authorization_server: https://accounts.aftership.com/auth/realms/business
+idp_scopes_supported:
+- openid
+- address
+- web-origins
+- email
+- profile
+- microprofile-jwt
+- phone
+- service_account
+- offline_access
+- basic
+- roles
+- acr
+idp_source: https://accounts.aftership.com/auth/realms/business/.well-known/openid-configuration
+scope_count: 7
+scopes:
+- scope: aftership:tracking:read
+  api: AfterShip Tracking API
+  endpoints:
+  - GET /trackings
+  - GET /trackings/{id}
+  operationIds:
+  - get-trackings
+  - get-tracking-by-id
+- scope: aftership:tracking:write
+  api: AfterShip Tracking API
+  endpoints:
+  - POST /trackings
+  - PUT /trackings/{id}
+  - DELETE /trackings/{id}
+  - POST /trackings/{id}/retrack
+  - POST /trackings/{id}/mark-as-completed
+  operationIds:
+  - create-tracking
+  - update-tracking-by-id
+  - delete-tracking-by-id
+  - retrack-tracking-by-id
+  - mark-tracking-completed-by-id
+- scope: aftership:courier:read
+  api: AfterShip Tracking API
+  endpoints:
+  - GET /couriers
+  - GET /couriers/all
+  operationIds:
+  - get-couriers
+- scope: aftership:courier:write
+  api: AfterShip Tracking API
+  endpoints:
+  - POST /couriers/detect
+  operationIds:
+  - detect-courier
+- scope: aftership:estimated_delivery_date:write
+  api: AfterShip Tracking API
+  endpoints:
+  - POST /estimated-delivery-date/predict-batch
+  - POST /estimated-delivery-date/predict
+  operationIds:
+  - predict-batch
+  - predict
+- scope: aftership:carrier_connection:read
+  api: AfterShip Tracking API
+  endpoints:
+  - GET /courier-connections
+  - GET /courier-connections/{id}
+  operationIds:
+  - get-courier-connections
+  - get-courier-connections-by-id
+- scope: aftership:carrier_connection:write
+  api: AfterShip Tracking API
+  endpoints:
+  - POST /courier-connections
+  - PATCH /courier-connections/{id}
+  - DELETE /courier-connections/{id}
+  operationIds:
+  - post-courier-connections
+  - put-courier-connections-by-id
+  - delete-courier-connections-by-id

@@ -1,0 +1,397 @@
+openapi: 3.2.0
+info:
+  title: Overview Cancel Pickups API
+  version: '1.0'
+  summary: API Overview
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+servers:
+- description: Sandbox
+  url: https://sandbox-api.aftership.com/postmen/v3
+- url: https://api.aftership.com/postmen/v3
+  description: Production
+security:
+- as-api-key: []
+tags:
+- name: Cancel Pickups
+paths:
+  /cancel-pickups:
+    parameters: []
+    get:
+      summary: Get the cancelled pickups
+      tags:
+      - Cancel Pickups
+      responses:
+        '200':
+          description: Get all the cancelled pickups.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                    x-stoplight:
+                      id: v7dsxflfjgt9o
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 3apm3myzwpxho
+                    properties:
+                      next_token:
+                        type: string
+                        x-stoplight:
+                          id: 9jzrki0ebr6ai
+                      limit:
+                        type: integer
+                        x-stoplight:
+                          id: syb9lxrw395g4
+                      created_at_min:
+                        type: string
+                        x-stoplight:
+                          id: er21x163cbej1
+                      created_at_max:
+                        type: string
+                        x-stoplight:
+                          id: 2z1jt0r176mjn
+                      cancel_pickups:
+                        type: array
+                        x-stoplight:
+                          id: dtxyazpt7vo00
+                        description: The array contains cancel_pickups object information. Please refer to [cancel pickup](../model/resource/cancel_pickup.v3.json) object for details.
+                        items:
+                          $ref: '#/components/schemas/Cancel_pickup.v3'
+              examples:
+                Get User Alice Smith:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      status: cancelled
+                      pickup:
+                        id: 00000000-0000-0000-0000-000000000000
+                      created_at: '2023-09-21T08:10:47+00:00'
+                      updated_at: '2023-09-21T08:10:47+00:00'
+      operationId: get-cancel-pickups
+      description: 'Get all the cancelled pickups.
+
+        <div style="visibility:hidden; height: 0">
+
+        The array contains cancel_pickups object information. Please refer to [cancel pickup](../model/resource/cancel_pickup.v3.json) object for details.
+
+        </div>'
+      x-stoplight:
+        id: 35p8o3dsqpaqc
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      - schema:
+          type: string
+          enum:
+          - cancelling
+          - cancelled
+          - failed
+        in: query
+        name: status
+        description: Cancel Pickups status
+      - schema:
+          type: string
+        in: query
+        name: limit
+        description: Number of records per page
+      - schema:
+          type: string
+        in: query
+        name: created_at_min
+        description: 'Start date and time of the record created (format YYYY-MM-DDTHH:MM:SSZ or YYYY-MM-DDTHH:MM:SS+00:00, default: 24hrs ago)'
+      - schema:
+          type: string
+        in: query
+        name: created_at_max
+        description: 'End date and time of the record created (format YYYY-MM-DDTHH:MM:SSZ or YYYY-MM-DDTHH:MM:SS+00:00, default: NOW())'
+      - schema:
+          type: string
+        in: query
+        name: next_token
+        description: Next token
+      security:
+      - as-api-key: []
+    post:
+      summary: Cancel a pickup
+      operationId: post-cancel-pickups
+      responses:
+        '200':
+          description: Cancel a pickup.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                    x-stoplight:
+                      id: znkpwo8g6evzg
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: cgg6mg4k05v41
+                    properties:
+                      id:
+                        type: string
+                        x-stoplight:
+                          id: 9cshac8ini0bf
+                      status:
+                        type: string
+                        x-stoplight:
+                          id: mgxrpuib0j20r
+                        enum:
+                        - cancelling
+                        - cancelled
+                        - failed
+                      pickup:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            x-stoplight:
+                              id: y2qscinjkg4h9
+                      created_at:
+                        type: string
+                        x-stoplight:
+                          id: rohwqa4zfxxrl
+                      updated_at:
+                        type: string
+                        x-stoplight:
+                          id: r50bd1uaeo2ws
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      status: cancelled
+                      pickup:
+                        id: 00000000-0000-0000-0000-000000000000
+                      created_at: '2022-02-11T08:10:47+00:00'
+                      updated_at: '2022-02-11T08:10:47+00:00'
+      x-stoplight:
+        id: nmi7kbs8wavn2
+      description: Cancel a pickup.
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pickup:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      x-stoplight:
+                        id: 8kde8khuiqha2
+              required:
+              - pickup
+            examples:
+              Example 1:
+                value:
+                  pickup:
+                    id: 00000000-0000-0000-0000-000000000000
+        description: Cancel a pickup.
+      security:
+      - as-api-key: []
+      tags:
+      - Cancel Pickups
+  /cancel-pickups/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: Cancel pickup id
+    get:
+      summary: Get a cancelled pickup
+      operationId: get-cancel-pickup
+      responses:
+        '200':
+          description: Get a cancelled pickup.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                    x-stoplight:
+                      id: 4vr83gediy3r7
+                  data:
+                    $ref: '#/components/schemas/Cancel_pickup.v3'
+                    x-stoplight:
+                      id: p9r9t73qmd1pr
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      status: cancelled
+                      pickup:
+                        id: 00000000-0000-0000-0000-000000000000
+                      created_at: '2022-02-11T08:10:47+00:00'
+                      updated_at: '2022-02-11T08:10:47+00:00'
+      x-stoplight:
+        id: lgdp9svgf645n
+      description: Get a cancelled pickup.
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      security:
+      - as-api-key: []
+      tags:
+      - Cancel Pickups
+components:
+  schemas:
+    Cancel_pickup.v3:
+      title: CancelPickup
+      x-stoplight:
+        id: jgle7lqc6xxxj
+      type: object
+      description: 'Cancel Pickup object: the description of cancel pickup object'
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: bwqr7ztwl631p
+        status:
+          type: string
+          x-stoplight:
+            id: 0r93vfcowv3h6
+          enum:
+          - cancelling
+          - cancelled
+          - failed
+        pickup:
+          $ref: '#/components/schemas/Reference.v3'
+          x-stoplight:
+            id: idaarrs82dppb
+        created_at:
+          type: string
+          x-stoplight:
+            id: y0gzu3zuv27yw
+          description: 'the timestamp of created_at
+
+
+            Example: `2022-05-18T09:17:38+00:00`'
+        updated_at:
+          type: string
+          x-stoplight:
+            id: h651ir6ht6h52
+          description: 'the timestamp of updated_at
+
+
+            Example: `2022-05-18T09:17:38+00:00`
+
+            '
+    Meta.v3:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Reference.v3:
+      title: Reference
+      x-stoplight:
+        id: pwqp1323bhe8q
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'id of referring object
+
+            '
+      x-tags:
+      - Primitive
+      examples: []
+      description: 'Reference object: the description of reference information'
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

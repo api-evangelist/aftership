@@ -1,0 +1,3506 @@
+openapi: 3.2.0
+info:
+  title: Overview Tracking API
+  version: '1.0'
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com/nodes/reference/api.json?branch=production%252F2026-07&deref=optimizedBundle)
+
+    <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/terms
+  summary: API Overview
+servers:
+- url: https://api.aftership.com/tracking/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Tracking
+paths:
+  /trackings:
+    get:
+      summary: Get trackings
+      responses:
+        '200':
+          description: Get trackings response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracking_response_get_multiple.v1'
+              examples:
+                get-trackings:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      pagination:
+                        total: 2
+                        next_cursor: WzE3MTk5OTIwMzIzNTMsImE0NWQ5NDg5ODU4NzQzMjA5YjBjYjRlZjE3ZTBjNGVhIl0=
+                        has_next_page: true
+                      trackings:
+                      - id: 0b02015fc7fd4f3c8d5490cece4d124d
+                        legacy_id: my2uktymyz72xld1f7l3h01z
+                        created_at: '2023-01-18T08:47:10+00:00'
+                        updated_at: '2023-01-18T17:47:10+00:00'
+                        tracking_number: '61293150000079650811'
+                        slug: fedex
+                        active: false
+                        custom_fields:
+                          store_name: my-store
+                        transit_time: 9
+                        origin_country_region: CHN
+                        origin_state: Beijing
+                        origin_city: Beijing
+                        origin_postal_code: '065001'
+                        origin_raw_location: Lihong Gardon 4A 2301, Chaoyang District, Beijing, BJ, 065001, CHN, China
+                        destination_country_region: USA
+                        destination_state: New York
+                        destination_city: New York City
+                        destination_postal_code: '10001'
+                        destination_raw_location: 13th Street, New York, NY, 10011, USA, United States
+                        courier_destination_country_region: USA
+                        courier_estimated_delivery_date:
+                          estimated_delivery_date: '2022-01-03T12:11:11+01:00'
+                          estimated_delivery_date_min: '2022-01-02T12:11:10+01:00'
+                          estimated_delivery_date_max: '2022-01-03T12:11:11+01:00'
+                        note: note
+                        order_id: 6845a095a27a4caeb27487806f058add
+                        order_id_path: https://www.aftership.com/my-orders/6845a095a27a4caeb27487806f058add
+                        order_date: '2022-01-20T15:56:12+08:00'
+                        shipment_package_count: 1
+                        shipment_pickup_date: '2022-01-21T15:00:00'
+                        shipment_delivery_date: '2022-01-29T11:23:00'
+                        shipment_type: FedEx SmartPost
+                        shipment_weight:
+                          value: 0.7
+                          unit: kg
+                        signed_by: Steve Young
+                        customers:
+                        - role: sender
+                          name: Steve Young
+                          phone_number: '+8613800138000'
+                          email: example@aftership.com
+                          language: en
+                          id: cust_12345
+                        source: api
+                        tag: Delivered
+                        subtag: Delivered_002
+                        subtag_message: Picked up by customer
+                        title: '61293150000079650811'
+                        tracked_count: 13
+                        language: en
+                        checkpoints:
+                        - created_at: '2023-01-18T08:47:10+00:00'
+                          slug: fedex
+                          checkpoint_time: '2022-01-01T18:47:10-05:00'
+                          location: 13th Street, New York, NY 10011, USA, United States
+                          city: New York
+                          state: NY
+                          postal_code: '10011'
+                          coordinate: null
+                          country_region: USA
+                          country_region_name: United States
+                          message: Package delivered
+                          tag: Delivered
+                          subtag: Delivered_002
+                          subtag_message: Picked up by customer
+                          raw_tag: RO
+                          events:
+                          - code: delivered_to_neighbor
+                            reason:
+                              code: incorrect_missing_address
+                          source: carrier
+                          hash: a1b2c3d4e5f6789012345678901234567890abcd
+                        subscribed_smses:
+                        - string
+                        subscribed_emails:
+                        - string
+                        return_to_sender: false
+                        order_promised_delivery_date:
+                          promised_delivery_date: '2026-01-01'
+                          promised_delivery_date_max: null
+                          promised_delivery_date_min: null
+                        delivery_type: pickup_at_store
+                        pickup_location: 13th Street, New York, NY 10011, USA, United States
+                        pickup_note: No notes
+                        courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                        first_attempted_at: '2022-01-01T17:00:00-05:00'
+                        courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                        tracking_account_number: null
+                        tracking_key: null
+                        tracking_ship_date: '20220101'
+                        on_time_status: on-time
+                        on_time_difference: 0
+                        order_tags:
+                        - Exception
+                        aftership_estimated_delivery_date:
+                          estimated_delivery_date: '2022-01-03'
+                          confidence_code: 10001
+                          estimated_delivery_date_min: '2022-01-02'
+                          estimated_delivery_date_max: '2022-01-04'
+                        custom_estimated_delivery_date:
+                          type: specific
+                          datetime: '2022-01-05'
+                          datetime_min: null
+                          datetime_max: null
+                        order_number: '162654659775'
+                        first_estimated_delivery:
+                          type: specific
+                          source: Carrier EDD
+                          datetime: '2022-01-05T12:11:11+01:00'
+                          datetime_min: null
+                          datetime_max: null
+                        latest_estimated_delivery:
+                          type: specific
+                          source: AfterShip EDD
+                          datetime: '2022-01-05T12:11:11+01:00'
+                          datetime_min: null
+                          datetime_max: null
+                          revise_reason: extreme_weather
+                        shipment_tags:
+                        - Returned
+                        courier_connection_id: 8e1261bde336436abbc7cb3eee8cd707
+                        last_mile:
+                          slug: usps
+                          tracking_number: '61293150000079650811'
+                          source: system
+                          courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                          courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                        first_mile:
+                          slug: usps
+                          tracking_number: '61293150000079650812'
+                          courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650812&cntry_code=US
+                          courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650812&cntry_code=US
+                        carbon_emissions:
+                          unit: kg
+                          value: 0.7
+                        location_id: bda843ed811541fc852a8447371cf6f2
+                        shipping_method: Local Delivery
+                        failed_delivery_attempts: 2
+                        signature_requirement: signature_required
+                        delivery_location_type: null
+                        aftership_tracking_url: https://track.happytrading.com/61293150000079650811
+                        aftership_tracking_order_url: https://track.happytrading.com/order-status?order-number=1001&code=eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ==
+                        shipment_dimensions:
+                          unit: cm
+                          length: 30
+                          width: 20
+                          height: 10
+                        proof_of_delivery:
+                        - type: image
+                          url: https://example.com/pod-image.jpg
+                        multi_piece_info:
+                          type: master
+                          pieces:
+                          - tracking_id: bff5a3bac79b472991a204172473a635
+                            tracking_number: '61293150000079650811'
+                            type: master
+                            trackable: true
+                          - tracking_id: c79b472991a204172473a635bff5a3ba
+                            tracking_number: '61293150000079650812'
+                            type: child
+                            trackable: true
+                        shipment_direction: forward
+                        return_shipment:
+                          id: a204172473a635bff5a3bac79b472991
+                          tracking_number: '61293150000079650813'
+                          slug: usps
+                        forward_shipment: null
+      operationId: get-trackings
+      description: 'Get tracking results of multiple trackings.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)
+
+        [url](../../docs/quickstart/authentication.md)
+
+        </div>'
+      parameters:
+      - schema:
+          type: string
+          enum:
+          - application/json
+          example: application/json
+          default: application/json
+        in: header
+        name: Content-Type
+        description: 'Content-Type
+
+          '
+        required: true
+      - schema:
+          type: string
+          minimum: 1
+          example: WzE3MTk5OTIwMzIzNTMsImE0NWQ5NDg5ODU4NzQzMjA5YjBjYjRlZjE3ZTBjNGVhIl0=
+        in: query
+        name: cursor
+        description: A string representing the cursor value for the current page of results.
+      - schema:
+          type: integer
+          minLength: 1
+          maxLength: 200
+          minimum: 1
+          maximum: 200
+          default: 100
+          example: 100
+        in: query
+        name: limit
+        description: 'Number of trackings each page contain. (Default: 100, Max: 200)'
+      - schema:
+          type: string
+          example: RA123456789US
+        in: query
+        name: keyword
+        description: 'Search the content of the tracking record fields: `tracking_number`, `title`, `order_id`, `customers[x].name`, `custom_fields`, `customers[x].email`, `customers[x].phone_number`'
+      - schema:
+          type: string
+          example: RA123456789US,LE123456789US
+        in: query
+        name: tracking_numbers
+        description: 'Tracking number of shipments. Use comma to separate multiple values (Example: RA123456789US,LE123456789US). Supports up to 50 tracking numbers.'
+      - schema:
+          type: string
+          pattern: ^[a-z0-9-]+$
+          minLength: 1
+          example: usps
+        in: query
+        name: slug
+        description: 'Unique courier code Use comma for multiple values. (Example: dhl,ups,usps)'
+      - schema:
+          type: integer
+          example: 1
+        in: query
+        name: transit_time
+        description: 'Total delivery time in days.
+
+
+          - When the shipment is delivered: Transit time = Delivered date - Picked up date
+
+          - When the shipment is not delivered: Transit time = Current date - Picked up date
+
+
+          Value as `null` for the shipment without pickup date.'
+      - schema:
+          type: string
+          pattern: ^[A-Z,]+$
+          example: USA
+        in: query
+        name: origin
+        description: 'Origin country/region of trackings. Use ISO Alpha-3 (three letters). Use comma for multiple values. (Example: USA,HKG)'
+      - schema:
+          type: string
+          pattern: ^[A-Z,]+$
+          example: USA
+        in: query
+        name: destination
+        description: 'Destination country/region of trackings. Use ISO Alpha-3 (three letters). Use comma for multiple values. (Example: USA,HKG)'
+      - schema:
+          type: string
+          enum:
+          - Pending
+          - InfoReceived
+          - InTransit
+          - OutForDelivery
+          - AttemptFail
+          - Delivered
+          - AvailableForPickup
+          - Exception
+          - Expired
+          example: InTransit
+          pattern: ^[A-Za-z]+$
+        in: query
+        name: tag
+        description: Current status of tracking. Values include `Pending`, `InfoReceived`, `InTransit`, `OutForDelivery`, `AttemptFail`, `Delivered`, `AvailableForPickup`, `Exception`, `Expired` (See tag definition)
+      - schema:
+          type: string
+          example: 2013-03-15T16:41:56%2B08:00
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$
+        in: query
+        name: created_at_min
+        description: 'Start date and time of trackings created. AfterShip only stores data of 120 days. Please make sure the value of the parameter is properly escaped in [URL encoding](https://en.wikipedia.org/wiki/Percent-encoding).(Defaults: 120 days ago, Example: The escaped value of 2013-03-15T16:41:56+08:00 is 2013-03-15T16:41:56%2B08:00)'
+      - schema:
+          type: string
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$
+          example: 2013-03-15T16:41:56%2B08:00
+        in: query
+        name: created_at_max
+        description: 'End date and time of trackings created. Please make sure the value of the parameter is properly escaped in [URL encoding](https://en.wikipedia.org/wiki/Percent-encoding).(Defaults: now, Example: The escaped value of 2013-04-15T16:41:56+08:00 is 2013-04-15T16:41:56%2B08:00)'
+      - schema:
+          type: string
+          example: 2013-03-15T16:41:56%2B08:00
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$
+        in: query
+        name: updated_at_min
+        description: 'Start date and time of trackings updated. Please make sure the value of the parameter is properly escaped in [URL encoding](https://en.wikipedia.org/wiki/Percent-encoding).(Example: The escaped value of 2013-03-15T16:41:56+08:00 is 2013-03-15T16:41:56%2B08:00)'
+      - schema:
+          type: string
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$
+          example: 2013-03-15T16:41:56%2B08:00
+        in: query
+        name: updated_at_max
+        description: 'End date and time of trackings updated. Please make sure the value of the parameter is properly escaped in [URL encoding](https://en.wikipedia.org/wiki/Percent-encoding).(Example: The escaped value of 2013-04-15T16:41:56+08:00 is 2013-04-15T16:41:56%2B08:00)'
+      - schema:
+          type: string
+          example: title
+          pattern: ^[a-z0-9,]+$
+        in: query
+        name: fields
+        description: 'List of fields to include in the response. Use comma for multiple values. Available options: `title`, `order_id`, `tag`, `checkpoints`. Example: `title,order_id`'
+      - schema:
+          type: string
+          pattern: ^[a-z,]+$
+          example: 'true'
+        in: query
+        name: return_to_sender
+        description: Select return to sender, the value should be `true` or `false`, with optional comma separated.
+      - schema:
+          type: string
+          pattern: ^[A-Z,]+$
+          example: USA
+        in: query
+        name: courier_destination_country_region
+        description: 'Destination country/region of trackings returned by courier. Use ISO Alpha-3 (three letters). Use comma for multiple values. (Example: USA,HKG)'
+      - schema:
+          type: string
+        in: query
+        description: 'Tags you added to your shipments to help categorize and filter them easily. Use a comma to separate multiple values (Example: a,b)'
+        name: shipment_tags
+      - schema:
+          type: string
+          example: 6845a095a27a4caeb27487806f058add
+        in: query
+        name: order_id
+        description: 'A globally-unique identifier for the order. Use comma for multiple values.(Example: 6845a095a27a4caeb27487806f058add,4845a095a27a4caeb27487806f058abc)'
+      x-stoplight:
+        id: jh865r66gc6hi
+      tags:
+      - Tracking
+    post:
+      summary: Create a tracking
+      operationId: create-tracking
+      responses:
+        '201':
+          description: Tracking object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracking_response.v1'
+              examples:
+                normal response:
+                  value:
+                    meta:
+                      code: 201
+                    data:
+                      id: 0b02015fc7fd4f3c8d5490cece4d124d
+                      legacy_id: my2uktymyz72xld1f7l3h01z
+                      created_at: '2023-01-18T08:47:10+00:00'
+                      updated_at: '2023-01-18T17:47:10+00:00'
+                      tracking_number: '61293150000079650811'
+                      slug: fedex
+                      active: false
+                      custom_fields:
+                        store_name: my-store
+                      transit_time: 9
+                      origin_country_region: CHN
+                      origin_state: Beijing
+                      origin_city: Beijing
+                      origin_postal_code: '065001'
+                      origin_raw_location: Lihong Gardon 4A 2301, Chaoyang District, Beijing, BJ, 065001, CHN, China
+                      destination_country_region: USA
+                      destination_state: New York
+                      destination_city: New York City
+                      destination_postal_code: '10001'
+                      destination_raw_location: 13th Street, New York, NY, 10011, USA, United States
+                      courier_destination_country_region: USA
+                      courier_estimated_delivery_date:
+                        estimated_delivery_date: '2022-01-03T12:11:11+01:00'
+                        estimated_delivery_date_min: '2022-01-02T12:11:10+01:00'
+                        estimated_delivery_date_max: '2022-01-03T12:11:11+01:00'
+                      note: note
+                      order_id: 6845a095a27a4caeb27487806f058add
+                      order_id_path: https://www.aftership.com/my-orders/6845a095a27a4caeb27487806f058add
+                      order_date: '2022-01-20T15:56:12+08:00'
+                      shipment_package_count: 1
+                      shipment_pickup_date: '2022-01-21T15:00:00'
+                      shipment_delivery_date: '2022-01-29T11:23:00'
+                      shipment_type: FedEx SmartPost
+                      shipment_weight:
+                        value: 0.7
+                        unit: kg
+                      signed_by: Steve Young
+                      customers:
+                      - role: sender
+                        name: Steve Young
+                        phone_number: '+8613800138000'
+                        email: example@aftership.com
+                        language: en
+                        id: cust_12345
+                      source: api
+                      tag: Delivered
+                      subtag: Delivered_002
+                      subtag_message: Picked up by customer
+                      title: '61293150000079650811'
+                      tracked_count: 13
+                      language: en
+                      checkpoints:
+                      - created_at: '2023-01-18T08:47:10+00:00'
+                        slug: fedex
+                        checkpoint_time: '2022-01-01T18:47:10-05:00'
+                        location: 13th Street, New York, NY 10011, USA, United States
+                        city: New York
+                        state: NY
+                        postal_code: '10011'
+                        coordinate: null
+                        country_region: USA
+                        country_region_name: United States
+                        message: Package delivered
+                        tag: Delivered
+                        subtag: Delivered_002
+                        subtag_message: Picked up by customer
+                        raw_tag: RO
+                        events:
+                        - code: delivered_to_neighbor
+                          reason:
+                            code: incorrect_missing_address
+                        source: carrier
+                        hash: a1b2c3d4e5f6789012345678901234567890abcd
+                      subscribed_smses:
+                      - string
+                      subscribed_emails:
+                      - string
+                      return_to_sender: false
+                      order_promised_delivery_date:
+                        promised_delivery_date: '2026-01-01'
+                        promised_delivery_date_max: null
+                        promised_delivery_date_min: null
+                      delivery_type: pickup_at_store
+                      pickup_location: 13th Street, New York, NY 10011, USA, United States
+                      pickup_note: No notes
+                      courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                      first_attempted_at: '2022-01-01T17:00:00-05:00'
+                      courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                      tracking_account_number: null
+                      tracking_key: null
+                      tracking_ship_date: '20220101'
+                      on_time_status: on-time
+                      on_time_difference: 0
+                      order_tags:
+                      - Exception
+                      aftership_estimated_delivery_date:
+                        estimated_delivery_date: '2022-01-03'
+                        confidence_code: 10001
+                        estimated_delivery_date_min: '2022-01-02'
+                        estimated_delivery_date_max: '2022-01-04'
+                      custom_estimated_delivery_date:
+                        type: specific
+                        datetime: '2022-01-05'
+                        datetime_min: null
+                        datetime_max: null
+                      order_number: '162654659775'
+                      first_estimated_delivery:
+                        type: specific
+                        source: Carrier EDD
+                        datetime: '2022-01-05T12:11:11+01:00'
+                        datetime_min: null
+                        datetime_max: null
+                      latest_estimated_delivery: null
+                      shipment_tags:
+                      - Returned
+                      courier_connection_id: 8e1261bde336436abbc7cb3eee8cd707
+                      last_mile:
+                        slug: usps
+                        tracking_number: '61293150000079650811'
+                        source: system
+                        courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                        courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                      first_mile:
+                        slug: usps
+                        tracking_number: '61293150000079650812'
+                        courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650812&cntry_code=US
+                        courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650812&cntry_code=US
+                      carbon_emissions:
+                        unit: kg
+                        value: 0.7
+                      location_id: bda843ed811541fc852a8447371cf6f2
+                      shipping_method: Local Delivery
+                      failed_delivery_attempts: 2
+                      signature_requirement: signature_required
+                      delivery_location_type: null
+                      aftership_tracking_url: https://track.happytrading.com/61293150000079650811
+                      aftership_tracking_order_url: https://track.happytrading.com/order-status?order-number=1001&code=eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ==
+                      shipment_dimensions:
+                        unit: cm
+                        length: 30
+                        width: 20
+                        height: 10
+                      proof_of_delivery:
+                      - type: image
+                        url: https://example.com/pod-image.jpg
+                      multi_piece_info:
+                        type: master
+                        pieces:
+                        - tracking_id: bff5a3bac79b472991a204172473a635
+                          tracking_number: '61293150000079650811'
+                          type: master
+                          trackable: true
+                        - tracking_id: c79b472991a204172473a635bff5a3ba
+                          tracking_number: '61293150000079650812'
+                          type: child
+                          trackable: true
+                      shipment_direction: forward
+                      return_shipment:
+                        id: a204172473a635bff5a3bac79b472991
+                        tracking_number: '61293150000079650813'
+                        slug: usps
+                      forward_shipment: null
+      description: 'Create a tracking.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)
+
+        [url](../../docs/quickstart/authentication.md)</div>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - tracking_number
+              properties:
+                id:
+                  type: string
+                  x-stoplight:
+                    id: 7t9fy06v5ekg7
+                  description: Tracking ID that is system-generated by default and can be customized by the user when creating a tracking.
+                  example: bff5a3bac79b472991a204172473a635
+                  pattern: '[0-9a-zA-Z-_]{1,128}'
+                tracking_number:
+                  type: string
+                  minLength: 1
+                  description: 'Tracking number of a shipment.
+
+
+                    Duplicated tracking numbers, tracking numbers with invalid tracking number format will not be accepted.
+
+
+                    We only accept tracking numbers with length from 4 to 100
+
+
+                    We currently support the following characters in a tracking number:
+
+
+                    - A - Z
+
+                    - 0 - 9
+
+                    - `-` (Hyphen)
+
+                    - . (Period)
+
+                    - _ (Underscore)
+
+                    - / (Slash)'
+                slug:
+                  type: string
+                  description: Unique courier code. Get courier codes [here](https://www.aftership.com/docs/tracking/others/supported-couriers).
+                title:
+                  type: string
+                  minLength: 1
+                  description: By default this field shows the `tracking_number`, but you can customize it as you wish with any info (e.g. the order number).
+                order_id:
+                  type: string
+                  minLength: 1
+                  description: A globally-unique identifier for the order.
+                custom_fields:
+                  type: object
+                  description: 'Custom fields that accept an object with string field. In order to protect the privacy of your customers, do not include any [personal data](https://www.aftership.com/legal/dpa#:~:text=Personal%20Data%20means,that%20natural%20person) in custom fields.
+
+
+                    - Maximum charater limit for a key name: 30
+
+                    - Maximum count for a key-value pair in a custom field object: 25
+
+                    - Maximum value length: 512 charaters
+
+                    - Supported value type: String only (object and array are prohibted)'
+                  additionalProperties:
+                    x-stoplight:
+                      id: ojdlar98pvzkw
+                    type: string
+                order_id_path:
+                  type: string
+                  minLength: 1
+                  description: The URL for the order in your system or store.
+                language:
+                  type: string
+                  minLength: 1
+                  description: The recipient’s language. If you set up AfterShip notifications in different languages, we use this to send the recipient tracking updates in their preferred language. Use an [ISO 639-1 Language Code](https://help.aftership.com/hc/en-us/articles/360001623287-Supported-Language-Parameters) to specify the language.
+                order_promised_delivery_date:
+                  type: object
+                  description: The promised delivery date of the order in shipment recipient’s timezone.
+                  properties:
+                    promised_delivery_date:
+                      type:
+                      - string
+                      - 'null'
+                      x-stoplight:
+                        id: e6hnuyahywsh7
+                      description: 'The promised delivery date of the order.
+
+                        It uses the formats:
+
+                        - YYYY-MM-DD
+
+                        - YYYY-MM-DDTHH:mm:ss
+
+                        - YYYY-MM-DDTHH:mm:ssZ'
+                      example: 'null'
+                    promised_delivery_date_min:
+                      type:
+                      - string
+                      - 'null'
+                      x-stoplight:
+                        id: uu74a45lrvb9a
+                      description: "Earliest promised delivery date of the order. \nIt uses the formats:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ"
+                      example: '2022-01-02T10:00:00'
+                    promised_delivery_date_max:
+                      type:
+                      - string
+                      - 'null'
+                      x-stoplight:
+                        id: 55am8cjum91v6
+                      description: "Latest promised delivery date of the order. \nIt uses the formats:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ"
+                      example: '2022-01-04T10:00:00'
+                pickup_location:
+                  type: string
+                  minLength: 1
+                  description: Shipment pickup location for receiver
+                delivery_type:
+                  type: string
+                  minLength: 1
+                  description: 'Shipment delivery type
+
+
+                    - pickup_at_store
+
+                    - pickup_at_courier
+
+                    - door_to_door'
+                  enum:
+                  - pickup_at_store
+                  - door_to_door
+                  - pickup_at_courier
+                pickup_note:
+                  type: string
+                  minLength: 1
+                  description: Shipment pickup note for receiver
+                tracking_account_number:
+                  type: string
+                  description: Additional field required by some carriers to retrieve the tracking info. The shipper’s carrier account number. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                tracking_key:
+                  type: string
+                  description: Additional field required by some carriers to retrieve the tracking info. A type of tracking credential required by some carriers. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                tracking_ship_date:
+                  type: string
+                  description: 'The date and time when the shipment is shipped by the merchant and ready for pickup by the carrier. The field supports the following formats:
+
+                    - YYYY-MM-DD
+
+                    - YYYY-MM-DDTHH:mm:ss
+
+                    - YYYY-MM-DDTHH:mm:ssZ
+
+                    The field serves two key purposes:
+
+                    - Calculate processing time metrics in the Order-to-delivery Analytics dashboard. To ensure accurate analytics, it''s recommended to include timezone information when configuring this value
+
+                    - Required by certain carriers to retrieve tracking information as an additional tracking field.'
+                origin_country_region:
+                  type: string
+                  description: The [ISO Alpha-3](https://support.aftership.com/en/article/iso3-country-code-rlpi07/) code (3 letters) for the origin country/region. E.g. USA for the United States. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc. Also the additional field required by some carriers to retrieve the tracking info. The origin country/region of the shipment. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                  example: CHN
+                  x-stoplight:
+                    id: uq4ukyviatagh
+                origin_state:
+                  type: string
+                  description: The state of the sender’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: Beijing
+                origin_city:
+                  type: string
+                  description: The city of the sender’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: Beijing
+                origin_postal_code:
+                  type: string
+                  description: The postal of the sender’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: '065001'
+                origin_raw_location:
+                  type: string
+                  description: The sender address that the shipment is shipping from. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: Lihong Gardon 4A 2301, Chaoyang District, Beijing, BJ, 065001, CHN, China
+                destination_country_region:
+                  type: string
+                  description: The [ISO Alpha-3](https://support.aftership.com/en/article/iso3-country-code-rlpi07/) code (3 letters) for the destination country/region. E.g. USA for the United States. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc. Also the additional field required by some carriers to retrieve the tracking info. The destination country/region of the shipment. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                  example: USA
+                  x-stoplight:
+                    id: ercpp086xr1q4
+                destination_state:
+                  type: string
+                  description: The state of the recipient’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc. Also the additional field required by some carriers to retrieve the tracking info. The state/province of the recipient’s address. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                  example: New York
+                destination_city:
+                  type: string
+                  description: The city of the recipient’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: New York City
+                destination_postal_code:
+                  type: string
+                  description: The postal of the recipient’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc. Also the additional field required by some carriers to retrieve the tracking info. The postal code of the recipient’s address. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                  example: '10001'
+                destination_raw_location:
+                  type: string
+                  description: The shipping address that the shipment is shipping to. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: 13th Street, New York, NY, 10011, USA, United States
+                note:
+                  type: string
+                  description: Text field for the note
+                slug_group:
+                  type: string
+                  description: Slug group is a group of slugs which belong to same courier. For example, when you inpit "fedex-group" as slug_group, AfterShip will detect the tracking with "fedex-uk", "fedex-fims", and other slugs which belong to "fedex". It cannot be used with slug at the same time. ([See slug_groups definition](../../docs/enum/slug_groups.md))
+                  example: fedex-group
+                order_date:
+                  type: string
+                  description: Order date in YYYY-MM-DDTHH:mm:ssZ format. e.g. 2021-07-26T11:23:51-05:00
+                order_number:
+                  type: string
+                  description: A unique, human-readable identifier for the order.
+                shipment_type:
+                  type: string
+                  description: The carrier service type for the shipment. If you provide info for this field, AfterShip will not update it with info from the carrier.
+                shipment_tags:
+                  type: array
+                  description: Used to add tags to your shipments to help categorize and filter them easily.
+                  maxItems: 50
+                  items:
+                    type: string
+                    maxLength: 32
+                courier_connection_id:
+                  type: string
+                  description: If you’ve connected multiple accounts for a single carrier on AfterShip, you can now use the courier_connection_id field to tell AfterShip which carrier account you’ve used to handle a shipment so we can track it. ([Get your courier connection id](https://admin.aftership.com/carrier-connection))
+                location_id:
+                  type: string
+                  x-stoplight:
+                    id: k01wm1whofqee
+                  description: "The location_id refers to the place where you fulfilled the items. \n - If you provide a location_id, the system will automatically use it as the tracking's origin address. However, passing both location_id and any origin address information simultaneously is not allowed.\n- Please make sure you add your locations [here](https://admin.aftership.com/settings/locations-and-rules) before passing the location_id and verify that the location's status is active. Learn more about adding locations [here](https://support.aftership.com/en/article/manage-ship-from-locations-via-aftership-tracking-okbhj4/?bust=1702871142396)."
+                shipping_method:
+                  type: string
+                  x-stoplight:
+                    id: jk4fjgpsi4agd
+                  description: The shipping_method string refers to the chosen method for delivering the package. Merchants typically offer various shipping methods to consumers during the checkout process, such as, Local Delivery, Free Express Worldwide Shipping, etc
+                last_mile:
+                  type: object
+                  x-stoplight:
+                    id: wt380ypmoandf
+                  description: This field contains information about the last leg of the shipment, starting from the carrier who hands it over to the last-mile carrier, all the way to delivery. Once AfterShip detects that the shipment involves multiple legs and identifies the last-mile carrier, we will populate the last-mile carrier information in this object. Alternatively, the user can provide this information in this field to specify the last-mile carrier, which is helpful if AfterShip is unable to detect it automatically.
+                  required:
+                  - tracking_number
+                  - slug
+                  properties:
+                    tracking_number:
+                      type: string
+                      x-stoplight:
+                        id: ernzcxdt0ojen
+                      description: The tracking number of the last-mile carrier.
+                    slug:
+                      type: string
+                      x-stoplight:
+                        id: g2w2ua9kisegq
+                      description: The unique code of the carrier responsible for the last-mile of the shipment.  Find all the courier slugs [here](https://www.aftership.com/docs/tracking/others/supported-couriers).
+                customers:
+                  type: array
+                  x-stoplight:
+                    id: vk85cip3yx6oc
+                  description: The field contains the customer information associated with the tracking. A maximum of three customer objects are allowed.
+                  items:
+                    x-stoplight:
+                      id: m9bfoktl2mdvs
+                    type: object
+                    properties:
+                      role:
+                        type: string
+                        x-stoplight:
+                          id: uobulr8235hho
+                        minLength: 1
+                        description: The  role of the customer, indicating whether the customer is  an individual or a company.
+                      name:
+                        type: string
+                        x-stoplight:
+                          id: cctz1o8tbasrz
+                        minLength: 1
+                        description: Customer name associated with the tracking.
+                      phone_number:
+                        type: string
+                        x-stoplight:
+                          id: jmxhj2gk8gc40
+                        description: 'The phone number(s) to receive SMS notifications. Phone numbers should begin with a `+` sign and include the area code.
+
+                          '
+                      email:
+                        type: string
+                        x-stoplight:
+                          id: c6ermxud9jvbq
+                        description: Email address(es) to receive email notifications.
+                      language:
+                        type: string
+                        x-stoplight:
+                          id: kwc8l46fu3dji
+                        description: The preferred language of the customer. If you have set up AfterShip notifications in different languages, we use this to send the tracking updates to the customer in their preferred language.
+                      id:
+                        type: string
+                        x-stoplight:
+                          id: d4kcstmrid8wp
+                        description: The customer's identifier on the merchant or platform (for example, Shopify) side.
+                shipment_direction:
+                  type: string
+                  x-stoplight:
+                    id: m2shpdrcrt8fw
+                  enum:
+                  - forward
+                  - return
+                  description: 'Indicates the business direction of the shipment in the e-commerce fulfillment lifecycle.
+
+
+                    Possible values:
+
+                    - `forward`: A forward (outbound-to-customer) shipment created for order fulfillment.
+
+                    - `return`: A return (customer-to-merchant) shipment created for after-sales return or exchange.
+
+
+                    When provided, this field gives AfterShip additional context about the shipment''s intent, enabling more accurate status identification.'
+            examples:
+              create-tracking:
+                value:
+                  slug: dhl
+                  tracking_number: '123456789'
+                  title: Title Name
+                  customers:
+                  - role: buyer
+                    name: Steve Young
+                    email: email@yourdomain.com
+                    phone_number: '+18555072501'
+                    language: en
+                  last_mile:
+                    slug: ups
+                    tracking_number: '61293150000079650811'
+                  tracking_ship_date: '2025-01-09T20:00:00+08:00'
+                  order_id: ID 1234
+                  order_number: '1234'
+                  order_id_path: http://www.aftership.com/order_id=1234
+                  custom_fields:
+                    product_name: iPhone Case
+                    product_price: USD19.99
+                  language: en
+                  order_promised_delivery_date:
+                    promised_delivery_date: '2026-01-01'
+                    promised_delivery_date_max: null
+                    promised_delivery_date_min: null
+                  delivery_type: pickup_at_store
+                  pickup_location: Flagship Store
+                  pickup_note: Reach out to our staffs when you arrive our stores for shipment pickup
+                  origin_country_region: CHN
+                  origin_state: Beijing
+                  origin_city: Beijing
+                  origin_postal_code: '065001'
+                  origin_raw_location: Lihong Gardon 4A 2301, Chaoyang District, Beijing, BJ, 065001, CHN, China
+                  destination_country_region: USA
+                  destination_state: New York
+                  destination_city: New York City
+                  destination_postal_code: '10001'
+                  destination_raw_location: 13th Street, New York, NY, 10011, USA, United States
+        description: Create tracking object
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          enum:
+          - application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      x-stoplight:
+        id: sxafu5cay1usl
+      tags:
+      - Tracking
+  /trackings/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: tracking ID
+    get:
+      summary: Get a tracking by ID
+      responses:
+        '200':
+          description: Tracking object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracking_response.v1'
+              examples:
+                get-tracking:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      id: 0b02015fc7fd4f3c8d5490cece4d124d
+                      legacy_id: my2uktymyz72xld1f7l3h01z
+                      created_at: '2023-01-18T08:47:10+00:00'
+                      updated_at: '2023-01-18T17:47:10+00:00'
+                      tracking_number: '61293150000079650811'
+                      slug: fedex
+                      active: false
+                      custom_fields:
+                        store_name: my-store
+                      transit_time: 9
+                      origin_country_region: CHN
+                      origin_state: Beijing
+                      origin_city: Beijing
+                      origin_postal_code: '065001'
+                      origin_raw_location: Lihong Gardon 4A 2301, Chaoyang District, Beijing, BJ, 065001, CHN, China
+                      destination_country_region: USA
+                      destination_state: New York
+                      destination_city: New York City
+                      destination_postal_code: '10001'
+                      destination_raw_location: 13th Street, New York, NY, 10011, USA, United States
+                      courier_destination_country_region: USA
+                      courier_estimated_delivery_date:
+                        estimated_delivery_date: '2022-01-03T12:11:11+01:00'
+                        estimated_delivery_date_min: '2022-01-02T12:11:10+01:00'
+                        estimated_delivery_date_max: '2022-01-03T12:11:11+01:00'
+                      note: note
+                      order_id: 6845a095a27a4caeb27487806f058add
+                      order_id_path: https://www.aftership.com/my-orders/6845a095a27a4caeb27487806f058add
+                      order_date: '2022-01-20T15:56:12+08:00'
+                      shipment_package_count: 1
+                      shipment_pickup_date: '2022-01-21T15:00:00'
+                      shipment_delivery_date: '2022-01-29T11:23:00'
+                      shipment_type: FedEx SmartPost
+                      shipment_weight:
+                        value: 0.7
+                        unit: kg
+                      signed_by: Steve Young
+                      customers:
+                      - role: sender
+                        name: Steve Young
+                        phone_number: '+8613800138000'
+                        email: example@aftership.com
+                        language: en
+                        id: cust_12345
+                      source: api
+                      tag: Delivered
+                      subtag: Delivered_002
+                      subtag_message: Picked up by customer
+                      title: '61293150000079650811'
+                      tracked_count: 13
+                      language: en
+                      checkpoints:
+                      - created_at: '2023-01-18T08:47:10+00:00'
+                        slug: fedex
+                        checkpoint_time: '2022-01-01T18:47:10-05:00'
+                        location: 13th Street, New York, NY 10011, USA, United States
+                        city: New York
+                        state: NY
+                        postal_code: '10011'
+                        coordinate: null
+                        country_region: USA
+                        country_region_name: United States
+                        message: Package delivered
+                        tag: Delivered
+                        subtag: Delivered_002
+                        subtag_message: Picked up by customer
+                        raw_tag: RO
+                        events:
+                        - code: delivered_to_neighbor
+                          reason:
+                            code: incorrect_missing_address
+                        source: carrier
+                        hash: a1b2c3d4e5f6789012345678901234567890abcd
+                      subscribed_smses:
+                      - string
+                      subscribed_emails:
+                      - string
+                      return_to_sender: false
+                      order_promised_delivery_date:
+                        promised_delivery_date: '2026-01-01'
+                        promised_delivery_date_max: null
+                        promised_delivery_date_min: null
+                      delivery_type: pickup_at_store
+                      pickup_location: 13th Street, New York, NY 10011, USA, United States
+                      pickup_note: No notes
+                      courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                      first_attempted_at: '2022-01-01T17:00:00-05:00'
+                      courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                      tracking_account_number: null
+                      tracking_key: null
+                      tracking_ship_date: '20220101'
+                      on_time_status: on-time
+                      on_time_difference: 0
+                      order_tags:
+                      - Exception
+                      aftership_estimated_delivery_date:
+                        estimated_delivery_date: '2022-01-03'
+                        confidence_code: 10001
+                        estimated_delivery_date_min: '2022-01-02'
+                        estimated_delivery_date_max: '2022-01-04'
+                      custom_estimated_delivery_date:
+                        type: specific
+                        datetime: '2022-01-05'
+                        datetime_min: null
+                        datetime_max: null
+                      order_number: '162654659775'
+                      first_estimated_delivery:
+                        type: specific
+                        source: Carrier EDD
+                        datetime: '2022-01-05T12:11:11+01:00'
+                        datetime_min: null
+                        datetime_max: null
+                      latest_estimated_delivery:
+                        type: specific
+                        source: AfterShip EDD
+                        datetime: '2022-01-05T12:11:11+01:00'
+                        datetime_min: null
+                        datetime_max: null
+                        revise_reason: extreme_weather
+                      shipment_tags:
+                      - Returned
+                      courier_connection_id: 8e1261bde336436abbc7cb3eee8cd707
+                      last_mile:
+                        slug: usps
+                        tracking_number: '61293150000079650811'
+                        source: system
+                        courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                        courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                      first_mile:
+                        slug: usps
+                        tracking_number: '61293150000079650812'
+                        courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650812&cntry_code=US
+                        courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650812&cntry_code=US
+                      carbon_emissions:
+                        unit: kg
+                        value: 0.7
+                      location_id: bda843ed811541fc852a8447371cf6f2
+                      shipping_method: Local Delivery
+                      failed_delivery_attempts: 2
+                      signature_requirement: signature_required
+                      delivery_location_type: null
+                      aftership_tracking_url: https://track.happytrading.com/61293150000079650811
+                      aftership_tracking_order_url: https://track.happytrading.com/order-status?order-number=1001&code=eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ==
+                      shipment_dimensions:
+                        unit: cm
+                        length: 30
+                        width: 20
+                        height: 10
+                      proof_of_delivery:
+                      - type: image
+                        url: https://example.com/pod-image.jpg
+                      multi_piece_info:
+                        type: master
+                        pieces:
+                        - tracking_id: bff5a3bac79b472991a204172473a635
+                          tracking_number: '61293150000079650811'
+                          type: master
+                          trackable: true
+                        - tracking_id: c79b472991a204172473a635bff5a3ba
+                          tracking_number: '61293150000079650812'
+                          type: child
+                          trackable: true
+                      shipment_direction: forward
+                      return_shipment:
+                        id: a204172473a635bff5a3bac79b472991
+                        tracking_number: '61293150000079650813'
+                        slug: usps
+                      forward_shipment: null
+      operationId: get-tracking-by-id
+      description: 'Get tracking results of a single tracking.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>'
+      parameters:
+      - schema:
+          type: string
+          example: title,order_id
+        in: query
+        name: fields
+        description: 'List of fields to include in the response. Use comma for multiple values. Fields to include: `destination_postal_code`, `tracking_ship_date`, `tracking_account_number`, `tracking_key`, `origin_country_region`, `destination_country_region`, `destination_state`, `title`, `order_id`, `tag`, `checkpoints`'
+      - schema:
+          type: string
+          example: en
+        in: query
+        name: lang
+        description: Translate checkpoint messages from the carrier’s provided language to the target language. Supported target languages include:</br>&nbsp;&nbsp;&nbsp;&nbsp;- English (en)</br>&nbsp;&nbsp;&nbsp;&nbsp;- French (fr)</br>&nbsp;&nbsp;&nbsp;&nbsp;- French Canadian (fr-CA)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Arabic (ar)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Bulgarian (bg)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Catalan (ca)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Croatian (hr)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Czech (cs)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Danish (da)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Dutch (nl)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Estonian (et)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Filipino (tl)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Finnish (fi)</br>&nbsp;&nbsp;&nbsp;&nbsp;- German (de)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Greek (el)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Hebrew (he)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Hindi (hi)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Hungarian (hu)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Indonesian (id)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Italian (it)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Japanese (ja)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Korean (ko)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Latvian (lv)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Lithuanian (lt)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Malay (ms)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Polish (pl)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Portuguese (pt)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Romanian (ro)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Russian (ru)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Serbian (sr)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Slovak (sk)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Slovenian (sl)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Spanish (es)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Swedish (sv)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Thai (th)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Turkish (tr)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Ukrainian (uk)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Vietnamese (vi)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Simplified Chinese (zh-Hans)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Traditional Chinese (zh-Hant)</br>&nbsp;&nbsp;&nbsp;&nbsp;- Norwegian (nb)</br>
+      - schema:
+          type: string
+          default: application/json
+          enum:
+          - application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      x-stoplight:
+        id: bcb1azgtk9n6r
+      tags:
+      - Tracking
+    put:
+      summary: Update a tracking by ID
+      operationId: update-tracking-by-id
+      responses:
+        '200':
+          description: Update a tracking
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracking_response.v1'
+              examples:
+                update-tracking:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      id: 0b02015fc7fd4f3c8d5490cece4d124d
+                      legacy_id: my2uktymyz72xld1f7l3h01z
+                      created_at: '2023-01-18T08:47:10+00:00'
+                      updated_at: '2023-01-18T17:47:10+00:00'
+                      tracking_number: '61293150000079650811'
+                      slug: fedex
+                      active: false
+                      custom_fields:
+                        store_name: my-store
+                      transit_time: 9
+                      origin_country_region: CHN
+                      origin_state: Beijing
+                      origin_city: Beijing
+                      origin_postal_code: '065001'
+                      origin_raw_location: Lihong Gardon 4A 2301, Chaoyang District, Beijing, BJ, 065001, CHN, China
+                      destination_country_region: USA
+                      destination_state: New York
+                      destination_city: New York City
+                      destination_postal_code: '10001'
+                      destination_raw_location: 13th Street, New York, NY, 10011, USA, United States
+                      courier_destination_country_region: USA
+                      courier_estimated_delivery_date:
+                        estimated_delivery_date: '2022-01-03T12:11:11+01:00'
+                        estimated_delivery_date_min: '2022-01-02T12:11:10+01:00'
+                        estimated_delivery_date_max: '2022-01-03T12:11:11+01:00'
+                      note: note
+                      order_id: 6845a095a27a4caeb27487806f058add
+                      order_id_path: https://www.aftership.com/my-orders/6845a095a27a4caeb27487806f058add
+                      order_date: '2022-01-20T15:56:12+08:00'
+                      shipment_package_count: 1
+                      shipment_pickup_date: '2022-01-21T15:00:00'
+                      shipment_delivery_date: '2022-01-29T11:23:00'
+                      shipment_type: FedEx SmartPost
+                      shipment_weight:
+                        value: 0.7
+                        unit: kg
+                      signed_by: Steve Young
+                      customers:
+                      - role: sender
+                        name: Steve Young
+                        phone_number: '+8613800138000'
+                        email: example@aftership.com
+                        language: en
+                        id: cust_12345
+                      source: api
+                      tag: Delivered
+                      subtag: Delivered_002
+                      subtag_message: Picked up by customer
+                      title: '61293150000079650811'
+                      tracked_count: 13
+                      language: en
+                      checkpoints:
+                      - created_at: '2023-01-18T08:47:10+00:00'
+                        slug: fedex
+                        checkpoint_time: '2022-01-01T18:47:10-05:00'
+                        location: 13th Street, New York, NY 10011, USA, United States
+                        city: New York
+                        state: NY
+                        postal_code: '10011'
+                        coordinate: null
+                        country_region: USA
+                        country_region_name: United States
+                        message: Package delivered
+                        tag: Delivered
+                        subtag: Delivered_002
+                        subtag_message: Picked up by customer
+                        raw_tag: RO
+                        events:
+                        - code: delivered_to_neighbor
+                          reason:
+                            code: incorrect_missing_address
+                        source: carrier
+                        hash: a1b2c3d4e5f6789012345678901234567890abcd
+                      subscribed_smses:
+                      - string
+                      subscribed_emails:
+                      - string
+                      return_to_sender: false
+                      order_promised_delivery_date:
+                        promised_delivery_date: '2026-01-01'
+                        promised_delivery_date_max: null
+                        promised_delivery_date_min: null
+                      delivery_type: pickup_at_store
+                      pickup_location: 13th Street, New York, NY 10011, USA, United States
+                      pickup_note: No notes
+                      courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                      first_attempted_at: '2022-01-01T17:00:00-05:00'
+                      courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                      tracking_account_number: null
+                      tracking_key: null
+                      tracking_ship_date: '20220101'
+                      on_time_status: on-time
+                      on_time_difference: 0
+                      order_tags:
+                      - Exception
+                      aftership_estimated_delivery_date:
+                        estimated_delivery_date: '2022-01-03'
+                        confidence_code: 10001
+                        estimated_delivery_date_min: '2022-01-02'
+                        estimated_delivery_date_max: '2022-01-04'
+                      custom_estimated_delivery_date:
+                        type: specific
+                        datetime: '2022-01-05'
+                        datetime_min: null
+                        datetime_max: null
+                      order_number: '162654659775'
+                      first_estimated_delivery:
+                        type: specific
+                        source: Carrier EDD
+                        datetime: '2022-01-05T12:11:11+01:00'
+                        datetime_min: null
+                        datetime_max: null
+                      latest_estimated_delivery:
+                        type: specific
+                        source: AfterShip EDD
+                        datetime: '2022-01-05T12:11:11+01:00'
+                        datetime_min: null
+                        datetime_max: null
+                        revise_reason: extreme_weather
+                      shipment_tags:
+                      - Returned
+                      courier_connection_id: 8e1261bde336436abbc7cb3eee8cd707
+                      last_mile:
+                        slug: usps
+                        tracking_number: '61293150000079650811'
+                        source: system
+                        courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                        courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                      first_mile:
+                        slug: usps
+                        tracking_number: '61293150000079650812'
+                        courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650812&cntry_code=US
+                        courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650812&cntry_code=US
+                      carbon_emissions:
+                        unit: kg
+                        value: 0.7
+                      location_id: bda843ed811541fc852a8447371cf6f2
+                      shipping_method: Local Delivery
+                      failed_delivery_attempts: 2
+                      signature_requirement: signature_required
+                      delivery_location_type: null
+                      aftership_tracking_url: https://track.happytrading.com/61293150000079650811
+                      aftership_tracking_order_url: https://track.happytrading.com/order-status?order-number=1001&code=eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ==
+                      shipment_dimensions:
+                        unit: cm
+                        length: 30
+                        width: 20
+                        height: 10
+                      proof_of_delivery:
+                      - type: image
+                        url: https://example.com/pod-image.jpg
+                      multi_piece_info:
+                        type: master
+                        pieces:
+                        - tracking_id: bff5a3bac79b472991a204172473a635
+                          tracking_number: '61293150000079650811'
+                          type: master
+                          trackable: true
+                        - tracking_id: c79b472991a204172473a635bff5a3ba
+                          tracking_number: '61293150000079650812'
+                          type: child
+                          trackable: true
+                      shipment_direction: forward
+                      return_shipment:
+                        id: a204172473a635bff5a3bac79b472991
+                        tracking_number: '61293150000079650813'
+                        slug: usps
+                      forward_shipment: null
+      description: 'Update a tracking.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>'
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          enum:
+          - application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: By default this field shows the `tracking_number`, but you can customize it as you wish with any info (e.g. the order number).
+                order_id:
+                  type: string
+                  description: A globally-unique identifier for the order.
+                order_id_path:
+                  type: string
+                  description: The URL for the order in your system or store.
+                custom_fields:
+                  type: object
+                  description: 'Custom fields that accept an object with string field. In order to protect the privacy of your customers, do not include any [personal data](https://www.aftership.com/legal/dpa#:~:text=Personal%20Data%20means,that%20natural%20person) in custom fields.
+
+
+                    - Maximum charater limit for a key name: 30
+
+                    - Maximum count for a key-value pair in a custom field object: 25
+
+                    - Maximum value length: 512 charaters
+
+                    - Supported value type: String only (object and array are prohibted)'
+                  additionalProperties:
+                    x-stoplight:
+                      id: r6bo74xzj8vov
+                    type: string
+                note:
+                  type: string
+                  description: 'Text field for the note.
+
+                    Input `""` to clear the value of this field.'
+                language:
+                  type: string
+                  description: The recipient’s language. If you set up AfterShip notifications in different languages, we use this to send the recipient tracking updates in their preferred language. Use an [ISO 639-1 Language Code](https://help.aftership.com/hc/en-us/articles/360001623287-Supported-Language-Parameters) to specify the language.
+                order_promised_delivery_date:
+                  type: object
+                  description: The promised delivery date of the order in shipment recipient’s timezone.
+                  properties:
+                    promised_delivery_date:
+                      type:
+                      - string
+                      - 'null'
+                      x-stoplight:
+                        id: uen7cbb81yg2p
+                      description: "The promised delivery date of the order. \nIt uses the formats:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ"
+                      example: 'null'
+                    promised_delivery_date_min:
+                      type:
+                      - string
+                      - 'null'
+                      x-stoplight:
+                        id: 7wrdp7b78oicx
+                      description: "Earliest promised delivery date of the order. \nIt uses the formats:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ"
+                      example: '2022-01-02T10:00:00'
+                    promised_delivery_date_max:
+                      type:
+                      - string
+                      - 'null'
+                      x-stoplight:
+                        id: 3s757q2x3duum
+                      description: "Latest promised delivery date of the order. \nIt uses the formats:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ"
+                      example: '2022-01-04T10:00:00'
+                delivery_type:
+                  type: string
+                  description: 'Shipment delivery type
+
+
+                    - `pickup_at_store`
+
+                    - `pickup_at_courier`
+
+                    - `door_to_door`'
+                  enum:
+                  - pickup_at_store
+                  - pickup_at_courier
+                  - door_to_door
+                pickup_location:
+                  type: string
+                  description: Shipment pickup location for receiver
+                pickup_note:
+                  type: string
+                  description: Shipment pickup note for receiver
+                slug:
+                  type: string
+                  description: Unique code of each courier. Provide a single courier.(https://admin.aftership.com/settings/couriers). Get a list of courier slug using [GET /couriers](./api.json/paths/~1couriers/get)
+                tracking_account_number:
+                  type: string
+                  description: Additional field required by some carriers to retrieve the tracking info. The shipper’s carrier account number. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                tracking_key:
+                  type: string
+                  description: Additional field required by some carriers to retrieve the tracking info. A type of tracking credential required by some carriers. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                tracking_ship_date:
+                  type: string
+                  description: 'The date and time when the shipment is shipped by the merchant and ready for pickup by the carrier. The field supports the following formats:
+
+                    - YYYY-MM-DD
+
+                    - YYYY-MM-DDTHH:mm:ss
+
+                    - YYYY-MM-DDTHH:mm:ssZ
+
+                    The field serves two key purposes:
+
+                    - Calculate processing time metrics in the Order-to-delivery Analytics dashboard. To ensure accurate analytics, it''s recommended to include timezone information when configuring this value
+
+                    - Required by certain carriers to retrieve tracking information as an additional tracking field.'
+                order_number:
+                  type: string
+                  description: A unique, human-readable identifier for the order.
+                order_date:
+                  type: string
+                  description: Order date in YYYY-MM-DDTHH:mm:ssZ format. e.g. 2021-07-26T11:23:51-05:00
+                shipment_type:
+                  type: string
+                  description: The carrier service type for the shipment. If you provide info for this field, AfterShip will not update it with info from the carrier.
+                origin_country_region:
+                  type: string
+                  description: The [ISO Alpha-3](https://support.aftership.com/en/article/iso3-country-code-rlpi07/) code (3 letters) for the origin country/region. E.g. USA for the United States. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc. Also the additional field required by some carriers to retrieve the tracking info. The origin country/region of the shipment. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                  example: CHN
+                  x-stoplight:
+                    id: b5ykjpw0psq2p
+                origin_state:
+                  type: string
+                  description: The state of the sender’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: Beijing
+                origin_city:
+                  type: string
+                  description: The city of the sender’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: Beijing
+                origin_postal_code:
+                  type: string
+                  description: The postal of the sender’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: '065001'
+                origin_raw_location:
+                  type: string
+                  description: The sender address that the shipment is shipping from. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: Lihong Gardon 4A 2301, Chaoyang District, Beijing, BJ, 065001, CHN, China
+                destination_country_region:
+                  type: string
+                  description: The [ISO Alpha-3](https://support.aftership.com/en/article/iso3-country-code-rlpi07/) code (3 letters) for the destination country/region. E.g. USA for the United States. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc. Also the additional field required by some carriers to retrieve the tracking info. The destination country/region of the shipment. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                  example: USA
+                  x-stoplight:
+                    id: s9b817qva2uwv
+                destination_state:
+                  type: string
+                  description: The state of the recipient’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc. Also the additional field required by some carriers to retrieve the tracking info. The state/province of the recipient’s address. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                  example: New York
+                destination_city:
+                  type: string
+                  description: The city of the recipient’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: New York City
+                destination_postal_code:
+                  type: string
+                  description: The postal of the recipient’s address. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc. Also the additional field required by some carriers to retrieve the tracking info. The postal code of the recipient’s address. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+                  example: '10001'
+                destination_raw_location:
+                  type: string
+                  description: The shipping address that the shipment is shipping to. This can help AfterShip with various functions like tracking, carrier auto-detection and auto-correction, calculating an EDD, etc.
+                  example: 13th Street, New York, NY, 10011, USA, United States
+                location_id:
+                  type: string
+                  x-stoplight:
+                    id: 0oextgvwqes8d
+                  description: "The location_id refers to the place where you fulfilled the items. \n - If you provide a location_id, the system will automatically use it as the tracking's origin address. However, passing both location_id and any origin address information simultaneously is not allowed.\n- Please make sure you add your locations [here](https://admin.aftership.com/settings/locations-and-rules) before passing the location_id and verify that the location's status is active. Learn more about adding locations [here](https://support.aftership.com/en/article/manage-ship-from-locations-via-aftership-tracking-okbhj4/?bust=1702871142396)."
+                shipping_method:
+                  type: string
+                  x-stoplight:
+                    id: jefb36kvnc0qp
+                  description: The shipping_method string refers to the chosen method for delivering the package. Merchants typically offer various shipping methods to consumers during the checkout process, such as, Local Delivery, Free Express Worldwide Shipping, etc.
+                last_mile:
+                  type: object
+                  x-stoplight:
+                    id: hq2vf1ymhbxms
+                  description: 'This field contains information about the last leg of the shipment, starting from the carrier who hands it over to the last-mile carrier, all the way to delivery. Once AfterShip detects that the shipment involves multiple legs and identifies the last-mile carrier, we will populate the last-mile carrier information in this object. Alternatively, the user can provide this information in this field to specify the last-mile carrier, which is helpful if AfterShip is unable to detect it automatically.
+
+                    Input `null` to clear the value of this field.'
+                  required:
+                  - tracking_number
+                  - slug
+                  properties:
+                    tracking_number:
+                      type: string
+                      x-stoplight:
+                        id: z0j2eay1vy4tj
+                      description: The tracking number of the last-mile carrier.
+                    slug:
+                      type: string
+                      x-stoplight:
+                        id: u2x27u9pto2qj
+                      description: The unique code of the carrier responsible for the last-mile of the shipment.  Find all the courier slugs [here](https://www.aftership.com/docs/tracking/others/supported-couriers).
+                customers:
+                  type: array
+                  x-stoplight:
+                    id: csf0gvgomp9u5
+                  description: The field contains the customer information associated with the tracking. A maximum of three customer objects are allowed.
+                  items:
+                    x-stoplight:
+                      id: uh8fz8vzvbegq
+                    type: object
+                    properties:
+                      role:
+                        type: string
+                        x-stoplight:
+                          id: 0pt5ukpt1eybl
+                        description: The  role of the customer, indicating whether the customer is  an individual or a company.
+                      name:
+                        type: string
+                        x-stoplight:
+                          id: pux9hmketvw9d
+                        description: Customer name associated with the tracking.
+                      phone_number:
+                        type: string
+                        x-stoplight:
+                          id: w1dyguovlebo5
+                        description: 'The phone number(s) to receive SMS notifications. Phone numbers should begin with a `+` sign and include the area code.
+
+                          '
+                      email:
+                        type: string
+                        x-stoplight:
+                          id: k3d3iyuob6545
+                        description: Email address(es) to receive email notifications.
+                      language:
+                        type: string
+                        x-stoplight:
+                          id: zzcmfitz9czyd
+                        description: The preferred language of the customer. If you have set up AfterShip notifications in different languages, we use this to send the tracking updates to the customer in their preferred language.
+                      id:
+                        type: string
+                        x-stoplight:
+                          id: u5kcstmpidwd8
+                        description: The customer's identifier on the merchant or platform (for example, Shopify) side.
+                shipment_direction:
+                  type: string
+                  x-stoplight:
+                    id: p8shpdrcup2fw
+                  enum:
+                  - forward
+                  - return
+                  description: 'Indicates the business direction of the shipment in the e-commerce fulfillment lifecycle.
+
+
+                    Possible values:
+
+                    - `forward`: A forward (outbound-to-customer) shipment created for order fulfillment.
+
+                    - `return`: A return (customer-to-merchant) shipment created for after-sales return or exchange.
+
+
+                    When provided, this field gives AfterShip additional context about the shipment''s intent, enabling more accurate status identification.'
+            examples:
+              update-tracking-request:
+                value:
+                  title: New Title
+                  note: some notes
+        description: ''
+      x-stoplight:
+        id: ambhbdx43wiq2
+      tags:
+      - Tracking
+    delete:
+      summary: Delete a tracking by ID
+      operationId: delete-tracking-by-id
+      responses:
+        '200':
+          description: Delete tracking
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracking_response.v1'
+              examples:
+                delete tracking:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      id: 0b02015fc7fd4f3c8d5490cece4d124d
+                      legacy_id: my2uktymyz72xld1f7l3h01z
+                      created_at: '2023-01-18T08:47:10+00:00'
+                      updated_at: '2023-01-18T17:47:10+00:00'
+                      tracking_number: '61293150000079650811'
+                      slug: fedex
+                      active: false
+                      custom_fields:
+                        store_name: my-store
+                      transit_time: 9
+                      origin_country_region: CHN
+                      origin_state: Beijing
+                      origin_city: Beijing
+                      origin_postal_code: '065001'
+                      origin_raw_location: Lihong Gardon 4A 2301, Chaoyang District, Beijing, BJ, 065001, CHN, China
+                      destination_country_region: USA
+                      destination_state: New York
+                      destination_city: New York City
+                      destination_postal_code: '10001'
+                      destination_raw_location: 13th Street, New York, NY, 10011, USA, United States
+                      courier_destination_country_region: USA
+                      courier_estimated_delivery_date:
+                        estimated_delivery_date: '2022-01-03T12:11:11+01:00'
+                        estimated_delivery_date_min: '2022-01-02T12:11:10+01:00'
+                        estimated_delivery_date_max: '2022-01-03T12:11:11+01:00'
+                      note: note
+                      order_id: 6845a095a27a4caeb27487806f058add
+                      order_id_path: https://www.aftership.com/my-orders/6845a095a27a4caeb27487806f058add
+                      order_date: '2022-01-20T15:56:12+08:00'
+                      shipment_package_count: 1
+                      shipment_pickup_date: '2022-01-21T15:00:00'
+                      shipment_delivery_date: '2022-01-29T11:23:00'
+                      shipment_type: FedEx SmartPost
+                      shipment_weight:
+                        value: 0.7
+                        unit: kg
+                      signed_by: Steve Young
+                      customers:
+                      - role: sender
+                        name: Steve Young
+                        phone_number: '+8613800138000'
+                        email: example@aftership.com
+                        language: en
+                        id: cust_12345
+                      source: api
+                      tag: Delivered
+                      subtag: Delivered_002
+                      subtag_message: Picked up by customer
+                      title: '61293150000079650811'
+                      tracked_count: 13
+                      language: en
+                      checkpoints:
+                      - created_at: '2023-01-18T08:47:10+00:00'
+                        slug: fedex
+                        checkpoint_time: '2022-01-01T18:47:10-05:00'
+                        location: 13th Street, New York, NY 10011, USA, United States
+                        city: New York
+                        state: NY
+                        postal_code: '10011'
+                        coordinate: null
+                        country_region: USA
+                        country_region_name: United States
+                        message: Package delivered
+                        tag: Delivered
+                        subtag: Delivered_002
+                        subtag_message: Picked up by customer
+                        raw_tag: RO
+                        events:
+                        - code: delivered_to_neighbor
+                          reason:
+                            code: incorrect_missing_address
+                        source: carrier
+                        hash: a1b2c3d4e5f6789012345678901234567890abcd
+                      subscribed_smses:
+                      - string
+                      subscribed_emails:
+                      - string
+                      return_to_sender: false
+                      order_promised_delivery_date:
+                        promised_delivery_date: '2026-01-01'
+                        promised_delivery_date_max: null
+                        promised_delivery_date_min: null
+                      delivery_type: pickup_at_store
+                      pickup_location: 13th Street, New York, NY 10011, USA, United States
+                      pickup_note: No notes
+                      courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                      first_attempted_at: '2022-01-01T17:00:00-05:00'
+                      courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                      tracking_account_number: null
+                      tracking_key: null
+                      tracking_ship_date: '20220101'
+                      on_time_status: on-time
+                      on_time_difference: 0
+                      order_tags:
+                      - Exception
+                      aftership_estimated_delivery_date:
+                        estimated_delivery_date: '2022-01-03'
+                        confidence_code: 10001
+                        estimated_delivery_date_min: '2022-01-02'
+                        estimated_delivery_date_max: '2022-01-04'
+                      custom_estimated_delivery_date:
+                        type: specific
+                        datetime: '2022-01-05'
+                        datetime_min: null
+                        datetime_max: null
+                      order_number: '162654659775'
+                      first_estimated_delivery:
+                        type: specific
+                        source: Carrier EDD
+                        datetime: '2022-01-05T12:11:11+01:00'
+                        datetime_min: null
+                        datetime_max: null
+                      latest_estimated_delivery:
+                        type: specific
+                        source: AfterShip EDD
+                        datetime: '2022-01-05T12:11:11+01:00'
+                        datetime_min: null
+                        datetime_max: null
+                        revise_reason: extreme_weather
+                      shipment_tags:
+                      - Returned
+                      courier_connection_id: 8e1261bde336436abbc7cb3eee8cd707
+                      last_mile:
+                        slug: usps
+                        tracking_number: '61293150000079650811'
+                        source: system
+                        courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+                        courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+                      first_mile:
+                        slug: usps
+                        tracking_number: '61293150000079650812'
+                        courier_tracking_link: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650812&cntry_code=US
+                        courier_redirect_link: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650812&cntry_code=US
+                      carbon_emissions:
+                        unit: kg
+                        value: 0.7
+                      location_id: bda843ed811541fc852a8447371cf6f2
+                      shipping_method: Local Delivery
+                      failed_delivery_attempts: 2
+                      signature_requirement: signature_required
+                      delivery_location_type: null
+                      aftership_tracking_url: https://track.happytrading.com/61293150000079650811
+                      aftership_tracking_order_url: https://track.happytrading.com/order-status?order-number=1001&code=eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ==
+                      shipment_dimensions:
+                        unit: cm
+                        length: 30
+                        width: 20
+                        height: 10
+                      proof_of_delivery:
+                      - type: image
+                        url: https://example.com/pod-image.jpg
+                      multi_piece_info:
+                        type: master
+                        pieces:
+                        - tracking_id: bff5a3bac79b472991a204172473a635
+                          tracking_number: '61293150000079650811'
+                          type: master
+                          trackable: true
+                        - tracking_id: c79b472991a204172473a635bff5a3ba
+                          tracking_number: '61293150000079650812'
+                          type: child
+                          trackable: true
+                      shipment_direction: forward
+                      return_shipment:
+                        id: a204172473a635bff5a3bac79b472991
+                        tracking_number: '61293150000079650813'
+                        slug: usps
+                      forward_shipment: null
+      description: 'Delete a tracking.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>'
+      parameters:
+      - schema:
+          type: string
+          enum:
+          - application/json
+          default: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      x-stoplight:
+        id: w9cq6brf94whb
+      tags:
+      - Tracking
+  /trackings/{id}/retrack:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: tracking id
+    post:
+      summary: Retrack an expired tracking by ID
+      operationId: retrack-tracking-by-id
+      responses:
+        '200':
+          description: Partial tracking object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracking_response.v1'
+          headers: {}
+      description: 'Retrack an expired tracking. Max 3 times per tracking.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>'
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          enum:
+          - application/json
+        in: header
+        description: Content-Type
+        name: Content-Type
+        required: true
+      x-stoplight:
+        id: 7h0qwvzlv6fhg
+      tags:
+      - Tracking
+  /trackings/{id}/mark-as-completed:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: tracking id
+    post:
+      summary: Mark tracking as completed by ID
+      operationId: mark-tracking-completed-by-id
+      responses:
+        '200':
+          description: Tracking object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracking_response.v1'
+      description: 'Mark a tracking as completed. The tracking won''t auto update until retrack it.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>'
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          enum:
+          - application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - reason
+              properties:
+                reason:
+                  type: string
+                  enum:
+                  - DELIVERED
+                  - LOST
+                  - RETURNED_TO_SENDER
+                  description: 'One of `DELIVERED`, `LOST` or `RETURNED_TO_SENDER`.
+
+
+                    - Mark the tracking as completed with `DELIVERED`. The tag of the tracking will be updated to `Delivered` and the subtag will be updated to `Delivered_001`.
+
+                    - Mark the tracking as completed with `LOST`. The tag of the tracking will be updated to `Exception` and the subtag will be updated to `Exception_013`.
+
+                    - Mark the tracking as completed with `RETURNED_TO_SENDER`. The tag of the tracking will be updated to `Exception` and the subtag will be updated to `Exception_011`.'
+                event_datetime:
+                  type: string
+                  x-stoplight:
+                    id: 0240m8g7a7ttf
+                  description: "The actual occurrence time of the marked tracking status.\nThe field supports the following formats: \n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ"
+        description: ''
+      x-stoplight:
+        id: w8uwm9t73oshp
+      tags:
+      - Tracking
+components:
+  schemas:
+    Tracking:
+      description: 'Object describes the tracking information.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)
+
+        [url](../../docs/enum/confidence_codes.md)
+
+        [url](../../docs/enum/edd_revise_reasons.md)
+
+        [url](../../docs/enum/events.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
+      x-stoplight:
+        id: 85e38d6ce6521
+      type: object
+      title: Tracking
+      x-tags:
+      - Resource
+      examples: []
+      properties:
+        id:
+          type: string
+          description: 'A  system-generated tracking ID by default, which can be customized by the user when creating a tracking.
+
+            '
+          example: bff5a3bac79b472991a204172473a635
+          x-stoplight:
+            id: cxja2lu8zfupm
+          pattern: '[0-9a-zA-Z-_]{1,128}'
+        legacy_id:
+          type: string
+          x-stoplight:
+            id: 7r0ag0tqoaa1l
+          description: The length of the tracking ID has been increased from 24 characters to 32 characters. We will use the legacy_id field to store the original 24-character tracking ID to maintain compatibility with existing data. Therefore, all tracking endpoints will continue to work with the legacy_id field as before.
+          example: gngrj3vnc7toblxddgn5p02a
+        created_at:
+          type: string
+          minLength: 1
+          description: The date and time the shipment was imported or added to AfterShip. It uses the format `YYYY-MM-DDTHH:mm:ssZ` for the timezone GMT +0.
+          example: '2023-01-18T08:47:10+00:00'
+          x-stoplight:
+            id: mdam4rz03101q
+        updated_at:
+          type: string
+          minLength: 1
+          description: The date and time the shipment was updated. It uses the format `YYYY-MM-DDTHH:mm:ssZ` for the timezone GMT +0.
+          example: '2023-01-18T17:47:10+00:00'
+          x-stoplight:
+            id: mdtq9vt7cln4z
+        tracking_number:
+          type: string
+          minLength: 1
+          description: Tracking number.
+          example: '61293150000079650811'
+          x-stoplight:
+            id: oqhmkeml2dqas
+        slug:
+          type: string
+          minLength: 1
+          description: Unique courier code. When importing a shipment with no courier slug and the tracking number can’t be recognized, the courier will be marked as `unrecognized`. Get courier codes [here](https://www.aftership.com/docs/tracking/others/supported-couriers).
+          example: fedex
+          x-stoplight:
+            id: 5k6b1k0td71d2
+        active:
+          type: boolean
+          description: Whether or not AfterShip will continue tracking the shipment. Value is false when no further updates for a few days since last update.
+          example: false
+          x-stoplight:
+            id: zlxzpdlsudlup
+        custom_fields:
+          type: object
+          nullable: true
+          description: Custom fields that accept an object with string field. In order to protect the privacy of your customers, do not include any [personal data](https://www.aftership.com/legal/dpa#:~:text=Personal%20Data%20means,that%20natural%20person) in custom fields.
+          example:
+            store_name: my-store
+          x-stoplight:
+            id: hc8c5xstqkevs
+          additionalProperties:
+            type: string
+            x-stoplight:
+              id: ivboi1s75tc09
+        transit_time:
+          type:
+          - integer
+          - 'null'
+          description: 'Total transit time in days.
+
+
+            - For delivered shipments: Transit time (in days) = Delivered date - Pick-up date
+
+            - For undelivered shipments: Transit time (in days) = Current date - Pick-up date
+
+
+            Value as `null` for the shipment without pick-up date.'
+          example: 9
+          x-stoplight:
+            id: 3edc9tvm5xice
+        origin_country_region:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: The [ISO Alpha-3](https://support.aftership.com/en/article/iso3-country-code-rlpi07/) code (3 letters) for the origin country/region. E.g. USA for the United States.
+          example: CHN
+          x-stoplight:
+            id: lg4bgkpqich9d
+        origin_state:
+          type:
+          - string
+          - 'null'
+          description: The state of the sender’s address.
+          example: Beijing
+          x-stoplight:
+            id: gfszuw9f9bsb1
+        origin_city:
+          type:
+          - string
+          - 'null'
+          description: The city of the sender’s address.
+          example: Beijing
+          x-stoplight:
+            id: 47c70cejlgh6k
+        origin_postal_code:
+          type:
+          - string
+          - 'null'
+          description: The postal code of the sender’s address.
+          example: '065001'
+          x-stoplight:
+            id: tifkzldeihitn
+        origin_raw_location:
+          type:
+          - string
+          - 'null'
+          description: The sender address that the shipment is shipping from.
+          example: Lihong Gardon 4A 2301, Chaoyang District, Beijing, BJ, 065001, CHN, China
+          x-stoplight:
+            id: aaptwiqo10vwv
+        destination_country_region:
+          type:
+          - string
+          - 'null'
+          description: The [ISO Alpha-3](https://support.aftership.com/en/article/iso3-country-code-rlpi07/) code (3 letters) for the destination country/region. E.g. USA for the United States.
+          example: USA
+          x-stoplight:
+            id: w36bba5uszpu5
+        destination_state:
+          type:
+          - string
+          - 'null'
+          description: The state of the recipient’s address.
+          example: New York
+          x-stoplight:
+            id: pgb8c9dqxvpxm
+        destination_city:
+          type:
+          - string
+          - 'null'
+          description: The city of the recipient’s address.
+          example: New York City
+          x-stoplight:
+            id: 1vq30jhzrh2jq
+        destination_postal_code:
+          type:
+          - string
+          - 'null'
+          description: The postal code of the recipient’s address.
+          example: '10001'
+          x-stoplight:
+            id: erlb4rvw3in9k
+        destination_raw_location:
+          type:
+          - string
+          - 'null'
+          description: The shipping address that the shipment is shipping to.
+          example: 13th Street, New York, NY, 10011, USA, United States
+          x-stoplight:
+            id: w50z2discs59u
+        courier_destination_country_region:
+          type:
+          - string
+          - 'null'
+          description: Destination country/region of the tracking detected from the courier. ISO Alpha-3 (three letters). Value will be `null` if the courier doesn't provide the destination country.
+          example: USA
+          x-stoplight:
+            id: lqezfz5kkst9u
+        courier_estimated_delivery_date:
+          description: The field contains the estimated delivery date provided by the carrier.
+          x-stoplight:
+            id: kg1to2qu44j2a
+          type:
+          - object
+          - 'null'
+          properties:
+            estimated_delivery_date:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: mpmyano2sxclg
+              example: '2022-01-03T12:11:11+01:00'
+              description: 'The estimated arrival date of the shipment. It reflects the shipment recipient’s timezone and the format may vary based on how the carrier provides it:
+
+                - YYYY-MM-DD
+
+                - YYYY-MM-DDTHH:mm:ss
+
+                - YYYY-MM-DDTHH:mm:ssZ'
+            estimated_delivery_date_min:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: 9r41arlc85sjm
+              example: '2022-01-02T12:11:10+01:00'
+              description: 'The earliest estimated delivery date of the shipment. It reflects the shipment recipient’s timezone and the format may vary based on how the carrier provides it:
+
+                - YYYY-MM-DD
+
+                - YYYY-MM-DDTHH:mm:ss
+
+                - YYYY-MM-DDTHH:mm:ssZ'
+            estimated_delivery_date_max:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: qy1qm46vuapor
+              example: '2022-01-03T12:11:11+01:00'
+              description: 'The Latest estimated delivery date of the shipment. It reflects the shipment recipient’s timezone and the format may vary based on how the carrier provides it:
+
+                - YYYY-MM-DD
+
+                - YYYY-MM-DDTHH:mm:ss
+
+                - YYYY-MM-DDTHH:mm:ssZ'
+        note:
+          type:
+          - string
+          - 'null'
+          description: Text field for the note.
+          example: note
+          x-stoplight:
+            id: p6jf151eq3tph
+        order_id:
+          type:
+          - string
+          - 'null'
+          description: A globally-unique identifier for the order.
+          example: 6845a095a27a4caeb27487806f058add
+          x-stoplight:
+            id: 8dmmcvb0udi7g
+        order_id_path:
+          type:
+          - string
+          - 'null'
+          description: The URL for the order in your system or store.
+          example: https://www.aftership.com/my-orders/6845a095a27a4caeb27487806f058add
+          x-stoplight:
+            id: z7ond9zx1dmhc
+        order_date:
+          type:
+          - string
+          - 'null'
+          description: 'The date and time the order was created in your system or store. It uses the format: `YYYY-MM-DDTHH:mm:ssZ` based on whichever timezone you provide.'
+          example: '2022-01-20T15:56:12+08:00'
+          x-stoplight:
+            id: idtthxq18dkxq
+        shipment_package_count:
+          type:
+          - number
+          - 'null'
+          description: Number of packages under the tracking.
+          example: 1
+          x-stoplight:
+            id: hdjjl0d9uouqx
+        shipment_pickup_date:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: 'The date and time the shipment was picked up by the carrier. It uses the timezone where the pickup occured. The format may differ depending on how the carrier provides it:
+
+            - YYYY-MM-DD
+
+            - YYYY-MM-DDTHH:mm:ss
+
+            - YYYY-MM-DDTHH:mm:ssZ'
+          example: '2022-01-21T15:00:00'
+          x-stoplight:
+            id: vin3rqt104uij
+        shipment_delivery_date:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: 'The date and time the shipment was delivered. It uses the shipment recipient’s timezone. The format may differ depending on how the carrier provides it:
+
+            - YYYY-MM-DD
+
+            - YYYY-MM-DDTHH:mm:ss
+
+            - YYYY-MM-DDTHH:mm:ssZ'
+          example: '2022-01-29T11:23:00'
+          x-stoplight:
+            id: pq7hqb96dq6gz
+        shipment_type:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: The carrier service type for the shipment.
+          example: FedEx SmartPost
+          x-stoplight:
+            id: 7aw6mydlwk3qk
+        shipment_weight:
+          type:
+          - object
+          - 'null'
+          description: The shipment_weight field represents the total weight of the shipment. In scenarios where the carrier does not provide this information, you can provide the weight to AfterShip. We will prioritize the data provided by the carrier, if available. The shipment weight will be included in the Response and accessed through the GET API, Webhook, and CSV export. It will also be displayed on the AfterShip Tracking admin. Additionally, it plays a significant role in error-free shipment handling and carbon emission calculations, ensuring accurate and informed decision-making
+          x-stoplight:
+            id: jyj21fo6q7oub
+          properties:
+            unit:
+              type: string
+              x-stoplight:
+                id: 6dz3wdq28kt0s
+              description: The unit in which the value field is expressed.
+              example: kg
+            value:
+              type: number
+              x-stoplight:
+                id: m2r4qiavxyf6c
+              description: The total amount of shipment weight.
+              example: 1.3
+        shipment_dimensions:
+          type:
+          - object
+          - 'null'
+          x-stoplight:
+            id: 4si68jb6q1h2j
+          description: Physical dimensions of the package (length, width and height).
+          readOnly: true
+          properties:
+            unit:
+              type: string
+              x-stoplight:
+                id: 40nwrbtlde4wf
+              description: 'The unit in which the dimension values are expressed. Allowed values: cm, in'
+              example: cm
+            length:
+              type: number
+              x-stoplight:
+                id: 533abytqbg9ap
+              description: The length of the shipment package.
+              example: 30
+            width:
+              type: number
+              x-stoplight:
+                id: fw6ajmp7diqj5
+              description: The width of the shipment package.
+              example: 20
+            height:
+              type: number
+              x-stoplight:
+                id: u68r7q0tdn13y
+              description: The height of the shipment package.
+              example: 10
+        signed_by:
+          type:
+          - string
+          - 'null'
+          description: Signed by information for delivered shipment.
+          example: Steve Young
+          x-stoplight:
+            id: ou55pbuyi9c8s
+        source:
+          type: string
+          minLength: 1
+          description: Source of how this tracking is added.
+          example: api
+          x-stoplight:
+            id: gqhhejuq7enqw
+        tag:
+          $ref: '#/components/schemas/Tag.v1'
+          x-stoplight:
+            id: zcw4ttoz76bsj
+        subtag:
+          type: string
+          minLength: 1
+          description: Current subtag of tracking. ([See subtag definition](../../docs/enum/delivery_sub_statuses.md))
+          example: Delivered_002
+          x-stoplight:
+            id: ues79yoiwdb9c
+        subtag_message:
+          type: string
+          minLength: 1
+          description: Normalized tracking message. ([See subtag definition](../../docs/enum/delivery_sub_statuses.md))
+          example: Picked up by customer
+          x-stoplight:
+            id: o7f0hujvn0vk1
+        title:
+          type: string
+          minLength: 1
+          description: By default this field shows the `tracking_number`, but you can customize it as you wish with any info (e.g. the order number).
+          example: '61293150000079650811'
+          x-stoplight:
+            id: 7hrsb1c469748
+        tracked_count:
+          type: number
+          description: Number of attempts AfterShip tracks at courier's system.
+          example: 13
+          x-stoplight:
+            id: kiavnm2cxtem7
+        language:
+          description: The recipient’s language. If you set up AfterShip notifications in different languages, we use this to send the recipient tracking updates in their preferred language.
+          type:
+          - string
+          - 'null'
+          example: en
+          x-stoplight:
+            id: 101i7f37z5gae
+        unique_token:
+          type: string
+          minLength: 1
+          deprecated: true
+          description: Deprecated
+          example: Deprecated
+          x-stoplight:
+            id: pfwgk0hm16h0o
+        checkpoints:
+          type: array
+          description: Array of checkpoint object describes the checkpoint information.
+          x-stoplight:
+            id: fls5bqyjffakv
+          items:
+            $ref: '#/components/schemas/Checkpoint'
+            x-stoplight:
+              id: ag7g0fudz5euk
+        subscribed_smses:
+          type: array
+          description: Phone number(s) subscribed to receive sms notifications.
+          x-stoplight:
+            id: 9gakdu0fdg1cr
+          items:
+            type: string
+            x-stoplight:
+              id: xb7fnk65qo1ke
+        subscribed_emails:
+          type: array
+          description: Email address(es) subscribed to receive email notifications.
+          x-stoplight:
+            id: 6byp7z9gjzl74
+          items:
+            type: string
+            x-stoplight:
+              id: nohm024901rw1
+        return_to_sender:
+          type: boolean
+          description: Whether or not the shipment is returned to sender. Value is `true` when any of its checkpoints has subtag `Exception_010` (returning to sender) or `Exception_011` (returned to sender). Otherwise value is `false`.
+          example: false
+          x-stoplight:
+            id: dc058629cok6i
+        order_promised_delivery_date:
+          type:
+          - object
+          - 'null'
+          description: The promised delivery date of the order in shipment recipient’s timezone.
+          x-stoplight:
+            id: mcalgi7v11ckk
+          properties:
+            promised_delivery_date:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: 8znaiva1jye3g
+              description: "The promised delivery date of the order. \nIt uses the formats:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ"
+              example: '2022-01-21T15:00:00'
+            promised_delivery_date_min:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: zrgm5kz68crqs
+              description: "Earliest promised delivery date of the order. \nIt uses the formats:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ"
+              example: '2022-01-21T15:00:00'
+            promised_delivery_date_max:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: etbf5ct2yzs05
+              description: "Latest promised delivery date of the order. \nIt uses the formats:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ"
+              example: '2022-01-23T15:00:00'
+        delivery_type:
+          type:
+          - string
+          - 'null'
+          description: 'Shipment delivery type
+
+            - pickup_at_store
+
+            - pickup_at_courier
+
+            - door_to_door'
+          example: pickup_at_store
+          x-stoplight:
+            id: 34eh2pxqk7bpg
+        pickup_location:
+          type:
+          - string
+          - 'null'
+          description: Shipment pickup location for receiver
+          example: 13th Street, New York, NY 10011, USA, United States
+          x-stoplight:
+            id: o8630dpp5s4t7
+        pickup_note:
+          type:
+          - string
+          - 'null'
+          description: Shipment pickup note for receiver
+          example: No notes
+          x-stoplight:
+            id: znsxb6xypmv2t
+        courier_tracking_link:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: Official tracking URL of the courier (if any). The language parameter of this link relies on the destination country/region and the language associated with the shipment, if the data regarding the destination country/region and language of the shipment is not available, AfterShip will set the language parameter of the link to "US" by default.
+          example: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+          x-stoplight:
+            id: n6roi7zoka82f
+        first_attempted_at:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: 'The date and time of the carrier’s first attempt to deliver the package to the recipient.  It uses the shipment recipient’s timezone. The format may differ depending on how the carrier provides it:
+
+            - YYYY-MM-DDTHH:mm:ss
+
+            - YYYY-MM-DDTHH:mm:ssZ'
+          example: '2022-01-01T17:00:00-05:00'
+          x-stoplight:
+            id: 1nl6r2ptiz2ux
+        courier_redirect_link:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: Delivery instructions (delivery date or address) can be modified by visiting the link if supported by a carrier. The language parameter of this link relies on the destination country/region and the language associated with the shipment, if the data regarding the destination country/region and language of the shipment is not available, AfterShip will set the language parameter of the link to "US" by default.
+          example: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+          x-stoplight:
+            id: l9wvmlbfpq9m5
+        tracking_account_number:
+          type:
+          - string
+          - 'null'
+          description: Additional field required by some carriers to retrieve the tracking info. The shipper’s carrier account number. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+          example: null
+          x-stoplight:
+            id: a9bqpoefesxpz
+        tracking_key:
+          type:
+          - string
+          - 'null'
+          description: Additional field required by some carriers to retrieve the tracking info. A type of tracking credential required by some carriers. Refer to our article on [additional tracking fields](../../docs/enum/additional_tracking_fields.md) for more details.
+          example: null
+          x-stoplight:
+            id: cmjbmic75y8ow
+        tracking_ship_date:
+          type:
+          - string
+          - 'null'
+          description: 'The date and time when the shipment is shipped by the merchant and ready for pickup by the carrier. The field supports the following formats:
+
+            - YYYY-MM-DD
+
+            - YYYY-MM-DDTHH:mm:ss
+
+            - YYYY-MM-DDTHH:mm:ssZ
+
+            The field serves two key purposes:
+
+            - Calculate processing time metrics in the Order-to-delivery Analytics dashboard. To ensure accurate analytics, it''s recommended to include timezone information when configuring this value
+
+            - Required by certain carriers to retrieve tracking information as an additional tracking field.
+
+            '
+          example: '2025-01-09T02:32:11+01:00'
+          x-stoplight:
+            id: cf3kar40tbf5k
+        on_time_status:
+          type:
+          - string
+          - 'null'
+          description: Whether the tracking is delivered on time or not.
+          example: on-time
+          x-stoplight:
+            id: yyf8idqnwbv9s
+        on_time_difference:
+          type:
+          - number
+          - 'null'
+          description: The difference days of the on time.
+          example: 0
+          x-stoplight:
+            id: i9kfgjee8guk0
+        order_tags:
+          type: array
+          description: The tags of the order.
+          example:
+          - Exception
+          x-stoplight:
+            id: q9qbc7g33rrr1
+          items:
+            type: string
+            x-stoplight:
+              id: b3mmq7w881xjs
+        aftership_estimated_delivery_date:
+          type:
+          - object
+          - 'null'
+          description: The estimated delivery date of the shipment provided by AfterShip’s AI and shown to the recipients. It uses the format `YYYY-MM-DD` based on the shipment recipient’s timezone.
+          x-stoplight:
+            id: aem0yqpi17b5u
+          properties:
+            estimated_delivery_date:
+              type: string
+              description: The estimated arrival date of the shipment.
+              example: '2022-01-03'
+              x-stoplight:
+                id: mgqspjtuwt6ym
+            confidence_code:
+              type: number
+              example: 10001
+              x-stoplight:
+                id: vvl3hdd9lyvnk
+              description: Indicates the confidence level and associated reason for an AI EDD prediction request. For a comprehensive list of confidence codes, refer to [this document](../../docs/enum/confidence_codes.md#confidence-codes).
+            estimated_delivery_date_min:
+              type: string
+              description: Earliest estimated delivery date of the shipment.
+              example: '2022-01-02'
+              x-stoplight:
+                id: r7i1fnrmsh4n6
+            estimated_delivery_date_max:
+              type: string
+              description: Latest estimated delivery date of the shipment.
+              example: '2022-01-04'
+              x-stoplight:
+                id: 51nf99logjukp
+        custom_estimated_delivery_date:
+          type:
+          - object
+          - 'null'
+          description: Estimated delivery time of the shipment based on your [custom EDD settings](https://admin.aftership.com/settings/promised-delivery-date). It uses the format `YYYY-MM-DD` based on the shipment recipient’s timezone.
+          x-stoplight:
+            id: q9x8ooe0g2upf
+          properties:
+            type:
+              type: string
+              enum:
+              - range
+              - specific
+              example: specific
+              description: The format of the EDD. Either a single date or a date range.
+              x-stoplight:
+                id: 6n5pk0tkn40af
+            datetime:
+              type:
+              - string
+              - 'null'
+              description: The specific EDD date.
+              example: '2022-01-05'
+              x-stoplight:
+                id: kmc7zhvwvqp7c
+            datetime_min:
+              type:
+              - string
+              - 'null'
+              description: For a date range EDD format, the date for the lower end of the range.
+              example: null
+              x-stoplight:
+                id: gq9jwjhf2x5f6
+            datetime_max:
+              type:
+              - string
+              - 'null'
+              description: For a date range EDD format, the date for the upper end of the range.
+              example: null
+              x-stoplight:
+                id: mdgm5eo1pkf5h
+        order_number:
+          type:
+          - string
+          - 'null'
+          description: A unique, human-readable identifier for the order.
+          example: '162654659775'
+          x-stoplight:
+            id: 7o48lnihq94l3
+        first_estimated_delivery:
+          type:
+          - object
+          - 'null'
+          description: "The shipment’s original estimated delivery date. It could be provided by the carrier, AfterShip AI, or based on your custom settings. The format of carrier EDDs may differ depending on how the carrier provides it:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ\n AfterShip AI and custom EDDs always use the format `YYYY-MM-DD`. All EDDs use the shipment recipient’s timezone."
+          x-stoplight:
+            id: hh6ao95ap2hf3
+          properties:
+            type:
+              type: string
+              enum:
+              - range
+              - specific
+              example: specific
+              description: The format of the EDD. Either a single date or a date range.
+              x-stoplight:
+                id: zi9cqxlbjdpmr
+            source:
+              type: string
+              description: The source of the EDD. Either the carrier, AfterShip AI, or based on your custom EDD settings.
+              enum:
+              - Carrier EDD
+              - AfterShip EDD
+              - Custom EDD
+              - Order EDD
+              example: Carrier EDD
+              x-stoplight:
+                id: tytlfua2ewngl
+            datetime:
+              type:
+              - string
+              - 'null'
+              description: The latest EDD time.
+              example: '2022-01-05T12:11:11+01:00'
+              x-stoplight:
+                id: z0f7c7fy4lk9f
+            datetime_min:
+              type:
+              - string
+              - 'null'
+              description: For a date range EDD format, the date and time for the lower end of the range.
+              example: null
+              x-stoplight:
+                id: y16dc2h9yw7yb
+            datetime_max:
+              type:
+              - string
+              - 'null'
+              description: For a date range EDD format, the date and time for the upper end of the range.
+              example: null
+              x-stoplight:
+                id: ie29bqqkbdeml
+        latest_estimated_delivery:
+          type:
+          - object
+          - 'null'
+          description: "The most recently calculated estimated delivery date. It could be provided by the carrier, AfterShip AI, or based on your custom settings. The format of carrier EDDs may differ depending on how the carrier provides it:\n- YYYY-MM-DD\n- YYYY-MM-DDTHH:mm:ss\n- YYYY-MM-DDTHH:mm:ssZ\n AfterShip AI and custom EDDs always use the format `YYYY-MM-DD`. All EDDs use the shipment recipient’s timezone."
+          x-stoplight:
+            id: c8b1s1h74aa3l
+          properties:
+            type:
+              type: string
+              enum:
+              - range
+              - specific
+              example: specific
+              description: The format of the EDD. Either a single date or a date range.
+              x-stoplight:
+                id: nsdx4v7ky9wm4
+            source:
+              type: string
+              description: The source of the EDD. Either the carrier, AfterShip AI, or based on your custom EDD settings.
+              enum:
+              - Carrier EDD
+              - AfterShip EDD
+              - Custom EDD
+              - Order EDD
+              x-stoplight:
+                id: 43og381lh3igs
+              example: AfterShip EDD
+            datetime:
+              type:
+              - string
+              - 'null'
+              description: The latest EDD time.
+              example: '2022-01-05T12:11:11+01:00'
+              x-stoplight:
+                id: 0mtzl11ixh6bb
+            datetime_min:
+              type:
+              - string
+              - 'null'
+              description: For a date range EDD format, the date and time for the lower end of the range.
+              example: null
+              x-stoplight:
+                id: b16ab78y852zq
+            datetime_max:
+              type:
+              - string
+              - 'null'
+              description: For a date range EDD format, the date and time for the upper end of the range.
+              example: null
+              x-stoplight:
+                id: zyrjpftzihizd
+            revise_reason:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: au8i5eudb392u
+              description: "Explains the reason for a change to the latest_estimated_delivery. This string will only have a value if:\n1. The source for the latest EDD is AfterShip EDD. \n2. The reason for the change is known.\nFor a comprehensive list of reasons, please refer to [this document](../../docs/enum/edd_revise_reasons.md#).\n"
+              example: extreme_weather
+        shipment_tags:
+          type: array
+          description: Used to add tags to your shipments to help categorize and filter them easily.
+          maxItems: 50
+          example:
+          - Returned
+          x-stoplight:
+            id: n2hz9edtocz8x
+          items:
+            type: string
+            maxLength: 32
+            x-stoplight:
+              id: klv3uvgsscjfn
+        courier_connection_id:
+          type:
+          - string
+          - 'null'
+          description: 'If you have multiple accounts connected for a single carrier on AfterShip, we have introduced the courier_connection_id field to allow you to specify the carrier account associated with each shipment. By providing this information, you enable us to accurately track and monitor your shipments based on the correct carrier account.([Get your courier connection id](https://admin.aftership.com/carrier-connection))</br>
+
+            In the event that you do not specify the courier_connection_id, we will handle your shipment using the connection that was created earliest among your connected accounts.'
+          minLength: 1
+          example: 8e1261bde336436abbc7cb3eee8cd707
+          x-stoplight:
+            id: 8hpi8gf24thl8
+        carbon_emissions:
+          type:
+          - object
+          - 'null'
+          x-stoplight:
+            id: v5uie75c3kray
+          description: "The model contains the total amount of carbon emissions generated by the shipment. \n- AfterShip will provide this data only when it is available, and its availability is contingent upon the location and weight information that AfterShip can obtain.\n- The values will be accessible solely for shipments that have been successfully delivered. However, in the event of a shipping update after the delivery status has been achieved, the value may change.\n- It’s a paid service and only for Tracking Enterprise users, please contact your customer success manager if you want to know more."
+          properties:
+            unit:
+              type: string
+              x-stoplight:
+                id: a28ex68lfv4of
+              description: 'The unit in which the value field is expressed. Allowed values: kg'
+              example: kg
+              readOnly: true
+            value:
+              type: number
+              x-stoplight:
+                id: cpr55pp7pm3q8
+              description: The total amount of carbon emissions
+              example: 0.7
+              readOnly: true
+        location_id:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: ydzbctpgbxw53
+          example: bda843ed811541fc852a8447371cf6f2
+          description: "The location_id refers to the place where you fulfilled the items. \n - If you provide a location_id, the system will automatically use it as the tracking's origin address. However, passing both location_id and any origin address information simultaneously is not allowed.\n- Please make sure you add your locations [here](https://admin.aftership.com/settings/locations-and-rules) before passing the location_id and verify that the location's status is active. Learn more about adding locations [here](https://support.aftership.com/en/article/manage-ship-from-locations-via-aftership-tracking-okbhj4/?bust=1702871142396)."
+        shipping_method:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: pkxdj6w6z0pey
+          example: Local Delivery
+          description: The shipping_method string refers to the chosen method for delivering the package. Merchants typically offer various shipping methods to consumers during the checkout process, such as, Local Delivery, Free Express Worldwide Shipping, etc.
+        failed_delivery_attempts:
+          type:
+          - integer
+          - 'null'
+          x-stoplight:
+            id: 96wldsihcjrgz
+          example: 2
+          description: By dynamically tracking failed delivery attempts during shipment, this field allows you to pinpoint carriers accountable for the most failures. Analyzing the root cause of these failures enables you to improve carriers' delivery standard operating procedures (SOP), leading to an overall enhancement in delivery service quality.
+          readOnly: true
+        signature_requirement:
+          x-stoplight:
+            id: 38r19tj09ns5d
+          example: signature_required
+          description: The signature_requirement field serves the purpose of validating the service option type, specifically proof of delivery. By collecting the recipient's signature upon delivery, it ensures the package reaches the intended recipient and prevents disputes related to non-delivery or lost packages.</br>
+          enum:
+          - signature_required
+          - adult_signature_required
+          - indirect_signature_required
+          - no_signature_required
+          - null
+          type: string
+          readOnly: true
+        delivery_location_type:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: a5n0jegg7gg62
+          example: front door,  porch,  front desk
+          description: The delivery location type represents the secure area where the carrier leaves the package, such as a safe place, locker, mailbox, front porch, etc. This information helps ensure the shipment reaches the intended recipient efficiently, minimizing the risk of theft or damage.
+        aftership_tracking_url:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: teda2suewrgzd
+          example: https://track.happytrading.com/61293150000079650811
+          description: 'The tracking URL directs your customers to the shipment tracking page which can display either the default or a customized page based on segmentation rules.
+
+
+            - The universal URL is used by default, but you can opt for a custom domain if you have one. Learn how to set up a custom domain [here](https://support.aftership.com/en/article/set-up-a-custom-domain-for-the-branded-tracking-page-gow8in/).
+
+            - If you connect to a Shopify store and enable the "Redirect customers to your proxy URL from notification" option, the proxy URL will be displayed. You can find more details [here](https://support.aftership.com/en/article/learn-more-about-tracking-page-embedding-using-proxy-url-10ia283/#4-redirect-customers-to-proxy-url).
+
+
+            The field is not automatically enabled in API & Webhook. Please contact support if you’d like to enable it.
+
+            '
+        aftership_tracking_order_url:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: mp3rlequ9kt9b
+          example: https://track.happytrading.com/order-status?order-number=1001&code=eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ==
+          description: 'The order URL directs your customers to the order tracking page, which includes all shipments. It can display either the default or a customized page based on segmentation rules.
+
+
+            - The universal URL is used by default, but you can opt for a custom domain if you have one. Learn how to set up a custom domain [here](https://support.aftership.com/en/article/set-up-a-custom-domain-for-the-branded-tracking-page-gow8in/).
+
+            - If you connect to a Shopify store and enable the "Redirect customers to your proxy URL from notification" option, the proxy URL will be displayed. You can find more details [here](https://support.aftership.com/en/article/learn-more-about-tracking-page-embedding-using-proxy-url-10ia283/#4-redirect-customers-to-proxy-url).
+
+
+            The field is not automatically enabled in API & Webhook. Please contact support if you’d like to enable it.
+
+            '
+        first_mile:
+          type:
+          - object
+          - 'null'
+          x-stoplight:
+            id: obtfqg7dlrsbi
+          description: 'The field contains information about the first leg of the shipping starting from the carrier picking up the shipment from the shipper to the point where they hand it over to the last-mile carrier. Once AfterShip detects the shipment is multi-leg, we will populate the first-mile information under this object. '
+          properties:
+            tracking_number:
+              type: string
+              x-stoplight:
+                id: 8f35y6earlf70
+              description: The tracking number of the first-mile carrier.
+              example: '61293150000079650811'
+            slug:
+              type: string
+              x-stoplight:
+                id: xm3e5edjqwjqb
+              description: The unique code of the carrier responsible for the first-mile of the shipment. Find all the courier slugs [here](https://www.aftership.com/docs/tracking/others/supported-couriers).
+              example: ups
+            transit_time:
+              type:
+              - integer
+              - 'null'
+              x-stoplight:
+                id: 9no03hz8wfcfg
+              description: "The transit time for the first-mile of a shipment in days. This field is calculated based on whether the handed_over_to_last_mile_carrier or received_by_last_mile_carrier event is detected by AfterShip. The handover event date is used to calculate the first-mile transit time.\n- First mile transit time (in days) = Handover date - Pickup date \n"
+              example: '1'
+            courier_redirect_link:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: 3nfmoplnomr54
+              description: The field provides the link for modifying delivery instructions (such as delivery date and shipping address), if supported by the first-mile carrier. The language parameter of this link is determined by the destination country/region and the language associated with the shipment. If the destination country/region and language data is unavailable, AfterShip will default the language parameter to "US".
+              example: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650811&cntry_code=US
+            courier_tracking_link:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: 0rsg72y2xurjv
+              description: The field contains the official tracking URL of the first-mile carrier, if available. The language parameter of this link is determined by the destination country/region and the language associated with the shipment. If the destination country/region and language data is unavailable, AfterShip will default the language parameter to "US".
+              example: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650811&cntry_code=US
+        last_mile:
+          type:
+          - object
+          - 'null'
+          x-stoplight:
+            id: ybb09aupz5zlv
+          description: This field contains information about the last leg of the shipment, starting from the carrier who hands it over to the last-mile carrier, all the way to delivery. Once AfterShip detects that the shipment involves multiple legs and identifies the last-mile carrier, we will populate the last-mile carrier information in this object. Alternatively, the user can provide this information in this field to specify the last-mile carrier, which is helpful if AfterShip is unable to detect it automatically.
+          properties:
+            tracking_number:
+              type: string
+              x-stoplight:
+                id: p9kw9ds1tq2u9
+              description: The tracking number of the last-mile carrier.
+              example: '61293150000079650812'
+            slug:
+              type: string
+              x-stoplight:
+                id: 2zcp3bgwu7i3g
+              example: ups
+              description: The unique code of the carrier responsible for the last-mile of the shipment.  Find all the courier slugs [here](https://www.aftership.com/docs/tracking/others/supported-couriers).
+            transit_time:
+              type:
+              - integer
+              - 'null'
+              x-stoplight:
+                id: g9uyyiie5257u
+              example: '2'
+              description: 'The transit time for the last-mile of a shipment in days. This field is calculated based on whether the handed_over_to_last_mile_carrier or the received_by_last_mile_carrier event is detected by AfterShip. The handover event date is used to calculate the last-mile transit time.
+
+                - Last mile transit time (in days)= Delivered date - Handover date'
+            courier_tracking_link:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: uv5713a4wo7qf
+              description: The field contains the official tracking URL of the last-mile carrier, if available. The language parameter of this link is determined by the destination country/region and the language associated with the shipment. If the destination country/region and language data is unavailable, AfterShip will default the language parameter to "US".
+              example: https://www.fedex.com/apps/fedextrack/?tracknumbers=61293150000079650812&cntry_code=US
+            courier_redirect_link:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: ep5coabc4hxhx
+              description: The field provides the link for modifying delivery instructions (such as delivery date and shipping address), if supported by the last-mile carrier. The language parameter of this link is determined by the destination country/region and the language associated with the shipment. If the destination country/region and language data is unavailable, AfterShip will default the language parameter to "US".
+              example: https://www.fedex.com/apps/fedextrack/?action=track&tracknumbers=61293150000079650812&cntry_code=US
+            source:
+              x-stoplight:
+                id: ugrteygsuketi
+              example: system
+              description: 'The field indicates the source of last-mile carrier.
+
+                '
+              enum:
+              - system
+              - user
+        customers:
+          type: array
+          x-stoplight:
+            id: zaml2lcqlce9p
+          description: The field contains the customer information associated with the tracking. A maximum of three customer objects are allowed.
+          items:
+            x-stoplight:
+              id: 7y5z99xgeev88
+            type: object
+            properties:
+              role:
+                type:
+                - string
+                - 'null'
+                x-stoplight:
+                  id: 98cuwhnhvp4mw
+                example: sender
+                description: The  role of the customer, indicating whether the customer is  an individual or a company.
+              name:
+                type:
+                - string
+                - 'null'
+                x-stoplight:
+                  id: jieszn741j491
+                example: Steve Young
+                description: Customer name associated with the tracking.
+              phone_number:
+                type:
+                - string
+                - 'null'
+                x-stoplight:
+                  id: wtaftsxrrsiq5
+                example: '+8613800138000'
+                description: 'The phone number(s) to receive SMS notifications. Phone numbers should begin with a `+` sign and include the area code.
+
+                  '
+              email:
+                type:
+                - string
+                - 'null'
+                x-stoplight:
+                  id: z1pdcnx1juoob
+                example: example@aftership.com
+                description: Email address(es) to receive email notifications.
+              language:
+                type:
+                - string
+                - 'null'
+                x-stoplight:
+                  id: pcfk6alevd2f6
+                example: en
+                description: The preferred language of the customer. If you have set up AfterShip notifications in different languages, we use this to send the tracking updates to the customer in their preferred language.
+              id:
+                type:
+                - string
+                - 'null'
+                x-stoplight:
+                  id: 6dw6geeylop7y
+                example: cust_12345
+                description: The customer's identifier on the merchant or platform (for example, Shopify) side.
+        proof_of_delivery:
+          type:
+          - array
+          - 'null'
+          x-stoplight:
+            id: vchcxwr9d0l1o
+          description: 'An array of proof of delivery (POD) records, such as a signature or photo captured upon successful delivery.
+
+
+            This field returns a value only after the feature is enabled. Please contact your customer success manager if you''d like to know more.'
+          readOnly: true
+          items:
+            type: object
+            x-stoplight:
+              id: n2z7kyrhzds1t
+            properties:
+              type:
+                type: string
+                x-stoplight:
+                  id: khse95m08j6ae
+                description: The file type of the proof of delivery record. Currently, only images are supported.
+                example: image
+              url:
+                type: string
+                x-stoplight:
+                  id: w2zrmgcyx6yw5
+                description: The URL of the proof of delivery record.
+                example: https://example.com/pod-image.jpg
+        multi_piece_info:
+          type:
+          - object
+          - 'null'
+          x-stoplight:
+            id: acqod7q3o3r0w
+          description: 'Multi-piece shipment refers to a scenario where a single shipment order is fulfilled by multiple physical packages. Each piece has its own carrier-assigned tracking number, but all pieces belong to the same shipment. This commonly occurs when an order is too large to fit in one box, or when items are packed separately for handling reasons.
+
+
+            This field contains multi-piece shipment metadata describing a group of packages that belong to the same shipment.
+
+
+            This field returns a value only when your subscription plan includes a multi-piece feature. To enable, go to [AfterShip Tracking Admin > Settings > Shipment tracking > Multi-piece shipments](https://admin.aftership.com/tracking/settings/shipment-tracking-rule).'
+          readOnly: true
+          properties:
+            type:
+              type: string
+              x-stoplight:
+                id: 3cwrk6kg3lnuy
+              description: 'Indicates the role of the current tracking object within the multi-piece shipment.
+
+
+                Possible values:
+
+                - `master`: The main tracking number representing the entire shipment. It may not always exist.
+
+                - `child`: A sub-tracking number belonging to one of the pieces in the shipment.'
+              enum:
+              - master
+              - child
+              example: master
+            pieces:
+              type: array
+              x-stoplight:
+                id: ou311whkbpp14
+              description: List of all pieces in the MPS, including the master and all child pieces.
+              items:
+                type: object
+                x-stoplight:
+                  id: wlufeblkrumed
+                properties:
+                  tracking_id:
+                    type: string
+                    x-stoplight:
+                      id: pquvthihqehxo
+                    description: AfterShip system-assigned unique identifier for the piece.
+                    example: bff5a3bac79b472991a204172473a635
+                  tracking_number:
+                    type: string
+                    x-stoplight:
+                      id: hhtrkkbhq0j7u
+                    description: Carrier-assigned tracking number for the piece.
+                    example: '61293150000079650811'
+                  type:
+                    type: string
+                    x-stoplight:
+                      id: merxqyydqdr77
+                    description: 'Type of the piece within the MPS: `master` or `child`.'
+                    enum:
+                    - master
+                    - child
+                    example: child
+                  trackable:
+                    type: boolean
+                    x-stoplight:
+                      id: x3kq9mps5trkb
+                    description: Indicates whether the tracking number can be used to retrieve tracking updates on the carrier's side. If not, it means the carrier can only return a child tracking number, but cannot independently provide tracking updates for the sub-shipment. In this case, it is not recommended for you to import this tracking number into AfterShip for tracking.
+                    example: true
+        shipment_direction:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: iwlqsuiflsuzr
+          description: 'Indicates the business direction of the shipment in the e-commerce fulfillment lifecycle.
+
+
+            Possible values:
+
+            - `forward`: A forward (outbound-to-customer) shipment created for order fulfillment.
+
+            - `return`: A return (customer-to-merchant) shipment created for after-sales return or exchange.
+
+
+            This field is populated in either of the following cases:
+
+            1. You explicitly provided it when creating the tracking.
+
+            2. AfterShip automatically detected a linked forward or return shipment.
+
+
+            It also determines which related shipment object (`forward_shipment` or `return_shipment`) may appear in the response.'
+          enum:
+          - forward
+          - return
+          - null
+          example: forward
+        return_shipment:
+          type:
+          - object
+          - 'null'
+          x-stoplight:
+            id: 6i08zztgpwfqi
+          description: 'The associated return shipment linked to the current outbound shipment.
+
+
+            This field is only present when `shipment_direction = "forward"` and AfterShip has detected a linked return shipment.'
+          readOnly: true
+          properties:
+            id:
+              type: string
+              x-stoplight:
+                id: qm7835odb1yfx
+              description: 'AfterShip system-assigned unique identifier of the linked return shipment.
+
+
+                This field is only returned when both of the following conditions are met:
+
+                1. AfterShip has detected a linked return shipment.
+
+                2. The Auto-import for return shipments feature is enabled in your AfterShip account.
+
+
+                When auto-import is disabled, `id` will not be returned, but `tracking_number` and `slug` may still be present.
+
+
+                To enable this feature, go to [AfterShip Tracking Admin > Settings > Shipment Tracking > Return Shipments](https://admin.aftership.com/tracking/settings/shipment-tracking-rule).'
+              example: bff5a3bac79b472991a204172473a635
+            tracking_number:
+              type: string
+              x-stoplight:
+                id: eg2qzjb4ap0hl
+              description: Carrier-assigned tracking number of the linked return shipment. Can be used together with `return_shipment.slug` to create a new tracking subscription and retrieve the return shipment's checkpoints.
+              example: '61293150000079650812'
+            slug:
+              type: string
+              x-stoplight:
+                id: kxh36uwjszfn7
+              description: Carrier slug (identifier) of the linked return shipment. Can be used together with `return_shipment.tracking_number` to subscribe to tracking updates for the return shipment.
+              example: fedex
+        forward_shipment:
+          type:
+          - object
+          - 'null'
+          x-stoplight:
+            id: an3uraqcwqkd5
+          description: 'The original outbound shipment linked to this return. Use this to trace a return back to its source delivery.
+
+
+            This field is only present when `shipment_direction = "return"` and AfterShip has detected a linked forward shipment.'
+          readOnly: true
+          properties:
+            id:
+              type: string
+              x-stoplight:
+                id: dv0ib62o2wp78
+              description: AfterShip system-assigned unique identifier of the linked outbound shipment.
+              example: abc123def456789012345678901234567890abcd
+    Tag.v1:
+      x-stoplight:
+        id: zcw4ttoz76bsj
+      type: string
+      title: tag
+      enum:
+      - Pending
+      - InfoReceived
+      - InTransit
+      - OutForDelivery
+      - AttemptFail
+      - Delivered
+      - AvailableForPickup
+      - Exception
+      - Expired
+      description: 'Current status of tracking. ([See tag definition](../../docs/enum/delivery_statuses.md))<div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
+      example: Delivered
+    Checkpoint:
+      x-stoplight:
+        id: ag7g0fudz5euk
+      title: Checkpoint
+      type: object
+      description: 'Object describes checkpoint information.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/events.md)[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
+      x-tags:
+      - Resource
+      properties:
+        created_at:
+          type: string
+          minLength: 1
+          description: The date and time of the checkpoint event was added to AfterShip. It uses the format `YYYY-MM-DDTHH:mm:ssZ` for the timezone GMT +0.
+          example: '2023-01-18T08:47:10+00:00'
+          x-stoplight:
+            id: zu8czui1spi5j
+        slug:
+          type: string
+          minLength: 1
+          description: The unique code of courier for this checkpoint. Get courier slug [here](../../reference/api.json/paths/~1couriers/get)
+          example: fedex
+          x-stoplight:
+            id: 4owl79ms8d3u9
+        checkpoint_time:
+          type: string
+          minLength: 1
+          description: 'The date and time of the checkpoint event, provided by the carrier. It uses the timezone of the checkpoint. The format may differ depending on how the carrier provides it:
+
+            - YYYY-MM-DDTHH:mm:ss
+
+            - YYYY-MM-DDTHH:mm:ssZ'
+          example: '2022-01-01T18:47:10-05:00'
+          x-stoplight:
+            id: 9awzp75k9febs
+        location:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: Location info provided by carrier
+          example: 13th Street, New York, NY 10011, USA, United States
+          x-stoplight:
+            id: u93y11ihmeov8
+        city:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: City info provided by carrier
+          example: New York
+          x-stoplight:
+            id: fabvm8mmikdej
+        state:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: State info provided by carrier
+          example: NY
+          x-stoplight:
+            id: 1v0inuoj4e74y
+        postal_code:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: Postal code info provided by carrier
+          example: '10011'
+          x-stoplight:
+            id: pf7bhy5eyojon
+        coordinate:
+          type:
+          - object
+          - 'null'
+          description: The latitude and longitude coordinates indicate the precise location of the shipments that are currently in transit.
+          example: null
+          x-stoplight:
+            id: zum7wa9pis108
+          properties:
+            latitude:
+              type: number
+              x-stoplight:
+                id: g76n61cbre4zl
+              description: Represents the latitude.
+              example: '37.09024'
+              readOnly: true
+            longitude:
+              type: number
+              x-stoplight:
+                id: snidkwtd2epur
+              description: Represents the longitude.
+              example: '-95.712891'
+              readOnly: true
+        country_region:
+          type:
+          - string
+          - 'null'
+          description: Country/Region ISO Alpha-3 (three letters) of the checkpoint
+          example: USA
+          x-stoplight:
+            id: j5fqociyv0ljk
+        country_region_name:
+          type:
+          - string
+          - 'null'
+          description: Country/Region name of the checkpoint, may also contain other location info.
+          example: United States
+          x-stoplight:
+            id: gsg0p1qckju58
+        message:
+          type: string
+          minLength: 1
+          description: Checkpoint message
+          example: Package delivered
+          x-stoplight:
+            id: cznxhuyp14g5q
+        tag:
+          $ref: '#/components/schemas/Tag.v1'
+          x-stoplight:
+            id: l0bsiywldok3r
+        subtag:
+          type: string
+          minLength: 1
+          description: Current subtag of checkpoint. ([See subtag definition](../../docs/enum/delivery_sub_statuses.md))
+          example: Delivered_002
+          x-stoplight:
+            id: 7w23827daymn0
+        subtag_message:
+          type: string
+          minLength: 1
+          description: Normalized checkpoint message. ([See subtag message definition](../../docs/enum/delivery_sub_statuses.md))
+          example: Picked up by customer
+          x-stoplight:
+            id: gtmk5cuw7wtwb
+        raw_tag:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: Checkpoint raw status provided by courier
+          example: RO
+          x-stoplight:
+            id: 9hl14tav56q2k
+        events:
+          type: array
+          x-stoplight:
+            id: yaarhzzr9lwlb
+          description: 'The array provides details about specific event(s) that occurred  to a shipment, such as "returned_to_sender". You can find the full list of events and reasons [here](../../docs/enum/events.md#events) <span style=background-color:#ff6b2b;color:white;padding:2px>(Beta Feature)</span>
+
+            - The events'' value for the same checkpoint message is subject to change as we consistently strive to enhance the performance of this feature.'
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                x-stoplight:
+                  id: ga8y1l7lzhe0n
+                description: Represents the event code.
+                example: delivered_to_neighbor
+              reason:
+                type:
+                - object
+                - 'null'
+                x-stoplight:
+                  id: d19xczf0ux5qf
+                description: Describes the specific reason that led to the event.
+                properties:
+                  code:
+                    type: string
+                    x-stoplight:
+                      id: cttlv8n2ojzes
+                    description: 'The code of the reason. '
+                    example: incorrect_missing_address
+        source:
+          x-stoplight:
+            id: 2tkhtf7zk4pwk
+          example: carrier
+          description: The source of the checkpoint, which can either be from the carrier or when the user marks the tracking as completed.
+          enum:
+          - carrier
+          - user
+        hash:
+          type: string
+          x-stoplight:
+            id: bu7ulg24vi728
+          description: Unique hash identifier for each checkpoint event, could be used for deduplication.
+          example: a1b2c3d4e5f6789012345678901234567890abcd
+          readOnly: true
+    Meta.v1:
+      title: meta
+      type: object
+      description: Meta data
+      required:
+      - code
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: meta code
+        message:
+          type: string
+          description: error message, only exist if the response status is not 2xx
+        type:
+          type: string
+          enum:
+          - BadRequest
+          - Unauthorized
+          - Forbidden
+          - NotFound
+          - TooManyRequests
+          - InternalError
+          description: error type, only exist if the response status is not 2xx
+    Tracking_response.v1:
+      title: Tracking response
+      type: object
+      description: Tracking response for returning single tracking
+      required:
+      - meta
+      - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+        data:
+          $ref: '#/components/schemas/Tracking'
+    Tracking_response_get_multiple.v1:
+      title: Tracking response for get trackings
+      type: object
+      description: Tracking response for getting tracking
+      required:
+      - meta
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+        data:
+          type: object
+          properties:
+            pagination:
+              type: object
+              description: The Pagination holds the information for the pagination when the response contains multiple objects.
+              x-stoplight:
+                id: br2w36rzkm6jc
+              properties:
+                total:
+                  type: integer
+                  x-stoplight:
+                    id: zxfmih684rjbd
+                  description: The total number of trackings.
+                  example: 100
+                next_cursor:
+                  type: string
+                  x-stoplight:
+                    id: myfrcvk07kece
+                  description: A string representing the cursor value for the next page of results.
+                  example: WzE3MTk5OTIwMzIzNTMsImE0NWQ5NDg5ODU4NzQzMjA5YjBjYjRlZjE3ZTBjNGVhIl0=
+                has_next_page:
+                  type: boolean
+                  x-stoplight:
+                    id: zmeas9mpkz2ds
+                  description: To indicate if next page is available.
+            trackings:
+              description: Array of [tracking object](../../model/resource/tracking.json)
+              type: array
+              items:
+                $ref: '#/components/schemas/Tracking'
+                x-stoplight:
+                  id: tdehjrjz0yj1s
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+      description: '> Legacy API keys with `aftership-api-key` headers are not supported anymore start from `2023-10` version. For more information, check [authentication](../../docs/quickstart/authentication.md).'
+x-stoplight:
+  id: fcd9acb5f448a

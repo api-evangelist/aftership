@@ -1,0 +1,1164 @@
+openapi: 3.2.0
+info:
+  title: Overview Coverages API
+  version: '1.0'
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-automizelyapi-com-protection/nodes/reference/api.v1.json?branch=master&deref=optimizedBundle)
+
+    '
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  summary: API Overview
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+servers:
+- url: https://api.aftership.com/admin/2022-01
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Coverages
+paths:
+  /coverages:
+    parameters: []
+    get:
+      summary: Query coverages
+      operationId: get-coverages
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                    properties:
+                      coverages:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Coverage.v1'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination.v1'
+                required:
+                - meta
+                - data
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: source_id
+        description: Order source ID
+      - schema:
+          type: number
+          default: 1
+          example: 1
+        in: query
+        name: page
+        description: 'The page to query. (Default: 1, Max: 1000)'
+      - schema:
+          type: string
+          default: '20'
+          example: '20'
+        in: query
+        name: limit
+        description: 'Number of coverages each page contain. (Default: 20, Max: 20)'
+      tags:
+      - Coverages
+      description: Get multiple coverages
+    post:
+      summary: Create a coverage
+      operationId: post-coverage
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Coverage.v1'
+                required:
+                - meta
+                - data
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 20100
+                      type: Created
+                      message: ''
+                    data:
+                      id: e96931e5d9bb4f9ab9312ae4a7581422
+                      source_id: '1234569'
+                      policy_number: ea680f10cdda49f381e24530fb5ffc09
+                      status: activated
+                      policy_detail_url: https://demo.aftership.io/protection/policy?code=c06f732bb503d00a099d424bcf333b11&policyId=e96931e5d9bb4f9ab9312ae4a7581422
+                      premium:
+                        amount: '1.50'
+                        currency: USD
+                      effective_time: '2023-02-08T04:04:57Z'
+                      expiration_time: '2023-05-09T04:04:57Z'
+                      updated_at: '2023-02-08T04:04:57.36532Z'
+                      created_at: '2023-02-08T04:04:57.36532Z'
+                      items:
+                      - source_id: '123456'
+                        title: Brown Handmade Leather Lacing Chelsea Ankle Boots - The other colors
+                        quantity: 1
+                        unit_insured_amount:
+                          amount: '12.23'
+                          currency: USD
+                        sku: 22970201-the-other-colors-8-5
+                        image_urls:
+                        - https://cdn.shopify.com/s/files/1/0608/6154/6741/products/product-image-883092552.jpg?v=1637892003
+                      - source_id: '123457'
+                        title: banana
+                        quantity: 3
+                        unit_insured_amount:
+                          amount: '25'
+                          currency: USD
+                        sku: sku2
+                        image_urls:
+                        - https://image.xx/xx/xx.jpg
+                      shipping_address:
+                        street_1: 1104, South University Avenue
+                        street_2: ''
+                        postal_code: '53916'
+                        city: Beaver Dam
+                        state:
+                          name: Wisconsin
+                        country_region:
+                          code: USA
+                        phone: '+14155552671'
+                        email: example@example.com
+                        first_name: Joe
+                        last_name: Smith
+                      sender_address:
+                        street_1: 1104, South University Avenue
+                        street_2: ''
+                        postal_code: '53916'
+                        city: Beaver Dam
+                        state:
+                          name: Wisconsin
+                        country_region:
+                          code: USA
+                        phone: '+14155552671'
+                        email: example@example.com
+                        first_name: Joe
+                        last_name: Smith
+                      trackings:
+                      - slug: ups
+                        tracking_number: 1Z9999W99999999999
+                        ship_date: ''
+                      subtotal:
+                        amount: '87.23'
+                        currency: USD
+                      shipping_total:
+                        amount: '0.00'
+                        currency: USD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order:
+                  type: object
+                  required:
+                  - source_id
+                  - items
+                  - shipping_address
+                  - sender_address
+                  - order_date
+                  - subtotal
+                  properties:
+                    source_id:
+                      type: string
+                      description: A globally-unique identifier for the order.
+                    number:
+                      type: string
+                      minLength: 1
+                      description: order number of store/platform
+                    items:
+                      type: array
+                      uniqueItems: true
+                      minItems: 1
+                      description: items of order
+                      items:
+                        $ref: '#/components/schemas/Order_item.v1'
+                    shipping_address:
+                      $ref: '#/components/schemas/Address.v1'
+                      description: Refers to the location from which a package or shipment will be sent, typically the address of the supplier, distributor, or retailer that is shipping the goods.
+                    sender_address:
+                      $ref: '#/components/schemas/Address.v1'
+                      description: Refers to the location of the person or organization that is sending a package or shipment, typically the address of the individual or company that is responsible for sending the goods to their destination.
+                    trackings:
+                      type: array
+                      description: tracking info list
+                      items:
+                        $ref: '#/components/schemas/Tracking.v1'
+                    order_date:
+                      type: string
+                      minLength: 1
+                      description: order_date should be in UTC timezone.
+                      format: date
+                      example: '2022-01-01'
+                      pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
+                    subtotal:
+                      $ref: '#/components/schemas/Amount.v1'
+                      description: The order's subtotal. The value of this field should be equal to the sum of the unit_insured_amount multiplied by the quantity for all items.
+                    shipping_total:
+                      $ref: '#/components/schemas/Amount.v1'
+                      description: shipping_total will be included in the insured value.
+              required:
+              - order
+            examples:
+              example-1:
+                value:
+                  order:
+                    source_id: '1334598'
+                    number: '1334598'
+                    items:
+                    - source_id: '123456'
+                      title: Brown Handmade Leather Lacing Chelsea Ankle Boots - The other colors
+                      quantity: 1
+                      unit_insured_amount:
+                        amount: '12.23'
+                        currency: USD
+                      sku: 22970201-the-other-colors-8-5
+                      image_urls:
+                      - https://cdn.shopify.com/s/files/1/0608/6154/6741/products/product-image-883092552.jpg?v=1637892003
+                    - source_id: '123457'
+                      title: banana
+                      quantity: 3
+                      unit_insured_amount:
+                        amount: '25'
+                        currency: USD
+                      sku: sku2
+                      image_urls:
+                      - https://image.xx/xx/xx.jpg
+                    shipping_address:
+                      street_1: 1104, South University Avenue
+                      street_2: ''
+                      postal_code: '53916'
+                      city: Beaver Dam
+                      state:
+                        name: Wisconsin
+                      country_region:
+                        code: USA
+                      phone: '+14155552671'
+                      email: example@example.com
+                      first_name: Joe
+                      last_name: Smith
+                    sender_address:
+                      street_1: 1104, South University Avenue
+                      street_2: ''
+                      postal_code: '53916'
+                      city: Beaver Dam
+                      state:
+                        name: Wisconsin
+                      country_region:
+                        code: USA
+                      phone: '+14155552671'
+                      email: example@example.com
+                      first_name: Joe
+                      last_name: Smith
+                    trackings:
+                    - slug: ups
+                      tracking_number: 1Z9999W99999999999
+                      ship_date: '2023-01-31'
+                    subtotal:
+                      amount: '87.23'
+                      currency: USD
+                    shipping_total:
+                      amount: '0'
+                      currency: USD
+                    order_date: '2023-01-30'
+        description: "Note: \n- In the `shipping_address` object, either `phone` or `email` field must be populated with a value.\n- In the `sender_address` object, the `email` field must be populated with a value."
+      description: Create a coverage.
+      tags:
+      - Coverages
+  /coverages/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: policy id
+    get:
+      summary: Get a coverage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Coverage.v1'
+                required:
+                - meta
+                - data
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: string
+                      policy_number: 412-231-231
+                      status: inactive
+                      policy_detail_url: string
+                      premium:
+                        amount: string
+                        currency: USD
+                      effective_time: '2022-12-12T12:23:34.333Z'
+                      expiration_time: '2022-12-12T12:23:34.333Z'
+                      updated_at: '2022-12-12T12:23:34.333Z'
+                      created_at: '2022-12-12T12:23:34.333Z'
+                      additional_fields: string
+                      products:
+                        name: string
+                        quantity: 0
+                        price:
+                          amount: string
+                          currency: USD
+                        sku: string
+                        images:
+                        - string
+                      destination_detail:
+                        address:
+                          street_1: street line 1
+                          street_2: street line 2
+                          street_3: street line 3
+                          district: Winston Salem
+                          postal_code: '27101'
+                          city: NC
+                          state:
+                            name: New York
+                          country_region:
+                            code: USA
+                        phone:
+                          country_region_code: string
+                          number: string
+                        email: string
+                        full_name:
+                          first_name: string
+                          last_name: string
+                      original_detail:
+                        address:
+                          street_1: street line 1
+                          street_2: street line 2
+                          street_3: street line 3
+                          district: Winston Salem
+                          postal_code: '27101'
+                          city: NC
+                          state:
+                            name: New York
+                          country_region:
+                            code: USA
+                        phone:
+                          country_region_code: string
+                          number: string
+                        email: string
+                        full_name:
+                          first_name: string
+                          last_name: string
+                      trackings:
+                        slug: string
+                        tracking_number: string
+                      subtotal:
+                        amount: string
+                        currency: USD
+                      order_date: '2022-01-01'
+                      ship_date: '2022-01-01'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+      operationId: get-coverage-id
+      description: Get a coverage by ID.
+      tags:
+      - Coverages
+  /coverages/update-tracking:
+    parameters: []
+    post:
+      summary: Update a coverage tracking info
+      operationId: post-coverage-id-update-tracking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Coverage.v1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  protected_object:
+                    trackings:
+                    - slug: string
+                      tracking_number: string
+                    ship_date: string
+              properties:
+                order:
+                  type: object
+                  required:
+                  - trackings
+                  properties:
+                    trackings:
+                      type: array
+                      uniqueItems: true
+                      minItems: 1
+                      items:
+                        $ref: '#/components/schemas/Tracking.v1'
+              required:
+              - order
+            examples:
+              example-1:
+                value:
+                  order:
+                    trackings:
+                    - slug: string
+                      tracking_number: string
+                    ship_date: '2022-02-02'
+                  additional_fields: string
+      description: 'Update a coverage''s tracking information by `coverage ID` or `order source ID`.
+
+
+        **This API is used to update the tracking information. When the tracking information is provided, the coverage will be activated and you can make a claim via coverage.**
+
+
+        '
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: id
+        description: coverage ID
+      - schema:
+          type: string
+        in: query
+        name: source_id
+        description: order source ID
+      tags:
+      - Coverages
+  /coverages/void:
+    parameters: []
+    post:
+      summary: Void a coverage
+      operationId: post-coverage-void
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Coverage.v1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+      description: 'Void coverage by `coverage ID` or `order source ID`.
+
+
+        **This API allows you to void a coverage if its status is inactive. Once voided, the coverage will not be charged.**
+
+
+        '
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: id
+        description: coverage ID
+      - schema:
+          type: string
+        in: query
+        name: source_id
+        description: order source ID
+      tags:
+      - Coverages
+  /coverages/calculate:
+    parameters: []
+    post:
+      summary: Calculate the premium
+      operationId: post-coverage-calculate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 0
+                      type: string
+                      message: string
+                    data:
+                      available_quantity: 0
+                      sku: string
+                      title: string
+                      taxable: true
+                      allow_backorder: true
+                      external_id: string
+                      price:
+                        currency: string
+                        amount: 0
+                      product:
+                        handle: string
+                        external_id: string
+                      rate:
+                        profilt_rate: 0
+                        premium_fee_rate: 0
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                    properties:
+                      premium:
+                        $ref: '#/components/schemas/Amount.v1'
+                required:
+                - meta
+                - data
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      premium:
+                        amount: '12.3'
+                        currency: USD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '422':
+          description: 'Unprocessable Entity (WebDAV) '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subtotal:
+                  $ref: '#/components/schemas/Amount.v1'
+                shipping_total:
+                  $ref: '#/components/schemas/Amount.v1'
+              required:
+              - subtotal
+            examples:
+              example-1:
+                value:
+                  subtotal:
+                    currency: USD
+                    amount: '29.23'
+                  shipping_total:
+                    currency: USD
+                    amount: '1.23'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      description: Calculate premium
+      tags:
+      - Coverages
+components:
+  schemas:
+    Amount.v1:
+      title: Amount
+      type: object
+      x-examples:
+        example-1:
+          amount: string
+          currency: USD
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type: string
+          pattern: ^[0-9.]+$
+          example: '12.34'
+        currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+          minLength: 3
+          maxLength: 3
+          example: USD
+          description: Only support USD for now
+      required:
+      - amount
+      - currency
+    Order_item.v1:
+      type: object
+      x-stoplight:
+        id: 33da09c0dfb8c
+      x-examples:
+        example-1:
+          name: string
+          quantity: 0
+          price:
+            amount: string
+            currency: USD
+          sku: string
+          images:
+          - string
+      title: Order Item
+      x-tags:
+      - Primitive
+      properties:
+        source_id:
+          type: string
+          description: A globally-unique identifier for the item.
+        title:
+          type: string
+          minLength: 1
+          description: Name of the product
+        quantity:
+          type: integer
+          description: Quantity of the item in order
+        unit_insured_amount:
+          $ref: '#/components/schemas/Amount.v1'
+          description: Indicate the insured amount for each individual  item
+        sku:
+          type: string
+          minLength: 1
+          description: SKU of the product item
+        image_urls:
+          type: array
+          description: item image urls
+          items:
+            type: string
+      required:
+      - source_id
+      - title
+      - quantity
+      - unit_insured_amount
+    Pagination.v1:
+      description: Pagination data
+      type: object
+      x-examples:
+        example-1:
+          page: 1
+          limit: 10
+          total: 9734043
+      title: Pagination
+      examples: []
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: number
+          minimum: 1
+          default: 1
+        limit:
+          type: number
+          minimum: 1
+          maximum: 1000
+          default: 20
+        total:
+          type: number
+      required:
+      - page
+      - limit
+      - total
+    Address.v1:
+      type: object
+      x-examples:
+        example-1:
+          type: residential
+          street: Jones Avenue
+          street_number: '1161'
+          district: Winston Salem
+          country: USA
+          postal_code: '27101'
+          city: NC
+          state:
+            name: New York
+            code: NC
+          country_region:
+            name: American
+            code: USA
+          coordinate:
+            longitude: 0
+            latitude: 0
+      x-internal: false
+      title: Address
+      x-tags:
+      - Primitive
+      examples:
+      - street_1: 1104, South University Avenue
+        street_2: ''
+        postal_code: '53916'
+        city: Beaver Dam
+        state:
+          name: Wisconsin
+        country_region:
+          code: USA
+        phone: '+14155552671'
+        email: example@example.com
+        first_name: Joe
+        last_name: Smith
+      properties:
+        street_1:
+          type: string
+          minLength: 1
+          description: Street address 1, a complete line
+          example: Jones Avenue
+        street_2:
+          type: string
+          minLength: 1
+          description: Street address 2, a complete line
+          example: Jones Avenue
+        street_3:
+          type: string
+          minLength: 1
+          description: Street address 3, a complete line
+          example: Jones Avenue
+        postal_code:
+          type: string
+          minLength: 1
+          description: Postal code / zip code
+          example: '27101'
+        city:
+          type: string
+          minLength: 1
+          description: City name, e.g. San Jose
+          example: NC
+        state:
+          type: object
+          description: State object
+          required:
+          - name
+          properties:
+            name:
+              type: string
+              description: State name, e.g. California
+              example: New York
+        country_region:
+          description: Country region object
+          type: object
+          required:
+          - code
+          properties:
+            code:
+              type: string
+              description: Country code, ISO 3166-1 alpha 3 standard, e.g. USA
+              example: USA
+        phone:
+          type: string
+          example: '+14155552671'
+        email:
+          type: string
+          example: example@example.com
+        first_name:
+          type: string
+          example: Joe
+        last_name:
+          type: string
+          example: Smith
+      required:
+      - street_1
+      - postal_code
+      - city
+      - state
+      - country_region
+      - first_name
+      - last_name
+    Tracking.v1:
+      title: Tracking
+      type: object
+      description: tracking information about package.
+      x-examples:
+        example-1:
+          slug: string
+          tracking_number: string
+      x-tags:
+      - Primitive
+      required:
+      - slug
+      - tracking_number
+      - ship_date
+      properties:
+        slug:
+          type: string
+        tracking_number:
+          type: string
+        ship_date:
+          type: string
+          format: date
+          description: ship_date should be in UTC timezone.
+    Meta.v1:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          enum:
+          - 20000
+          - 20100
+          - 40400
+          - 42200
+          - 50000
+        type:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error.v1'
+      required:
+      - code
+      - type
+      - message
+    Error.v1:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: data.policy_id
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: data.policy_id must not be 32 characters
+      x-tags:
+      - Envelope
+    Coverage.v1:
+      x-stoplight:
+        id: 4638c8b43cf9f
+      type: object
+      x-examples:
+        example-1:
+          id: string
+          external_policy_number: 412-231-231
+          status: inactive
+          policy_detail_url: string
+          premium:
+            amount: string
+            currency: USD
+          effective_time: '2022-12-12T12:23:34.333Z'
+          expiration_time: '2022-12-12T12:23:34.333Z'
+          updated_at: '2022-12-12T12:23:34.333Z'
+          created_at: '2022-12-12T12:23:34.333Z'
+          external_customer_id: string
+      title: Coverage
+      x-tags:
+      - Resource
+      properties:
+        id:
+          type: string
+          minLength: 1
+          description: coverage id
+        source_id:
+          type: string
+        policy_number:
+          type: string
+          minLength: 1
+          description: policy id from insurance supplier
+          example: 412-231-231
+        status:
+          type: string
+          minLength: 1
+          description: policy status
+          enum:
+          - inactive
+          - activated
+          - claimed
+          - expired
+          - void
+          example: inactive
+        policy_detail_url:
+          type: string
+          minLength: 1
+          description: URL of the policy detail
+        premium:
+          $ref: '#/components/schemas/Amount.v1'
+        effective_time:
+          type: string
+          minLength: 1
+          description: 'Effective time of coverage, times in ISO8601 format.
+
+
+            e.g.:
+
+            "2012-01-01T12:00:00Z"'
+          example: '2022-12-12T12:23:34.333Z'
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+        expiration_time:
+          type: string
+          minLength: 1
+          description: 'expiration time of coverage, render times in ISO8601 format
+
+            e.g.:
+
+            "2012-01-01T12:00:00Z"'
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+          example: '2022-12-12T12:23:34.333Z'
+        updated_at:
+          type: string
+          minLength: 1
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+          description: 'Updated time in ISO8601 format.
+
+
+            e.g.:
+
+            "2012-01-01T12:00:00Z"'
+          example: '2022-12-12T12:23:34.333Z'
+        created_at:
+          type: string
+          minLength: 1
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+          description: 'Created time in ISO8601 format.
+
+
+            e.g.:
+
+            "2012-01-01T12:00:00Z"'
+          example: '2022-12-12T12:23:34.333Z'
+        items:
+          $ref: '#/components/schemas/Order_item.v1'
+        shipping_address:
+          $ref: '#/components/schemas/Address.v1'
+        sender_address:
+          $ref: '#/components/schemas/Address.v1'
+        trackings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tracking.v1'
+        subtotal:
+          $ref: '#/components/schemas/Amount.v1'
+        shipping_total:
+          $ref: '#/components/schemas/Amount.v1'
+        premium_paid_by:
+          type: string
+          enum:
+          - receiver
+          - sender
+          default: receiver
+          description: Indicates who paid for the premium
+      required:
+      - id
+      - source_id
+      - policy_number
+      - status
+      - policy_detail_url
+      - premium
+      - effective_time
+      - expiration_time
+      - updated_at
+      - created_at
+      - items
+      - shipping_address
+      - sender_address
+      - subtotal
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

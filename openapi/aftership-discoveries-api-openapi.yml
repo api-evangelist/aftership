@@ -1,0 +1,1098 @@
+openapi: 3.2.0
+info:
+  title: Overview Discoveries API
+  version: '1.0'
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com-personalization/nodes/reference/api.json?branch=production%252F2025-01&deref=optimizedBundle)
+
+    <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>'
+  summary: API Overview
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/terms
+servers:
+- url: https://api.aftership.com/personalization/2025-01
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Discoveries
+paths:
+  /discoveries/recommend:
+    parameters:
+    - schema:
+        type: string
+        example: f58a7bc4fb6d4719901906abde0c6f46
+      in: header
+      name: as-store-id
+      required: true
+      description: The identifier of your Commerce store
+    post:
+      summary: Recommend products
+      tags:
+      - Discoveries
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recommend_response'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      products:
+                      - id: 51e2fb9bc14847c5a82f049558019b12
+                        source_id: a5ffb83f38fb4a6f94d33616dea0e6a0
+                        variants:
+                        - source_id: 893576488aca4967a677194598d7fc95
+                      - id: d8192616ec3c41b3805070d653d37aad
+                        source_id: 4dcaa564aa85426480d2c4b01df8db56
+                        variants:
+                        - source_id: 311381827b1243a18a2bdd44ebad1a41
+                      - id: b1d821b2e47c430c885ce7ea42073dcb
+                        source_id: afc4ee14858b45349c74c66a25ddf54f
+                        variants:
+                        - source_id: 1ec8af67ca7d417bb056e77858611857
+                      - id: 7dfd6d5466004ebaac811c37045f67c4
+                        source_id: 793544852ad942ffaee1c15dcf8383f8
+                        variants:
+                        - source_id: eacce30b115e436296b6e1cbba6c8508
+                      - id: 1e09a77a0138425a831266a11727cee1
+                        source_id: 00093d19495447a2a082bfe44d75658a
+                        variants:
+                        - source_id: 00b0a1e329cf4ecc861136ed0ab94fc2
+                Example 2:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      products: []
+          headers:
+            as-api-version:
+              schema:
+                type: string
+                example: 2025-01
+              description: The actual API version that serves the request
+            as-trace-id:
+              schema:
+                type: string
+                example: 5ae20644d52348a49a897fff5dd314a3
+              description: A UUID value without hyphens to trace and debug the request
+      operationId: post-discoveries-recommend
+      x-stoplight:
+        id: nbdlwcnd2zf85
+      description: '<div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>
+
+        <div style="visibility:hidden; height: 0">[filter key](../../docs/enum/filter_key.md)</div>
+
+        <div style="visibility:hidden; height: 0">[scenarios](../../docs/scenarios/recommendations/best_sellers.md)</div>'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recommend_request'
+            examples:
+              BEST_SELLERS:
+                value:
+                  type: BEST_SELLERS
+                  session_id: 47be3249-c1f4-446d-b652-8749be6ed577
+                  include_filters:
+                  - tags:Sale
+                  exclude_filters:
+                  - '!tags:Wood'
+                  - '!categories:Furniture'
+                  limit: 5
+              BOUGHT_TOGETHER:
+                value:
+                  type: BOUGHT_TOGETHER
+                  session_id: 47be3249-c1f4-446d-b652-8749be6ed577
+                  include_filters:
+                  - tags:Sale
+                  exclude_filters:
+                  - '!tags:Wood'
+                  - '!categories:Furniture'
+                  limit: 5
+                  products:
+                  - id: 51e2fb9bc14847c5a82f049558019b12
+                    source_id: a5ffb83f38fb4a6f94d33616dea0e6a0
+                    variants:
+                    - source_id: 893576488aca4967a677194598d7fc95
+              COMPLEMENTS:
+                value:
+                  type: COMPLEMENTS
+                  session_id: 47be3249-c1f4-446d-b652-8749be6ed577
+                  include_filters:
+                  - tags:Sale
+                  exclude_filters:
+                  - '!tags:Wood'
+                  - '!categories:Furniture'
+                  limit: 5
+                  products:
+                  - id: 51e2fb9bc14847c5a82f049558019b12
+                    source_id: a5ffb83f38fb4a6f94d33616dea0e6a0
+                    variants:
+                    - source_id: 893576488aca4967a677194598d7fc95
+              NEW_ARRIVAL:
+                value:
+                  type: NEW_ARRIVAL
+                  session_id: 47be3249-c1f4-446d-b652-8749be6ed577
+                  include_filters:
+                  - tags:Sale
+                  exclude_filters:
+                  - '!tags:Wood'
+                  - '!categories:Furniture'
+                  limit: 5
+              RANDOM:
+                value:
+                  type: RANDOM
+                  session_id: 47be3249-c1f4-446d-b652-8749be6ed577
+                  include_filters:
+                  - tags:Sale
+                  exclude_filters:
+                  - '!tags:Wood'
+                  - '!categories:Furniture'
+                  limit: 5
+              SIMILAR:
+                value:
+                  type: SIMILAR
+                  session_id: 47be3249-c1f4-446d-b652-8749be6ed577
+                  include_filters:
+                  - tags:Sale
+                  exclude_filters:
+                  - '!tags:Wood'
+                  - '!categories:Furniture'
+                  limit: 5
+                  products:
+                  - id: 51e2fb9bc14847c5a82f049558019b12
+                    source_id: a5ffb83f38fb4a6f94d33616dea0e6a0
+                    variants:
+                    - source_id: 893576488aca4967a677194598d7fc95
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          enum:
+          - application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+  /discoveries/suggest:
+    parameters:
+    - schema:
+        type: string
+        example: f58a7bc4fb6d4719901906abde0c6f46
+      in: header
+      name: as-store-id
+      required: true
+      description: The identifier of your Commerce store
+    post:
+      summary: Suggest product query
+      tags:
+      - Discoveries
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Suggest_response'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      suggestion:
+                        texts:
+                        - shirt
+                        - shirt for women
+                        - shirt dress
+                        - shirt design
+                        - shirt drawing
+          headers:
+            as-api-version:
+              schema:
+                type: string
+                example: 2025-01
+              description: The actual API version that serves the request
+            as-trace-id:
+              schema:
+                type: string
+                example: 5ae20644d52348a49a897fff5dd314a3
+              description: A UUID value without hyphens to trace and debug the request
+      operationId: post-discoveries-suggest
+      x-stoplight:
+        id: ffzqphgod1xxr
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Suggest_request'
+            examples:
+              Example 1:
+                value:
+                  search: shir
+                  session_id: 47be3249-c1f4-446d-b652-8749be6ed577
+                  limit: 5
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          enum:
+          - application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      description: '<div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>'
+  /discoveries/search:
+    parameters:
+    - schema:
+        type: string
+        example: f58a7bc4fb6d4719901906abde0c6f46
+      in: header
+      name: as-store-id
+      required: true
+      description: The identifier of your Commerce store
+    post:
+      summary: Search products
+      tags:
+      - Discoveries
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Search_response'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      products:
+                      - id: f74f8af7578042b0991e104533158ad1
+                        source_id: '7962442694953'
+                        variants:
+                        - source_id: '46493898506537'
+                      - id: b8f033102b974f09b519d8e82e17adf1
+                        source_id: '7962443317545'
+                        variants:
+                        - source_id: '46493898572073'
+                      faceting:
+                        categories:
+                          Club & Night Out Dresses: 10
+                          Casual Dresses: 20
+                          Women's Novelty Clothing: 3
+                        tags:
+                          womens: 100
+                          grade 3: 20
+                          short sleeve: 3
+                        fit:
+                          Fitted: 100
+                        color:
+                          Red: 10
+                          Black: 20
+                          White: 20
+                        style:
+                          Vintage: 100
+                        price:
+                          '[0,100)': 20
+                          '[100,200)': 60
+                          '[200,500]': 20
+                      pagination:
+                        limit: 10
+                        page: 1
+                        total: 100
+          headers:
+            as-api-version:
+              schema:
+                type: string
+                example: 2025-01
+              description: The actual API version that serves the request
+            as-trace-id:
+              schema:
+                type: string
+                example: 5ae20644d52348a49a897fff5dd314a3
+              description: A UUID value without hyphens to trace and debug the request
+      operationId: post-discoveries-search
+      x-stoplight:
+        id: f7xesgeobu1tl
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Search_request'
+            examples:
+              Example 1:
+                value:
+                  query: dress
+                  image_url: https://cdn.shopify.com/s/files/1/0732/5430/6095/products/G5800SE.jpg
+                  session_id: 47be3249-c1f4-446d-b652-8749be6ed577
+                  faceting:
+                  - categories
+                  - tags
+                  - fit
+                  - color
+                  - style
+                  - price
+                  include_filters:
+                  - fit:Fitted
+                  - style:Vintage
+                  exclude_filters:
+                  - '!tags:outlet,27/12/2023'
+                  - '!categories:jersey'
+                  sort: -title
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          enum:
+          - application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      description: '<div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>
+
+        <div style="visibility:hidden; height: 0">[filter key](../../docs/enum/filter_key.md)</div>
+
+        <div style="visibility:hidden; height: 0">[semantic search scenario](../../docs/scenarios/search/semantic_search.md)</div>
+
+        <div style="visibility:hidden; height: 0">[visual search scenario](../../docs/scenarios/search/visual_search.md)</div>'
+  /discoveries/tagging:
+    parameters:
+    - schema:
+        type: string
+        example: f58a7bc4fb6d4719901906abde0c6f46
+      in: header
+      name: as-store-id
+      description: The identifier of your Commerce store
+    post:
+      summary: Predict product category and tags
+      tags:
+      - Discoveries
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tagging_response'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      predict_category:
+                        category: Beauty & Personal Care > Makeup > Eyeshadow
+                        confidence_score: 0.92
+                      predict_tags:
+                      - tag: Edition|Limited Edition
+                        confidence_score: 0.7
+                      - tag: Age Group|Youth
+                        confidence_score: 0.7
+                      - tag: Net Weight|0.19 oz.
+                        confidence_score: 0.9
+                      - tag: Quantity Per Pack|5
+                        confidence_score: 0.7
+                      - tag: Color|235 Pure Romance
+                        confidence_score: 0.9
+                      - tag: Alcohol Or Aerosol|Contains Aerosol
+                        confidence_score: 0.7
+                      - tag: Country Of Origin|US
+                        confidence_score: 0.7
+                      - tag: Franchise|COVERGIRL
+                        confidence_score: 0.9
+                      - tag: Makeup Finish|Matte
+                        confidence_score: 0.7
+                      - tag: Feature|BLENDS EASILY
+                        confidence_score: 0.9
+                      - tag: Feature|SILKY SHEER FORMULA
+                        confidence_score: 0.9
+                      - tag: Feature|DOUBLE ENDED APPLICATOR
+                        confidence_score: 0.9
+                      - tag: Feature|MULTIPLE OPTIONS
+                        confidence_score: 0.9
+                      - tag: Feature|CRUELTY FREE
+                        confidence_score: 0.9
+          headers:
+            as-api-version:
+              schema:
+                type: string
+                example: 2025-01
+              description: The actual API version that serves the request
+            as-trace-id:
+              schema:
+                type: string
+                example: 5ae20644d52348a49a897fff5dd314a3
+              description: A UUID value without hyphens to trace and debug the request
+      operationId: post-discoveries-tagging
+      x-stoplight:
+        id: g5ageybo3tcqy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tagging_request'
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          enum:
+          - application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      description: '<div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>'
+components:
+  schemas:
+    Recommend_request:
+      title: RecommendRequest
+      x-stoplight:
+        id: 65lf99vvyab9h
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          $ref: '#/components/schemas/Recommend_type'
+          x-stoplight:
+            id: q17knw21q1vnt
+        session_id:
+          type: string
+          x-stoplight:
+            id: 1tauiauuzijju
+          description: Session unique identifier. It is recommended to use this [package](https://www.npmjs.com/package/uuid) to generate UUID.
+          example: 47be3249-c1f4-446d-b652-8749be6ed577
+        include_filters:
+          type: array
+          x-stoplight:
+            id: imh868o3anvim
+          description: 'Include products that correspond to the specified attribute. For the supported filter key, please refer to the [filter key](../../docs/enum/filter_key.md), and for the format of the filter, please refer to the following examples:
+
+            - Conjunctive filtering: ["tags:Sale", "categories:Furniture"] means tags contain any of (''Sale'') and categories contain any of (''Furniture'')
+
+            - Disjunctive filtering: ["tags:Sofa,Couch,Bed"] means tags contain any of (''Sofa'', ''Couch'', ''Bed'')'
+          items:
+            x-stoplight:
+              id: dg810n9d1rntl
+            type: string
+            example: tags:Sale
+        exclude_filters:
+          type: array
+          x-stoplight:
+            id: 95pfws20jfob0
+          description: 'Exclude products that correspond to the specified attribute. For the supported filter key, please refer to the [filter key](../../docs/enum/filter_key.md), and for the format of the filter, please refer to the following examples:
+
+            - Conjunctive filtering: ["!tags:Sale", "!categories:Furniture"] means tags not contain any of (''Sale'') and categories not contain any of (''Furniture'')
+
+            - Disjunctive filtering: ["!tags:Sofa,Couch,Bed"] means tags not contain any of (''Sofa'', ''Couch'', ''Bed'')'
+          items:
+            x-stoplight:
+              id: dlsczajr3929r
+            type: string
+            example: '!categories:Furniture'
+        limit:
+          type: number
+          x-stoplight:
+            id: pz6betphrp9rh
+          description: The number of products each page contains.
+          default: 10
+          maximum: 100
+          example: 1
+        products:
+          type: array
+          x-stoplight:
+            id: 86vh5e4mogrgv
+          description: This parameter is required for `BOUGHT_TOGETHER`, `COMPLEMENTS`, and `SIMILAR` types. For the meaning of products in different scenarios, please refer to [scenarios](../../docs/scenarios/recommendations/best_sellers.md).
+          items:
+            $ref: '#/components/schemas/Partial_product'
+            x-stoplight:
+              id: d9z7q7pp2cpg9
+      description: ''
+    Tagging_platform:
+      x-stoplight:
+        id: bik2lfr0jimzb
+      title: TaggingPlatform
+      enum:
+      - TTS
+      - Walmart
+      - AfterShip
+      description: Target e-commerce platform. The classification system of the platform will be used for prediction.
+    Search_request:
+      title: SearchRequest
+      x-stoplight:
+        id: n5odwp633zoq3
+      type: object
+      properties:
+        session_id:
+          type: string
+          x-stoplight:
+            id: xauqk3a834vnj
+          description: Session unique identifier. It is recommended to use this [package](https://www.npmjs.com/package/uuid) to generate UUID.
+          example: 47be3249-c1f4-446d-b652-8749be6ed577
+        query:
+          type: string
+          x-stoplight:
+            id: 23ih46ozoyuzf
+          description: The search query. This parameter is required for the [semantic search scenario](../../docs/scenarios/search/semantic_search.md).
+          example: dress
+        image_url:
+          type: string
+          x-stoplight:
+            id: fps0ngtfs57wv
+          description: 'URL of the image. This parameter is required for the [visual search scenario](../../docs/scenarios/search/visual_search.md). Note: Either `image_url` or `image_base64` must be provided, but not both.'
+          example: https://websites.am-static.com/assets/brands/logo/aftership.svg
+        image_base64:
+          type: string
+          x-stoplight:
+            id: j8puyvj8ckblq
+          description: 'Base64-encoded image data. This parameter is required for the [visual search scenario](../../docs/scenarios/search/visual_search.md). Note: Either `image_url` or `image_base64` must be provided, but not both.'
+          example: /9j/4AAQSkZJRgABAQ...
+        include_filters:
+          type: array
+          x-stoplight:
+            id: 2wr81f6lukscf
+          description: 'Include products that correspond to the specified attribute. For the supported filter key, please refer to the [filter key](../../docs/enum/filter_key.md), and for the format of the filter, please refer to the following examples:
+
+            - Conjunctive filtering: ["tags:Sale", "price:[48,56)"] means tags contain any of (''Sale'') and price greater than or equal to 48 and less than 56
+
+            - Disjunctive filtering: ["tags:Sofa,Couch,Bed"] means tags contain any of (''Sofa'', ''Couch'', ''Bed'')'
+          items:
+            x-stoplight:
+              id: 9h2gcylnczlkg
+            type: string
+            example: tags:Sale
+        exclude_filters:
+          type: array
+          x-stoplight:
+            id: dihcqlcd6o43h
+          description: 'Exclude products that correspond to the specified attribute. For the supported filter key, please refer to the [filter key](../../docs/enum/filter_key.md), and for the format of the filter, please refer to the following examples:
+
+            - Conjunctive filtering: ["!tags:Sale", "!categories:Furniture"] means tags not contain any of (''Sale'') and categories not contain any of (''Furniture'')
+
+            - Disjunctive filtering: ["!tags:Sofa,Couch,Bed"] means tags not contain any of (''Sofa'', ''Couch'', ''Bed'')'
+          items:
+            x-stoplight:
+              id: rdqz816hn0g77
+            type: string
+            example: '!categories:Furniture'
+        faceting:
+          type: array
+          x-stoplight:
+            id: 60ulwjjjzwqkd
+          description: To apply multiple filters along certain discrete attributes or facets of the overall data collection. Selecting fewer facets for aggregation may help improve retrieval speed. For supported facets, please refer to [filter key](../../docs/enum/filter_key.md).
+          example: tags,categories
+          items:
+            x-stoplight:
+              id: b8vcytv0gf3n7
+            type: string
+            example: tags
+        sort:
+          type: string
+          x-stoplight:
+            id: ll74ms4pqc80n
+          description: 'To specify sort order based on attribute values of the requested resource instances, and for multiple sort attributes, separate the sort attributes by commas (`,`) in the "sort" request parameter.
+
+            - Ascending order: For example, use `+relevance` to control the returned products to be sorted in **ascending order of the relevance**.
+
+            - Dscending order: For example, use `-price,-relevance` to control the returned products to be sorted in **descending order of the price**, and within each group of products with the same `price`, products are sorted in **descending order of the relevance** attribute.
+
+            Support sort attributes: `relevance`, `title`, `price`, `created_at`, `updated_at`
+
+            '
+          default: -relevance
+          example: -relevance
+        page:
+          type: number
+          x-stoplight:
+            id: zmxxhjtgkyau2
+          description: The page to query. Maximum page number is bounded by total number of queried products.
+          default: 1
+          example: 1
+          minimum: 1
+          maximum: 1000
+        limit:
+          type: number
+          x-stoplight:
+            id: hhvhs9p7clpa0
+          description: The number of products each page contains.
+          default: 10
+          maximum: 100
+          example: 20
+      examples:
+      - session_id: 47be3249-c1f4-446d-b652-8749be6ed577
+        query: dress
+        image_url: https://websites.am-static.com/assets/brands/logo/aftership.svg
+        image_base64: /9j/4AAQSkZJRgABAQ...
+        include_filters:
+        - tags:Sale
+        exclude_filters:
+        - '!categories:Furniture'
+        faceting: tags,categories
+        sort: -relevance
+        page: 1
+        limit: 20
+    Tagging_request:
+      title: TaggingRequest
+      x-stoplight:
+        id: u55it5gfc2076
+      type: object
+      required:
+      - product
+      - platform
+      properties:
+        product:
+          $ref: '#/components/schemas/Tagging_product'
+          x-stoplight:
+            id: 15awqw2p3a68o
+        platform:
+          $ref: '#/components/schemas/Tagging_platform'
+          x-stoplight:
+            id: bik2lfr0jimzb
+    Pagination.v1:
+      x-stoplight:
+        id: 9hqb9poi6rpo9
+      title: Pagination
+      type: object
+      description: ''
+      required:
+      - limit
+      - page
+      - total
+      properties:
+        limit:
+          type: number
+          x-stoplight:
+            id: ohdu6ql6x3rmf
+          example: 100
+          default: 10
+          minimum: 1
+          maximum: 100
+        page:
+          type: number
+          x-stoplight:
+            id: gz7ap10xaxw5s
+          example: 1
+          default: 1
+          maximum: 1000
+        total:
+          type: number
+          x-stoplight:
+            id: s5srwn7j8b9mj
+          example: 100
+    Tagging_response:
+      title: TaggingResponse
+      x-stoplight:
+        id: 2fh77f38s16yr
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+          x-stoplight:
+            id: 8iu7kxnz3yttb
+        data:
+          type: object
+          x-stoplight:
+            id: 783yix4byf0xf
+          properties:
+            predict_category:
+              $ref: '#/components/schemas/Predict_categories'
+              x-stoplight:
+                id: 80ar3hy4llmxd
+            predict_tags:
+              type: array
+              x-stoplight:
+                id: 29235ja7u6m12
+              items:
+                $ref: '#/components/schemas/Predict_tags'
+                x-stoplight:
+                  id: f7yf0iz8y2ves
+    Suggest_request:
+      title: SuggestRequest
+      x-stoplight:
+        id: 0335tnzocslwv
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          x-stoplight:
+            id: fxaj0ftvmvdt9
+          description: The search query.
+          example: shir
+        session_id:
+          type: string
+          x-stoplight:
+            id: 9d92wxs978zdq
+          description: Session unique identifier. It is recommended to use this [package](https://www.npmjs.com/package/uuid) to generate UUID.
+          example: 47be3249-c1f4-446d-b652-8749be6ed577
+        limit:
+          type: number
+          x-stoplight:
+            id: pag4271bn8h5o
+          description: The number of suggestions each page contains.
+          default: 10
+          maximum: 20
+          example: 5
+    Meta.v1:
+      x-stoplight:
+        id: 2sv02c3cjwlkg
+      title: Meta
+      type: object
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      required:
+      - code
+      properties:
+        code:
+          type: number
+          example: 200
+          description: A 1 to 5-digit integer that represents the status of the request.
+          x-stoplight:
+            id: y17kqny5tj8br
+        message:
+          type: string
+          description: A human-readable string message that gives a short description to the specific meta code.
+          x-stoplight:
+            id: hd5r8ha2s2ptd
+        type:
+          type: string
+          enum:
+          - OK
+          - BadRequest
+          - Unauthorized
+          - Forbidden
+          - NotFound
+          - UnprocessableEntity
+          - TooManyRequests
+          - InternalError
+          description: A human-readable short string which is the type of HTTP status, e.g. `OK` for a 200 HTTP status, or `BadRequest` for a 400 HTTP status.
+          x-stoplight:
+            id: l3mnpcga6n3rg
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error.v1'
+    Error.v1:
+      type: object
+      title: Error
+      examples:
+      - path: includeFilters
+        info: The include_filters field only supports tags, categories
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          description: A 1 to 5-digit integer that represents the status of the request.
+        path:
+          type: string
+          description: JSON path of the request object where the error happens.
+        info:
+          type: string
+          description: The verbal description of the error that was detected in the request JSON at the specified JSON path.
+    Search_response:
+      title: SearchResponse
+      x-stoplight:
+        id: niecbi8x11f4i
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+          x-stoplight:
+            id: 2sv02c3cjwlkg
+        data:
+          type: object
+          x-stoplight:
+            id: qijbxdk7qsdlw
+          required:
+          - products
+          - pagination
+          properties:
+            products:
+              type: array
+              x-stoplight:
+                id: w7rtjnkgre71h
+              items:
+                $ref: '#/components/schemas/Partial_product'
+                x-stoplight:
+                  id: wn6dslcrz2y5k
+            faceting:
+              x-stoplight:
+                id: yd3fqiywz1p1r
+              type: object
+              additionalProperties:
+                x-stoplight:
+                  id: w5l6dhiy08lqk
+                type: object
+            pagination:
+              $ref: '#/components/schemas/Pagination.v1'
+              x-stoplight:
+                id: 9hqb9poi6rpo9
+    Suggest_response:
+      title: SuggestResponse
+      x-stoplight:
+        id: 8y07dc4bs8ize
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+          x-stoplight:
+            id: bb2u900ifaw18
+        data:
+          type: object
+          x-stoplight:
+            id: cn07ag00tv6l7
+          properties:
+            suggestion:
+              type: object
+              x-stoplight:
+                id: czuf5e0xqz58p
+              description: Suggestion object.
+              properties:
+                texts:
+                  type: array
+                  x-stoplight:
+                    id: dxhb12hqeplt1
+                  description: Search text suggestions.
+                  items:
+                    x-stoplight:
+                      id: jj1ydm9oxwm0a
+                    type: string
+                    example: shirt
+    Recommend_type:
+      x-stoplight:
+        id: q17knw21q1vnt
+      title: RecommendType
+      enum:
+      - BEST_SELLERS
+      - BOUGHT_TOGETHER
+      - RANDOM
+      - NEW_ARRIVAL
+      - COMPLEMENTS
+      - SIMILAR
+      description: Default algorithm configuration type.
+    Recommend_response:
+      title: RecommendResponse
+      x-stoplight:
+        id: 2lrbrrm8m4nib
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+          x-stoplight:
+            id: 8rdxq41ji46au
+        data:
+          type: object
+          x-stoplight:
+            id: 6l84iyt6uale0
+          properties:
+            products:
+              type: array
+              x-stoplight:
+                id: ogy96bv76fj9v
+              items:
+                $ref: '#/components/schemas/Partial_product'
+                x-stoplight:
+                  id: ptj3zdl9e0v3r
+    Predict_tags:
+      x-stoplight:
+        id: f7yf0iz8y2ves
+      title: PredictTag
+      type: object
+      description: Predict product tag object.
+      properties:
+        tag:
+          type: string
+          x-stoplight:
+            id: srfassnhnlf26
+          description: Product label prediction result.
+          example: Edition|Limited Edition
+        confidence_score:
+          type: number
+          x-stoplight:
+            id: s382p3flsl1do
+          description: The confidence score represents the probability that AfterShip Personalization believes the item has those tags. The higher the value, the more likely the product has these tags.
+          minimum: 0
+          example: 0.92
+    Partial_product:
+      x-stoplight:
+        id: d9z7q7pp2cpg9
+      title: PartialProduct
+      type: object
+      description: Partial Commerce Product object.
+      required:
+      - source_id
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: qvoh36lrc02n8
+          description: Unique identifier generated by AfterShip.
+          example: f74f8af7578042b0991e104533158ad1
+        source_id:
+          type: string
+          x-stoplight:
+            id: 69wi7113ojvbf
+          description: A unique identifier for the product.
+          example: 00093d19495447a2a082bfe44d75658a
+        variants:
+          type: array
+          x-stoplight:
+            id: tzqnhrcqfvuu1
+          description: Variants of a product.
+          items:
+            x-stoplight:
+              id: mzzgj6ecdofbg
+            type: object
+            required:
+            - source_id
+            properties:
+              source_id:
+                type: string
+                x-stoplight:
+                  id: ezium75ikx5tb
+                description: A unique identifier for the product variant.
+                example: 00b0a1e329cf4ecc861136ed0ab94fc2
+    Tagging_product:
+      x-stoplight:
+        id: 15awqw2p3a68o
+      title: TaggingProduct
+      type: object
+      description: Partial Commerce Product object to be tagged.
+      required:
+      - title
+      - varint
+      properties:
+        source_id:
+          type: string
+          x-stoplight:
+            id: o3954k8z36ez7
+          description: A unique identifier for the product.
+          example: '456212412'
+        title:
+          type: string
+          x-stoplight:
+            id: 0zkng7nl7o48q
+          description: The title of the product.
+          example: COVERGIRL Eye Enhancers 4-Kit Eyeshadow, 235 Pure Romance, 0.19 oz
+        categories:
+          type: array
+          x-stoplight:
+            id: q3c5ogsojr06b
+          description: Catogories for the product used for filtering and searching products.
+          items:
+            x-stoplight:
+              id: qlosi7ae3xkz3
+            type: string
+            example: Beauty & Personal Care
+        tags:
+          type: array
+          x-stoplight:
+            id: jajni0meqoc1t
+          description: Tags that are used for filtering and search.
+          items:
+            x-stoplight:
+              id: ohzwv1hgeihtu
+            type: string
+            example: Sale
+        description:
+          type: string
+          x-stoplight:
+            id: snpdfh79yek58
+          description: Description of a product.
+          example: 'COVERGIRL Eye Enhancers 4-Kit Eyeshadow, 235 Pure Romance, 0.19 oz. COVERGIRL Sheerly Nudes Eye Enhancers Eyeshadow Kit is the easiest way to create natural, flawless eyes that are perfect for your day AND nighttime looks! With its impeccably creamy-soft formula and incredible array of high-shimmer hues, you can wear anything from a light wash of beige hues, to bold taupes with reflective shimmer with this nude eyeshadow palette. You can also mix them all together for an ombre and natural eyeshadow look. But don''t forget about those adorable dual foam applicators in this eyeshadow palette. These easy-to-use wands have spongy tips so you can apply your eyeshadow in a breeze. BLENDS EASILY: The silky-sheer formula is easy to blend and buildable for perfect natural eyeshadow looks. SILKY SHEER FORMULA: Goes on smooth and stays put, so you can wear it alone or layer it with your favorite eyeshadow. DOUBLE ENDED APPLICATOR: The dual foam applicators have spongy tips for easy application. MULTIPLE OPTIONS: This eyeshadow palette is available in matte, pearly, & sparkly collections. CRUELTY FREE: We do not test our products on animals'
+        image_urls:
+          type: array
+          x-stoplight:
+            id: etfusx6c3zr87
+          description: URLs of the images.
+          items:
+            x-stoplight:
+              id: 1pgiszkmedigs
+            type: string
+            example: https://i5.walmartimages.com/seo/COVERGIRL-Eye-Enhancers-4-Kit-Eyeshadow-235-Pure-Romance-0-19-oz_76734754-76dc-4a3b-9287-c5995daaae87.511e781327fa72fb79ea8d0d75c10c87.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF
+        varint:
+          type: object
+          x-stoplight:
+            id: 4ru3htaqg9uc8
+          description: Variants of a product.
+          required:
+          - title
+          properties:
+            source_id:
+              type: string
+              x-stoplight:
+                id: w5q1xnhsuns2x
+              description: A unique identifier for the product variant.
+              example: a92138421
+            title:
+              type: string
+              x-stoplight:
+                id: synkfoqe95rjm
+              description: The title of the product variant
+              example: blue / small
+            image_urls:
+              type: array
+              x-stoplight:
+                id: vspx6v22s5ha1
+              description: URLs of the images.
+              items:
+                x-stoplight:
+                  id: 512t9445pt5dc
+                type: string
+                example: https://i5.walmartimages.com/seo/COVERGIRL-Eye-Enhancers-4-Kit-Eyeshadow-235-Pure-Romance-0-19-oz_76734754-76dc-4a3b-9287-c5995daaae87.511e781327fa72fb79ea8d0d75c10c87.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF
+    Predict_categories:
+      x-stoplight:
+        id: 80ar3hy4llmxd
+      title: PredictCategory
+      type: object
+      description: Predict product category object.
+      properties:
+        category:
+          type: string
+          x-stoplight:
+            id: ebr51h41q9unf
+          description: Prediction result of target platform product category.
+          example: Beauty & Personal Care > Makeup > Eyeshadow
+        confidence_score:
+          type: number
+          x-stoplight:
+            id: dci5uyxqw6yct
+          description: The confidence score represents the probability that AfterShip Personalization believes the item belongs to that category. The higher the value, the more likely the product belongs to that category.
+          minimum: 0
+          example: 0.92
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+      description: For more information, check [authentication](../docs/quickstart/authentication.md).
+x-stoplight:
+  id: z4tp6p1psq89t

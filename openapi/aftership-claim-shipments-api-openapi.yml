@@ -1,0 +1,521 @@
+openapi: 3.2.0
+info:
+  title: Overview Claim Shipments API
+  version: 2026-07
+  summary: API Overview
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-prod-wt-public/nodes/reference/api.json?branch=master&deref=optimizedBundle)'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+servers:
+- url: https://api.aftership.com/warranty/2026-07
+  description: API Endpoint
+security:
+- ApiKeyAuth: []
+tags:
+- name: Claim Shipments
+  description: Public endpoints for creating and polling claim shipment resources.
+paths:
+  /claims/{claim_id}/shipments:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    post:
+      tags:
+      - Claim Shipments
+      summary: Create a claim shipment
+      operationId: create-claim-shipment
+      description: 'Creates one inbound or outbound shipment for a claim. Allowed source statuses: approved, in_process. AfterShip labels are generated asynchronously; use GET /claims/{claim_id}/shipments/{shipment_id} to poll the result.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - title: AfterShip generated label
+                type: object
+                properties:
+                  shipment_direction:
+                    type: string
+                    description: The claim shipment direction. AfterShip-generated labels currently support inbound shipments only.
+                    enum:
+                    - inbound
+                  notify_customer:
+                    type: boolean
+                    description: Whether to notify the customer about the shipment.
+                  label_source:
+                    type: string
+                    description: Use aftership for AfterShip-generated labels.
+                    enum:
+                    - aftership
+                required:
+                - shipment_direction
+                - label_source
+              - title: Merchant provided label and tracking
+                type: object
+                properties:
+                  shipment_direction:
+                    type: string
+                    description: The claim shipment direction.
+                    enum:
+                    - inbound
+                    - outbound
+                  notify_customer:
+                    type: boolean
+                    description: Whether to notify the customer about the shipment.
+                  label_source:
+                    type: string
+                    description: Use merchant to submit merchant-provided label and tracking information.
+                    enum:
+                    - merchant
+                  label:
+                    type: object
+                    description: The shipment label information.
+                    properties:
+                      url:
+                        type: string
+                        description: The label URL.
+                        example: https://example.com/label.pdf
+                    required:
+                    - url
+                  tracking_slug:
+                    type: string
+                    description: The tracking slug.
+                    example: ups
+                  tracking_number:
+                    type: string
+                    description: The tracking number.
+                    example: 1Z999
+                required:
+                - shipment_direction
+                - label_source
+                - label
+                - tracking_slug
+                - tracking_number
+            examples:
+              auto_inbound_label:
+                summary: Generate inbound label with AfterShip
+                value:
+                  shipment_direction: inbound
+                  notify_customer: true
+                  label_source: aftership
+              manual_inbound_label:
+                summary: Upload inbound label manually
+                value:
+                  shipment_direction: inbound
+                  notify_customer: true
+                  label_source: merchant
+                  label:
+                    url: https://example.com/label.pdf
+                  tracking_slug: ups
+                  tracking_number: 1Z999
+              manual_outbound_label:
+                summary: Upload outbound label manually
+                value:
+                  shipment_direction: outbound
+                  notify_customer: true
+                  label_source: merchant
+                  label:
+                    url: https://example.com/label.pdf
+                  tracking_slug: ups
+                  tracking_number: 1Z999
+      responses:
+        '201':
+          description: The created ClaimShipment resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim_shipment'
+              examples:
+                creating:
+                  summary: Auto label is creating
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: shipment_id
+                      label:
+                        url: null
+                        invoice_url: null
+                        qrcode: null
+                      tracking_number: null
+                      tracking_slug: null
+                      tracking_status: null
+                      tracking_status_updated_at: null
+                      item_selections: []
+                      ship_from: null
+                      ship_to: null
+                      created_at: '2026-05-19T10:00:00Z'
+                      updated_at: '2026-05-19T10:00:00Z'
+                created:
+                  summary: Manual label created
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: shipment_id
+                      label:
+                        url: https://files.example.com/warranty/label.pdf
+                        invoice_url: null
+                        qrcode: null
+                      tracking_number: 1Z999
+                      tracking_slug: ups
+                      tracking_status: Pending
+                      tracking_status_updated_at: '2026-05-19T10:03:00Z'
+                      item_selections: []
+                      ship_from: null
+                      ship_to: null
+                      created_at: '2026-05-19T10:00:00Z'
+                      updated_at: '2026-05-19T10:03:00Z'
+  /claims/{claim_id}/shipments/{shipment_id}:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    - name: shipment_id
+      in: path
+      required: true
+      description: The unique identifier of the shipment.
+      schema:
+        type: string
+      example: shipment_id
+    get:
+      tags:
+      - Claim Shipments
+      summary: Get claim shipment
+      operationId: get-claim-shipment
+      description: Gets a claim shipment by ID under a claim. Use this endpoint to poll AfterShip label generation until label_generation_result.status is created or failed.
+      responses:
+        '200':
+          description: The ClaimShipment resource. label_generation_result is returned when the shipment uses AfterShip label generation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    allOf:
+                    - $ref: '#/components/schemas/Claim_shipment'
+                    - type: object
+                      properties:
+                        label_generation_result:
+                          type:
+                          - object
+                          - 'null'
+                          description: The asynchronous label generation result for shipments created with AfterShip (label_source=aftership). This field is null for merchant-provided labels.
+                          properties:
+                            status:
+                              type: string
+                              description: The label generation status.
+                              enum:
+                              - creating
+                              - created
+                              - failed
+                            failed_detail:
+                              type:
+                              - object
+                              - 'null'
+                              description: Failure details when status is failed. The shape can vary by label generation failure reason.
+                              additionalProperties: true
+              examples:
+                creating:
+                  summary: Label generation is creating
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: shipment_id
+                      label:
+                        url: null
+                        invoice_url: null
+                        qrcode: null
+                      tracking_number: null
+                      tracking_slug: null
+                      tracking_status: null
+                      tracking_status_updated_at: null
+                      item_selections: []
+                      ship_from: null
+                      ship_to: null
+                      created_at: '2026-05-19T10:00:00Z'
+                      updated_at: '2026-05-19T10:00:00Z'
+                      label_generation_result:
+                        status: creating
+                        failed_detail: null
+                created:
+                  summary: Label generation created
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: shipment_id
+                      label:
+                        url: https://files.example.com/warranty/label.pdf
+                        invoice_url: null
+                        qrcode: null
+                      tracking_number: 1Z999
+                      tracking_slug: ups
+                      tracking_status: Pending
+                      tracking_status_updated_at: '2026-05-19T10:03:00Z'
+                      item_selections: []
+                      ship_from: null
+                      ship_to: null
+                      created_at: '2026-05-19T10:00:00Z'
+                      updated_at: '2026-05-19T10:03:00Z'
+                      label_generation_result:
+                        status: created
+                        failed_detail: null
+                failed:
+                  summary: Label generation failed
+                  value:
+                    meta:
+                      code: 20000
+                      type: OK
+                      message: The request was successfully processed by AfterShip.
+                    data:
+                      id: shipment_id
+                      label:
+                        url: null
+                        invoice_url: null
+                        qrcode: null
+                      tracking_number: null
+                      tracking_slug: null
+                      tracking_status: null
+                      tracking_status_updated_at: null
+                      item_selections: []
+                      ship_from: null
+                      ship_to: null
+                      created_at: '2026-05-19T10:00:00Z'
+                      updated_at: '2026-05-19T10:03:00Z'
+                      label_generation_result:
+                        status: failed
+                        failed_detail:
+                          message: Label generation failed because item weight is missing.
+components:
+  schemas:
+    Address:
+      type: object
+      x-stoplight:
+        id: 7cc87e0eb2a0d
+      title: Address
+      properties:
+        contact_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lwugfye8q3bt0
+          description: 'The name of the contact person associated with the address.
+
+            '
+        company_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: jozyy6y4x6hal
+          description: 'The name of the company or organization associated with the address.
+
+            '
+        address_line_1:
+          type:
+          - string
+          - 'null'
+          description: First line of the street address.
+        address_line_2:
+          type:
+          - string
+          - 'null'
+          description: Second line of the street address.
+        city:
+          type:
+          - string
+          - 'null'
+          title: The City Schema
+          description: The location's city, town, or village.
+        state:
+          title: The State Schema
+          description: The state or region of the location, such as a province, state, or prefecture.
+          type:
+          - string
+          - 'null'
+        postal_code:
+          type:
+          - string
+          - 'null'
+          title: The Postal_code Schema
+          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
+        country:
+          title: The Country Schema
+          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          example: USA
+          type:
+          - string
+          - 'null'
+        phone_number:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lio9zgakvzqhp
+          description: 'The contact phone number associated with the address.
+
+            '
+        email:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: ox7s3omkrkk3f
+          description: The email associated with the address.
+    Meta_20000:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+        type:
+          type: string
+          minLength: 1
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+    Claim_shipment:
+      type: object
+      x-stoplight:
+        id: vwub1e1ftq9be
+      x-examples:
+        Example 1:
+          id: e5e50af0438a4f109c21117d4604587c
+          label:
+            url: https://files.am-usercontent.io/return-center/e6f77e704c71767c1bd04a4981cfe4c8/2c67de38e2524da58818988ba9fe9ea6.test-6.pdf
+            invoice_url: null
+            qrcode: null
+          tracking_number: '123123123'
+          tracking_slug: estes
+          tracking_status: Pending
+          tracking_status_updated_at: '2023-12-21T07:30:42.23002Z'
+          item_selections:
+          - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+            quantity: 1
+          created_at: '2023-12-21T07:30:35.281997Z'
+          updated_at: '2023-12-21T07:30:42.23002Z'
+      properties:
+        id:
+          type: string
+        label:
+          type: object
+          properties:
+            url:
+              type:
+              - string
+              - 'null'
+            invoice_url:
+              type:
+              - string
+              - 'null'
+            qrcode:
+              type:
+              - string
+              - 'null'
+        tracking_number:
+          type:
+          - string
+          - 'null'
+        tracking_slug:
+          type:
+          - string
+          - 'null'
+        tracking_status:
+          type:
+          - string
+          - 'null'
+        tracking_status_updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment tracking status was last updated.
+          example: '2026-05-19T10:03:00Z'
+        item_selections:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              quantity:
+                type: integer
+        ship_from:
+          x-stoplight:
+            id: 4afmgig3mqr4f
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+            x-stoplight:
+              id: fvzreq373bv1a
+          - x-stoplight:
+              id: xc5sqz17lbfms
+            type:
+            - 'null'
+        ship_to:
+          x-stoplight:
+            id: g6qptlu8k4h9o
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+            x-stoplight:
+              id: l0s42i8q2832v
+          - x-stoplight:
+              id: cwwe6qrye7j91
+            type:
+            - 'null'
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment was created.
+          example: '2026-05-19T10:00:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment was last updated.
+          example: '2026-05-19T10:00:00Z'
+      title: ClaimShipment
+      description: A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: as-api-key

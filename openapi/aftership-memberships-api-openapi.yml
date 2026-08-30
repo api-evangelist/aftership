@@ -1,0 +1,932 @@
+openapi: 3.2.0
+info:
+  title: Overview Memberships API
+  version: '1.0'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com-admin-organization/nodes/reference/api.v1.json?branch=master&deref=optimizedBundle)'
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  summary: API Overview
+servers:
+- url: https://api.aftership.com/admin/2022-01
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Memberships
+paths:
+  /memberships:
+    parameters: []
+    get:
+      summary: Get memberships
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                    properties:
+                      memberships:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Membership.v1'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination.v1'
+                      parameter_string:
+                        type: string
+              examples:
+                OK:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      memberships:
+                      - id: 4a6091f28bf645a09246899722ce8a21
+                        organization:
+                          id: 511ceb52969b400a93e3422c743ae34a
+                        account:
+                          id: 74d998151a1b4668bee5a283712dd57e
+                          email: example@mydomain.com
+                        role:
+                          code: admin
+                          name: Admin
+                      pagination:
+                        page: 1
+                        limit: 100
+                        total: 1
+                      parameter_string: ''
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Unauthorized:
+                  value:
+                    meta:
+                      code: 401
+                      type: Unauthorized
+                      message: The API key is invalid.
+                    data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                InternalError:
+                  value:
+                    meta:
+                      code: 500
+                      type: InternalError
+                      message: Something went wrong on AfterShip's end.  Also, some error that cannot be retried happened on an external system that this call relies on.
+                    data: {}
+      operationId: get-memberships
+      description: Return a list of the memberships.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: email
+        description: account email
+      - schema:
+          type: string
+        in: query
+        name: page
+        description: page index
+      - schema:
+          type: string
+        in: query
+        name: limit
+        description: page size
+      tags:
+      - Memberships
+    post:
+      summary: Create membership
+      operationId: post-memberships
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Membership.v1'
+              examples:
+                OK:
+                  value:
+                    meta:
+                      code: 201
+                      type: Created
+                      message: The request was successful, we created a new resource and the response body contains the representation.
+                    data:
+                      id: 4a6091f28bf645a09246899722ce8a21
+                      organization:
+                        id: 511ceb52969b400a93e3422c743ae34a
+                      account:
+                        id: 74d998151a1b4668bee5a283712dd57e
+                        email: example@mydomain.com
+                      role:
+                        code: admin
+                        name: Admin
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                BadRequest:
+                  value:
+                    meta:
+                      code: 400
+                      type: BadRequest
+                      message: The request body is an invalid JSON.
+                    data: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Unauthorized:
+                  value:
+                    meta:
+                      code: 401
+                      type: Unauthorized
+                      message: The API key is invalid.
+                    data: {}
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Conflict:
+                  value:
+                    meta:
+                      code: 409
+                      type: Conflict
+                      message: The request conflicts with another request (perhaps due to using the same idempotent key).
+                    data: {}
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                UnprocessableEntity:
+                  value:
+                    meta:
+                      code: 422
+                      type: UnprocessableEntity
+                      message: The data given in the request failed validation. Inspect the response for details.
+                      errors:
+                      - path: account.email
+                        info: account.email is invalid
+                    data: {}
+                AccountNotExist:
+                  value:
+                    meta:
+                      code: 10001
+                      type: UnprocessableEntity
+                      message: The account with the given email does not exist in the system.
+                    data: {}
+                RoleNotExist:
+                  value:
+                    meta:
+                      code: 10002
+                      type: UnprocessableEntity
+                      message: Role does not exist.
+                    data: {}
+                NoAvailableMemberSeats:
+                  value:
+                    meta:
+                      code: 10003
+                      type: UnprocessableEntity
+                      message: No available member seats.
+                    data: {}
+                AccountEmailUnverified:
+                  value:
+                    meta:
+                      code: 10004
+                      type: UnprocessableEntity
+                      message: Account email is unverified.
+                    data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                InternalError:
+                  value:
+                    meta:
+                      code: 500
+                      type: InternalError
+                      message: Something went wrong on AfterShip's end.  Also, some error that cannot be retried happened on an external system that this call relies on.
+                    data: {}
+      description: Create a new membership
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  account:
+                    email: example@mydomain.com
+                  role:
+                    code: admin
+              properties:
+                account:
+                  type: object
+                  required:
+                  - email
+                  properties:
+                    email:
+                      type: string
+                      minLength: 1
+                      description: Email ID, which should be registered with AfterShip already.
+                role:
+                  type: object
+                  required:
+                  - code
+                  properties:
+                    code:
+                      type: string
+                      minLength: 1
+                      description: Code of a role. Unique in the organization.
+              required:
+              - account
+              - role
+            examples:
+              Example:
+                value:
+                  account:
+                    email: example@mydomain.com
+                  role:
+                    code: admin
+      tags:
+      - Memberships
+  /memberships/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: membership id
+    get:
+      summary: Get membership by ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Membership.v1'
+              examples:
+                OK:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 3ea1910b07394a95bf7cdaa611d3cc3f
+                      organization:
+                        id: 511ceb52969b400a93e3422c743ae34a
+                      account:
+                        id: 74d998151a1b4668bee5a283712dd57e
+                        email: example@mydomain.com
+                      role:
+                        code: admin
+                        name: Admin
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Unauthorized:
+                  value:
+                    meta:
+                      code: 401
+                      type: Unauthorized
+                      message: The API key is invalid.
+                    data: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Forbidden:
+                  value:
+                    meta:
+                      code: 403
+                      type: Forbidden
+                      message: The request is understood, but it has been refused or access is not allowed.
+                    data: {}
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                NotFound:
+                  value:
+                    meta:
+                      code: 404
+                      type: NotFound
+                      message: The URI requested is invalid or the resource requested does not exist.
+                    data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                InternalError:
+                  value:
+                    meta:
+                      code: 500
+                      type: InternalError
+                      message: Something went wrong on AfterShip's end.  Also, some error that cannot be retried happened on an external system that this call relies on.
+                    data: {}
+      operationId: get-memberships-id
+      description: Retrieve the membership with the matching id.
+      tags:
+      - Memberships
+    patch:
+      summary: Update membership by ID
+      operationId: patch-memberships-:id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    role:
+                      code: member
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Membership.v1'
+                required:
+                - meta
+              examples:
+                OK:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 3ea1910b07394a95bf7cdaa611d3cc3f
+                      organization:
+                        id: 511ceb52969b400a93e3422c743ae34a
+                      account:
+                        id: 74d998151a1b4668bee5a283712dd57e
+                        email: example@mydomain.com
+                      role:
+                        code: admin
+                        name: Admin
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                BadRequest:
+                  value:
+                    meta:
+                      code: 400
+                      type: BadRequest
+                      message: The request body is an invalid JSON.
+                    data: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Unauthorized:
+                  value:
+                    meta:
+                      code: 401
+                      type: Unauthorized
+                      message: The API key is invalid.
+                    data: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Forbidden:
+                  value:
+                    meta:
+                      code: 403
+                      type: Forbidden
+                      message: The request is understood, but it has been refused or access is not allowed.
+                    data: {}
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                UnprocessableEntity:
+                  value:
+                    meta:
+                      code: 422
+                      type: UnprocessableEntity
+                      message: The data given in the request failed validation. Inspect the response for details.
+                      errors:
+                      - path: role.code
+                        info: role.code is required
+                    data: {}
+                RoleNotExist:
+                  value:
+                    meta:
+                      code: 10002
+                      type: UnprocessableEntity
+                      message: Role does not exist.
+                    data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                InternalError:
+                  value:
+                    meta:
+                      code: 500
+                      type: InternalError
+                      message: Something went wrong on AfterShip's end.  Also, some error that cannot be retried happened on an external system that this call relies on.
+                    data: {}
+      description: Update the information of an existing membership.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  role:
+                    code: member
+              properties:
+                role:
+                  type: object
+                  required:
+                  - code
+                  properties:
+                    code:
+                      type: string
+                      minLength: 1
+                      description: Code of a role. Unique in the organization.
+              required:
+              - role
+            examples:
+              Example:
+                value:
+                  role:
+                    code: admin
+      tags:
+      - Memberships
+    delete:
+      summary: Delete membership by ID
+      operationId: delete-memberships-:id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Membership.v1'
+              examples:
+                OK:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 3ea1910b07394a95bf7cdaa611d3cc3f
+                      organization:
+                        id: 511ceb52969b400a93e3422c743ae34a
+                      account:
+                        id: 74d998151a1b4668bee5a283712dd57e
+                        email: example@mydomain.com
+                      role:
+                        code: admin
+                        name: Admin
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Unauthorized:
+                  value:
+                    meta:
+                      code: 401
+                      type: Unauthorized
+                      message: The API key is invalid.
+                    data: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 403
+                      type: Forbidden
+                      message: The request is understood, but it has been refused or access is not allowed.
+                    data: {}
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                required:
+                - meta
+                - data
+              examples:
+                Forbidden:
+                  value:
+                    meta:
+                      code: 403
+                      type: Forbidden
+                      message: The request is understood, but it has been refused or access is not allowed.
+                    data: {}
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 404
+                      type: NotFound
+                      message: The URI requested is invalid or the resource requested does not exist.
+                    data: {}
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                required:
+                - meta
+                - data
+              examples:
+                NotFound:
+                  value:
+                    meta:
+                      code: 404
+                      type: NotFound
+                      message: The URI requested is invalid or the resource requested does not exist.
+                    data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 500
+                      type: InternalError
+                      message: Something went wrong on AfterShip's end.  Also, some error that cannot be retried happened on an external system that this call relies on.
+                    data: {}
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                required:
+                - meta
+                - data
+              examples:
+                InternalError:
+                  value:
+                    meta:
+                      code: 500
+                      type: InternalError
+                      message: Something went wrong on AfterShip's end.  Also, some error that cannot be retried happened on an external system that this call relies on.
+                    data: {}
+      description: Delete membership by id
+      tags:
+      - Memberships
+components:
+  schemas:
+    Role.v1:
+      description: Object describes role information.
+      type: object
+      x-examples:
+        example-1:
+          code: admin
+          name: Admin
+      examples: []
+      title: Role
+      properties:
+        code:
+          type: string
+          minLength: 1
+          description: role code
+        name:
+          type: string
+          minLength: 1
+          description: role name
+      required:
+      - code
+      - name
+      x-tags:
+      - Resource
+    Pagination.v1:
+      description: Pagination data
+      type: object
+      x-examples:
+        example-1:
+          page: 1
+          limit: 10
+          total: 9734043
+      title: Pagination
+      examples: []
+      properties:
+        page:
+          type: number
+          minimum: 1
+        limit:
+          type: number
+          minimum: 1
+          maximum: 200
+          default: 100
+        total:
+          type: number
+      required:
+      - page
+      - limit
+      - total
+      x-tags:
+      - Envelope
+    Meta.v1:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 200
+          example: 200
+        type:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error.v1'
+      required:
+      - code
+      - type
+      - message
+    Error.v1:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: account.email
+        info: account.email is invalid
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+    Membership.v1:
+      description: Object describes membership information.
+      type: object
+      x-examples:
+        example-1:
+          id: 3ea1910b07394a95bf7cdaa611d3cc3f
+          organization:
+            id: 511ceb52969b400a93e3422c743ae34a
+          account:
+            id: 74d998151a1b4668bee5a283712dd57e
+            email: example@mydomain.com
+          role:
+            code: admin
+            name: Admin
+      examples: []
+      title: Membership
+      x-tags:
+      - Resource
+      properties:
+        id:
+          type: string
+          minLength: 1
+        organization:
+          type: object
+          required:
+          - id
+          properties:
+            id:
+              type: string
+              minLength: 1
+        account:
+          type: object
+          required:
+          - id
+          - email
+          properties:
+            id:
+              type: string
+              minLength: 1
+              description: Identity of account.
+            email:
+              type: string
+              minLength: 1
+              description: Email ID, which should be registered with AfterShip already.
+        role:
+          $ref: '#/components/schemas/Role.v1'
+      required:
+      - id
+      - organization
+      - account
+      - role
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

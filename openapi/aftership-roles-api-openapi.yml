@@ -1,0 +1,193 @@
+openapi: 3.2.0
+info:
+  title: Overview Roles API
+  version: '1.0'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com-admin-organization/nodes/reference/api.v1.json?branch=master&deref=optimizedBundle)'
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  summary: API Overview
+servers:
+- url: https://api.aftership.com/admin/2022-01
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Roles
+paths:
+  /roles:
+    get:
+      summary: Get roles
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                    properties:
+                      roles:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Role.v1'
+                      parameter_string:
+                        type: string
+              examples:
+                OK:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      roles:
+                      - code: admin
+                        name: Admin
+                      parameter_string: ''
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Unauthorized:
+                  value:
+                    meta:
+                      code: 401
+                      type: Unauthorized
+                      message: The API key is invalid.
+                    data: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                Forbidden:
+                  value:
+                    meta:
+                      code: 403
+                      type: Forbidden
+                      message: The request is understood, but it has been refused or access is not allowed.
+                    data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+              examples:
+                InternalError:
+                  value:
+                    meta:
+                      code: 500
+                      type: InternalError
+                      message: Something went wrong on AfterShip's end.  Also, some error that cannot be retried happened on an external system that this call relies on.
+                    data: {}
+      operationId: get-roles
+      description: Returns a list of roles
+      tags:
+      - Roles
+components:
+  schemas:
+    Role.v1:
+      description: Object describes role information.
+      type: object
+      x-examples:
+        example-1:
+          code: admin
+          name: Admin
+      examples: []
+      title: Role
+      properties:
+        code:
+          type: string
+          minLength: 1
+          description: role code
+        name:
+          type: string
+          minLength: 1
+          description: role name
+      required:
+      - code
+      - name
+      x-tags:
+      - Resource
+    Meta.v1:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 200
+          example: 200
+        type:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error.v1'
+      required:
+      - code
+      - type
+      - message
+    Error.v1:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: account.email
+        info: account.email is invalid
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

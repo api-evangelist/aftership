@@ -1,0 +1,75 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.aftership.com/docs/tracking/quickstart/authentication
+docs:
+- https://www.aftership.com/docs/tracking/quickstart/authentication
+- https://www.aftership.com/docs/tracking/quickstart/authentication/sign-string
+- https://www.aftership.com/docs/tracking/quickstart/authentication/oauth/overview
+- https://www.aftership.com/docs/tracking/quickstart/authentication/oauth/getting-started
+- https://www.aftership.com/docs/tracking/quickstart/authentication/oauth/available-scopes
+summary:
+  types:
+  - apiKey
+  - hmac-signature
+  - oauth2
+  api_key_in:
+  - header
+  note: AfterShip documents three authentication methods. Every published OpenAPI declares only the apiKey scheme
+    (as-api-key); AES/HMAC request signing and OAuth 2.0 are documented in prose and are NOT expressed in the specs.
+schemes:
+- name: as-api-key
+  type: apiKey
+  in: header
+  parameter: as-api-key
+  description: API key issued from the AfterShip developer portal (Settings -> API keys). Keys carry an "asat_"
+    prefix.
+  declared_in_openapi: true
+  sources:
+  - openapi/aftership-address-api-openapi.yml
+  - openapi/_original/aftership-commerce-api-openapi.yml
+  - openapi/_original/aftership-members-api-openapi.yml
+  - openapi/_original/aftership-parser-api-openapi.yml
+  - openapi/_original/aftership-personalization-api-openapi.yml
+  - openapi/_original/aftership-protection-api-openapi.yml
+  - openapi/aftership-returns-api-openapi.yml
+  - openapi/_original/aftership-shipping-api-openapi.yml
+  - openapi/aftership-tracking-api-openapi.yml
+  - openapi/_original/aftership-warranty-api-openapi.yml
+- name: aes-hmac-sha256
+  type: http
+  scheme: signature
+  declared_in_openapi: false
+  description: Signed-request mode. Sends as-api-key plus as-signature-hmac-sha256 (base64 HMAC-SHA256 of a canonical
+    sign string) and a date header in RFC 1123 format. The computed signature is valid only within 3 minutes either
+    side of the date header.
+  headers:
+  - as-api-key
+  - as-signature-hmac-sha256
+  - date
+  source: https://www.aftership.com/docs/tracking/quickstart/authentication/sign-string
+- name: oauth2
+  type: oauth2
+  declared_in_openapi: false
+  description: OAuth 2.0 authorization-code flow for public apps registered in the AfterShip Partner Dashboard.
+    Merchants grant scoped consent at install time; the app URL receives product, timestamp and an HMAC-SHA256 signature,
+    then exchanges the grant for a token.
+  authorization_server: https://accounts.aftership.com/auth/realms/business
+  discovery: https://accounts.aftership.com/auth/realms/business/.well-known/openid-configuration
+  authorization_endpoint: https://accounts.aftership.com/auth/realms/business/protocol/openid-connect/auth
+  token_endpoint: https://accounts.aftership.com/auth/realms/business/protocol/openid-connect/token
+  pkce:
+  - S256
+  - plain
+  grant_types:
+  - authorization_code
+  - client_credentials
+  - refresh_token
+  - urn:ietf:params:oauth:grant-type:device_code
+  - urn:ietf:params:oauth:grant-type:token-exchange
+  source: https://www.aftership.com/docs/tracking/quickstart/authentication/oauth/getting-started
+error_on_failure:
+  http_status: 401
+  meta_type: Unauthorized
+  meta_code: 401
+  message: The API key is invalid.
+  observed: https://api.aftership.com/v4/openapi.json returned 401 with this envelope on 2026-08-27

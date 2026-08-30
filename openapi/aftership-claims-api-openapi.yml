@@ -1,0 +1,2541 @@
+openapi: 3.2.0
+info:
+  title: Aftership Claims API
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  version: '1.0'
+  description: 'Operations tagged Claims across 2 of this provider''s published API definitions: aftership-protection-api-openapi.yml, aftership-warranty-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.aftership.com/admin/2022-01
+  description: API Endpoint
+- url: https://api.aftership.com/warranty/2026-07
+  description: API Endpoint
+tags:
+- name: Claims
+paths:
+  /claims:
+    get:
+      summary: Query claims
+      operationId: get-claims
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    type: object
+                    properties:
+                      claims:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Claim.v1'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination.v1'
+                required:
+                - meta
+                - data
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: coverage_id
+        description: Coverage ID
+      - schema:
+          type: number
+        in: query
+        name: limit
+        description: 'Number of claims each page contain. (Default: 20, Max: 20)'
+      - schema:
+          type: number
+        in: query
+        name: page
+        description: 'The page to query. (Default: 1, Max: 1000)'
+      tags:
+      - Claims
+      description: Get multiple claims
+      security:
+      - as-api-key: []
+    servers:
+    - url: https://api.aftership.com/admin/2022-01
+      description: API Endpoint
+  /claims/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: claim id
+    get:
+      summary: Get a claim
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                  data:
+                    $ref: '#/components/schemas/Claim.v1'
+                required:
+                - meta
+                - data
+      operationId: get-claim-id
+      description: Get a claim by ID.
+      tags:
+      - Claims
+      security:
+      - as-api-key: []
+    servers:
+    - url: https://api.aftership.com/admin/2022-01
+      description: API Endpoint
+  /claims/{claim_id}:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    get:
+      tags:
+      - Claims
+      summary: Get a claim
+      operationId: get-claim
+      description: Retrieves the full Claim resource for a single claim.
+      responses:
+        '200':
+          description: The full Claim resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 102a899f79c82422c99b1fdc417e01010
+                  note: null
+                  approval_note: null
+                  warranty_page:
+                    id: 006b053d93564aaab58f95c0a90e06eb
+                    name: Default warranty page
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    source_id: '13501508419800'
+                    title: School Bags
+                    product_title: School Bags
+                    variant_title: '02'
+                    quantity: 1
+                    unit_price:
+                      currency: USD
+                      amount: '280.00'
+                    discounted_price:
+                      currency: USD
+                      amount: '280.00'
+                    tax:
+                      currency: USD
+                      amount: '0.00'
+                    discounted_price_including_tax:
+                      currency: USD
+                      amount: '280.00'
+                    product_tags:
+                    - electronics
+                    - warranty-eligible
+                    image:
+                      url: https://cdn.example.com/products/school-bag.jpg
+                    source_variant_id: null
+                    sku: 21q9grbnf06
+                    issue_description:
+                      reason: damaged
+                      subreason: null
+                      description: The zipper broke after two weeks.
+                      files:
+                      - url: https://files.example.com/warranty/damage.jpg
+                        type: image/jpeg
+                    process_item_resolution_method: replace_item
+                    process_item_details: null
+                    product_source: order
+                    shopper_notes: null
+                    item_tags:
+                    - id: tag_001
+                      name: VIP
+                      created_at: '2026-05-01T10:00:00Z'
+                    merchant_uploaded_image_urls: []
+                    created_at: '2026-05-19T10:00:00Z'
+                    updated_at: '2026-05-19T10:00:00Z'
+                  order:
+                    address:
+                      contact_name: Ada Lovelace
+                      company_name: null
+                      address_line_1: 123 Market St
+                      address_line_2: null
+                      city: San Francisco
+                      state: CA
+                      postal_code: '94105'
+                      country: USA
+                      phone_number: null
+                      email: buyer@example.com
+                    customer:
+                      contact:
+                        email: buyer@example.com
+                        phone_number: null
+                      last_name: Lovelace
+                      first_name: Ada
+                    order_name: '#1001'
+                    place_of_purchase:
+                      proof: []
+                      option: null
+                  status: approved
+                  flow_type: required_order_number
+                  created_at: '2026-05-19T10:00:00Z'
+                  process_at: null
+                  rma_number: RMA-1001
+                  updated_at: '2026-05-19T10:00:00Z'
+                  approved_at: '2026-05-19T10:00:00Z'
+                  canceled_at: null
+                  rejected_at: null
+                  completed_at: null
+                  shipping_address:
+                    contact_name: Ada Lovelace
+                    company_name: null
+                    address_line_1: 123 Market St
+                    address_line_2: null
+                    city: San Francisco
+                    state: CA
+                    postal_code: '94105'
+                    country: USA
+                    phone_number: null
+                    email: buyer@example.com
+                  contact_email: buyer@example.com
+                  organization:
+                    id: org_001
+                  cancel_reason: null
+                  reject_reason: null
+                  dynamic_fields:
+                    order_information: {}
+                    additional_information: {}
+                  inbound_shipments: []
+                  outbound_shipments: []
+                  receiving_status: not_received
+                  received_at: null
+      security:
+      - ApiKeyAuth: []
+    patch:
+      tags:
+      - Claims
+      summary: Update a claim
+      operationId: patch-claim
+      description: Updates the note, contact email, or shipping address for a claim.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              minProperties: 1
+              properties:
+                note:
+                  type: string
+                  maxLength: 2000
+                  description: Merchant-facing note attached to the claim. Maximum length is 2000 characters.
+                contact_email:
+                  type: string
+                  description: The claim-level contact email.
+                shipping_address:
+                  type: object
+                  title: PatchClaimShippingAddress
+                  description: The shipping address update payload. If this parameter is provided, pass the complete shipping_address object. The response returns the normalized shipping_address resource.
+                  properties:
+                    first_name:
+                      type: string
+                      description: The recipient first name.
+                    last_name:
+                      type: string
+                      description: The recipient last name.
+                    address_line_1:
+                      type: string
+                      description: First line of the street address.
+                    address_line_2:
+                      type: string
+                      description: Second line of the street address.
+                    city:
+                      type: string
+                      description: The city, town, or village.
+                    state:
+                      type: string
+                      description: The state, province, or region.
+                    country:
+                      type: string
+                      description: The address country/region in ISO 3166-1 alpha-3 format.
+                      example: USA
+                    postal_code:
+                      type: string
+                      description: The postal code of the address.
+                    phone_number:
+                      type: string
+                      description: The recipient phone number.
+                  required:
+                  - last_name
+                  - address_line_1
+                  - city
+                  - country
+                  - postal_code
+            example:
+              note: Customer confirmed updated contact details.
+              contact_email: buyer@example.com
+              shipping_address:
+                first_name: Ada
+                last_name: Lovelace
+                address_line_1: 123 Market St
+                address_line_2: null
+                city: San Francisco
+                state: CA
+                country: USA
+                postal_code: '94105'
+                phone_number: '+14155550100'
+      responses:
+        '200':
+          description: The updated Claim resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 102a899f79c82422c99b1fdc417e01010
+                  note: Customer confirmed updated contact details.
+                  approval_note: null
+                  warranty_page:
+                    id: 006b053d93564aaab58f95c0a90e06eb
+                    name: Default warranty page
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    source_id: '13501508419800'
+                    title: School Bags
+                    product_title: School Bags
+                    variant_title: '02'
+                    quantity: 1
+                    unit_price:
+                      currency: USD
+                      amount: '280.00'
+                    discounted_price:
+                      currency: USD
+                      amount: '280.00'
+                    tax:
+                      currency: USD
+                      amount: '0.00'
+                    discounted_price_including_tax:
+                      currency: USD
+                      amount: '280.00'
+                    product_tags:
+                    - electronics
+                    - warranty-eligible
+                    image:
+                      url: https://cdn.example.com/products/school-bag.jpg
+                    source_variant_id: null
+                    sku: 21q9grbnf06
+                    issue_description:
+                      reason: damaged
+                      subreason: null
+                      description: The zipper broke after two weeks.
+                      files:
+                      - url: https://files.example.com/warranty/damage.jpg
+                        type: image/jpeg
+                    process_item_resolution_method: replace_item
+                    process_item_details: null
+                    product_source: order
+                    shopper_notes: null
+                    item_tags:
+                    - id: tag_001
+                      name: VIP
+                      created_at: '2026-05-01T10:00:00Z'
+                    merchant_uploaded_image_urls: []
+                    created_at: '2026-05-19T10:00:00Z'
+                    updated_at: '2026-05-19T10:00:00Z'
+                  order:
+                    address:
+                      contact_name: Ada Lovelace
+                      company_name: null
+                      address_line_1: 123 Market St
+                      address_line_2: null
+                      city: San Francisco
+                      state: CA
+                      postal_code: '94105'
+                      country: USA
+                      phone_number: null
+                      email: buyer@example.com
+                    customer:
+                      contact:
+                        email: buyer@example.com
+                        phone_number: null
+                      last_name: Lovelace
+                      first_name: Ada
+                    order_name: '#1001'
+                    place_of_purchase:
+                      proof: []
+                      option: null
+                  status: approved
+                  flow_type: required_order_number
+                  created_at: '2026-05-19T10:00:00Z'
+                  process_at: null
+                  rma_number: RMA-1001
+                  updated_at: '2026-05-19T10:00:00Z'
+                  approved_at: '2026-05-19T10:00:00Z'
+                  canceled_at: null
+                  rejected_at: null
+                  completed_at: null
+                  shipping_address:
+                    contact_name: Ada Lovelace
+                    company_name: null
+                    address_line_1: 123 Market St
+                    address_line_2: null
+                    city: San Francisco
+                    state: CA
+                    postal_code: '94105'
+                    country: USA
+                    phone_number: null
+                    email: buyer@example.com
+                  contact_email: buyer@example.com
+                  organization:
+                    id: org_001
+                  cancel_reason: null
+                  reject_reason: null
+                  dynamic_fields:
+                    order_information: {}
+                    additional_information: {}
+                  inbound_shipments: []
+                  outbound_shipments: []
+                  receiving_status: not_received
+                  received_at: null
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.aftership.com/warranty/2026-07
+      description: API Endpoint
+  /claims/{claim_id}/approve:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    post:
+      tags:
+      - Claims
+      summary: Approve a claim
+      operationId: approve-claim
+      description: 'Approves a claim. Allowed source status: under_review.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notify_customer:
+                  type: boolean
+                  description: Whether to notify the customer about the claim approval.
+                approval_note:
+                  type: string
+                  maxLength: 1000
+                  description: Optional note included with the approval. Maximum length is 1000 characters.
+            example:
+              notify_customer: true
+              approval_note: Approved after merchant review.
+      responses:
+        '200':
+          description: The updated Claim resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 102a899f79c82422c99b1fdc417e01010
+                  note: null
+                  approval_note: Approved after merchant review.
+                  warranty_page:
+                    id: 006b053d93564aaab58f95c0a90e06eb
+                    name: Default warranty page
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    source_id: '13501508419800'
+                    title: School Bags
+                    product_title: School Bags
+                    variant_title: '02'
+                    quantity: 1
+                    unit_price:
+                      currency: USD
+                      amount: '280.00'
+                    discounted_price:
+                      currency: USD
+                      amount: '280.00'
+                    tax:
+                      currency: USD
+                      amount: '0.00'
+                    discounted_price_including_tax:
+                      currency: USD
+                      amount: '280.00'
+                    product_tags:
+                    - electronics
+                    - warranty-eligible
+                    image:
+                      url: https://cdn.example.com/products/school-bag.jpg
+                    source_variant_id: null
+                    sku: 21q9grbnf06
+                    issue_description:
+                      reason: damaged
+                      subreason: null
+                      description: The zipper broke after two weeks.
+                      files:
+                      - url: https://files.example.com/warranty/damage.jpg
+                        type: image/jpeg
+                    process_item_resolution_method: replace_item
+                    process_item_details: null
+                    product_source: order
+                    shopper_notes: null
+                    item_tags:
+                    - id: tag_001
+                      name: VIP
+                      created_at: '2026-05-01T10:00:00Z'
+                    merchant_uploaded_image_urls: []
+                    created_at: '2026-05-19T10:00:00Z'
+                    updated_at: '2026-05-19T10:00:00Z'
+                  order:
+                    address:
+                      contact_name: Ada Lovelace
+                      company_name: null
+                      address_line_1: 123 Market St
+                      address_line_2: null
+                      city: San Francisco
+                      state: CA
+                      postal_code: '94105'
+                      country: USA
+                      phone_number: null
+                      email: buyer@example.com
+                    customer:
+                      contact:
+                        email: buyer@example.com
+                        phone_number: null
+                      last_name: Lovelace
+                      first_name: Ada
+                    order_name: '#1001'
+                    place_of_purchase:
+                      proof: []
+                      option: null
+                  status: approved
+                  flow_type: required_order_number
+                  created_at: '2026-05-19T10:00:00Z'
+                  process_at: null
+                  rma_number: RMA-1001
+                  updated_at: '2026-05-19T10:00:00Z'
+                  approved_at: '2026-05-19T10:00:00Z'
+                  canceled_at: null
+                  rejected_at: null
+                  completed_at: null
+                  shipping_address:
+                    contact_name: Ada Lovelace
+                    company_name: null
+                    address_line_1: 123 Market St
+                    address_line_2: null
+                    city: San Francisco
+                    state: CA
+                    postal_code: '94105'
+                    country: USA
+                    phone_number: null
+                    email: buyer@example.com
+                  contact_email: buyer@example.com
+                  organization:
+                    id: org_001
+                  cancel_reason: null
+                  reject_reason: null
+                  dynamic_fields:
+                    order_information: {}
+                    additional_information: {}
+                  inbound_shipments: []
+                  outbound_shipments: []
+                  receiving_status: not_received
+                  received_at: null
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.aftership.com/warranty/2026-07
+      description: API Endpoint
+  /claims/{claim_id}/reject:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    post:
+      tags:
+      - Claims
+      summary: Reject a claim
+      operationId: reject-claim
+      description: 'Rejects a claim. Allowed source status: under_review.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notify_customer:
+                  type: boolean
+                  description: Whether to notify the customer about the claim rejection.
+                reject_reason:
+                  type: string
+                  maxLength: 1000
+                  description: Reason for rejecting the claim. Maximum length is 1000 characters.
+                permanent_reject:
+                  type: boolean
+                  description: Whether to permanently reject the related order items. This only takes effect for order-flow claims.
+              required:
+              - reject_reason
+            example:
+              notify_customer: true
+              reject_reason: The issue is not covered by the warranty policy.
+              permanent_reject: false
+      responses:
+        '200':
+          description: The updated Claim resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 102a899f79c82422c99b1fdc417e01010
+                  note: null
+                  approval_note: null
+                  warranty_page:
+                    id: 006b053d93564aaab58f95c0a90e06eb
+                    name: Default warranty page
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    source_id: '13501508419800'
+                    title: School Bags
+                    product_title: School Bags
+                    variant_title: '02'
+                    quantity: 1
+                    unit_price:
+                      currency: USD
+                      amount: '280.00'
+                    discounted_price:
+                      currency: USD
+                      amount: '280.00'
+                    tax:
+                      currency: USD
+                      amount: '0.00'
+                    discounted_price_including_tax:
+                      currency: USD
+                      amount: '280.00'
+                    product_tags:
+                    - electronics
+                    - warranty-eligible
+                    image:
+                      url: https://cdn.example.com/products/school-bag.jpg
+                    source_variant_id: null
+                    sku: 21q9grbnf06
+                    issue_description:
+                      reason: damaged
+                      subreason: null
+                      description: The zipper broke after two weeks.
+                      files:
+                      - url: https://files.example.com/warranty/damage.jpg
+                        type: image/jpeg
+                    process_item_resolution_method: replace_item
+                    process_item_details: null
+                    product_source: order
+                    shopper_notes: null
+                    item_tags:
+                    - id: tag_001
+                      name: VIP
+                      created_at: '2026-05-01T10:00:00Z'
+                    merchant_uploaded_image_urls: []
+                    created_at: '2026-05-19T10:00:00Z'
+                    updated_at: '2026-05-19T10:00:00Z'
+                  order:
+                    address:
+                      contact_name: Ada Lovelace
+                      company_name: null
+                      address_line_1: 123 Market St
+                      address_line_2: null
+                      city: San Francisco
+                      state: CA
+                      postal_code: '94105'
+                      country: USA
+                      phone_number: null
+                      email: buyer@example.com
+                    customer:
+                      contact:
+                        email: buyer@example.com
+                        phone_number: null
+                      last_name: Lovelace
+                      first_name: Ada
+                    order_name: '#1001'
+                    place_of_purchase:
+                      proof: []
+                      option: null
+                  status: rejected
+                  flow_type: required_order_number
+                  created_at: '2026-05-19T10:00:00Z'
+                  process_at: null
+                  rma_number: RMA-1001
+                  updated_at: '2026-05-19T10:00:00Z'
+                  approved_at: null
+                  canceled_at: null
+                  rejected_at: '2026-05-19T10:00:00Z'
+                  completed_at: null
+                  shipping_address:
+                    contact_name: Ada Lovelace
+                    company_name: null
+                    address_line_1: 123 Market St
+                    address_line_2: null
+                    city: San Francisco
+                    state: CA
+                    postal_code: '94105'
+                    country: USA
+                    phone_number: null
+                    email: buyer@example.com
+                  contact_email: buyer@example.com
+                  organization:
+                    id: org_001
+                  cancel_reason: null
+                  reject_reason: The issue is not covered by the warranty policy.
+                  dynamic_fields:
+                    order_information: {}
+                    additional_information: {}
+                  inbound_shipments: []
+                  outbound_shipments: []
+                  receiving_status: not_received
+                  received_at: null
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.aftership.com/warranty/2026-07
+      description: API Endpoint
+  /claims/{claim_id}/cancel:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    post:
+      tags:
+      - Claims
+      summary: Cancel a claim
+      operationId: cancel-claim
+      description: 'Cancels a claim. Allowed source statuses: approved, in_process.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notify_customer:
+                  type: boolean
+                  description: Whether to notify the customer about the claim cancellation.
+                cancel_reason:
+                  type: string
+                  maxLength: 1000
+                  description: Reason for canceling the claim. Maximum length is 1000 characters.
+              required:
+              - cancel_reason
+            example:
+              notify_customer: true
+              cancel_reason: Customer withdrew the claim.
+      responses:
+        '200':
+          description: The updated Claim resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 102a899f79c82422c99b1fdc417e01010
+                  note: null
+                  approval_note: null
+                  warranty_page:
+                    id: 006b053d93564aaab58f95c0a90e06eb
+                    name: Default warranty page
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    source_id: '13501508419800'
+                    title: School Bags
+                    product_title: School Bags
+                    variant_title: '02'
+                    quantity: 1
+                    unit_price:
+                      currency: USD
+                      amount: '280.00'
+                    discounted_price:
+                      currency: USD
+                      amount: '280.00'
+                    tax:
+                      currency: USD
+                      amount: '0.00'
+                    discounted_price_including_tax:
+                      currency: USD
+                      amount: '280.00'
+                    product_tags:
+                    - electronics
+                    - warranty-eligible
+                    image:
+                      url: https://cdn.example.com/products/school-bag.jpg
+                    source_variant_id: null
+                    sku: 21q9grbnf06
+                    issue_description:
+                      reason: damaged
+                      subreason: null
+                      description: The zipper broke after two weeks.
+                      files:
+                      - url: https://files.example.com/warranty/damage.jpg
+                        type: image/jpeg
+                    process_item_resolution_method: replace_item
+                    process_item_details: null
+                    product_source: order
+                    shopper_notes: null
+                    item_tags:
+                    - id: tag_001
+                      name: VIP
+                      created_at: '2026-05-01T10:00:00Z'
+                    merchant_uploaded_image_urls: []
+                    created_at: '2026-05-19T10:00:00Z'
+                    updated_at: '2026-05-19T10:00:00Z'
+                  order:
+                    address:
+                      contact_name: Ada Lovelace
+                      company_name: null
+                      address_line_1: 123 Market St
+                      address_line_2: null
+                      city: San Francisco
+                      state: CA
+                      postal_code: '94105'
+                      country: USA
+                      phone_number: null
+                      email: buyer@example.com
+                    customer:
+                      contact:
+                        email: buyer@example.com
+                        phone_number: null
+                      last_name: Lovelace
+                      first_name: Ada
+                    order_name: '#1001'
+                    place_of_purchase:
+                      proof: []
+                      option: null
+                  status: canceled
+                  flow_type: required_order_number
+                  created_at: '2026-05-19T10:00:00Z'
+                  process_at: null
+                  rma_number: RMA-1001
+                  updated_at: '2026-05-19T10:00:00Z'
+                  approved_at: '2026-05-19T10:00:00Z'
+                  canceled_at: '2026-05-19T10:00:00Z'
+                  rejected_at: null
+                  completed_at: null
+                  shipping_address:
+                    contact_name: Ada Lovelace
+                    company_name: null
+                    address_line_1: 123 Market St
+                    address_line_2: null
+                    city: San Francisco
+                    state: CA
+                    postal_code: '94105'
+                    country: USA
+                    phone_number: null
+                    email: buyer@example.com
+                  contact_email: buyer@example.com
+                  organization:
+                    id: org_001
+                  cancel_reason: Customer withdrew the claim.
+                  reject_reason: null
+                  dynamic_fields:
+                    order_information: {}
+                    additional_information: {}
+                  inbound_shipments: []
+                  outbound_shipments: []
+                  receiving_status: not_received
+                  received_at: null
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.aftership.com/warranty/2026-07
+      description: API Endpoint
+  /claims/{claim_id}/resolve:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    post:
+      tags:
+      - Claims
+      summary: Resolve a claim
+      operationId: resolve-claim
+      description: 'Resolves a claim as completed. Allowed source status: in_process.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notify_customer:
+                  type: boolean
+                  description: Whether to notify the customer about the claim resolution.
+            example:
+              notify_customer: true
+      responses:
+        '200':
+          description: The updated Claim resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 102a899f79c82422c99b1fdc417e01010
+                  note: null
+                  approval_note: null
+                  warranty_page:
+                    id: 006b053d93564aaab58f95c0a90e06eb
+                    name: Default warranty page
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    source_id: '13501508419800'
+                    title: School Bags
+                    product_title: School Bags
+                    variant_title: '02'
+                    quantity: 1
+                    unit_price:
+                      currency: USD
+                      amount: '280.00'
+                    discounted_price:
+                      currency: USD
+                      amount: '280.00'
+                    tax:
+                      currency: USD
+                      amount: '0.00'
+                    discounted_price_including_tax:
+                      currency: USD
+                      amount: '280.00'
+                    product_tags:
+                    - electronics
+                    - warranty-eligible
+                    image:
+                      url: https://cdn.example.com/products/school-bag.jpg
+                    source_variant_id: null
+                    sku: 21q9grbnf06
+                    issue_description:
+                      reason: damaged
+                      subreason: null
+                      description: The zipper broke after two weeks.
+                      files:
+                      - url: https://files.example.com/warranty/damage.jpg
+                        type: image/jpeg
+                    process_item_resolution_method: replace_item
+                    process_item_details: null
+                    product_source: order
+                    shopper_notes: null
+                    item_tags:
+                    - id: tag_001
+                      name: VIP
+                      created_at: '2026-05-01T10:00:00Z'
+                    merchant_uploaded_image_urls: []
+                    created_at: '2026-05-19T10:00:00Z'
+                    updated_at: '2026-05-19T10:00:00Z'
+                  order:
+                    address:
+                      contact_name: Ada Lovelace
+                      company_name: null
+                      address_line_1: 123 Market St
+                      address_line_2: null
+                      city: San Francisco
+                      state: CA
+                      postal_code: '94105'
+                      country: USA
+                      phone_number: null
+                      email: buyer@example.com
+                    customer:
+                      contact:
+                        email: buyer@example.com
+                        phone_number: null
+                      last_name: Lovelace
+                      first_name: Ada
+                    order_name: '#1001'
+                    place_of_purchase:
+                      proof: []
+                      option: null
+                  status: completed
+                  flow_type: required_order_number
+                  created_at: '2026-05-19T10:00:00Z'
+                  process_at: '2026-05-19T10:01:00Z'
+                  rma_number: RMA-1001
+                  updated_at: '2026-05-19T10:00:00Z'
+                  approved_at: '2026-05-19T10:00:00Z'
+                  canceled_at: null
+                  rejected_at: null
+                  completed_at: '2026-05-19T10:03:00Z'
+                  shipping_address:
+                    contact_name: Ada Lovelace
+                    company_name: null
+                    address_line_1: 123 Market St
+                    address_line_2: null
+                    city: San Francisco
+                    state: CA
+                    postal_code: '94105'
+                    country: USA
+                    phone_number: null
+                    email: buyer@example.com
+                  contact_email: buyer@example.com
+                  organization:
+                    id: org_001
+                  cancel_reason: null
+                  reject_reason: null
+                  dynamic_fields:
+                    order_information: {}
+                    additional_information: {}
+                  inbound_shipments: []
+                  outbound_shipments: []
+                  receiving_status: not_received
+                  received_at: null
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.aftership.com/warranty/2026-07
+      description: API Endpoint
+  /claims/{claim_id}/receive:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    post:
+      tags:
+      - Claims
+      summary: Mark claim as received
+      operationId: receive-claim
+      description: 'Marks returned claim items as received. Allowed source statuses: approved, in_process. This is a side operation and does not change the main claim status.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notify_customer:
+                  type: boolean
+                  description: Whether to notify the customer that the returned items were received.
+            example:
+              notify_customer: true
+      responses:
+        '200':
+          description: The updated Claim resource. The main status remains unchanged, while receiving_status and received_at are updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 102a899f79c82422c99b1fdc417e01010
+                  note: null
+                  approval_note: Approved after reviewing submitted photos.
+                  warranty_page:
+                    id: 006b053d93564aaab58f95c0a90e06eb
+                    name: Default warranty page
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    source_id: '13501508419800'
+                    title: School Bags
+                    product_title: School Bags
+                    variant_title: '02'
+                    quantity: 1
+                    unit_price:
+                      currency: USD
+                      amount: '280.00'
+                    discounted_price:
+                      currency: USD
+                      amount: '280.00'
+                    tax:
+                      currency: USD
+                      amount: '0.00'
+                    discounted_price_including_tax:
+                      currency: USD
+                      amount: '280.00'
+                    product_tags:
+                    - electronics
+                    - warranty-eligible
+                    image:
+                      url: https://cdn.example.com/products/school-bag.jpg
+                    source_variant_id: null
+                    sku: 21q9grbnf06
+                    issue_description:
+                      reason: damaged
+                      subreason: null
+                      description: The zipper broke after two weeks.
+                      files:
+                      - url: https://files.example.com/warranty/damage.jpg
+                        type: image/jpeg
+                    process_item_resolution_method: replace_item
+                    process_item_details: null
+                    product_source: order
+                    shopper_notes: null
+                    item_tags: []
+                    merchant_uploaded_image_urls: []
+                    created_at: '2026-05-19T10:00:00Z'
+                    updated_at: '2026-05-19T10:00:00Z'
+                  order:
+                    address:
+                      contact_name: Ada Lovelace
+                      company_name: null
+                      address_line_1: 123 Market St
+                      address_line_2: null
+                      city: San Francisco
+                      state: CA
+                      postal_code: '94105'
+                      country: USA
+                      phone_number: null
+                      email: buyer@example.com
+                    customer:
+                      contact:
+                        email: buyer@example.com
+                        phone_number: null
+                      last_name: Lovelace
+                      first_name: Ada
+                    order_name: '#1001'
+                    place_of_purchase:
+                      proof: []
+                      option: null
+                  status: approved
+                  flow_type: required_order_number
+                  created_at: '2026-05-19T10:00:00Z'
+                  process_at: null
+                  rma_number: RMA-1001
+                  updated_at: '2026-05-19T10:03:00Z'
+                  approved_at: '2026-05-19T10:01:00Z'
+                  canceled_at: null
+                  rejected_at: null
+                  completed_at: null
+                  shipping_address:
+                    contact_name: Ada Lovelace
+                    company_name: null
+                    address_line_1: 123 Market St
+                    address_line_2: null
+                    city: San Francisco
+                    state: CA
+                    postal_code: '94105'
+                    country: USA
+                    phone_number: null
+                    email: buyer@example.com
+                  contact_email: buyer@example.com
+                  organization:
+                    id: org_001
+                  cancel_reason: null
+                  reject_reason: null
+                  dynamic_fields:
+                    order_information: {}
+                    additional_information: {}
+                  inbound_shipments: []
+                  outbound_shipments: []
+                  receiving_status: received
+                  received_at: '2026-05-19T10:03:00Z'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.aftership.com/warranty/2026-07
+      description: API Endpoint
+  /claims/{claim_id}/match-resolution:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    post:
+      tags:
+      - Claims
+      summary: Check claim resolution availability
+      operationId: check-claim-resolution-availability
+      description: Checks which resolution methods are supported by a claim and which stores can be used for processing.
+      responses:
+        '200':
+          description: The supported resolution methods and available stores.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    type: object
+                    properties:
+                      resolutions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            resolution_method:
+                              type: string
+                              description: The public resolution method.
+                              enum:
+                              - repair_item
+                              - replace_item
+                              - send_repair_kit
+                              - issue_store_credit
+                              - other
+                            supported:
+                              type: boolean
+                              description: Whether AfterShip can create the corresponding e-commerce platform resource for this resolution method, such as a replacement order or store credit.
+                            stores:
+                              type: array
+                              description: Stores that can be used when processing this resolution method.
+                              items:
+                                type: object
+                                description: The brief information of the store associated with the original order.
+                                properties:
+                                  platform:
+                                    type: string
+                                    description: The e-commerce platform where the store is located.
+                                    enum:
+                                    - shopify
+                                    - bigcommerce
+                                    - woocommerce
+                                    example: shopify
+                                  external_id:
+                                    type: string
+                                    description: The identifier of the store on the e-commerce platform.
+                                    example: cool-shoe-store
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  resolutions:
+                  - resolution_method: repair_item
+                    supported: true
+                    stores: []
+                  - resolution_method: replace_item
+                    supported: true
+                    stores:
+                    - platform: shopify
+                      external_id: cool-shoe-store
+                  - resolution_method: send_repair_kit
+                    supported: true
+                    stores:
+                    - platform: shopify
+                      external_id: cool-shoe-store
+                  - resolution_method: issue_store_credit
+                    supported: true
+                    stores:
+                    - platform: shopify
+                      external_id: cool-shoe-store
+                  - resolution_method: other
+                    supported: true
+                    stores: []
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.aftership.com/warranty/2026-07
+      description: API Endpoint
+  /claims/{claim_id}/process:
+    parameters:
+    - name: claim_id
+      in: path
+      required: true
+      description: The unique identifier of the claim.
+      schema:
+        type: string
+      example: 102a899f79c82422c99b1fdc417e01010
+    post:
+      tags:
+      - Claims
+      summary: Process a claim
+      operationId: process-claim
+      description: 'Processes an approved claim and returns the updated Claim resource. Allowed source status: approved.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notify_customer:
+                  type: boolean
+                  description: Whether to notify the customer about the claim processing update.
+                items:
+                  type: array
+                  description: Claim items to process.
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The unique identifier of the claim item.
+                      resolution_method:
+                        type: string
+                        description: The public resolution method to apply to this item.
+                        enum:
+                        - repair_item
+                        - replace_item
+                        - send_repair_kit
+                        - issue_store_credit
+                        - other
+                      process_item_details:
+                        type:
+                        - string
+                        - 'null'
+                        maxLength: 1000
+                        description: Optional merchant-facing processing note. Maximum length is 1000 characters.
+                      replacement_order:
+                        type: object
+                        description: Replacement order payload for replace_item or send_repair_kit resolutions. Use a store returned by the match-resolution endpoint.
+                        properties:
+                          store:
+                            type: object
+                            description: The store selected from POST /claims/{claim_id}/match-resolution.
+                            properties:
+                              platform:
+                                type: string
+                                description: The e-commerce platform where the store is located.
+                                enum:
+                                - shopify
+                                - bigcommerce
+                                - woocommerce
+                                example: shopify
+                              external_id:
+                                type: string
+                                description: The identifier of the store on the e-commerce platform.
+                                example: cool-shoe-store
+                            required:
+                            - platform
+                            - external_id
+                          items:
+                            type: array
+                            description: Replacement order item selections.
+                            items:
+                              type: object
+                              properties:
+                                external_product_id:
+                                  type: string
+                                  description: The e-commerce platform product identifier for the replacement item.
+                                external_variant_id:
+                                  type: string
+                                  description: The e-commerce platform variant identifier for the replacement item.
+                                quantity:
+                                  type: integer
+                                  minimum: 1
+                                  description: The replacement quantity.
+                              required:
+                              - external_product_id
+                              - external_variant_id
+                              - quantity
+                        required:
+                        - store
+                        - items
+                      store_credit:
+                        type: object
+                        description: Store credit payload for issue_store_credit resolution. Use a store returned by the match-resolution endpoint when store selection is required.
+                        properties:
+                          store:
+                            type: object
+                            description: The store selected from POST /claims/{claim_id}/match-resolution.
+                            properties:
+                              platform:
+                                type: string
+                                description: The e-commerce platform where the store is located.
+                                enum:
+                                - shopify
+                                - bigcommerce
+                                - woocommerce
+                                example: shopify
+                              external_id:
+                                type: string
+                                description: The identifier of the store on the e-commerce platform.
+                                example: cool-shoe-store
+                            required:
+                            - platform
+                            - external_id
+                          value:
+                            $ref: '#/components/schemas/Money'
+                            description: The store credit value.
+                        required:
+                        - value
+                    required:
+                    - id
+                    - resolution_method
+              required:
+              - items
+            examples:
+              replace_item:
+                summary: Create a replacement order
+                value:
+                  notify_customer: true
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    resolution_method: replace_item
+                    process_item_details: Create replacement order from API.
+                    replacement_order:
+                      store:
+                        platform: shopify
+                        external_id: cool-shoe-store
+                      items:
+                      - external_product_id: '45234123'
+                        external_variant_id: '45234124'
+                        quantity: 1
+              issue_store_credit:
+                summary: Issue store credit
+                value:
+                  notify_customer: true
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    resolution_method: issue_store_credit
+                    store_credit:
+                      store:
+                        platform: shopify
+                        external_id: cool-shoe-store
+                      value:
+                        amount: '25.00'
+                        currency: USD
+              other:
+                summary: Process with other resolution
+                value:
+                  notify_customer: false
+                  items:
+                  - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+                    resolution_method: other
+                    process_item_details: Handled outside AfterShip Warranty.
+      responses:
+        '200':
+          description: The updated Claim resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Claim'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 102a899f79c82422c99b1fdc417e01010
+                  rma_number: RMA-1001
+                  status: in_process
+                  process_at: '2026-05-19T10:03:00Z'
+                  updated_at: '2026-05-19T10:03:00Z'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.aftership.com/warranty/2026-07
+      description: API Endpoint
+components:
+  schemas:
+    Amount.v1:
+      title: Amount
+      type: object
+      x-examples:
+        example-1:
+          amount: string
+          currency: USD
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type: string
+          pattern: ^[0-9.]+$
+          example: '12.34'
+        currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+          minLength: 3
+          maxLength: 3
+          example: USD
+          description: Only support USD for now
+      required:
+      - amount
+      - currency
+    Order_item.v1:
+      type: object
+      x-stoplight:
+        id: 33da09c0dfb8c
+      x-examples:
+        example-1:
+          name: string
+          quantity: 0
+          price:
+            amount: string
+            currency: USD
+          sku: string
+          images:
+          - string
+      title: Order Item
+      x-tags:
+      - Primitive
+      properties:
+        source_id:
+          type: string
+          description: A globally-unique identifier for the item.
+        title:
+          type: string
+          minLength: 1
+          description: Name of the product
+        quantity:
+          type: integer
+          description: Quantity of the item in order
+        unit_insured_amount:
+          $ref: '#/components/schemas/Amount.v1'
+          description: Indicate the insured amount for each individual  item
+        sku:
+          type: string
+          minLength: 1
+          description: SKU of the product item
+        image_urls:
+          type: array
+          description: item image urls
+          items:
+            type: string
+      required:
+      - source_id
+      - title
+      - quantity
+      - unit_insured_amount
+    Claim.v1:
+      title: Claim
+      x-stoplight:
+        id: hqvy8ouqw523t
+      x-tags:
+      - Resource
+      x-examples:
+        example-1:
+          id: c3a3cba2802e450bba8873fe2078fac5
+          number: 123-123-123169
+          coverage_id: 7121703493014f50b2ce8af22e44c489
+          status: paid
+          resolve_status: to_be_resolved
+          resolved_resolution_method: reship_the_same_items
+          resolved_resolution_detail: ''
+          customer_resolution_method: reship_the_same_items
+          customer_resolution_detail: ''
+          created_at: '2023-09-20T08:16:10.753Z'
+          updated_at: '2023-09-21T08:52:43.065Z'
+          issue_type: lost_in_transit
+          issue_desc: lost
+          issue_commodity: cell_phones
+          claim_items:
+          - title: iPhone pro max
+            sku: '999003'
+            quantity: 1
+            unit_insured_amount:
+              amount: '1500'
+              currency: USD
+            image_urls:
+            - https://xxx/xx.png
+            source_id: '12880388096173'
+          claim_items_amount:
+            amount: '1500'
+            currency: USD
+          shipping_amount:
+            amount: '12'
+            currency: USD
+          claim_submit_amount:
+            amount: '1512'
+            currency: USD
+          uploaded_documents:
+          - file_name: clbepfdh3000p10qme5bw1h8w.png
+            created_at: '2023-09-20T08:32:27.000Z'
+            url: https://xxx/a.jpg
+            url_expired_at: '2023-09-27T08:35:42.388Z'
+          required_document_types: []
+          claim_payment_amount:
+            amount: '1512'
+            currency: USD
+          paid_at: '2023-09-27T00:00:00.000Z'
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+          description: claim id
+        number:
+          type: string
+          minLength: 1
+          description: claim number from insurance supplier
+          example: 412-231-231
+        coverage_id:
+          type: string
+          minLength: 1
+          description: coverage id that this claim is associated with
+        status:
+          type: string
+          minLength: 1
+          enum:
+          - unsubmitted
+          - submitted
+          - under_review
+          - approved
+          - paid
+          - closed
+          - denied
+          - waiting_on_documents
+          description: claim status
+        resolve_status:
+          type: string
+          minLength: 1
+          enum:
+          - precheck
+          - to_be_resolved
+          - denied
+          - resolved
+          description: resolve status of the claim
+        resolved_resolution_method:
+          type: string
+          description: resolution method selected for the claim
+          enum:
+          - refund_to_original_payment_method
+          - refund_to_store_credit
+          - reship_the_same_items
+          - other
+        resolved_resolution_detail:
+          type: string
+          description: details on resolution method when resolved_resolution_method is 'other'
+        customer_resolution_method:
+          type: string
+          description: resolution method expected by the customer
+          enum:
+          - refund_to_original_payment_method
+          - refund_to_store_credit
+          - reship_the_same_items
+          - other
+        customer_resolution_detail:
+          type: string
+          description: details on resolution method expected by the customer when customer_resolution_method is 'other'
+        created_at:
+          type: string
+          minLength: 1
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+          description: created time in ISO8601 format
+          example: '2023-03-13T08:16:40.207Z'
+        updated_at:
+          type: string
+          minLength: 1
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+          description: updated time in ISO8601 format
+          example: '2023-08-15T03:40:12.628Z'
+        issue_type:
+          type: string
+          enum:
+          - lost_in_transit
+          - porch_pirated
+          - damaged
+          description: type of issue for the claim
+        issue_desc:
+          type: string
+          description: description of the issue
+        issue_commodity:
+          type: string
+          description: the category of the claimed items
+        claim_items:
+          type: array
+          description: items being claimed
+          items:
+            $ref: '#/components/schemas/Order_item.v1'
+        claim_items_amount:
+          $ref: '#/components/schemas/Amount.v1'
+        shipping_amount:
+          $ref: '#/components/schemas/Amount.v1'
+        claim_submit_amount:
+          $ref: '#/components/schemas/Amount.v1'
+        uploaded_documents:
+          type: array
+          description: supporting documents
+          items:
+            type: object
+            properties:
+              file_name:
+                type: string
+                description: name of the uploaded document
+              created_at:
+                type: string
+                minLength: 1
+                pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+                description: created time in ISO8601 format
+              url:
+                type: string
+                description: URL of the uploaded document
+              url_expired_at:
+                type: string
+                minLength: 1
+                pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+                description: expiration time of the URL in ISO8601 format
+        required_document_types:
+          type: array
+          description: types of documents required for the claim approval process
+          items:
+            type: string
+        claim_payment_amount:
+          $ref: '#/components/schemas/Amount.v1'
+        paid_at:
+          type: string
+          description: "time payment was made for the claim in ISO8601 format \n\n null if the claim has not been paid yet"
+          minLength: 1
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+    Pagination.v1:
+      description: Pagination data
+      type: object
+      x-examples:
+        example-1:
+          page: 1
+          limit: 10
+          total: 9734043
+      title: Pagination
+      examples: []
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: number
+          minimum: 1
+          default: 1
+        limit:
+          type: number
+          minimum: 1
+          maximum: 1000
+          default: 20
+        total:
+          type: number
+      required:
+      - page
+      - limit
+      - total
+    Meta.v1:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          enum:
+          - 20000
+          - 20100
+          - 40400
+          - 42200
+          - 50000
+        type:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error.v1'
+      required:
+      - code
+      - type
+      - message
+    Error.v1:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: data.policy_id
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: data.policy_id must not be 32 characters
+      x-tags:
+      - Envelope
+    Claim_shipment:
+      type: object
+      x-stoplight:
+        id: vwub1e1ftq9be
+      x-examples:
+        Example 1:
+          id: e5e50af0438a4f109c21117d4604587c
+          label:
+            url: https://files.am-usercontent.io/return-center/e6f77e704c71767c1bd04a4981cfe4c8/2c67de38e2524da58818988ba9fe9ea6.test-6.pdf
+            invoice_url: null
+            qrcode: null
+          tracking_number: '123123123'
+          tracking_slug: estes
+          tracking_status: Pending
+          tracking_status_updated_at: '2023-12-21T07:30:42.23002Z'
+          item_selections:
+          - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+            quantity: 1
+          created_at: '2023-12-21T07:30:35.281997Z'
+          updated_at: '2023-12-21T07:30:42.23002Z'
+      properties:
+        id:
+          type: string
+        label:
+          type: object
+          properties:
+            url:
+              type:
+              - string
+              - 'null'
+            invoice_url:
+              type:
+              - string
+              - 'null'
+            qrcode:
+              type:
+              - string
+              - 'null'
+        tracking_number:
+          type:
+          - string
+          - 'null'
+        tracking_slug:
+          type:
+          - string
+          - 'null'
+        tracking_status:
+          type:
+          - string
+          - 'null'
+        tracking_status_updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment tracking status was last updated.
+          example: '2026-05-19T10:03:00Z'
+        item_selections:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              quantity:
+                type: integer
+        ship_from:
+          x-stoplight:
+            id: 4afmgig3mqr4f
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+            x-stoplight:
+              id: fvzreq373bv1a
+          - x-stoplight:
+              id: xc5sqz17lbfms
+            type:
+            - 'null'
+        ship_to:
+          x-stoplight:
+            id: g6qptlu8k4h9o
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+            x-stoplight:
+              id: l0s42i8q2832v
+          - x-stoplight:
+              id: cwwe6qrye7j91
+            type:
+            - 'null'
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment was created.
+          example: '2026-05-19T10:00:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment was last updated.
+          example: '2026-05-19T10:00:00Z'
+      title: ClaimShipment
+      description: A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource.
+    Address:
+      type: object
+      x-stoplight:
+        id: 7cc87e0eb2a0d
+      title: Address
+      properties:
+        contact_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lwugfye8q3bt0
+          description: 'The name of the contact person associated with the address.
+
+            '
+        company_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: jozyy6y4x6hal
+          description: 'The name of the company or organization associated with the address.
+
+            '
+        address_line_1:
+          type:
+          - string
+          - 'null'
+          description: First line of the street address.
+        address_line_2:
+          type:
+          - string
+          - 'null'
+          description: Second line of the street address.
+        city:
+          type:
+          - string
+          - 'null'
+          title: The City Schema
+          description: The location's city, town, or village.
+        state:
+          title: The State Schema
+          description: The state or region of the location, such as a province, state, or prefecture.
+          type:
+          - string
+          - 'null'
+        postal_code:
+          type:
+          - string
+          - 'null'
+          title: The Postal_code Schema
+          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
+        country:
+          title: The Country Schema
+          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          example: USA
+          type:
+          - string
+          - 'null'
+        phone_number:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lio9zgakvzqhp
+          description: 'The contact phone number associated with the address.
+
+            '
+        email:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: ox7s3omkrkk3f
+          description: The email associated with the address.
+    Meta_20000:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+        type:
+          type: string
+          minLength: 1
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+    Claim_item:
+      type: object
+      x-examples:
+        Example 1:
+          id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+          source_id: '13501508419800'
+          title: School Bags
+          product_title: School Bags
+          variant_title: '02'
+          quantity: 1
+          unit_price:
+            currency: HKD
+            amount: '280.00'
+          discounted_price:
+            currency: HKD
+            amount: '280.00'
+          tax:
+            currency: HKD
+            amount: '0.00'
+          discounted_price_including_tax:
+            currency: HKD
+            amount: '280.00'
+          product_tags:
+          - electronics
+          - warranty-eligible
+          image:
+            url: https://cdn.shopify.com/s/files/1/0657/7592/7512/products/e0119a5bcc59d3af6ecd04d474b7a777.jpg?v=1681437817
+          source_variant_id: null
+          sku: 21q9grbnf06
+          issue_description:
+            reason: Option1
+            description: Details here
+            files:
+            - url: https://files.am-usercontent.io/returns-warranty/e6f77e704c71767c1bd04a4981cfe4c8/d9763692fb69439f9dac93b5b1d63caf.6627b229255c20260d7eb6fd632b3380.JPG
+              type: image/jpeg
+          process_item_resolution_method: replace_item
+          process_item_details: null
+          store_credit: null
+          replacement_order:
+            order_name: '1536'
+            items:
+            - external_id: '11723274518734'
+              product_title: Slim Phone Case
+              variant_title: Black / Metal
+              sku: '9990004'
+              quantity: 1
+              unit_price:
+                amount: '50.00'
+                currency: USD
+          product_source: order
+          shopper_notes: null
+          created_at: '2023-12-21T07:25:39.158885Z'
+          updated_at: '2023-12-21T07:31:06.384863Z'
+      title: ClaimItem
+      properties:
+        id:
+          type: string
+        source_id:
+          type: string
+        title:
+          type: string
+        product_title:
+          type: string
+        variant_title:
+          type: string
+        quantity:
+          type: integer
+        unit_price:
+          type: object
+          properties:
+            currency:
+              type: string
+            amount:
+              type: string
+        discounted_price:
+          type: object
+          properties:
+            currency:
+              type: string
+            amount:
+              type: string
+        tax:
+          type:
+          - object
+          - 'null'
+          description: Tax amount for the item. Only populated for order flow; null for non-order flows.
+          properties:
+            currency:
+              type: string
+            amount:
+              type: string
+        discounted_price_including_tax:
+          type:
+          - object
+          - 'null'
+          description: Discounted price including tax (presentment). Only populated for order flow; null for non-order flows.
+          properties:
+            currency:
+              type: string
+            amount:
+              type: string
+        product_tags:
+          type: array
+          description: Platform product tags. Populated for order and store product flows; empty array for CSV or no-source flows.
+          items:
+            type: string
+        image:
+          type: object
+          properties:
+            url:
+              type: string
+        source_variant_id:
+          type:
+          - string
+          - 'null'
+        sku:
+          type: string
+        issue_description:
+          type: object
+          properties:
+            reason:
+              type: string
+            subreason:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: 8mq63hp3hkoa1
+            description:
+              type:
+              - string
+              - 'null'
+            files:
+              type:
+              - array
+              - 'null'
+              items:
+                x-stoplight:
+                  id: jd8itav7wje17
+                type: object
+        process_item_resolution_method:
+          type: string
+          enum:
+          - repair_item
+          - replace_item
+          - send_repair_kit
+          - issue_store_credit
+          - other
+        process_item_details:
+          type:
+          - string
+          - 'null'
+        store_credit:
+          type:
+          - object
+          - 'null'
+          description: The store credit created for this claim item.
+          properties:
+            value:
+              $ref: '#/components/schemas/Money'
+              description: The store credit value.
+        replacement_order:
+          type:
+          - object
+          - 'null'
+          description: The replacement order created for this claim item.
+          properties:
+            order_name:
+              type: string
+              description: The replacement order name from the e-commerce platform.
+              example: '1536'
+            items:
+              type: array
+              description: Replacement order items.
+              items:
+                type: object
+                properties:
+                  external_id:
+                    type: string
+                    description: The identifier of the replacement order item on the e-commerce platform.
+                    example: '11723274518734'
+                  product_title:
+                    type: string
+                    description: The product title of the replacement item.
+                    example: Slim Phone Case
+                  variant_title:
+                    type:
+                    - string
+                    - 'null'
+                    description: The variant title of the replacement item.
+                    example: Black / Metal
+                  sku:
+                    type:
+                    - string
+                    - 'null'
+                    description: The SKU of the replacement item.
+                    example: '9990004'
+                  quantity:
+                    type: integer
+                    description: The quantity of the replacement item.
+                    example: 1
+                  unit_price:
+                    $ref: '#/components/schemas/Money'
+                    description: The unit price of the replacement item.
+        product_source:
+          type: string
+        shopper_notes:
+          type:
+          - string
+          - 'null'
+        item_tags:
+          type: array
+          description: Merchant item tags applied to this claim item.
+          items:
+            $ref: '#/components/schemas/ItemTag'
+        merchant_uploaded_image_urls:
+          type: array
+          x-stoplight:
+            id: qa9ytrxgst8fg
+          items:
+            x-stoplight:
+              id: k8itzg50h5wee
+            type: string
+          description: Merchant-uploaded image URLs attached to this claim item.
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim item was created.
+          example: '2026-05-19T10:00:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim item was last updated.
+          example: '2026-05-19T10:00:00Z'
+      description: A claim item resource.
+    Claim:
+      title: Claim
+      x-stoplight:
+        id: iidsz0rdrzaox
+      type: object
+      properties:
+        id:
+          type: string
+        note:
+          type: string
+        approval_note:
+          type:
+          - string
+          - 'null'
+          description: A note included when the claim was approved.
+        warranty_page:
+          type: object
+          description: The warranty page from which the claim was submitted.
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the warranty page, UUID v4 without hyphens (e.g. 006b053d93564aaab58f95c0a90e06eb).
+            name:
+              type: string
+              description: Merchant-configured name of the warranty page.
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Claim_item'
+        order:
+          type: object
+          properties:
+            address:
+              $ref: '#/components/schemas/Address'
+            customer:
+              type: object
+              properties:
+                contact:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    phone_number:
+                      type: string
+                last_name:
+                  type: string
+                first_name:
+                  type: string
+            order_name:
+              type: string
+            place_of_purchase:
+              type: object
+              properties:
+                proof:
+                  type: array
+                  items:
+                    type: object
+                option:
+                  type: 'null'
+        status:
+          type: string
+          enum:
+          - under_review
+          - approved
+          - in_process
+          - completed
+          - rejected
+          - canceled
+        flow_type:
+          type: string
+          enum:
+          - no_order_number
+          - required_order_number
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was created.
+          example: '2026-05-19T10:00:00Z'
+        process_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim entered processing.
+          example: '2026-05-19T10:00:00Z'
+        rma_number:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was last updated.
+          example: '2026-05-19T10:00:00Z'
+        approved_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was approved.
+          example: '2026-05-19T10:00:00Z'
+        canceled_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was canceled.
+          example: '2026-05-19T10:00:00Z'
+        rejected_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was rejected.
+          example: '2026-05-19T10:00:00Z'
+        completed_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was completed.
+          example: '2026-05-19T10:00:00Z'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        contact_email:
+          type: string
+          x-stoplight:
+            id: tatax8xv0ifi3
+        organization:
+          type: object
+          properties:
+            id:
+              type: string
+        cancel_reason:
+          type:
+          - string
+          - 'null'
+          description: A free-form reason describing why the claim was canceled.
+        reject_reason:
+          type:
+          - string
+          - 'null'
+          description: A free-form reason describing why the claim was rejected.
+        dynamic_fields:
+          type: object
+          properties:
+            order_information:
+              type: object
+              properties:
+                textArea1:
+                  type: object
+                  description: The textArea1 field is just an example, and its value depends on your dynamic setting on the warranty order information page.
+                  x-stoplight:
+                    id: 8hqyovntzurfo
+                  properties:
+                    value:
+                      type: string
+            additional_information:
+              type: object
+              properties:
+                textArea1:
+                  type: object
+                  description: The textArea1 field is just an example, and its value depends on your dynamic setting on the warranty additional information page.
+                  x-stoplight:
+                    id: 6usm6hid38axu
+                  properties:
+                    value:
+                      type: string
+        inbound_shipments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Claim_shipment'
+        outbound_shipments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Claim_shipment'
+        receiving_status:
+          type: string
+          x-stoplight:
+            id: vgis2u9jvcojq
+          default: not_received
+          enum:
+          - received
+          - not_received
+        received_at:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: hlygyz29e0cyu
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the returned item was marked as received.
+          example: '2026-05-19T10:00:00Z'
+      description: A claim resource.
+    Money:
+      description: The store credit value.
+      title: Money
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount represented with two decimal places.
+          example: '99.99'
+        currency:
+          type: string
+          description: The currency code, using ISO 4217 standards.
+          example: USD
+    ItemTag:
+      title: ItemTag
+      x-stoplight:
+        id: 8wwwff48758hx
+      type: object
+      description: A merchant-defined tag that can be added to claim items.
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: r4fbyaanpn8i9
+          description: The unique identifier for the item tag.
+        name:
+          type: string
+          x-stoplight:
+            id: 4r1fyg1jjzxon
+          description: The name of the item tag.
+        created_at:
+          type: string
+          x-stoplight:
+            id: a41sqbbkajk6n
+          description: The date and time, formatted in ISO 8601, when the item tag was created.
+          format: date-time
+          example: '2026-05-19T10:00:00Z'
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: as-api-key
+x-refined-from:
+- aftership-protection-api-openapi.yml
+- aftership-warranty-api-openapi.yml
+x-stoplight:
+  id: 02gep2e9lkucy

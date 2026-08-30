@@ -1,0 +1,401 @@
+openapi: 3.2.0
+info:
+  title: Overview Courier connection API
+  version: '1.0'
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com/nodes/reference/api.json?branch=production%252F2026-07&deref=optimizedBundle)
+
+    <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/terms
+  summary: API Overview
+servers:
+- url: https://api.aftership.com/tracking/2026-07
+  description: API Endpoint
+security:
+- as-api-key: []
+tags:
+- name: Courier connection
+paths:
+  /courier-connections:
+    get:
+      summary: Get courier connections
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Courier_connection_response_get_multiple'
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      pagination:
+                        total: 1
+                        next_cursor: ''
+                        has_next_page: false
+                      courier_connections:
+                      - id: ed0319bbd6cd4cd98df761cb474dec44
+                        courier_slug: dhl-api
+                        credentials:
+                          api_key: Xci90MlaeeE!wpqd4CqM
+                        created_at: '2025-03-24T03:18:32+08:00'
+                        updated_at: '2025-03-24T03:18:32+08:00'
+      operationId: get-courier-connections
+      x-stoplight:
+        id: 2ar6bpph8n7ye
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: courier_slug
+        description: 'Unique courier code.(Example: dhl-api)'
+      - schema:
+          type: string
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      - schema:
+          type: string
+        in: query
+        name: cursor
+        description: A string representing the cursor value for the current page of results.
+      - schema:
+          type: string
+        in: query
+        name: limit
+        description: 'Number of courier connections each page contain. (Default: 100, Max: 200)'
+      tags:
+      - Courier connection
+      description: Get courier connection results of multiple courier connections.
+    post:
+      summary: Create courier connections
+      tags:
+      - Courier connection
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                    x-stoplight:
+                      id: y1rbhfqugu0x0
+                  data:
+                    $ref: '#/components/schemas/Courier_connection'
+                    x-stoplight:
+                      id: h993xw7eds2r0
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 201
+                    data:
+                      id: 77f1887cae6f40b9a2f14d4fe2733d55
+                      courier_slug: dhl-api
+                      credentials:
+                        api_key: Xci90MlaeeE!wpqd4CqM
+                      created_at: '2023-01-18T08:47:10+00:00'
+                      updated_at: '2023-01-18T08:47:10+00:00'
+      operationId: post-courier-connections
+      x-stoplight:
+        id: ca8lnpup3hk80
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - courier_slug
+              - credentials
+              properties:
+                courier_slug:
+                  type: string
+                  x-stoplight:
+                    id: vmngz6d47r7lr
+                  description: Unique code of courier. Get the slugs from [here](https://www.aftership.com/docs/tracking/others/supported-couriers).
+                  example: ups
+                credentials:
+                  type: object
+                  x-stoplight:
+                    id: cecfwvc5xrlcv
+                  description: It refers to the authentication details required for each specific carrier details required for each specific carrier (such as API keys, username, password, etc.) that the user must provide to establish a carrier connection. The content varies by carrier.
+                  additionalProperties:
+                    x-stoplight:
+                      id: rtcmlbd7mflow
+                    type: string
+            examples:
+              Example 1:
+                value:
+                  courier_slug: dhl-api
+                  credential:
+                    api_key: D0992Rt34VcATY9023BnRTY956
+        description: Create courier connection object.
+  /courier-connections/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+    get:
+      summary: Get courier connection by id
+      tags:
+      - Courier connection
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                    x-stoplight:
+                      id: jwor47jpy63eg
+                  data:
+                    $ref: '#/components/schemas/Courier_connection'
+                    x-stoplight:
+                      id: 7ziys7ji1fldc
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      id: 77f1887cae6f40b9a2f14d4fe2733d55
+                      courier_slug: dhl-api
+                      credentials:
+                        api_key: Xci90MlaeeE!wpqd4CqM
+                      created_at: '2025-03-24T03:18:32+08:00'
+                      updated_at: '2025-03-24T03:18:32+08:00'
+      operationId: get-courier-connections-by-id
+      x-stoplight:
+        id: hkstsz7uw0xab
+      description: Get courier connection results of a single courier connection.
+    patch:
+      summary: Update courier connection by id
+      tags:
+      - Courier connection
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                    x-stoplight:
+                      id: 2dd6s7by7li8g
+                  data:
+                    $ref: '#/components/schemas/Courier_connection'
+                    x-stoplight:
+                      id: nc4psqcdo98tl
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      id: 77f1887cae6f40b9a2f14d4fe2733d55
+                      courier_slug: dhl-api
+                      credentials:
+                        api_key: Xci90MlaeeE!wpqd4CqM
+                      created_at: 22025-03-24T03:18:32+08:00
+                      updated_at: '2025-03-24T03:21:32+08:00'
+      operationId: put-courier-connections-by-id
+      x-stoplight:
+        id: 1zlifu29523fv
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - credentials
+              properties:
+                credentials:
+                  type: object
+                  x-stoplight:
+                    id: x9ke7klmi1lcw
+                  description: It refers to the authentication details required for each specific carrier details required for each specific carrier (such as API keys, username, password, etc.) that the user must provide to establish a carrier connection. The content varies by carrier.
+                  additionalProperties:
+                    x-stoplight:
+                      id: c3zv6o00p94gp
+                    type: string
+      description: Update a courier connection.
+    delete:
+      summary: Delete courier connection by id
+      tags:
+      - Courier connection
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v1'
+                    x-stoplight:
+                      id: n595378vq7tad
+                  data:
+                    $ref: '#/components/schemas/Courier_connection'
+                    x-stoplight:
+                      id: o0fdk6nbuchgr
+              examples:
+                Example 1:
+                  value:
+                    meta:
+                      code: 200
+                    data:
+                      id: 77f1887cae6f40b9a2f14d4fe2733d55
+                      courier_slug: dhl-api
+                      credentials:
+                        api_key: Xci90MlaeeE!wpqd4CqM
+                      created_at: '2025-03-24T03:18:32+08:00'
+                      updated_at: '2025-03-24T03:18:32+08:00'
+      operationId: delete-courier-connections-by-id
+      x-stoplight:
+        id: 3251e44ike4au
+      description: Delete a courier connection.
+components:
+  schemas:
+    Meta.v1:
+      title: meta
+      type: object
+      description: Meta data
+      required:
+      - code
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: meta code
+        message:
+          type: string
+          description: error message, only exist if the response status is not 2xx
+        type:
+          type: string
+          enum:
+          - BadRequest
+          - Unauthorized
+          - Forbidden
+          - NotFound
+          - TooManyRequests
+          - InternalError
+          description: error type, only exist if the response status is not 2xx
+    Courier_connection_response_get_multiple:
+      title: Courier connection response for get courier connections
+      x-stoplight:
+        id: 9o1l7x6pqo6fp
+      type: object
+      required:
+      - meta
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+          x-stoplight:
+            id: 6c201d370nvrt
+        data:
+          type: object
+          x-stoplight:
+            id: w25ebamui3w29
+          properties:
+            pagination:
+              type: object
+              x-stoplight:
+                id: vkvzrkb7rdj7y
+              properties:
+                total:
+                  type: integer
+                  x-stoplight:
+                    id: a4sudr3suz1mx
+                  description: The total number of courier connections.
+                next_cursor:
+                  type: string
+                  x-stoplight:
+                    id: pg0inus4ychbj
+                  description: A string representing the cursor value for the next page of results.
+                has_next_page:
+                  type: boolean
+                  x-stoplight:
+                    id: 1nmwapf8zdp7j
+                  description: To indicate if next page is available.
+            courier_connections:
+              type: array
+              x-stoplight:
+                id: 36jy9hhq1dksm
+              items:
+                $ref: '#/components/schemas/Courier_connection'
+                x-stoplight:
+                  id: v74u6j9mo413l
+      description: Courier connection response for getting courier connections
+    Courier_connection:
+      x-stoplight:
+        id: h993xw7eds2r0
+      title: courier_connection
+      type: object
+      examples:
+      - id: 77f1887cae6f40b9a2f14d4fe2733d55
+        courier_slug: dhl-api
+        credentials:
+          api_key: Xci90MlaeeE!wpqd4CqM
+        created_at: '2023-01-18T08:47:10+00:00'
+        updated_at: '2023-01-18T08:47:10+00:00'
+      description: This model represents user-created courier connection details. AfterShip will use this information to retrieve tracking updates from carriers based on the provided tracking numbers.
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: 201rqv73grnrb
+          description: The courier connection ID is a special set of numbers generated by AfterShip to define each user-created connection.
+          example: 62548149f9fd4fa289d41ecf018d31ec
+        courier_slug:
+          type: string
+          x-stoplight:
+            id: ee7qhv7as4q73
+          description: Unique courier code. Get courier codes [here](https://www.aftership.com/docs/tracking/others/supported-couriers).
+          example: usps
+        credentials:
+          type: object
+          x-stoplight:
+            id: xi69b9bloyj4v
+          description: It refers to the authentication details required for each specific carrier details required for each specific carrier (such as API keys, username, password, etc.) that the user must provide to establish a carrier connection. The content varies by carrier.
+          additionalProperties:
+            x-stoplight:
+              id: ocqnsnsekerdh
+            type: string
+        created_at:
+          type: string
+          x-stoplight:
+            id: zop3vvrqzfmmx
+          description: The date and time the courier connection was created. It uses the format YYYY-MM-DDTHH:mm:ssZ for the timezone GMT +0.
+          example: '2023-01-18T08:47:10+00:00'
+        updated_at:
+          type: string
+          x-stoplight:
+            id: jr9fxq11w9ghx
+          description: The date and time the courier connection was updated. It uses the format YYYY-MM-DDTHH:mm:ssZ for the timezone GMT +0.
+          example: '2023-01-19T08:47:10+00:00'
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+      description: '> Legacy API keys with `aftership-api-key` headers are not supported anymore start from `2023-10` version. For more information, check [authentication](../../docs/quickstart/authentication.md).'
+x-stoplight:
+  id: fcd9acb5f448a

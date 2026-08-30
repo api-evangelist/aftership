@@ -1,0 +1,2902 @@
+openapi: 3.2.0
+info:
+  title: Overview Labels API
+  version: '1.0'
+  summary: API Overview
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+servers:
+- description: Sandbox
+  url: https://sandbox-api.aftership.com/postmen/v3
+- url: https://api.aftership.com/postmen/v3
+  description: Production
+security:
+- as-api-key: []
+tags:
+- name: Labels
+paths:
+  /labels:
+    parameters: []
+    get:
+      summary: Get labels
+      responses:
+        '200':
+          description: get labels.
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      next_token: eyJjcmVhdGVkX2F0IjoiMjAxNS0xMS0y0000000000oyMC4wNjRaIiwiaWQiOiJlMGU1NGQ3My1iN2Qz0000000000kzZi1lMjgwNzc1ZDdlMDUiLCJ1c2VyX2lkIjoiN0000000000tNjIyNS00ZTBiLTg5ZTQtZTM3N2M3YWM5ZDk4In0=
+                      limit: 20
+                      created_at_min: '2015-11-26T08:49:15+00:00'
+                      created_at_max: '2015-11-27T08:49:15+00:00'
+                      labels:
+                      - id: ca62aa0d-e8b2-4ea7-b3b1-ee6711d8d7c3
+                        status: created
+                        tracking_numbers:
+                        - 1ZV8E0536793432874
+                        files:
+                          label:
+                            paper_size: 4x6
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/invoice/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 14.5
+                            unit: kg
+                          total_charge:
+                            amount: 1168.06
+                            currency: HKD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: ups
+                            description: ups (Runscope)
+                          service_type: ups_expedited
+                          service_name: UPS Expedited
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: null
+                        created_at: '2015-11-27T08:48:31+00:00'
+                        updated_at: '2015-11-27T08:48:35+00:00'
+                      - id: de57ca7e-0ca2-4bd9-8e25-cd9502dc66ed
+                        status: created
+                        tracking_numbers:
+                        - '8149526918288889'
+                        files:
+                          label:
+                            paper_size: 4x6
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/invoice/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 2
+                            unit: kg
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: hermesworld
+                            description: hermesworld (Runscope)
+                          service_type: hermesworld_standard
+                          service_name: Standard
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:47:20+00:00'
+                        updated_at: '2015-11-27T08:47:22+00:00'
+                      - id: 72393fe3-be8e-4a7a-8434-1f0b5b56c09e
+                        status: cancelled
+                        tracking_numbers:
+                        - 0470110200793101997414
+                        files:
+                          label:
+                            paper_size: 4x6
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/invoice/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight: null
+                          total_charge:
+                            amount: 16.3
+                            currency: USD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: endicia
+                            description: endicia (Runscope)
+                          service_type: endicia_priority_mail_express
+                          service_name: Endicia Priority Mail Express
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: 1
+                          detailed_charges: []
+                          error_message: null
+                          info_message: null
+                        created_at: '2015-11-27T08:46:56+00:00'
+                        updated_at: '2015-11-27T08:47:02+00:00'
+                      - id: b69a27fc-a025-4d9b-a122-e009024d7a0c
+                        status: created
+                        tracking_numbers:
+                        - '0020165036'
+                        files:
+                          label:
+                            paper_size: 4x8
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 3.307
+                            unit: lb
+                          total_charge:
+                            amount: 0
+                            currency: USD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: dhl
+                            description: dhl (Runscope)
+                          service_type: dhl_express_0900
+                          service_name: DHL Express 0900
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: null
+                        created_at: '2015-11-27T08:46:39+00:00'
+                        updated_at: '2015-11-27T08:46:43+00:00'
+                      - id: b8463988-114a-43ff-86f8-66451a20688c
+                        status: created
+                        tracking_numbers: []
+                        files:
+                          label:
+                            paper_size: default
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 9
+                            unit: lb
+                          total_charge:
+                            amount: 34.82
+                            currency: CAD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canpar
+                            description: canpar (Runscope)
+                          service_type: canpar_ground
+                          service_name: GROUND
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2015-12-02T05:00:00+00:00'
+                          transit_time: 3
+                          detailed_charges:
+                          - type: Freight Charge
+                            charge:
+                              amount: 30.41
+                              currency: CAD
+                          - type: Residential Address Charge
+                            charge:
+                              amount: 2.75
+                              currency: CAD
+                          - type: GST
+                            charge:
+                              amount: 1.66
+                              currency: CAD
+                          error_message: null
+                          info_message: null
+                        created_at: '2015-11-27T08:44:54+00:00'
+                        updated_at: '2015-11-27T08:44:57+00:00'
+                      - id: 97c1ce96-1a07-49d4-a4f6-5f5aa0fd2511
+                        status: created
+                        tracking_numbers:
+                        - '984190007700204439'
+                        files:
+                          label:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 1.3
+                            unit: kg
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: asendia-hk
+                            description: asendia-hk (Runscope)
+                          service_type: asendia-hk_reg
+                          service_name: Registered Mail
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:44:22+00:00'
+                        updated_at: '2015-11-27T08:44:23+00:00'
+                      - id: d2875fe7-b559-47ff-ae27-c0836aacc586
+                        status: created
+                        tracking_numbers:
+                        - '794666490930'
+                        files:
+                          label:
+                            paper_size: 4x6
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/invoice/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 30
+                            unit: lb
+                          total_charge:
+                            amount: 13.56
+                            currency: USD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: fedex
+                            description: fedex (Runscope)
+                          service_type: fedex_ground
+                          service_name: Fedex Ground
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 13.01
+                              currency: USD
+                          - type: fedex_ground_fuel
+                            charge:
+                              amount: 0.55
+                              currency: USD
+                          error_message: null
+                          info_message: null
+                        created_at: '2015-11-27T08:42:06+00:00'
+                        updated_at: '2015-11-27T08:42:10+00:00'
+                      - id: e6c8b70c-f367-4fd6-a6f1-5308aa8fd8a0
+                        status: created
+                        tracking_numbers:
+                        - PREF10000000000148
+                        files:
+                          label:
+                            paper_size: default
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 9.54
+                            unit: kg
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: spsr
+                            description: spsr (Runscope)
+                          service_type: spsr_gepintl
+                          service_name: GEPINTL
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:42:06+00:00'
+                        updated_at: '2015-11-27T08:42:06+00:00'
+                      - id: cc96267e-95aa-4594-a9db-92c51e499f70
+                        status: cancelled
+                        tracking_numbers:
+                        - PREF10000000000147
+                        files:
+                          label:
+                            paper_size: default
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 9.54
+                            unit: kg
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: spsr
+                            description: spsr (Runscope)
+                          service_type: spsr_gepintl
+                          service_name: GEPINTL
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:41:02+00:00'
+                        updated_at: '2015-11-27T08:41:05+00:00'
+                      - id: 478d1ae0-9a26-4f97-8da2-9b946f711f6c
+                        status: created
+                        tracking_numbers:
+                        - PREF10000000000146
+                        files:
+                          label:
+                            paper_size: default
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 9.54
+                            unit: kg
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: spsr
+                            description: spsr (Runscope)
+                          service_type: spsr_gepintl
+                          service_name: GEPINTL
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:40:40+00:00'
+                        updated_at: '2015-11-27T08:40:47+00:00'
+                      - id: c11a5651-7683-4eb7-be6e-daef215f24fd
+                        status: created
+                        tracking_numbers:
+                        - GE874105291HK
+                        files:
+                          label:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight: null
+                          total_charge:
+                            amount: 227.75
+                            currency: USD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: tnt
+                            description: tnt (Runscope)
+                          service_type: tnt_economy_express
+                          service_name: TNT Economy Express
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: 'P13:RATEID: POSTMEN-REF - STANDARD RATES.'
+                        created_at: '2015-11-27T08:30:51+00:00'
+                        updated_at: '2015-11-27T08:30:57+00:00'
+                      - id: 1306e565-fc50-4a65-946f-663a9ffcf80a
+                        status: manifested
+                        tracking_numbers:
+                        - RP200381450SG
+                        files:
+                          label:
+                            paper_size: default
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 1.2
+                            unit: kg
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: quantium
+                            description: quantium (Runscope)
+                          service_type: quantium_registered
+                          service_name: ezyparcels Registered
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:29:59+00:00'
+                        updated_at: '2015-11-27T08:30:22+00:00'
+                      - id: bfda1bc6-4e9b-4703-a3ce-dd5f8189a76b
+                        status: created
+                        tracking_numbers:
+                        - USERREF3629F4C04BEDEEA229
+                        files:
+                          label:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 9.54
+                            unit: kg
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: dhl-global-mail-asia
+                            description: dhl-global-mail-asia (Runscope)
+                          service_type: dhl-global-mail-asia_plt
+                          service_name: Parcel Direct
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:29:38+00:00'
+                        updated_at: '2015-11-27T08:29:38+00:00'
+                      - id: 821183a2-92df-49ab-bb7c-4770b7aceb05
+                        status: created
+                        tracking_numbers: []
+                        files:
+                          label:
+                            paper_size: 4x4
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/invoice/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight: null
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: dpd-uk
+                            description: dpd-uk (Runscope)
+                          service_type: dpd-uk_parcel_2d
+                          service_name: Parcel - Two Day
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:29:35+00:00'
+                        updated_at: '2015-11-27T08:29:41+00:00'
+                      - id: 2eec8347-8518-45ce-88af-03f4054341b9
+                        status: created
+                        tracking_numbers:
+                        - BLVS1300010000121750
+                        files:
+                          label:
+                            paper_size: 4x4
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/invoice/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 2
+                            unit: kg
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: bpost-international
+                            description: bpost-international (Runscope)
+                          service_type: bpost-international_minipakeu
+                          service_name: MinipakEU
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:29:29+00:00'
+                        updated_at: '2015-11-27T08:29:36+00:00'
+                      - id: b3d75a21-9d27-4b1b-9592-485667f59e3f
+                        status: cancelled
+                        tracking_numbers: []
+                        files:
+                          label:
+                            paper_size: default
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 9
+                            unit: lb
+                          total_charge:
+                            amount: 34.82
+                            currency: CAD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canpar
+                            description: canpar (Runscope)
+                          service_type: canpar_ground
+                          service_name: GROUND
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2015-12-02T05:00:00+00:00'
+                          transit_time: 3
+                          detailed_charges:
+                          - type: Freight Charge
+                            charge:
+                              amount: 30.41
+                              currency: CAD
+                          - type: Residential Address Charge
+                            charge:
+                              amount: 2.75
+                              currency: CAD
+                          - type: GST
+                            charge:
+                              amount: 1.66
+                              currency: CAD
+                          error_message: null
+                          info_message: null
+                        created_at: '2015-11-27T08:25:07+00:00'
+                        updated_at: '2015-11-27T08:25:13+00:00'
+                      - id: c841654b-5a2a-4888-a369-56bac91d09d5
+                        status: manifested
+                        tracking_numbers:
+                        - RP200381432SG
+                        files:
+                          label:
+                            paper_size: default
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 1.2
+                            unit: kg
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: quantium
+                            description: quantium (Runscope)
+                          service_type: quantium_registered
+                          service_name: ezyparcels Registered
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:25:04+00:00'
+                        updated_at: '2015-11-27T08:30:22+00:00'
+                      - id: 22e406f5-e4d2-4a1d-9b65-a98557fca6eb
+                        status: created
+                        tracking_numbers:
+                        - BN58705188
+                        files:
+                          label: null
+                          invoice:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/invoice/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight: null
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: parcelled-in
+                            description: parcelled-in (Runscope)
+                          service_type: parcelled-in_rush
+                          service_name: Rush
+                          pickup_deadline: '2015-11-27T02:30:00'
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:24:42+00:00'
+                        updated_at: '2015-11-27T08:24:42+00:00'
+                      - id: 9b4b8c9c-41d2-467b-b4b2-97834046b7c7
+                        status: manifested
+                        tracking_numbers:
+                        - 0470110200882101123951
+                        files:
+                          label:
+                            paper_size: 4x6
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/invoice/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight: null
+                          total_charge:
+                            amount: 16.3
+                            currency: USD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: endicia
+                            description: endicia (Runscope)
+                          service_type: endicia_priority_mail_express
+                          service_name: Endicia Priority Mail Express
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: 1
+                          detailed_charges: []
+                          error_message: null
+                          info_message: null
+                        created_at: '2015-11-27T08:24:39+00:00'
+                        updated_at: '2015-11-27T08:24:52+00:00'
+                      - id: e0e54d73-b7d3-4972-893f-e280775d7e05
+                        status: created
+                        tracking_numbers:
+                        - '49950452315'
+                        files:
+                          label:
+                            paper_size: 4x6
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice:
+                            paper_size: a4
+                            url: https://sandbox-download.postmen.com/invoice/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight: null
+                          total_charge: null
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: purolator
+                            description: purolator (Runscope)
+                          service_type: purolator_ground_us
+                          service_name: Ground US
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                        created_at: '2015-11-27T08:24:20+00:00'
+                        updated_at: '2015-11-27T08:24:23+00:00'
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    type: object
+                    properties:
+                      next_token:
+                        type: string
+                      limit:
+                        type: integer
+                      created_at_min:
+                        type: string
+                      created_at_max:
+                        type: string
+                      labels:
+                        type: array
+                        description: This array contains all labels data. Please refer to [label](../model/resource/label.v3.json)  object for label object details.
+                        items:
+                          $ref: '#/components/schemas/Label.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      next_token: string
+                      limit: 0
+                      created_at_min: string
+                      created_at_max: string
+                      labels:
+                      - id: 3318b97b-150f-4205-840d-a6d966b9e0ea
+                        status: created
+                        tracking_numbers:
+                        - '3884930103'
+                        files:
+                          label:
+                            paper_size: 4x8
+                            url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                            file_type: pdf
+                          invoice: null
+                          customs_declaration: null
+                          manifest: null
+                        rate:
+                          charge_weight:
+                            value: 3.307
+                            unit: lb
+                          total_charge:
+                            amount: 0
+                            currency: USD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: dhl
+                            description: DHL Sandbox
+                          service_type: dhl_express_0900
+                          service_name: DHL Express 0900
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          detailed_charges: []
+                          error_message: null
+                          info_message: null
+                        created_at: '2015-09-09T07:54:13.024Z'
+                        updated_at: '2015-09-09T07:54:24.569Z'
+                        ship_date: '2015-09-09'
+      operationId: get-labels
+      description: "Get labels.\n\n<div style=\"visibility:hidden; height: 0\">\nThis array contains all labels data. Please refer to [label](../model/resource/label.v3.json) object for label object details. \n</div>"
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: shipper_account_id
+        description: Shipper account ID
+      - schema:
+          type: string
+          enum:
+          - creating
+          - created
+          - cancelling
+          - cancelled
+          - manifesting
+          - manifested
+          - failed
+        in: query
+        name: status
+        description: Label status
+      - schema:
+          type: string
+        in: query
+        name: limit
+        description: Number of records per page
+      - schema:
+          type: string
+        in: query
+        name: created_at_min
+        description: 'Start date and time of the record created (format YYYY-MM-DDTHH:MM:SSZ or YYYY-MM-DDTHH:MM:SS+00:00, default: 24hrs ago)'
+      - schema:
+          type: string
+        in: query
+        name: created_at_max
+        description: 'End date and time of the record created (format YYYY-MM-DDTHH:MM:SSZ or YYYY-MM-DDTHH:MM:SS+00:00, default: NOW())'
+      - schema:
+          type: string
+        in: query
+        name: s
+        description: Partial search of tracking_number or reference
+      - schema:
+          type: string
+        in: query
+        name: next_token
+        description: Next token
+      - schema:
+          type: string
+          example: application/json
+          default: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      x-internal: false
+      tags:
+      - Labels
+      security:
+      - as-api-key: []
+    post:
+      summary: Create a label
+      operationId: post-labels
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 3318b97b-150f-4205-840d-a6d966b9e0ea
+                      status: created
+                      tracking_numbers:
+                      - '3884930103'
+                      files:
+                        label:
+                          paper_size: 4x8
+                          url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                          file_type: pdf
+                        invoice: null
+                        customs_declaration: null
+                        manifest: null
+                      rate:
+                        charge_weight:
+                          value: 3.307
+                          unit: lb
+                        total_charge:
+                          amount: 0
+                          currency: USD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_0900
+                        service_name: DHL Express 0900
+                        pickup_deadline: null
+                        booking_cut_off: null
+                        delivery_date: null
+                        transit_time: null
+                        detailed_charges: []
+                        error_message: null
+                        info_message: null
+                      created_at: '2015-09-09T07:54:13.024Z'
+                      updated_at: '2015-09-09T07:54:24.569Z'
+                      ship_date: '2015-09-09'
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    $ref: '#/components/schemas/Label.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 3318b97b-150f-4205-840d-a6d966b9e0ea
+                      status: created
+                      tracking_numbers:
+                      - '3884930103'
+                      files:
+                        label:
+                          paper_size: 4x8
+                          url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                          file_type: pdf
+                        invoice: null
+                        customs_declaration: null
+                        manifest: null
+                      rate:
+                        charge_weight:
+                          value: 3.307
+                          unit: lb
+                        total_charge:
+                          amount: 0
+                          currency: USD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_0900
+                        service_name: DHL Express 0900
+                        pickup_deadline: null
+                        booking_cut_off: null
+                        delivery_date: null
+                        transit_time: null
+                        detailed_charges: []
+                        error_message: null
+                        info_message: null
+                      created_at: '2022-05-09T07:54:13.024Z'
+                      updated_at: '2022-09-09T07:54:24.569Z'
+                      ship_date: '2022-09-09'
+                    custom_fields:
+                      ship_code: '01'
+      description: 'Create a label.
+
+
+        <div style="visibility:hidden; height: 0">This array contains service_options object. Please refer to [all service options](../docs/enum/all-service-options.md) and [service options list](../docs/enum/service-types-and-service-options-lists.md) for details.
+
+        This array contains reference data. Please refer to [reference](../model/premitive/reference.v3.json)  object for label object details.</div>'
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  billing:
+                    paid_by: shipper
+                  customs:
+                    billing:
+                      paid_by: recipient
+                    terms_of_trade: ddu
+                    purpose: gift
+                  return_shipment: false
+                  is_document: false
+                  service_type: dhl_express_worldwide
+                  paper_size: 4x8
+                  shipper_account:
+                    id: 00000000-0000-0000-0000-000000000000
+                  references:
+                  - referenceid
+                  shipment:
+                    parcels:
+                    - description: Food XS
+                      box_type: custom
+                      weight:
+                        value: 2
+                        unit: kg
+                      dimension:
+                        width: 20
+                        height: 40
+                        depth: 40
+                        unit: cm
+                      items:
+                      - description: Food Bar
+                        origin_country: USA
+                        quantity: 2
+                        price:
+                          amount: 3
+                          currency: USD
+                        weight:
+                          value: 0.6
+                          unit: kg
+                        sku: Epic_Food_Bar
+                        hs_code: '123412'
+                    ship_from:
+                      contact_name: Nottingham Inc.
+                      company_name: Nottingham Inc.
+                      street1: 2511 S. Main St.
+                      city: Grove
+                      state: OK
+                      postal_code: '74344'
+                      country: USA
+                      phone: 1-403-504-5496
+                      email: test@test.com
+                      type: business
+                    ship_to:
+                      contact_name: Rick McLeod (RM Consulting)
+                      street1: 71 Terrace Crescent NE
+                      street2: This is the second streeet
+                      city: Medicine Hat
+                      state: Alberta
+                      postal_code: T1C1Z9
+                      country: CAN
+                      phone: 1-403-504-5496
+                      email: test@test.test
+                      type: residential
+                  service_options:
+                  - type: dangerous_goods
+                    un_number: '3480'
+                    packing_group: II
+                    packing_instruction: PI965
+                  - type: paperless_invoice
+                    enabled: true
+                  - type: saturday_delivery
+                    enabled: true
+                  - type: insurance
+                    insured_value:
+                      amount: 500
+                      currency: USD
+                  - type: pickup
+                    start_time: '11:12:11'
+                    end_time: '18:00:23'
+              properties:
+                billing:
+                  $ref: '#/components/schemas/Billing.v3'
+                customs:
+                  $ref: '#/components/schemas/Customs.v3'
+                return_shipment:
+                  type: boolean
+                  description: (set to false if not provided)
+                is_document:
+                  type: boolean
+                  description: If the shipment is document type. (set to false if not provided)
+                service_type:
+                  type: string
+                paper_size:
+                  type: string
+                shipper_account:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                references:
+                  type: array
+                  items:
+                    type: string
+                shipment:
+                  $ref: '#/components/schemas/Shipment.v3'
+                invoice:
+                  $ref: '#/components/schemas/Invoice.v3'
+                service_options:
+                  type: array
+                  description: This array contains service_options object. Please refer to [all service options](/docs/shipping/enum/all-service-options) and [service types and service options list](/docs/shipping/enum/service-options-lists) for details.
+                  items:
+                    type: object
+                file_type:
+                  type: string
+                  enum:
+                  - pdf
+                  - zpl
+                ship_date:
+                  type: string
+                  description: Ship Date in YYYY-MM-DD, if not provided, will be today of the shipper account timezone
+                order_number:
+                  type: string
+                  description: A user-defined order number used to identify an order.
+                order_id:
+                  type: string
+                  description: Unique identification of the order.
+                custom_fields:
+                  type: object
+                  x-stoplight:
+                    id: 2tdvhnb47lf6k
+                  additionalProperties:
+                    type: string
+                  description: 'Custom fields that accept an object with string field.
+
+
+                    - Maximum charater limit for a key name: 30
+
+                    - Maximum count for a key-value pair in a custom field object: 25
+
+                    - Maximum value length: 512 charaters
+
+                    - Supported value type: String only (object and array are prohibited)'
+                files:
+                  $ref: '#/components/schemas/Input_files.v3'
+                  x-stoplight:
+                    id: alsibm32aw646
+                print_options:
+                  type: object
+                  x-stoplight:
+                    id: mncji8f0x261x
+                  properties:
+                    qr_code:
+                      type: object
+                      x-stoplight:
+                        id: wnihchzz69v00
+                      description: 'Whether to return the qr_code when creating a label
+
+                        - Supported slug: `arvato`, `canada-post`, `dpd-uk`, `evri`, `vesyl`, `usps`, `poste-italiane`, `pitney-bowes`, `dpd-nl`, `dpd-prt`, `mondialrelay`'
+                      properties:
+                        enabled:
+                          type: boolean
+                          x-stoplight:
+                            id: i0niqd8ap9xdt
+                automatic:
+                  type: boolean
+                  description: When set to `true`, automation rules configured for the organization will be applied to this label request. Enterprise only.
+            examples:
+              example-1:
+                value:
+                  return_shipment: false
+                  is_document: false
+                  service_type: ups_ground
+                  paper_size: 4x6
+                  shipper_account:
+                    id: 3ba41ff5-59a7-4ff0-8333-64a4375c7f21
+                  references:
+                  - refernce1
+                  shipment:
+                    ship_from:
+                      contact_name: AfterShip Shipping
+                      company_name: AfterShip Shipping
+                      street1: 230 W 200 S LBBY
+                      city: Salt Lake City
+                      state: UT
+                      postal_code: '84101'
+                      country: USA
+                      phone: '19835553752'
+                      email: test@test.com
+                    ship_to:
+                      contact_name: AfterShip Shipping
+                      company_name: AfterShip Shipping
+                      street1: 230 W 200 S LBBY
+                      city: Salt Lake City
+                      state: UT
+                      postal_code: '84101'
+                      country: USA
+                      phone: '19835553752'
+                      email: test@test.com
+                    parcels:
+                    - box_type: custom
+                      dimension:
+                        width: 10
+                        height: 10
+                        depth: 10
+                        unit: cm
+                      items:
+                      - description: Food Bar
+                        quantity: 1
+                        price:
+                          currency: USD
+                          amount: 100
+                        item_id: '1234567'
+                        origin_country: CHN
+                        weight:
+                          unit: kg
+                          value: 1
+                        sku: imac2014
+                        hs_code: '100630'
+                        return_reason: too big
+                      description: Food XS
+                      weight:
+                        unit: kg
+                        value: 1
+                  custom_fields:
+                    ship_code: '01'
+                  print_options:
+                    qr_code:
+                      enabled: true
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: Create a label object.
+      tags:
+      - Labels
+      security:
+      - as-api-key: []
+  /labels/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: Label id
+    get:
+      summary: Get a label
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: 3318b97b-150f-4205-840d-a6d966b9e0ea
+                      status: created
+                      tracking_numbers:
+                      - '3884930103'
+                      files:
+                        label:
+                          paper_size: 4x8
+                          url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                          file_type: pdf
+                        invoice: null
+                        customs_declaration: null
+                        manifest: null
+                      rate:
+                        charge_weight:
+                          value: 3.307
+                          unit: lb
+                        total_charge:
+                          amount: 0
+                          currency: USD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: null
+                        service_name: null
+                        pickup_deadline: null
+                        booking_cut_off: null
+                        delivery_date: null
+                        transit_time: null
+                        detailed_charges: []
+                        error_message: null
+                        info_message: null
+                      created_at: '2015-09-09T07:54:13.024Z'
+                      updated_at: '2015-09-09T07:54:24.569Z'
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    $ref: '#/components/schemas/Label.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 3318b97b-150f-4205-840d-a6d966b9e0ea
+                      status: created
+                      tracking_numbers:
+                      - '3884930103'
+                      files:
+                        label:
+                          paper_size: 4x8
+                          url: https://sandbox-download.postmen.com/label/2015-11-27/00000000-0000-0000-0000-000000000000-1441785264309885.pdf
+                          file_type: pdf
+                        invoice: null
+                        customs_declaration: null
+                        manifest: null
+                      rate:
+                        charge_weight:
+                          value: 3.307
+                          unit: lb
+                        total_charge:
+                          amount: 0
+                          currency: USD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_0900
+                        service_name: DHL Express 0900
+                        pickup_deadline: null
+                        booking_cut_off: null
+                        delivery_date: null
+                        transit_time: null
+                        detailed_charges: []
+                        error_message: null
+                        info_message: null
+                      created_at: '2015-09-09T07:54:13.024Z'
+                      updated_at: '2015-09-09T07:54:24.569Z'
+                      ship_date: '2015-09-09'
+      operationId: get-label
+      description: Get a label.
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      tags:
+      - Labels
+      security:
+      - as-api-key: []
+components:
+  schemas:
+    Meta.v3:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Parcel.v3:
+      title: Parcel
+      x-stoplight:
+        id: 39w3kevp07phy
+      type: object
+      description: 'Parcel object: the description of parcel information'
+      properties:
+        box_type:
+          type: string
+          description: Type of box for packaging
+        dimension:
+          $ref: '#/components/schemas/Dimension.v3'
+        items:
+          description: 'items of package Item object, use to describe product to ship
+
+            '
+          type: array
+          items:
+            $ref: '#/components/schemas/Item.v3'
+        description:
+          type: string
+          description: The description of the parcel
+        weight:
+          $ref: '#/components/schemas/Weight.v3'
+      required:
+      - box_type
+      - dimension
+      - items
+      x-tags:
+      - Primitive
+      examples: []
+    Invoice.v3:
+      title: Invoice
+      x-stoplight:
+        id: tp761p7l8ne5l
+      type:
+      - object
+      - 'null'
+      description: 'Invoice object: the description of invoice type, commercial invoice will be generated if field is present in the request body'
+      required:
+      - date
+      properties:
+        date:
+          type: string
+          description: 'Invoice date in YYYY-MM-DD
+
+            '
+        number:
+          type: string
+          description: 'Invoice number
+
+            '
+        type:
+          type: string
+          enum:
+          - commercial
+          - proforma
+        number_of_copies:
+          type: integer
+          minimum: 1
+          maximum: 4
+        signature_name:
+          type: string
+          description: Signature name showing on invoice. Only applies to FedEx, DHL Express currently.
+        declaration_statement:
+          type: string
+          x-stoplight:
+            id: squ0dj6tlgbdn
+          description: Declaration statement showing on invoice. Only applies to FedEx, DHL Express currently.
+    Address.v3:
+      type: object
+      x-stoplight:
+        id: c01e28f80783b
+      x-examples:
+        example-1:
+          country: HKG
+          contact_name: Sir Foo
+          phone: '11111111'
+          fax: +1 206-654-3100
+          email: foo@foo.com
+          company_name: Foo Store
+          street1: Workshop A, 10/F, Wah Shing Industrial Building
+          street2: 18 Cheung Shun Street, Lai Chi Kok
+          city: Lai Chi Kok
+          type: business
+          postal_code: null
+          state: null
+          street3: null
+          tax_id: null
+      title: Address
+      description: 'Address object: the description of address information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - street1
+      - country
+      - contact_name
+      properties:
+        street1:
+          type: string
+          description: 'address_line1 of address
+
+            '
+        country:
+          type: string
+          description: Country in ISO 3166-1 alpha 3 code
+        contact_name:
+          type: string
+          description: contact_name of address
+        phone:
+          type: string
+          description: contact_phone of address
+        fax:
+          type:
+          - string
+          - 'null'
+          description: fax_number of address
+        email:
+          type:
+          - string
+          - 'null'
+          description: email of address
+        company_name:
+          type:
+          - string
+          - 'null'
+          description: company_name of address
+        street2:
+          type:
+          - string
+          - 'null'
+          description: address_line2 of address
+        street3:
+          type:
+          - string
+          - 'null'
+          description: address_line3 of address
+        city:
+          type:
+          - string
+          - 'null'
+          description: city of address
+        state:
+          type:
+          - string
+          - 'null'
+          description: state of address
+        postal_code:
+          type:
+          - string
+          - 'null'
+          description: postal_code of address
+        type:
+          type:
+          - string
+          - 'null'
+          description: type of address
+          enum:
+          - residential
+          - business
+        tax_id:
+          type:
+          - string
+          - 'null'
+          description: tax id
+        tax_id_type:
+          type:
+          - string
+          - 'null'
+          description: 'tax id type. Only applies to DHL Express, DHL eCommerce US, DHL eCommerce UK.
+
+            - vat: Value-Added tax
+
+            - gst: Goods and Service Tax
+
+            - eori: European Union Registration and Identification
+
+            - ioss: Import One Stop Shop
+
+            - pan: Pan-Aarav
+
+            - ukims: UK Internal Market Scheme
+
+            - other: Other
+
+            '
+          x-stoplight:
+            id: 7rtl96ei81zeb
+          enum:
+          - vat
+          - gst
+          - eori
+          - ioss
+          - pan
+          - ukims
+          - other
+        identification_number:
+          type:
+          - string
+          - 'null'
+          description: identification number
+          x-stoplight:
+            id: u1nqwj1dvhw67
+        identification_type:
+          type:
+          - string
+          - 'null'
+          description: 'identification type
+
+            - mil: Military Number
+
+            - nid: National Identity Card
+
+            - pas: Passport
+
+            - other: Other'
+          x-stoplight:
+            id: gh9ttmhi0xmik
+          enum:
+          - mil
+          - nid
+          - pas
+          - other
+        eori_number:
+          type:
+          - string
+          - 'null'
+          description: eori number
+        location:
+          type:
+          - object
+          - 'null'
+          properties:
+            lat:
+              type: number
+              description: latitude number
+            lng:
+              type: number
+              description: longitude number
+    Dimension.v3:
+      title: Dimension
+      x-stoplight:
+        id: k8cgrqqlq38rn
+      type: object
+      description: 'Dimension object: the description of width/height/depth information'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        width:
+          type: number
+          description: width
+        height:
+          type: number
+          description: height
+        depth:
+          type: number
+          description: depth
+        unit:
+          type: string
+          description: unit
+          enum:
+          - cm
+          - in
+          - mm
+          - m
+          - ft
+          - yd
+      required:
+      - width
+      - height
+      - depth
+      - unit
+    Money.v3:
+      title: Money
+      x-stoplight:
+        id: okc04k6a0ua3b
+      type: object
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        currency:
+          type: string
+          enum:
+          - AED
+          - AFN
+          - ALL
+          - AMD
+          - ANG
+          - AOA
+          - ARS
+          - AUD
+          - AWG
+          - AZN
+          - BAM
+          - BBD
+          - BDT
+          - BGN
+          - BHD
+          - BIF
+          - BMD
+          - BND
+          - BOB
+          - BOV
+          - BRL
+          - BSD
+          - BTN
+          - BWP
+          - BYN
+          - BZD
+          - CAD
+          - CDF
+          - CHE
+          - CHF
+          - CHW
+          - CLF
+          - CLP
+          - CNY
+          - COP
+          - COU
+          - CRC
+          - CUC
+          - CUP
+          - CVE
+          - CZK
+          - DJF
+          - DKK
+          - DOP
+          - DZD
+          - EGP
+          - ERN
+          - ETB
+          - EUR
+          - FJD
+          - FKP
+          - GBP
+          - GEL
+          - GHS
+          - GIP
+          - GMD
+          - GNF
+          - GTQ
+          - GYD
+          - HKD
+          - HNL
+          - HRK
+          - HTG
+          - HUF
+          - IDR
+          - ILS
+          - INR
+          - IQD
+          - IRR
+          - ISK
+          - JMD
+          - JOD
+          - JPY
+          - KES
+          - KGS
+          - KHR
+          - KMF
+          - KPW
+          - KRW
+          - KWD
+          - KYD
+          - KZT
+          - LAK
+          - LBP
+          - LKR
+          - LRD
+          - LSL
+          - LYD
+          - MAD
+          - MDL
+          - MGA
+          - MKD
+          - MMK
+          - MNT
+          - MOP
+          - MRU
+          - MUR
+          - MVR
+          - MWK
+          - MXN
+          - MXV
+          - MYR
+          - MZN
+          - NAD
+          - NGN
+          - NIO
+          - NOK
+          - NPR
+          - NZD
+          - OMR
+          - PAB
+          - PEN
+          - PGK
+          - PHP
+          - PKR
+          - PLN
+          - PYG
+          - QAR
+          - RON
+          - RSD
+          - RUB
+          - RWF
+          - SAR
+          - SBD
+          - SCR
+          - SDG
+          - SEK
+          - SGD
+          - SHP
+          - SLL
+          - SOS
+          - SRD
+          - SSP
+          - STN
+          - SVC
+          - SYP
+          - SZL
+          - THB
+          - TJS
+          - TMT
+          - TND
+          - TOP
+          - TRY
+          - TTD
+          - TWD
+          - TZS
+          - UAH
+          - UGX
+          - USD
+          - USN
+          - UYI
+          - UYW
+          - UYU
+          - UZS
+          - VES
+          - VND
+          - VUV
+          - WST
+          - XAF
+          - XAU
+          - XBA
+          - XBB
+          - XBC
+          - XBD
+          - XCD
+          - XDR
+          - XOF
+          - XPD
+          - XPF
+          - XPT
+          - XSU
+          - XTS
+          - XXX
+          - YER
+          - ZAR
+          - ZMW
+          - ZWL
+          description: Currency of Money
+        amount:
+          type: number
+          description: Amount of Money
+      description: The money object is used to represent the currency amount.
+    Label.v3:
+      title: Label
+      x-stoplight:
+        id: ylsizdlwyes98
+      type: object
+      description: 'Label object: the description of label object
+
+        <div style="visibility:hidden; height: 0">This array contains service_options object. Please refer to [all service options](../../docs/enum/all-service-options.md) and [service options list](../../docs/enum/service-options-lists.md) for details.
+
+        This array contains reference data. Please refer to [reference](../model/premitive/reference.v3.json)  object for label object details.</div>'
+      x-tags:
+      - Resource
+      examples: []
+      properties:
+        id:
+          type: string
+          description: 'Label ID
+
+            '
+        status:
+          type: string
+          enum:
+          - creating
+          - created
+          - cancelling
+          - cancelled
+          - manifesting
+          - manifested
+          - failed
+        ship_date:
+          type: string
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+        carrier_references:
+          type: array
+          items:
+            type: object
+            properties:
+              pickup_reference:
+                type: string
+                x-stoplight:
+                  id: iqkqrpp9ikcvx
+              pickup_location_code:
+                type: string
+                x-stoplight:
+                  id: iqkqrpp9ikcvx
+              piece_tracking_numbers:
+                type: array
+                x-stoplight:
+                  id: f72uui9k49xbc
+                items:
+                  x-stoplight:
+                    id: wyu6ga7f9l0xf
+                  type: string
+        files:
+          $ref: '#/components/schemas/Files.v3'
+        rate:
+          $ref: '#/components/schemas/Rate.v3'
+        created_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+        updated_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+        references:
+          type:
+          - array
+          - 'null'
+          description: 'Reference information for a label
+
+            '
+          items:
+            type: string
+        shipper_account:
+          $ref: '#/components/schemas/Reference.v3'
+        service_type:
+          type: string
+          description: 'Service Types
+
+            '
+        order_number:
+          type: string
+          description: 'A user-defined order number used to identify an order.
+
+            '
+        service_options:
+          type: array
+          additionalProperties:
+            type: object
+          description: This array contains service_options object. Please refer to [all service options](../../docs/enum/all-service-options.md) and [service types and service options list](../../docs/enum/service-types-and-service-options-lists.md) for details.
+          items:
+            type: object
+        order_id:
+          type: string
+          description: Unique identification of the order.
+        custom_fields:
+          type: object
+          x-stoplight:
+            id: cjvgp0c32bvvq
+          description: 'Custom fields that accept an object with string field.
+
+
+            - Maximum charater limit for a key name: 30
+
+            - Maximum count for a key-value pair in a custom field object: 25
+
+            - Maximum value length: 512 charaters
+
+            - Supported value type: String only (object and array are prohibited)'
+          additionalProperties:
+            type: string
+        carrier_redirect_link:
+          type:
+          - string
+          - 'null'
+          description: Delivery instructions (delivery date or address) can be modified by visiting the link if supported by a carrier.
+          x-stoplight:
+            id: 0uax9qas0iiae
+    Payment_method_account.v3:
+      title: PaymentMethodAccount
+      x-stoplight:
+        id: ubj0avtyvpifn
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'Accepts: account.'
+        account_number:
+          type: string
+          description: account number
+        postal_code:
+          type: string
+          description: Postal code
+        country:
+          type: string
+          description: Country in ISO 3166-1 alpha 3 code
+          enum:
+          - ABW
+          - AFG
+          - AGO
+          - AIA
+          - ALA
+          - ALB
+          - AND
+          - ANT
+          - ARE
+          - ARG
+          - ARM
+          - ASM
+          - ATA
+          - ATF
+          - ATG
+          - AUS
+          - AUT
+          - AZE
+          - BDI
+          - BEL
+          - BEN
+          - BES
+          - BFA
+          - BGD
+          - BGR
+          - BHR
+          - BHS
+          - BIH
+          - BLM
+          - BLR
+          - BLZ
+          - BMU
+          - BOL
+          - BRA
+          - BRB
+          - BRN
+          - BTN
+          - BVT
+          - BWA
+          - CAF
+          - CAN
+          - CCK
+          - CHE
+          - CHL
+          - CHN
+          - CIV
+          - CMR
+          - COD
+          - COG
+          - COK
+          - COL
+          - COM
+          - CPV
+          - CRI
+          - CUB
+          - CUW
+          - CXR
+          - CYM
+          - CYP
+          - CZE
+          - DEU
+          - DJI
+          - DMA
+          - DNK
+          - DOM
+          - DZA
+          - ECU
+          - EGY
+          - ERI
+          - ESH
+          - ESP
+          - EST
+          - ETH
+          - FIN
+          - FJI
+          - FLK
+          - FRA
+          - FRO
+          - FSM
+          - GAB
+          - GBR
+          - GEO
+          - GGY
+          - GHA
+          - GIB
+          - GIN
+          - GLP
+          - GMB
+          - GNB
+          - GNQ
+          - GRC
+          - GRD
+          - GRL
+          - GTM
+          - GUF
+          - GUM
+          - GUY
+          - HKG
+          - HMD
+          - HND
+          - HRV
+          - HTI
+          - HUN
+          - IDN
+          - IMN
+          - IND
+          - IOT
+          - IRL
+          - IRN
+          - IRQ
+          - ISL
+          - ISR
+          - ITA
+          - JAM
+          - JEY
+          - JOR
+          - JPN
+          - KAZ
+          - KEN
+          - KGZ
+          - KHM
+          - KIR
+          - KNA
+          - KOR
+          - KWT
+          - LAO
+          - LBN
+          - LBR
+          - LBY
+          - LCA
+          - LIE
+          - LKA
+          - LSO
+          - LTU
+          - LUX
+          - LVA
+          - MAC
+          - MAF
+          - MAR
+          - MCO
+          - MDA
+          - MDG
+          - MDV
+          - MEX
+          - MHL
+          - MKD
+          - MLI
+          - MLT
+          - MMR
+          - MNE
+          - MNG
+          - MNP
+          - MOZ
+          - MRT
+          - MSR
+          - MTQ
+          - MUS
+          - MWI
+          - MYS
+          - MYT
+          - NAM
+          - NCL
+          - NER
+          - NFK
+          - NGA
+          - NIC
+          - NIU
+          - NLD
+          - NOR
+          - NPL
+          - NRU
+          - NZL
+          - OMN
+          - PAK
+          - PAN
+          - PCN
+          - PER
+          - PHL
+          - PLW
+          - PNG
+          - POL
+          - PRI
+          - PRK
+          - PRT
+          - PRY
+          - PSE
+          - PYF
+          - QAT
+          - REU
+          - ROU
+          - RUS
+          - RWA
+          - SAU
+          - SDN
+          - SEN
+          - SGP
+          - SGS
+          - SHN
+          - SJM
+          - SLB
+          - SLE
+          - SLV
+          - SMR
+          - SOM
+          - SPM
+          - SRB
+          - SSD
+          - STP
+          - SUR
+          - SVK
+          - SVN
+          - SWE
+          - SWZ
+          - SXM
+          - SYC
+          - SYR
+          - TCA
+          - TCD
+          - TGO
+          - THA
+          - TJK
+          - TKL
+          - TKM
+          - TLS
+          - TON
+          - TTO
+          - TUN
+          - TUR
+          - TUV
+          - TWN
+          - TZA
+          - UGA
+          - UKR
+          - UMI
+          - UNK
+          - URY
+          - USA
+          - UZB
+          - VAT
+          - VCT
+          - VEN
+          - VGB
+          - VIR
+          - VNM
+          - VUT
+          - WLF
+          - WSM
+          - YEM
+          - ZAF
+          - ZMB
+          - ZWE
+      required:
+      - type
+      - account_number
+      x-tags:
+      - Primitive
+      examples: []
+      description: 'PaymentMethodAccount object: the description of account information'
+    Rate.v3:
+      title: Rate
+      x-stoplight:
+        id: gzq8uf274umrg
+      type: object
+      description: 'Rate object: the description of rate information'
+      x-tags:
+      - Resource
+      examples: []
+      properties:
+        charge_weight:
+          $ref: '#/components/schemas/Weight.v3'
+        total_charge:
+          $ref: '#/components/schemas/Money.v3'
+        shipper_account:
+          type: object
+          description: 'Shipper Account (brief information for rate and manifest responses)
+
+            '
+          required:
+          - id
+          - slug
+          properties:
+            id:
+              type: string
+            slug:
+              type: string
+            description:
+              type: string
+        service_type:
+          type: string
+          description: 'Service Types
+
+            '
+        service_name:
+          type: string
+          description: 'name of service
+
+            '
+        pickup_deadline:
+          type:
+          - string
+          - 'null'
+          description: 'A formatted date.
+
+            '
+        booking_cut_off:
+          type:
+          - string
+          - 'null'
+          description: 'A formatted date.
+
+            '
+        delivery_date:
+          type:
+          - string
+          - 'null'
+          description: 'A formatted date.
+
+            '
+        transit_time:
+          type:
+          - integer
+          - 'null'
+          description: transit time
+        detailed_charges:
+          type: array
+          description: Courier charges, it may be different for different couriers
+          items:
+            type:
+            - object
+            - array
+            properties:
+              type:
+                type: string
+                description: detailed charges type
+              charge:
+                $ref: '#/components/schemas/Money.v3'
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: error information
+        info_message:
+          type:
+          - string
+          - 'null'
+          description: other information of request/response
+      required:
+      - shipper_account
+      - service_type
+      - service_name
+    Regulatory_data_item.v3:
+      title: RegulatoryDataItem
+      x-stoplight:
+        id: regulatory-data-item-v3
+      description: 'A CPSC regulatory data entry associated with an item. The shape varies by `fill_mode`. Supported carriers: UPS, FedEx.'
+      x-tags:
+      - Primitive
+      oneOf:
+      - title: CpscDisclaimer
+        type: object
+        description: 'CPSC regulation data filled via disclaimer mode. Supported carriers: UPS, FedEx.'
+        required:
+        - regulation_code
+        - fill_mode
+        - disclaim_code
+        - intended_use_code
+        properties:
+          regulation_code:
+            type: string
+            enum:
+            - CPSC
+            description: Regulation code identifying the applicable regulation.
+          fill_mode:
+            type: string
+            enum:
+            - disclaimer
+            description: Indicates the CPSC compliance fill mode.
+          disclaim_code:
+            type: string
+            enum:
+            - A
+            - B
+            description: '`A` = not regulated by CPSC; `B` = no certificate needed per agency guidance.'
+          intended_use_code:
+            type: string
+            description: Intended use of goods for customs assessment.
+          intended_use_description:
+            type: string
+            description: Supplemental info when `intended_use_code` is `980.000`.
+      - title: CpscReference
+        type: object
+        description: 'CPSC regulation data filled via certificate reference mode. Supported carriers: UPS, FedEx.'
+        required:
+        - regulation_code
+        - fill_mode
+        - certifier_id
+        - product_id
+        - version_id
+        properties:
+          regulation_code:
+            type: string
+            enum:
+            - CPSC
+            description: Regulation code identifying the applicable regulation.
+          fill_mode:
+            type: string
+            enum:
+            - reference
+            description: Indicates the CPSC compliance fill mode.
+          certifier_id:
+            type: string
+            description: Importer's ID in the CPSC Product Registry.
+          product_id:
+            type: string
+            description: Product's ID in the CPSC Product Registry.
+          version_id:
+            type: string
+            description: Version ID of the product certificate in the CPSC Product Registry.
+    Weight.v3:
+      title: Weight
+      x-stoplight:
+        id: sqe056qqggctt
+      type: object
+      description: 'Weight object: unit weight of the item'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        unit:
+          type: string
+          description: weight unit
+          enum:
+          - lb
+          - kg
+          - oz
+          - g
+        value:
+          type: number
+          description: value of Weight
+      required:
+      - unit
+      - value
+    Customs.v3:
+      title: Customs
+      x-stoplight:
+        id: 11cjtizuozw2n
+      type: object
+      description: 'Customs object: the description of customs information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - purpose
+      properties:
+        purpose:
+          type: string
+          enum:
+          - gift
+          - merchandise
+          - personal
+          - sample
+          - return
+          - repair
+          - non-merchandise
+        terms_of_trade:
+          type: string
+          enum:
+          - dat
+          - ddu
+          - ddp
+          - dap
+          - exw
+          - fca
+          - fob
+          - cip
+          - cif
+          - cpt
+          - cfr
+          - dpu
+        eei:
+          description: EEI
+          oneOf:
+          - $ref: '#/components/schemas/Aes.v3'
+          - $ref: '#/components/schemas/No_eei.v3'
+        billing:
+          $ref: '#/components/schemas/Billing.v3'
+        importer_address:
+          $ref: '#/components/schemas/Address.v3'
+        broker_address:
+          $ref: '#/components/schemas/Address.v3'
+          x-stoplight:
+            id: 8djt33ak5cn15
+        passport:
+          type: object
+          description: Passport Object
+          properties:
+            number:
+              type: string
+              description: Passport Number
+            issue_date:
+              type: string
+              description: Issue Date in YYYY-MM-DD
+        additional_charges:
+          type: array
+          description: This array contains additional_charges object. Additional charge to be added to the commercial invoice of this shipment. Only applies to FedEx, DHL Express, UPS currently.
+          x-stoplight:
+            id: qt0kscrrlaouw
+          maxItems: 3
+          items:
+            x-stoplight:
+              id: 6tyw0klcpr1cu
+            type: object
+            properties:
+              type:
+                type: string
+                x-stoplight:
+                  id: 49qh2pv3p384p
+                enum:
+                - insurance
+                - freight
+                - other
+              charge:
+                $ref: '#/components/schemas/Money.v3'
+                description: 'Money object: additional charge to be added to the commercial invoice of this shipment.'
+                x-stoplight:
+                  id: l4jm0oe5wytlv
+    Aes.v3:
+      title: AES
+      x-stoplight:
+        id: k4c9cd1hj6q8g
+      type: object
+      description: 'AES object: the description of EEI Type - aes'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        type:
+          type: string
+          enum:
+          - aes
+        itn_number:
+          type: string
+          description: ITN Number
+      required:
+      - type
+    Billing.v3:
+      title: Billing
+      x-stoplight:
+        id: bfc477642fe69
+      type: object
+      description: 'Billing object: the description of billing information'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        paid_by:
+          type: string
+          enum:
+          - shipper
+          - third_party
+          - recipient
+        method:
+          $ref: '#/components/schemas/Payment_method_account.v3'
+      required:
+      - paid_by
+    No_eei.v3:
+      title: NOEEI
+      x-stoplight:
+        id: 190bfme3fnjwm
+      type: object
+      description: 'NOEEI object: the description of NOEEI Type'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        type:
+          type: string
+          description: 'Accepts: no_eei.'
+        ftr_exemption:
+          type: string
+          enum:
+          - noeei_30_37_a
+          - noeei_30_37_h
+          - noeei_30_36
+      required:
+      - type
+    Item.v3:
+      title: Item
+      x-stoplight:
+        id: 85gwiiinn20p1
+      type: object
+      description: 'Item object: the description of item information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - quantity
+      - description
+      properties:
+        quantity:
+          type: integer
+          description: 'The quantity of the item Minimum: 1'
+        description:
+          type: string
+          description: The description of the item
+        description_cn:
+          type: string
+          description: 'the description of the item in Chinese '
+        price:
+          $ref: '#/components/schemas/Money.v3'
+        item_id:
+          type: string
+          description: The ID of the item
+        origin_country:
+          type: string
+          description: Country in ISO 3166-1 alpha 3 code
+        weight:
+          $ref: '#/components/schemas/Weight.v3'
+        sku:
+          type: string
+          description: The sku of the item.
+        hs_code:
+          type: string
+          description: The HS Code (Harmonized Commodity Description and Coding System) of the item.
+        outbound_hs_code:
+          type: string
+          description: The HS Code (Harmonized Commodity Description and Coding System) of the item as required by the exporting country's customs regulations.
+        return_reason:
+          type: string
+          x-stoplight:
+            id: 86krhz0houiz2
+          description: The reason of return
+        dimension:
+          $ref: '#/components/schemas/Dimension.v3'
+          x-stoplight:
+            id: prw8rr4twlc9v
+        barcode:
+          type: string
+          x-stoplight:
+            id: o455vzu1p8jam
+          description: The barcode of item
+        regulatory_data:
+          type: array
+          description: 'CPSC regulatory data entries associated with this item. Supported carriers: UPS, FedEx.'
+          items:
+            $ref: '#/components/schemas/Regulatory_data_item.v3'
+    Reference.v3:
+      title: Reference
+      x-stoplight:
+        id: pwqp1323bhe8q
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'id of referring object
+
+            '
+      x-tags:
+      - Primitive
+      examples: []
+      description: 'Reference object: the description of reference information'
+    Files.v3:
+      title: Files
+      x-stoplight:
+        id: pyla12mztsmlr
+      type: object
+      x-tags:
+      - Primitive
+      description: 'Files object: the description of 6 different file objects(label, qr_code, invoice, customs_declaration, packing_slip, manifest)'
+      examples: []
+      properties:
+        label:
+          type:
+          - object
+          - 'null'
+          properties:
+            paper_size:
+              type: string
+              enum:
+              - 3x5
+              - 4x4
+              - 4x5
+              - 4x6
+              - 4x6.75
+              - 4x7
+              - 4x8
+              - a4
+              - a5
+              - a6
+              - default
+              - 8.5x6.3
+            url:
+              type: string
+              description: URL of the file
+            file_type:
+              type: string
+              description: Label file type. (set to "pdf" if not provided)
+              enum:
+              - pdf
+              - zpl
+        qr_code:
+          type:
+          - object
+          - 'null'
+          properties:
+            paper_size:
+              type: string
+              enum:
+              - 1x1
+              - 2x2
+            url:
+              type: string
+              description: URL of the file
+            file_type:
+              type: string
+              enum:
+              - png
+        invoice:
+          type:
+          - object
+          - 'null'
+          properties:
+            paper_size:
+              type:
+              - string
+              - 'null'
+              enum:
+              - a4
+            url:
+              type:
+              - string
+              - 'null'
+              description: URL of the file
+            file_type:
+              type:
+              - string
+              - 'null'
+              enum:
+              - pdf
+        customs_declaration:
+          type:
+          - object
+          - 'null'
+          properties:
+            paper_size:
+              type:
+              - string
+              - 'null'
+              enum:
+              - a4
+            url:
+              type:
+              - string
+              - 'null'
+              description: URL of the file
+            file_type:
+              type:
+              - string
+              - 'null'
+              enum:
+              - pdf
+        packing_slip:
+          type:
+          - object
+          - 'null'
+          properties:
+            paper_size:
+              type:
+              - string
+              - 'null'
+              enum:
+              - a4
+            url:
+              type:
+              - string
+              - 'null'
+              description: URL of the file
+            file_type:
+              type:
+              - string
+              - 'null'
+              enum:
+              - pdf
+        manifest:
+          type:
+          - object
+          - 'null'
+          properties:
+            paper_size:
+              type:
+              - string
+              - 'null'
+              enum:
+              - a4
+            url:
+              type:
+              - string
+              - 'null'
+              description: URL of the file
+            file_type:
+              type:
+              - string
+              - 'null'
+              enum:
+              - pdf
+    Input_files.v3:
+      x-stoplight:
+        id: alsibm32aw646
+      title: InputFiles
+      type: object
+      description: 'Files object: additional shipping documents to upload with label generation. Only applies to FedEx, DHL Express currently.'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        certificate_of_origin:
+          type: object
+          x-stoplight:
+            id: 8ym9fdpkio3kg
+          description: Certificate of Origin
+          properties:
+            content:
+              type: string
+              x-stoplight:
+                id: 15ttnisv8i78x
+              description: PDF base64 content
+        commercial_invoice:
+          type: object
+          x-stoplight:
+            id: 230t2s7bkj322
+          description: Commercial Invoice
+          properties:
+            content:
+              type: string
+              x-stoplight:
+                id: 4onz5x8ubx3ty
+              description: PDF base64 content
+        'customs_declaration ':
+          type: object
+          x-stoplight:
+            id: okk99pm1vxfb3
+          description: Customs Declaration
+          properties:
+            content:
+              type: string
+              x-stoplight:
+                id: oa5b3hmvayhxc
+              description: PDF base64 content
+    Shipment.v3:
+      type: object
+      title: Shipment
+      x-stoplight:
+        id: jp89xbgwpyeu7
+      description: 'Shipment object: the description of shipment information
+
+        <div style="visibility:hidden; height: 0">
+
+        refer to [shipment](../model/resource/label.v3.json) object.
+
+        </div>'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - ship_from
+      - ship_to
+      - parcels
+      properties:
+        tax_total:
+          $ref: '#/components/schemas/Money.v3'
+          x-stoplight:
+            id: utb4m5c64j0bw
+        ship_from:
+          $ref: '#/components/schemas/Address.v3'
+        ship_from_display:
+          description: 'Address object: An optional address object that lets you customize the ship from details shown on the shipping label.<br/>This is only for visual display and won''t change actual shipping routes or carrier operations.<br/>Supported slug: `purolator`,`canada-post`'
+          $ref: '#/components/schemas/Address.v3'
+        ship_to:
+          $ref: '#/components/schemas/Address.v3'
+        parcels:
+          type: array
+          description: Parcels of shipment
+          items:
+            $ref: '#/components/schemas/Parcel.v3'
+        return_to:
+          $ref: '#/components/schemas/Address.v3'
+        delivery_instructions:
+          type: string
+          description: Instructions to aid in prompt delivery of the shipment.
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

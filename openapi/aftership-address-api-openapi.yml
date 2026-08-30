@@ -1,0 +1,416 @@
+openapi: 3.2.0
+info:
+  title: Overview Address API
+  version: 2024-07
+  summary: API Overview
+  description: "Addresses/validate will identify address components and convert them into standardized addresses. \n"
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+servers:
+- url: https://api.aftership.com/address/2024-07/
+  description: Production
+security:
+- as-api-key: []
+tags:
+- name: Address
+paths:
+  /addresses/validate:
+    parameters: []
+    g:
+      x-stoplight:
+        id: 3unocb9gr2plm
+    post:
+      summary: Validate Address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+                    properties:
+                      suggested_addresses:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Address'
+                      errors:
+                        $ref: '#/components/schemas/Error'
+                      status:
+                        type: string
+                        enum:
+                        - valid
+                        - invalid
+              examples:
+                example:
+                  value:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      status: valid
+                      suggested_addresses:
+                      - country_region:
+                          name: United States
+                          code: USA
+                        state:
+                          name: CALIFORNIA
+                          code: US-CA
+                        county: null
+                        city: SAN JOSE
+                        district: null
+                        street_1: 123 MAIN ST
+                        street_2: STE 200
+                        street_3: null
+                        street_number: null
+                        postal_code: '95113'
+                        type: null
+                        coordinate: null
+                      errors: []
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+              examples:
+                example:
+                  value:
+                    meta:
+                      code: 401
+                      message: Unauthorized.
+                      details: []
+                    data: {}
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: object
+              examples:
+                example:
+                  value:
+                    meta:
+                      code: 404
+                      message: Not Found.
+                      details: []
+                    data: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  max_address_response: 3
+                  carrier_slug: fedex
+                  request_address:
+                    street_1: 123 Main Street
+                    district: ''
+                    county: Santa Clara County
+                    postal_code: '95113'
+                    city: San Jose
+                    state:
+                      name: United States
+                      code: US-CA
+                    country_region:
+                      code: USA
+              required:
+              - request_address
+              properties:
+                request_address:
+                  type: object
+                  $ref: '#/components/schemas/Address'
+                  description: Address object. Refer to below address schema.
+                carrier_slug:
+                  type: string
+                  example: fedex
+                  description: 'Unique slug in AfterShip. Supported carrier slug: `fedex`, `ups`'
+                max_address_response:
+                  type: integer
+                  minimum: 1
+                  maximum: 10
+                  example: 1
+                  description: Maximum suggested addresses count in response.
+            examples:
+              Example 1:
+                value:
+                  request_address:
+                    country_region:
+                      name: United States
+                      code: USA
+                    state:
+                      name: California
+                      code: US-CA
+                    county: Santa Clara County
+                    city: San Jose
+                    district: null
+                    street_1: 123 Main Street
+                    street_2: Suite 200
+                    street_3: null
+                    street_number: '125'
+                    postal_code: '95113'
+                  carrier_slug: fedex
+                  max_address_response: 1
+        description: Create an address validation.
+      operationId: post-addresses/validate
+      description: "Support identify and standardize address.\n\n [Contact sales](https://www.aftership.com/contact-sales) to activate this feature."
+      parameters:
+      - schema:
+          type: string
+          description: Content-Type
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type for all calls should be application/json.
+      - schema:
+          type: string
+        in: header
+        name: as-api-key
+        example: 'as-api-key: 123'
+        description: An API key is a token that you provide when making API calls. Include the token in a header parameter called `as-api-key`.
+        required: true
+      x-stoplight:
+        id: 3unocb9gr2pqm
+      tags:
+      - Address
+components:
+  schemas:
+    Address:
+      title: Address
+      x-stoplight:
+        id: wf5stdk2dsa8x
+      type: object
+      description: Common address object.
+      examples: []
+      required:
+      - street_1
+      - country_region
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          enum:
+          - business
+          - residential
+          x-stoplight:
+            id: q0v7wmt7mkc1v
+        street_1:
+          type:
+          - string
+          example: 123 Main Street
+          description: Address_line1 of address.
+          x-stoplight:
+            id: 9z5cvs9nz2unv
+        street_2:
+          type:
+          - string
+          - 'null'
+          example: Suite 200
+          description: Address_line2 of address.
+          x-stoplight:
+            id: ai877742scg8x
+        street_3:
+          type:
+          - string
+          - 'null'
+          description: Address_line3 of address.
+          x-stoplight:
+            id: n3by19l2h0g9x
+        street_number:
+          type:
+          - string
+          - 'null'
+          example: '125'
+          description: Street number.
+          x-stoplight:
+            id: 4fdewtnakc53j
+        district:
+          type:
+          - string
+          - 'null'
+          example: South District
+          description: District name.
+          x-stoplight:
+            id: s5t7hwes79ea3
+        county:
+          type:
+          - string
+          - 'null'
+          example: Santa Clara County
+          description: County name.
+          x-stoplight:
+            id: giv972mvwdus1
+        postal_code:
+          type:
+          - string
+          - 'null'
+          example: '95113'
+          description: Postal code.
+          x-stoplight:
+            id: 359dg95n8piab
+        city:
+          type:
+          - string
+          - 'null'
+          example: San Jose
+          description: City name.
+          x-stoplight:
+            id: ecp7mlz6568qm
+        state:
+          type:
+          - object
+          - 'null'
+          description: State object
+          x-stoplight:
+            id: u4ov8hvy5j8b8
+          properties:
+            name:
+              type: string
+              example: California
+              description: State name.
+              x-stoplight:
+                id: u4te0xgikbdpf
+            code:
+              type: string
+              example: US-CA
+              description: State code, ISO 3166-2 standard.
+              x-stoplight:
+                id: 097enlxpy5nys
+        country_region:
+          type: object
+          description: Country region object.
+          x-stoplight:
+            id: zdiuww8msb8ic
+          required:
+          - code
+          properties:
+            name:
+              type: string
+              example: United States
+              description: Country name.
+              x-stoplight:
+                id: os0s1j0baobqv
+            code:
+              type: string
+              example: USA
+              description: ISO 3166-1 alpha-3.
+              x-stoplight:
+                id: 04lannme527d7
+        coordinate:
+          type: object
+          description: Coordinate object.
+          x-stoplight:
+            id: jriy3n7k498z5
+          properties:
+            longitude:
+              type: number
+              description: Longitude value.
+              example: 37.34
+              x-stoplight:
+                id: nyr2io0zydwxg
+            latitude:
+              type: number
+              description: Latitude value.
+              example: -121.89
+              x-stoplight:
+                id: eub9nvcupbwyb
+    Error:
+      type: object
+      x-stoplight:
+        id: 2f9c47cab76ed
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples: []
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.request_address.postal_code
+          x-stoplight:
+            id: mcru7zcz84dy9
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: data.request_address.postal_code is invalid
+          x-stoplight:
+            id: ulljpx2y8s2eg
+    Meta:
+      description: Meta data object.
+      x-stoplight:
+        id: 229b1ccd2b284
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          description: Code
+          default: 200
+          example: 200
+          x-stoplight:
+            id: 4nvljuh02q2sp
+        message:
+          type: string
+          example: OK
+          description: Error message, only exist if the response status is not 2xx
+          x-stoplight:
+            id: n9cu3ycb9indb
+        details:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                example: data
+                x-stoplight:
+                  id: bm31koxbo53j8
+              info:
+                type: string
+                minLength: 0
+                maxLength: 255
+                example: data.%s is required for this request.
+                x-stoplight:
+                  id: c6h4q6tomjec8
+            x-stoplight:
+              id: o8vwwley8u0v5
+          x-stoplight:
+            id: 0oqp8jy1bhybm
+      required:
+      - code
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header
+x-stoplight:
+  id: 02gep2e9lkucy

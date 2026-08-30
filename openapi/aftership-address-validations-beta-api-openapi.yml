@@ -1,0 +1,421 @@
+openapi: 3.2.0
+info:
+  title: Overview Address Validations (Beta) API
+  version: '1.0'
+  summary: API Overview
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+servers:
+- description: Sandbox
+  url: https://sandbox-api.aftership.com/postmen/v3
+- url: https://api.aftership.com/postmen/v3
+  description: Production
+security:
+- as-api-key: []
+tags:
+- name: Address Validations (Beta)
+paths:
+  /address-validations:
+    parameters: []
+    post:
+      summary: Create an address validation
+      operationId: post-address-validations
+      responses:
+        '200':
+          description: Create an address validation object
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      id: b234f43e-a87f-4b97-baf8-dc49fefd5110
+                      status: valid
+                      created_at: '2021-03-01T09:22:40Z'
+                      updated_at: '2021-03-01T09:22:45Z'
+                      address:
+                        country: USA
+                        contact_name: testing
+                        phone: '17578976058'
+                        fax: null
+                        email: testing@gmail.com
+                        company_name: null
+                        street1: 4901 N New Hope Rd Apt C1
+                        street2: null
+                        street3: null
+                        city: Raleigh
+                        state: NC
+                        postal_code: '27604'
+                        type: business
+                        tax_id: null
+                      recommended_address:
+                        country: USA
+                        contact_name: null
+                        phone: null
+                        fax: null
+                        email: null
+                        company_name: null
+                        street1: 4901 N NEW HOPE RD APT C1
+                        street2: null
+                        street3: null
+                        city: RALEIGH
+                        state: NC
+                        postal_code: 27604-4494
+                        type: null
+                        tax_id: null
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    $ref: '#/components/schemas/Address_validation.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      id: 00000000-0000-0000-0000-000000000000
+                      status: valid
+                      created_at: '2022-02-11T08:10:47+00:00'
+                      updated_at: '2022-02-11T08:10:47+00:00'
+                      address:
+                        contact_name: AfterShip Shipping
+                        street1: This is the first streeet
+                        street2: This is the second streeet
+                        city: New York
+                        state: New York
+                        postal_code: '10001'
+                        country: USA
+                        phone: 1-123-456-5496
+                        email: test@test.test
+                        type: residential
+                      recommended_address:
+                        contact_name: AfterShip Shipping
+                        street1: This is the first streeet
+                        street2: This is the second streeet
+                        city: New York
+                        state: New York
+                        postal_code: '10001'
+                        country: USA
+                        phone: 1-123-456-5496
+                        email: test@test.test
+                        type: residential
+      description: 'Create an address validation
+
+
+        > We are excited to announce a new API capability that is now available for use, so we highly recommend that you start using this [new API](https://www.aftership.com/docs/address/api-overview/operations/create-a-address-validate) as soon as possible to take full advantage of its benefits.'
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  address:
+                    contact_name: testing
+                    street1: 4901 N New Hope Rd Apt C1
+                    city: Raleigh
+                    state: NC
+                    postal_code: '27604'
+                    country: USA
+                    type: business
+                    phone: '17578976058'
+                    email: testing@gmail.com
+              description: The object contains address object information. Please refer to [address](../model/primitive/addresses.v3.json) object for details.
+              properties:
+                address:
+                  $ref: '#/components/schemas/Address.v3'
+            examples:
+              example-1:
+                value:
+                  address:
+                    contact_name: AfterShip Shipping
+                    company_name: AfterShip Shipping
+                    street1: 230 W 200 S LBBY
+                    city: Salt Lake City
+                    state: UT
+                    postal_code: '84101'
+                    country: USA
+                    phone: '123456789'
+                    email: test@test.com
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: Create an address validation oject
+      security:
+      - as-api-key: []
+      tags:
+      - Address Validations (Beta)
+components:
+  schemas:
+    Address.v3:
+      type: object
+      x-stoplight:
+        id: c01e28f80783b
+      x-examples:
+        example-1:
+          country: HKG
+          contact_name: Sir Foo
+          phone: '11111111'
+          fax: +1 206-654-3100
+          email: foo@foo.com
+          company_name: Foo Store
+          street1: Workshop A, 10/F, Wah Shing Industrial Building
+          street2: 18 Cheung Shun Street, Lai Chi Kok
+          city: Lai Chi Kok
+          type: business
+          postal_code: null
+          state: null
+          street3: null
+          tax_id: null
+      title: Address
+      description: 'Address object: the description of address information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - street1
+      - country
+      - contact_name
+      properties:
+        street1:
+          type: string
+          description: 'address_line1 of address
+
+            '
+        country:
+          type: string
+          description: Country in ISO 3166-1 alpha 3 code
+        contact_name:
+          type: string
+          description: contact_name of address
+        phone:
+          type: string
+          description: contact_phone of address
+        fax:
+          type:
+          - string
+          - 'null'
+          description: fax_number of address
+        email:
+          type:
+          - string
+          - 'null'
+          description: email of address
+        company_name:
+          type:
+          - string
+          - 'null'
+          description: company_name of address
+        street2:
+          type:
+          - string
+          - 'null'
+          description: address_line2 of address
+        street3:
+          type:
+          - string
+          - 'null'
+          description: address_line3 of address
+        city:
+          type:
+          - string
+          - 'null'
+          description: city of address
+        state:
+          type:
+          - string
+          - 'null'
+          description: state of address
+        postal_code:
+          type:
+          - string
+          - 'null'
+          description: postal_code of address
+        type:
+          type:
+          - string
+          - 'null'
+          description: type of address
+          enum:
+          - residential
+          - business
+        tax_id:
+          type:
+          - string
+          - 'null'
+          description: tax id
+        tax_id_type:
+          type:
+          - string
+          - 'null'
+          description: 'tax id type. Only applies to DHL Express, DHL eCommerce US, DHL eCommerce UK.
+
+            - vat: Value-Added tax
+
+            - gst: Goods and Service Tax
+
+            - eori: European Union Registration and Identification
+
+            - ioss: Import One Stop Shop
+
+            - pan: Pan-Aarav
+
+            - ukims: UK Internal Market Scheme
+
+            - other: Other
+
+            '
+          x-stoplight:
+            id: 7rtl96ei81zeb
+          enum:
+          - vat
+          - gst
+          - eori
+          - ioss
+          - pan
+          - ukims
+          - other
+        identification_number:
+          type:
+          - string
+          - 'null'
+          description: identification number
+          x-stoplight:
+            id: u1nqwj1dvhw67
+        identification_type:
+          type:
+          - string
+          - 'null'
+          description: 'identification type
+
+            - mil: Military Number
+
+            - nid: National Identity Card
+
+            - pas: Passport
+
+            - other: Other'
+          x-stoplight:
+            id: gh9ttmhi0xmik
+          enum:
+          - mil
+          - nid
+          - pas
+          - other
+        eori_number:
+          type:
+          - string
+          - 'null'
+          description: eori number
+        location:
+          type:
+          - object
+          - 'null'
+          properties:
+            lat:
+              type: number
+              description: latitude number
+            lng:
+              type: number
+              description: longitude number
+    Meta.v3:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Address_validation.v3:
+      title: AddressValidation
+      x-stoplight:
+        id: dlhxyq4goztjs
+      type: object
+      description: The Address Validation object is used to provide information about an address, including the recommended address if available. Production and sandbox APIs support `USA` addresses by default, and you can contact our support team to enable `AUS, BEL, DNK, and DEU` in our sandbox API for testing as well.
+      x-tags:
+      - Resource
+      examples: []
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Validation result of the address
+          enum:
+          - valid
+          - invalid
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address.v3'
+        recommended_address:
+          $ref: '#/components/schemas/Address.v3'
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

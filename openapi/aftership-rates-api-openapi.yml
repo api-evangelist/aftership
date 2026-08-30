@@ -1,0 +1,2975 @@
+openapi: 3.2.0
+info:
+  title: Overview Rates API
+  version: '1.0'
+  summary: API Overview
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+servers:
+- description: Sandbox
+  url: https://sandbox-api.aftership.com/postmen/v3
+- url: https://api.aftership.com/postmen/v3
+  description: Production
+security:
+- as-api-key: []
+tags:
+- name: Rates
+paths:
+  /rates:
+    parameters: []
+    get:
+      summary: Get rates
+      responses:
+        '200':
+          description: 'get rates '
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      next_token: '1'
+                      limit: 20
+                      created_at_min: '2015-04-18T09:23:21+00:00'
+                      created_at_max: '2016-09-19T10:17:22+00:00'
+                      rates:
+                      - created_at: '2016-09-19T09:22:35+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T09:22:37+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: dhl
+                            description: dhl (Runscope)
+                          service_type: null
+                          service_name: null
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                          charge_weight: null
+                          total_charge: null
+                          detailed_charges: []
+                      - created_at: '2016-09-19T09:05:18+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T09:05:20+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canpar
+                            description: canpar (Runscope)
+                          service_type: canpar_usa
+                          service_name: USA
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 5
+                            unit: lb
+                          total_charge:
+                            amount: 32.35
+                            currency: CAD
+                          detailed_charges:
+                          - type: Freight Charge
+                            charge:
+                              amount: 26.73
+                              currency: CAD
+                          - type: Fuel Surcharge
+                            charge:
+                              amount: 2.82
+                              currency: CAD
+                          - type: Residential Address Charge
+                            charge:
+                              amount: 2.8
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canpar
+                            description: canpar (Runscope)
+                          service_type: canpar_select_usa
+                          service_name: Select USA
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 5
+                            unit: lb
+                          total_charge:
+                            amount: 90.46
+                            currency: CAD
+                          detailed_charges:
+                          - type: Freight Charge
+                            charge:
+                              amount: 79.77
+                              currency: CAD
+                          - type: Fuel Surcharge
+                            charge:
+                              amount: 7.89
+                              currency: CAD
+                          - type: Residential Address Charge
+                            charge:
+                              amount: 2.8
+                              currency: CAD
+                      - created_at: '2016-09-19T09:04:14+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T09:04:17+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: purolator
+                            description: purolator (Runscope)
+                          service_type: purolator_ground_us
+                          service_name: purolator_ground_us
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-26'
+                          transit_time: 5
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 37.42
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 35.3
+                              currency: CAD
+                          - type: fuel
+                            charge:
+                              amount: 2.12
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: purolator
+                            description: purolator (Runscope)
+                          service_type: purolator_express_us
+                          service_name: purolator_express_us
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 152.75
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 144.1
+                              currency: CAD
+                          - type: fuel
+                            charge:
+                              amount: 8.65
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: purolator
+                            description: purolator (Runscope)
+                          service_type: purolator_express_us_1030am
+                          service_name: purolator_express_us_1030am
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 160.38
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 151.3
+                              currency: CAD
+                          - type: fuel
+                            charge:
+                              amount: 9.08
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: purolator
+                            description: purolator (Runscope)
+                          service_type: purolator_express_us_9am
+                          service_name: purolator_express_us_9am
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 213.75
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 201.65
+                              currency: CAD
+                          - type: fuel
+                            charge:
+                              amount: 12.1
+                              currency: CAD
+                      - created_at: '2016-09-19T09:03:05+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T09:03:08+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: fedex
+                            description: fedex (Runscope)
+                          service_type: fedex_international_economy
+                          service_name: Fedex International Economy
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-22T20:00:00'
+                          transit_time: null
+                          error_message: null
+                          info_message: 'WARNING: Service was validated at the country level, but might not be valid for the actual intended city for the origin.'
+                          charge_weight:
+                            value: 36
+                            unit: lb
+                          total_charge:
+                            amount: 327.33
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 301
+                              currency: USD
+                          - type: residential_delivery
+                            charge:
+                              amount: 3.49
+                              currency: USD
+                          - type: fuel
+                            charge:
+                              amount: 22.84
+                              currency: USD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: fedex
+                            description: fedex (Runscope)
+                          service_type: fedex_international_first
+                          service_name: Fedex International First
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20T08:00:00'
+                          transit_time: null
+                          error_message: null
+                          info_message: 'WARNING: Service was validated at the country level, but might not be valid for the actual intended city for the origin.'
+                          charge_weight:
+                            value: 36
+                            unit: lb
+                          total_charge:
+                            amount: 420.18
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 387.19
+                              currency: USD
+                          - type: residential_delivery
+                            charge:
+                              amount: 3.67
+                              currency: USD
+                          - type: fuel
+                            charge:
+                              amount: 29.32
+                              currency: USD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: fedex
+                            description: fedex (Runscope)
+                          service_type: fedex_international_priority
+                          service_name: Fedex International Priority
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20T10:30:00'
+                          transit_time: null
+                          error_message: null
+                          info_message: 'WARNING: Service was validated at the country level, but might not be valid for the actual intended city for the origin.'
+                          charge_weight:
+                            value: 36
+                            unit: lb
+                          total_charge:
+                            amount: 430.74
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 397.2
+                              currency: USD
+                          - type: residential_delivery
+                            charge:
+                              amount: 3.49
+                              currency: USD
+                          - type: fuel
+                            charge:
+                              amount: 30.05
+                              currency: USD
+                      - created_at: '2016-09-19T09:01:18+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T09:01:21+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canada-post
+                            description: canada-post (Runscope)
+                          service_type: DOM.EP
+                          service_name: Expedited Parcel
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.6
+                            unit: kg
+                          total_charge:
+                            amount: 9.99
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 9.21
+                              currency: CAD
+                          - type: fuel_surcharge
+                            charge:
+                              amount: 0.3
+                              currency: CAD
+                          - type: tax
+                            charge:
+                              amount: 0.48
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canada-post
+                            description: canada-post (Runscope)
+                          service_type: DOM.RP
+                          service_name: Regular Parcel
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-21'
+                          transit_time: 2
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.6
+                            unit: kg
+                          total_charge:
+                            amount: 9.99
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 9.21
+                              currency: CAD
+                          - type: fuel_surcharge
+                            charge:
+                              amount: 0.3
+                              currency: CAD
+                          - type: tax
+                            charge:
+                              amount: 0.48
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canada-post
+                            description: canada-post (Runscope)
+                          service_type: DOM.XP
+                          service_name: Xpresspost
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.6
+                            unit: kg
+                          total_charge:
+                            amount: 14
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 12.31
+                              currency: CAD
+                          - type: fuel_surcharge
+                            charge:
+                              amount: 1.02
+                              currency: CAD
+                          - type: tax
+                            charge:
+                              amount: 0.67
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canada-post
+                            description: canada-post (Runscope)
+                          service_type: DOM.PC
+                          service_name: Priority
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.6
+                            unit: kg
+                          total_charge:
+                            amount: 23.95
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 21.07
+                              currency: CAD
+                          - type: fuel_surcharge
+                            charge:
+                              amount: 1.74
+                              currency: CAD
+                          - type: tax
+                            charge:
+                              amount: 1.14
+                              currency: CAD
+                      - created_at: '2016-09-19T09:00:12+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T09:00:15+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: ups
+                            description: ups (Runscope)
+                          service_type: ups_expedited
+                          service_name: UPS Expedited
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: Your invoice may vary from the displayed reference rates.
+                          charge_weight:
+                            value: 14.5
+                            unit: kg
+                          total_charge:
+                            amount: 2207.38
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 2229.68
+                              currency: HKD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: ups
+                            description: ups (Runscope)
+                          service_type: ups_saver
+                          service_name: UPS Saver
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: 1
+                          error_message: null
+                          info_message: Your invoice may vary from the displayed reference rates.
+                          charge_weight:
+                            value: 14.5
+                            unit: kg
+                          total_charge:
+                            amount: 2398.58
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 2422.81
+                              currency: HKD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: ups
+                            description: ups (Runscope)
+                          service_type: ups_express
+                          service_name: UPS Express
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '10:30'
+                          transit_time: 1
+                          error_message: null
+                          info_message: Your invoice may vary from the displayed reference rates.
+                          charge_weight:
+                            value: 14.5
+                            unit: kg
+                          total_charge:
+                            amount: 2540.37
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 2566.03
+                              currency: HKD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: ups
+                            description: ups (Runscope)
+                          service_type: ups_express_plus
+                          service_name: UPS Express Plus
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: 08:30
+                          transit_time: 1
+                          error_message: null
+                          info_message: Your invoice may vary from the displayed reference rates.
+                          charge_weight:
+                            value: 14.5
+                            unit: kg
+                          total_charge:
+                            amount: 2884.1
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 2913.23
+                              currency: HKD
+                      - created_at: '2016-09-19T08:54:42+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T08:54:44+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: endicia
+                            description: endicia (Runscope)
+                          service_type: endicia_priority_mail
+                          service_name: Endicia Priority Mail
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: 0
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 6.71
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 6.71
+                              currency: USD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: endicia
+                            description: endicia (Runscope)
+                          service_type: endicia_priority_mail_registered
+                          service_name: Endicia Priority Mail Registered
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: 0
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 18.41
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 6.71
+                              currency: USD
+                          - type: Fees
+                            charge:
+                              amount: 11.7
+                              currency: USD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: endicia
+                            description: endicia (Runscope)
+                          service_type: endicia_priority_mail_express
+                          service_name: Endicia Priority Mail Express
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: 0
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 20.66
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 20.66
+                              currency: USD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: endicia
+                            description: endicia (Runscope)
+                          service_type: endicia_priority_mail_express_registered
+                          service_name: Endicia Priority Mail Express Registered
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: 0
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 32.36
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 20.66
+                              currency: USD
+                          - type: Fees
+                            charge:
+                              amount: 11.7
+                              currency: USD
+                      - created_at: '2016-09-19T08:53:18+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T08:53:24+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: aramex
+                            description: aramex (Runscope)
+                          service_type: aramex_priority_express
+                          service_name: Priority Express
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 9.54
+                            unit: kg
+                          total_charge:
+                            amount: 499.2
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 499.2
+                              currency: USD
+                      - created_at: '2016-09-19T08:35:22+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T08:35:37+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: bring
+                            description: bring (Runscope)
+                          service_type: PICKUP_PARCEL
+                          service_name: 'yes'
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 416.25
+                            currency: NOK
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 333
+                              currency: NOK
+                          - type: VAT
+                            charge:
+                              amount: 83.25
+                              currency: NOK
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: bring
+                            description: bring (Runscope)
+                          service_type: BUSINESS_PARCEL
+                          service_name: 'yes'
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 596.25
+                            currency: NOK
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 477
+                              currency: NOK
+                          - type: VAT
+                            charge:
+                              amount: 119.25
+                              currency: NOK
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: bring
+                            description: bring (Runscope)
+                          service_type: EXPRESS_INTERNATIONAL
+                          service_name: 'yes'
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 1200.37
+                            currency: NOK
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 960.3
+                              currency: NOK
+                          - type: VAT
+                            charge:
+                              amount: 240.07
+                              currency: NOK
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: bring
+                            description: bring (Runscope)
+                          service_type: EXPRESS_INTERNATIONAL_1200
+                          service_name: 'yes'
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 1605.37
+                            currency: NOK
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 1284.3
+                              currency: NOK
+                          - type: VAT
+                            charge:
+                              amount: 321.07
+                              currency: NOK
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: bring
+                            description: bring (Runscope)
+                          service_type: EXPRESS_NORDIC_SAME_DAY
+                          service_name: 'yes'
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 5429.38
+                            currency: NOK
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 4343.5
+                              currency: NOK
+                          - type: VAT
+                            charge:
+                              amount: 1085.88
+                              currency: NOK
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: bring
+                            description: bring (Runscope)
+                          service_type: EXPRESS_INTERNATIONAL_0900
+                          service_name: 'yes'
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 5712.88
+                            currency: NOK
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 4570.3
+                              currency: NOK
+                          - type: VAT
+                            charge:
+                              amount: 1142.58
+                              currency: NOK
+                      - created_at: '2016-09-19T08:34:34+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T08:34:37+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: fedex-smartpost
+                            description: fedex-smartpost (Runscope)
+                          service_type: SMART_POST
+                          service_name: Smartpost
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: 2
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 3
+                            unit: lb
+                          total_charge:
+                            amount: 10.07
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 9.68
+                              currency: USD
+                          - type: smartpost_fuel
+                            charge:
+                              amount: 0.39
+                              currency: USD
+                      - created_at: '2016-09-19T08:00:09+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T08:00:14+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: hong-kong-post
+                            description: hong-kong-post (Runscope)
+                          service_type: hong-kong-post_e_express
+                          service_name: e-Express
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.5
+                            unit: kg
+                          total_charge:
+                            amount: 139
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 139
+                              currency: HKD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: hong-kong-post
+                            description: hong-kong-post (Runscope)
+                          service_type: hong-kong-post_air_parcel
+                          service_name: Air Parcel
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.5
+                            unit: kg
+                          total_charge:
+                            amount: 224
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 224
+                              currency: HKD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: hong-kong-post
+                            description: hong-kong-post (Runscope)
+                          service_type: hong-kong-post_air_registered_mail_packet
+                          service_name: Air Registered Mail - Packet
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.5
+                            unit: kg
+                          total_charge:
+                            amount: 257.5
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 257.5
+                              currency: HKD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: hong-kong-post
+                            description: hong-kong-post (Runscope)
+                          service_type: hong-kong-post_speedpost
+                          service_name: Speedpost
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.5
+                            unit: kg
+                          total_charge:
+                            amount: 335
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 335
+                              currency: HKD
+                      - created_at: '2016-09-19T04:57:55+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T04:57:57+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: omniparcel
+                            description: omniparcel (Runscope)
+                          service_type: omniparcel_untracked
+                          service_name: Air Untracked
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 2.4
+                            unit: kg
+                          total_charge:
+                            amount: 54.99
+                            currency: HKD
+                          detailed_charges: []
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: omniparcel
+                            description: omniparcel (Runscope)
+                          service_type: omniparcel_tracked
+                          service_name: Air Tracked
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 2.4
+                            unit: kg
+                          total_charge:
+                            amount: 96.34
+                            currency: HKD
+                          detailed_charges: []
+                      - created_at: '2016-09-19T04:44:28+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T04:44:29+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: dpex
+                            description: dpex (Runscope)
+                          service_type: dpex_express
+                          service_name: Express Parcel
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 0.513
+                            unit: kg
+                          total_charge:
+                            amount: 0
+                            currency: HKD
+                          detailed_charges: []
+                      - created_at: '2016-09-19T02:09:57+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-19T02:10:01+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: tnt
+                            description: Runscope
+                          service_type: null
+                          service_name: null
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge: null
+                          detailed_charges: []
+                      - created_at: '2016-09-18T09:22:35+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-18T09:22:36+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: dhl
+                            description: dhl (Runscope)
+                          service_type: null
+                          service_name: null
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: No rate quotes returned from carrier.
+                          charge_weight: null
+                          total_charge: null
+                          detailed_charges: []
+                      - created_at: '2016-09-18T09:05:15+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-18T09:05:18+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canpar
+                            description: canpar (Runscope)
+                          service_type: canpar_usa
+                          service_name: USA
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 5
+                            unit: lb
+                          total_charge:
+                            amount: 32.35
+                            currency: CAD
+                          detailed_charges:
+                          - type: Freight Charge
+                            charge:
+                              amount: 26.73
+                              currency: CAD
+                          - type: Fuel Surcharge
+                            charge:
+                              amount: 2.82
+                              currency: CAD
+                          - type: Residential Address Charge
+                            charge:
+                              amount: 2.8
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canpar
+                            description: canpar (Runscope)
+                          service_type: canpar_select_usa
+                          service_name: Select USA
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 5
+                            unit: lb
+                          total_charge:
+                            amount: 90.46
+                            currency: CAD
+                          detailed_charges:
+                          - type: Freight Charge
+                            charge:
+                              amount: 79.77
+                              currency: CAD
+                          - type: Fuel Surcharge
+                            charge:
+                              amount: 7.89
+                              currency: CAD
+                          - type: Residential Address Charge
+                            charge:
+                              amount: 2.8
+                              currency: CAD
+                      - created_at: '2016-09-18T09:04:15+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-18T09:04:16+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: purolator
+                            description: purolator (Runscope)
+                          service_type: purolator_ground_us
+                          service_name: purolator_ground_us
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-26'
+                          transit_time: 5
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 37.42
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 35.3
+                              currency: CAD
+                          - type: fuel
+                            charge:
+                              amount: 2.12
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: purolator
+                            description: purolator (Runscope)
+                          service_type: purolator_express_us
+                          service_name: purolator_express_us
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 152.75
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 144.1
+                              currency: CAD
+                          - type: fuel
+                            charge:
+                              amount: 8.65
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: purolator
+                            description: purolator (Runscope)
+                          service_type: purolator_express_us_1030am
+                          service_name: purolator_express_us_1030am
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 160.38
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 151.3
+                              currency: CAD
+                          - type: fuel
+                            charge:
+                              amount: 9.08
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: purolator
+                            description: purolator (Runscope)
+                          service_type: purolator_express_us_9am
+                          service_name: purolator_express_us_9am
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight: null
+                          total_charge:
+                            amount: 213.75
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 201.65
+                              currency: CAD
+                          - type: fuel
+                            charge:
+                              amount: 12.1
+                              currency: CAD
+                      - created_at: '2016-09-18T09:03:04+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-18T09:03:07+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: fedex
+                            description: fedex (Runscope)
+                          service_type: fedex_international_economy
+                          service_name: Fedex International Economy
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-22T20:00:00'
+                          transit_time: null
+                          error_message: null
+                          info_message: 'WARNING: Service was validated at the country level, but might not be valid for the actual intended city for the origin.'
+                          charge_weight:
+                            value: 36
+                            unit: lb
+                          total_charge:
+                            amount: 327.33
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 301
+                              currency: USD
+                          - type: residential_delivery
+                            charge:
+                              amount: 3.49
+                              currency: USD
+                          - type: fuel
+                            charge:
+                              amount: 22.84
+                              currency: USD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: fedex
+                            description: fedex (Runscope)
+                          service_type: fedex_international_first
+                          service_name: Fedex International First
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20T08:00:00'
+                          transit_time: null
+                          error_message: null
+                          info_message: 'WARNING: Service was validated at the country level, but might not be valid for the actual intended city for the origin.'
+                          charge_weight:
+                            value: 36
+                            unit: lb
+                          total_charge:
+                            amount: 420.18
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 387.19
+                              currency: USD
+                          - type: residential_delivery
+                            charge:
+                              amount: 3.67
+                              currency: USD
+                          - type: fuel
+                            charge:
+                              amount: 29.32
+                              currency: USD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: fedex
+                            description: fedex (Runscope)
+                          service_type: fedex_international_priority
+                          service_name: Fedex International Priority
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20T10:30:00'
+                          transit_time: null
+                          error_message: null
+                          info_message: 'WARNING: Service was validated at the country level, but might not be valid for the actual intended city for the origin.'
+                          charge_weight:
+                            value: 36
+                            unit: lb
+                          total_charge:
+                            amount: 430.74
+                            currency: USD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 397.2
+                              currency: USD
+                          - type: residential_delivery
+                            charge:
+                              amount: 3.49
+                              currency: USD
+                          - type: fuel
+                            charge:
+                              amount: 30.05
+                              currency: USD
+                      - created_at: '2016-09-18T09:01:18+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-18T09:01:21+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canada-post
+                            description: canada-post (Runscope)
+                          service_type: DOM.EP
+                          service_name: Expedited Parcel
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.6
+                            unit: kg
+                          total_charge:
+                            amount: 9.99
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 9.21
+                              currency: CAD
+                          - type: fuel_surcharge
+                            charge:
+                              amount: 0.3
+                              currency: CAD
+                          - type: tax
+                            charge:
+                              amount: 0.48
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canada-post
+                            description: canada-post (Runscope)
+                          service_type: DOM.RP
+                          service_name: Regular Parcel
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-21'
+                          transit_time: 2
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.6
+                            unit: kg
+                          total_charge:
+                            amount: 9.99
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 9.21
+                              currency: CAD
+                          - type: fuel_surcharge
+                            charge:
+                              amount: 0.3
+                              currency: CAD
+                          - type: tax
+                            charge:
+                              amount: 0.48
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canada-post
+                            description: canada-post (Runscope)
+                          service_type: DOM.XP
+                          service_name: Xpresspost
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.6
+                            unit: kg
+                          total_charge:
+                            amount: 14
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 12.31
+                              currency: CAD
+                          - type: fuel_surcharge
+                            charge:
+                              amount: 1.02
+                              currency: CAD
+                          - type: tax
+                            charge:
+                              amount: 0.67
+                              currency: CAD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: canada-post
+                            description: canada-post (Runscope)
+                          service_type: DOM.PC
+                          service_name: Priority
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '2016-09-20'
+                          transit_time: 1
+                          error_message: null
+                          info_message: null
+                          charge_weight:
+                            value: 1.6
+                            unit: kg
+                          total_charge:
+                            amount: 23.95
+                            currency: CAD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 21.07
+                              currency: CAD
+                          - type: fuel_surcharge
+                            charge:
+                              amount: 1.74
+                              currency: CAD
+                          - type: tax
+                            charge:
+                              amount: 1.14
+                              currency: CAD
+                      - created_at: '2016-09-18T09:00:11+00:00'
+                        id: 00000000-0000-0000-0000-000000000000
+                        updated_at: '2016-09-18T09:00:14+00:00'
+                        status: calculated
+                        rates:
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: ups
+                            description: ups (Runscope)
+                          service_type: ups_expedited
+                          service_name: UPS Expedited
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: null
+                          error_message: null
+                          info_message: Your invoice may vary from the displayed reference rates.
+                          charge_weight:
+                            value: 14.5
+                            unit: kg
+                          total_charge:
+                            amount: 2207.38
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 2229.68
+                              currency: HKD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: ups
+                            description: ups (Runscope)
+                          service_type: ups_saver
+                          service_name: UPS Saver
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: null
+                          transit_time: 1
+                          error_message: null
+                          info_message: Your invoice may vary from the displayed reference rates.
+                          charge_weight:
+                            value: 14.5
+                            unit: kg
+                          total_charge:
+                            amount: 2398.58
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 2422.81
+                              currency: HKD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: ups
+                            description: ups (Runscope)
+                          service_type: ups_express
+                          service_name: UPS Express
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: '10:30'
+                          transit_time: 1
+                          error_message: null
+                          info_message: Your invoice may vary from the displayed reference rates.
+                          charge_weight:
+                            value: 14.5
+                            unit: kg
+                          total_charge:
+                            amount: 2540.37
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 2566.03
+                              currency: HKD
+                        - shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: ups
+                            description: ups (Runscope)
+                          service_type: ups_express_plus
+                          service_name: UPS Express Plus
+                          pickup_deadline: null
+                          booking_cut_off: null
+                          delivery_date: 08:30
+                          transit_time: 1
+                          error_message: null
+                          info_message: Your invoice may vary from the displayed reference rates.
+                          charge_weight:
+                            value: 14.5
+                            unit: kg
+                          total_charge:
+                            amount: 2884.1
+                            currency: HKD
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 2913.23
+                              currency: HKD
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    type: object
+                    properties:
+                      next_token:
+                        type: string
+                      limit:
+                        type: integer
+                      created_at_min:
+                        type: string
+                      created_at_max:
+                        type: string
+                      rates:
+                        type: array
+                        description: The array contains rates object information. Please refer to [rate record](../model/resource/rate_record.v3.json) object for details.
+                        items:
+                          $ref: '#/components/schemas/Rate_record.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      next_token: string
+                      limit: 0
+                      created_at_min: string
+                      created_at_max: string
+                      rates:
+                      - created_at: '2015-09-09T07:49:54.060Z'
+                        id: ad1f9340-608d-4a30-be0e-b0a62e07e4cc
+                        updated_at: '2015-09-09T07:49:57.360Z'
+                        status: calculated
+                        rates:
+                        - charge_weight:
+                            value: 1.5
+                            unit: kg
+                          total_charge:
+                            amount: 429.57
+                            currency: HKD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: dhl
+                            description: DHL Sandbox
+                          service_type: dhl_express_worldwide
+                          service_name: dhl_express_worldwide
+                          pickup_deadline: '2015-09-01T18:00:00+00:00'
+                          booking_cut_off: '2015-09-01T17:00:00+00:00'
+                          delivery_date: '2015-09-01T23:00:00+00:00'
+                          transit_time: 1
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 387
+                              currency: HKD
+                          - type: fuel_surcharge
+                            charge:
+                              amount: 42.57
+                              currency: HKD
+                          error_message: null
+                          info_message: null
+                        - charge_weight:
+                            value: 1.5
+                            unit: kg
+                          total_charge:
+                            amount: 528
+                            currency: HKD
+                          shipper_account:
+                            id: 00000000-0000-0000-0000-000000000000
+                            slug: dhl
+                            description: DHL Sandbox
+                          service_type: dhl_express_easy
+                          service_name: dhl_express_easy
+                          pickup_deadline: '2015-09-01T18:00:00+00:00'
+                          booking_cut_off: '2015-09-01T17:00:00+00:00'
+                          delivery_date: '2015-09-01T23:00:00+00:00'
+                          transit_time: 1
+                          detailed_charges:
+                          - type: base
+                            charge:
+                              amount: 528
+                              currency: HKD
+                          error_message: null
+                          info_message: null
+      operationId: get-rates
+      description: 'Get rates
+
+        <div style="visibility:hidden; height: 0">
+
+        The array contains rates object information. Please refer to [rate record](../model/resource/rate_record.v3.json) object for details.
+
+        </div>'
+      parameters:
+      - schema:
+          type: string
+          enum:
+          - calculating
+          - calculated
+          - failed
+        in: query
+        name: status
+        description: Rate status
+      - schema:
+          type: string
+        in: query
+        name: limit
+        description: Number of records per page
+      - schema:
+          type: string
+        in: query
+        name: created_at_min
+        description: 'Start date and time of the record created (format YYYY-MM-DDTHH:MM:SSZ or YYYY-MM-DDTHH:MM:SS+00:00, default: 24hrs ago)'
+      - schema:
+          type: string
+        in: query
+        name: created_at_max
+        description: 'End date and time of the record created (format YYYY-MM-DDTHH:MM:SSZ or YYYY-MM-DDTHH:MM:SS+00:00, default: NOW())'
+      - schema:
+          type: string
+        in: query
+        name: next_token
+        description: Next token
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      x-internal: false
+      tags:
+      - Rates
+      security:
+      - as-api-key: []
+    post:
+      summary: Calculate rates
+      operationId: post-rates
+      responses:
+        '200':
+          description: Calculate rates
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      created_at: '2015-09-09T07:49:54.060Z'
+                      id: ad1f9340-608d-4a30-be0e-b0a62e07e4cc
+                      updated_at: '2015-09-09T07:49:57.360Z'
+                      status: calculated
+                      rates:
+                      - charge_weight:
+                          value: 1.5
+                          unit: kg
+                        total_charge:
+                          amount: 429.57
+                          currency: HKD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_worldwide
+                        service_name: dhl_express_worldwide
+                        pickup_deadline: '2015-09-01T18:00:00+00:00'
+                        booking_cut_off: '2015-09-01T17:00:00+00:00'
+                        delivery_date: '2015-09-01T23:00:00+00:00'
+                        transit_time: 1
+                        detailed_charges:
+                        - type: base
+                          charge:
+                            amount: 387
+                            currency: HKD
+                        - type: fuel_surcharge
+                          charge:
+                            amount: 42.57
+                            currency: HKD
+                        error_message: null
+                        info_message: null
+                      - charge_weight:
+                          value: 1.5
+                          unit: kg
+                        total_charge:
+                          amount: 528
+                          currency: HKD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_easy
+                        service_name: dhl_express_easy
+                        pickup_deadline: '2015-09-01T18:00:00+00:00'
+                        booking_cut_off: '2015-09-01T17:00:00+00:00'
+                        delivery_date: '2015-09-01T23:00:00+00:00'
+                        transit_time: 1
+                        detailed_charges:
+                        - type: base
+                          charge:
+                            amount: 528
+                            currency: HKD
+                        error_message: null
+                        info_message: null
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    $ref: '#/components/schemas/Rate_record.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      created_at: '2015-09-09T07:49:54.060Z'
+                      id: ad1f9340-608d-4a30-be0e-b0a62e07e4cc
+                      updated_at: '2015-09-09T07:49:57.360Z'
+                      status: calculated
+                      rates:
+                      - charge_weight:
+                          value: 1.5
+                          unit: kg
+                        total_charge:
+                          amount: 429.57
+                          currency: HKD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_worldwide
+                        service_name: dhl_express_worldwide
+                        pickup_deadline: '2015-09-01T18:00:00+00:00'
+                        booking_cut_off: '2015-09-01T17:00:00+00:00'
+                        delivery_date: '2015-09-01T23:00:00+00:00'
+                        transit_time: 1
+                        detailed_charges:
+                        - type: base
+                          charge:
+                            amount: 387
+                            currency: HKD
+                        - type: fuel_surcharge
+                          charge:
+                            amount: 42.57
+                            currency: HKD
+                        error_message: null
+                        info_message: null
+                      - charge_weight:
+                          value: 1.5
+                          unit: kg
+                        total_charge:
+                          amount: 528
+                          currency: HKD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_easy
+                        service_name: dhl_express_easy
+                        pickup_deadline: '2015-09-01T18:00:00+00:00'
+                        booking_cut_off: '2015-09-01T17:00:00+00:00'
+                        delivery_date: '2015-09-01T23:00:00+00:00'
+                        transit_time: 1
+                        detailed_charges:
+                        - type: base
+                          charge:
+                            amount: 528
+                            currency: HKD
+                        error_message: null
+                        info_message: null
+      description: Calculate rates
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  shipper_accounts:
+                  - id: 00000000-0000-0000-0000-000000000000
+                  shipment:
+                    parcels:
+                    - description: Food XS
+                      box_type: custom
+                      weight:
+                        value: 2
+                        unit: kg
+                      dimension:
+                        width: 20
+                        height: 40
+                        depth: 40
+                        unit: cm
+                      items:
+                      - description: Food Bar
+                        origin_country: JPN
+                        quantity: 2
+                        price:
+                          amount: 3
+                          currency: JPY
+                        weight:
+                          value: 0.6
+                          unit: kg
+                        sku: PS4-2015
+                    ship_from:
+                      contact_name: Yin Ting Wong
+                      street1: 'Flat A, 29/F, Block 17
+
+                        Laguna Verde'
+                      city: Hung Hom
+                      state: Kowloon
+                      country: HKG
+                      phone: '96679797'
+                      email: test@test.test
+                      type: residential
+                    ship_to:
+                      contact_name: Mike Carunchia
+                      street1: 9504 W Smith ST
+                      city: Yorktown
+                      state: Indiana
+                      postal_code: '47396'
+                      country: USA
+                      phone: '7657168649'
+                      email: test@test.test
+                      type: residential
+              properties:
+                async:
+                  type: boolean
+                  description: enable async mode or not (set to false if not provided)
+                is_document:
+                  type: boolean
+                  description: If the shipment is document type. (set to false if not provided)
+                ship_date:
+                  type: string
+                  description: Ship Date in YYYY-MM-DD, if not provided, will be today of the shipper account timezone
+                shipper_accounts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                shipment:
+                  $ref: '#/components/schemas/Shipment.v3'
+                expected_delivery_date:
+                  type: string
+                  x-stoplight:
+                    id: 8nn29my2d7cxz
+                  description: Expected Delivery Date in YYYY-MM-DD
+                order_id:
+                  type: string
+                  x-stoplight:
+                    id: w5l7qy1u1wn70
+                  description: Unique identification of the order. The order_id is only used by certain third-party order platforms. Please contact support for details.
+            examples:
+              example-1:
+                value:
+                  shipper_accounts:
+                  - id: 3ba41ff5-59a7-4ff0-8333-64a4375c7f21
+                  shipment:
+                    ship_from:
+                      contact_name: AfterShip Shipping
+                      company_name: AfterShip Shipping
+                      street1: 230 W 200 S LBBY
+                      city: Salt Lake City
+                      state: UT
+                      postal_code: '84101'
+                      country: USA
+                      phone: '123456789'
+                      email: test@test.com
+                    ship_to:
+                      contact_name: AfterShip Shipping
+                      company_name: AfterShip Shipping
+                      street1: 230 W 200 S LBBY
+                      city: Salt Lake City
+                      state: UT
+                      postal_code: '84101'
+                      country: USA
+                      phone: '123456789'
+                      email: test@test.com
+                    parcels:
+                    - box_type: custom
+                      dimension:
+                        width: 10
+                        height: 10
+                        depth: 10
+                        unit: cm
+                      items:
+                      - description: Food Bar
+                        quantity: 1
+                        price:
+                          currency: USD
+                          amount: 100
+                        item_id: '1234567'
+                        origin_country: CHN
+                        weight:
+                          unit: kg
+                          value: 10
+                        sku: imac2014
+                        hs_code: '1006.30'
+                      description: Food XS
+                      weight:
+                        unit: kg
+                        value: 10
+                    return_to:
+                      contact_name: AfterShip Shipping
+                      street1: This is the first streeet
+                      street2: This is the second streeet
+                      city: New York
+                      state: New York
+                      postal_code: '10001'
+                      country: USA
+                      phone: 1-123-456-5496
+                      email: test@test.test
+                      type: residential
+                    delivery_instructions: handle with care
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: Calculate rates
+      tags:
+      - Rates
+      security:
+      - as-api-key: []
+  /rates/{id}:
+    parameters:
+    - schema:
+        type: string
+      name: id
+      in: path
+      required: true
+      description: Rate id
+    get:
+      summary: Get a rate
+      responses:
+        '200':
+          description: Get rate
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    meta:
+                      code: 200
+                      message: OK
+                      details: []
+                    data:
+                      created_at: '2015-09-09T07:49:54.060Z'
+                      id: ad1f9340-608d-4a30-be0e-b0a62e07e4cc
+                      updated_at: '2015-09-09T07:49:57.360Z'
+                      status: calculated
+                      rates:
+                      - charge_weight:
+                          value: 1.5
+                          unit: kg
+                        total_charge:
+                          amount: 429.57
+                          currency: HKD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_worldwide
+                        service_name: dhl_express_worldwide
+                        pickup_deadline: '2015-09-01T18:00:00+00:00'
+                        booking_cut_off: '2015-09-01T17:00:00+00:00'
+                        delivery_date: '2015-09-01T23:00:00+00:00'
+                        transit_time: 1
+                        detailed_charges:
+                        - type: base
+                          charge:
+                            amount: 387
+                            currency: HKD
+                        - type: fuel_surcharge
+                          charge:
+                            amount: 42.57
+                            currency: HKD
+                        error_message: null
+                        info_message: null
+                      - charge_weight:
+                          value: 1.5
+                          unit: kg
+                        total_charge:
+                          amount: 528
+                          currency: HKD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_easy
+                        service_name: dhl_express_easy
+                        pickup_deadline: '2015-09-01T18:00:00+00:00'
+                        booking_cut_off: '2015-09-01T17:00:00+00:00'
+                        delivery_date: '2015-09-01T23:00:00+00:00'
+                        transit_time: 1
+                        detailed_charges:
+                        - type: base
+                          charge:
+                            amount: 528
+                            currency: HKD
+                        error_message: null
+                        info_message: null
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta.v3'
+                  data:
+                    $ref: '#/components/schemas/Rate_record.v3'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      code: 200
+                      type: OK
+                      message: Everything worked as expected.
+                    data:
+                      created_at: '2015-09-09T07:49:54.060Z'
+                      id: ad1f9340-608d-4a30-be0e-b0a62e07e4cc
+                      updated_at: '2015-09-09T07:49:57.360Z'
+                      status: calculated
+                      rates:
+                      - charge_weight:
+                          value: 1.5
+                          unit: kg
+                        total_charge:
+                          amount: 429.57
+                          currency: HKD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_worldwide
+                        service_name: dhl_express_worldwide
+                        pickup_deadline: '2015-09-01T18:00:00+00:00'
+                        booking_cut_off: '2015-09-01T17:00:00+00:00'
+                        delivery_date: '2015-09-01T23:00:00+00:00'
+                        transit_time: 1
+                        detailed_charges:
+                        - type: base
+                          charge:
+                            amount: 387
+                            currency: HKD
+                        - type: fuel_surcharge
+                          charge:
+                            amount: 42.57
+                            currency: HKD
+                        error_message: null
+                        info_message: null
+                      - charge_weight:
+                          value: 1.5
+                          unit: kg
+                        total_charge:
+                          amount: 528
+                          currency: HKD
+                        shipper_account:
+                          id: 00000000-0000-0000-0000-000000000000
+                          slug: dhl
+                          description: DHL Sandbox
+                        service_type: dhl_express_easy
+                        service_name: dhl_express_easy
+                        pickup_deadline: '2015-09-01T18:00:00+00:00'
+                        booking_cut_off: '2015-09-01T17:00:00+00:00'
+                        delivery_date: '2015-09-01T23:00:00+00:00'
+                        transit_time: 1
+                        detailed_charges:
+                        - type: base
+                          charge:
+                            amount: 528
+                            currency: HKD
+                        error_message: null
+                        info_message: null
+      operationId: get-rate
+      description: Get rate
+      parameters:
+      - schema:
+          type: string
+          default: application/json
+          example: application/json
+        in: header
+        name: Content-Type
+        description: Content-Type
+        required: true
+      tags:
+      - Rates
+      security:
+      - as-api-key: []
+components:
+  schemas:
+    Rate.v3:
+      title: Rate
+      x-stoplight:
+        id: gzq8uf274umrg
+      type: object
+      description: 'Rate object: the description of rate information'
+      x-tags:
+      - Resource
+      examples: []
+      properties:
+        charge_weight:
+          $ref: '#/components/schemas/Weight.v3'
+        total_charge:
+          $ref: '#/components/schemas/Money.v3'
+        shipper_account:
+          type: object
+          description: 'Shipper Account (brief information for rate and manifest responses)
+
+            '
+          required:
+          - id
+          - slug
+          properties:
+            id:
+              type: string
+            slug:
+              type: string
+            description:
+              type: string
+        service_type:
+          type: string
+          description: 'Service Types
+
+            '
+        service_name:
+          type: string
+          description: 'name of service
+
+            '
+        pickup_deadline:
+          type:
+          - string
+          - 'null'
+          description: 'A formatted date.
+
+            '
+        booking_cut_off:
+          type:
+          - string
+          - 'null'
+          description: 'A formatted date.
+
+            '
+        delivery_date:
+          type:
+          - string
+          - 'null'
+          description: 'A formatted date.
+
+            '
+        transit_time:
+          type:
+          - integer
+          - 'null'
+          description: transit time
+        detailed_charges:
+          type: array
+          description: Courier charges, it may be different for different couriers
+          items:
+            type:
+            - object
+            - array
+            properties:
+              type:
+                type: string
+                description: detailed charges type
+              charge:
+                $ref: '#/components/schemas/Money.v3'
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: error information
+        info_message:
+          type:
+          - string
+          - 'null'
+          description: other information of request/response
+      required:
+      - shipper_account
+      - service_type
+      - service_name
+    Regulatory_data_item.v3:
+      title: RegulatoryDataItem
+      x-stoplight:
+        id: regulatory-data-item-v3
+      description: 'A CPSC regulatory data entry associated with an item. The shape varies by `fill_mode`. Supported carriers: UPS, FedEx.'
+      x-tags:
+      - Primitive
+      oneOf:
+      - title: CpscDisclaimer
+        type: object
+        description: 'CPSC regulation data filled via disclaimer mode. Supported carriers: UPS, FedEx.'
+        required:
+        - regulation_code
+        - fill_mode
+        - disclaim_code
+        - intended_use_code
+        properties:
+          regulation_code:
+            type: string
+            enum:
+            - CPSC
+            description: Regulation code identifying the applicable regulation.
+          fill_mode:
+            type: string
+            enum:
+            - disclaimer
+            description: Indicates the CPSC compliance fill mode.
+          disclaim_code:
+            type: string
+            enum:
+            - A
+            - B
+            description: '`A` = not regulated by CPSC; `B` = no certificate needed per agency guidance.'
+          intended_use_code:
+            type: string
+            description: Intended use of goods for customs assessment.
+          intended_use_description:
+            type: string
+            description: Supplemental info when `intended_use_code` is `980.000`.
+      - title: CpscReference
+        type: object
+        description: 'CPSC regulation data filled via certificate reference mode. Supported carriers: UPS, FedEx.'
+        required:
+        - regulation_code
+        - fill_mode
+        - certifier_id
+        - product_id
+        - version_id
+        properties:
+          regulation_code:
+            type: string
+            enum:
+            - CPSC
+            description: Regulation code identifying the applicable regulation.
+          fill_mode:
+            type: string
+            enum:
+            - reference
+            description: Indicates the CPSC compliance fill mode.
+          certifier_id:
+            type: string
+            description: Importer's ID in the CPSC Product Registry.
+          product_id:
+            type: string
+            description: Product's ID in the CPSC Product Registry.
+          version_id:
+            type: string
+            description: Version ID of the product certificate in the CPSC Product Registry.
+    Meta.v3:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Item.v3:
+      title: Item
+      x-stoplight:
+        id: 85gwiiinn20p1
+      type: object
+      description: 'Item object: the description of item information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - quantity
+      - description
+      properties:
+        quantity:
+          type: integer
+          description: 'The quantity of the item Minimum: 1'
+        description:
+          type: string
+          description: The description of the item
+        description_cn:
+          type: string
+          description: 'the description of the item in Chinese '
+        price:
+          $ref: '#/components/schemas/Money.v3'
+        item_id:
+          type: string
+          description: The ID of the item
+        origin_country:
+          type: string
+          description: Country in ISO 3166-1 alpha 3 code
+        weight:
+          $ref: '#/components/schemas/Weight.v3'
+        sku:
+          type: string
+          description: The sku of the item.
+        hs_code:
+          type: string
+          description: The HS Code (Harmonized Commodity Description and Coding System) of the item.
+        outbound_hs_code:
+          type: string
+          description: The HS Code (Harmonized Commodity Description and Coding System) of the item as required by the exporting country's customs regulations.
+        return_reason:
+          type: string
+          x-stoplight:
+            id: 86krhz0houiz2
+          description: The reason of return
+        dimension:
+          $ref: '#/components/schemas/Dimension.v3'
+          x-stoplight:
+            id: prw8rr4twlc9v
+        barcode:
+          type: string
+          x-stoplight:
+            id: o455vzu1p8jam
+          description: The barcode of item
+        regulatory_data:
+          type: array
+          description: 'CPSC regulatory data entries associated with this item. Supported carriers: UPS, FedEx.'
+          items:
+            $ref: '#/components/schemas/Regulatory_data_item.v3'
+    Weight.v3:
+      title: Weight
+      x-stoplight:
+        id: sqe056qqggctt
+      type: object
+      description: 'Weight object: unit weight of the item'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        unit:
+          type: string
+          description: weight unit
+          enum:
+          - lb
+          - kg
+          - oz
+          - g
+        value:
+          type: number
+          description: value of Weight
+      required:
+      - unit
+      - value
+    Dimension.v3:
+      title: Dimension
+      x-stoplight:
+        id: k8cgrqqlq38rn
+      type: object
+      description: 'Dimension object: the description of width/height/depth information'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        width:
+          type: number
+          description: width
+        height:
+          type: number
+          description: height
+        depth:
+          type: number
+          description: depth
+        unit:
+          type: string
+          description: unit
+          enum:
+          - cm
+          - in
+          - mm
+          - m
+          - ft
+          - yd
+      required:
+      - width
+      - height
+      - depth
+      - unit
+    Parcel.v3:
+      title: Parcel
+      x-stoplight:
+        id: 39w3kevp07phy
+      type: object
+      description: 'Parcel object: the description of parcel information'
+      properties:
+        box_type:
+          type: string
+          description: Type of box for packaging
+        dimension:
+          $ref: '#/components/schemas/Dimension.v3'
+        items:
+          description: 'items of package Item object, use to describe product to ship
+
+            '
+          type: array
+          items:
+            $ref: '#/components/schemas/Item.v3'
+        description:
+          type: string
+          description: The description of the parcel
+        weight:
+          $ref: '#/components/schemas/Weight.v3'
+      required:
+      - box_type
+      - dimension
+      - items
+      x-tags:
+      - Primitive
+      examples: []
+    Rate_record.v3:
+      title: RateRecord
+      x-stoplight:
+        id: a0hnwegyy5k4z
+      type: object
+      x-tags:
+      - Resource
+      examples: []
+      description: 'RateRecord object: the description of rates information'
+      properties:
+        created_at:
+          type: string
+          description: 'the timestamp of created_at, example: 2022-05-18T09:17:38+00:00'
+        id:
+          type: string
+          description: rate id
+        updated_at:
+          type: string
+          description: 'the timestamp of updated_at, example: 2022-05-18T09:17:38+00:00'
+        status:
+          type: string
+          enum:
+          - calculating
+          - calculated
+          - failed
+        rates:
+          type: array
+          description: rates array
+          items:
+            $ref: '#/components/schemas/Rate.v3'
+    Shipment.v3:
+      type: object
+      title: Shipment
+      x-stoplight:
+        id: jp89xbgwpyeu7
+      description: 'Shipment object: the description of shipment information
+
+        <div style="visibility:hidden; height: 0">
+
+        refer to [shipment](../model/resource/label.v3.json) object.
+
+        </div>'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - ship_from
+      - ship_to
+      - parcels
+      properties:
+        tax_total:
+          $ref: '#/components/schemas/Money.v3'
+          x-stoplight:
+            id: utb4m5c64j0bw
+        ship_from:
+          $ref: '#/components/schemas/Address.v3'
+        ship_from_display:
+          description: 'Address object: An optional address object that lets you customize the ship from details shown on the shipping label.<br/>This is only for visual display and won''t change actual shipping routes or carrier operations.<br/>Supported slug: `purolator`,`canada-post`'
+          $ref: '#/components/schemas/Address.v3'
+        ship_to:
+          $ref: '#/components/schemas/Address.v3'
+        parcels:
+          type: array
+          description: Parcels of shipment
+          items:
+            $ref: '#/components/schemas/Parcel.v3'
+        return_to:
+          $ref: '#/components/schemas/Address.v3'
+        delivery_instructions:
+          type: string
+          description: Instructions to aid in prompt delivery of the shipment.
+    Address.v3:
+      type: object
+      x-stoplight:
+        id: c01e28f80783b
+      x-examples:
+        example-1:
+          country: HKG
+          contact_name: Sir Foo
+          phone: '11111111'
+          fax: +1 206-654-3100
+          email: foo@foo.com
+          company_name: Foo Store
+          street1: Workshop A, 10/F, Wah Shing Industrial Building
+          street2: 18 Cheung Shun Street, Lai Chi Kok
+          city: Lai Chi Kok
+          type: business
+          postal_code: null
+          state: null
+          street3: null
+          tax_id: null
+      title: Address
+      description: 'Address object: the description of address information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - street1
+      - country
+      - contact_name
+      properties:
+        street1:
+          type: string
+          description: 'address_line1 of address
+
+            '
+        country:
+          type: string
+          description: Country in ISO 3166-1 alpha 3 code
+        contact_name:
+          type: string
+          description: contact_name of address
+        phone:
+          type: string
+          description: contact_phone of address
+        fax:
+          type:
+          - string
+          - 'null'
+          description: fax_number of address
+        email:
+          type:
+          - string
+          - 'null'
+          description: email of address
+        company_name:
+          type:
+          - string
+          - 'null'
+          description: company_name of address
+        street2:
+          type:
+          - string
+          - 'null'
+          description: address_line2 of address
+        street3:
+          type:
+          - string
+          - 'null'
+          description: address_line3 of address
+        city:
+          type:
+          - string
+          - 'null'
+          description: city of address
+        state:
+          type:
+          - string
+          - 'null'
+          description: state of address
+        postal_code:
+          type:
+          - string
+          - 'null'
+          description: postal_code of address
+        type:
+          type:
+          - string
+          - 'null'
+          description: type of address
+          enum:
+          - residential
+          - business
+        tax_id:
+          type:
+          - string
+          - 'null'
+          description: tax id
+        tax_id_type:
+          type:
+          - string
+          - 'null'
+          description: 'tax id type. Only applies to DHL Express, DHL eCommerce US, DHL eCommerce UK.
+
+            - vat: Value-Added tax
+
+            - gst: Goods and Service Tax
+
+            - eori: European Union Registration and Identification
+
+            - ioss: Import One Stop Shop
+
+            - pan: Pan-Aarav
+
+            - ukims: UK Internal Market Scheme
+
+            - other: Other
+
+            '
+          x-stoplight:
+            id: 7rtl96ei81zeb
+          enum:
+          - vat
+          - gst
+          - eori
+          - ioss
+          - pan
+          - ukims
+          - other
+        identification_number:
+          type:
+          - string
+          - 'null'
+          description: identification number
+          x-stoplight:
+            id: u1nqwj1dvhw67
+        identification_type:
+          type:
+          - string
+          - 'null'
+          description: 'identification type
+
+            - mil: Military Number
+
+            - nid: National Identity Card
+
+            - pas: Passport
+
+            - other: Other'
+          x-stoplight:
+            id: gh9ttmhi0xmik
+          enum:
+          - mil
+          - nid
+          - pas
+          - other
+        eori_number:
+          type:
+          - string
+          - 'null'
+          description: eori number
+        location:
+          type:
+          - object
+          - 'null'
+          properties:
+            lat:
+              type: number
+              description: latitude number
+            lng:
+              type: number
+              description: longitude number
+    Money.v3:
+      title: Money
+      x-stoplight:
+        id: okc04k6a0ua3b
+      type: object
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        currency:
+          type: string
+          enum:
+          - AED
+          - AFN
+          - ALL
+          - AMD
+          - ANG
+          - AOA
+          - ARS
+          - AUD
+          - AWG
+          - AZN
+          - BAM
+          - BBD
+          - BDT
+          - BGN
+          - BHD
+          - BIF
+          - BMD
+          - BND
+          - BOB
+          - BOV
+          - BRL
+          - BSD
+          - BTN
+          - BWP
+          - BYN
+          - BZD
+          - CAD
+          - CDF
+          - CHE
+          - CHF
+          - CHW
+          - CLF
+          - CLP
+          - CNY
+          - COP
+          - COU
+          - CRC
+          - CUC
+          - CUP
+          - CVE
+          - CZK
+          - DJF
+          - DKK
+          - DOP
+          - DZD
+          - EGP
+          - ERN
+          - ETB
+          - EUR
+          - FJD
+          - FKP
+          - GBP
+          - GEL
+          - GHS
+          - GIP
+          - GMD
+          - GNF
+          - GTQ
+          - GYD
+          - HKD
+          - HNL
+          - HRK
+          - HTG
+          - HUF
+          - IDR
+          - ILS
+          - INR
+          - IQD
+          - IRR
+          - ISK
+          - JMD
+          - JOD
+          - JPY
+          - KES
+          - KGS
+          - KHR
+          - KMF
+          - KPW
+          - KRW
+          - KWD
+          - KYD
+          - KZT
+          - LAK
+          - LBP
+          - LKR
+          - LRD
+          - LSL
+          - LYD
+          - MAD
+          - MDL
+          - MGA
+          - MKD
+          - MMK
+          - MNT
+          - MOP
+          - MRU
+          - MUR
+          - MVR
+          - MWK
+          - MXN
+          - MXV
+          - MYR
+          - MZN
+          - NAD
+          - NGN
+          - NIO
+          - NOK
+          - NPR
+          - NZD
+          - OMR
+          - PAB
+          - PEN
+          - PGK
+          - PHP
+          - PKR
+          - PLN
+          - PYG
+          - QAR
+          - RON
+          - RSD
+          - RUB
+          - RWF
+          - SAR
+          - SBD
+          - SCR
+          - SDG
+          - SEK
+          - SGD
+          - SHP
+          - SLL
+          - SOS
+          - SRD
+          - SSP
+          - STN
+          - SVC
+          - SYP
+          - SZL
+          - THB
+          - TJS
+          - TMT
+          - TND
+          - TOP
+          - TRY
+          - TTD
+          - TWD
+          - TZS
+          - UAH
+          - UGX
+          - USD
+          - USN
+          - UYI
+          - UYW
+          - UYU
+          - UZS
+          - VES
+          - VND
+          - VUV
+          - WST
+          - XAF
+          - XAU
+          - XBA
+          - XBB
+          - XBC
+          - XBD
+          - XCD
+          - XDR
+          - XOF
+          - XPD
+          - XPF
+          - XPT
+          - XSU
+          - XTS
+          - XXX
+          - YER
+          - ZAR
+          - ZMW
+          - ZWL
+          description: Currency of Money
+        amount:
+          type: number
+          description: Amount of Money
+      description: The money object is used to represent the currency amount.
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+  securitySchemes:
+    as-api-key:
+      name: as-api-key
+      type: apiKey
+      in: header

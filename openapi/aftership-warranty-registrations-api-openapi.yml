@@ -1,0 +1,395 @@
+openapi: 3.2.0
+info:
+  title: Overview Warranty Registrations API
+  version: 2026-07
+  summary: API Overview
+  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-prod-wt-public/nodes/reference/api.json?branch=master&deref=optimizedBundle)'
+  contact:
+    name: AfterShip Support
+    url: https://www.aftership.com/contact-us
+    email: support@aftership.com
+  termsOfService: https://www.aftership.com/legal/terms-of-service
+servers:
+- url: https://api.aftership.com/warranty/2026-07
+  description: API Endpoint
+security:
+- ApiKeyAuth: []
+tags:
+- name: Warranty Registrations
+  description: Public endpoints for querying and correcting warranty registration data.
+paths:
+  /orders/warranty-registrations:
+    get:
+      tags:
+      - Warranty Registrations
+      summary: Query warranty registrations by order
+      operationId: get-order-warranty-registrations
+      description: Returns the warranty registration history for each item in the target order. The result includes both valid and invalid registrations, ordered from newest to oldest, and excludes virtual lifetime benefits.
+      parameters:
+      - name: order_number
+        in: query
+        required: true
+        description: The target order number.
+        schema:
+          type: string
+        example: '1001'
+      - name: customer_email
+        in: query
+        required: true
+        description: The customer email on the target order.
+        schema:
+          type: string
+          format: email
+        example: shopper@example.com
+      responses:
+        '200':
+          description: Warranty registrations grouped by order item.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The ecommerce platform order identifier.
+                      items:
+                        type: array
+                        description: The order items with their warranty registration histories.
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: The ecommerce platform order item identifier.
+                            product_title:
+                              type: string
+                              description: The product title of the order item.
+                            product_variant_title:
+                              type: string
+                              description: The product variant title of the order item.
+                            sku:
+                              type: string
+                              description: The item SKU.
+                            warranty_registrations:
+                              type: array
+                              description: Persisted warranty registration history for the item, ordered from newest to oldest.
+                              items:
+                                $ref: '#/components/schemas/Warranty_registrations'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 0ecb8ff7efa84d7d8f763ed7b89851c8
+                  items:
+                  - id: 6f2d9a43c1844ab1a9e7604e52b2f1c3
+                    product_title: Away Bigger Carry-On
+                    product_variant_title: Coast Blue
+                    sku: AWAY-BAG-001
+                    warranty_registrations:
+                    - id: 4b8d1f2a7c3e4a6d9b2f5c1e8d7a4f30
+                      registration_number: REG10001
+                      plan_name: 10-Year Warranty
+                      status: invalid
+                      invalidated_at: '2021-04-15T20:02:09Z'
+                      invalidated_reason: Manual correction after order review
+                      expired_at: '2021-04-15T20:02:09Z'
+                      benefits:
+                        repair_item:
+                          total: 4
+                          remaining: 1
+                        send_repair_kit:
+                          total: 0
+                          remaining: 0
+                        replace_item:
+                          total: 1
+                          remaining: 1
+  /warranty-registrations/{warranty_registration_id}:
+    parameters:
+    - name: warranty_registration_id
+      in: path
+      required: true
+      description: The unique identifier of the warranty registration.
+      schema:
+        type: string
+      example: 4b8d1f2a7c3e4a6d9b2f5c1e8d7a4f30
+    patch:
+      tags:
+      - Warranty Registrations
+      summary: Update a warranty registration
+      operationId: patch-warranty-registration
+      description: Updates a warranty registration. Benefit counters must remain greater than or equal to the quantities already consumed by existing warranty claims.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              minProperties: 1
+              properties:
+                plan_name:
+                  type: string
+                  description: The plan name shown to merchants and shoppers.
+                expired_at:
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  description: The date and time, formatted in ISO 8601, when the warranty registration expires. Null means the plan does not expire.
+                  example: '2024-09-27T10:45:30Z'
+                benefits:
+                  type: object
+                  description: The corrected benefit totals. Each total value must be greater than or equal to the quantity already consumed.
+                  properties:
+                    repair_item:
+                      type: object
+                      description: The corrected repair item benefit.
+                      properties:
+                        total:
+                          type: integer
+                          description: The total free repair count after the correction.
+                    send_repair_kit:
+                      type: object
+                      description: The corrected repair kit benefit.
+                      properties:
+                        total:
+                          type: integer
+                          description: The total free repair kit count after the correction.
+                    replace_item:
+                      type: object
+                      description: The corrected replacement benefit.
+                      properties:
+                        total:
+                          type: integer
+                          description: The total free replacement count after the correction.
+            example:
+              plan_name: 10-Year Warranty
+              expired_at: '2021-04-15T20:02:09Z'
+              benefits:
+                repair_item:
+                  total: 999999
+                send_repair_kit:
+                  total: 999999
+                replace_item:
+                  total: 2
+      responses:
+        '200':
+          description: The updated warranty registration.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Warranty_registrations'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 4b8d1f2a7c3e4a6d9b2f5c1e8d7a4f30
+                  registration_number: REG10001
+                  plan_name: 10-Year Warranty
+                  status: valid
+                  invalidated_at: null
+                  invalidated_reason: null
+                  expired_at: '2021-04-15T20:02:09Z'
+                  benefits:
+                    repair_item:
+                      total: 999999
+                      remaining: 1
+                    send_repair_kit:
+                      total: 999999
+                      remaining: 0
+                    replace_item:
+                      total: 2
+                      remaining: 2
+  /warranty-registrations/{warranty_registration_id}/invalidate:
+    parameters:
+    - name: warranty_registration_id
+      in: path
+      required: true
+      description: The unique identifier of the warranty registration.
+      schema:
+        type: string
+      example: 4b8d1f2a7c3e4a6d9b2f5c1e8d7a4f30
+    post:
+      tags:
+      - Warranty Registrations
+      summary: Invalidate a warranty registration
+      operationId: invalidate-warranty-registration
+      description: Marks a warranty registration as invalid so it no longer participates in active benefit calculations.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: A free-form reason provided by the caller.
+              required:
+              - reason
+            example:
+              reason: Manual correction after order review
+      responses:
+        '200':
+          description: The invalidated warranty registration.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta_20000'
+                  data:
+                    $ref: '#/components/schemas/Warranty_registrations'
+              example:
+                meta:
+                  code: 20000
+                  type: OK
+                  message: The request was successfully processed by AfterShip.
+                data:
+                  id: 4b8d1f2a7c3e4a6d9b2f5c1e8d7a4f30
+                  registration_number: REG10001
+                  plan_name: 10-Year Warranty
+                  status: invalid
+                  invalidated_at: '2021-04-15T20:02:09Z'
+                  invalidated_reason: Manual correction after order review
+                  expired_at: '2021-04-15T20:02:09Z'
+                  benefits:
+                    repair_item:
+                      total: 4
+                      remaining: 1
+                    send_repair_kit:
+                      total: 0
+                      remaining: 0
+                    replace_item:
+                      total: 2
+                      remaining: 2
+components:
+  schemas:
+    Warranty_registrations:
+      title: WarrantyRegistration
+      type: object
+      description: A WarrantyRegistration represents the binding relationship between a warranty plan and an order item, including plan status, benefit quantities, and related metadata.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the warranty registration.
+        registration_number:
+          type:
+          - string
+          - 'null'
+          description: The external registration number, if one exists.
+        plan_name:
+          type: string
+          description: The plan name shown to merchants and shoppers.
+        status:
+          type: string
+          description: The current registration status.
+          enum:
+          - valid
+          - invalid
+          - expired
+        invalidated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the warranty registration was invalidated.
+          example: '2024-09-27T10:45:30Z'
+        invalidated_reason:
+          type:
+          - string
+          - 'null'
+          description: A free-form reason describing why the warranty registration was invalidated.
+        expired_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the warranty registration expires. Null means the plan does not expire.
+          example: '2024-09-27T10:45:30Z'
+        benefits:
+          type: object
+          description: The benefits included in the warranty registration.
+          properties:
+            repair_item:
+              $ref: '#/components/schemas/Benefit'
+            send_repair_kit:
+              $ref: '#/components/schemas/Benefit'
+            replace_item:
+              $ref: '#/components/schemas/Benefit'
+      x-examples:
+        Example 1:
+          id: 4b8d1f2a7c3e4a6d9b2f5c1e8d7a4f30
+          registration_number: REG10001
+          plan_name: 10-Year Warranty
+          status: invalid
+          invalidated_at: '2021-04-15T20:02:09Z'
+          invalidated_reason: Manual correction after order review
+          expired_at: '2021-04-15T20:02:09Z'
+          benefits:
+            repair_item:
+              total: 4
+              remaining: 1
+            send_repair_kit:
+              total: 0
+              remaining: 0
+            replace_item:
+              total: 1
+              remaining: 1
+    Meta_20000:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+        type:
+          type: string
+          minLength: 1
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+    Benefit:
+      title: Benefit
+      type: object
+      description: A benefit object containing the configured total quantity and the remaining quantity calculated by the system.
+      properties:
+        total:
+          type: integer
+          description: The total benefit quantity. Use -1 for unlimited benefits.
+          example: 1
+        remaining:
+          type: integer
+          description: The remaining benefit quantity. Use -1 for unlimited benefits.
+          example: 0
+      x-examples:
+        Example 1:
+          total: 1
+          remaining: 0
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: as-api-key

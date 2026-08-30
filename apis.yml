@@ -39,14 +39,14 @@ tags:
 - Tracking
 - E-Commerce
 - Post-Purchase
-- Notifications
+- Notification
 - Logistics
 - Returns
 - Warranty
 - Address Validation
 - Fulfillment
 - Carriers
-- Webhooks
+- Webhook
 - MCP
 - Retail
 tags_raw:
@@ -201,6 +201,10 @@ apis:
   humanURL: https://www.aftership.com/docs/personalization/quickstart/api-quick-start
   baseURL: https://api.aftership.com/personalization/2025-01
   tags:
+  - Personalization
+  - Recommendations
+  - Artificial Intelligence
+  tags_raw:
   - Personalization
   - Recommendations
   - AI

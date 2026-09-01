@@ -146,6 +146,9 @@ apis:
   baseURL: https://api.aftership.com/admin/2022-01
   tags: &id004
   - Administration
+  - Organization
+  tags_raw:
+  - Administration
   - Organizations
   properties:
   - type: OpenAPI
@@ -238,6 +241,10 @@ apis:
   humanURL: https://www.aftership.com/docs/commerce/quickstart/api-quick-start
   baseURL: https://api.aftership.com/commerce/2026-07
   tags: &id005
+  - Commerce
+  - Order
+  - Product
+  tags_raw:
   - Commerce
   - Orders
   - Products

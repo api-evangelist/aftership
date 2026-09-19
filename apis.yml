@@ -45,7 +45,7 @@ tags:
 - Warranty
 - Address Validation
 - Fulfillment
-- Carriers
+- Carrier
 - Webhook
 - MCP
 - Retail
@@ -85,6 +85,11 @@ apis:
   humanURL: https://www.aftership.com/docs/shipping/quickstart/api-quick-start
   baseURL: https://api.aftership.com/postmen/v3
   tags: &id001
+  - Shipping
+  - Labels
+  - Rates
+  - Carrier
+  tags_raw:
   - Shipping
   - Labels
   - Rates

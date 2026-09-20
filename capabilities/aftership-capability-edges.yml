@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 5
+edge_count: 10
 edges:
 - tag: Estimated delivery date
   spec_file: aftership-estimated-delivery-date-api-openapi.yml
@@ -32,6 +32,17 @@ edges:
     tracking by ID; schemas: Tracking, Checkpoint'
   reason: Operations create and resolve shipment tracking records with carrier checkpoints, which is squarely
     shipment tracking/visibility for the vendor's post-purchase tracking product.
+- tag: Labels
+  spec_file: aftership-labels-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.8
+  evidence: POST /labels post-labels 'Create a label'; schemas Label.v3, Parcel.v3, Customs.v3, Shipment.v3,
+    Rate.v3
+  reason: Shipping-label creation with parcel, customs and shipment payloads is carrier/transport execution
+    — logistics operations.
+  recovered_from: vertical-retail-consumer-goods-edges.json
 - tag: Fulfillments
   spec_file: aftership-fulfillments-api-openapi.yml
   capability_id: BC-520.40
@@ -43,6 +54,26 @@ edges:
   reason: Lifecycle of order fulfilments (create, retrieve, update, status change) with tracking, pickup
     location and weight — order fulfilment orchestration. Slight ambiguity versus outbound/dispatch capabilities
     keeps this below 0.8.
+- tag: Manifests
+  spec_file: aftership-manifests-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.75
+  evidence: POST /manifests post-manifests 'Create a manifest'; schemas Manifest.v3, Files.v3
+  reason: Carrier manifest creation (end-of-day handover document for shipments) is transport execution
+    within logistics operations.
+  recovered_from: vertical-retail-consumer-goods-edges.json
+- tag: Pickups
+  spec_file: aftership-pickups-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.75
+  evidence: 'POST /pickups  post-pickups  Create a pickup; schemas: Pickup_parcel.v3, Address.v3, Dimension.v3'
+  reason: Scheduling carrier parcel pickups with parcel dimensions and addresses is transport execution
+    within logistics operations.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Rates
   spec_file: aftership-rates-api-openapi.yml
   capability_id: BC-2520.50
@@ -65,3 +96,22 @@ edges:
   reason: Full RMA lifecycle — create, approve, reject, resolve, receive items — with Receiving, Restock,
     Refund and Exchange schemas. This is the receipt, triage and disposition of returned goods, i.e. returns
     and reverse-logistics operations.
+- tag: Cancel Labels
+  spec_file: aftership-cancel-labels-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.7
+  evidence: POST /cancel-labels  Cancel a label; Get the cancelled labels
+  reason: Shipping-label lifecycle (cancellation of carrier labels) is transport/logistics execution within
+    the supply chain.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Cancel Pickups
+  spec_file: aftership-cancel-pickups-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.7
+  evidence: POST /cancel-pickups  Cancel a pickup; Get the cancelled pickups
+  reason: Carrier pickup scheduling/cancellation is transport execution — logistics operations.
+  recovered_from: sweep-20260829T005356Z-edges.json

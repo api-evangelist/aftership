@@ -1,0 +1,57 @@
+generated: '2026-08-27'
+method: searched
+source: https://github.com/AfterShip/tracking-and-returns-mcp (provider-published) + generated from the harvested
+  OpenAPI
+skills:
+- file: aftership-tracking-and-returns.md
+  name: tracking-and-returns
+  method: searched
+  author: AfterShip
+  version: 1.0.0
+  license: MIT
+  source: https://github.com/AfterShip/tracking-and-returns-mcp/blob/main/skills/tracking-and-returns/SKILL.md
+  note: PROVIDER-PUBLISHED. Saved verbatim, unmodified. AfterShip ships this as its official Agent Skill alongside
+    the public MCP server; it is installable via ClawHub, skills.sh or a git clone.
+  requires: https://mcp.aftership.com/tracking/public
+- file: aftership-create-and-track-shipment.md
+  name: aftership-create-and-track-shipment
+  method: generated
+  api: AfterShip Tracking API
+  source: openapi/aftership-tracking-api-openapi.yml + https://www.aftership.com/docs/tracking/quickstart/api-quick-start
+  operations:
+  - create-tracking
+  - get-tracking-by-id
+  - get-trackings
+  - detect-courier
+  - retrack-tracking-by-id
+  - mark-tracking-completed-by-id
+  - delete-tracking-by-id
+  - predict
+- file: aftership-process-a-return.md
+  name: aftership-process-a-return
+  method: generated
+  api: AfterShip Returns API
+  source: openapi/aftership-returns-api-openapi.yml
+  operations:
+  - post-returns
+  - post-returns-return_id-approve
+  - post-returns-return_id-reject
+  - post-returns-return_id-receive-items
+  - post-returns-return_id-resolve
+  - post-returns-return_id-remove-items
+  - post-create-return-deep-link
+- file: aftership-buy-a-shipping-label.md
+  name: aftership-buy-a-shipping-label
+  method: generated
+  api: AfterShip Shipping API
+  source: openapi/aftership-labels-api-openapi.yml, openapi/aftership-rates-api-openapi.yml, openapi/aftership-cancel-labels-api-openapi.yml
+  operations:
+  - post-shipper-accounts
+  - post-rates
+  - post-labels
+  - post-cancel-labels
+  - post-manifests
+  - post-pickups
+  - post-cancel-pickups
+  - post-address-validations
+note: Every operationId referenced in these skills was verified against the specs in openapi/ — none is invented.

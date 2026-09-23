@@ -1,0 +1,41 @@
+generated: '2026-08-27'
+method: searched
+source: openapi/aftership-labels-api-openapi.yml servers[] + https://api.aftership.com/llms.txt
+sandbox_published: true
+summary: AfterShip publishes a real sandbox host for the Shipping (Postmen) API only. Every Shipping split spec
+  lists https://sandbox-api.aftership.com/postmen/v3 as its FIRST server, ahead of production. No other AfterShip
+  product publishes a sandbox host, test key prefix, magic identifier or fixture set.
+environments:
+- name: sandbox
+  api: AfterShip Shipping API
+  base_url: https://sandbox-api.aftership.com/postmen/v3
+  source: 'servers[0] in every harvested Shipping spec; also named in https://api.aftership.com/llms.txt as "Sandbox
+    environment: sandbox-api.aftership.com"'
+  auth: Same as-api-key header as production; AfterShip does not publish a distinct test-key prefix.
+  note: Lets a caller exercise rate shopping, label creation, manifests and pickups without generating live carrier
+    labels.
+- name: production
+  api: all AfterShip APIs
+  base_url: https://api.aftership.com/
+test_data:
+  test_cards: null
+  test_accounts: null
+  magic_identifiers: null
+  test_clocks: null
+  note: AfterShip publishes no test cards, magic tracking numbers, seeded fixtures or time-simulation tooling. Nothing
+    was invented here — the absence is the finding.
+other_test_surfaces:
+- name: Try API Endpoints
+  url: https://www.aftership.com/docs/tracking/quickstart/try-api-endpoints
+  kind: in-docs console
+  note: Interactive request builder embedded in the Stoplight-rendered API reference.
+- name: Public MCP server
+  url: https://mcp.aftership.com/tracking/public
+  kind: keyless live endpoint
+  note: Anonymous, read-only shipment tracking with no account required — the only AfterShip surface callable without
+    a key. Fair-use limited.
+- name: Send test webhook
+  url: https://www.aftership.com/docs/tracking/webhook/webhook-overview
+  kind: trigger
+  note: The webhook settings screen offers a "Send test webhook" action to validate a destination URL; a 2xx response
+    is required for the URL to validate.

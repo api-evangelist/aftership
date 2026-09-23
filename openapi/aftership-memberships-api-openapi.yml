@@ -6,7 +6,7 @@ info:
     name: AfterShip Support
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com-admin-organization/nodes/reference/api.v1.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
   termsOfService: https://www.aftership.com/legal/terms-of-service
   summary: API Overview
 servers:
@@ -775,56 +775,6 @@ paths:
       - Memberships
 components:
   schemas:
-    Role.v1:
-      description: Object describes role information.
-      type: object
-      x-examples:
-        example-1:
-          code: admin
-          name: Admin
-      examples: []
-      title: Role
-      properties:
-        code:
-          type: string
-          minLength: 1
-          description: role code
-        name:
-          type: string
-          minLength: 1
-          description: role name
-      required:
-      - code
-      - name
-      x-tags:
-      - Resource
-    Pagination.v1:
-      description: Pagination data
-      type: object
-      x-examples:
-        example-1:
-          page: 1
-          limit: 10
-          total: 9734043
-      title: Pagination
-      examples: []
-      properties:
-        page:
-          type: number
-          minimum: 1
-        limit:
-          type: number
-          minimum: 1
-          maximum: 200
-          default: 100
-        total:
-          type: number
-      required:
-      - page
-      - limit
-      - total
-      x-tags:
-      - Envelope
     Meta.v1:
       description: Meta data object.
       type: object
@@ -855,25 +805,33 @@ components:
       - code
       - type
       - message
-    Error.v1:
+    Pagination.v1:
+      description: Pagination data
       type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: account.email
-        info: account.email is invalid
-      additionalProperties: false
+      x-examples:
+        example-1:
+          page: 1
+          limit: 10
+          total: 9734043
+      title: Pagination
+      examples: []
+      properties:
+        page:
+          type: number
+          minimum: 1
+        limit:
+          type: number
+          minimum: 1
+          maximum: 200
+          default: 100
+        total:
+          type: number
+      required:
+      - page
+      - limit
+      - total
       x-tags:
       - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
     Membership.v1:
       description: Object describes membership information.
       type: object
@@ -925,6 +883,48 @@ components:
       - organization
       - account
       - role
+    Role.v1:
+      description: Object describes role information.
+      type: object
+      x-examples:
+        example-1:
+          code: admin
+          name: Admin
+      examples: []
+      title: Role
+      properties:
+        code:
+          type: string
+          minLength: 1
+          description: role code
+        name:
+          type: string
+          minLength: 1
+          description: role name
+      required:
+      - code
+      - name
+      x-tags:
+      - Resource
+    Error.v1:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: account.email
+        info: account.email is invalid
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
   securitySchemes:
     as-api-key:
       name: as-api-key

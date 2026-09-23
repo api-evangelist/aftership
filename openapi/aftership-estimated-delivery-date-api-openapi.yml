@@ -2,9 +2,10 @@ openapi: 3.2.0
 info:
   title: Overview Estimated delivery date API
   version: '1.0'
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com/nodes/reference/api.json?branch=production%252F2026-07&deref=optimizedBundle)
+  description: '> OAS Schema can be downloaded here
 
-    <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>'
+
+    url'
   contact:
     name: AfterShip Support
     url: https://www.aftership.com/contact-us
@@ -128,7 +129,19 @@ paths:
                       message: some message
                       type: BadRequest
                     data: {}
-      description: "> The estimated delivery date is provided by AfterShip, based on its AI-predictive model. You can display the EDD on the product page, cart, and order checkout page. It indicates when a customer will receive the order.\n\nYou can use [AfterShip’s AI-powered predictive estimated delivery date API](https://www.aftership.com/features/delivery-date-prediction) to provide expected delivery dates to shoppers for online orders without tracking numbers. You can get the earliest date, the latest date, and the most-likely-arrival date through our AI-predictive EDD API. \n\nDisplay accurate estimated delivery dates on the product page, store cart, and order checkout page to encourage customers to check out faster and give them a better customer experience.\n\n[Contact sales](https://www.aftership.com/contact-sales) to activate this feature.\n\n<div style=\"visibility:hidden; height: 0\">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>"
+      description: '> The estimated delivery date is provided by AfterShip, based on its AI-predictive model. You can display the EDD on the product page, cart, and order checkout page. It indicates when a customer will receive the order.
+
+
+        You can use AfterShip’s AI-powered predictive estimated delivery date API to provide expected delivery dates to shoppers for online orders without tracking numbers. You can get the earliest date, the latest date, and the most-likely-arrival date through our AI-predictive EDD API.
+
+
+        Display accurate estimated delivery dates on the product page, store cart, and order checkout page to encourage customers to check out faster and give them a better customer experience.
+
+
+        Contact sales to activate this feature.
+
+
+        urlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurl'
       requestBody:
         content:
           application/json:
@@ -276,7 +289,29 @@ paths:
                       message: some message
                       type: BadRequest
                     data: {}
-      description: "> The estimated delivery date is provided by AfterShip, based on its AI-predictive model. You can display the EDD on the product page, cart, and order checkout page. It indicates when a customer will receive the order.\n\nYou can use [AfterShip’s AI-powered predictive estimated delivery date API](https://www.aftership.com/features/delivery-date-prediction) to provide expected delivery dates to shoppers for online orders without tracking numbers. You can get the earliest date, the latest date, and the most-likely-arrival date through our AI-predictive EDD API. \n\nDisplay accurate estimated delivery dates on the product page, store cart, and order checkout page to encourage customers to check out faster and give them a better customer experience.\n\n[Contact sales](https://www.aftership.com/contact-sales) to activate this feature.\n\nSupported functionalities require:\n\n1. One `EstimatedDeliveryDate` object for one prediction result.\n2. Maximum 5 `EstimatedDeliveryDate` objects are allowed.\n3. API call will fail if any of the requests `EstimatedDeliveryDate` objects do not meet the specification requirement.\n\n<div style=\"visibility:hidden; height: 0\">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>"
+      description: '> The estimated delivery date is provided by AfterShip, based on its AI-predictive model. You can display the EDD on the product page, cart, and order checkout page. It indicates when a customer will receive the order.
+
+
+        You can use AfterShip’s AI-powered predictive estimated delivery date API to provide expected delivery dates to shoppers for online orders without tracking numbers. You can get the earliest date, the latest date, and the most-likely-arrival date through our AI-predictive EDD API.
+
+
+        Display accurate estimated delivery dates on the product page, store cart, and order checkout page to encourage customers to check out faster and give them a better customer experience.
+
+
+        Contact sales to activate this feature.
+
+
+        Supported functionalities require:
+
+
+        1. One `EstimatedDeliveryDate` object for one prediction result.
+
+        2. Maximum 5 `EstimatedDeliveryDate` objects are allowed.
+
+        3. API call will fail if any of the requests `EstimatedDeliveryDate` objects do not meet the specification requirement.
+
+
+        urlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurl'
       requestBody:
         content:
           application/json:
@@ -348,288 +383,6 @@ paths:
         id: 0dkrr2qt6lvwv
 components:
   schemas:
-    Estimated_delivery_date_Request:
-      x-stoplight:
-        id: buezc13rd1k96
-      type: object
-      x-examples:
-        example-1:
-          slug: fedex
-          service_type_name: FEDEX HOME DELIVERY
-          origin_address:
-            country_region: USA
-            state: WA
-            postal_code: '98108'
-            raw_location: Seattle, Washington, 98108, USA, United States
-          destination_address:
-            country_region: USA
-            state: CA
-            postal_code: '92019'
-            raw_location: El Cajon, California, 92019, USA, United States
-          weight: null
-          package_count: null
-          estimated_pickup:
-            order_time: '2021-07-01 15:04:05'
-            order_cutoff_time: '20:00:00'
-            business_days:
-            - 1
-            - 2
-            - 3
-            - 4
-            - 5
-            - 6
-            - 7
-            order_processing_time:
-              unit: day
-              value: 0
-          estimated_delivery_date: '2021-07-07'
-          estimated_delivery_date_min: '2021-07-03'
-          estimated_delivery_date_max: '2021-07-10'
-      title: Estimated_delivery_date Request
-      required:
-      - slug
-      - origin_address
-      - destination_address
-      properties:
-        slug:
-          type: string
-          description: AfterShip's unique code of courier. Please refer to https://track.aftership.com/couriers/download.
-          minLength: 1
-          example: fedex
-          x-stoplight:
-            id: 2fkha2qr7unu4
-        service_type_name:
-          type:
-          - string
-          - 'null'
-          minLength: 1
-          example: FEDEX HOME DELIVERY
-          x-stoplight:
-            id: xf5a54x0eznad
-          description: AfterShip’s unique code represents carrier’s shipping and delivery options. Refer to [Download Link](https://assets.aftership.com/downloads/service_type_list.csv).
-        origin_address:
-          type: object
-          description: The location from where the package is picked up by the carrier to be delivered to the final destination.
-          x-stoplight:
-            id: 3l69kjt8h52rv
-          required:
-          - country_region
-          properties:
-            country_region:
-              type: string
-              description: The country/region of the origin location from where the package is picked up by the carrier to be delivered to the final destination. Use 3 letters of ISO 3166-1 country/region code.
-              minLength: 1
-              example: USA
-              x-stoplight:
-                id: e8i3q8cgrao1i
-            state:
-              type:
-              - string
-              - 'null'
-              description: "State, province, or the equivalent location of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without state. \n</br><span style=color:#ff6b2b;padding:2px>**Either `origin_address.state` or `origin_address.postal_code` is required.**</span>"
-              minLength: 1
-              example: WA
-              maxLength: 256
-              x-stoplight:
-                id: x45tzbvglk1kb
-            city:
-              type:
-              - string
-              - 'null'
-              description: City of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without City.
-              minLength: 1
-              example: Seattle
-              maxLength: 256
-              x-stoplight:
-                id: w2dh3z5iuz66d
-            postal_code:
-              type:
-              - string
-              - 'null'
-              description: "Postal code of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without postal code. \n</br><span style=color:#ff6b2b;padding:2px>**Either `origin_address.state` or `origin_address.postal_code` is required.**</span>"
-              minLength: 1
-              example: '98108'
-              maxLength: 256
-              x-stoplight:
-                id: fnr91dv4wzr7x
-            raw_location:
-              type:
-              - string
-              - 'null'
-              description: Raw location of the origin address. A raw address will help AI to identify the accurate location of the origin address.
-              minLength: 1
-              example: Seattle, Washington, 98108, USA, United States
-              maxLength: 512
-              x-stoplight:
-                id: 4rdm7ly5rzeix
-        destination_address:
-          type: object
-          description: The final destination of the customer where the delivery will be made.
-          x-stoplight:
-            id: 8becp8jxtn0kc
-          required:
-          - country_region
-          properties:
-            country_region:
-              type: string
-              description: The country/region of the destination location where the package will be delivered. Use 3 letters of ISO 3166-1 country code.
-              minLength: 1
-              x-stoplight:
-                id: 0x042hr28q5rd
-            state:
-              type:
-              - string
-              - 'null'
-              description: 'State, province, or the equivalent location of the destination address where the package will be delivered.
-
-                </br><span style=color:#ff6b2b;padding:2px>**Either `destination_address.state` or `destination_address.postal_code` is required.**</span>'
-              minLength: 1
-              maxLength: 256
-              x-stoplight:
-                id: 6kfy7eftkvxvw
-            city:
-              type:
-              - string
-              - 'null'
-              description: City of the destination address where the package will be delivered.
-              minLength: 1
-              maxLength: 256
-              x-stoplight:
-                id: 88zharfsrag0i
-            postal_code:
-              type:
-              - string
-              - 'null'
-              description: 'Postal code of the destination address.
-
-                </br><span style=color:#ff6b2b;padding:2px>**Either `destination_address.state` or `destination_address.postal_code` is required.**</span>'
-              minLength: 1
-              maxLength: 256
-              x-stoplight:
-                id: soc4rhu323pph
-            raw_location:
-              type:
-              - string
-              - 'null'
-              description: Raw location of the destination address. A raw address will help AI to identify the accurate location of the destination address.
-              minLength: 1
-              maxLength: 512
-              x-stoplight:
-                id: 5hxma28s9fb5p
-        weight:
-          type:
-          - object
-          - 'null'
-          description: AfterShip uses this object to calculate the total weight of the order.
-          x-stoplight:
-            id: r8zixon4yhr9t
-          required:
-          - unit
-          - value
-          properties:
-            unit:
-              type: string
-              description: 'The weight unit of the package. '
-              example: kg
-              x-stoplight:
-                id: p70tijbxdtej6
-            value:
-              type: number
-              description: The weight of the shipment.
-              example: 1
-              x-stoplight:
-                id: 33iyg3ulcnbzm
-        package_count:
-          type:
-          - integer
-          - 'null'
-          description: The number of packages.
-          example: 1
-          x-stoplight:
-            id: gqk68aa256ryf
-        pickup_time:
-          type:
-          - string
-          - 'null'
-          example: '2021-07-01 06:42:30'
-          x-stoplight:
-            id: j6yfz7d6yc8n1
-          description: 'The local pickup time in the origin address time zone of the package.
-
-            </br><span style=color:#ff6b2b;padding:2px>**Either `pickup_time` or `estimated_pickup` is required.**</span>'
-        estimated_pickup:
-          type:
-          - object
-          - 'null'
-          description: 'The local pickup time of the package.
-
-            </br><span style=color:#ff6b2b;padding:2px>**Either `pickup_time` or `estimated_pickup` is required.**</span>'
-          x-stoplight:
-            id: prba2x0eapziz
-          required:
-          - order_time
-          properties:
-            order_time:
-              type: string
-              description: The local order time in the origin address time zone of the package.
-              minLength: 1
-              example: '2021-07-01 15:04:05'
-              x-stoplight:
-                id: aweebjla82xtj
-            order_cutoff_time:
-              type:
-              - string
-              - 'null'
-              minLength: 1
-              example: '20:00:00'
-              x-stoplight:
-                id: abspbd3v6q79o
-              description: Order cut off time in the origin address time zone. The default value set by AfterShip is 18:00:00.
-            business_days:
-              type:
-              - array
-              - 'null'
-              description: 'Operating days in a week. Number refers to the weekday.
-
-                E.g., [1,2,3,4,5] means operating days are from Monday to Friday.
-
-                AfterShip will set [1,2,3,4,5] as the default value.'
-              x-stoplight:
-                id: 40m6r0vh76ydy
-              items:
-                type: integer
-                description: 'Operating days in a week. Number refers to the weekday.
-
-                  E.g., [1,2,3,4,5] means operating days are from Monday to Friday.
-
-                  AfterShip will set [1,2,3,4,5] as the default value.'
-                example: 0
-                x-stoplight:
-                  id: synct2dgbd6ib
-            order_processing_time:
-              type:
-              - object
-              - 'null'
-              x-stoplight:
-                id: 56a65mpwjlyye
-              properties:
-                unit:
-                  type: string
-                  minLength: 1
-                  example: day
-                  description: 'Processing time of an order, from being placed to being picked up. Only support day as value now.
-
-                    AfterShip will set day as the default value.'
-                  x-stoplight:
-                    id: raqv0b7k2ikz0
-                value:
-                  type: number
-                  example: 0
-                  description: 'Processing time of an order, from being placed to being picked up.
-
-                    AfterShip will set 0 as the default value.'
-                  x-stoplight:
-                    id: 4rv3pdeeonpjb
     Meta.v1:
       title: meta
       type: object
@@ -979,6 +732,288 @@ components:
           example: '2021-07-04'
           x-stoplight:
             id: 54toustiy68ro
+    Estimated_delivery_date_Request:
+      x-stoplight:
+        id: buezc13rd1k96
+      type: object
+      x-examples:
+        example-1:
+          slug: fedex
+          service_type_name: FEDEX HOME DELIVERY
+          origin_address:
+            country_region: USA
+            state: WA
+            postal_code: '98108'
+            raw_location: Seattle, Washington, 98108, USA, United States
+          destination_address:
+            country_region: USA
+            state: CA
+            postal_code: '92019'
+            raw_location: El Cajon, California, 92019, USA, United States
+          weight: null
+          package_count: null
+          estimated_pickup:
+            order_time: '2021-07-01 15:04:05'
+            order_cutoff_time: '20:00:00'
+            business_days:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+            order_processing_time:
+              unit: day
+              value: 0
+          estimated_delivery_date: '2021-07-07'
+          estimated_delivery_date_min: '2021-07-03'
+          estimated_delivery_date_max: '2021-07-10'
+      title: Estimated_delivery_date Request
+      required:
+      - slug
+      - origin_address
+      - destination_address
+      properties:
+        slug:
+          type: string
+          description: AfterShip's unique code of courier. Please refer to https://track.aftership.com/couriers/download.
+          minLength: 1
+          example: fedex
+          x-stoplight:
+            id: 2fkha2qr7unu4
+        service_type_name:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          example: FEDEX HOME DELIVERY
+          x-stoplight:
+            id: xf5a54x0eznad
+          description: AfterShip’s unique code represents carrier’s shipping and delivery options. Refer to [Download Link](https://assets.aftership.com/downloads/service_type_list.csv).
+        origin_address:
+          type: object
+          description: The location from where the package is picked up by the carrier to be delivered to the final destination.
+          x-stoplight:
+            id: 3l69kjt8h52rv
+          required:
+          - country_region
+          properties:
+            country_region:
+              type: string
+              description: The country/region of the origin location from where the package is picked up by the carrier to be delivered to the final destination. Use 3 letters of ISO 3166-1 country/region code.
+              minLength: 1
+              example: USA
+              x-stoplight:
+                id: e8i3q8cgrao1i
+            state:
+              type:
+              - string
+              - 'null'
+              description: "State, province, or the equivalent location of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without state. \n</br><span style=color:#ff6b2b;padding:2px>**Either `origin_address.state` or `origin_address.postal_code` is required.**</span>"
+              minLength: 1
+              example: WA
+              maxLength: 256
+              x-stoplight:
+                id: x45tzbvglk1kb
+            city:
+              type:
+              - string
+              - 'null'
+              description: City of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without City.
+              minLength: 1
+              example: Seattle
+              maxLength: 256
+              x-stoplight:
+                id: w2dh3z5iuz66d
+            postal_code:
+              type:
+              - string
+              - 'null'
+              description: "Postal code of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without postal code. \n</br><span style=color:#ff6b2b;padding:2px>**Either `origin_address.state` or `origin_address.postal_code` is required.**</span>"
+              minLength: 1
+              example: '98108'
+              maxLength: 256
+              x-stoplight:
+                id: fnr91dv4wzr7x
+            raw_location:
+              type:
+              - string
+              - 'null'
+              description: Raw location of the origin address. A raw address will help AI to identify the accurate location of the origin address.
+              minLength: 1
+              example: Seattle, Washington, 98108, USA, United States
+              maxLength: 512
+              x-stoplight:
+                id: 4rdm7ly5rzeix
+        destination_address:
+          type: object
+          description: The final destination of the customer where the delivery will be made.
+          x-stoplight:
+            id: 8becp8jxtn0kc
+          required:
+          - country_region
+          properties:
+            country_region:
+              type: string
+              description: The country/region of the destination location where the package will be delivered. Use 3 letters of ISO 3166-1 country code.
+              minLength: 1
+              x-stoplight:
+                id: 0x042hr28q5rd
+            state:
+              type:
+              - string
+              - 'null'
+              description: 'State, province, or the equivalent location of the destination address where the package will be delivered.
+
+                </br><span style=color:#ff6b2b;padding:2px>**Either `destination_address.state` or `destination_address.postal_code` is required.**</span>'
+              minLength: 1
+              maxLength: 256
+              x-stoplight:
+                id: 6kfy7eftkvxvw
+            city:
+              type:
+              - string
+              - 'null'
+              description: City of the destination address where the package will be delivered.
+              minLength: 1
+              maxLength: 256
+              x-stoplight:
+                id: 88zharfsrag0i
+            postal_code:
+              type:
+              - string
+              - 'null'
+              description: 'Postal code of the destination address.
+
+                </br><span style=color:#ff6b2b;padding:2px>**Either `destination_address.state` or `destination_address.postal_code` is required.**</span>'
+              minLength: 1
+              maxLength: 256
+              x-stoplight:
+                id: soc4rhu323pph
+            raw_location:
+              type:
+              - string
+              - 'null'
+              description: Raw location of the destination address. A raw address will help AI to identify the accurate location of the destination address.
+              minLength: 1
+              maxLength: 512
+              x-stoplight:
+                id: 5hxma28s9fb5p
+        weight:
+          type:
+          - object
+          - 'null'
+          description: AfterShip uses this object to calculate the total weight of the order.
+          x-stoplight:
+            id: r8zixon4yhr9t
+          required:
+          - unit
+          - value
+          properties:
+            unit:
+              type: string
+              description: 'The weight unit of the package. '
+              example: kg
+              x-stoplight:
+                id: p70tijbxdtej6
+            value:
+              type: number
+              description: The weight of the shipment.
+              example: 1
+              x-stoplight:
+                id: 33iyg3ulcnbzm
+        package_count:
+          type:
+          - integer
+          - 'null'
+          description: The number of packages.
+          example: 1
+          x-stoplight:
+            id: gqk68aa256ryf
+        pickup_time:
+          type:
+          - string
+          - 'null'
+          example: '2021-07-01 06:42:30'
+          x-stoplight:
+            id: j6yfz7d6yc8n1
+          description: 'The local pickup time in the origin address time zone of the package.
+
+            </br><span style=color:#ff6b2b;padding:2px>**Either `pickup_time` or `estimated_pickup` is required.**</span>'
+        estimated_pickup:
+          type:
+          - object
+          - 'null'
+          description: 'The local pickup time of the package.
+
+            </br><span style=color:#ff6b2b;padding:2px>**Either `pickup_time` or `estimated_pickup` is required.**</span>'
+          x-stoplight:
+            id: prba2x0eapziz
+          required:
+          - order_time
+          properties:
+            order_time:
+              type: string
+              description: The local order time in the origin address time zone of the package.
+              minLength: 1
+              example: '2021-07-01 15:04:05'
+              x-stoplight:
+                id: aweebjla82xtj
+            order_cutoff_time:
+              type:
+              - string
+              - 'null'
+              minLength: 1
+              example: '20:00:00'
+              x-stoplight:
+                id: abspbd3v6q79o
+              description: Order cut off time in the origin address time zone. The default value set by AfterShip is 18:00:00.
+            business_days:
+              type:
+              - array
+              - 'null'
+              description: 'Operating days in a week. Number refers to the weekday.
+
+                E.g., [1,2,3,4,5] means operating days are from Monday to Friday.
+
+                AfterShip will set [1,2,3,4,5] as the default value.'
+              x-stoplight:
+                id: 40m6r0vh76ydy
+              items:
+                type: integer
+                description: 'Operating days in a week. Number refers to the weekday.
+
+                  E.g., [1,2,3,4,5] means operating days are from Monday to Friday.
+
+                  AfterShip will set [1,2,3,4,5] as the default value.'
+                example: 0
+                x-stoplight:
+                  id: synct2dgbd6ib
+            order_processing_time:
+              type:
+              - object
+              - 'null'
+              x-stoplight:
+                id: 56a65mpwjlyye
+              properties:
+                unit:
+                  type: string
+                  minLength: 1
+                  example: day
+                  description: 'Processing time of an order, from being placed to being picked up. Only support day as value now.
+
+                    AfterShip will set day as the default value.'
+                  x-stoplight:
+                    id: raqv0b7k2ikz0
+                value:
+                  type: number
+                  example: 0
+                  description: 'Processing time of an order, from being placed to being picked up.
+
+                    AfterShip will set 0 as the default value.'
+                  x-stoplight:
+                    id: 4rv3pdeeonpjb
   securitySchemes:
     as-api-key:
       name: as-api-key

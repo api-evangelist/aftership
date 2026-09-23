@@ -1,0 +1,102 @@
+generated: '2026-08-27'
+method: searched
+source: https://github.com/AfterShip/tracking-and-returns-mcp
+name: AfterShip Tracking & Returns MCP Server
+description: AfterShip publishes an anonymous, no-auth remote MCP server for real-time package tracking and a Returns
+  Center demo, plus two OAuth-gated remote MCP servers (Post-purchase and Channels) documented on the AfterShip
+  docs site.
+deployment:
+  mode: remote
+  endpoint: https://mcp.aftership.com/tracking/public
+  auth: none
+  verified: probed
+  transport: Streamable HTTP
+  protocol_version: '2025-03-26'
+  note: 'Endpoint is published verbatim in AfterShip''s own GitHub README and SKILL.md. Probed 2026-08-27: POST
+    initialize returned HTTP 429 "API rate limit exceeded" (meta.source: gateway, ratelimit-limit 100000, ratelimit-remaining
+    0, retry-after 31090), so tools/list could not be introspected in this pass. The endpoint is live and routing
+    — a 429 from the AfterShip gateway is a rate-limit answer from the real server, not a miss. Tool names, descriptions
+    and parameters below are transcribed from AfterShip''s published README and SKILL.md; JSON Schema types were
+    not read from a live tools/list response.'
+servers:
+- name: tracking-and-returns (public)
+  mode: remote
+  endpoint: https://mcp.aftership.com/tracking/public
+  auth: none
+  verified: probed
+  status: published
+  docs: https://github.com/AfterShip/tracking-and-returns-mcp
+  fair_use: Free for personal, non-commercial, interactive use. Automated scripts, bulk lookups and high-volume
+    integrations are explicitly not permitted.
+  read_only: true
+- name: AfterShip Post-purchase MCP
+  mode: remote
+  endpoint: null
+  auth: oauth
+  verified: searched
+  status: published
+  docs: https://www.aftership.com/docs/post-purchase-mcp/overview
+  install_local_name: aftership-post-purchase
+  note: Installed with `claude mcp add` then `claude mcp login aftership-post-purchase`; authentication is an AfterShip
+    OAuth flow scoped to an organization. The exact endpoint URL is rendered client-side in the docs code block
+    and was NOT readable in this pass — it is deliberately left null rather than guessed. The docs name list_shipments,
+    get_shipment and list_returns as example tools.
+  tools_named_in_docs:
+  - list_shipments
+  - get_shipment
+  - list_returns
+- name: AfterShip Channels MCP
+  mode: remote
+  endpoint: null
+  auth: oauth
+  verified: searched
+  status: published
+  docs: https://www.aftership.com/docs/channels-mcp/overview
+  install_local_name: aftership-channels
+  note: Same OAuth install pattern. Endpoint URL not readable from the server-rendered docs HTML; not guessed. Docs
+    describe it as helping merchants expand into new sales channels and operate stores with cross-channel data (e.g.
+    "Check my AfterShip onboarding status").
+oauth:
+  protected_resource_metadata: https://mcp.aftership.com/.well-known/oauth-protected-resource
+  authorization_server: https://accounts.aftership.com/auth/realms/business
+  bearer_methods_supported:
+  - header
+  probed_status: 200
+tools:
+- name: track_shipment
+  server: tracking-and-returns (public)
+  method: searched
+  description: Tracks any shipment in real time across 1,200+ carriers worldwide; carrier is auto-detected.
+  parameters:
+  - name: tracking_number
+    type: string
+    required: true
+    description: The tracking number from the shipping confirmation.
+  - name: carrier_slug
+    type: string
+    required: false
+    description: Carrier name or slug (e.g. UPS, FedEx, royal-mail). Auto-detected if omitted.
+  read_only: true
+  fallback: https://www.aftership.com/track/{tracking_number}
+- name: get_returns_demo
+  server: tracking-and-returns (public)
+  method: searched
+  description: Generates a live interactive demo of AfterShip Returns Center for a merchant store domain.
+  parameters:
+  - name: store_url
+    type: string
+    required: true
+    description: The merchant's store domain (e.g. nike.com, example.myshopify.com).
+  read_only: true
+  fallback: https://www.aftership.com/tools/product-demo/returns/{domain}
+clients_documented:
+- Claude.ai
+- Claude Code
+- Claude Desktop
+- ChatGPT
+- Cursor
+- Windsurf
+- VS Code (GitHub Copilot)
+- Codex
+privacy: AfterShip states the public server returns no PII (no recipient names, addresses, phone numbers or payment
+  details) and is read-only.

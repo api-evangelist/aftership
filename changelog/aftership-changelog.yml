@@ -1,0 +1,61 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.aftership.com/docs/tracking/changelog
+scheme: date-based API versions (YYYY-MM), one dated changelog page per product plus a migration guide and a past-changelog
+  archive
+current_version: 2026-07
+current_version_released: '2026-07-09'
+urls:
+  tracking: https://www.aftership.com/docs/tracking/changelog
+  tracking_migration_guide: https://www.aftership.com/docs/tracking/migration-guide
+  tracking_past_changelog: https://www.aftership.com/docs/tracking/past-changelog
+  tracking_webhook_changelog: https://www.aftership.com/docs/tracking/webhook/webhook-changelog
+  returns: https://www.aftership.com/docs/returns/changelog
+  shipping: https://www.aftership.com/docs/shipping/changelog
+  warranty: https://www.aftership.com/docs/warranty/changelog
+  address: https://www.aftership.com/docs/address/changelog
+  personalization: https://www.aftership.com/docs/personalization/changelog
+entries:
+- version: 2026-07
+  date: '2026-07-09'
+  api: AfterShip Tracking API
+  breaking:
+  - change: Base URL moves from https://api.aftership.com/tracking/2026-01 to https://api.aftership.com/tracking/2026-07
+  - change: as-api-version header value moves from 2026-01 to 2026-07
+  additions:
+  - '10 new delivery sub-statuses: Delivered_005, Exception_016 through Exception_021, InTransit_011, InTransit_012,
+    InTransit_013'
+  - New field shipment_dimensions on the tracking object (length, width, height)
+  - New field checkpoints[].hash — a unique per-checkpoint identifier for deduplication
+  - New field customers[].id — the customer identifier on the merchant or platform side (readable and writable)
+  - New field proof_of_delivery — array of POD records (signature or photo); returns a value only once the feature
+    is enabled
+  - New field multi_piece_info — multi-piece shipment metadata; returns a value only on plans that include multi-piece
+  - New field shipment_direction — forward (outbound-to-customer) or return (customer-to-merchant); readable and
+    writable
+  - New field return_shipment — the linked return shipment when shipment_direction is forward
+  - New field forward_shipment — the original outbound shipment when shipment_direction is return
+  affected:
+  - GET /trackings
+  - GET /trackings/:id
+  - DELETE /trackings/:id
+  - POST /trackings
+  - PUT /trackings/:id
+  - POST /trackings/:id/mark-as-completed
+  - POST /trackings/:id/retrack
+  - Tracking Webhook
+- version: 2026-01
+  api: AfterShip Tracking API
+  note: Superseded by 2026-07. Detail archived on the Past Changelog page.
+- version: 2025-07
+  api: AfterShip Tracking API
+  note: The release at which AfterShip moved from a quarterly to a twice-yearly major-version cadence.
+- version: 2025-04
+  api: AfterShip Tracking API
+  note: Archived.
+- version: 2025-01
+  api: AfterShip Tracking API
+  note: Archived.
+note: 'Window: the current API version only. Older versions are archived on the Past Changelog page rather than
+  removed. The site footer advertises a "Changelog & roadmap" page, but /changelog, /roadmap and /changelog-and-roadmap
+  all 404 (probed 2026-08-27); only the per-product API changelogs resolve.'

@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay — Aftership Claims API
+  version: 1.0.0
+extends: openapi/aftership-claims-api-openapi.yml
+x-generated: '2026-08-27'
+x-method: generated
+x-source: apis.yml + conventions/, errors/, rate-limits/, authentication/, lifecycle/ in this repo
+actions:
+- target: $.info
+  update:
+    x-provider: AfterShip
+    x-provider-id: aftership
+    x-apis-io: https://apis.io/provider/aftership
+    x-docs: https://www.aftership.com/docs
+    x-envelope: '{"meta":{...},"data":{...}} — branch on meta.code, not the HTTP status'
+    x-error-catalog: errors/aftership-problem-types.yml
+    x-rate-limits: rate-limits/aftership-rate-limits.yml
+    x-conventions: conventions/aftership-conventions.yml
+    x-lifecycle: lifecycle/aftership-lifecycle.yml
+    x-idempotency: not supported — no Idempotency-Key header on any AfterShip API
+    x-versioning: date-based path segment (YYYY-MM); as-api-version response header
+- target: $.components.securitySchemes
+  update:
+    x-additional-methods-documented: AES/HMAC-SHA256 request signing and OAuth 2.0 are documented by AfterShip but
+      are not expressed in this spec — see authentication/aftership-authentication.yml

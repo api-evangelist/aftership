@@ -8,7 +8,7 @@ info:
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
   termsOfService: https://www.aftership.com/legal/terms-of-service
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
 servers:
 - description: Sandbox
   url: https://sandbox-api.aftership.com/postmen/v3
@@ -205,11 +205,8 @@ paths:
       operationId: get-cancel-labels
       description: 'Get all the cancelled labels.
 
-        <div style="visibility:hidden; height: 0">
 
-        The array contains cancel_lebels object information. Please refer to [cancel label](../model/resource/cancel_label.v3.json) object for details.
-
-        </div>'
+        The array contains cancel_lebels object information. Please refer to cancel label object for details.'
       parameters:
       - schema:
           type: string
@@ -424,6 +421,68 @@ paths:
       - as-api-key: []
 components:
   schemas:
+    Cancel_label.v3:
+      title: CancelLabel
+      x-stoplight:
+        id: z2mr6rgdbtram
+      type: object
+      description: 'Cancel Label object: the description of cancel label object'
+      x-tags:
+      - Resource
+      examples: []
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - cancelling
+          - cancelled
+          - failed
+        label:
+          $ref: '#/components/schemas/Reference.v3'
+        created_at:
+          type: string
+          description: the timestamp of created_at
+          example: '2022-05-18T09:17:38+00:00'
+        updated_at:
+          type: string
+          example: '2022-05-18T09:17:38+00:00'
+          description: the timestamp of updated_at
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+    Reference.v3:
+      title: Reference
+      x-stoplight:
+        id: pwqp1323bhe8q
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'id of referring object
+
+            '
+      x-tags:
+      - Primitive
+      examples: []
+      description: 'Reference object: the description of reference information'
     Meta.v3:
       description: Meta data object.
       type: object
@@ -453,68 +512,6 @@ components:
       required:
       - code
       - message
-    Cancel_label.v3:
-      title: CancelLabel
-      x-stoplight:
-        id: z2mr6rgdbtram
-      type: object
-      description: 'Cancel Label object: the description of cancel label object'
-      x-tags:
-      - Resource
-      examples: []
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - cancelling
-          - cancelled
-          - failed
-        label:
-          $ref: '#/components/schemas/Reference.v3'
-        created_at:
-          type: string
-          description: the timestamp of created_at
-          example: '2022-05-18T09:17:38+00:00'
-        updated_at:
-          type: string
-          example: '2022-05-18T09:17:38+00:00'
-          description: the timestamp of updated_at
-    Reference.v3:
-      title: Reference
-      x-stoplight:
-        id: pwqp1323bhe8q
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'id of referring object
-
-            '
-      x-tags:
-      - Primitive
-      examples: []
-      description: 'Reference object: the description of reference information'
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
   securitySchemes:
     as-api-key:
       name: as-api-key

@@ -1,0 +1,42 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.aftership.com/docs/aftership-pixel + npm registry
+families:
+- family: Analytics / pixel
+  components:
+  - name: AfterShip Pixel SDK
+    kind: browser SDK
+    docs: https://www.aftership.com/docs/aftership-pixel/quickstart
+    reference: https://www.aftership.com/docs/aftership-pixel/api-reference
+    events: https://www.aftership.com/docs/aftership-pixel/events
+    integrations: https://www.aftership.com/docs/aftership-pixel/integrations
+    package: '@aftership/web-pixels'
+    registry: npm
+    version: 0.2.2-alpha.4
+    published: '2025-05-09'
+    note: Client-side event collection for marketing-campaign and analytics attribution. Latest published npm release
+      is an alpha.
+- family: Hosted / embedded surfaces
+  components:
+  - name: Carrier Account element
+    kind: hosted embedded element
+    package: '@aftership/carrier-account-sdk'
+    registry: npm
+    version: 0.1.0
+    published: '2026-04-02'
+    note: Loader that opens an AfterShip-hosted carrier-account connection surface inside a host application, so
+      a merchant can attach carrier credentials without the integrator handling them.
+  - name: Branded tracking page
+    kind: hosted page
+    note: AfterShip-hosted, merchant-branded tracking page with custom domain support on Premium and above.
+    docs: https://www.aftership.com/pricing
+  - name: Returns page deep link
+    kind: hosted page
+    operationId: post-create-return-deep-link
+    api: AfterShip Returns API
+    note: POST /returns/link mints a deep link into the AfterShip-hosted returns portal for a specific shopper/order.
+  - name: Order-lookup widget
+    kind: embeddable widget
+    url: https://www.aftership.com/tools
+    note: Listed under AfterShip free tools alongside a free tracking page and a free AI EDD widget.
+note: Distinct from packages/aftership-packages.yml, which lists server-side API client libraries.

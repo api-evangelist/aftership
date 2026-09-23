@@ -8,7 +8,7 @@ info:
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
   termsOfService: https://www.aftership.com/legal/terms-of-service
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
 servers:
 - description: Sandbox
   url: https://sandbox-api.aftership.com/postmen/v3
@@ -605,7 +605,10 @@ paths:
                         electronic_trade_documents_enabled: true
                         commercial_invoice_letterhead: '********'
                         commercial_invoice_signature: '********'
-      description: "This endpoint allows you to update a legacy FedEx or FedEx Ground® Economy shipper account via API. You can integrate our API with your system and manage the shipper account according to your needs. \n\nOnce the update is completed, the account credentials and address information will be locked and cannot be modified. Please ensure that your account credentials, invoice details, and address are correct before initiating the update."
+      description: 'This endpoint allows you to update a legacy FedEx or FedEx Ground® Economy shipper account via API. You can integrate our API with your system and manage the shipper account according to your needs.
+
+
+        Once the update is completed, the account credentials and address information will be locked and cannot be modified. Please ensure that your account credentials, invoice details, and address are correct before initiating the update.'
       parameters:
       - schema:
           type: string
@@ -800,6 +803,25 @@ paths:
         id: alkwtehrfwa1s
 components:
   schemas:
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Address.v3:
       type: object
       x-stoplight:
@@ -1000,25 +1022,6 @@ components:
       required:
       - code
       - message
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
   securitySchemes:
     as-api-key:
       name: as-api-key

@@ -2,9 +2,10 @@ openapi: 3.2.0
 info:
   title: Overview Courier API
   version: '1.0'
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com/nodes/reference/api.json?branch=production%252F2026-07&deref=optimizedBundle)
+  description: '> OAS Schema can be downloaded here
 
-    <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/authentication.md)</div>'
+
+    url'
   contact:
     name: AfterShip Support
     url: https://www.aftership.com/contact-us
@@ -19,79 +20,6 @@ security:
 tags:
 - name: Courier
 paths:
-  /couriers:
-    get:
-      summary: Get couriers
-      responses:
-        '200':
-          description: Couriers object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Courier_response.v1'
-              examples:
-                get-user-couriers:
-                  value:
-                    meta:
-                      code: 200
-                    data:
-                      total: 1
-                      couriers:
-                      - slug: ups-api
-                        name: UPS
-                        phone: +1 800 742 5877
-                        other_name: United Parcel Service
-                        web_url: https://www.ups.com
-                        required_fields: []
-                        optional_fields: []
-                        default_language: en
-                        support_languages:
-                        - en
-                        service_from_country_regions: []
-                        credentials:
-                          fields:
-                          - name: user_id
-                            type: string
-                            required: true
-                          - name: password
-                            type: string
-                            required: true
-                          - name: access_license_number
-                            type: string
-                            required: true
-      operationId: get-couriers
-      description: 'Return a list of couriers.
-
-
-        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>'
-      parameters:
-      - schema:
-          type: string
-          enum:
-          - application/json
-          example: application/json
-          default: application/json
-        in: header
-        name: Content-Type
-        description: Content-Type
-        required: true
-      - schema:
-          type: boolean
-        in: query
-        name: active
-        description: get user activated couriers
-      - schema:
-          type: string
-          example: usps
-          pattern: ^[a-z0-9-]+$
-          minLength: 1
-        in: query
-        name: slug
-        description: 'Unique courier code Use comma for multiple values. (Example: dhl,ups,usps)'
-      tags:
-      - Courier
-      x-stoplight:
-        id: ukw8ouy82dp1k
   /couriers/detect:
     post:
       summary: Detect courier
@@ -140,10 +68,10 @@ paths:
                     data:
                       total: 0
                       couriers: []
-      description: 'Return a list of matched couriers based on tracking number format and [selected couriers](https://admin.aftership.com/settings/couriers) or a list of couriers.
+      description: 'Return a list of matched couriers based on tracking number format and selected couriers or a list of couriers.
 
 
-        <div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/confidence_codes.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)[url](../../docs/quickstart/authentication.md)</div>'
+        urlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurl'
       parameters:
       - schema:
           type: string
@@ -230,33 +158,30 @@ paths:
       - Courier
 components:
   schemas:
-    Credential_field:
-      x-stoplight:
-        id: pdnkudi6x3v5e
-      title: credential_field
+    Meta.v1:
+      title: meta
       type: object
-      examples:
-      - name: username
-        type: string
-        required: true
+      description: Meta data
+      required:
+      - code
       properties:
-        name:
+        code:
+          type: integer
+          example: 200
+          description: meta code
+        message:
           type: string
-          x-stoplight:
-            id: qeajuoafnpc4x
-          description: The display name of the credential field that users must provide when creating a carrier connection.
-          example: username
+          description: error message, only exist if the response status is not 2xx
         type:
           type: string
-          x-stoplight:
-            id: kl9858csb43ay
-          description: The data type of the credential field, indicating what kind of input is expected.
-          example: string
-        required:
-          type: boolean
-          x-stoplight:
-            id: fe9gi4g81r95f
-          description: It indicates whether the credentials field must be provided or not when creating a carrier connection.
+          enum:
+          - BadRequest
+          - Unauthorized
+          - Forbidden
+          - NotFound
+          - TooManyRequests
+          - InternalError
+          description: error type, only exist if the response status is not 2xx
     Courier_response.v1:
       title: Courier response
       type: object
@@ -429,30 +354,33 @@ components:
                 $ref: '#/components/schemas/Credential_field'
                 x-stoplight:
                   id: pdnkudi6x3v5e
-    Meta.v1:
-      title: meta
+    Credential_field:
+      x-stoplight:
+        id: pdnkudi6x3v5e
+      title: credential_field
       type: object
-      description: Meta data
-      required:
-      - code
+      examples:
+      - name: username
+        type: string
+        required: true
       properties:
-        code:
-          type: integer
-          example: 200
-          description: meta code
-        message:
+        name:
           type: string
-          description: error message, only exist if the response status is not 2xx
+          x-stoplight:
+            id: qeajuoafnpc4x
+          description: The display name of the credential field that users must provide when creating a carrier connection.
+          example: username
         type:
           type: string
-          enum:
-          - BadRequest
-          - Unauthorized
-          - Forbidden
-          - NotFound
-          - TooManyRequests
-          - InternalError
-          description: error type, only exist if the response status is not 2xx
+          x-stoplight:
+            id: kl9858csb43ay
+          description: The data type of the credential field, indicating what kind of input is expected.
+          example: string
+        required:
+          type: boolean
+          x-stoplight:
+            id: fe9gi4g81r95f
+          description: It indicates whether the credentials field must be provided or not when creating a carrier connection.
     Additional_fields.v1:
       x-stoplight:
         id: v0x73k8xspiqw

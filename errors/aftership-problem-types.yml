@@ -1,0 +1,118 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.aftership.com/docs/tracking/quickstart/request-errors
+docs: https://www.aftership.com/docs/tracking/quickstart/request-errors
+format: vendor-envelope
+rfc9457: false
+description: AfterShip does NOT use RFC 9457 application/problem+json. Every response — success or failure — is
+  wrapped in a vendor envelope with a meta block carrying a numeric code, a machine-readable type, an errors array
+  and a human message, plus a data object. The HTTP status and meta.code diverge in places (meta.code 4004 is returned
+  with HTTP 404; meta.code 4012 with HTTP 400), so clients must read meta.code, not the status line, to branch.
+envelope:
+  shape: '{"meta":{"code":<int>,"type":"<string>","message":"<string>","errors":[]},"data":{}}'
+  error_field: meta
+  code_field: meta.code
+  type_field: meta.type
+  message_field: meta.message
+  observed: https://api.aftership.com/v4/openapi.json -> 401 {"data":{},"meta":{"type":"Unauthorized","code":401,"errors":[],"message":"The
+    API key is invalid."}}
+notes:
+- '[field_name] is a dynamic value, e.g. destination_postal_code, tracking_account_number.'
+- 'The MCP gateway adds a "source" key to meta (observed value: "gateway").'
+error_count: 23
+errors:
+- http_status: 400
+  meta_code: 400
+  meta_type: BadRequest
+  message: The request was invalid or cannot be otherwise served.
+- http_status: 400
+  meta_code: 4001
+  meta_type: BadRequest
+  message: Invalid JSON data.
+- http_status: 400
+  meta_code: 4003
+  meta_type: BadRequest
+  message: Tracking already exists.
+- http_status: 404
+  meta_code: 4004
+  meta_type: BadRequest
+  message: Tracking does not exist.
+- http_status: 400
+  meta_code: 4005
+  meta_type: BadRequest
+  message: The value of tracking_number is invalid.
+- http_status: 400
+  meta_code: 4007
+  meta_type: BadRequest
+  message: tracking_number is required.
+- http_status: 400
+  meta_code: 4008
+  meta_type: BadRequest
+  message: The value of [field_name] is invalid.
+- http_status: 400
+  meta_code: 4009
+  meta_type: BadRequest
+  message: '[field_name] is required.'
+- http_status: 400
+  meta_code: 4010
+  meta_type: BadRequest
+  message: The value of slug is invalid.
+- http_status: 400
+  meta_code: 4011
+  meta_type: BadRequest
+  message: 'Missing or invalid value of the required fields for this courier. Besides tracking_number, also required:
+    [field_name]'
+- http_status: 400
+  meta_code: 4012
+  meta_type: BadRequest
+  message: Unable to import shipment — carrier not on the approved auto-detection list, carrier unrecognised, invalid
+    tracking-number format, carrier no longer supported, or tracking number does not belong to a carrier in that
+    group.
+- http_status: 400
+  meta_code: 4013
+  meta_type: BadRequest
+  message: Retrack is not allowed. You can only retrack an inactive tracking.
+- http_status: 400
+  meta_code: 4015
+  meta_type: BadRequest
+  message: The value of id is invalid.
+- http_status: 400
+  meta_code: 4016
+  meta_type: BadRequest
+  message: Retrack is not allowed. You can only retrack each shipment once.
+- http_status: 400
+  meta_code: 4017
+  meta_type: BadRequest
+  message: The format of tracking_number is invalid.
+- http_status: 401
+  meta_code: 401
+  meta_type: Unauthorized
+  message: The API key is invalid.
+- http_status: 403
+  meta_code: 403
+  meta_type: Forbidden
+  message: The request is understood, but it has been refused or access is not allowed.
+- http_status: 404
+  meta_code: 404
+  meta_type: NotFound
+  message: The URI requested is invalid or the resource requested does not exist.
+- http_status: 429
+  meta_code: 429
+  meta_type: TooManyRequests
+  message: You have exceeded the API call rate limit.
+- http_status: 500
+  meta_code: 500
+  meta_type: InternalError
+  message: Something went wrong on AfterShip's end.
+- http_status: 502
+  meta_code: 502
+  meta_type: InternalError
+  message: Something went wrong on AfterShip's end.
+- http_status: 503
+  meta_code: 503
+  meta_type: InternalError
+  message: Something went wrong on AfterShip's end.
+- http_status: 504
+  meta_code: 504
+  meta_type: InternalError
+  message: Something went wrong on AfterShip's end.

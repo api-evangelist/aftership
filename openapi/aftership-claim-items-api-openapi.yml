@@ -3,7 +3,7 @@ info:
   title: Overview Claim Items API
   version: 2026-07
   summary: API Overview
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-prod-wt-public/nodes/reference/api.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
   contact:
     name: AfterShip Support
     url: https://www.aftership.com/contact-us
@@ -148,6 +148,19 @@ paths:
                   updated_at: '2026-05-19T10:03:00Z'
 components:
   schemas:
+    Money:
+      description: The store credit value.
+      title: Money
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount represented with two decimal places.
+          example: '99.99'
+        currency:
+          type: string
+          description: The currency code, using ISO 4217 standards.
+          example: USD
     ItemTag:
       title: ItemTag
       x-stoplight:
@@ -172,19 +185,6 @@ components:
           description: The date and time, formatted in ISO 8601, when the item tag was created.
           format: date-time
           example: '2026-05-19T10:00:00Z'
-    Money:
-      description: The store credit value.
-      title: Money
-      type: object
-      properties:
-        amount:
-          type: string
-          description: The amount represented with two decimal places.
-          example: '99.99'
-        currency:
-          type: string
-          description: The currency code, using ISO 4217 standards.
-          example: USD
     Claim_item:
       type: object
       x-examples:

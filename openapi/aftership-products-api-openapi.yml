@@ -8,7 +8,7 @@ info:
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
   termsOfService: https://www.aftership.com/legal/terms-of-service
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-automizely-com-commerce/nodes/reference/api.json?branch=testing%2F2026-07&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
 servers:
 - url: https://api.aftership.com/commerce/2026-07
   description: API Endpoint
@@ -79,7 +79,7 @@ paths:
       description: 'Create a product.
 
 
-        > If you receive an error message stating **"Precondition failed, the store not found."**, please first create a store using the [Create a store](https://www.aftership.com/docs/commerce/2025-04/hadtz8qj5if6w-create-a-store) API.'
+        > If you receive an error message stating **"Precondition failed, the store not found."**, please first create a store using the Create a store API.'
       parameters:
       - $ref: '#/components/parameters/as-store-id'
       requestBody:
@@ -517,7 +517,7 @@ paths:
   /products/{id}/variants:
     post:
       summary: Create a new product variant
-      description: 'Create a new variant for the specified product. '
+      description: Create a new variant for the specified product.
       tags:
       - Products
       operationId: create-product-variant
@@ -674,14 +674,6 @@ paths:
                   data:
                     $ref: '#/components/schemas/Product_variant.v1'
 components:
-  parameters:
-    as-store-id:
-      name: as-store-id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: This value equals to `store.id` of `Store` Resource. You can obtain this id by making a GET /stores call to get existing stores or a POST /stores to create a new store.
   schemas:
     Meta.v1:
       description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
@@ -726,6 +718,49 @@ components:
             '
           items:
             $ref: '#/components/schemas/Error.v1'
+    Weight.v1:
+      description: The unit weight of the item.
+      title: Weight
+      x-stoplight:
+        id: 6ffc0efbd7bf5
+      type: object
+      examples:
+      - unit: kg
+        value: 10
+      x-tags:
+      - Primitive
+      properties:
+        unit:
+          type: string
+          enum:
+          - kg
+          - lb
+          - oz
+          - g
+          description: 'The weight unit eg: g or kg.'
+        value:
+          type: number
+          description: The value of the weight.
+          example: 10
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
     Product_variant.v1:
       title: product_variant.v1
       x-stoplight:
@@ -798,77 +833,6 @@ components:
                 description: The value of the custom product property.
                 maxLength: 256
                 example: white
-    Error.v1:
-      type: object
-      title: Error
-      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The JSON path of the request object to indicate the error location.
-          example: data.product.title
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: Title is invalid
-    Pagination.v2:
-      title: Pagination
-      x-stoplight:
-        id: 6twr4wc3wp9lu
-      type: object
-      examples:
-      - page: 1
-        limit: 10
-        has_next_page: false
-      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
-      x-tags:
-      - Envelope
-      properties:
-        page:
-          type: integer
-          x-stoplight:
-            id: 5ld3b35057z8s
-          description: Page number.
-        limit:
-          type: integer
-          x-stoplight:
-            id: qmvbmlfjchyh5
-          description: Maximum object count per page.
-        has_next_page:
-          type: boolean
-          x-stoplight:
-            id: qtm2ifhlv0r4i
-          description: To indicate if next page is available.
-    Weight.v1:
-      description: The unit weight of the item.
-      title: Weight
-      x-stoplight:
-        id: 6ffc0efbd7bf5
-      type: object
-      examples:
-      - unit: kg
-        value: 10
-      x-tags:
-      - Primitive
-      properties:
-        unit:
-          type: string
-          enum:
-          - kg
-          - lb
-          - oz
-          - g
-          description: 'The weight unit eg: g or kg.'
-        value:
-          type: number
-          description: The value of the weight.
-          example: 10
     Product.v1:
       x-stoplight:
         id: 180c3db461386
@@ -997,6 +961,42 @@ components:
           type: string
           description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was updated in AfterShip system.
           example: '2021-04-15T20:02:09Z'
+    Pagination.v2:
+      title: Pagination
+      x-stoplight:
+        id: 6twr4wc3wp9lu
+      type: object
+      examples:
+      - page: 1
+        limit: 10
+        has_next_page: false
+      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: integer
+          x-stoplight:
+            id: 5ld3b35057z8s
+          description: Page number.
+        limit:
+          type: integer
+          x-stoplight:
+            id: qmvbmlfjchyh5
+          description: Maximum object count per page.
+        has_next_page:
+          type: boolean
+          x-stoplight:
+            id: qtm2ifhlv0r4i
+          description: To indicate if next page is available.
+  parameters:
+    as-store-id:
+      name: as-store-id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: This value equals to `store.id` of `Store` Resource. You can obtain this id by making a GET /stores call to get existing stores or a POST /stores to create a new store.
   securitySchemes:
     as-api-key:
       name: as-api-key

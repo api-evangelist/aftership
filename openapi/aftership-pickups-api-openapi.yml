@@ -8,7 +8,7 @@ info:
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
   termsOfService: https://www.aftership.com/legal/terms-of-service
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
 servers:
 - description: Sandbox
   url: https://sandbox-api.aftership.com/postmen/v3
@@ -103,11 +103,8 @@ paths:
       operationId: get-pickups
       description: 'Get pickups.
 
-        <div style="visibility:hidden; height: 0">
 
-        This array contains all pickups data. Please refer to [pickup](../model/resource/pickup.v3.json) object for pickup object details.
-
-        </div>'
+        This array contains all pickups data. Please refer to pickup object for pickup object details.'
       x-stoplight:
         id: x8mxu5wa7m6y3
       parameters:
@@ -472,166 +469,6 @@ paths:
       - Pickups
 components:
   schemas:
-    Meta.v3:
-      description: Meta data object.
-      type: object
-      x-examples: {}
-      examples:
-      - code: 200
-        type: OK
-        message: Everything worked as expected.
-      title: Meta
-      x-tags:
-      - Envelope
-      properties:
-        code:
-          type: integer
-          description: Code of Meta
-        message:
-          type: string
-          description: Message of Meta
-        details:
-          type: array
-          description: Details of Meta
-          items:
-            $ref: '#/components/schemas/Error.v3'
-        retryable:
-          type: boolean
-          description: Whether this request will be retryable or not
-      required:
-      - code
-      - message
-    Weight.v3:
-      title: Weight
-      x-stoplight:
-        id: sqe056qqggctt
-      type: object
-      description: 'Weight object: unit weight of the item'
-      x-tags:
-      - Primitive
-      examples: []
-      properties:
-        unit:
-          type: string
-          description: weight unit
-          enum:
-          - lb
-          - kg
-          - oz
-          - g
-        value:
-          type: number
-          description: value of Weight
-      required:
-      - unit
-      - value
-    Reference.v3:
-      title: Reference
-      x-stoplight:
-        id: pwqp1323bhe8q
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'id of referring object
-
-            '
-      x-tags:
-      - Primitive
-      examples: []
-      description: 'Reference object: the description of reference information'
-    Pickup.v3:
-      title: Pickup
-      x-stoplight:
-        id: dnu7w6c2lryrd
-      type: object
-      description: 'Pickup object: the description of pickup information'
-      properties:
-        id:
-          type: string
-          x-stoplight:
-            id: 6shh25v9yirmh
-          description: Pickup ID
-        status:
-          type: string
-          x-stoplight:
-            id: bgy62xipikko1
-          enum:
-          - creating
-          - created
-          - failed
-          - cancelling
-          - cancelled
-        pickup_confirmation_numbers:
-          type: array
-          x-stoplight:
-            id: xbigmmmrfzia7
-          description: The confirmation numbers dispatch from carrier when pickup success
-          items:
-            x-stoplight:
-              id: u8b77786y8vnt
-            type: string
-        pickup_location_code:
-          type: string
-          x-stoplight:
-            id: uz99jzt40cpfl
-          description: The pickup location code dispatch from carrier when pickup success
-        pickup_date:
-          type: string
-          x-stoplight:
-            id: uz99jzt40cpfl
-          description: Pickup Date in YYYY-MM-DD
-        pickup_start_time:
-          type: string
-          x-stoplight:
-            id: k4gfz3e6csald
-          description: A formatted date
-        pickup_end_time:
-          type: string
-          x-stoplight:
-            id: 0lkft6pgp7k4h
-          description: A formatted date
-        pickup_from:
-          $ref: '#/components/schemas/Address.v3'
-          x-stoplight:
-            id: nbr45ggkh7584
-          description: 'Address object: the description of pickup address information'
-        ship_to:
-          $ref: '#/components/schemas/Address.v3'
-          x-stoplight:
-            id: 6x1lv7sr6iaig
-        label_ids:
-          type: array
-          x-stoplight:
-            id: y481cmhzpq3qi
-          description: Labels array, it contains all the label need to pickup
-          items:
-            x-stoplight:
-              id: yovnn28g7hvny
-            type: string
-        pickup_parcels:
-          x-stoplight:
-            id: qa1rp9rr56de3
-          type: array
-          description: Parcel detail information
-          items:
-            $ref: '#/components/schemas/Pickup_parcel.v3'
-            x-stoplight:
-              id: fg0pldgeqxskl
-        shipper_account:
-          $ref: '#/components/schemas/Reference.v3'
-          x-stoplight:
-            id: ca9pepi3lt94n
-        created_at:
-          type: string
-          x-stoplight:
-            id: gsq5ui26timom
-          description: A formatted date
-        updated_at:
-          type: string
-          x-stoplight:
-            id: t4i229d75aonh
-          description: A formatted date
     Pickup_parcel.v3:
       x-stoplight:
         id: rg6vxf4hy1fwr
@@ -662,6 +499,83 @@ components:
           $ref: '#/components/schemas/Dimension.v3'
           x-stoplight:
             id: vf9xym5596paa
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+    Dimension.v3:
+      title: Dimension
+      x-stoplight:
+        id: k8cgrqqlq38rn
+      type: object
+      description: 'Dimension object: the description of width/height/depth information'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        width:
+          type: number
+          description: width
+        height:
+          type: number
+          description: height
+        depth:
+          type: number
+          description: depth
+        unit:
+          type: string
+          description: unit
+          enum:
+          - cm
+          - in
+          - mm
+          - m
+          - ft
+          - yd
+      required:
+      - width
+      - height
+      - depth
+      - unit
+    Weight.v3:
+      title: Weight
+      x-stoplight:
+        id: sqe056qqggctt
+      type: object
+      description: 'Weight object: unit weight of the item'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        unit:
+          type: string
+          description: weight unit
+          enum:
+          - lb
+          - kg
+          - oz
+          - g
+        value:
+          type: number
+          description: value of Weight
+      required:
+      - unit
+      - value
     Address.v3:
       type: object
       x-stoplight:
@@ -833,59 +747,142 @@ components:
             lng:
               type: number
               description: longitude number
-    Dimension.v3:
-      title: Dimension
+    Pickup.v3:
+      title: Pickup
       x-stoplight:
-        id: k8cgrqqlq38rn
+        id: dnu7w6c2lryrd
       type: object
-      description: 'Dimension object: the description of width/height/depth information'
-      x-tags:
-      - Primitive
-      examples: []
+      description: 'Pickup object: the description of pickup information'
       properties:
-        width:
-          type: number
-          description: width
-        height:
-          type: number
-          description: height
-        depth:
-          type: number
-          description: depth
-        unit:
+        id:
           type: string
-          description: unit
+          x-stoplight:
+            id: 6shh25v9yirmh
+          description: Pickup ID
+        status:
+          type: string
+          x-stoplight:
+            id: bgy62xipikko1
           enum:
-          - cm
-          - in
-          - mm
-          - m
-          - ft
-          - yd
-      required:
-      - width
-      - height
-      - depth
-      - unit
-    Error.v3:
+          - creating
+          - created
+          - failed
+          - cancelling
+          - cancelled
+        pickup_confirmation_numbers:
+          type: array
+          x-stoplight:
+            id: xbigmmmrfzia7
+          description: The confirmation numbers dispatch from carrier when pickup success
+          items:
+            x-stoplight:
+              id: u8b77786y8vnt
+            type: string
+        pickup_location_code:
+          type: string
+          x-stoplight:
+            id: uz99jzt40cpfl
+          description: The pickup location code dispatch from carrier when pickup success
+        pickup_date:
+          type: string
+          x-stoplight:
+            id: uz99jzt40cpfl
+          description: Pickup Date in YYYY-MM-DD
+        pickup_start_time:
+          type: string
+          x-stoplight:
+            id: k4gfz3e6csald
+          description: A formatted date
+        pickup_end_time:
+          type: string
+          x-stoplight:
+            id: 0lkft6pgp7k4h
+          description: A formatted date
+        pickup_from:
+          $ref: '#/components/schemas/Address.v3'
+          x-stoplight:
+            id: nbr45ggkh7584
+          description: 'Address object: the description of pickup address information'
+        ship_to:
+          $ref: '#/components/schemas/Address.v3'
+          x-stoplight:
+            id: 6x1lv7sr6iaig
+        label_ids:
+          type: array
+          x-stoplight:
+            id: y481cmhzpq3qi
+          description: Labels array, it contains all the label need to pickup
+          items:
+            x-stoplight:
+              id: yovnn28g7hvny
+            type: string
+        pickup_parcels:
+          x-stoplight:
+            id: qa1rp9rr56de3
+          type: array
+          description: Parcel detail information
+          items:
+            $ref: '#/components/schemas/Pickup_parcel.v3'
+            x-stoplight:
+              id: fg0pldgeqxskl
+        shipper_account:
+          $ref: '#/components/schemas/Reference.v3'
+          x-stoplight:
+            id: ca9pepi3lt94n
+        created_at:
+          type: string
+          x-stoplight:
+            id: gsq5ui26timom
+          description: A formatted date
+        updated_at:
+          type: string
+          x-stoplight:
+            id: t4i229d75aonh
+          description: A formatted date
+    Meta.v3:
+      description: Meta data object.
       type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      x-examples: {}
       examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
       x-tags:
       - Envelope
       properties:
-        path:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
           type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Reference.v3:
+      title: Reference
+      x-stoplight:
+        id: pwqp1323bhe8q
+      type: object
+      properties:
+        id:
           type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
+          description: 'id of referring object
+
+            '
+      x-tags:
+      - Primitive
+      examples: []
+      description: 'Reference object: the description of reference information'
   securitySchemes:
     as-api-key:
       name: as-api-key

@@ -1530,75 +1530,41 @@ paths:
       description: API Endpoint
 components:
   schemas:
-    Amount.v1:
-      title: Amount
+    Meta.v1:
+      description: Meta data object.
       type: object
-      x-examples:
-        example-1:
-          amount: string
-          currency: USD
+      x-examples: {}
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      title: Meta
       x-tags:
-      - Primitive
+      - Envelope
       properties:
-        amount:
-          type: string
-          pattern: ^[0-9.]+$
-          example: '12.34'
-        currency:
-          type: string
-          pattern: ^[A-Z]{3}$
-          minLength: 3
-          maxLength: 3
-          example: USD
-          description: Only support USD for now
-      required:
-      - amount
-      - currency
-    Order_item.v1:
-      type: object
-      x-stoplight:
-        id: 33da09c0dfb8c
-      x-examples:
-        example-1:
-          name: string
-          quantity: 0
-          price:
-            amount: string
-            currency: USD
-          sku: string
-          images:
-          - string
-      title: Order Item
-      x-tags:
-      - Primitive
-      properties:
-        source_id:
-          type: string
-          description: A globally-unique identifier for the item.
-        title:
+        code:
+          type: number
+          default: 20000
+          enum:
+          - 20000
+          - 20100
+          - 40400
+          - 42200
+          - 50000
+        type:
           type: string
           minLength: 1
-          description: Name of the product
-        quantity:
-          type: integer
-          description: Quantity of the item in order
-        unit_insured_amount:
-          $ref: '#/components/schemas/Amount.v1'
-          description: Indicate the insured amount for each individual  item
-        sku:
+        message:
           type: string
           minLength: 1
-          description: SKU of the product item
-        image_urls:
+        errors:
           type: array
-          description: item image urls
           items:
-            type: string
+            $ref: '#/components/schemas/Error.v1'
       required:
-      - source_id
-      - title
-      - quantity
-      - unit_insured_amount
+      - code
+      - type
+      - message
     Claim.v1:
       title: Claim
       x-stoplight:
@@ -1779,6 +1745,30 @@ components:
           description: "time payment was made for the claim in ISO8601 format \n\n null if the claim has not been paid yet"
           minLength: 1
           pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+    Amount.v1:
+      title: Amount
+      type: object
+      x-examples:
+        example-1:
+          amount: string
+          currency: USD
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type: string
+          pattern: ^[0-9.]+$
+          example: '12.34'
+        currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+          minLength: 3
+          maxLength: 3
+          example: USD
+          description: Only support USD for now
+      required:
+      - amount
+      - currency
     Pagination.v1:
       description: Pagination data
       type: object
@@ -1807,41 +1797,51 @@ components:
       - page
       - limit
       - total
-    Meta.v1:
-      description: Meta data object.
+    Order_item.v1:
       type: object
-      x-examples: {}
-      examples:
-      - code: 20000
-        type: OK
-        message: The request was successfully processed by AfterShip.
-      title: Meta
+      x-stoplight:
+        id: 33da09c0dfb8c
+      x-examples:
+        example-1:
+          name: string
+          quantity: 0
+          price:
+            amount: string
+            currency: USD
+          sku: string
+          images:
+          - string
+      title: Order Item
       x-tags:
-      - Envelope
+      - Primitive
       properties:
-        code:
-          type: number
-          default: 20000
-          enum:
-          - 20000
-          - 20100
-          - 40400
-          - 42200
-          - 50000
-        type:
+        source_id:
+          type: string
+          description: A globally-unique identifier for the item.
+        title:
           type: string
           minLength: 1
-        message:
+          description: Name of the product
+        quantity:
+          type: integer
+          description: Quantity of the item in order
+        unit_insured_amount:
+          $ref: '#/components/schemas/Amount.v1'
+          description: Indicate the insured amount for each individual  item
+        sku:
           type: string
           minLength: 1
-        errors:
+          description: SKU of the product item
+        image_urls:
           type: array
+          description: item image urls
           items:
-            $ref: '#/components/schemas/Error.v1'
+            type: string
       required:
-      - code
-      - type
-      - message
+      - source_id
+      - title
+      - quantity
+      - unit_insured_amount
     Error.v1:
       type: object
       title: Error
@@ -1861,181 +1861,6 @@ components:
           example: data.policy_id must not be 32 characters
       x-tags:
       - Envelope
-    Claim_shipment:
-      type: object
-      x-stoplight:
-        id: vwub1e1ftq9be
-      x-examples:
-        Example 1:
-          id: e5e50af0438a4f109c21117d4604587c
-          label:
-            url: https://files.am-usercontent.io/return-center/e6f77e704c71767c1bd04a4981cfe4c8/2c67de38e2524da58818988ba9fe9ea6.test-6.pdf
-            invoice_url: null
-            qrcode: null
-          tracking_number: '123123123'
-          tracking_slug: estes
-          tracking_status: Pending
-          tracking_status_updated_at: '2023-12-21T07:30:42.23002Z'
-          item_selections:
-          - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
-            quantity: 1
-          created_at: '2023-12-21T07:30:35.281997Z'
-          updated_at: '2023-12-21T07:30:42.23002Z'
-      properties:
-        id:
-          type: string
-        label:
-          type: object
-          properties:
-            url:
-              type:
-              - string
-              - 'null'
-            invoice_url:
-              type:
-              - string
-              - 'null'
-            qrcode:
-              type:
-              - string
-              - 'null'
-        tracking_number:
-          type:
-          - string
-          - 'null'
-        tracking_slug:
-          type:
-          - string
-          - 'null'
-        tracking_status:
-          type:
-          - string
-          - 'null'
-        tracking_status_updated_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the shipment tracking status was last updated.
-          example: '2026-05-19T10:03:00Z'
-        item_selections:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              quantity:
-                type: integer
-        ship_from:
-          x-stoplight:
-            id: 4afmgig3mqr4f
-          oneOf:
-          - $ref: '#/components/schemas/Address'
-            x-stoplight:
-              id: fvzreq373bv1a
-          - x-stoplight:
-              id: xc5sqz17lbfms
-            type:
-            - 'null'
-        ship_to:
-          x-stoplight:
-            id: g6qptlu8k4h9o
-          oneOf:
-          - $ref: '#/components/schemas/Address'
-            x-stoplight:
-              id: l0s42i8q2832v
-          - x-stoplight:
-              id: cwwe6qrye7j91
-            type:
-            - 'null'
-        created_at:
-          type: string
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the shipment was created.
-          example: '2026-05-19T10:00:00Z'
-        updated_at:
-          type: string
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the shipment was last updated.
-          example: '2026-05-19T10:00:00Z'
-      title: ClaimShipment
-      description: A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource.
-    Address:
-      type: object
-      x-stoplight:
-        id: 7cc87e0eb2a0d
-      title: Address
-      properties:
-        contact_name:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: lwugfye8q3bt0
-          description: 'The name of the contact person associated with the address.
-
-            '
-        company_name:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: jozyy6y4x6hal
-          description: 'The name of the company or organization associated with the address.
-
-            '
-        address_line_1:
-          type:
-          - string
-          - 'null'
-          description: First line of the street address.
-        address_line_2:
-          type:
-          - string
-          - 'null'
-          description: Second line of the street address.
-        city:
-          type:
-          - string
-          - 'null'
-          title: The City Schema
-          description: The location's city, town, or village.
-        state:
-          title: The State Schema
-          description: The state or region of the location, such as a province, state, or prefecture.
-          type:
-          - string
-          - 'null'
-        postal_code:
-          type:
-          - string
-          - 'null'
-          title: The Postal_code Schema
-          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
-        country:
-          title: The Country Schema
-          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
-          example: USA
-          type:
-          - string
-          - 'null'
-        phone_number:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: lio9zgakvzqhp
-          description: 'The contact phone number associated with the address.
-
-            '
-        email:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: ox7s3omkrkk3f
-          description: The email associated with the address.
     Meta_20000:
       description: Meta data object.
       type: object
@@ -2292,6 +2117,94 @@ components:
           description: The date and time, formatted in ISO 8601, when the claim item was last updated.
           example: '2026-05-19T10:00:00Z'
       description: A claim item resource.
+    Address:
+      type: object
+      x-stoplight:
+        id: 7cc87e0eb2a0d
+      title: Address
+      properties:
+        contact_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lwugfye8q3bt0
+          description: 'The name of the contact person associated with the address.
+
+            '
+        company_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: jozyy6y4x6hal
+          description: 'The name of the company or organization associated with the address.
+
+            '
+        address_line_1:
+          type:
+          - string
+          - 'null'
+          description: First line of the street address.
+        address_line_2:
+          type:
+          - string
+          - 'null'
+          description: Second line of the street address.
+        city:
+          type:
+          - string
+          - 'null'
+          title: The City Schema
+          description: The location's city, town, or village.
+        state:
+          title: The State Schema
+          description: The state or region of the location, such as a province, state, or prefecture.
+          type:
+          - string
+          - 'null'
+        postal_code:
+          type:
+          - string
+          - 'null'
+          title: The Postal_code Schema
+          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
+        country:
+          title: The Country Schema
+          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          example: USA
+          type:
+          - string
+          - 'null'
+        phone_number:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lio9zgakvzqhp
+          description: 'The contact phone number associated with the address.
+
+            '
+        email:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: ox7s3omkrkk3f
+          description: The email associated with the address.
+    Money:
+      description: The store credit value.
+      title: Money
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount represented with two decimal places.
+          example: '99.99'
+        currency:
+          type: string
+          description: The currency code, using ISO 4217 standards.
+          example: USD
     Claim:
       title: Claim
       x-stoplight:
@@ -2488,19 +2401,6 @@ components:
           description: The date and time, formatted in ISO 8601, when the returned item was marked as received.
           example: '2026-05-19T10:00:00Z'
       description: A claim resource.
-    Money:
-      description: The store credit value.
-      title: Money
-      type: object
-      properties:
-        amount:
-          type: string
-          description: The amount represented with two decimal places.
-          example: '99.99'
-        currency:
-          type: string
-          description: The currency code, using ISO 4217 standards.
-          example: USD
     ItemTag:
       title: ItemTag
       x-stoplight:
@@ -2525,6 +2425,106 @@ components:
           description: The date and time, formatted in ISO 8601, when the item tag was created.
           format: date-time
           example: '2026-05-19T10:00:00Z'
+    Claim_shipment:
+      type: object
+      x-stoplight:
+        id: vwub1e1ftq9be
+      x-examples:
+        Example 1:
+          id: e5e50af0438a4f109c21117d4604587c
+          label:
+            url: https://files.am-usercontent.io/return-center/e6f77e704c71767c1bd04a4981cfe4c8/2c67de38e2524da58818988ba9fe9ea6.test-6.pdf
+            invoice_url: null
+            qrcode: null
+          tracking_number: '123123123'
+          tracking_slug: estes
+          tracking_status: Pending
+          tracking_status_updated_at: '2023-12-21T07:30:42.23002Z'
+          item_selections:
+          - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+            quantity: 1
+          created_at: '2023-12-21T07:30:35.281997Z'
+          updated_at: '2023-12-21T07:30:42.23002Z'
+      properties:
+        id:
+          type: string
+        label:
+          type: object
+          properties:
+            url:
+              type:
+              - string
+              - 'null'
+            invoice_url:
+              type:
+              - string
+              - 'null'
+            qrcode:
+              type:
+              - string
+              - 'null'
+        tracking_number:
+          type:
+          - string
+          - 'null'
+        tracking_slug:
+          type:
+          - string
+          - 'null'
+        tracking_status:
+          type:
+          - string
+          - 'null'
+        tracking_status_updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment tracking status was last updated.
+          example: '2026-05-19T10:03:00Z'
+        item_selections:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              quantity:
+                type: integer
+        ship_from:
+          x-stoplight:
+            id: 4afmgig3mqr4f
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+            x-stoplight:
+              id: fvzreq373bv1a
+          - x-stoplight:
+              id: xc5sqz17lbfms
+            type:
+            - 'null'
+        ship_to:
+          x-stoplight:
+            id: g6qptlu8k4h9o
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+            x-stoplight:
+              id: l0s42i8q2832v
+          - x-stoplight:
+              id: cwwe6qrye7j91
+            type:
+            - 'null'
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment was created.
+          example: '2026-05-19T10:00:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment was last updated.
+          example: '2026-05-19T10:00:00Z'
+      title: ClaimShipment
+      description: A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource.
   securitySchemes:
     as-api-key:
       name: as-api-key
@@ -2538,4 +2538,4 @@ x-refined-from:
 - aftership-protection-api-openapi.yml
 - aftership-warranty-api-openapi.yml
 x-stoplight:
-  id: 02gep2e9lkucy
+  id: 07dbd324ec273

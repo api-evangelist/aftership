@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Overview Coverages API
   version: '1.0'
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-automizelyapi-com-protection/nodes/reference/api.v1.json?branch=master&deref=optimizedBundle)
-
-    '
+  description: '> OAS Schema can be downloaded here'
   contact:
     name: AfterShip Support
     url: https://www.aftership.com/contact-us
@@ -543,10 +541,7 @@ paths:
       description: 'Update a coverage''s tracking information by `coverage ID` or `order source ID`.
 
 
-        **This API is used to update the tracking information. When the tracking information is provided, the coverage will be activated and you can make a claim via coverage.**
-
-
-        '
+        **This API is used to update the tracking information. When the tracking information is provided, the coverage will be activated and you can make a claim via coverage.**'
       parameters:
       - schema:
           type: string
@@ -613,10 +608,7 @@ paths:
       description: 'Void coverage by `coverage ID` or `order source ID`.
 
 
-        **This API allows you to void a coverage if its status is inactive. Once voided, the coverage will not be charged.**
-
-
-        '
+        **This API allows you to void a coverage if its status is inactive. Once voided, the coverage will not be charged.**'
       parameters:
       - schema:
           type: string
@@ -751,103 +743,6 @@ paths:
       - Coverages
 components:
   schemas:
-    Amount.v1:
-      title: Amount
-      type: object
-      x-examples:
-        example-1:
-          amount: string
-          currency: USD
-      x-tags:
-      - Primitive
-      properties:
-        amount:
-          type: string
-          pattern: ^[0-9.]+$
-          example: '12.34'
-        currency:
-          type: string
-          pattern: ^[A-Z]{3}$
-          minLength: 3
-          maxLength: 3
-          example: USD
-          description: Only support USD for now
-      required:
-      - amount
-      - currency
-    Order_item.v1:
-      type: object
-      x-stoplight:
-        id: 33da09c0dfb8c
-      x-examples:
-        example-1:
-          name: string
-          quantity: 0
-          price:
-            amount: string
-            currency: USD
-          sku: string
-          images:
-          - string
-      title: Order Item
-      x-tags:
-      - Primitive
-      properties:
-        source_id:
-          type: string
-          description: A globally-unique identifier for the item.
-        title:
-          type: string
-          minLength: 1
-          description: Name of the product
-        quantity:
-          type: integer
-          description: Quantity of the item in order
-        unit_insured_amount:
-          $ref: '#/components/schemas/Amount.v1'
-          description: Indicate the insured amount for each individual  item
-        sku:
-          type: string
-          minLength: 1
-          description: SKU of the product item
-        image_urls:
-          type: array
-          description: item image urls
-          items:
-            type: string
-      required:
-      - source_id
-      - title
-      - quantity
-      - unit_insured_amount
-    Pagination.v1:
-      description: Pagination data
-      type: object
-      x-examples:
-        example-1:
-          page: 1
-          limit: 10
-          total: 9734043
-      title: Pagination
-      examples: []
-      x-tags:
-      - Envelope
-      properties:
-        page:
-          type: number
-          minimum: 1
-          default: 1
-        limit:
-          type: number
-          minimum: 1
-          maximum: 1000
-          default: 20
-        total:
-          type: number
-      required:
-      - page
-      - limit
-      - total
     Address.v1:
       type: object
       x-examples:
@@ -951,29 +846,6 @@ components:
       - country_region
       - first_name
       - last_name
-    Tracking.v1:
-      title: Tracking
-      type: object
-      description: tracking information about package.
-      x-examples:
-        example-1:
-          slug: string
-          tracking_number: string
-      x-tags:
-      - Primitive
-      required:
-      - slug
-      - tracking_number
-      - ship_date
-      properties:
-        slug:
-          type: string
-        tracking_number:
-          type: string
-        ship_date:
-          type: string
-          format: date
-          description: ship_date should be in UTC timezone.
     Meta.v1:
       description: Meta data object.
       type: object
@@ -1009,25 +881,6 @@ components:
       - code
       - type
       - message
-    Error.v1:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: data.policy_id
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: data.policy_id must not be 32 characters
-      x-tags:
-      - Envelope
     Coverage.v1:
       x-stoplight:
         id: 4638c8b43cf9f
@@ -1157,6 +1010,145 @@ components:
       - shipping_address
       - sender_address
       - subtotal
+    Tracking.v1:
+      title: Tracking
+      type: object
+      description: tracking information about package.
+      x-examples:
+        example-1:
+          slug: string
+          tracking_number: string
+      x-tags:
+      - Primitive
+      required:
+      - slug
+      - tracking_number
+      - ship_date
+      properties:
+        slug:
+          type: string
+        tracking_number:
+          type: string
+        ship_date:
+          type: string
+          format: date
+          description: ship_date should be in UTC timezone.
+    Amount.v1:
+      title: Amount
+      type: object
+      x-examples:
+        example-1:
+          amount: string
+          currency: USD
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type: string
+          pattern: ^[0-9.]+$
+          example: '12.34'
+        currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+          minLength: 3
+          maxLength: 3
+          example: USD
+          description: Only support USD for now
+      required:
+      - amount
+      - currency
+    Pagination.v1:
+      description: Pagination data
+      type: object
+      x-examples:
+        example-1:
+          page: 1
+          limit: 10
+          total: 9734043
+      title: Pagination
+      examples: []
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: number
+          minimum: 1
+          default: 1
+        limit:
+          type: number
+          minimum: 1
+          maximum: 1000
+          default: 20
+        total:
+          type: number
+      required:
+      - page
+      - limit
+      - total
+    Order_item.v1:
+      type: object
+      x-stoplight:
+        id: 33da09c0dfb8c
+      x-examples:
+        example-1:
+          name: string
+          quantity: 0
+          price:
+            amount: string
+            currency: USD
+          sku: string
+          images:
+          - string
+      title: Order Item
+      x-tags:
+      - Primitive
+      properties:
+        source_id:
+          type: string
+          description: A globally-unique identifier for the item.
+        title:
+          type: string
+          minLength: 1
+          description: Name of the product
+        quantity:
+          type: integer
+          description: Quantity of the item in order
+        unit_insured_amount:
+          $ref: '#/components/schemas/Amount.v1'
+          description: Indicate the insured amount for each individual  item
+        sku:
+          type: string
+          minLength: 1
+          description: SKU of the product item
+        image_urls:
+          type: array
+          description: item image urls
+          items:
+            type: string
+      required:
+      - source_id
+      - title
+      - quantity
+      - unit_insured_amount
+    Error.v1:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: data.policy_id
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: data.policy_id must not be 32 characters
+      x-tags:
+      - Envelope
   securitySchemes:
     as-api-key:
       name: as-api-key

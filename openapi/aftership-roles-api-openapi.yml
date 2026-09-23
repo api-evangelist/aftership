@@ -6,7 +6,7 @@ info:
     name: AfterShip Support
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-aftership-com-admin-organization/nodes/reference/api.v1.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
   termsOfService: https://www.aftership.com/legal/terms-of-service
   summary: API Overview
 servers:
@@ -114,29 +114,25 @@ paths:
       - Roles
 components:
   schemas:
-    Role.v1:
-      description: Object describes role information.
+    Error.v1:
       type: object
-      x-examples:
-        example-1:
-          code: admin
-          name: Admin
-      examples: []
-      title: Role
-      properties:
-        code:
-          type: string
-          minLength: 1
-          description: role code
-        name:
-          type: string
-          minLength: 1
-          description: role name
-      required:
-      - code
-      - name
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: account.email
+        info: account.email is invalid
+      additionalProperties: false
       x-tags:
-      - Resource
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Meta.v1:
       description: Meta data object.
       type: object
@@ -167,25 +163,29 @@ components:
       - code
       - type
       - message
-    Error.v1:
+    Role.v1:
+      description: Object describes role information.
       type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: account.email
-        info: account.email is invalid
-      additionalProperties: false
-      x-tags:
-      - Envelope
+      x-examples:
+        example-1:
+          code: admin
+          name: Admin
+      examples: []
+      title: Role
       properties:
-        path:
+        code:
           type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
+          minLength: 1
+          description: role code
+        name:
           type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
+          minLength: 1
+          description: role name
+      required:
+      - code
+      - name
+      x-tags:
+      - Resource
   securitySchemes:
     as-api-key:
       name: as-api-key

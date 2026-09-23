@@ -1,0 +1,66 @@
+generated: '2026-08-27'
+method: derived
+source: mcp/aftership-mcp.yml + openapi/aftership-tracking-api-openapi.yml + openapi/aftership-returns-api-openapi.yml
+description: 'Binds each published AfterShip MCP tool to the REST operations that back it. The public MCP server
+  is a consumer-facing shim, not a projection of the merchant API: its two tools cover a tiny slice of the 134 REST
+  operations AfterShip publishes, and neither maps 1:1.'
+surfaces:
+  openapi:
+  - openapi/aftership-tracking-api-openapi.yml
+  - openapi/aftership-returns-api-openapi.yml
+  graphql: null
+  mcp: https://mcp.aftership.com/tracking/public
+  gated:
+  - AfterShip Post-purchase MCP (OAuth, endpoint URL not published in server-rendered docs)
+  - AfterShip Channels MCP (OAuth, endpoint URL not published in server-rendered docs)
+  - live tools/list on the public server (HTTP 429 at probe time)
+crosswalk:
+- tool: track_shipment
+  category: tracking
+  rest:
+  - create-tracking
+  - get-tracking-by-id
+  - get-trackings
+  - detect-courier
+  binding: composite
+  confidence: medium
+  note: The tool takes a tracking_number plus optional carrier_slug and returns live status, which is what the Tracking
+    API does across create-tracking (registers the number), get-tracking-by-id / get-trackings (reads checkpoints)
+    and detect-courier (the auto-detection the tool advertises). The public server is anonymous while these REST
+    operations require an as-api-key, so the binding is semantic, not observed.
+- tool: get_returns_demo
+  category: returns-marketing
+  rest: []
+  binding: none
+  confidence: high
+  note: Generates a marketing demo page at aftership.com/tools/product-demo/returns/{domain}. No public REST operation
+    exposes this; it is not part of the Returns API.
+mcp_only:
+- tool: get_returns_demo
+  reason: Product-demo generator with no REST counterpart in any published AfterShip OpenAPI.
+- tool: track_shipment
+  reason: Anonymous, keyless tracking. No published REST operation is callable without an as-api-key, so this capability
+    exists only on the MCP surface.
+rest_only_summary:
+  count: 130
+  note: 130 of 134 published REST operations have no MCP tool on the public server — the entire Shipping, Commerce,
+    Warranty, Protection, Parser, Members, Address and Personalization surface, plus all write paths on Tracking
+    and Returns. The OAuth-gated Post-purchase MCP names list_shipments, get_shipment and list_returns in its docs,
+    which would cover a further slice, but its tool list could not be introspected without an AfterShip account.
+  apis_with_no_mcp_coverage:
+  - AfterShip Shipping API
+  - AfterShip Commerce API
+  - AfterShip Warranty API
+  - AfterShip Protection API
+  - AfterShip Parser API
+  - AfterShip Members API
+  - AfterShip Address API
+  - AfterShip Personalization API
+coverage:
+  mcp_tools: 2
+  rest_operations: 134
+  mapped: 1
+  mcp_only: 2
+  rest_only: 130
+  note: track_shipment is counted once as mapped (composite) and once as mcp_only because the anonymous access mode
+    has no REST equivalent.

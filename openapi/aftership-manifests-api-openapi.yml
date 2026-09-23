@@ -8,7 +8,7 @@ info:
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
   termsOfService: https://www.aftership.com/legal/terms-of-service
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
 servers:
 - description: Sandbox
   url: https://sandbox-api.aftership.com/postmen/v3
@@ -1156,11 +1156,8 @@ paths:
       operationId: get-manifests
       description: 'Get manifests
 
-        <div style="visibility:hidden; height: 0">
 
-        The array contains manifests object information. Please refer to [manifests](../model/resource/manifest.v3.json) object for details.
-
-        </div>'
+        The array contains manifests object information. Please refer to manifests object for details.'
       parameters:
       - schema:
           type: string
@@ -1269,7 +1266,6 @@ paths:
                           file_type: pdf
                       created_at: '2022-05-18T09:15:33+00:00'
                       updated_at: '2022-05-18T09:15:33+00:00'
-      description: Create a manifest
       parameters:
       - schema:
           type: string
@@ -1384,9 +1380,6 @@ paths:
                       created_at: '2022-05-18T09:15:33+00:00'
                       updated_at: '2022-05-18T09:15:33+00:00'
       operationId: get-manifest
-      description: 'Get a manifest
-
-        '
       parameters:
       - schema:
           type: string
@@ -1450,35 +1443,25 @@ components:
             '
         updated_at:
           type: string
-    Meta.v3:
-      description: Meta data object.
+    Error.v3:
       type: object
-      x-examples: {}
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
       examples:
-      - code: 200
-        type: OK
-        message: Everything worked as expected.
-      title: Meta
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
       x-tags:
       - Envelope
       properties:
-        code:
-          type: integer
-          description: Code of Meta
-        message:
+        path:
           type: string
-          description: Message of Meta
-        details:
-          type: array
-          description: Details of Meta
-          items:
-            $ref: '#/components/schemas/Error.v3'
-        retryable:
-          type: boolean
-          description: Whether this request will be retryable or not
-      required:
-      - code
-      - message
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Files.v3:
       title: Files
       x-stoplight:
@@ -1623,25 +1606,35 @@ components:
               - 'null'
               enum:
               - pdf
-    Error.v3:
+    Meta.v3:
+      description: Meta data object.
       type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      x-examples: {}
       examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
       x-tags:
       - Envelope
       properties:
-        path:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
           type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
   securitySchemes:
     as-api-key:
       name: as-api-key

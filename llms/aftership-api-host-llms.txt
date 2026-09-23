@@ -1,0 +1,26 @@
+# llms.txt for api.aftership.com — generated 2026-08-04
+# AfterShip API
+
+> api.aftership.com is the API endpoint host for AfterShip's developer platform. It serves programmatic requests, not human-readable content — there are no articles or marketing pages here. This file exists so that AI crawlers requesting /llms.txt receive a useful pointer to the actual developer documentation instead of a 404, and so they do not attempt to index API responses as if they were web content.
+
+**Keywords:** AfterShip API, tracking API, returns API, shipping API, webhooks, REST API, API authentication, rate limits, developer documentation.
+
+## Where the documentation lives
+
+*This host is machine-facing. All human- and model-readable documentation is on www.aftership.com.*
+
+- [Developer Documentation](https://www.aftership.com/docs): Entry point for all AfterShip API documentation.
+- [Tracking API](https://www.aftership.com/docs/tracking): Create and query shipment trackings across 1,350+ carriers.
+- [Returns API](https://www.aftership.com/docs/returns): Programmatic returns and RMA management.
+- [Shipping API](https://www.aftership.com/docs/shipping): Rate calculation, label generation, and manifests.
+
+## Notes for crawlers
+
+- API responses on this host require authentication and are not intended for indexing.
+- Public request/response schemas and code examples are published in the documentation linked above; prefer those as the citable source.
+- Sandbox environment: `sandbox-api.aftership.com` (also machine-facing, not indexable).
+
+## Related AfterShip Resources
+
+- [AfterShip Product Site](https://www.aftership.com/): Post-purchase platform for eCommerce retailers. See https://www.aftership.com/llms.txt
+- [Support Center](https://support.aftership.com/en): Product help and troubleshooting. See https://support.aftership.com/llms.txt

@@ -1,0 +1,186 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.aftership.com/docs/tracking/quickstart/body-envelope + the ten harvested AfterShip OpenAPI documents
+docs:
+- https://www.aftership.com/docs/tracking/quickstart/body-envelope
+- https://www.aftership.com/docs/tracking/quickstart/versioning
+- https://www.aftership.com/docs/tracking/quickstart/rate-limit
+- https://www.aftership.com/docs/tracking/quickstart/request-errors
+- https://www.aftership.com/docs/tracking/quickstart/authentication
+auth:
+  style: API key in a custom header (as-api-key), optionally signed with HMAC-SHA256; OAuth 2.0 authorization code
+    for Partner Dashboard apps
+  see: authentication/aftership-authentication.yml
+envelope:
+  style: vendor envelope
+  shape: '{"meta":{...},"data":{...}}'
+  success: meta.code 200/201 with the resource under data
+  error: meta.code / meta.type / meta.message / meta.errors[] with an empty data object
+  note: Every AfterShip API wraps both success and failure in the same meta/data envelope; there is no bare resource
+    body.
+  see: errors/aftership-problem-types.yml
+versioning:
+  style: date-based path segment (YYYY-MM)
+  example: https://api.aftership.com/tracking/2026-07
+  response_header: as-api-version
+  cadence: twice yearly from 2025-07
+  see: lifecycle/aftership-lifecycle.yml
+pagination:
+  styles:
+  - page/limit
+  - cursor
+  note: Collection responses carry a pagination object under data (e.g. data.pagination with page, limit and total
+    on the Tracking courier-connections response). Cursor-style next tokens appear on newer 2026-07 collections.
+  see: openapi/aftership-courier-connection-api-openapi.yml
+rate_limit_signaling:
+  tracking:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  shipping:
+  - rateLimit-limit
+  - rateLimit-remaining
+  - rateLimit-reset
+  exhaustion:
+    status: 429
+    meta_type: TooManyRequests
+  note: Header casing differs between products — Tracking uses X-RateLimit-*, Shipping uses rateLimit-*. A client
+    cannot use one parser for both.
+  see: rate-limits/aftership-rate-limits.yml
+request_id_tracing:
+  header: as-trace-id
+  observed: true
+  note: 'Observed on live responses from the AfterShip gateway on 2026-08-27 (e.g. as-trace-id: 3f8541fc31e0d8a5033e85ef8dbae5ea
+    alongside as-req-source: gateway).'
+idempotency:
+  supported: false
+  header: null
+  note: 'No Idempotency-Key header, idempotency parameter, or idempotency documentation exists in any of the ten
+    harvested OpenAPI documents or in the quickstart docs. Retries of POST /trackings are instead guarded by a uniqueness
+    constraint — a duplicate returns meta.code 4003 "Tracking already exists" — which is a natural key, not an idempotency
+    key: it protects the tracking resource but gives the caller no way to make an arbitrary write safely repeatable.'
+dry_run_mode:
+  supported: false
+  note: No dry-run, preview or validate-only mode is exposed. POST /rates (Shipping) and POST /coverages/calculate
+    (Protection) are the closest equivalents — both compute a priced outcome without committing to a label or a
+    coverage.
+reversibility:
+  grade: verified
+  note: AfterShip is write-heavy and publishes an explicit reversal operation for most consequential actions. Several
+    reversals state their window as an allowed source STATE rather than a time period; those are recorded verbatim
+    below and treated as stated windows. Where no window is stated it is recorded as documented, not verified. No
+    time-boxed window (e.g. "within N days") is stated anywhere in AfterShip's published contracts, so none is asserted
+    here.
+  surfaces:
+  - action: Create a tracking
+    operationId: create-tracking
+    api: AfterShip Tracking API
+    reversal: Delete a tracking by ID
+    reversal_operationId: delete-tracking-by-id
+    grade: documented
+    window: null
+    window_note: No window stated in the spec or docs.
+  - action: Tracking expires / stops updating
+    operationId: null
+    api: AfterShip Tracking API
+    reversal: Retrack an expired tracking by ID
+    reversal_operationId: retrack-tracking-by-id
+    grade: verified
+    window: Only an inactive (expired) tracking may be retracked, and only a limited number of times.
+    window_note: 'CONTRADICTION IN THE PROVIDER''S OWN DOCS: the OpenAPI description says "Max 3 times per tracking",
+      while the Request Errors page returns meta.code 4016 "Retrack is not allowed. You can only retrack each shipment
+      once." Both are AfterShip-published. An agent should assume the stricter bound (once).'
+    sources:
+    - openapi/aftership-tracking-api-openapi.yml
+    - https://www.aftership.com/docs/tracking/quickstart/request-errors
+  - action: Create a label
+    operationId: post-labels
+    api: AfterShip Shipping API
+    reversal: Cancel a label
+    reversal_operationId: post-cancel-labels
+    grade: documented
+    window: null
+    window_note: Carrier-dependent; AfterShip states no window.
+  - action: Create a pickup
+    operationId: post-pickups
+    api: AfterShip Shipping API
+    reversal: Cancel a pickup
+    reversal_operationId: post-cancel-pickups
+    grade: documented
+    window: null
+  - action: Create a coverage
+    operationId: post-coverage
+    api: AfterShip Protection API
+    reversal: Void a coverage
+    reversal_operationId: post-coverage-void
+    grade: verified
+    window: A coverage may be voided while its status is inactive. Once voided, the coverage will not be charged.
+    sources:
+    - openapi/aftership-coverages-api-openapi.yml
+  - action: Approve or process a warranty claim
+    operationId: approve-claim
+    api: AfterShip Warranty API
+    reversal: Cancel a claim
+    reversal_operationId: cancel-claim
+    grade: verified
+    window: 'Allowed source statuses: approved, in_process.'
+    sources:
+    - openapi/aftership-claims-api-openapi.yml
+  - action: Register a warranty
+    operationId: null
+    api: AfterShip Warranty API
+    reversal: Invalidate a warranty registration
+    reversal_operationId: invalidate-warranty-registration
+    grade: documented
+    window: null
+    window_note: Marks the registration invalid so it no longer participates in active benefit calculations; no
+      window stated.
+  - action: Create a return / add return items
+    operationId: post-returns
+    api: AfterShip Returns API
+    reversal: Remove return items by Return ID or RMA number
+    reversal_operationId: post-returns-return_id-remove-items
+    grade: documented
+    window: null
+    window_note: Mirrors the "Remove Return Items from an Existing RMA" admin feature. No window stated.
+  - action: Return awaiting decision
+    operationId: null
+    api: AfterShip Returns API
+    reversal: Reject Return By Return ID / RMA number
+    reversal_operationId: post-returns-return_id-reject
+    grade: documented
+    window: null
+    window_note: State transition to rejected; no window stated.
+  - action: Create a product variant / order item
+    operationId: create-product-variant
+    api: AfterShip Commerce API
+    reversal: Delete product variant / Delete an order item
+    reversal_operationId: delete-product-variant
+    grade: documented
+    window: null
+  not_reversible:
+  - action: Parse an email
+    operationId: email-parses-v2
+    api: AfterShip Parser API
+    reason: Read-through extraction; nothing is created that could be reversed.
+  - action: Validate an address
+    operationId: post-addresses/validate
+    api: AfterShip Address API
+    reason: Pure computation; no side effect.
+  - action: Recommend / suggest / search / tag products
+    api: AfterShip Personalization API
+    reason: Read-only inference endpoints.
+field_expansion:
+  supported: false
+  note: No expand / fields / include sparse-fieldset parameter appears in any harvested spec.
+metadata:
+  supported: true
+  note: The Tracking object carries custom_fields and title/order_id style caller-owned attributes; Returns and
+    Commerce objects carry note and tag fields.
+cross_links:
+- errors/aftership-problem-types.yml
+- lifecycle/aftership-lifecycle.yml
+- authentication/aftership-authentication.yml
+- rate-limits/aftership-rate-limits.yml
+- scopes/aftership-scopes.yml
+- sandbox/aftership-sandbox.yml

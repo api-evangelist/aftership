@@ -3,7 +3,7 @@ info:
   title: Overview Claim Shipments API
   version: 2026-07
   summary: API Overview
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-prod-wt-public/nodes/reference/api.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
   contact:
     name: AfterShip Support
     url: https://www.aftership.com/contact-us
@@ -318,81 +318,6 @@ paths:
                           message: Label generation failed because item weight is missing.
 components:
   schemas:
-    Address:
-      type: object
-      x-stoplight:
-        id: 7cc87e0eb2a0d
-      title: Address
-      properties:
-        contact_name:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: lwugfye8q3bt0
-          description: 'The name of the contact person associated with the address.
-
-            '
-        company_name:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: jozyy6y4x6hal
-          description: 'The name of the company or organization associated with the address.
-
-            '
-        address_line_1:
-          type:
-          - string
-          - 'null'
-          description: First line of the street address.
-        address_line_2:
-          type:
-          - string
-          - 'null'
-          description: Second line of the street address.
-        city:
-          type:
-          - string
-          - 'null'
-          title: The City Schema
-          description: The location's city, town, or village.
-        state:
-          title: The State Schema
-          description: The state or region of the location, such as a province, state, or prefecture.
-          type:
-          - string
-          - 'null'
-        postal_code:
-          type:
-          - string
-          - 'null'
-          title: The Postal_code Schema
-          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
-        country:
-          title: The Country Schema
-          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
-          example: USA
-          type:
-          - string
-          - 'null'
-        phone_number:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: lio9zgakvzqhp
-          description: 'The contact phone number associated with the address.
-
-            '
-        email:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: ox7s3omkrkk3f
-          description: The email associated with the address.
     Meta_20000:
       description: Meta data object.
       type: object
@@ -514,6 +439,81 @@ components:
           example: '2026-05-19T10:00:00Z'
       title: ClaimShipment
       description: A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource.
+    Address:
+      type: object
+      x-stoplight:
+        id: 7cc87e0eb2a0d
+      title: Address
+      properties:
+        contact_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lwugfye8q3bt0
+          description: 'The name of the contact person associated with the address.
+
+            '
+        company_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: jozyy6y4x6hal
+          description: 'The name of the company or organization associated with the address.
+
+            '
+        address_line_1:
+          type:
+          - string
+          - 'null'
+          description: First line of the street address.
+        address_line_2:
+          type:
+          - string
+          - 'null'
+          description: Second line of the street address.
+        city:
+          type:
+          - string
+          - 'null'
+          title: The City Schema
+          description: The location's city, town, or village.
+        state:
+          title: The State Schema
+          description: The state or region of the location, such as a province, state, or prefecture.
+          type:
+          - string
+          - 'null'
+        postal_code:
+          type:
+          - string
+          - 'null'
+          title: The Postal_code Schema
+          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
+        country:
+          title: The Country Schema
+          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          example: USA
+          type:
+          - string
+          - 'null'
+        phone_number:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lio9zgakvzqhp
+          description: 'The contact phone number associated with the address.
+
+            '
+        email:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: ox7s3omkrkk3f
+          description: The email associated with the address.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

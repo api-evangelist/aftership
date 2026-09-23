@@ -3,7 +3,7 @@ info:
   title: Overview Return items API
   version: 2026-07
   summary: API Overview
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-returnscenter-com-public/nodes/reference/api.json?branch=production/2026-07&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
   contact:
     name: AfterShip Support
     url: https://www.aftership.com/contact-us
@@ -71,55 +71,6 @@ paths:
       - Return items
 components:
   schemas:
-    Meta:
-      title: Meta
-      x-stoplight:
-        id: dxay0rufhj07b
-      type: object
-      examples:
-      - code: 20000
-        type: OK
-        message: The request was successfully processed by AfterShip.
-      properties:
-        code:
-          type: number
-          default: 20000
-          example: 20000
-          description: Error code in integer format.
-        type:
-          type: string
-          minLength: 1
-          example: OK
-          description: 'Response type string for the reference. '
-        message:
-          type: string
-          minLength: 1
-          example: The request was successfully processed by AfterShip.
-          description: Human-readable response message.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    Item_tag:
-      x-stoplight:
-        id: q94m5j9owjozk
-      title: ItemTag
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the item tag.
-          example: da1c35a503364bf8bb851ffaa49028c4
-        name:
-          type: string
-          description: The name of the item tag.
-          example: Defective
-        created_at:
-          type: string
-          x-stoplight:
-            id: nuzjnjy1v00m2
-          description: The create time of the item-tag.
-          example: '2023-07-15T00:00:00Z'
     Meta_20000:
       description: Meta data object.
       x-stoplight:
@@ -153,36 +104,6 @@ components:
           x-stoplight:
             id: pf8hdo8p7yqdz
           example: The request was successfully processed by AfterShip.
-    Money:
-      type: object
-      title: Money
-      properties:
-        amount:
-          type: string
-          example: '99.99'
-          description: The amount represented with two decimal places.
-        currency:
-          type: string
-          example: USD
-          description: The currency code, using ISO 4217 standards.
-    Error:
-      type: object
-      examples:
-      - info: quantity must be 1 or greater
-        path: items[0].quantity
-      properties:
-        path:
-          type: string
-          x-stoplight:
-            id: d9hc9ncjy3jkh
-          example: items[0].quantity
-        info:
-          type: string
-          x-stoplight:
-            id: kk25irujeobgd
-          example: quantity must be 1 or greater
-      description: Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      title: Error
     Return_item:
       x-stoplight:
         id: 9kxjirjxt007p
@@ -618,47 +539,85 @@ components:
             id: swlaoo3bwpteo
           default: false
           description: Whether this return item is marked as a green return item. When true, no physical return is required for this item.
-  responses:
-    UpdateReturnItems:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              meta:
-                $ref: '#/components/schemas/Meta_20000'
-                x-stoplight:
-                  id: gb6g16v7bzjyo
-              data:
-                $ref: '#/components/schemas/Return_item'
-                x-stoplight:
-                  id: 9kxjirjxt007p
-    UpdateReturnItemsError404:
-      description: 'A 404 will be returned:
-
-        - When the RMA does not exist (including when the RMA does not belong to the org)
-
-        - When the item not include in RMA'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Meta'
-          examples:
-            Return not found:
-              value:
-                meta:
-                  code: 40406
-                  type: NotFound
-                  message: Return not found
-                data: null
-            Item not found:
-              value:
-                meta:
-                  code: 40425
-                  type: NotFound
-                  message: Return item not found
-                data: null
+    Item_tag:
+      x-stoplight:
+        id: q94m5j9owjozk
+      title: ItemTag
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the item tag.
+          example: da1c35a503364bf8bb851ffaa49028c4
+        name:
+          type: string
+          description: The name of the item tag.
+          example: Defective
+        created_at:
+          type: string
+          x-stoplight:
+            id: nuzjnjy1v00m2
+          description: The create time of the item-tag.
+          example: '2023-07-15T00:00:00Z'
+    Money:
+      type: object
+      title: Money
+      properties:
+        amount:
+          type: string
+          example: '99.99'
+          description: The amount represented with two decimal places.
+        currency:
+          type: string
+          example: USD
+          description: The currency code, using ISO 4217 standards.
+    Meta:
+      title: Meta
+      x-stoplight:
+        id: dxay0rufhj07b
+      type: object
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: 'Response type string for the reference. '
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      examples:
+      - info: quantity must be 1 or greater
+        path: items[0].quantity
+      properties:
+        path:
+          type: string
+          x-stoplight:
+            id: d9hc9ncjy3jkh
+          example: items[0].quantity
+        info:
+          type: string
+          x-stoplight:
+            id: kk25irujeobgd
+          example: quantity must be 1 or greater
+      description: Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      title: Error
   requestBodies:
     UpdateReturnItems:
       content:
@@ -693,6 +652,47 @@ components:
                       id: i5s32dd9u9yhj
                     type: string
             type: object
+  responses:
+    UpdateReturnItemsError404:
+      description: 'A 404 will be returned:
+
+        - When the RMA does not exist (including when the RMA does not belong to the org)
+
+        - When the item not include in RMA'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Meta'
+          examples:
+            Return not found:
+              value:
+                meta:
+                  code: 40406
+                  type: NotFound
+                  message: Return not found
+                data: null
+            Item not found:
+              value:
+                meta:
+                  code: 40425
+                  type: NotFound
+                  message: Return item not found
+                data: null
+    UpdateReturnItems:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20000'
+                x-stoplight:
+                  id: gb6g16v7bzjyo
+              data:
+                $ref: '#/components/schemas/Return_item'
+                x-stoplight:
+                  id: 9kxjirjxt007p
   securitySchemes:
     as-api-key:
       name: as-api-key

@@ -1,0 +1,138 @@
+generated: '2026-08-27'
+method: probed
+source: direct HTTPS probes of /.well-known/* on every AfterShip host named in apis.yml, the OpenAPI servers[] blocks
+  and the MCP docs
+probed: '2026-08-27'
+summary:
+  hosts_probed: 4
+  documents_served: 2
+  note: Two real documents were served. mcp.aftership.com publishes an RFC 9728 OAuth protected-resource metadata
+    document at the host root. accounts.aftership.com serves full OIDC discovery, but NOT at the host root — it
+    is Keycloak-realm-scoped at /auth/realms/business/.well-known/openid-configuration, which is why the root probe
+    404s. Everything else 404d.
+hosts:
+- host: www.aftership.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: 404 from the Next.js app (probed via the aftership.com apex, which redirects to www; the www host itself
+      answers a Cloudflare bot challenge to non-browser clients)
+  - path: /.well-known/openid-configuration
+    status: 404
+    note: 404 from the Next.js app (probed via the aftership.com apex, which redirects to www; the www host itself
+      answers a Cloudflare bot challenge to non-browser clients)
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    note: 404 from the Next.js app (probed via the aftership.com apex, which redirects to www; the www host itself
+      answers a Cloudflare bot challenge to non-browser clients)
+  - path: /.well-known/api-catalog
+    status: 404
+    note: 404 from the Next.js app (probed via the aftership.com apex, which redirects to www; the www host itself
+      answers a Cloudflare bot challenge to non-browser clients)
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    note: 404 from the Next.js app (probed via the aftership.com apex, which redirects to www; the www host itself
+      answers a Cloudflare bot challenge to non-browser clients)
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: 404 from the Next.js app (probed via the aftership.com apex, which redirects to www; the www host itself
+      answers a Cloudflare bot challenge to non-browser clients)
+  - path: /.well-known/agent.json
+    status: 404
+    note: 404 from the Next.js app (probed via the aftership.com apex, which redirects to www; the www host itself
+      answers a Cloudflare bot challenge to non-browser clients)
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    note: 404 from the Next.js app (probed via the aftership.com apex, which redirects to www; the www host itself
+      answers a Cloudflare bot challenge to non-browser clients)
+- host: api.aftership.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: 404 with the AfterShip JSON error envelope {"meta":{"code":404,...}}
+  - path: /.well-known/openid-configuration
+    status: 404
+    note: 404 with the AfterShip JSON error envelope {"meta":{"code":404,...}}
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    note: 404 with the AfterShip JSON error envelope {"meta":{"code":404,...}}
+  - path: /.well-known/api-catalog
+    status: 404
+    note: 404 with the AfterShip JSON error envelope {"meta":{"code":404,...}}
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    note: 404 with the AfterShip JSON error envelope {"meta":{"code":404,...}}
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: 404 with the AfterShip JSON error envelope {"meta":{"code":404,...}}
+  - path: /.well-known/agent.json
+    status: 404
+    note: 404 with the AfterShip JSON error envelope {"meta":{"code":404,...}}
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    note: 404 with the AfterShip JSON error envelope {"meta":{"code":404,...}}
+- host: mcp.aftership.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: 404 from the AfterShip gateway ("no Route matched with those values")
+  - path: /.well-known/openid-configuration
+    status: 404
+    note: 404 from the AfterShip gateway ("no Route matched with those values")
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    note: 404 from the AfterShip gateway ("no Route matched with those values")
+  - path: /.well-known/api-catalog
+    status: 404
+    note: 404 from the AfterShip gateway ("no Route matched with those values")
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    note: 404 from the AfterShip gateway ("no Route matched with those values")
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: 404 from the AfterShip gateway ("no Route matched with those values")
+  - path: /.well-known/agent.json
+    status: 404
+    note: 404 from the AfterShip gateway ("no Route matched with those values")
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: aftership-oauth-protected-resource.json
+    content_type: application/json
+    spec: RFC 9728 OAuth 2.0 Protected Resource Metadata
+    resource: https://mcp.aftership.com
+    authorization_servers:
+    - https://accounts.aftership.com/auth/realms/business
+- host: accounts.aftership.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: 404 from nginx at the host root
+  - path: /.well-known/openid-configuration
+    status: 404
+    note: 404 from nginx at the host root
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    note: 404 from nginx at the host root
+  - path: /.well-known/api-catalog
+    status: 404
+    note: 404 from nginx at the host root
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    note: 404 from nginx at the host root
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: 404 from nginx at the host root
+  - path: /.well-known/agent.json
+    status: 404
+    note: 404 from nginx at the host root
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    note: 404 from nginx at the host root
+  - path: /auth/realms/business/.well-known/openid-configuration
+    status: 200
+    file: aftership-openid-configuration.json
+    content_type: application/json
+    spec: OpenID Connect Discovery 1.0
+    issuer: https://accounts.aftership.com/auth/realms/business
+    note: Realm-scoped discovery document for the AfterShip business realm (Keycloak). Named as the authorization
+      server by the mcp.aftership.com protected-resource metadata.

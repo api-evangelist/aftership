@@ -8,7 +8,7 @@ info:
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
   termsOfService: https://www.aftership.com/legal/terms-of-service
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
 servers:
 - description: Sandbox
   url: https://sandbox-api.aftership.com/postmen/v3
@@ -757,16 +757,10 @@ paths:
                           street3: null
                           tax_id: null
       operationId: get-shipper-accounts
-      description: 'This endpoint allows you retrieve a list of shipper accounts associated with you profile on [admin.postmen.com](https://admin.postmen.com/carriers) via API, granting you centralized control over multiple carrier services.
+      description: 'This endpoint allows you retrieve a list of shipper accounts associated with you profile on admin.postmen.com via API, granting you centralized control over multiple carrier services.
 
 
-
-
-        <div style="visibility:hidden; height: 0">
-
-        The array contains shipper_account object information. Please refer to [shipper acount](../model/resource/shipper_account.v3.json) object for details.
-
-        </div>'
+        The array contains shipper_account object information. Please refer to shipper acount object for details.'
       parameters:
       - schema:
           type: string
@@ -875,14 +869,10 @@ paths:
       description: 'This endpoint allows you to create your shipper account via API. You can integrate our API with your system and manage the shipper account according to your needs.
 
 
-        Please ensure that your account credentials are correct. Different carriers have different requirements for account credentials, you can refer to [Shipper account''s credentials](../docs/enum/shipper-accounts-credentials.md) for more details.
+        Please ensure that your account credentials are correct. Different carriers have different requirements for account credentials, you can refer to Shipper account''s credentials for more details.
 
 
-        <div style="visibility:hidden; height: 0">
-
-        Please refer to [Shipper account''s credentials](../docs/enum/shipper-accounts-credentials.md)
-
-        </div>'
+        Please refer to Shipper account''s credentials'
       parameters:
       - schema:
           type: string
@@ -1095,7 +1085,6 @@ paths:
                       message: Everything worked as expected.
                     data:
                       id: 00000000-0000-0000-0000-000000000000
-      description: Delete a shipper account
       tags:
       - Shipper Accounts
       parameters:
@@ -1196,7 +1185,7 @@ paths:
       description: 'This endpoint allows you to update the account information for your specific shipper account, including details such as address, description, and timezone.
 
 
-        If you wish to update the credentials for your shipper account, please refer to [Update a shipper account''s credentials](#).'
+        If you wish to update the credentials for your shipper account, please refer to Update a shipper account''s credentials.'
       requestBody:
         content:
           application/json:
@@ -1324,14 +1313,10 @@ paths:
                         state: null
                         street3: null
                         tax_id: null
-      description: 'This endpoint allows you to update the credentials for your specific shipper account. Please note that different carriers have different account credentials. For more details, you can refer to  [Shipper account''s credentials](../docs/enum/shipper-accounts-credentials.md).
+      description: 'This endpoint allows you to update the credentials for your specific shipper account. Please note that different carriers have different account credentials. For more details, you can refer to Shipper account''s credentials.
 
 
-        <div style="visibility:hidden; height: 0">
-
-        The object contains shipper_account credentials information. Please refer to [shipper acount credentials](../docs/enum/shipper-accounts-credentials.md) object for details.
-
-        </div>'
+        The object contains shipper_account credentials information. Please refer to shipper acount credentials object for details.'
       requestBody:
         content:
           application/json:
@@ -1484,6 +1469,77 @@ paths:
         id: 0xlo21h5n3o1j
 components:
   schemas:
+    Shipper_account.v3:
+      title: ShipperAccount
+      x-stoplight:
+        id: btwx9pxk00w1m
+      type: object
+      x-tags:
+      - Resource
+      examples: []
+      description: 'ShipperAccount object: the description of shipper account information'
+      properties:
+        id:
+          type: string
+          description: 'Shipper Account ID
+
+            '
+        address:
+          $ref: '#/components/schemas/Address.v3'
+        slug:
+          type: string
+          description: Couirer slug
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+          - deleted
+        description:
+          type: string
+          description: 'The description of the account
+
+            '
+        type:
+          type: string
+          description: The type of the shipper_account
+          enum:
+          - default
+          - user
+        timezone:
+          type: string
+          description: 'Shipper account timezone
+
+            '
+        created_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+        updated_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Address.v3:
       type: object
       x-stoplight:
@@ -1655,58 +1711,6 @@ components:
             lng:
               type: number
               description: longitude number
-    Shipper_account.v3:
-      title: ShipperAccount
-      x-stoplight:
-        id: btwx9pxk00w1m
-      type: object
-      x-tags:
-      - Resource
-      examples: []
-      description: 'ShipperAccount object: the description of shipper account information'
-      properties:
-        id:
-          type: string
-          description: 'Shipper Account ID
-
-            '
-        address:
-          $ref: '#/components/schemas/Address.v3'
-        slug:
-          type: string
-          description: Couirer slug
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-          - deleted
-        description:
-          type: string
-          description: 'The description of the account
-
-            '
-        type:
-          type: string
-          description: The type of the shipper_account
-          enum:
-          - default
-          - user
-        timezone:
-          type: string
-          description: 'Shipper account timezone
-
-            '
-        created_at:
-          type: string
-          description: 'A formatted date.
-
-            '
-        updated_at:
-          type: string
-          description: 'A formatted date.
-
-            '
     Meta.v3:
       description: Meta data object.
       type: object
@@ -1736,25 +1740,6 @@ components:
       required:
       - code
       - message
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
   securitySchemes:
     as-api-key:
       name: as-api-key

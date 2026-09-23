@@ -1,0 +1,67 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.aftership.com/docs/tracking/quickstart/versioning
+versioning:
+  scheme: date-based (YYYY-MM) in the URL path
+  example: https://api.aftership.com/tracking/2026-07
+  current_versions:
+    tracking: 2026-07
+    returns: 2026-07
+    commerce: 2026-07
+    warranty: 2026-07
+    personalization: 2025-01
+    address: 2024-07
+    shipping: v3 (postmen)
+    protection: 2022-01 (admin)
+    parser: 2022-01 (admin)
+    members: 2022-01 (admin)
+  published_versions_tracking:
+  - 2026-07
+  - 2026-01
+  - 2025-07
+  - 2025-04
+  - 2025-01
+  cadence: From version 2025-07 AfterShip releases new major API versions twice a year (every six months), replacing
+    the previous quarterly cadence.
+  response_header:
+    name: as-api-version
+    format: YYYY-MM
+    description: The actual API version that served the request.
+  docs: https://www.aftership.com/docs/tracking/quickstart/versioning
+deprecation:
+  policy_published: true
+  mechanism: Version-scoped. Each release ships a dated changelog plus a Migration Guide from the previous version;
+    superseded versions move to a Past Changelog page.
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: AfterShip does not publish RFC 8594 Sunset or Deprecation response headers. Deprecation is communicated
+    through the versioning schedule, changelog and migration guides.
+  docs:
+  - https://www.aftership.com/docs/tracking/migration-guide
+  - https://www.aftership.com/docs/tracking/past-changelog
+  - https://www.aftership.com/docs/tracking/quickstart/versioning
+status_page:
+  url: https://www.aftershipstatus.com/
+  probed_status: 200
+  title: AfterShip Status
+sla:
+  published: true
+  url: https://www.aftership.com/enterprise-sla
+  note: Service Level Agreement covering availability and support standards, offered to eligible enterprise customers.
+    Enterprise SLAs are also listed as a plan entitlement on the pricing page.
+deprecated_operations: []
+deprecated_operations_note: 'No operation in any of the ten harvested OpenAPI documents carries deprecated: true.'
+roadmap:
+  published: false
+  note: 'AfterShip''s site footer and product navigation show a "Changelog & roadmap" label, but no resolvable public
+    URL was found for it: /changelog, /roadmap and /changelog-and-roadmap all returned 404 on 2026-08-27. What IS
+    published is a dated API changelog per product plus a migration guide and past-changelog archive. No Roadmap
+    pointer is emitted.'
+  probed:
+  - url: https://www.aftership.com/changelog
+    status: 404
+  - url: https://www.aftership.com/roadmap
+    status: 404
+  - url: https://www.aftership.com/changelog-and-roadmap
+    status: 404

@@ -4,11 +4,17 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: AfterShip
 providerId: aftership
 created: '2026-05-08'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-08, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-08'
-reconciled: false
+modified: '2026-08-27'
+generated: '2026-08-27'
+method: searched
+reconciled: true
+source: https://www.aftership.com/pricing
+sources:
+- https://www.aftership.com/pricing
+description: Published AfterShip Tracking pricing, read from the public pricing page on 2026-08-27. Prices shown
+  are the monthly starting price at the default 6,000-shipments-per-year volume; the page is volume-sliderd from
+  1,200 to 300,000+ shipments per year and offers an 18% annual discount. Returns, Shipping and Feed are separately
+  priced tabs on the same page; Enterprise is quote-only.
 tags:
 - Shipping
 - Tracking
@@ -16,29 +22,89 @@ tags:
 - Post-Purchase
 - Notifications
 - Plans
-description: Placeholder plans/pricing artifact for AfterShip. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled.
-sources:
-- https://www.aftership.com/
+currency: USD
+billing_periods:
+- monthly
+- annual
+annual_discount: 18%
+plan_count: 4
 plans:
-- id: aftership-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers once pricing is reconciled.
-  entries:
-  - label: API Access
-    name: api_access
-    type: flat
-    metric: varies
-    limit: -1
-    timeFrame: usage
-    geo: global
-    unit: 1
-    price: see https://www.aftership.com/
-    userMultiplied: false
+- id: aftership-tracking-free
+  name: Free
+  type: free
+  product: AfterShip Tracking
+  price: 0
+  currency: USD
+  period: month
+  description: Free entry tier listed in the full plan comparison table on the Tracking pricing page.
+- id: aftership-tracking-essentials
+  name: Essentials
+  type: subscription
+  product: AfterShip Tracking
+  price: 29
+  currency: USD
+  period: month
+  audience: New stores under $1M GMV
+  included_quota:
+    metric: shipments
+    limit: 6000
+    timeFrame: year
+  overage:
+    price: 0.08
+    currency: USD
+    unit: extra shipment
   elements:
-  - name: Pending Reconciliation
+  - Branded tracking page with logo and colors
+  - Automatic carrier detection and correction
+  - Email and SMS notifications for every shipment milestone
+  - Tracking dashboard with status and reports
+  api_access: false
+  note: API & webhooks are listed as a Premium entitlement; Essentials does not list API access.
+- id: aftership-tracking-premium
+  name: Premium
+  type: subscription
+  product: AfterShip Tracking
+  price: 59
+  currency: USD
+  period: month
+  audience: Growing brands $1M-$10M GMV
+  included_quota:
+    metric: shipments
+    limit: 6000
+    timeFrame: year
+  overage:
+    price: 0.12
+    currency: USD
+    unit: extra shipment
+  elements:
+  - Everything in Essentials
+  - Fully customizable tracking page and custom domain
+  - AI-powered EDD and product recommendations
+  - Full analytics suite
+  - API & webhooks
+  - Order Edits
+  api_access: true
+  limits:
+  - metric: api requests
+    limit: 10
+    timeFrame: second
+    note: 'Pricing page states "Premium: 10 req/sec rate limit".'
+- id: aftership-tracking-enterprise
+  name: Enterprise
+  type: enterprise
+  product: AfterShip Tracking
+  price: null
+  currency: USD
+  period: custom
+  audience: Enterprises over $10M GMV
+  elements:
+  - Everything in Premium
+  - Dedicated CSM and onboarding
+  - Enterprise SLAs and SSO (SAML / OIDC)
+  - Custom integrations
+  - Multi-org management
+  api_access: true
+  contact: https://www.aftership.com/contact-us
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

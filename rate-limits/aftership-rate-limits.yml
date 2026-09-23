@@ -4,11 +4,19 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: AfterShip
 providerId: aftership
 created: '2026-05-08'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-08, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-08'
-reconciled: false
+modified: '2026-08-27'
+generated: '2026-08-27'
+method: searched
+reconciled: true
+source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
+sources:
+- https://www.aftership.com/docs/tracking/quickstart/rate-limit
+- https://www.aftership.com/docs/shipping/quickstart/rate-limit
+- https://www.aftership.com/docs/returns/quickstart/rate-limit
+- https://www.aftership.com/pricing
+- https://github.com/AfterShip/tracking-and-returns-mcp
+description: Published AfterShip rate limits. From API version 2024-07 the Tracking API moved from a flat 10 req/sec
+  per organization to a PER-ENDPOINT limit; Shipping and Returns remain a flat 10 req/sec per organization.
 tags:
 - Shipping
 - Tracking
@@ -18,21 +26,197 @@ tags:
 - Rate Limiting
 - Quotas
 - Throttling
-description: Placeholder rate-limit artifact for AfterShip. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
-sources:
-- https://www.aftership.com/
 responseCodes:
   throttled: 429
+  meta_type: TooManyRequests
+headers:
+- name: X-RateLimit-Reset
+  api: AfterShip Tracking API
+  example: '1406096275'
+  description: Unix timestamp when the rate limit resets.
+- name: X-RateLimit-Limit
+  api: AfterShip Tracking API
+  example: '20'
+  description: Rate limit ceiling for the endpoint.
+- name: X-RateLimit-Remaining
+  api: AfterShip Tracking API
+  example: '19'
+  description: Requests left in the current window.
+- name: rateLimit-reset
+  api: AfterShip Shipping API
+  example: '1406096275'
+  description: Unix timestamp when the rate limit resets.
+- name: rateLimit-limit
+  api: AfterShip Shipping API
+  example: '10'
+  description: Per-organization per-second ceiling.
+- name: rateLimit-remaining
+  api: AfterShip Shipping API
+  example: '9'
+  description: Requests left in the 1-second window.
+- name: ratelimit-limit
+  api: AfterShip MCP gateway
+  example: '100000'
+  description: Observed on a live 429 from mcp.aftership.com, 2026-08-27.
+  observed: true
+- name: ratelimit-remaining
+  api: AfterShip MCP gateway
+  example: '0'
+  observed: true
+- name: retry-after
+  api: AfterShip MCP gateway
+  example: '31090'
+  description: Seconds until the window resets.
+  observed: true
+limit_count: 20
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+- name: Tracking API POST /trackings
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: POST /trackings
+  window: 1 second
+  limit: 20
+  unit: requests
+- name: Tracking API GET /trackings
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: GET /trackings
+  window: 1 second
+  limit: 6
+  unit: requests
+- name: Tracking API GET /trackings/:id
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: GET /trackings/:id
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API PUT /trackings/:id
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: PUT /trackings/:id
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API DELETE /trackings/:id
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: DELETE /trackings/:id
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API POST /trackings/:id/retrack
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: POST /trackings/:id/retrack
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API POST /trackings/:id/mark-as-completed
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: POST /trackings/:id/mark-as-completed
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API POST /couriers/detect
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: POST /couriers/detect
+  window: 1 second
+  limit: 3
+  unit: requests
+- name: Tracking API GET /couriers
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: GET /couriers
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API POST /estimated-delivery-date/predict
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: POST /estimated-delivery-date/predict
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API POST /estimated-delivery-date/predict-batch
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: POST /estimated-delivery-date/predict-batch
+  window: 1 second
+  limit: 20
+  unit: requests
+- name: Tracking API POST /courier-connections
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: POST /courier-connections
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API GET /courier-connections
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: GET /courier-connections
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API GET /courier-connections/:id
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: GET /courier-connections/:id
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API PATCH /courier-connections/:id
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: PATCH /courier-connections/:id
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Tracking API DELETE /courier-connections/:id
+  api: AfterShip Tracking API
+  scope: per-endpoint per-organization
+  endpoint: DELETE /courier-connections/:id
+  window: 1 second
+  limit: 5
+  unit: requests
+- name: Shipping API default
+  api: AfterShip Shipping API
+  scope: per-organization
+  window: 1 second
+  limit: 10
+  unit: requests
+  source: https://www.aftership.com/docs/shipping/quickstart/rate-limit
+- name: Returns API default
+  api: AfterShip Returns API
+  scope: per-organization
+  window: 1 second
+  limit: 10
+  unit: requests
+  source: https://www.aftership.com/docs/returns/quickstart/rate-limit
+- name: Tracking plan ceiling (Premium)
+  api: AfterShip Tracking API
+  scope: per-plan
+  window: 1 second
+  limit: 10
+  unit: requests
+  note: 'The Tracking pricing page states "Premium: 10 req/sec rate limit" for the API & webhooks entitlement.'
+  source: https://www.aftership.com/pricing
+- name: Public MCP fair-use limit
+  api: AfterShip Tracking & Returns MCP
+  scope: per-client (shared public endpoint)
+  window: unstated
+  limit: null
+  unit: requests
+  note: 'mcp.aftership.com applies an undisclosed fair-use limit. Probed 2026-08-27: POST https://mcp.aftership.com/tracking/public
+    returned HTTP 429 with ratelimit-limit: 100000, ratelimit-remaining: 0, retry-after: 31090 and meta.type TooManyRequests
+    / meta.source gateway. Automated or bulk use is explicitly not permitted.'
+  source: https://github.com/AfterShip/tracking-and-returns-mcp
 policies:
 - name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

@@ -3,7 +3,7 @@ info:
   title: Overview Warranty Registrations API
   version: 2026-07
   summary: API Overview
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-prod-wt-public/nodes/reference/api.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
   contact:
     name: AfterShip Support
     url: https://www.aftership.com/contact-us
@@ -279,6 +279,27 @@ paths:
                       remaining: 2
 components:
   schemas:
+    Meta_20000:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+        type:
+          type: string
+          minLength: 1
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
     Warranty_registrations:
       title: WarrantyRegistration
       type: object
@@ -350,27 +371,6 @@ components:
             replace_item:
               total: 1
               remaining: 1
-    Meta_20000:
-      description: Meta data object.
-      type: object
-      x-examples: {}
-      examples: []
-      title: Meta
-      x-tags:
-      - Envelope
-      properties:
-        code:
-          type: number
-          default: 20000
-          example: 20000
-        type:
-          type: string
-          minLength: 1
-          example: OK
-        message:
-          type: string
-          minLength: 1
-          example: The request was successfully processed by AfterShip.
     Benefit:
       title: Benefit
       type: object

@@ -8,7 +8,7 @@ info:
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
   termsOfService: https://www.aftership.com/legal/terms-of-service
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-core-postmenapi-com/nodes/reference/api.v3.json?branch=master&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
 servers:
 - description: Sandbox
   url: https://sandbox-api.aftership.com/postmen/v3
@@ -474,11 +474,8 @@ paths:
       operationId: get-couriers
       description: 'Get all couriers
 
-        <div style="visibility:hidden; height: 0">
 
-        The couriers array contains courier information. Please refer to [Courier](../model/primitive/courier.v3.json) object for courier object details.
-
-        </div>'
+        The couriers array contains courier information. Please refer to Courier object for courier object details.'
       parameters:
       - schema:
           type: string
@@ -494,35 +491,6 @@ paths:
       - as-api-key: []
 components:
   schemas:
-    Meta.v3:
-      description: Meta data object.
-      type: object
-      x-examples: {}
-      examples:
-      - code: 200
-        type: OK
-        message: Everything worked as expected.
-      title: Meta
-      x-tags:
-      - Envelope
-      properties:
-        code:
-          type: integer
-          description: Code of Meta
-        message:
-          type: string
-          description: Message of Meta
-        details:
-          type: array
-          description: Details of Meta
-          items:
-            $ref: '#/components/schemas/Error.v3'
-        retryable:
-          type: boolean
-          description: Whether this request will be retryable or not
-      required:
-      - code
-      - message
     Courier.v3:
       type: object
       x-examples:
@@ -675,6 +643,35 @@ components:
           type: string
           description: A human-readable description of the error.
           example: account.email is invalid
+    Meta.v3:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
   securitySchemes:
     as-api-key:
       name: as-api-key

@@ -8,7 +8,7 @@ info:
     url: https://www.aftership.com/contact-us
     email: support@aftership.com
   termsOfService: https://www.aftership.com/legal/terms-of-service
-  description: '> OAS Schema can be downloaded [here](https://stoplight.io/api/v1/projects/automizely/docs-api-automizely-com-commerce/nodes/reference/api.json?branch=testing%2F2026-07&deref=optimizedBundle)'
+  description: '> OAS Schema can be downloaded here'
 servers:
 - url: https://api.aftership.com/commerce/2026-07
   description: API Endpoint
@@ -73,7 +73,9 @@ paths:
       description: 'Create a new store.
 
 
-        > **Important:** After creating a new store in Commerce API, please contact our support team to configure and enable the specific Commerce API features you need (such as `tracking`, `returns`, etc.) for this store. This configuration is separate from any AfterShip products you may have already subscribed to. <br/>The returned `store.id` value is essential, as you''ll need to include it in the header of all subsequent Commerce API requests as `as-store-id` to identify which store you''re operating on.'
+        > **Important:** After creating a new store in Commerce API, please contact our support team to configure and enable the specific Commerce API features you need (such as `tracking`, `returns`, etc.) for this store. This configuration is separate from any AfterShip products you may have already subscribed to.
+
+        The returned `store.id` value is essential, as you''ll need to include it in the header of all subsequent Commerce API requests as `as-store-id` to identify which store you''re operating on.'
       parameters: []
       requestBody:
         content:
@@ -760,6 +762,25 @@ components:
                   type: number
                   description: The longitude of the store address.
                   example: 74
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
     Meta.v1:
       description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
 
@@ -831,25 +852,6 @@ components:
           x-stoplight:
             id: qtm2ifhlv0r4i
           description: To indicate if next page is available.
-    Error.v1:
-      type: object
-      title: Error
-      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The JSON path of the request object to indicate the error location.
-          example: data.product.title
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: Title is invalid
   securitySchemes:
     as-api-key:
       name: as-api-key

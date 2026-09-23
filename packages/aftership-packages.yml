@@ -1,0 +1,157 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.aftership.com/docs/tracking (SDK section) + npm, PyPI, RubyGems, Packagist, NuGet, Maven Central
+  and proxy.golang.org registry metadata
+description: First-party AfterShip client libraries. The current generation is the per-product "*-sdk-*" family
+  (tracking-sdk in 7 languages plus shipping-sdk for Java), all released in lockstep on 2026-07-13 alongside the
+  2026-07 API version. The legacy "aftership" v4 SDKs remain published but their GitHub repositories are archived.
+registries_checked:
+- npm
+- pypi
+- rubygems
+- packagist
+- nuget
+- maven-central
+- proxy.golang.org
+official_count: 10
+package_count: 15
+packages:
+- name: '@aftership/tracking-sdk'
+  registry: npm
+  language: JavaScript/TypeScript
+  official: true
+  version: 17.0.0
+  published: '2026-07-13'
+  url: https://www.npmjs.com/package/@aftership/tracking-sdk
+  source_code: https://github.com/AfterShip/tracking-sdk-nodejs
+  api: AfterShip Tracking API
+- name: aftership-tracking-sdk
+  registry: pypi
+  language: Python
+  official: true
+  version: 10.0.0
+  published: '2026-07-13'
+  url: https://pypi.org/project/aftership-tracking-sdk/
+  source_code: https://github.com/AfterShip/tracking-sdk-python
+  api: AfterShip Tracking API
+- name: aftership-tracking-sdk
+  registry: rubygems
+  language: Ruby
+  official: true
+  version: 15.0.0
+  published: '2026-07-13'
+  url: https://rubygems.org/gems/aftership-tracking-sdk
+  source_code: https://github.com/AfterShip/tracking-sdk-ruby
+  api: AfterShip Tracking API
+- name: aftership/tracking-sdk
+  registry: packagist
+  language: PHP
+  official: true
+  version: 16.0.0
+  published: '2026-07-13'
+  url: https://packagist.org/packages/aftership/tracking-sdk
+  source_code: https://github.com/AfterShip/tracking-sdk-php
+  api: AfterShip Tracking API
+- name: AfterShipTracking
+  registry: nuget
+  language: .NET
+  official: true
+  version: 16.0.0
+  published: '2026-07-13'
+  url: https://www.nuget.org/packages/AfterShipTracking
+  source_code: https://github.com/AfterShip/tracking-sdk-net
+  api: AfterShip Tracking API
+- name: github.com/aftership/tracking-sdk-go/v12
+  registry: go
+  language: Go
+  official: true
+  version: v12.0.0
+  published: '2026-07-13'
+  url: https://pkg.go.dev/github.com/aftership/tracking-sdk-go/v12
+  source_code: https://github.com/AfterShip/tracking-sdk-go
+  api: AfterShip Tracking API
+- name: com.aftership:tracking-sdk
+  registry: maven
+  language: Java
+  official: true
+  version: 12.0.1
+  published: '2026-07-27'
+  url: https://central.sonatype.com/artifact/com.aftership/tracking-sdk
+  source_code: https://github.com/AfterShip/tracking-sdk-java
+  api: AfterShip Tracking API
+  note: published date read from repo1.maven.org maven-metadata.xml lastUpdated 20260727091317
+- name: com.aftership:shipping-sdk
+  registry: maven
+  language: Java
+  official: true
+  version: 3.2.0
+  published: '2026-07-17'
+  url: https://central.sonatype.com/artifact/com.aftership/shipping-sdk
+  source_code: https://github.com/AfterShip/shipping-sdk-java
+  api: AfterShip Shipping API
+  note: published date read from repo1.maven.org maven-metadata.xml lastUpdated 20260717084736
+- name: '@aftership/web-pixels'
+  registry: npm
+  language: JavaScript
+  official: true
+  version: 0.2.2-alpha.4
+  published: '2025-05-09'
+  url: https://www.npmjs.com/package/@aftership/web-pixels
+  api: AfterShip Pixel SDK
+  note: Latest published release is an alpha; the Pixel SDK is documented at /docs/aftership-pixel.
+- name: '@aftership/carrier-account-sdk'
+  registry: npm
+  language: JavaScript
+  official: true
+  version: 0.1.0
+  published: '2026-04-02'
+  url: https://www.npmjs.com/package/@aftership/carrier-account-sdk
+  note: Loader for the AfterShip-hosted carrier-account element; see components/aftership-components.yml.
+- name: aftership
+  registry: npm
+  language: JavaScript
+  official: true
+  status: superseded
+  version: 8.1.0
+  published: '2023-12-22'
+  url: https://www.npmjs.com/package/aftership
+  source_code: https://github.com/AfterShip/aftership-sdk-nodejs
+  note: Legacy v4 Node SDK. Source repo is ARCHIVED on GitHub; superseded by @aftership/tracking-sdk.
+- name: aftership
+  registry: pypi
+  language: Python
+  official: true
+  status: superseded
+  version: 1.4.1
+  published: '2022-07-21'
+  url: https://pypi.org/project/aftership/
+  note: Legacy v4 Python SDK; source repo archived. Superseded by aftership-tracking-sdk.
+- name: aftership
+  registry: rubygems
+  language: Ruby
+  official: true
+  status: superseded
+  version: 6.0.0
+  published: null
+  url: https://rubygems.org/gems/aftership
+  note: Legacy v4 Ruby gem; source repo archived. RubyGems returned the version but the pipeline did not read a
+    published date for this entry.
+- name: aftership/aftership-php-sdk
+  registry: packagist
+  language: PHP
+  official: true
+  status: superseded
+  version: 6.0.0
+  published: '2024-01-30'
+  url: https://packagist.org/packages/aftership/aftership-php-sdk
+  note: Legacy v4 PHP SDK; source repo archived.
+- name: Aftership
+  registry: nuget
+  language: .NET
+  official: true
+  status: superseded
+  version: 6.0.5
+  published: null
+  url: https://www.nuget.org/packages/Aftership
+  note: Legacy v4 .NET package. Version read from api.nuget.org flat-container index; no published date resolved
+    in this pass.

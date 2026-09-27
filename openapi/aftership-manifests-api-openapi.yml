@@ -1443,25 +1443,6 @@ components:
             '
         updated_at:
           type: string
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
     Files.v3:
       title: Files
       x-stoplight:
@@ -1606,6 +1587,25 @@ components:
               - 'null'
               enum:
               - pdf
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Meta.v3:
       description: Meta data object.
       type: object

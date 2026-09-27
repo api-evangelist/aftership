@@ -283,40 +283,6 @@ paths:
       - Cancel Pickups
 components:
   schemas:
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
-    Reference.v3:
-      title: Reference
-      x-stoplight:
-        id: pwqp1323bhe8q
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'id of referring object
-
-            '
-      x-tags:
-      - Primitive
-      examples: []
-      description: 'Reference object: the description of reference information'
     Cancel_pickup.v3:
       title: CancelPickup
       x-stoplight:
@@ -358,6 +324,25 @@ components:
             Example: `2022-05-18T09:17:38+00:00`
 
             '
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Meta.v3:
       description: Meta data object.
       type: object
@@ -387,6 +372,21 @@ components:
       required:
       - code
       - message
+    Reference.v3:
+      title: Reference
+      x-stoplight:
+        id: pwqp1323bhe8q
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'id of referring object
+
+            '
+      x-tags:
+      - Primitive
+      examples: []
+      description: 'Reference object: the description of reference information'
   securitySchemes:
     as-api-key:
       name: as-api-key

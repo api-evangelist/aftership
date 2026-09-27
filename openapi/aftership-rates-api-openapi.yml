@@ -2365,6 +2365,123 @@ components:
           type: number
           description: Amount of Money
       description: The money object is used to represent the currency amount.
+    Regulatory_data_item.v3:
+      title: RegulatoryDataItem
+      x-stoplight:
+        id: regulatory-data-item-v3
+      description: 'A CPSC regulatory data entry associated with an item. The shape varies by `fill_mode`. Supported carriers: UPS, FedEx.'
+      x-tags:
+      - Primitive
+      oneOf:
+      - title: CpscDisclaimer
+        type: object
+        description: 'CPSC regulation data filled via disclaimer mode. Supported carriers: UPS, FedEx.'
+        required:
+        - regulation_code
+        - fill_mode
+        - disclaim_code
+        - intended_use_code
+        properties:
+          regulation_code:
+            type: string
+            enum:
+            - CPSC
+            description: Regulation code identifying the applicable regulation.
+          fill_mode:
+            type: string
+            enum:
+            - disclaimer
+            description: Indicates the CPSC compliance fill mode.
+          disclaim_code:
+            type: string
+            enum:
+            - A
+            - B
+            description: '`A` = not regulated by CPSC; `B` = no certificate needed per agency guidance.'
+          intended_use_code:
+            type: string
+            description: Intended use of goods for customs assessment.
+          intended_use_description:
+            type: string
+            description: Supplemental info when `intended_use_code` is `980.000`.
+      - title: CpscReference
+        type: object
+        description: 'CPSC regulation data filled via certificate reference mode. Supported carriers: UPS, FedEx.'
+        required:
+        - regulation_code
+        - fill_mode
+        - certifier_id
+        - product_id
+        - version_id
+        properties:
+          regulation_code:
+            type: string
+            enum:
+            - CPSC
+            description: Regulation code identifying the applicable regulation.
+          fill_mode:
+            type: string
+            enum:
+            - reference
+            description: Indicates the CPSC compliance fill mode.
+          certifier_id:
+            type: string
+            description: Importer's ID in the CPSC Product Registry.
+          product_id:
+            type: string
+            description: Product's ID in the CPSC Product Registry.
+          version_id:
+            type: string
+            description: Version ID of the product certificate in the CPSC Product Registry.
+    Rate_record.v3:
+      title: RateRecord
+      x-stoplight:
+        id: a0hnwegyy5k4z
+      type: object
+      x-tags:
+      - Resource
+      examples: []
+      description: 'RateRecord object: the description of rates information'
+      properties:
+        created_at:
+          type: string
+          description: 'the timestamp of created_at, example: 2022-05-18T09:17:38+00:00'
+        id:
+          type: string
+          description: rate id
+        updated_at:
+          type: string
+          description: 'the timestamp of updated_at, example: 2022-05-18T09:17:38+00:00'
+        status:
+          type: string
+          enum:
+          - calculating
+          - calculated
+          - failed
+        rates:
+          type: array
+          description: rates array
+          items:
+            $ref: '#/components/schemas/Rate.v3'
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Parcel.v3:
       title: Parcel
       x-stoplight:
@@ -2396,66 +2513,6 @@ components:
       x-tags:
       - Primitive
       examples: []
-    Item.v3:
-      title: Item
-      x-stoplight:
-        id: 85gwiiinn20p1
-      type: object
-      description: 'Item object: the description of item information'
-      x-tags:
-      - Primitive
-      examples: []
-      required:
-      - quantity
-      - description
-      properties:
-        quantity:
-          type: integer
-          description: 'The quantity of the item Minimum: 1'
-        description:
-          type: string
-          description: The description of the item
-        description_cn:
-          type: string
-          description: 'the description of the item in Chinese '
-        price:
-          $ref: '#/components/schemas/Money.v3'
-        item_id:
-          type: string
-          description: The ID of the item
-        origin_country:
-          type: string
-          description: Country in ISO 3166-1 alpha 3 code
-        weight:
-          $ref: '#/components/schemas/Weight.v3'
-        sku:
-          type: string
-          description: The sku of the item.
-        hs_code:
-          type: string
-          description: The HS Code (Harmonized Commodity Description and Coding System) of the item.
-        outbound_hs_code:
-          type: string
-          description: The HS Code (Harmonized Commodity Description and Coding System) of the item as required by the exporting country's customs regulations.
-        return_reason:
-          type: string
-          x-stoplight:
-            id: 86krhz0houiz2
-          description: The reason of return
-        dimension:
-          $ref: '#/components/schemas/Dimension.v3'
-          x-stoplight:
-            id: prw8rr4twlc9v
-        barcode:
-          type: string
-          x-stoplight:
-            id: o455vzu1p8jam
-          description: The barcode of item
-        regulatory_data:
-          type: array
-          description: 'CPSC regulatory data entries associated with this item. Supported carriers: UPS, FedEx.'
-          items:
-            $ref: '#/components/schemas/Regulatory_data_item.v3'
     Shipment.v3:
       type: object
       title: Shipment
@@ -2531,147 +2588,6 @@ components:
       - height
       - depth
       - unit
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
-    Rate_record.v3:
-      title: RateRecord
-      x-stoplight:
-        id: a0hnwegyy5k4z
-      type: object
-      x-tags:
-      - Resource
-      examples: []
-      description: 'RateRecord object: the description of rates information'
-      properties:
-        created_at:
-          type: string
-          description: 'the timestamp of created_at, example: 2022-05-18T09:17:38+00:00'
-        id:
-          type: string
-          description: rate id
-        updated_at:
-          type: string
-          description: 'the timestamp of updated_at, example: 2022-05-18T09:17:38+00:00'
-        status:
-          type: string
-          enum:
-          - calculating
-          - calculated
-          - failed
-        rates:
-          type: array
-          description: rates array
-          items:
-            $ref: '#/components/schemas/Rate.v3'
-    Regulatory_data_item.v3:
-      title: RegulatoryDataItem
-      x-stoplight:
-        id: regulatory-data-item-v3
-      description: 'A CPSC regulatory data entry associated with an item. The shape varies by `fill_mode`. Supported carriers: UPS, FedEx.'
-      x-tags:
-      - Primitive
-      oneOf:
-      - title: CpscDisclaimer
-        type: object
-        description: 'CPSC regulation data filled via disclaimer mode. Supported carriers: UPS, FedEx.'
-        required:
-        - regulation_code
-        - fill_mode
-        - disclaim_code
-        - intended_use_code
-        properties:
-          regulation_code:
-            type: string
-            enum:
-            - CPSC
-            description: Regulation code identifying the applicable regulation.
-          fill_mode:
-            type: string
-            enum:
-            - disclaimer
-            description: Indicates the CPSC compliance fill mode.
-          disclaim_code:
-            type: string
-            enum:
-            - A
-            - B
-            description: '`A` = not regulated by CPSC; `B` = no certificate needed per agency guidance.'
-          intended_use_code:
-            type: string
-            description: Intended use of goods for customs assessment.
-          intended_use_description:
-            type: string
-            description: Supplemental info when `intended_use_code` is `980.000`.
-      - title: CpscReference
-        type: object
-        description: 'CPSC regulation data filled via certificate reference mode. Supported carriers: UPS, FedEx.'
-        required:
-        - regulation_code
-        - fill_mode
-        - certifier_id
-        - product_id
-        - version_id
-        properties:
-          regulation_code:
-            type: string
-            enum:
-            - CPSC
-            description: Regulation code identifying the applicable regulation.
-          fill_mode:
-            type: string
-            enum:
-            - reference
-            description: Indicates the CPSC compliance fill mode.
-          certifier_id:
-            type: string
-            description: Importer's ID in the CPSC Product Registry.
-          product_id:
-            type: string
-            description: Product's ID in the CPSC Product Registry.
-          version_id:
-            type: string
-            description: Version ID of the product certificate in the CPSC Product Registry.
-    Weight.v3:
-      title: Weight
-      x-stoplight:
-        id: sqe056qqggctt
-      type: object
-      description: 'Weight object: unit weight of the item'
-      x-tags:
-      - Primitive
-      examples: []
-      properties:
-        unit:
-          type: string
-          description: weight unit
-          enum:
-          - lb
-          - kg
-          - oz
-          - g
-        value:
-          type: number
-          description: value of Weight
-      required:
-      - unit
-      - value
     Address.v3:
       type: object
       x-stoplight:
@@ -2843,35 +2759,30 @@ components:
             lng:
               type: number
               description: longitude number
-    Meta.v3:
-      description: Meta data object.
+    Weight.v3:
+      title: Weight
+      x-stoplight:
+        id: sqe056qqggctt
       type: object
-      x-examples: {}
-      examples:
-      - code: 200
-        type: OK
-        message: Everything worked as expected.
-      title: Meta
+      description: 'Weight object: unit weight of the item'
       x-tags:
-      - Envelope
+      - Primitive
+      examples: []
       properties:
-        code:
-          type: integer
-          description: Code of Meta
-        message:
+        unit:
           type: string
-          description: Message of Meta
-        details:
-          type: array
-          description: Details of Meta
-          items:
-            $ref: '#/components/schemas/Error.v3'
-        retryable:
-          type: boolean
-          description: Whether this request will be retryable or not
+          description: weight unit
+          enum:
+          - lb
+          - kg
+          - oz
+          - g
+        value:
+          type: number
+          description: value of Weight
       required:
-      - code
-      - message
+      - unit
+      - value
     Rate.v3:
       title: Rate
       x-stoplight:
@@ -2964,6 +2875,95 @@ components:
       - shipper_account
       - service_type
       - service_name
+    Meta.v3:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Item.v3:
+      title: Item
+      x-stoplight:
+        id: 85gwiiinn20p1
+      type: object
+      description: 'Item object: the description of item information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - quantity
+      - description
+      properties:
+        quantity:
+          type: integer
+          description: 'The quantity of the item Minimum: 1'
+        description:
+          type: string
+          description: The description of the item
+        description_cn:
+          type: string
+          description: 'the description of the item in Chinese '
+        price:
+          $ref: '#/components/schemas/Money.v3'
+        item_id:
+          type: string
+          description: The ID of the item
+        origin_country:
+          type: string
+          description: Country in ISO 3166-1 alpha 3 code
+        weight:
+          $ref: '#/components/schemas/Weight.v3'
+        sku:
+          type: string
+          description: The sku of the item.
+        hs_code:
+          type: string
+          description: The HS Code (Harmonized Commodity Description and Coding System) of the item.
+        outbound_hs_code:
+          type: string
+          description: The HS Code (Harmonized Commodity Description and Coding System) of the item as required by the exporting country's customs regulations.
+        return_reason:
+          type: string
+          x-stoplight:
+            id: 86krhz0houiz2
+          description: The reason of return
+        dimension:
+          $ref: '#/components/schemas/Dimension.v3'
+          x-stoplight:
+            id: prw8rr4twlc9v
+        barcode:
+          type: string
+          x-stoplight:
+            id: o455vzu1p8jam
+          description: The barcode of item
+        regulatory_data:
+          type: array
+          description: 'CPSC regulatory data entries associated with this item. Supported carriers: UPS, FedEx.'
+          items:
+            $ref: '#/components/schemas/Regulatory_data_item.v3'
   securitySchemes:
     as-api-key:
       name: as-api-key

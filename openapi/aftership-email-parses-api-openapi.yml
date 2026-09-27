@@ -961,11 +961,9 @@ paths:
       - Email Parses
 components:
   schemas:
-    Subtotal.v1:
-      x-stoplight:
-        id: 4y231zm0tcg6c
+    Order_total.v1:
       title: Money
-      description: Order subtotal amount.
+      description: Order total amount.
       type:
       - object
       - 'null'
@@ -1005,35 +1003,54 @@ components:
       - amount
       - currency
       - symbol
-    Attachment.v1:
+    Tax_total.v1:
       x-stoplight:
-        id: jqxxfufazshzz
-      title: Attachment
-      type: object
+        id: pe0o32z8jfcsk
+      title: Money
+      description: Total tax amount.
+      type:
+      - object
+      - 'null'
+      x-examples:
+        example-1:
+          amount: '-1'
+          currency: USD
+      examples:
+      - amount: '1.00'
+        currency: USD
+        symbol: $
+      additionalProperties: false
+      x-tags:
+      - Primitive
       properties:
-        filename:
-          type: string
+        amount:
+          type:
+          - string
+          - 'null'
+          description: The amount. It can be negative.
+          example: '1.00'
+        currency:
+          description: The currency.
+          example: USD
+          type:
+          - string
+          - 'null'
+        symbol:
+          type:
+          - string
+          - 'null'
+          description: The symbol of currency.
+          example: $
           x-stoplight:
-            id: 0cj14fzi0lygx
-          description: 'The filename of the attachment. '
-        content_type:
-          type: string
-          x-stoplight:
-            id: g3o2u0fj4vthf
-          description: The MIME type of the file. See [MIME Type](https://www.iana.org/assignments/media-types/media-types.xhtml).
-        data:
-          type: string
-          x-stoplight:
-            id: qlt11h2pi72yc
-          description: "The body data of a attachment part as a base64url encoded string. \n\nA base64-encoded string."
+            id: 9z1kythbmznrd
       required:
-      - filename
-      - content_type
-      - data
-    Order_total.v2:
+      - amount
+      - currency
+      - symbol
+    Shipping_total.v2:
       x-stoplight:
-        id: u0c3h56iv5g5w
-      description: Order total amount.
+        id: 05jumu3namukt
+      description: Total shipping amount.
       type:
       - object
       - 'null'
@@ -1081,366 +1098,36 @@ components:
       - amount
       - currency
       - raw_symbol
-    Money.v2:
-      x-stoplight:
-        id: skd5mhi674bcn
-      type:
-      - object
-      - 'null'
-      description: The money object is used to represent the currency amount. In some cases, if it cannot parse the currency from the symbol, the currency will be null while the symbol will have a value.
-      x-examples:
-        example-1:
-          amount: '-1'
-          currency: USD
-      examples:
-      - amount: '1.00'
-        currency: USD
-        raw_symbol: $
-      additionalProperties: false
-      title: MoneyV2
-      x-tags:
-      - Primitive
-      properties:
-        amount:
-          type:
-          - string
-          - 'null'
-          description: The amount. It can be negative.
-          example: '1.00'
-          x-stoplight:
-            id: v3vvdnl5dto60
-        currency:
-          description: The currency.
-          example: USD
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: 9mf5843b48pyx
-        raw_symbol:
-          type:
-          - string
-          - 'null'
-          description: 'The original currency symbol extracted from the email.
-
-
-            There would not be a normalized currency symbol enum list, as the currency symbol for a currency is not a consistent one-to-one mapping. For example, the currency symbol of `HKD` could be either `HK$` or `$`. Vice versa, different currencies could have the same currency symbol. Such as `HKD` and `USD`, which the currency symbol of both currencies is `$`.'
-          example: $
-          x-stoplight:
-            id: eb1617ei0ys0v
-      required:
-      - amount
-      - currency
-      - raw_symbol
-    Order.v1:
+    Meta.v1:
+      description: Meta data object.
       type: object
-      description: The order object contains at least 1 order information (`order.order_number` + `order.store`) or 1 tracking information (`order.trackings.n.tracking_number`).  See [Minimum Valid Parsing Result](../../docs/other/minimum_valid_parsing_result.md).
-      x-examples:
-        example-1:
-          order_number: '1234'
-          order_url: https://www.amazon.com/gp/css/2323432.html
-          placed_at:
-            date: '2012-12-12'
-            time: '13:06:22'
-            utc_offset: 8
-            timezone_identifier: Asia/Hong_Kong
-          order_status: open
-          store:
-            name: example store
-            url: https://www.example-store.com
-            logo_url: https://example-store.com/logo.png
-            email: contact@example-store.com
-            phone:
-              country_region_code: '1'
-              number: '3105550199'
-          items:
-          - product_id: null
-            product_title: T-shirt
-            url: http://example.com/t-shirt.html
-            image_url: http://example.com/images/t-shirt.png
-            quantity: 4
-            unit_price:
-              amount: '20'
-              currency: USD
-            compare_unit_price:
-              amount: '30'
-              currency: USD
-            total_price:
-              amount: '80'
-              currency: USD
-            compare_total_price:
-              amount: '120'
-              currency: USD
-            variant_description: 'size: XL - color: red'
-          shipping_address:
-            raw_location: Los Angeles, CA, USA
-            phone:
-              country_region_code: '1'
-              number: '3105550199'
-          shipping_method:
-            name: Standard - free
-          billing_address:
-            raw_location: Los Angeles, CA, USA
-            phone:
-              country_region_code: '1'
-              number: '3105550199'
-          order_total:
-            amount: '97'
-            currency: USD
-          subtotal:
-            amount: '80'
-            currency: USD
-          shipping_total:
-            amount: '10'
-            currency: USD
-          tax_total:
-            amount: '20'
-            currency: USD
-          discount_total:
-            amount: '-10'
-            currency: USD
-          other_prices:
-          - title: Reward Coupon
-            price:
-              amount: '-1'
-              currency: USD
-          - title: Gift Card
-            price:
-              amount: '-2'
-              currency: USD
-          trackings:
-          - status: InTransit
-            tracking_number: '123456'
-            slug: ups
-            additional_fields:
-              postal_code: xxxxxx
-            items:
-            - product_id: null
-              product_title: T-shirt
-              url: http://example.com/t-shirt.html
-              image_url: http://example.com/images/t-shirt.png
-              quantity: 4
-              unit_price:
-                amount: '20'
-                currency: USD
-              compare_unit_price:
-                amount: '30'
-                currency: USD
-              total_price:
-                amount: '80'
-                currency: USD
-              compare_total_price:
-                amount: '120'
-                currency: USD
-              variant_description: 'size: XL - color: red'
-          estimated_delivery_date:
-            estimated_delivery_date_min: '2021-12-11'
-            estimated_delivery_date_max: null
+      x-examples: {}
       examples:
-      - order_number: '23234324'
-        order_url: https://www.amazon.com/gp/css/2323432.html
-        placed_at:
-          date: '2012-12-12'
-          time: '13:06:22'
-          utc_offset: 8
-          timezone_identifier: Asia/Shanghai
-        order_status: open
-        store:
-          name: example store
-          url: https://www.example-store.com
-          logo_url: https://example-store.com/logo.png
-          email: contact@example-store.com
-          phone:
-            country_region_code: '1'
-            number: '3105550199'
-        items:
-        - external_product_id: '3123213'
-          product_title: T-shirt
-          url: http://example.com/t-shirt.html
-          image_url: http://example.com/images/t-shirt.png
-          quantity: 2
-          unit_price:
-            amount: '10.00'
-            currency: USD
-            symbol: $
-          compare_unit_price:
-            amount: '20.00'
-            currency: USD
-            symbol: $
-          total_price:
-            amount: '20.00'
-            currency: USD
-            symbol: $
-          compare_total_price:
-            amount: '40.00'
-            currency: USD
-            symbol: $
-          variant_description: 'size: XL - color: red'
-        shipping_address:
-          raw_location: Los Angeles, CA, USA
-          phone:
-            country_region_code: '1'
-            number: '3105550199'
-        shipping_method:
-          name: Standard - free
-        billing_address:
-          raw_location: Los Angeles, CA, USA
-          phone:
-            country_region_code: '1'
-            number: '3105550199'
-        order_total:
-          amount: '19.00'
-          currency: USD
-          symbol: $
-        subtotal:
-          amount: '20.00'
-          currency: USD
-          symbol: $
-        shipping_total:
-          amount: '4.00'
-          currency: USD
-          symbol: $
-        tax_total:
-          amount: '1.00'
-          currency: USD
-          symbol: $
-        discount_total:
-          amount: '-5.00'
-          currency: USD
-          symbol: $
-        other_prices:
-        - title: Reward Coupon
-          price:
-            amount: '-1.00'
-            currency: USD
-            symbol: $
-        trackings:
-        - status: Delivered
-          tracking_number: '234234'
-          slug: string
-          additional_fields:
-            postal_code: xxxxxx
-          items:
-          - product_id: '3123213'
-            product_title: T-shirt
-            url: http://example.com/t-shirt.html
-            image_url: http://example.com/images/t-shirt.png
-            quantity: 2
-            unit_price:
-              amount: '10.00'
-              currency: USD
-              symbol: $
-            compare_unit_price:
-              amount: '20.00'
-              currency: USD
-              symbol: $
-            total_price:
-              amount: '20.00'
-              currency: USD
-              symbol: $
-            compare_total_price:
-              amount: '40.00'
-              currency: USD
-              symbol: $
-            variant_description: 'size: XL - color: red'
-        estimated_delivery_date:
-          estimated_delivery_date_min: '2021-12-11'
-          estimated_delivery_date_max: '2021-12-12'
-      additionalProperties: false
-      title: Order
+      - code: 201
+        type: Created
+        message: The request has been fulfilled and a new resource has been created.
+      title: Meta
       x-tags:
-      - Primitive
+      - Envelope
       properties:
-        order_number:
-          type:
-          - string
-          - 'null'
-          example: '23234324'
-          description: Order number.
-        order_url:
-          type:
-          - string
-          - 'null'
-          example: https://www.amazon.com/gp/css/2323432.html
-        placed_at:
-          $ref: '#/components/schemas/Date_time.v1'
-        order_status:
-          type:
-          - string
-          - 'null'
-          description: Order status.
-          enum:
-          - open
-          - closed
-          - canceled
-          example: open
-        store:
-          $ref: '#/components/schemas/Store.v1'
-        items:
+        code:
+          type: number
+          default: 200
+          example: 200
+        type:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+        errors:
           type: array
-          uniqueItems: true
-          description: Items in this order.
           items:
-            $ref: '#/components/schemas/Order_item.v1'
-        shipping_address:
-          $ref: '#/components/schemas/Address.v1'
-        shipping_method:
-          $ref: '#/components/schemas/Shipping_method.v1'
-        billing_address:
-          $ref: '#/components/schemas/Address.v1'
-        order_total:
-          $ref: '#/components/schemas/Order_total.v1'
-        subtotal:
-          $ref: '#/components/schemas/Subtotal.v1'
-        shipping_total:
-          $ref: '#/components/schemas/Shipping_total.v1'
-        tax_total:
-          $ref: '#/components/schemas/Tax_total.v1'
-        discount_total:
-          $ref: '#/components/schemas/Discount_total.v1'
-        other_prices:
-          type: array
-          uniqueItems: true
-          description: All other prices defined by the store (except `order_total`, `subtotal`, `shipping_total`, `tax_total`, `discount_total`).
-          items:
-            type: object
-            properties:
-              title:
-                type:
-                - string
-                - 'null'
-                description: Price description.
-                example: Reward Coupon
-              price:
-                $ref: '#/components/schemas/Money.v1'
-            required:
-            - title
-        trackings:
-          type: array
-          uniqueItems: true
-          description: Trackings parsed from the email.
-          items:
-            $ref: '#/components/schemas/Tracking.v1'
-        estimated_delivery_date:
-          $ref: '#/components/schemas/Estimated_delivery_date.v1'
+            $ref: '#/components/schemas/Error.v1'
       required:
-      - order_number
-      - order_url
-      - placed_at
-      - order_status
-      - store
-      - items
-      - shipping_address
-      - shipping_method
-      - billing_address
-      - order_total
-      - subtotal
-      - shipping_total
-      - tax_total
-      - discount_total
-      - other_prices
-      - trackings
-      - estimated_delivery_date
+      - code
+      - type
+      - message
     Address.v2:
       x-stoplight:
         id: juovt70zhzyab
@@ -1560,6 +1247,1149 @@ components:
                 id: 6rcmoyqf6ctqn
               description: ISO 3166-1 alpha-3.
               example: USA
+    Subtotal.v1:
+      x-stoplight:
+        id: 4y231zm0tcg6c
+      title: Money
+      description: Order subtotal amount.
+      type:
+      - object
+      - 'null'
+      x-examples:
+        example-1:
+          amount: '-1'
+          currency: USD
+      examples:
+      - amount: '1.00'
+        currency: USD
+        symbol: $
+      additionalProperties: false
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type:
+          - string
+          - 'null'
+          description: The amount. It can be negative.
+          example: '1.00'
+        currency:
+          description: The currency.
+          example: USD
+          type:
+          - string
+          - 'null'
+        symbol:
+          type:
+          - string
+          - 'null'
+          description: The symbol of currency.
+          example: $
+          x-stoplight:
+            id: 9z1kythbmznrd
+      required:
+      - amount
+      - currency
+      - symbol
+    Money.v1:
+      type:
+      - object
+      - 'null'
+      description: The money object is used to represent the currency amount. In some cases, if it cannot parse the currency from the symbol, the currency will be null while the symbol will have a value.
+      x-examples:
+        example-1:
+          amount: '-1'
+          currency: USD
+      examples:
+      - amount: '1.00'
+        currency: USD
+        symbol: $
+      additionalProperties: false
+      title: Money
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type:
+          - string
+          - 'null'
+          description: The amount. It can be negative.
+          example: '1.00'
+        currency:
+          description: The currency.
+          example: USD
+          type:
+          - string
+          - 'null'
+        symbol:
+          type:
+          - string
+          - 'null'
+          description: The symbol of currency.
+          example: $
+          x-stoplight:
+            id: 9z1kythbmznrd
+      required:
+      - amount
+      - currency
+      - symbol
+    Tracking.v2:
+      x-stoplight:
+        id: cdy3hhgxsyafe
+      type: object
+      description: Tracking information parsed from the email
+      x-examples:
+        example-1:
+          status: InTransit
+          substatus: InTransit_001
+          tracking_number: '123456'
+          slug: ups
+          additional_fields:
+            postal_code: xxxxxx
+          items:
+          - product_id: null
+            product_title: T-shirt
+            url: https://xxx
+            image_url: https://xxx
+            quantity: 4
+            unit_price:
+              amount: '20'
+              currency: USD
+            compare_unit_price:
+              amount: '30'
+              currency: USD
+            total_price:
+              amount: '80'
+              currency: USD
+            compare_total_price:
+              amount: '120'
+              currency: USD
+            variant_description: 'size: XL - color: red'
+      examples:
+      - status: Delivered
+        substatus: Delivered_001
+        tracking_number: '234234'
+        slug: ups
+        additional_fields:
+          postal_code: xxxxxx
+        items:
+        - external_product_id: '3123213'
+          title: T-shirt
+          url: http://example.com/t-shirt.html
+          image_url: http://example.com/images/t-shirt.png
+          quantity: 2
+          unit_price:
+            amount: '10.00'
+            currency: USD
+            raw_symbol: $
+          compare_unit_price:
+            amount: '20.00'
+            currency: USD
+            raw_symbol: $
+          total_price:
+            amount: '20.00'
+            currency: USD
+            raw_symbol: $
+          compare_total_price:
+            amount: '40.00'
+            currency: USD
+            raw_symbol: $
+          variant_description: 'size: XL - color: red'
+        tracking_url: http://example.com
+        shipping_provider: Third Party
+      additionalProperties: false
+      title: TrackingV2
+      x-tags:
+      - Primitive
+      required:
+      - status
+      - substatus
+      - tracking_number
+      - slug
+      - additional_fields
+      - items
+      - tracking_url
+      - shipping_provider
+      properties:
+        status:
+          type:
+          - string
+          - 'null'
+          description: Tracking status.
+          enum:
+          - Delivered
+          - Exception
+          - AttemptFail
+          - InTransit
+          - InfoReceived
+          - OutForDelivery
+          - Expired
+          - Pending
+          - AvailableForPickup
+          example: Delivered
+          x-stoplight:
+            id: q8j3y2r9got6b
+        substatus:
+          type:
+          - string
+          - 'null'
+          description: Tracking sub-status. It provides additional context to the primary status field. For supported values, refer to [Delivery sub-statuses](https://www.aftership.com/docs/tracking/enum/delivery-sub-statuses?as_source=www.aftership.com%2Fdocs%2Fparser).
+          example: Delivered_001
+          x-stoplight:
+            id: tk2substatus01
+        tracking_number:
+          type:
+          - string
+          - 'null'
+          description: Tracking number.
+          example: '234234'
+          x-stoplight:
+            id: 0lhlhmb7scv7k
+        slug:
+          type:
+          - string
+          - 'null'
+          description: Unique code of the courier.
+          example: ups
+          x-stoplight:
+            id: 1st942s6l6hw9
+        additional_fields:
+          type:
+          - object
+          - 'null'
+          description: Additional information to identify the shipment and ensure its uniqueness.
+          x-stoplight:
+            id: ohezhb0vuh2s1
+          required:
+          - postal_code
+          - ship_date
+          - state
+          - origin_country
+          - destination_country
+          properties:
+            postal_code:
+              type:
+              - string
+              - 'null'
+              example: xxxxxx
+              description: The postal code of the tracking.
+              x-stoplight:
+                id: ya29h5r2n7awp
+            ship_date:
+              type:
+              - string
+              - 'null'
+              description: The shipping date of the tracking is in YYYY-MM-DD format.
+              example: '2018-11-11'
+              x-stoplight:
+                id: a9tmzcdmw0h7l
+            state:
+              type:
+              - string
+              - 'null'
+              description: The state of the tracking.
+              example: xxx
+              x-stoplight:
+                id: x4gdrnvjck0ne
+            origin_country:
+              type:
+              - string
+              - 'null'
+              description: The origin country of the tracking.
+              example: CHN
+              x-stoplight:
+                id: 0gdx5gvaol3fl
+            destination_country:
+              type:
+              - string
+              - 'null'
+              description: The destination country of the tracking.
+              example: CHN
+              x-stoplight:
+                id: nzdia0bive5kx
+        items:
+          type: array
+          uniqueItems: true
+          description: Items in the package.
+          x-stoplight:
+            id: 1futjv0thqgf0
+          items:
+            $ref: '#/components/schemas/Order_item.v2'
+            x-stoplight:
+              id: u0xjlydul2n90
+        tracking_url:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: f6ohw6jtai2ks
+          description: 'The tracking_link is the link to the tracking page.
+
+            '
+        shipping_provider:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: 2iiofiycofoqx
+          description: The shipping provider information extracted from the email. This field is strongly correlated with the shopping site of the parsed email (e.g., Amazon, Shein, Temu). Currently only supported for Amazon emails.
+          example: Amazon Logistics
+          enum:
+          - Amazon Logistics
+          - Amazon Shipping
+          - Third Party
+    Subtotal.v2:
+      x-stoplight:
+        id: 7k8cj769osha5
+      description: Order subtotal amount.
+      type:
+      - object
+      - 'null'
+      x-examples:
+        example-1:
+          amount: '-1'
+          currency: USD
+      examples:
+      - amount: '1.00'
+        currency: USD
+        raw_symbol: $
+      additionalProperties: false
+      title: MoneyV2
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type:
+          - string
+          - 'null'
+          description: The amount. It can be negative.
+          example: '1.00'
+          x-stoplight:
+            id: v3vvdnl5dto60
+        currency:
+          description: The currency.
+          example: USD
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: 9mf5843b48pyx
+        raw_symbol:
+          type:
+          - string
+          - 'null'
+          description: 'The original currency symbol extracted from the email.
+
+
+            There would not be a normalized currency symbol enum list, as the currency symbol for a currency is not a consistent one-to-one mapping. For example, the currency symbol of `HKD` could be either `HK$` or `$`. Vice versa, different currencies could have the same currency symbol. Such as `HKD` and `USD`, which the currency symbol of both currencies is `$`.'
+          example: $
+          x-stoplight:
+            id: eb1617ei0ys0v
+      required:
+      - amount
+      - currency
+      - raw_symbol
+    Opening_hour_period.v2:
+      type:
+      - object
+      - 'null'
+      x-stoplight:
+        id: oh2periodv2json
+      description: The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day. When `open` is `true` and both `from` and `to` are `null`, it indicates the location operates 24 hours on that day.
+      x-examples:
+        example-1:
+          open: true
+          from: '10:30'
+          to: '20:30'
+      examples:
+      - open: true
+        from: '10:30'
+        to: '20:30'
+      additionalProperties: false
+      title: OpeningHourPeriodV2
+      x-tags:
+      - Primitive
+      required:
+      - open
+      - from
+      - to
+      properties:
+        open:
+          type: boolean
+          description: Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`.
+          default: false
+          example: true
+          x-stoplight:
+            id: oh2prdopen0001
+        from:
+          type:
+          - string
+          - 'null'
+          description: The start time of the opening hour period in HH:mm format. For locations that operate 24 hours, please set the value to `null`.
+          example: '10:30'
+          x-stoplight:
+            id: oh2prdfrom0001
+        to:
+          type:
+          - string
+          - 'null'
+          description: The end time of the opening hour period in HH:mm format. For locations that operate 24 hours, please set the value to `null`.
+          example: '20:30'
+          x-stoplight:
+            id: oh2prdto000001
+    Store.v2:
+      x-stoplight:
+        id: e2hedhafj1s9e
+      type:
+      - object
+      - 'null'
+      description: 'Store object
+
+        <div style="visibility: hidden; height: 0px;">
+
+        [Store Slug](../../docs/other/store_slug.md)
+
+        </div>'
+      x-examples:
+        example-1:
+          name: example store
+          url: https://www.example-store.com
+          logo_url: https://example-store.com/logo.png
+          email: contact@example-store.com
+          phone:
+            country_region_code: '1'
+            number: '3105550199'
+      examples:
+      - name: example store
+        url: https://www.example.ca
+        logo_url: https://example.ca/logo.png
+        email: contact@example.ca
+        phone:
+          calling_code: '1'
+          phone_number: '3105550199'
+        slug: example-ca
+      - name: example store
+        url: https://www.example.com
+        logo_url: https://example.com/logo.png
+        email: contact@example.com
+        phone:
+          calling_code: '1'
+          phone_number: '3105550199'
+        slug: example
+      title: StoreV2
+      additionalProperties: false
+      x-tags:
+      - Primitive
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Store name.
+          example: example store
+          x-stoplight:
+            id: am7npo82fsvn3
+        url:
+          type:
+          - string
+          - 'null'
+          description: Store website URL
+          example: https://www.example-store.com
+          x-stoplight:
+            id: frkxkfoi6dtml
+        logo_url:
+          type:
+          - string
+          - 'null'
+          example: https://example-store.com/logo.png
+          description: The logo image url of the store.
+          x-stoplight:
+            id: c5u9np582w3i0
+        email:
+          type:
+          - string
+          - 'null'
+          example: contact@example-store.com
+          description: The contact email of the store.
+          x-stoplight:
+            id: xit5a3pcsqi65
+        phone:
+          $ref: '#/components/schemas/Phone.v2'
+          x-stoplight:
+            id: gyd4vgc261rwr
+        slug:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: n3ksulw9n3u8q
+          description: "Unique store code. The slug may be null when it cannot be identified from our store database, the other fields of stores (e.g. `store.name`) will be non-standardized values. See \n[Store Slug](../../docs/other/store_slug.md)\n."
+      required:
+      - name
+      - url
+      - logo_url
+      - email
+      - phone
+      - slug
+    Pickup.v2:
+      x-stoplight:
+        id: pk3ordpickup01
+      type:
+      - object
+      - 'null'
+      description: Order pickup information parsed from the email.
+      x-examples:
+        example-1:
+          location:
+            raw_address: Amazon Locker - 123 Example Street, London, United Kingdom
+            raw_opening_hours: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
+            opening_hours:
+              sunday:
+              - open: true
+                from: 09:00
+                to: '20:00'
+              monday:
+              - open: true
+                from: 08:00
+                to: '22:00'
+              tuesday:
+              - open: true
+                from: 08:00
+                to: '22:00'
+              wednesday:
+              - open: true
+                from: 08:00
+                to: '22:00'
+              thursday:
+              - open: true
+                from: 08:00
+                to: '22:00'
+              friday:
+              - open: true
+                from: 08:00
+                to: '22:00'
+              saturday:
+              - open: true
+                from: 08:00
+                to: '22:00'
+          instructions: You must bring your ID that matches the name on the parcel.
+          code: '31232'
+          barcode:
+            image_url: http://example.com/images/barcode.png
+          pickup_action_url: https://www.example.com/pickup/start?order=12345
+          available_datetime:
+            start: null
+            end:
+              date: '2012-12-12'
+              time: null
+              utc_offset: null
+              timezone_identifier: null
+            raw: PICK UP UNTIL Wednesday, Dec 12
+      examples:
+      - location:
+          raw_address: Amazon Locker - 123 Example Street, London, United Kingdom
+          raw_opening_hours: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
+          opening_hours:
+            sunday:
+            - open: true
+              from: 09:00
+              to: '20:00'
+            monday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            tuesday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            wednesday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            thursday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            friday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            saturday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+        instructions: You must bring your ID that matches the name on the parcel.
+        code: '31232'
+        barcode:
+          image_url: http://example.com/images/barcode.png
+        pickup_action_url: https://www.example.com/pickup/start?order=12345
+        available_datetime:
+          start: null
+          end:
+            date: '2012-12-12'
+            time: null
+            utc_offset: null
+            timezone_identifier: null
+          raw: PICK UP UNTIL Wednesday, Dec 12
+      additionalProperties: false
+      title: PickupV2
+      x-tags:
+      - Primitive
+      required:
+      - location
+      - instructions
+      - code
+      - barcode
+      - pickup_action_url
+      - available_datetime
+      properties:
+        location:
+          $ref: '#/components/schemas/Pickup_location.v2'
+          x-stoplight:
+            id: pk2addrref0001
+        instructions:
+          type:
+          - string
+          - 'null'
+          description: Pickup instructions. Specific requirements or guidelines for collecting the order.
+          example: You must bring your ID that matches the name on the parcel.
+          x-stoplight:
+            id: pk2instruction1
+        code:
+          type:
+          - string
+          - 'null'
+          description: Collection code. The code or PIN required to pick up the order.
+          example: '31232'
+          x-stoplight:
+            id: pk2code0000001
+        barcode:
+          type:
+          - object
+          - 'null'
+          description: Barcode or QR code information for pickup.
+          additionalProperties: false
+          x-stoplight:
+            id: pk2barcode0001
+          required:
+          - image_url
+          properties:
+            image_url:
+              type:
+              - string
+              - 'null'
+              description: Image URL of the barcode or QR code.
+              example: http://example.com/images/barcode.png
+              x-stoplight:
+                id: pk2barcodeimg1
+        pickup_action_url:
+          type:
+          - string
+          - 'null'
+          description: URL for the user to take pickup action.
+          example: https://www.example.com/pickup/start?order=12345
+          x-stoplight:
+            id: pk2actionurl01
+        available_datetime:
+          type:
+          - object
+          - 'null'
+          description: Pickup time window. The time range during which the order is available for collection.
+          additionalProperties: false
+          x-stoplight:
+            id: pk2availdt0001
+          required:
+          - start
+          - end
+          - raw
+          properties:
+            start:
+              $ref: '#/components/schemas/Date_time.v2'
+              description: Earliest pickup time.
+              x-stoplight:
+                id: pk2avdtstart1
+            end:
+              $ref: '#/components/schemas/Date_time.v2'
+              description: Latest pickup time.
+              x-stoplight:
+                id: pk2avdtend001
+            raw:
+              type:
+              - string
+              - 'null'
+              description: Raw text of the available pickup time extracted from the email.
+              example: PICK UP UNTIL Wednesday, Dec 12
+              x-stoplight:
+                id: pk2avdtraw001
+    Pickup_address.v2:
+      description: Structured pickup address, enriched from `raw_address`.
+      x-stoplight:
+        id: pk1address0001
+      type:
+      - object
+      - 'null'
+      x-examples:
+        example-1:
+          phone:
+            calling_code: '1'
+            phone_number: '3105550199'
+          postal_code: SW1A 1AA
+          city: London
+          state:
+            name: England
+            code: GB-ENG
+          country_region:
+            name: United Kingdom
+            code: GBR
+      examples:
+      - phone:
+          calling_code: '1'
+          phone_number: '3105550199'
+        postal_code: SW1A 1AA
+        city: London
+        state:
+          name: England
+          code: GB-ENG
+        country_region:
+          name: United Kingdom
+          code: GBR
+      title: PickupAddressV2
+      additionalProperties: false
+      x-tags:
+      - Primitive
+      required:
+      - phone
+      - postal_code
+      - city
+      - state
+      - country_region
+      properties:
+        phone:
+          $ref: '#/components/schemas/Phone.v2'
+          x-stoplight:
+            id: pkaphone00001
+        postal_code:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: pkapostal0001
+          description: Postal code.
+          example: SW1A 1AA
+        city:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: pkacity000001
+          description: City name.
+          example: London
+        state:
+          type:
+          - object
+          - 'null'
+          x-stoplight:
+            id: pkastate00001
+          description: State object.
+          required:
+          - name
+          - code
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: pkastatename1
+              description: State name.
+              example: England
+            code:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: pkastatecode1
+              description: State code, ISO 3166-2 standard.
+              example: GB-ENG
+        country_region:
+          type:
+          - object
+          - 'null'
+          x-stoplight:
+            id: pkacountry001
+          description: Country region object.
+          required:
+          - name
+          - code
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: pkacountryname
+              description: Country name.
+              example: United Kingdom
+            code:
+              type:
+              - string
+              - 'null'
+              x-stoplight:
+                id: pkacountrycode
+              description: ISO 3166-1 alpha-3.
+              example: GBR
+    Shipping_method.v1:
+      type:
+      - object
+      - 'null'
+      title: ShippingMethod
+      description: The shipping method.
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          example: Standard - free
+          description: The shipping method title.
+      required:
+      - name
+      x-tags:
+      - Primitive
+    Pickup_location.v2:
+      x-stoplight:
+        id: pk2addrref0001
+      type:
+      - object
+      - 'null'
+      description: Pickup location. The order pickup point.
+      x-examples:
+        example-1:
+          raw_address: Amazon Locker - 123 Example Street, London, United Kingdom
+          address:
+            phone:
+              calling_code: '1'
+              phone_number: '3105550199'
+            postal_code: SW1A 1AA
+            city: London
+            state:
+              name: England
+              code: GB-ENG
+            country_region:
+              name: United Kingdom
+              code: GBR
+          raw_opening_hours: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
+          opening_hours:
+            sunday:
+            - open: true
+              from: 09:00
+              to: '20:00'
+            monday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            tuesday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            wednesday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            thursday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            friday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+            saturday:
+            - open: true
+              from: 08:00
+              to: '22:00'
+      examples:
+      - raw_address: Amazon Locker - 123 Example Street, London, United Kingdom
+        address:
+          phone:
+            calling_code: '1'
+            phone_number: '3105550199'
+          postal_code: SW1A 1AA
+          city: London
+          state:
+            name: England
+            code: GB-ENG
+          country_region:
+            name: United Kingdom
+            code: GBR
+        raw_opening_hours: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
+        opening_hours:
+          sunday:
+          - open: true
+            from: 09:00
+            to: '20:00'
+          monday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          tuesday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          wednesday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          thursday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          friday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          saturday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+      additionalProperties: false
+      title: PickupLocationV2
+      x-tags:
+      - Primitive
+      required:
+      - raw_address
+      - address
+      - raw_opening_hours
+      - opening_hours
+      properties:
+        raw_address:
+          type:
+          - string
+          - 'null'
+          description: Raw address text of the pickup location parsed from the email.
+          example: Amazon Locker - 123 Example Street, London, United Kingdom
+          x-stoplight:
+            id: pk1rawlocation
+        address:
+          $ref: '#/components/schemas/Pickup_address.v2'
+          description: Structured pickup address, enriched from `raw_address`.
+          x-stoplight:
+            id: pk1address0001
+        raw_opening_hours:
+          type:
+          - string
+          - 'null'
+          description: Raw opening hours text.
+          example: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
+          x-stoplight:
+            id: pk1ohrawtext01
+        opening_hours:
+          $ref: '#/components/schemas/Opening_hours.v2'
+          description: Opening hours information of the pickup location.
+          x-stoplight:
+            id: pk1openinghrs1
+    Order_item.v1:
+      type: object
+      description: The product item of an order or a tracking.
+      x-examples:
+        example-1:
+          product_id: null
+          product_title: T-shirt
+          url: https://xxx
+          image_url: https://xxx
+          quantity: 4
+          unit_price:
+            amount: '20'
+            currency: USD
+          compare_unit_price:
+            amount: '30'
+            currency: USD
+          total_price:
+            amount: '80'
+            currency: USD
+          compare_total_price:
+            amount: '120'
+            currency: USD
+          variant_description: 'size: XL - color: red'
+      examples:
+      - external_product_id: '3123213'
+        product_title: T-shirt
+        url: http://example.com/t-shirt.html
+        image_url: http://example.com/images/t-shirt.png
+        quantity: 2
+        unit_price:
+          amount: '10.00'
+          currency: USD
+          symbol: $
+        compare_unit_price:
+          amount: '20.00'
+          currency: USD
+          symbol: $
+        total_price:
+          amount: '20.00'
+          currency: USD
+          symbol: $
+        compare_total_price:
+          amount: '40.00'
+          currency: USD
+          symbol: $
+        variant_description: 'size: XL - color: red'
+      additionalProperties: false
+      title: OrderItem
+      x-tags:
+      - Primitive
+      required:
+      - external_product_id
+      - product_title
+      - url
+      - image_url
+      - quantity
+      - unit_price
+      - compare_unit_price
+      - total_price
+      - compare_total_price
+      - variant_description
+      - status
+      properties:
+        external_product_id:
+          type:
+          - string
+          - 'null'
+          description: The product id in the store.
+          example: '3123213'
+        product_title:
+          type:
+          - string
+          - 'null'
+          description: The product title.
+          example: T-shirt
+          x-stoplight:
+            id: 3yavjqyltt363
+        url:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: The product URL on the store’s website.
+          format: uri
+          example: http://example.com/t-shirt.html
+        image_url:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: The image URL of the product.
+          format: uri
+          example: http://example.com/images/t-shirt.png
+        quantity:
+          type:
+          - number
+          - 'null'
+          description: The item quantity of the order.
+          example: 2
+        unit_price:
+          $ref: '#/components/schemas/Money.v1'
+        compare_unit_price:
+          $ref: '#/components/schemas/Money.v1'
+        total_price:
+          $ref: '#/components/schemas/Money.v1'
+        compare_total_price:
+          $ref: '#/components/schemas/Money.v1'
+        variant_description:
+          type:
+          - string
+          - 'null'
+          description: The variant description.
+          example: 'size: XL - color: red'
+        status:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: ok3ani70lqifx
+          description: 'Represents the item''s display status.
+
+
+
+            `null`: Unable to parse status
+
+
+            `canceled` : The item was canceled'
+    Address.v1:
+      type:
+      - object
+      - 'null'
+      x-examples:
+        example-1:
+          raw_location: Los Angeles, CA, USA
+          phone:
+            country_region_code: '1'
+            number: '3105550199'
+      examples:
+      - raw_location: Los Angeles, CA, USA
+        phone:
+          calling_code: '1'
+          phone_number: '3105550199'
+      title: Address
+      additionalProperties: false
+      x-tags:
+      - Primitive
+      required:
+      - raw_location
+      - phone
+      properties:
+        raw_location:
+          type:
+          - string
+          - 'null'
+          description: Address raw location.
+          example: Los Angeles, CA, USA
+        phone:
+          $ref: '#/components/schemas/Phone.v1'
+    Discount_total.v1:
+      x-stoplight:
+        id: g03jbkf1cag7o
+      title: Money
+      description: Total discount amount.
+      type:
+      - object
+      - 'null'
+      x-examples:
+        example-1:
+          amount: '-1'
+          currency: USD
+      examples:
+      - amount: '1.00'
+        currency: USD
+        symbol: $
+      additionalProperties: false
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type:
+          - string
+          - 'null'
+          description: The amount. It can be negative.
+          example: '1.00'
+        currency:
+          description: The currency.
+          example: USD
+          type:
+          - string
+          - 'null'
+        symbol:
+          type:
+          - string
+          - 'null'
+          description: The symbol of currency.
+          example: $
+          x-stoplight:
+            id: 9z1kythbmznrd
+      required:
+      - amount
+      - currency
+      - symbol
     Order.v2:
       type: object
       x-stoplight:
@@ -2032,177 +2862,6 @@ components:
           x-stoplight:
             id: 4othkgjhnaokp
           description: Whether the order requires shipping. If null, it means that AfterShip Parser is uncertain whether the order needs to be shipped and the user is required to make their own judgment.
-    Order_item.v1:
-      type: object
-      description: The product item of an order or a tracking.
-      x-examples:
-        example-1:
-          product_id: null
-          product_title: T-shirt
-          url: https://xxx
-          image_url: https://xxx
-          quantity: 4
-          unit_price:
-            amount: '20'
-            currency: USD
-          compare_unit_price:
-            amount: '30'
-            currency: USD
-          total_price:
-            amount: '80'
-            currency: USD
-          compare_total_price:
-            amount: '120'
-            currency: USD
-          variant_description: 'size: XL - color: red'
-      examples:
-      - external_product_id: '3123213'
-        product_title: T-shirt
-        url: http://example.com/t-shirt.html
-        image_url: http://example.com/images/t-shirt.png
-        quantity: 2
-        unit_price:
-          amount: '10.00'
-          currency: USD
-          symbol: $
-        compare_unit_price:
-          amount: '20.00'
-          currency: USD
-          symbol: $
-        total_price:
-          amount: '20.00'
-          currency: USD
-          symbol: $
-        compare_total_price:
-          amount: '40.00'
-          currency: USD
-          symbol: $
-        variant_description: 'size: XL - color: red'
-      additionalProperties: false
-      title: OrderItem
-      x-tags:
-      - Primitive
-      required:
-      - external_product_id
-      - product_title
-      - url
-      - image_url
-      - quantity
-      - unit_price
-      - compare_unit_price
-      - total_price
-      - compare_total_price
-      - variant_description
-      - status
-      properties:
-        external_product_id:
-          type:
-          - string
-          - 'null'
-          description: The product id in the store.
-          example: '3123213'
-        product_title:
-          type:
-          - string
-          - 'null'
-          description: The product title.
-          example: T-shirt
-          x-stoplight:
-            id: 3yavjqyltt363
-        url:
-          type:
-          - string
-          - 'null'
-          minLength: 1
-          description: The product URL on the store’s website.
-          format: uri
-          example: http://example.com/t-shirt.html
-        image_url:
-          type:
-          - string
-          - 'null'
-          minLength: 1
-          description: The image URL of the product.
-          format: uri
-          example: http://example.com/images/t-shirt.png
-        quantity:
-          type:
-          - number
-          - 'null'
-          description: The item quantity of the order.
-          example: 2
-        unit_price:
-          $ref: '#/components/schemas/Money.v1'
-        compare_unit_price:
-          $ref: '#/components/schemas/Money.v1'
-        total_price:
-          $ref: '#/components/schemas/Money.v1'
-        compare_total_price:
-          $ref: '#/components/schemas/Money.v1'
-        variant_description:
-          type:
-          - string
-          - 'null'
-          description: The variant description.
-          example: 'size: XL - color: red'
-        status:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: ok3ani70lqifx
-          description: 'Represents the item''s display status.
-
-
-
-            `null`: Unable to parse status
-
-
-            `canceled` : The item was canceled'
-    Shipping_total.v1:
-      x-stoplight:
-        id: mq71x3x12c9g8
-      title: Money
-      description: Total shipping amount.
-      type:
-      - object
-      - 'null'
-      x-examples:
-        example-1:
-          amount: '-1'
-          currency: USD
-      examples:
-      - amount: '1.00'
-        currency: USD
-        symbol: $
-      additionalProperties: false
-      x-tags:
-      - Primitive
-      properties:
-        amount:
-          type:
-          - string
-          - 'null'
-          description: The amount. It can be negative.
-          example: '1.00'
-        currency:
-          description: The currency.
-          example: USD
-          type:
-          - string
-          - 'null'
-        symbol:
-          type:
-          - string
-          - 'null'
-          description: The symbol of currency.
-          example: $
-          x-stoplight:
-            id: 9z1kythbmznrd
-      required:
-      - amount
-      - currency
-      - symbol
     Phone.v1:
       type:
       - object
@@ -2239,78 +2898,315 @@ components:
           example: '3105550199'
           x-stoplight:
             id: 4dv5xgxsexxf9
-    Meta.v1:
-      description: Meta data object.
+    Order.v1:
       type: object
-      x-examples: {}
-      examples:
-      - code: 201
-        type: Created
-        message: The request has been fulfilled and a new resource has been created.
-      title: Meta
-      x-tags:
-      - Envelope
-      properties:
-        code:
-          type: number
-          default: 200
-          example: 200
-        type:
-          type: string
-          minLength: 1
-        message:
-          type: string
-          minLength: 1
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error.v1'
-      required:
-      - code
-      - type
-      - message
-    Money.v1:
-      type:
-      - object
-      - 'null'
-      description: The money object is used to represent the currency amount. In some cases, if it cannot parse the currency from the symbol, the currency will be null while the symbol will have a value.
+      description: The order object contains at least 1 order information (`order.order_number` + `order.store`) or 1 tracking information (`order.trackings.n.tracking_number`).  See [Minimum Valid Parsing Result](../../docs/other/minimum_valid_parsing_result.md).
       x-examples:
         example-1:
-          amount: '-1'
-          currency: USD
+          order_number: '1234'
+          order_url: https://www.amazon.com/gp/css/2323432.html
+          placed_at:
+            date: '2012-12-12'
+            time: '13:06:22'
+            utc_offset: 8
+            timezone_identifier: Asia/Hong_Kong
+          order_status: open
+          store:
+            name: example store
+            url: https://www.example-store.com
+            logo_url: https://example-store.com/logo.png
+            email: contact@example-store.com
+            phone:
+              country_region_code: '1'
+              number: '3105550199'
+          items:
+          - product_id: null
+            product_title: T-shirt
+            url: http://example.com/t-shirt.html
+            image_url: http://example.com/images/t-shirt.png
+            quantity: 4
+            unit_price:
+              amount: '20'
+              currency: USD
+            compare_unit_price:
+              amount: '30'
+              currency: USD
+            total_price:
+              amount: '80'
+              currency: USD
+            compare_total_price:
+              amount: '120'
+              currency: USD
+            variant_description: 'size: XL - color: red'
+          shipping_address:
+            raw_location: Los Angeles, CA, USA
+            phone:
+              country_region_code: '1'
+              number: '3105550199'
+          shipping_method:
+            name: Standard - free
+          billing_address:
+            raw_location: Los Angeles, CA, USA
+            phone:
+              country_region_code: '1'
+              number: '3105550199'
+          order_total:
+            amount: '97'
+            currency: USD
+          subtotal:
+            amount: '80'
+            currency: USD
+          shipping_total:
+            amount: '10'
+            currency: USD
+          tax_total:
+            amount: '20'
+            currency: USD
+          discount_total:
+            amount: '-10'
+            currency: USD
+          other_prices:
+          - title: Reward Coupon
+            price:
+              amount: '-1'
+              currency: USD
+          - title: Gift Card
+            price:
+              amount: '-2'
+              currency: USD
+          trackings:
+          - status: InTransit
+            tracking_number: '123456'
+            slug: ups
+            additional_fields:
+              postal_code: xxxxxx
+            items:
+            - product_id: null
+              product_title: T-shirt
+              url: http://example.com/t-shirt.html
+              image_url: http://example.com/images/t-shirt.png
+              quantity: 4
+              unit_price:
+                amount: '20'
+                currency: USD
+              compare_unit_price:
+                amount: '30'
+                currency: USD
+              total_price:
+                amount: '80'
+                currency: USD
+              compare_total_price:
+                amount: '120'
+                currency: USD
+              variant_description: 'size: XL - color: red'
+          estimated_delivery_date:
+            estimated_delivery_date_min: '2021-12-11'
+            estimated_delivery_date_max: null
       examples:
-      - amount: '1.00'
-        currency: USD
-        symbol: $
+      - order_number: '23234324'
+        order_url: https://www.amazon.com/gp/css/2323432.html
+        placed_at:
+          date: '2012-12-12'
+          time: '13:06:22'
+          utc_offset: 8
+          timezone_identifier: Asia/Shanghai
+        order_status: open
+        store:
+          name: example store
+          url: https://www.example-store.com
+          logo_url: https://example-store.com/logo.png
+          email: contact@example-store.com
+          phone:
+            country_region_code: '1'
+            number: '3105550199'
+        items:
+        - external_product_id: '3123213'
+          product_title: T-shirt
+          url: http://example.com/t-shirt.html
+          image_url: http://example.com/images/t-shirt.png
+          quantity: 2
+          unit_price:
+            amount: '10.00'
+            currency: USD
+            symbol: $
+          compare_unit_price:
+            amount: '20.00'
+            currency: USD
+            symbol: $
+          total_price:
+            amount: '20.00'
+            currency: USD
+            symbol: $
+          compare_total_price:
+            amount: '40.00'
+            currency: USD
+            symbol: $
+          variant_description: 'size: XL - color: red'
+        shipping_address:
+          raw_location: Los Angeles, CA, USA
+          phone:
+            country_region_code: '1'
+            number: '3105550199'
+        shipping_method:
+          name: Standard - free
+        billing_address:
+          raw_location: Los Angeles, CA, USA
+          phone:
+            country_region_code: '1'
+            number: '3105550199'
+        order_total:
+          amount: '19.00'
+          currency: USD
+          symbol: $
+        subtotal:
+          amount: '20.00'
+          currency: USD
+          symbol: $
+        shipping_total:
+          amount: '4.00'
+          currency: USD
+          symbol: $
+        tax_total:
+          amount: '1.00'
+          currency: USD
+          symbol: $
+        discount_total:
+          amount: '-5.00'
+          currency: USD
+          symbol: $
+        other_prices:
+        - title: Reward Coupon
+          price:
+            amount: '-1.00'
+            currency: USD
+            symbol: $
+        trackings:
+        - status: Delivered
+          tracking_number: '234234'
+          slug: string
+          additional_fields:
+            postal_code: xxxxxx
+          items:
+          - product_id: '3123213'
+            product_title: T-shirt
+            url: http://example.com/t-shirt.html
+            image_url: http://example.com/images/t-shirt.png
+            quantity: 2
+            unit_price:
+              amount: '10.00'
+              currency: USD
+              symbol: $
+            compare_unit_price:
+              amount: '20.00'
+              currency: USD
+              symbol: $
+            total_price:
+              amount: '20.00'
+              currency: USD
+              symbol: $
+            compare_total_price:
+              amount: '40.00'
+              currency: USD
+              symbol: $
+            variant_description: 'size: XL - color: red'
+        estimated_delivery_date:
+          estimated_delivery_date_min: '2021-12-11'
+          estimated_delivery_date_max: '2021-12-12'
       additionalProperties: false
-      title: Money
+      title: Order
       x-tags:
       - Primitive
       properties:
-        amount:
+        order_number:
           type:
           - string
           - 'null'
-          description: The amount. It can be negative.
-          example: '1.00'
-        currency:
-          description: The currency.
-          example: USD
+          example: '23234324'
+          description: Order number.
+        order_url:
           type:
           - string
           - 'null'
-        symbol:
+          example: https://www.amazon.com/gp/css/2323432.html
+        placed_at:
+          $ref: '#/components/schemas/Date_time.v1'
+        order_status:
           type:
           - string
           - 'null'
-          description: The symbol of currency.
-          example: $
-          x-stoplight:
-            id: 9z1kythbmznrd
+          description: Order status.
+          enum:
+          - open
+          - closed
+          - canceled
+          example: open
+        store:
+          $ref: '#/components/schemas/Store.v1'
+        items:
+          type: array
+          uniqueItems: true
+          description: Items in this order.
+          items:
+            $ref: '#/components/schemas/Order_item.v1'
+        shipping_address:
+          $ref: '#/components/schemas/Address.v1'
+        shipping_method:
+          $ref: '#/components/schemas/Shipping_method.v1'
+        billing_address:
+          $ref: '#/components/schemas/Address.v1'
+        order_total:
+          $ref: '#/components/schemas/Order_total.v1'
+        subtotal:
+          $ref: '#/components/schemas/Subtotal.v1'
+        shipping_total:
+          $ref: '#/components/schemas/Shipping_total.v1'
+        tax_total:
+          $ref: '#/components/schemas/Tax_total.v1'
+        discount_total:
+          $ref: '#/components/schemas/Discount_total.v1'
+        other_prices:
+          type: array
+          uniqueItems: true
+          description: All other prices defined by the store (except `order_total`, `subtotal`, `shipping_total`, `tax_total`, `discount_total`).
+          items:
+            type: object
+            properties:
+              title:
+                type:
+                - string
+                - 'null'
+                description: Price description.
+                example: Reward Coupon
+              price:
+                $ref: '#/components/schemas/Money.v1'
+            required:
+            - title
+        trackings:
+          type: array
+          uniqueItems: true
+          description: Trackings parsed from the email.
+          items:
+            $ref: '#/components/schemas/Tracking.v1'
+        estimated_delivery_date:
+          $ref: '#/components/schemas/Estimated_delivery_date.v1'
       required:
-      - amount
-      - currency
-      - symbol
+      - order_number
+      - order_url
+      - placed_at
+      - order_status
+      - store
+      - items
+      - shipping_address
+      - shipping_method
+      - billing_address
+      - order_total
+      - subtotal
+      - shipping_total
+      - tax_total
+      - discount_total
+      - other_prices
+      - trackings
+      - estimated_delivery_date
     Email_header.v1:
       x-stoplight:
         id: ye2154vzyci7n
@@ -2342,50 +3238,13 @@ components:
       required:
       - name
       - value
-    Estimated_delivery_date.v1:
-      type:
-      - object
-      - 'null'
-      description: It refers to the estimated delivery date parsed from the email. The maximum will be null if the estimated delivery date does not have a valid time range.
-      x-examples:
-        example-1:
-          estimated_delivery_date_min: '2021-12-11'
-          estimated_delivery_date_max: null
-      examples:
-      - estimated_delivery_date_min: '2021-12-11'
-        estimated_delivery_date_max: '2021-12-12'
-      - estimated_delivery_date_min: '2021-12-11'
-        estimated_delivery_date_max: null
-      additionalProperties: false
-      title: EstimatedDeliveryDate
-      x-tags:
-      - Primitive
-      properties:
-        estimated_delivery_date_min:
-          type:
-          - string
-          - 'null'
-          format: date
-          example: '2021-12-11'
-          description: It refers to the starting value of the estimated delivery date.
-        estimated_delivery_date_max:
-          type:
-          - string
-          - 'null'
-          format: date
-          example: '2021-12-12'
-          description: It refers to the ending value of the estimated delivery date. It will be null if the estimated delivery date does not have a valid time range.
-      required:
-      - estimated_delivery_date_min
-      - estimated_delivery_date_max
-    Tax_total.v1:
+    Money.v2:
       x-stoplight:
-        id: pe0o32z8jfcsk
-      title: Money
-      description: Total tax amount.
+        id: skd5mhi674bcn
       type:
       - object
       - 'null'
+      description: The money object is used to represent the currency amount. In some cases, if it cannot parse the currency from the symbol, the currency will be null while the symbol will have a value.
       x-examples:
         example-1:
           amount: '-1'
@@ -2393,8 +3252,9 @@ components:
       examples:
       - amount: '1.00'
         currency: USD
-        symbol: $
+        raw_symbol: $
       additionalProperties: false
+      title: MoneyV2
       x-tags:
       - Primitive
       properties:
@@ -2404,74 +3264,102 @@ components:
           - 'null'
           description: The amount. It can be negative.
           example: '1.00'
+          x-stoplight:
+            id: v3vvdnl5dto60
         currency:
           description: The currency.
           example: USD
           type:
           - string
           - 'null'
-        symbol:
+          x-stoplight:
+            id: 9mf5843b48pyx
+        raw_symbol:
           type:
           - string
           - 'null'
-          description: The symbol of currency.
+          description: 'The original currency symbol extracted from the email.
+
+
+            There would not be a normalized currency symbol enum list, as the currency symbol for a currency is not a consistent one-to-one mapping. For example, the currency symbol of `HKD` could be either `HK$` or `$`. Vice versa, different currencies could have the same currency symbol. Such as `HKD` and `USD`, which the currency symbol of both currencies is `$`.'
           example: $
           x-stoplight:
-            id: 9z1kythbmznrd
+            id: eb1617ei0ys0v
       required:
       - amount
       - currency
-      - symbol
-    Error.v1:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.subject
-        info: data.subject must not be longer than 200 characters
-      additionalProperties: false
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: data.subject
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: data.subject must not be longer than 200 characters
-      x-tags:
-      - Envelope
-    Address.v1:
+      - raw_symbol
+    Estimated_delivery_datetime.v2:
+      x-stoplight:
+        id: f2eu74bvxkgcz
       type:
       - object
       - 'null'
+      description: It refers to the estimated delivery datetime parsed from the email. The maximum will be null if the estimated delivery datetime does not have a valid time range.
       x-examples:
         example-1:
-          raw_location: Los Angeles, CA, USA
-          phone:
-            country_region_code: '1'
-            number: '3105550199'
+          estimated_delivery_date_min: '2021-12-11'
+          estimated_delivery_date_max: null
       examples:
-      - raw_location: Los Angeles, CA, USA
-        phone:
-          calling_code: '1'
-          phone_number: '3105550199'
-      title: Address
+      - min:
+          date: '2012-12-12'
+          time: 00:00:00
+          utc_offset: 8
+          timezone_identifier: Asia/Shanghai
+        max:
+          date: '2012-12-13'
+          time: 00:00:00
+          utc_offset: 8
+          timezone_identifier: Asia/Shanghai
+        raw_delivery_text: null
+      - min:
+          date: '2012-12-13'
+          time: null
+          utc_offset: null
+          timezone_identifier: null
+        max: null
+        raw_delivery_text: null
+      - min:
+          date: '2012-12-12'
+          time: 00:00:00
+          utc_offset: null
+          timezone_identifier: null
+        max:
+          date: '2012-12-13'
+          time: 00:00:00
+          utc_offset: null
+          timezone_identifier: null
+        raw_delivery_text: null
+      - min: null
+        max: null
+        raw_delivery_text: tomorrow
       additionalProperties: false
+      title: EstimatedDeliveryDateTime
       x-tags:
       - Primitive
       required:
-      - raw_location
-      - phone
+      - min
+      - max
+      - raw_delivery_text
       properties:
-        raw_location:
+        min:
+          $ref: '#/components/schemas/Date_time.v1'
+          description: It refers to the starting value of the estimated delivery date.
+          x-stoplight:
+            id: ra163yswr28nm
+        max:
+          $ref: '#/components/schemas/Date_time.v1'
+          description: It refers to the ending value of the estimated delivery date. It will be null if the estimated delivery date does not have a valid time range.
+          x-stoplight:
+            id: tt54gvo4y6q3d
+        raw_delivery_text:
           type:
           - string
           - 'null'
-          description: Address raw location.
-          example: Los Angeles, CA, USA
-        phone:
-          $ref: '#/components/schemas/Phone.v1'
+          x-stoplight:
+            id: 20ptsszzwlvgc
+          example: tomorrow
+          description: Contains raw delivery text extracted from email content, such as 'today', 'tomorrow', or 'overnight'. Currently, this field is populated only for Amazon emails when relative delivery terms are present. If a full specific date for `min`/`max` is already present from email content, this field remains null; if `min`/`max` is inferred from the relative delivery terms, it may be returned alongside `min`/`max`. The original case of the retained term is preserved.
     Discount_total.v2:
       x-stoplight:
         id: 1etdc097romr6
@@ -2523,332 +3411,10 @@ components:
       - amount
       - currency
       - raw_symbol
-    Pickup.v2:
+    Order_total.v2:
       x-stoplight:
-        id: pk3ordpickup01
-      type:
-      - object
-      - 'null'
-      description: Order pickup information parsed from the email.
-      x-examples:
-        example-1:
-          location:
-            raw_address: Amazon Locker - 123 Example Street, London, United Kingdom
-            raw_opening_hours: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
-            opening_hours:
-              sunday:
-              - open: true
-                from: 09:00
-                to: '20:00'
-              monday:
-              - open: true
-                from: 08:00
-                to: '22:00'
-              tuesday:
-              - open: true
-                from: 08:00
-                to: '22:00'
-              wednesday:
-              - open: true
-                from: 08:00
-                to: '22:00'
-              thursday:
-              - open: true
-                from: 08:00
-                to: '22:00'
-              friday:
-              - open: true
-                from: 08:00
-                to: '22:00'
-              saturday:
-              - open: true
-                from: 08:00
-                to: '22:00'
-          instructions: You must bring your ID that matches the name on the parcel.
-          code: '31232'
-          barcode:
-            image_url: http://example.com/images/barcode.png
-          pickup_action_url: https://www.example.com/pickup/start?order=12345
-          available_datetime:
-            start: null
-            end:
-              date: '2012-12-12'
-              time: null
-              utc_offset: null
-              timezone_identifier: null
-            raw: PICK UP UNTIL Wednesday, Dec 12
-      examples:
-      - location:
-          raw_address: Amazon Locker - 123 Example Street, London, United Kingdom
-          raw_opening_hours: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
-          opening_hours:
-            sunday:
-            - open: true
-              from: 09:00
-              to: '20:00'
-            monday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            tuesday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            wednesday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            thursday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            friday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            saturday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-        instructions: You must bring your ID that matches the name on the parcel.
-        code: '31232'
-        barcode:
-          image_url: http://example.com/images/barcode.png
-        pickup_action_url: https://www.example.com/pickup/start?order=12345
-        available_datetime:
-          start: null
-          end:
-            date: '2012-12-12'
-            time: null
-            utc_offset: null
-            timezone_identifier: null
-          raw: PICK UP UNTIL Wednesday, Dec 12
-      additionalProperties: false
-      title: PickupV2
-      x-tags:
-      - Primitive
-      required:
-      - location
-      - instructions
-      - code
-      - barcode
-      - pickup_action_url
-      - available_datetime
-      properties:
-        location:
-          $ref: '#/components/schemas/Pickup_location.v2'
-          x-stoplight:
-            id: pk2addrref0001
-        instructions:
-          type:
-          - string
-          - 'null'
-          description: Pickup instructions. Specific requirements or guidelines for collecting the order.
-          example: You must bring your ID that matches the name on the parcel.
-          x-stoplight:
-            id: pk2instruction1
-        code:
-          type:
-          - string
-          - 'null'
-          description: Collection code. The code or PIN required to pick up the order.
-          example: '31232'
-          x-stoplight:
-            id: pk2code0000001
-        barcode:
-          type:
-          - object
-          - 'null'
-          description: Barcode or QR code information for pickup.
-          additionalProperties: false
-          x-stoplight:
-            id: pk2barcode0001
-          required:
-          - image_url
-          properties:
-            image_url:
-              type:
-              - string
-              - 'null'
-              description: Image URL of the barcode or QR code.
-              example: http://example.com/images/barcode.png
-              x-stoplight:
-                id: pk2barcodeimg1
-        pickup_action_url:
-          type:
-          - string
-          - 'null'
-          description: URL for the user to take pickup action.
-          example: https://www.example.com/pickup/start?order=12345
-          x-stoplight:
-            id: pk2actionurl01
-        available_datetime:
-          type:
-          - object
-          - 'null'
-          description: Pickup time window. The time range during which the order is available for collection.
-          additionalProperties: false
-          x-stoplight:
-            id: pk2availdt0001
-          required:
-          - start
-          - end
-          - raw
-          properties:
-            start:
-              $ref: '#/components/schemas/Date_time.v2'
-              description: Earliest pickup time.
-              x-stoplight:
-                id: pk2avdtstart1
-            end:
-              $ref: '#/components/schemas/Date_time.v2'
-              description: Latest pickup time.
-              x-stoplight:
-                id: pk2avdtend001
-            raw:
-              type:
-              - string
-              - 'null'
-              description: Raw text of the available pickup time extracted from the email.
-              example: PICK UP UNTIL Wednesday, Dec 12
-              x-stoplight:
-                id: pk2avdtraw001
-    Pickup_location.v2:
-      x-stoplight:
-        id: pk2addrref0001
-      type:
-      - object
-      - 'null'
-      description: Pickup location. The order pickup point.
-      x-examples:
-        example-1:
-          raw_address: Amazon Locker - 123 Example Street, London, United Kingdom
-          address:
-            phone:
-              calling_code: '1'
-              phone_number: '3105550199'
-            postal_code: SW1A 1AA
-            city: London
-            state:
-              name: England
-              code: GB-ENG
-            country_region:
-              name: United Kingdom
-              code: GBR
-          raw_opening_hours: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
-          opening_hours:
-            sunday:
-            - open: true
-              from: 09:00
-              to: '20:00'
-            monday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            tuesday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            wednesday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            thursday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            friday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-            saturday:
-            - open: true
-              from: 08:00
-              to: '22:00'
-      examples:
-      - raw_address: Amazon Locker - 123 Example Street, London, United Kingdom
-        address:
-          phone:
-            calling_code: '1'
-            phone_number: '3105550199'
-          postal_code: SW1A 1AA
-          city: London
-          state:
-            name: England
-            code: GB-ENG
-          country_region:
-            name: United Kingdom
-            code: GBR
-        raw_opening_hours: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
-        opening_hours:
-          sunday:
-          - open: true
-            from: 09:00
-            to: '20:00'
-          monday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          tuesday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          wednesday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          thursday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          friday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          saturday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-      additionalProperties: false
-      title: PickupLocationV2
-      x-tags:
-      - Primitive
-      required:
-      - raw_address
-      - address
-      - raw_opening_hours
-      - opening_hours
-      properties:
-        raw_address:
-          type:
-          - string
-          - 'null'
-          description: Raw address text of the pickup location parsed from the email.
-          example: Amazon Locker - 123 Example Street, London, United Kingdom
-          x-stoplight:
-            id: pk1rawlocation
-        address:
-          $ref: '#/components/schemas/Pickup_address.v2'
-          description: Structured pickup address, enriched from `raw_address`.
-          x-stoplight:
-            id: pk1address0001
-        raw_opening_hours:
-          type:
-          - string
-          - 'null'
-          description: Raw opening hours text.
-          example: 'Monday - Saturday: 08:00 AM - 10:00 PM Sunday: 09:00 AM - 08:00 PM'
-          x-stoplight:
-            id: pk1ohrawtext01
-        opening_hours:
-          $ref: '#/components/schemas/Opening_hours.v2'
-          description: Opening hours information of the pickup location.
-          x-stoplight:
-            id: pk1openinghrs1
-    Shipping_total.v2:
-      x-stoplight:
-        id: 05jumu3namukt
-      description: Total shipping amount.
+        id: u0c3h56iv5g5w
+      description: Order total amount.
       type:
       - object
       - 'null'
@@ -2896,6 +3462,376 @@ components:
       - amount
       - currency
       - raw_symbol
+    Date_time.v2:
+      x-stoplight:
+        id: gp4262ubvn0nw
+      type:
+      - object
+      - 'null'
+      description: ''
+      x-examples:
+        example-1:
+          date: '2012-12-12'
+          time: '13:06:22'
+          utc_offset: 8
+          timezone_identifier: Asia/Hong_Kong
+      examples:
+      - date: '2012-12-12'
+        time: '13:06:22'
+        utc_offset: 8
+        timezone_identifier: Asia/Shanghai
+      additionalProperties: false
+      title: DateTimeV2
+      x-tags:
+      - Primitive
+      properties:
+        date:
+          type:
+          - string
+          - 'null'
+          example: '2012-12-12'
+          description: Date string in YYYY-MM-DD format.
+          x-stoplight:
+            id: vgc6bekkzfu0o
+        time:
+          type:
+          - string
+          - 'null'
+          example: '13:06:22'
+          description: Time string in HH:mm:ss format
+          x-stoplight:
+            id: y7v2nt7totrcl
+        utc_offset:
+          type:
+          - number
+          - 'null'
+          example: 8
+          description: UTC offset in hour.
+          x-stoplight:
+            id: bt605ohapg0ac
+        timezone_identifier:
+          type:
+          - string
+          - 'null'
+          example: Asia/Shanghai
+          description: Timezone identifier follows timezone database name.
+          x-stoplight:
+            id: g6ywqc2vqxaua
+      required:
+      - date
+      - time
+      - utc_offset
+      - timezone_identifier
+    Opening_hours.v2:
+      description: Opening hours information of the pickup location.
+      x-stoplight:
+        id: pk1openinghrs1
+      type:
+      - object
+      - 'null'
+      x-examples:
+        example-1:
+          sunday:
+          - open: true
+            from: 09:00
+            to: '20:00'
+          monday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          tuesday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          wednesday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          thursday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          friday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+          saturday:
+          - open: true
+            from: 08:00
+            to: '22:00'
+      examples:
+      - sunday:
+        - open: true
+          from: 09:00
+          to: '20:00'
+        monday:
+        - open: true
+          from: 08:00
+          to: '22:00'
+        tuesday:
+        - open: true
+          from: 08:00
+          to: '22:00'
+        wednesday:
+        - open: true
+          from: 08:00
+          to: '22:00'
+        thursday:
+        - open: true
+          from: 08:00
+          to: '22:00'
+        friday:
+        - open: true
+          from: 08:00
+          to: '22:00'
+        saturday:
+        - open: true
+          from: 08:00
+          to: '22:00'
+      additionalProperties: false
+      title: OpeningHoursV2
+      x-tags:
+      - Primitive
+      required:
+      - sunday
+      - monday
+      - tuesday
+      - wednesday
+      - thursday
+      - friday
+      - saturday
+      properties:
+        sunday:
+          type: array
+          items:
+            $ref: '#/components/schemas/Opening_hour_period.v2'
+          x-stoplight:
+            id: oh2sunday00001
+        monday:
+          type: array
+          items:
+            $ref: '#/components/schemas/Opening_hour_period.v2'
+          x-stoplight:
+            id: oh2monday00001
+        tuesday:
+          type: array
+          items:
+            $ref: '#/components/schemas/Opening_hour_period.v2'
+          x-stoplight:
+            id: oh2tuesday0001
+        wednesday:
+          type: array
+          items:
+            $ref: '#/components/schemas/Opening_hour_period.v2'
+          x-stoplight:
+            id: oh2wednesday01
+        thursday:
+          type: array
+          items:
+            $ref: '#/components/schemas/Opening_hour_period.v2'
+          x-stoplight:
+            id: oh2thursday001
+        friday:
+          type: array
+          items:
+            $ref: '#/components/schemas/Opening_hour_period.v2'
+          x-stoplight:
+            id: oh2friday00001
+        saturday:
+          type: array
+          items:
+            $ref: '#/components/schemas/Opening_hour_period.v2'
+          x-stoplight:
+            id: oh2saturday001
+    Tax_total.v2:
+      x-stoplight:
+        id: o6lujv6skow87
+      description: Total tax amount.
+      type:
+      - object
+      - 'null'
+      x-examples:
+        example-1:
+          amount: '-1'
+          currency: USD
+      examples:
+      - amount: '1.00'
+        currency: USD
+        raw_symbol: $
+      additionalProperties: false
+      title: MoneyV2
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type:
+          - string
+          - 'null'
+          description: The amount. It can be negative.
+          example: '1.00'
+          x-stoplight:
+            id: v3vvdnl5dto60
+        currency:
+          description: The currency.
+          example: USD
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: 9mf5843b48pyx
+        raw_symbol:
+          type:
+          - string
+          - 'null'
+          description: 'The original currency symbol extracted from the email.
+
+
+            There would not be a normalized currency symbol enum list, as the currency symbol for a currency is not a consistent one-to-one mapping. For example, the currency symbol of `HKD` could be either `HK$` or `$`. Vice versa, different currencies could have the same currency symbol. Such as `HKD` and `USD`, which the currency symbol of both currencies is `$`.'
+          example: $
+          x-stoplight:
+            id: eb1617ei0ys0v
+      required:
+      - amount
+      - currency
+      - raw_symbol
+    Attachment.v1:
+      x-stoplight:
+        id: jqxxfufazshzz
+      title: Attachment
+      type: object
+      properties:
+        filename:
+          type: string
+          x-stoplight:
+            id: 0cj14fzi0lygx
+          description: 'The filename of the attachment. '
+        content_type:
+          type: string
+          x-stoplight:
+            id: g3o2u0fj4vthf
+          description: The MIME type of the file. See [MIME Type](https://www.iana.org/assignments/media-types/media-types.xhtml).
+        data:
+          type: string
+          x-stoplight:
+            id: qlt11h2pi72yc
+          description: "The body data of a attachment part as a base64url encoded string. \n\nA base64-encoded string."
+      required:
+      - filename
+      - content_type
+      - data
+    Error.v1:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.subject
+        info: data.subject must not be longer than 200 characters
+      additionalProperties: false
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: data.subject
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: data.subject must not be longer than 200 characters
+      x-tags:
+      - Envelope
+    Shipping_total.v1:
+      x-stoplight:
+        id: mq71x3x12c9g8
+      title: Money
+      description: Total shipping amount.
+      type:
+      - object
+      - 'null'
+      x-examples:
+        example-1:
+          amount: '-1'
+          currency: USD
+      examples:
+      - amount: '1.00'
+        currency: USD
+        symbol: $
+      additionalProperties: false
+      x-tags:
+      - Primitive
+      properties:
+        amount:
+          type:
+          - string
+          - 'null'
+          description: The amount. It can be negative.
+          example: '1.00'
+        currency:
+          description: The currency.
+          example: USD
+          type:
+          - string
+          - 'null'
+        symbol:
+          type:
+          - string
+          - 'null'
+          description: The symbol of currency.
+          example: $
+          x-stoplight:
+            id: 9z1kythbmznrd
+      required:
+      - amount
+      - currency
+      - symbol
+    Date_time.v1:
+      type:
+      - object
+      - 'null'
+      description: ''
+      x-examples:
+        example-1:
+          date: '2012-12-12'
+          time: '13:06:22'
+          utc_offset: 8
+          timezone_identifier: Asia/Hong_Kong
+      examples:
+      - date: '2012-12-12'
+        time: '13:06:22'
+        utc_offset: 8
+        timezone_identifier: Asia/Shanghai
+      additionalProperties: false
+      title: DateTime
+      x-tags:
+      - Primitive
+      properties:
+        date:
+          type:
+          - string
+          - 'null'
+          example: '2012-12-12'
+          description: Date string in YYYY-MM-DD format.
+        time:
+          type:
+          - string
+          - 'null'
+          example: '13:06:22'
+          description: Time string in HH:mm:ss format
+        utc_offset:
+          type:
+          - number
+          - 'null'
+          example: 8
+          description: UTC offset in hour.
+        timezone_identifier:
+          type:
+          - string
+          - 'null'
+          example: Asia/Shanghai
+          description: Timezone identifier follows timezone database name.
+      required:
+      - date
+      - time
+      - utc_offset
+      - timezone_identifier
     Tracking.v1:
       type: object
       description: Tracking information parsed from the email
@@ -3034,668 +3970,6 @@ components:
           description: 'The tracking_link is the link to the tracking page.
 
             '
-    Estimated_delivery_datetime.v2:
-      x-stoplight:
-        id: f2eu74bvxkgcz
-      type:
-      - object
-      - 'null'
-      description: It refers to the estimated delivery datetime parsed from the email. The maximum will be null if the estimated delivery datetime does not have a valid time range.
-      x-examples:
-        example-1:
-          estimated_delivery_date_min: '2021-12-11'
-          estimated_delivery_date_max: null
-      examples:
-      - min:
-          date: '2012-12-12'
-          time: 00:00:00
-          utc_offset: 8
-          timezone_identifier: Asia/Shanghai
-        max:
-          date: '2012-12-13'
-          time: 00:00:00
-          utc_offset: 8
-          timezone_identifier: Asia/Shanghai
-        raw_delivery_text: null
-      - min:
-          date: '2012-12-13'
-          time: null
-          utc_offset: null
-          timezone_identifier: null
-        max: null
-        raw_delivery_text: null
-      - min:
-          date: '2012-12-12'
-          time: 00:00:00
-          utc_offset: null
-          timezone_identifier: null
-        max:
-          date: '2012-12-13'
-          time: 00:00:00
-          utc_offset: null
-          timezone_identifier: null
-        raw_delivery_text: null
-      - min: null
-        max: null
-        raw_delivery_text: tomorrow
-      additionalProperties: false
-      title: EstimatedDeliveryDateTime
-      x-tags:
-      - Primitive
-      required:
-      - min
-      - max
-      - raw_delivery_text
-      properties:
-        min:
-          $ref: '#/components/schemas/Date_time.v1'
-          description: It refers to the starting value of the estimated delivery date.
-          x-stoplight:
-            id: ra163yswr28nm
-        max:
-          $ref: '#/components/schemas/Date_time.v1'
-          description: It refers to the ending value of the estimated delivery date. It will be null if the estimated delivery date does not have a valid time range.
-          x-stoplight:
-            id: tt54gvo4y6q3d
-        raw_delivery_text:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: 20ptsszzwlvgc
-          example: tomorrow
-          description: Contains raw delivery text extracted from email content, such as 'today', 'tomorrow', or 'overnight'. Currently, this field is populated only for Amazon emails when relative delivery terms are present. If a full specific date for `min`/`max` is already present from email content, this field remains null; if `min`/`max` is inferred from the relative delivery terms, it may be returned alongside `min`/`max`. The original case of the retained term is preserved.
-    Tax_total.v2:
-      x-stoplight:
-        id: o6lujv6skow87
-      description: Total tax amount.
-      type:
-      - object
-      - 'null'
-      x-examples:
-        example-1:
-          amount: '-1'
-          currency: USD
-      examples:
-      - amount: '1.00'
-        currency: USD
-        raw_symbol: $
-      additionalProperties: false
-      title: MoneyV2
-      x-tags:
-      - Primitive
-      properties:
-        amount:
-          type:
-          - string
-          - 'null'
-          description: The amount. It can be negative.
-          example: '1.00'
-          x-stoplight:
-            id: v3vvdnl5dto60
-        currency:
-          description: The currency.
-          example: USD
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: 9mf5843b48pyx
-        raw_symbol:
-          type:
-          - string
-          - 'null'
-          description: 'The original currency symbol extracted from the email.
-
-
-            There would not be a normalized currency symbol enum list, as the currency symbol for a currency is not a consistent one-to-one mapping. For example, the currency symbol of `HKD` could be either `HK$` or `$`. Vice versa, different currencies could have the same currency symbol. Such as `HKD` and `USD`, which the currency symbol of both currencies is `$`.'
-          example: $
-          x-stoplight:
-            id: eb1617ei0ys0v
-      required:
-      - amount
-      - currency
-      - raw_symbol
-    Date_time.v2:
-      x-stoplight:
-        id: gp4262ubvn0nw
-      type:
-      - object
-      - 'null'
-      description: ''
-      x-examples:
-        example-1:
-          date: '2012-12-12'
-          time: '13:06:22'
-          utc_offset: 8
-          timezone_identifier: Asia/Hong_Kong
-      examples:
-      - date: '2012-12-12'
-        time: '13:06:22'
-        utc_offset: 8
-        timezone_identifier: Asia/Shanghai
-      additionalProperties: false
-      title: DateTimeV2
-      x-tags:
-      - Primitive
-      properties:
-        date:
-          type:
-          - string
-          - 'null'
-          example: '2012-12-12'
-          description: Date string in YYYY-MM-DD format.
-          x-stoplight:
-            id: vgc6bekkzfu0o
-        time:
-          type:
-          - string
-          - 'null'
-          example: '13:06:22'
-          description: Time string in HH:mm:ss format
-          x-stoplight:
-            id: y7v2nt7totrcl
-        utc_offset:
-          type:
-          - number
-          - 'null'
-          example: 8
-          description: UTC offset in hour.
-          x-stoplight:
-            id: bt605ohapg0ac
-        timezone_identifier:
-          type:
-          - string
-          - 'null'
-          example: Asia/Shanghai
-          description: Timezone identifier follows timezone database name.
-          x-stoplight:
-            id: g6ywqc2vqxaua
-      required:
-      - date
-      - time
-      - utc_offset
-      - timezone_identifier
-    Date_time.v1:
-      type:
-      - object
-      - 'null'
-      description: ''
-      x-examples:
-        example-1:
-          date: '2012-12-12'
-          time: '13:06:22'
-          utc_offset: 8
-          timezone_identifier: Asia/Hong_Kong
-      examples:
-      - date: '2012-12-12'
-        time: '13:06:22'
-        utc_offset: 8
-        timezone_identifier: Asia/Shanghai
-      additionalProperties: false
-      title: DateTime
-      x-tags:
-      - Primitive
-      properties:
-        date:
-          type:
-          - string
-          - 'null'
-          example: '2012-12-12'
-          description: Date string in YYYY-MM-DD format.
-        time:
-          type:
-          - string
-          - 'null'
-          example: '13:06:22'
-          description: Time string in HH:mm:ss format
-        utc_offset:
-          type:
-          - number
-          - 'null'
-          example: 8
-          description: UTC offset in hour.
-        timezone_identifier:
-          type:
-          - string
-          - 'null'
-          example: Asia/Shanghai
-          description: Timezone identifier follows timezone database name.
-      required:
-      - date
-      - time
-      - utc_offset
-      - timezone_identifier
-    Pickup_address.v2:
-      description: Structured pickup address, enriched from `raw_address`.
-      x-stoplight:
-        id: pk1address0001
-      type:
-      - object
-      - 'null'
-      x-examples:
-        example-1:
-          phone:
-            calling_code: '1'
-            phone_number: '3105550199'
-          postal_code: SW1A 1AA
-          city: London
-          state:
-            name: England
-            code: GB-ENG
-          country_region:
-            name: United Kingdom
-            code: GBR
-      examples:
-      - phone:
-          calling_code: '1'
-          phone_number: '3105550199'
-        postal_code: SW1A 1AA
-        city: London
-        state:
-          name: England
-          code: GB-ENG
-        country_region:
-          name: United Kingdom
-          code: GBR
-      title: PickupAddressV2
-      additionalProperties: false
-      x-tags:
-      - Primitive
-      required:
-      - phone
-      - postal_code
-      - city
-      - state
-      - country_region
-      properties:
-        phone:
-          $ref: '#/components/schemas/Phone.v2'
-          x-stoplight:
-            id: pkaphone00001
-        postal_code:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: pkapostal0001
-          description: Postal code.
-          example: SW1A 1AA
-        city:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: pkacity000001
-          description: City name.
-          example: London
-        state:
-          type:
-          - object
-          - 'null'
-          x-stoplight:
-            id: pkastate00001
-          description: State object.
-          required:
-          - name
-          - code
-          properties:
-            name:
-              type:
-              - string
-              - 'null'
-              x-stoplight:
-                id: pkastatename1
-              description: State name.
-              example: England
-            code:
-              type:
-              - string
-              - 'null'
-              x-stoplight:
-                id: pkastatecode1
-              description: State code, ISO 3166-2 standard.
-              example: GB-ENG
-        country_region:
-          type:
-          - object
-          - 'null'
-          x-stoplight:
-            id: pkacountry001
-          description: Country region object.
-          required:
-          - name
-          - code
-          properties:
-            name:
-              type:
-              - string
-              - 'null'
-              x-stoplight:
-                id: pkacountryname
-              description: Country name.
-              example: United Kingdom
-            code:
-              type:
-              - string
-              - 'null'
-              x-stoplight:
-                id: pkacountrycode
-              description: ISO 3166-1 alpha-3.
-              example: GBR
-    Order_total.v1:
-      title: Money
-      description: Order total amount.
-      type:
-      - object
-      - 'null'
-      x-examples:
-        example-1:
-          amount: '-1'
-          currency: USD
-      examples:
-      - amount: '1.00'
-        currency: USD
-        symbol: $
-      additionalProperties: false
-      x-tags:
-      - Primitive
-      properties:
-        amount:
-          type:
-          - string
-          - 'null'
-          description: The amount. It can be negative.
-          example: '1.00'
-        currency:
-          description: The currency.
-          example: USD
-          type:
-          - string
-          - 'null'
-        symbol:
-          type:
-          - string
-          - 'null'
-          description: The symbol of currency.
-          example: $
-          x-stoplight:
-            id: 9z1kythbmznrd
-      required:
-      - amount
-      - currency
-      - symbol
-    Phone.v2:
-      x-stoplight:
-        id: gyd4vgc261rwr
-      type:
-      - object
-      - 'null'
-      description: The phone number object.
-      x-examples:
-        example-1:
-          country_region_code: '852'
-          number: '98569856'
-      examples:
-      - calling_code: '1'
-        phone_number: '3105550199'
-      additionalProperties: false
-      title: PhoneV2
-      x-tags:
-      - Primitive
-      required:
-      - calling_code
-      - phone_number
-      properties:
-        calling_code:
-          type:
-          - string
-          - 'null'
-          description: The country region code of the phone.
-          example: '1'
-          x-stoplight:
-            id: lw2pmidg3nimr
-        phone_number:
-          type:
-          - string
-          - 'null'
-          description: Phone number.
-          example: '3105550199'
-          x-stoplight:
-            id: w5p6c4sz9vf3d
-    Shipping_method.v1:
-      type:
-      - object
-      - 'null'
-      title: ShippingMethod
-      description: The shipping method.
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          example: Standard - free
-          description: The shipping method title.
-      required:
-      - name
-      x-tags:
-      - Primitive
-    Store.v2:
-      x-stoplight:
-        id: e2hedhafj1s9e
-      type:
-      - object
-      - 'null'
-      description: 'Store object
-
-        <div style="visibility: hidden; height: 0px;">
-
-        [Store Slug](../../docs/other/store_slug.md)
-
-        </div>'
-      x-examples:
-        example-1:
-          name: example store
-          url: https://www.example-store.com
-          logo_url: https://example-store.com/logo.png
-          email: contact@example-store.com
-          phone:
-            country_region_code: '1'
-            number: '3105550199'
-      examples:
-      - name: example store
-        url: https://www.example.ca
-        logo_url: https://example.ca/logo.png
-        email: contact@example.ca
-        phone:
-          calling_code: '1'
-          phone_number: '3105550199'
-        slug: example-ca
-      - name: example store
-        url: https://www.example.com
-        logo_url: https://example.com/logo.png
-        email: contact@example.com
-        phone:
-          calling_code: '1'
-          phone_number: '3105550199'
-        slug: example
-      title: StoreV2
-      additionalProperties: false
-      x-tags:
-      - Primitive
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Store name.
-          example: example store
-          x-stoplight:
-            id: am7npo82fsvn3
-        url:
-          type:
-          - string
-          - 'null'
-          description: Store website URL
-          example: https://www.example-store.com
-          x-stoplight:
-            id: frkxkfoi6dtml
-        logo_url:
-          type:
-          - string
-          - 'null'
-          example: https://example-store.com/logo.png
-          description: The logo image url of the store.
-          x-stoplight:
-            id: c5u9np582w3i0
-        email:
-          type:
-          - string
-          - 'null'
-          example: contact@example-store.com
-          description: The contact email of the store.
-          x-stoplight:
-            id: xit5a3pcsqi65
-        phone:
-          $ref: '#/components/schemas/Phone.v2'
-          x-stoplight:
-            id: gyd4vgc261rwr
-        slug:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: n3ksulw9n3u8q
-          description: "Unique store code. The slug may be null when it cannot be identified from our store database, the other fields of stores (e.g. `store.name`) will be non-standardized values. See \n[Store Slug](../../docs/other/store_slug.md)\n."
-      required:
-      - name
-      - url
-      - logo_url
-      - email
-      - phone
-      - slug
-    Opening_hours.v2:
-      description: Opening hours information of the pickup location.
-      x-stoplight:
-        id: pk1openinghrs1
-      type:
-      - object
-      - 'null'
-      x-examples:
-        example-1:
-          sunday:
-          - open: true
-            from: 09:00
-            to: '20:00'
-          monday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          tuesday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          wednesday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          thursday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          friday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-          saturday:
-          - open: true
-            from: 08:00
-            to: '22:00'
-      examples:
-      - sunday:
-        - open: true
-          from: 09:00
-          to: '20:00'
-        monday:
-        - open: true
-          from: 08:00
-          to: '22:00'
-        tuesday:
-        - open: true
-          from: 08:00
-          to: '22:00'
-        wednesday:
-        - open: true
-          from: 08:00
-          to: '22:00'
-        thursday:
-        - open: true
-          from: 08:00
-          to: '22:00'
-        friday:
-        - open: true
-          from: 08:00
-          to: '22:00'
-        saturday:
-        - open: true
-          from: 08:00
-          to: '22:00'
-      additionalProperties: false
-      title: OpeningHoursV2
-      x-tags:
-      - Primitive
-      required:
-      - sunday
-      - monday
-      - tuesday
-      - wednesday
-      - thursday
-      - friday
-      - saturday
-      properties:
-        sunday:
-          type: array
-          items:
-            $ref: '#/components/schemas/Opening_hour_period.v2'
-          x-stoplight:
-            id: oh2sunday00001
-        monday:
-          type: array
-          items:
-            $ref: '#/components/schemas/Opening_hour_period.v2'
-          x-stoplight:
-            id: oh2monday00001
-        tuesday:
-          type: array
-          items:
-            $ref: '#/components/schemas/Opening_hour_period.v2'
-          x-stoplight:
-            id: oh2tuesday0001
-        wednesday:
-          type: array
-          items:
-            $ref: '#/components/schemas/Opening_hour_period.v2'
-          x-stoplight:
-            id: oh2wednesday01
-        thursday:
-          type: array
-          items:
-            $ref: '#/components/schemas/Opening_hour_period.v2'
-          x-stoplight:
-            id: oh2thursday001
-        friday:
-          type: array
-          items:
-            $ref: '#/components/schemas/Opening_hour_period.v2'
-          x-stoplight:
-            id: oh2friday00001
-        saturday:
-          type: array
-          items:
-            $ref: '#/components/schemas/Opening_hour_period.v2'
-          x-stoplight:
-            id: oh2saturday001
     Store.v1:
       type:
       - object
@@ -3755,332 +4029,6 @@ components:
       - logo_url
       - email
       - phone
-    Shipping_method.v2:
-      x-stoplight:
-        id: cl3ah1f4ofafe
-      type:
-      - object
-      - 'null'
-      title: ShippingMethodV2
-      description: The shipping method.
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          example: Standard - free
-          description: The shipping method title.
-          x-stoplight:
-            id: t0uu0jjy8fygi
-      required:
-      - name
-      x-tags:
-      - Primitive
-    Opening_hour_period.v2:
-      type:
-      - object
-      - 'null'
-      x-stoplight:
-        id: oh2periodv2json
-      description: The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day. When `open` is `true` and both `from` and `to` are `null`, it indicates the location operates 24 hours on that day.
-      x-examples:
-        example-1:
-          open: true
-          from: '10:30'
-          to: '20:30'
-      examples:
-      - open: true
-        from: '10:30'
-        to: '20:30'
-      additionalProperties: false
-      title: OpeningHourPeriodV2
-      x-tags:
-      - Primitive
-      required:
-      - open
-      - from
-      - to
-      properties:
-        open:
-          type: boolean
-          description: Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`.
-          default: false
-          example: true
-          x-stoplight:
-            id: oh2prdopen0001
-        from:
-          type:
-          - string
-          - 'null'
-          description: The start time of the opening hour period in HH:mm format. For locations that operate 24 hours, please set the value to `null`.
-          example: '10:30'
-          x-stoplight:
-            id: oh2prdfrom0001
-        to:
-          type:
-          - string
-          - 'null'
-          description: The end time of the opening hour period in HH:mm format. For locations that operate 24 hours, please set the value to `null`.
-          example: '20:30'
-          x-stoplight:
-            id: oh2prdto000001
-    Tracking.v2:
-      x-stoplight:
-        id: cdy3hhgxsyafe
-      type: object
-      description: Tracking information parsed from the email
-      x-examples:
-        example-1:
-          status: InTransit
-          substatus: InTransit_001
-          tracking_number: '123456'
-          slug: ups
-          additional_fields:
-            postal_code: xxxxxx
-          items:
-          - product_id: null
-            product_title: T-shirt
-            url: https://xxx
-            image_url: https://xxx
-            quantity: 4
-            unit_price:
-              amount: '20'
-              currency: USD
-            compare_unit_price:
-              amount: '30'
-              currency: USD
-            total_price:
-              amount: '80'
-              currency: USD
-            compare_total_price:
-              amount: '120'
-              currency: USD
-            variant_description: 'size: XL - color: red'
-      examples:
-      - status: Delivered
-        substatus: Delivered_001
-        tracking_number: '234234'
-        slug: ups
-        additional_fields:
-          postal_code: xxxxxx
-        items:
-        - external_product_id: '3123213'
-          title: T-shirt
-          url: http://example.com/t-shirt.html
-          image_url: http://example.com/images/t-shirt.png
-          quantity: 2
-          unit_price:
-            amount: '10.00'
-            currency: USD
-            raw_symbol: $
-          compare_unit_price:
-            amount: '20.00'
-            currency: USD
-            raw_symbol: $
-          total_price:
-            amount: '20.00'
-            currency: USD
-            raw_symbol: $
-          compare_total_price:
-            amount: '40.00'
-            currency: USD
-            raw_symbol: $
-          variant_description: 'size: XL - color: red'
-        tracking_url: http://example.com
-        shipping_provider: Third Party
-      additionalProperties: false
-      title: TrackingV2
-      x-tags:
-      - Primitive
-      required:
-      - status
-      - substatus
-      - tracking_number
-      - slug
-      - additional_fields
-      - items
-      - tracking_url
-      - shipping_provider
-      properties:
-        status:
-          type:
-          - string
-          - 'null'
-          description: Tracking status.
-          enum:
-          - Delivered
-          - Exception
-          - AttemptFail
-          - InTransit
-          - InfoReceived
-          - OutForDelivery
-          - Expired
-          - Pending
-          - AvailableForPickup
-          example: Delivered
-          x-stoplight:
-            id: q8j3y2r9got6b
-        substatus:
-          type:
-          - string
-          - 'null'
-          description: Tracking sub-status. It provides additional context to the primary status field. For supported values, refer to [Delivery sub-statuses](https://www.aftership.com/docs/tracking/enum/delivery-sub-statuses?as_source=www.aftership.com%2Fdocs%2Fparser).
-          example: Delivered_001
-          x-stoplight:
-            id: tk2substatus01
-        tracking_number:
-          type:
-          - string
-          - 'null'
-          description: Tracking number.
-          example: '234234'
-          x-stoplight:
-            id: 0lhlhmb7scv7k
-        slug:
-          type:
-          - string
-          - 'null'
-          description: Unique code of the courier.
-          example: ups
-          x-stoplight:
-            id: 1st942s6l6hw9
-        additional_fields:
-          type:
-          - object
-          - 'null'
-          description: Additional information to identify the shipment and ensure its uniqueness.
-          x-stoplight:
-            id: ohezhb0vuh2s1
-          required:
-          - postal_code
-          - ship_date
-          - state
-          - origin_country
-          - destination_country
-          properties:
-            postal_code:
-              type:
-              - string
-              - 'null'
-              example: xxxxxx
-              description: The postal code of the tracking.
-              x-stoplight:
-                id: ya29h5r2n7awp
-            ship_date:
-              type:
-              - string
-              - 'null'
-              description: The shipping date of the tracking is in YYYY-MM-DD format.
-              example: '2018-11-11'
-              x-stoplight:
-                id: a9tmzcdmw0h7l
-            state:
-              type:
-              - string
-              - 'null'
-              description: The state of the tracking.
-              example: xxx
-              x-stoplight:
-                id: x4gdrnvjck0ne
-            origin_country:
-              type:
-              - string
-              - 'null'
-              description: The origin country of the tracking.
-              example: CHN
-              x-stoplight:
-                id: 0gdx5gvaol3fl
-            destination_country:
-              type:
-              - string
-              - 'null'
-              description: The destination country of the tracking.
-              example: CHN
-              x-stoplight:
-                id: nzdia0bive5kx
-        items:
-          type: array
-          uniqueItems: true
-          description: Items in the package.
-          x-stoplight:
-            id: 1futjv0thqgf0
-          items:
-            $ref: '#/components/schemas/Order_item.v2'
-            x-stoplight:
-              id: u0xjlydul2n90
-        tracking_url:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: f6ohw6jtai2ks
-          description: 'The tracking_link is the link to the tracking page.
-
-            '
-        shipping_provider:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: 2iiofiycofoqx
-          description: The shipping provider information extracted from the email. This field is strongly correlated with the shopping site of the parsed email (e.g., Amazon, Shein, Temu). Currently only supported for Amazon emails.
-          example: Amazon Logistics
-          enum:
-          - Amazon Logistics
-          - Amazon Shipping
-          - Third Party
-    Subtotal.v2:
-      x-stoplight:
-        id: 7k8cj769osha5
-      description: Order subtotal amount.
-      type:
-      - object
-      - 'null'
-      x-examples:
-        example-1:
-          amount: '-1'
-          currency: USD
-      examples:
-      - amount: '1.00'
-        currency: USD
-        raw_symbol: $
-      additionalProperties: false
-      title: MoneyV2
-      x-tags:
-      - Primitive
-      properties:
-        amount:
-          type:
-          - string
-          - 'null'
-          description: The amount. It can be negative.
-          example: '1.00'
-          x-stoplight:
-            id: v3vvdnl5dto60
-        currency:
-          description: The currency.
-          example: USD
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: 9mf5843b48pyx
-        raw_symbol:
-          type:
-          - string
-          - 'null'
-          description: 'The original currency symbol extracted from the email.
-
-
-            There would not be a normalized currency symbol enum list, as the currency symbol for a currency is not a consistent one-to-one mapping. For example, the currency symbol of `HKD` could be either `HK$` or `$`. Vice versa, different currencies could have the same currency symbol. Such as `HKD` and `USD`, which the currency symbol of both currencies is `$`.'
-          example: $
-          x-stoplight:
-            id: eb1617ei0ys0v
-      required:
-      - amount
-      - currency
-      - raw_symbol
     Order_item.v2:
       x-stoplight:
         id: ik5efnoqcqva9
@@ -4228,50 +4176,102 @@ components:
 
 
             `canceled` : The item was canceled'
-    Discount_total.v1:
+    Shipping_method.v2:
       x-stoplight:
-        id: g03jbkf1cag7o
-      title: Money
-      description: Total discount amount.
+        id: cl3ah1f4ofafe
       type:
       - object
       - 'null'
+      title: ShippingMethodV2
+      description: The shipping method.
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          example: Standard - free
+          description: The shipping method title.
+          x-stoplight:
+            id: t0uu0jjy8fygi
+      required:
+      - name
+      x-tags:
+      - Primitive
+    Phone.v2:
+      x-stoplight:
+        id: gyd4vgc261rwr
+      type:
+      - object
+      - 'null'
+      description: The phone number object.
       x-examples:
         example-1:
-          amount: '-1'
-          currency: USD
+          country_region_code: '852'
+          number: '98569856'
       examples:
-      - amount: '1.00'
-        currency: USD
-        symbol: $
+      - calling_code: '1'
+        phone_number: '3105550199'
       additionalProperties: false
+      title: PhoneV2
+      x-tags:
+      - Primitive
+      required:
+      - calling_code
+      - phone_number
+      properties:
+        calling_code:
+          type:
+          - string
+          - 'null'
+          description: The country region code of the phone.
+          example: '1'
+          x-stoplight:
+            id: lw2pmidg3nimr
+        phone_number:
+          type:
+          - string
+          - 'null'
+          description: Phone number.
+          example: '3105550199'
+          x-stoplight:
+            id: w5p6c4sz9vf3d
+    Estimated_delivery_date.v1:
+      type:
+      - object
+      - 'null'
+      description: It refers to the estimated delivery date parsed from the email. The maximum will be null if the estimated delivery date does not have a valid time range.
+      x-examples:
+        example-1:
+          estimated_delivery_date_min: '2021-12-11'
+          estimated_delivery_date_max: null
+      examples:
+      - estimated_delivery_date_min: '2021-12-11'
+        estimated_delivery_date_max: '2021-12-12'
+      - estimated_delivery_date_min: '2021-12-11'
+        estimated_delivery_date_max: null
+      additionalProperties: false
+      title: EstimatedDeliveryDate
       x-tags:
       - Primitive
       properties:
-        amount:
+        estimated_delivery_date_min:
           type:
           - string
           - 'null'
-          description: The amount. It can be negative.
-          example: '1.00'
-        currency:
-          description: The currency.
-          example: USD
+          format: date
+          example: '2021-12-11'
+          description: It refers to the starting value of the estimated delivery date.
+        estimated_delivery_date_max:
           type:
           - string
           - 'null'
-        symbol:
-          type:
-          - string
-          - 'null'
-          description: The symbol of currency.
-          example: $
-          x-stoplight:
-            id: 9z1kythbmznrd
+          format: date
+          example: '2021-12-12'
+          description: It refers to the ending value of the estimated delivery date. It will be null if the estimated delivery date does not have a valid time range.
       required:
-      - amount
-      - currency
-      - symbol
+      - estimated_delivery_date_min
+      - estimated_delivery_date_max
   securitySchemes:
     as-api-key:
       name: as-api-key

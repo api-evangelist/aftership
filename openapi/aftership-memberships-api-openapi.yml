@@ -832,6 +832,48 @@ components:
       - total
       x-tags:
       - Envelope
+    Error.v1:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: account.email
+        info: account.email is invalid
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+    Role.v1:
+      description: Object describes role information.
+      type: object
+      x-examples:
+        example-1:
+          code: admin
+          name: Admin
+      examples: []
+      title: Role
+      properties:
+        code:
+          type: string
+          minLength: 1
+          description: role code
+        name:
+          type: string
+          minLength: 1
+          description: role name
+      required:
+      - code
+      - name
+      x-tags:
+      - Resource
     Membership.v1:
       description: Object describes membership information.
       type: object
@@ -883,48 +925,6 @@ components:
       - organization
       - account
       - role
-    Role.v1:
-      description: Object describes role information.
-      type: object
-      x-examples:
-        example-1:
-          code: admin
-          name: Admin
-      examples: []
-      title: Role
-      properties:
-        code:
-          type: string
-          minLength: 1
-          description: role code
-        name:
-          type: string
-          minLength: 1
-          description: role name
-      required:
-      - code
-      - name
-      x-tags:
-      - Resource
-    Error.v1:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: account.email
-        info: account.email is invalid
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
   securitySchemes:
     as-api-key:
       name: as-api-key

@@ -318,27 +318,6 @@ paths:
                           message: Label generation failed because item weight is missing.
 components:
   schemas:
-    Meta_20000:
-      description: Meta data object.
-      type: object
-      x-examples: {}
-      examples: []
-      title: Meta
-      x-tags:
-      - Envelope
-      properties:
-        code:
-          type: number
-          default: 20000
-          example: 20000
-        type:
-          type: string
-          minLength: 1
-          example: OK
-        message:
-          type: string
-          minLength: 1
-          example: The request was successfully processed by AfterShip.
     Claim_shipment:
       type: object
       x-stoplight:
@@ -439,6 +418,27 @@ components:
           example: '2026-05-19T10:00:00Z'
       title: ClaimShipment
       description: A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource.
+    Meta_20000:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+        type:
+          type: string
+          minLength: 1
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
     Address:
       type: object
       x-stoplight:

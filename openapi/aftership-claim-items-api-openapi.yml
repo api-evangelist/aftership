@@ -148,19 +148,6 @@ paths:
                   updated_at: '2026-05-19T10:03:00Z'
 components:
   schemas:
-    Money:
-      description: The store credit value.
-      title: Money
-      type: object
-      properties:
-        amount:
-          type: string
-          description: The amount represented with two decimal places.
-          example: '99.99'
-        currency:
-          type: string
-          description: The currency code, using ISO 4217 standards.
-          example: USD
     ItemTag:
       title: ItemTag
       x-stoplight:
@@ -420,6 +407,19 @@ components:
           description: The date and time, formatted in ISO 8601, when the claim item was last updated.
           example: '2026-05-19T10:00:00Z'
       description: A claim item resource.
+    Money:
+      description: The store credit value.
+      title: Money
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount represented with two decimal places.
+          example: '99.99'
+        currency:
+          type: string
+          description: The currency code, using ISO 4217 standards.
+          example: USD
     Meta_20000:
       description: Meta data object.
       type: object

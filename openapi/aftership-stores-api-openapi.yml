@@ -569,6 +569,96 @@ paths:
         id: 7e8bomqsyg6ku
 components:
   schemas:
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
+    Meta.v1:
+      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
+      type: object
+      x-examples: {}
+      title: Meta
+      x-tags:
+      - Envelope
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      additionalProperties: false
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        errors:
+          type: array
+          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+
+
+            '
+          items:
+            $ref: '#/components/schemas/Error.v1'
+    Pagination.v2:
+      title: Pagination
+      x-stoplight:
+        id: 6twr4wc3wp9lu
+      type: object
+      examples:
+      - page: 1
+        limit: 10
+        has_next_page: false
+      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: integer
+          x-stoplight:
+            id: 5ld3b35057z8s
+          description: Page number.
+        limit:
+          type: integer
+          x-stoplight:
+            id: qmvbmlfjchyh5
+          description: Maximum object count per page.
+        has_next_page:
+          type: boolean
+          x-stoplight:
+            id: qtm2ifhlv0r4i
+          description: To indicate if next page is available.
     Store.v1:
       x-stoplight:
         id: 67b89e472d9db
@@ -762,96 +852,6 @@ components:
                   type: number
                   description: The longitude of the store address.
                   example: 74
-    Error.v1:
-      type: object
-      title: Error
-      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The JSON path of the request object to indicate the error location.
-          example: data.product.title
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: Title is invalid
-    Meta.v1:
-      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
-
-
-        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
-      type: object
-      x-examples: {}
-      title: Meta
-      x-tags:
-      - Envelope
-      examples:
-      - code: 20000
-        type: OK
-        message: The request was successfully processed by AfterShip.
-      additionalProperties: false
-      required:
-      - code
-      - type
-      - message
-      properties:
-        code:
-          type: number
-          default: 20000
-          example: 20000
-          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        type:
-          type: string
-          minLength: 1
-          example: OK
-          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        message:
-          type: string
-          minLength: 1
-          example: The request was successfully processed by AfterShip.
-          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        errors:
-          type: array
-          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-
-
-            '
-          items:
-            $ref: '#/components/schemas/Error.v1'
-    Pagination.v2:
-      title: Pagination
-      x-stoplight:
-        id: 6twr4wc3wp9lu
-      type: object
-      examples:
-      - page: 1
-        limit: 10
-        has_next_page: false
-      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
-      x-tags:
-      - Envelope
-      properties:
-        page:
-          type: integer
-          x-stoplight:
-            id: 5ld3b35057z8s
-          description: Page number.
-        limit:
-          type: integer
-          x-stoplight:
-            id: qmvbmlfjchyh5
-          description: Maximum object count per page.
-        has_next_page:
-          type: boolean
-          x-stoplight:
-            id: qtm2ifhlv0r4i
-          description: To indicate if next page is available.
   securitySchemes:
     as-api-key:
       name: as-api-key

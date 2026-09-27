@@ -198,6 +198,29 @@ paths:
       - Address
 components:
   schemas:
+    Error:
+      type: object
+      x-stoplight:
+        id: 2f9c47cab76ed
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples: []
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.request_address.postal_code
+          x-stoplight:
+            id: mcru7zcz84dy9
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: data.request_address.postal_code is invalid
+          x-stoplight:
+            id: ulljpx2y8s2eg
     Meta:
       description: Meta data object.
       x-stoplight:
@@ -247,29 +270,6 @@ components:
             id: 0oqp8jy1bhybm
       required:
       - code
-    Error:
-      type: object
-      x-stoplight:
-        id: 2f9c47cab76ed
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples: []
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The JSON path of the request object to indicate the error location.
-          example: data.request_address.postal_code
-          x-stoplight:
-            id: mcru7zcz84dy9
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: data.request_address.postal_code is invalid
-          x-stoplight:
-            id: ulljpx2y8s2eg
     Address:
       title: Address
       x-stoplight:

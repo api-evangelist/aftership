@@ -718,49 +718,6 @@ components:
             '
           items:
             $ref: '#/components/schemas/Error.v1'
-    Weight.v1:
-      description: The unit weight of the item.
-      title: Weight
-      x-stoplight:
-        id: 6ffc0efbd7bf5
-      type: object
-      examples:
-      - unit: kg
-        value: 10
-      x-tags:
-      - Primitive
-      properties:
-        unit:
-          type: string
-          enum:
-          - kg
-          - lb
-          - oz
-          - g
-          description: 'The weight unit eg: g or kg.'
-        value:
-          type: number
-          description: The value of the weight.
-          example: 10
-    Error.v1:
-      type: object
-      title: Error
-      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The JSON path of the request object to indicate the error location.
-          example: data.product.title
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: Title is invalid
     Product_variant.v1:
       title: product_variant.v1
       x-stoplight:
@@ -833,6 +790,77 @@ components:
                 description: The value of the custom product property.
                 maxLength: 256
                 example: white
+    Pagination.v2:
+      title: Pagination
+      x-stoplight:
+        id: 6twr4wc3wp9lu
+      type: object
+      examples:
+      - page: 1
+        limit: 10
+        has_next_page: false
+      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: integer
+          x-stoplight:
+            id: 5ld3b35057z8s
+          description: Page number.
+        limit:
+          type: integer
+          x-stoplight:
+            id: qmvbmlfjchyh5
+          description: Maximum object count per page.
+        has_next_page:
+          type: boolean
+          x-stoplight:
+            id: qtm2ifhlv0r4i
+          description: To indicate if next page is available.
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
+    Weight.v1:
+      description: The unit weight of the item.
+      title: Weight
+      x-stoplight:
+        id: 6ffc0efbd7bf5
+      type: object
+      examples:
+      - unit: kg
+        value: 10
+      x-tags:
+      - Primitive
+      properties:
+        unit:
+          type: string
+          enum:
+          - kg
+          - lb
+          - oz
+          - g
+          description: 'The weight unit eg: g or kg.'
+        value:
+          type: number
+          description: The value of the weight.
+          example: 10
     Product.v1:
       x-stoplight:
         id: 180c3db461386
@@ -961,34 +989,6 @@ components:
           type: string
           description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was updated in AfterShip system.
           example: '2021-04-15T20:02:09Z'
-    Pagination.v2:
-      title: Pagination
-      x-stoplight:
-        id: 6twr4wc3wp9lu
-      type: object
-      examples:
-      - page: 1
-        limit: 10
-        has_next_page: false
-      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
-      x-tags:
-      - Envelope
-      properties:
-        page:
-          type: integer
-          x-stoplight:
-            id: 5ld3b35057z8s
-          description: Page number.
-        limit:
-          type: integer
-          x-stoplight:
-            id: qmvbmlfjchyh5
-          description: Maximum object count per page.
-        has_next_page:
-          type: boolean
-          x-stoplight:
-            id: qtm2ifhlv0r4i
-          description: To indicate if next page is available.
   parameters:
     as-store-id:
       name: as-store-id

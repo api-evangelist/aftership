@@ -1350,199 +1350,280 @@ paths:
       - as-api-key: []
 components:
   schemas:
-    Label.v3:
-      title: Label
+    Money.v3:
+      title: Money
       x-stoplight:
-        id: ylsizdlwyes98
+        id: okc04k6a0ua3b
       type: object
-      description: 'Label object: the description of label object
-
-        <div style="visibility:hidden; height: 0">This array contains service_options object. Please refer to [all service options](../../docs/enum/all-service-options.md) and [service options list](../../docs/enum/service-options-lists.md) for details.
-
-        This array contains reference data. Please refer to [reference](../model/premitive/reference.v3.json)  object for label object details.</div>'
-      x-tags:
-      - Resource
-      examples: []
-      properties:
-        id:
-          type: string
-          description: 'Label ID
-
-            '
-        status:
-          type: string
-          enum:
-          - creating
-          - created
-          - cancelling
-          - cancelled
-          - manifesting
-          - manifested
-          - failed
-        ship_date:
-          type: string
-        tracking_numbers:
-          type: array
-          items:
-            type: string
-        carrier_references:
-          type: array
-          items:
-            type: object
-            properties:
-              pickup_reference:
-                type: string
-                x-stoplight:
-                  id: iqkqrpp9ikcvx
-              pickup_location_code:
-                type: string
-                x-stoplight:
-                  id: iqkqrpp9ikcvx
-              piece_tracking_numbers:
-                type: array
-                x-stoplight:
-                  id: f72uui9k49xbc
-                items:
-                  x-stoplight:
-                    id: wyu6ga7f9l0xf
-                  type: string
-        files:
-          $ref: '#/components/schemas/Files.v3'
-        rate:
-          $ref: '#/components/schemas/Rate.v3'
-        created_at:
-          type: string
-          description: 'A formatted date.
-
-            '
-        updated_at:
-          type: string
-          description: 'A formatted date.
-
-            '
-        references:
-          type:
-          - array
-          - 'null'
-          description: 'Reference information for a label
-
-            '
-          items:
-            type: string
-        shipper_account:
-          $ref: '#/components/schemas/Reference.v3'
-        service_type:
-          type: string
-          description: 'Service Types
-
-            '
-        order_number:
-          type: string
-          description: 'A user-defined order number used to identify an order.
-
-            '
-        service_options:
-          type: array
-          additionalProperties:
-            type: object
-          description: This array contains service_options object. Please refer to [all service options](../../docs/enum/all-service-options.md) and [service types and service options list](../../docs/enum/service-types-and-service-options-lists.md) for details.
-          items:
-            type: object
-        order_id:
-          type: string
-          description: Unique identification of the order.
-        custom_fields:
-          type: object
-          x-stoplight:
-            id: cjvgp0c32bvvq
-          description: 'Custom fields that accept an object with string field.
-
-
-            - Maximum charater limit for a key name: 30
-
-            - Maximum count for a key-value pair in a custom field object: 25
-
-            - Maximum value length: 512 charaters
-
-            - Supported value type: String only (object and array are prohibited)'
-          additionalProperties:
-            type: string
-        carrier_redirect_link:
-          type:
-          - string
-          - 'null'
-          description: Delivery instructions (delivery date or address) can be modified by visiting the link if supported by a carrier.
-          x-stoplight:
-            id: 0uax9qas0iiae
-    Aes.v3:
-      title: AES
-      x-stoplight:
-        id: k4c9cd1hj6q8g
-      type: object
-      description: 'AES object: the description of EEI Type - aes'
       x-tags:
       - Primitive
       examples: []
       properties:
-        type:
+        currency:
           type: string
           enum:
-          - aes
-        itn_number:
-          type: string
-          description: ITN Number
-      required:
-      - type
-    Meta.v3:
-      description: Meta data object.
+          - AED
+          - AFN
+          - ALL
+          - AMD
+          - ANG
+          - AOA
+          - ARS
+          - AUD
+          - AWG
+          - AZN
+          - BAM
+          - BBD
+          - BDT
+          - BGN
+          - BHD
+          - BIF
+          - BMD
+          - BND
+          - BOB
+          - BOV
+          - BRL
+          - BSD
+          - BTN
+          - BWP
+          - BYN
+          - BZD
+          - CAD
+          - CDF
+          - CHE
+          - CHF
+          - CHW
+          - CLF
+          - CLP
+          - CNY
+          - COP
+          - COU
+          - CRC
+          - CUC
+          - CUP
+          - CVE
+          - CZK
+          - DJF
+          - DKK
+          - DOP
+          - DZD
+          - EGP
+          - ERN
+          - ETB
+          - EUR
+          - FJD
+          - FKP
+          - GBP
+          - GEL
+          - GHS
+          - GIP
+          - GMD
+          - GNF
+          - GTQ
+          - GYD
+          - HKD
+          - HNL
+          - HRK
+          - HTG
+          - HUF
+          - IDR
+          - ILS
+          - INR
+          - IQD
+          - IRR
+          - ISK
+          - JMD
+          - JOD
+          - JPY
+          - KES
+          - KGS
+          - KHR
+          - KMF
+          - KPW
+          - KRW
+          - KWD
+          - KYD
+          - KZT
+          - LAK
+          - LBP
+          - LKR
+          - LRD
+          - LSL
+          - LYD
+          - MAD
+          - MDL
+          - MGA
+          - MKD
+          - MMK
+          - MNT
+          - MOP
+          - MRU
+          - MUR
+          - MVR
+          - MWK
+          - MXN
+          - MXV
+          - MYR
+          - MZN
+          - NAD
+          - NGN
+          - NIO
+          - NOK
+          - NPR
+          - NZD
+          - OMR
+          - PAB
+          - PEN
+          - PGK
+          - PHP
+          - PKR
+          - PLN
+          - PYG
+          - QAR
+          - RON
+          - RSD
+          - RUB
+          - RWF
+          - SAR
+          - SBD
+          - SCR
+          - SDG
+          - SEK
+          - SGD
+          - SHP
+          - SLL
+          - SOS
+          - SRD
+          - SSP
+          - STN
+          - SVC
+          - SYP
+          - SZL
+          - THB
+          - TJS
+          - TMT
+          - TND
+          - TOP
+          - TRY
+          - TTD
+          - TWD
+          - TZS
+          - UAH
+          - UGX
+          - USD
+          - USN
+          - UYI
+          - UYW
+          - UYU
+          - UZS
+          - VES
+          - VND
+          - VUV
+          - WST
+          - XAF
+          - XAU
+          - XBA
+          - XBB
+          - XBC
+          - XBD
+          - XCD
+          - XDR
+          - XOF
+          - XPD
+          - XPF
+          - XPT
+          - XSU
+          - XTS
+          - XXX
+          - YER
+          - ZAR
+          - ZMW
+          - ZWL
+          description: Currency of Money
+        amount:
+          type: number
+          description: Amount of Money
+      description: The money object is used to represent the currency amount.
+    Billing.v3:
+      title: Billing
+      x-stoplight:
+        id: bfc477642fe69
       type: object
-      x-examples: {}
+      description: 'Billing object: the description of billing information'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        paid_by:
+          type: string
+          enum:
+          - shipper
+          - third_party
+          - recipient
+        method:
+          $ref: '#/components/schemas/Payment_method_account.v3'
+      required:
+      - paid_by
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
       examples:
-      - code: 200
-        type: OK
-        message: Everything worked as expected.
-      title: Meta
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
       x-tags:
       - Envelope
       properties:
-        code:
-          type: integer
-          description: Code of Meta
-        message:
+        path:
           type: string
-          description: Message of Meta
-        details:
-          type: array
-          description: Details of Meta
-          items:
-            $ref: '#/components/schemas/Error.v3'
-        retryable:
-          type: boolean
-          description: Whether this request will be retryable or not
-      required:
-      - code
-      - message
-    No_eei.v3:
-      title: NOEEI
-      x-stoplight:
-        id: 190bfme3fnjwm
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+    Shipment.v3:
       type: object
-      description: 'NOEEI object: the description of NOEEI Type'
+      title: Shipment
+      x-stoplight:
+        id: jp89xbgwpyeu7
+      description: 'Shipment object: the description of shipment information
+
+        <div style="visibility:hidden; height: 0">
+
+        refer to [shipment](../model/resource/label.v3.json) object.
+
+        </div>'
       x-tags:
       - Primitive
       examples: []
-      properties:
-        type:
-          type: string
-          description: 'Accepts: no_eei.'
-        ftr_exemption:
-          type: string
-          enum:
-          - noeei_30_37_a
-          - noeei_30_37_h
-          - noeei_30_36
       required:
-      - type
+      - ship_from
+      - ship_to
+      - parcels
+      properties:
+        tax_total:
+          $ref: '#/components/schemas/Money.v3'
+          x-stoplight:
+            id: utb4m5c64j0bw
+        ship_from:
+          $ref: '#/components/schemas/Address.v3'
+        ship_from_display:
+          description: 'Address object: An optional address object that lets you customize the ship from details shown on the shipping label.<br/>This is only for visual display and won''t change actual shipping routes or carrier operations.<br/>Supported slug: `purolator`,`canada-post`'
+          $ref: '#/components/schemas/Address.v3'
+        ship_to:
+          $ref: '#/components/schemas/Address.v3'
+        parcels:
+          type: array
+          description: Parcels of shipment
+          items:
+            $ref: '#/components/schemas/Parcel.v3'
+        return_to:
+          $ref: '#/components/schemas/Address.v3'
+        delivery_instructions:
+          type: string
+          description: Instructions to aid in prompt delivery of the shipment.
     Invoice.v3:
       title: Invoice
       x-stoplight:
@@ -1581,125 +1662,6 @@ components:
           x-stoplight:
             id: squ0dj6tlgbdn
           description: Declaration statement showing on invoice. Only applies to FedEx, DHL Express currently.
-    Parcel.v3:
-      title: Parcel
-      x-stoplight:
-        id: 39w3kevp07phy
-      type: object
-      description: 'Parcel object: the description of parcel information'
-      properties:
-        box_type:
-          type: string
-          description: Type of box for packaging
-        dimension:
-          $ref: '#/components/schemas/Dimension.v3'
-        items:
-          description: 'items of package Item object, use to describe product to ship
-
-            '
-          type: array
-          items:
-            $ref: '#/components/schemas/Item.v3'
-        description:
-          type: string
-          description: The description of the parcel
-        weight:
-          $ref: '#/components/schemas/Weight.v3'
-      required:
-      - box_type
-      - dimension
-      - items
-      x-tags:
-      - Primitive
-      examples: []
-    Billing.v3:
-      title: Billing
-      x-stoplight:
-        id: bfc477642fe69
-      type: object
-      description: 'Billing object: the description of billing information'
-      x-tags:
-      - Primitive
-      examples: []
-      properties:
-        paid_by:
-          type: string
-          enum:
-          - shipper
-          - third_party
-          - recipient
-        method:
-          $ref: '#/components/schemas/Payment_method_account.v3'
-      required:
-      - paid_by
-    Regulatory_data_item.v3:
-      title: RegulatoryDataItem
-      x-stoplight:
-        id: regulatory-data-item-v3
-      description: 'A CPSC regulatory data entry associated with an item. The shape varies by `fill_mode`. Supported carriers: UPS, FedEx.'
-      x-tags:
-      - Primitive
-      oneOf:
-      - title: CpscDisclaimer
-        type: object
-        description: 'CPSC regulation data filled via disclaimer mode. Supported carriers: UPS, FedEx.'
-        required:
-        - regulation_code
-        - fill_mode
-        - disclaim_code
-        - intended_use_code
-        properties:
-          regulation_code:
-            type: string
-            enum:
-            - CPSC
-            description: Regulation code identifying the applicable regulation.
-          fill_mode:
-            type: string
-            enum:
-            - disclaimer
-            description: Indicates the CPSC compliance fill mode.
-          disclaim_code:
-            type: string
-            enum:
-            - A
-            - B
-            description: '`A` = not regulated by CPSC; `B` = no certificate needed per agency guidance.'
-          intended_use_code:
-            type: string
-            description: Intended use of goods for customs assessment.
-          intended_use_description:
-            type: string
-            description: Supplemental info when `intended_use_code` is `980.000`.
-      - title: CpscReference
-        type: object
-        description: 'CPSC regulation data filled via certificate reference mode. Supported carriers: UPS, FedEx.'
-        required:
-        - regulation_code
-        - fill_mode
-        - certifier_id
-        - product_id
-        - version_id
-        properties:
-          regulation_code:
-            type: string
-            enum:
-            - CPSC
-            description: Regulation code identifying the applicable regulation.
-          fill_mode:
-            type: string
-            enum:
-            - reference
-            description: Indicates the CPSC compliance fill mode.
-          certifier_id:
-            type: string
-            description: Importer's ID in the CPSC Product Registry.
-          product_id:
-            type: string
-            description: Product's ID in the CPSC Product Registry.
-          version_id:
-            type: string
-            description: Version ID of the product certificate in the CPSC Product Registry.
     Payment_method_account.v3:
       title: PaymentMethodAccount
       x-stoplight:
@@ -1977,90 +1939,191 @@ components:
       - Primitive
       examples: []
       description: 'PaymentMethodAccount object: the description of account information'
-    Item.v3:
-      title: Item
+    Rate.v3:
+      title: Rate
       x-stoplight:
-        id: 85gwiiinn20p1
+        id: gzq8uf274umrg
       type: object
-      description: 'Item object: the description of item information'
+      description: 'Rate object: the description of rate information'
+      x-tags:
+      - Resource
+      examples: []
+      properties:
+        charge_weight:
+          $ref: '#/components/schemas/Weight.v3'
+        total_charge:
+          $ref: '#/components/schemas/Money.v3'
+        shipper_account:
+          type: object
+          description: 'Shipper Account (brief information for rate and manifest responses)
+
+            '
+          required:
+          - id
+          - slug
+          properties:
+            id:
+              type: string
+            slug:
+              type: string
+            description:
+              type: string
+        service_type:
+          type: string
+          description: 'Service Types
+
+            '
+        service_name:
+          type: string
+          description: 'name of service
+
+            '
+        pickup_deadline:
+          type:
+          - string
+          - 'null'
+          description: 'A formatted date.
+
+            '
+        booking_cut_off:
+          type:
+          - string
+          - 'null'
+          description: 'A formatted date.
+
+            '
+        delivery_date:
+          type:
+          - string
+          - 'null'
+          description: 'A formatted date.
+
+            '
+        transit_time:
+          type:
+          - integer
+          - 'null'
+          description: transit time
+        detailed_charges:
+          type: array
+          description: Courier charges, it may be different for different couriers
+          items:
+            type:
+            - object
+            - array
+            properties:
+              type:
+                type: string
+                description: detailed charges type
+              charge:
+                $ref: '#/components/schemas/Money.v3'
+        error_message:
+          type:
+          - string
+          - 'null'
+          description: error information
+        info_message:
+          type:
+          - string
+          - 'null'
+          description: other information of request/response
+      required:
+      - shipper_account
+      - service_type
+      - service_name
+    Input_files.v3:
+      x-stoplight:
+        id: alsibm32aw646
+      title: InputFiles
+      type: object
+      description: 'Files object: additional shipping documents to upload with label generation. Only applies to FedEx, DHL Express currently.'
       x-tags:
       - Primitive
       examples: []
-      required:
-      - quantity
-      - description
       properties:
-        quantity:
-          type: integer
-          description: 'The quantity of the item Minimum: 1'
-        description:
-          type: string
-          description: The description of the item
-        description_cn:
-          type: string
-          description: 'the description of the item in Chinese '
-        price:
-          $ref: '#/components/schemas/Money.v3'
-        item_id:
-          type: string
-          description: The ID of the item
-        origin_country:
-          type: string
-          description: Country in ISO 3166-1 alpha 3 code
-        weight:
-          $ref: '#/components/schemas/Weight.v3'
-        sku:
-          type: string
-          description: The sku of the item.
-        hs_code:
-          type: string
-          description: The HS Code (Harmonized Commodity Description and Coding System) of the item.
-        outbound_hs_code:
-          type: string
-          description: The HS Code (Harmonized Commodity Description and Coding System) of the item as required by the exporting country's customs regulations.
-        return_reason:
-          type: string
+        certificate_of_origin:
+          type: object
           x-stoplight:
-            id: 86krhz0houiz2
-          description: The reason of return
+            id: 8ym9fdpkio3kg
+          description: Certificate of Origin
+          properties:
+            content:
+              type: string
+              x-stoplight:
+                id: 15ttnisv8i78x
+              description: PDF base64 content
+        commercial_invoice:
+          type: object
+          x-stoplight:
+            id: 230t2s7bkj322
+          description: Commercial Invoice
+          properties:
+            content:
+              type: string
+              x-stoplight:
+                id: 4onz5x8ubx3ty
+              description: PDF base64 content
+        'customs_declaration ':
+          type: object
+          x-stoplight:
+            id: okk99pm1vxfb3
+          description: Customs Declaration
+          properties:
+            content:
+              type: string
+              x-stoplight:
+                id: oa5b3hmvayhxc
+              description: PDF base64 content
+    Aes.v3:
+      title: AES
+      x-stoplight:
+        id: k4c9cd1hj6q8g
+      type: object
+      description: 'AES object: the description of EEI Type - aes'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        type:
+          type: string
+          enum:
+          - aes
+        itn_number:
+          type: string
+          description: ITN Number
+      required:
+      - type
+    Parcel.v3:
+      title: Parcel
+      x-stoplight:
+        id: 39w3kevp07phy
+      type: object
+      description: 'Parcel object: the description of parcel information'
+      properties:
+        box_type:
+          type: string
+          description: Type of box for packaging
         dimension:
           $ref: '#/components/schemas/Dimension.v3'
-          x-stoplight:
-            id: prw8rr4twlc9v
-        barcode:
-          type: string
-          x-stoplight:
-            id: o455vzu1p8jam
-          description: The barcode of item
-        regulatory_data:
+        items:
+          description: 'items of package Item object, use to describe product to ship
+
+            '
           type: array
-          description: 'CPSC regulatory data entries associated with this item. Supported carriers: UPS, FedEx.'
           items:
-            $ref: '#/components/schemas/Regulatory_data_item.v3'
-    Weight.v3:
-      title: Weight
-      x-stoplight:
-        id: sqe056qqggctt
-      type: object
-      description: 'Weight object: unit weight of the item'
+            $ref: '#/components/schemas/Item.v3'
+        description:
+          type: string
+          description: The description of the parcel
+        weight:
+          $ref: '#/components/schemas/Weight.v3'
+      required:
+      - box_type
+      - dimension
+      - items
       x-tags:
       - Primitive
       examples: []
-      properties:
-        unit:
-          type: string
-          description: weight unit
-          enum:
-          - lb
-          - kg
-          - oz
-          - g
-        value:
-          type: number
-          description: value of Weight
-      required:
-      - unit
-      - value
     Address.v3:
       type: object
       x-stoplight:
@@ -2232,451 +2295,130 @@ components:
             lng:
               type: number
               description: longitude number
-    Rate.v3:
-      title: Rate
+    Label.v3:
+      title: Label
       x-stoplight:
-        id: gzq8uf274umrg
+        id: ylsizdlwyes98
       type: object
-      description: 'Rate object: the description of rate information'
+      description: 'Label object: the description of label object
+
+        <div style="visibility:hidden; height: 0">This array contains service_options object. Please refer to [all service options](../../docs/enum/all-service-options.md) and [service options list](../../docs/enum/service-options-lists.md) for details.
+
+        This array contains reference data. Please refer to [reference](../model/premitive/reference.v3.json)  object for label object details.</div>'
       x-tags:
       - Resource
       examples: []
       properties:
-        charge_weight:
-          $ref: '#/components/schemas/Weight.v3'
-        total_charge:
-          $ref: '#/components/schemas/Money.v3'
-        shipper_account:
-          type: object
-          description: 'Shipper Account (brief information for rate and manifest responses)
+        id:
+          type: string
+          description: 'Label ID
 
             '
-          required:
-          - id
-          - slug
-          properties:
-            id:
-              type: string
-            slug:
-              type: string
-            description:
-              type: string
+        status:
+          type: string
+          enum:
+          - creating
+          - created
+          - cancelling
+          - cancelled
+          - manifesting
+          - manifested
+          - failed
+        ship_date:
+          type: string
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+        carrier_references:
+          type: array
+          items:
+            type: object
+            properties:
+              pickup_reference:
+                type: string
+                x-stoplight:
+                  id: iqkqrpp9ikcvx
+              pickup_location_code:
+                type: string
+                x-stoplight:
+                  id: iqkqrpp9ikcvx
+              piece_tracking_numbers:
+                type: array
+                x-stoplight:
+                  id: f72uui9k49xbc
+                items:
+                  x-stoplight:
+                    id: wyu6ga7f9l0xf
+                  type: string
+        files:
+          $ref: '#/components/schemas/Files.v3'
+        rate:
+          $ref: '#/components/schemas/Rate.v3'
+        created_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+        updated_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+        references:
+          type:
+          - array
+          - 'null'
+          description: 'Reference information for a label
+
+            '
+          items:
+            type: string
+        shipper_account:
+          $ref: '#/components/schemas/Reference.v3'
         service_type:
           type: string
           description: 'Service Types
 
             '
-        service_name:
+        order_number:
           type: string
-          description: 'name of service
+          description: 'A user-defined order number used to identify an order.
 
             '
-        pickup_deadline:
-          type:
-          - string
-          - 'null'
-          description: 'A formatted date.
-
-            '
-        booking_cut_off:
-          type:
-          - string
-          - 'null'
-          description: 'A formatted date.
-
-            '
-        delivery_date:
-          type:
-          - string
-          - 'null'
-          description: 'A formatted date.
-
-            '
-        transit_time:
-          type:
-          - integer
-          - 'null'
-          description: transit time
-        detailed_charges:
+        service_options:
           type: array
-          description: Courier charges, it may be different for different couriers
-          items:
-            type:
-            - object
-            - array
-            properties:
-              type:
-                type: string
-                description: detailed charges type
-              charge:
-                $ref: '#/components/schemas/Money.v3'
-        error_message:
-          type:
-          - string
-          - 'null'
-          description: error information
-        info_message:
-          type:
-          - string
-          - 'null'
-          description: other information of request/response
-      required:
-      - shipper_account
-      - service_type
-      - service_name
-    Customs.v3:
-      title: Customs
-      x-stoplight:
-        id: 11cjtizuozw2n
-      type: object
-      description: 'Customs object: the description of customs information'
-      x-tags:
-      - Primitive
-      examples: []
-      required:
-      - purpose
-      properties:
-        purpose:
-          type: string
-          enum:
-          - gift
-          - merchandise
-          - personal
-          - sample
-          - return
-          - repair
-          - non-merchandise
-        terms_of_trade:
-          type: string
-          enum:
-          - dat
-          - ddu
-          - ddp
-          - dap
-          - exw
-          - fca
-          - fob
-          - cip
-          - cif
-          - cpt
-          - cfr
-          - dpu
-        eei:
-          description: EEI
-          oneOf:
-          - $ref: '#/components/schemas/Aes.v3'
-          - $ref: '#/components/schemas/No_eei.v3'
-        billing:
-          $ref: '#/components/schemas/Billing.v3'
-        importer_address:
-          $ref: '#/components/schemas/Address.v3'
-        broker_address:
-          $ref: '#/components/schemas/Address.v3'
-          x-stoplight:
-            id: 8djt33ak5cn15
-        passport:
-          type: object
-          description: Passport Object
-          properties:
-            number:
-              type: string
-              description: Passport Number
-            issue_date:
-              type: string
-              description: Issue Date in YYYY-MM-DD
-        additional_charges:
-          type: array
-          description: This array contains additional_charges object. Additional charge to be added to the commercial invoice of this shipment. Only applies to FedEx, DHL Express, UPS currently.
-          x-stoplight:
-            id: qt0kscrrlaouw
-          maxItems: 3
-          items:
-            x-stoplight:
-              id: 6tyw0klcpr1cu
+          additionalProperties:
             type: object
-            properties:
-              type:
-                type: string
-                x-stoplight:
-                  id: 49qh2pv3p384p
-                enum:
-                - insurance
-                - freight
-                - other
-              charge:
-                $ref: '#/components/schemas/Money.v3'
-                description: 'Money object: additional charge to be added to the commercial invoice of this shipment.'
-                x-stoplight:
-                  id: l4jm0oe5wytlv
-    Reference.v3:
-      title: Reference
-      x-stoplight:
-        id: pwqp1323bhe8q
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'id of referring object
-
-            '
-      x-tags:
-      - Primitive
-      examples: []
-      description: 'Reference object: the description of reference information'
-    Money.v3:
-      title: Money
-      x-stoplight:
-        id: okc04k6a0ua3b
-      type: object
-      x-tags:
-      - Primitive
-      examples: []
-      properties:
-        currency:
-          type: string
-          enum:
-          - AED
-          - AFN
-          - ALL
-          - AMD
-          - ANG
-          - AOA
-          - ARS
-          - AUD
-          - AWG
-          - AZN
-          - BAM
-          - BBD
-          - BDT
-          - BGN
-          - BHD
-          - BIF
-          - BMD
-          - BND
-          - BOB
-          - BOV
-          - BRL
-          - BSD
-          - BTN
-          - BWP
-          - BYN
-          - BZD
-          - CAD
-          - CDF
-          - CHE
-          - CHF
-          - CHW
-          - CLF
-          - CLP
-          - CNY
-          - COP
-          - COU
-          - CRC
-          - CUC
-          - CUP
-          - CVE
-          - CZK
-          - DJF
-          - DKK
-          - DOP
-          - DZD
-          - EGP
-          - ERN
-          - ETB
-          - EUR
-          - FJD
-          - FKP
-          - GBP
-          - GEL
-          - GHS
-          - GIP
-          - GMD
-          - GNF
-          - GTQ
-          - GYD
-          - HKD
-          - HNL
-          - HRK
-          - HTG
-          - HUF
-          - IDR
-          - ILS
-          - INR
-          - IQD
-          - IRR
-          - ISK
-          - JMD
-          - JOD
-          - JPY
-          - KES
-          - KGS
-          - KHR
-          - KMF
-          - KPW
-          - KRW
-          - KWD
-          - KYD
-          - KZT
-          - LAK
-          - LBP
-          - LKR
-          - LRD
-          - LSL
-          - LYD
-          - MAD
-          - MDL
-          - MGA
-          - MKD
-          - MMK
-          - MNT
-          - MOP
-          - MRU
-          - MUR
-          - MVR
-          - MWK
-          - MXN
-          - MXV
-          - MYR
-          - MZN
-          - NAD
-          - NGN
-          - NIO
-          - NOK
-          - NPR
-          - NZD
-          - OMR
-          - PAB
-          - PEN
-          - PGK
-          - PHP
-          - PKR
-          - PLN
-          - PYG
-          - QAR
-          - RON
-          - RSD
-          - RUB
-          - RWF
-          - SAR
-          - SBD
-          - SCR
-          - SDG
-          - SEK
-          - SGD
-          - SHP
-          - SLL
-          - SOS
-          - SRD
-          - SSP
-          - STN
-          - SVC
-          - SYP
-          - SZL
-          - THB
-          - TJS
-          - TMT
-          - TND
-          - TOP
-          - TRY
-          - TTD
-          - TWD
-          - TZS
-          - UAH
-          - UGX
-          - USD
-          - USN
-          - UYI
-          - UYW
-          - UYU
-          - UZS
-          - VES
-          - VND
-          - VUV
-          - WST
-          - XAF
-          - XAU
-          - XBA
-          - XBB
-          - XBC
-          - XBD
-          - XCD
-          - XDR
-          - XOF
-          - XPD
-          - XPF
-          - XPT
-          - XSU
-          - XTS
-          - XXX
-          - YER
-          - ZAR
-          - ZMW
-          - ZWL
-          description: Currency of Money
-        amount:
-          type: number
-          description: Amount of Money
-      description: The money object is used to represent the currency amount.
-    Shipment.v3:
-      type: object
-      title: Shipment
-      x-stoplight:
-        id: jp89xbgwpyeu7
-      description: 'Shipment object: the description of shipment information
-
-        <div style="visibility:hidden; height: 0">
-
-        refer to [shipment](../model/resource/label.v3.json) object.
-
-        </div>'
-      x-tags:
-      - Primitive
-      examples: []
-      required:
-      - ship_from
-      - ship_to
-      - parcels
-      properties:
-        tax_total:
-          $ref: '#/components/schemas/Money.v3'
-          x-stoplight:
-            id: utb4m5c64j0bw
-        ship_from:
-          $ref: '#/components/schemas/Address.v3'
-        ship_from_display:
-          description: 'Address object: An optional address object that lets you customize the ship from details shown on the shipping label.<br/>This is only for visual display and won''t change actual shipping routes or carrier operations.<br/>Supported slug: `purolator`,`canada-post`'
-          $ref: '#/components/schemas/Address.v3'
-        ship_to:
-          $ref: '#/components/schemas/Address.v3'
-        parcels:
-          type: array
-          description: Parcels of shipment
+          description: This array contains service_options object. Please refer to [all service options](../../docs/enum/all-service-options.md) and [service types and service options list](../../docs/enum/service-types-and-service-options-lists.md) for details.
           items:
-            $ref: '#/components/schemas/Parcel.v3'
-        return_to:
-          $ref: '#/components/schemas/Address.v3'
-        delivery_instructions:
+            type: object
+        order_id:
           type: string
-          description: Instructions to aid in prompt delivery of the shipment.
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
+          description: Unique identification of the order.
+        custom_fields:
+          type: object
+          x-stoplight:
+            id: cjvgp0c32bvvq
+          description: 'Custom fields that accept an object with string field.
+
+
+            - Maximum charater limit for a key name: 30
+
+            - Maximum count for a key-value pair in a custom field object: 25
+
+            - Maximum value length: 512 charaters
+
+            - Supported value type: String only (object and array are prohibited)'
+          additionalProperties:
+            type: string
+        carrier_redirect_link:
+          type:
+          - string
+          - 'null'
+          description: Delivery instructions (delivery date or address) can be modified by visiting the link if supported by a carrier.
+          x-stoplight:
+            id: 0uax9qas0iiae
     Dimension.v3:
       title: Dimension
       x-stoplight:
@@ -2855,49 +2597,307 @@ components:
               - 'null'
               enum:
               - pdf
-    Input_files.v3:
-      x-stoplight:
-        id: alsibm32aw646
-      title: InputFiles
+    Meta.v3:
+      description: Meta data object.
       type: object
-      description: 'Files object: additional shipping documents to upload with label generation. Only applies to FedEx, DHL Express currently.'
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Customs.v3:
+      title: Customs
+      x-stoplight:
+        id: 11cjtizuozw2n
+      type: object
+      description: 'Customs object: the description of customs information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - purpose
+      properties:
+        purpose:
+          type: string
+          enum:
+          - gift
+          - merchandise
+          - personal
+          - sample
+          - return
+          - repair
+          - non-merchandise
+        terms_of_trade:
+          type: string
+          enum:
+          - dat
+          - ddu
+          - ddp
+          - dap
+          - exw
+          - fca
+          - fob
+          - cip
+          - cif
+          - cpt
+          - cfr
+          - dpu
+        eei:
+          description: EEI
+          oneOf:
+          - $ref: '#/components/schemas/Aes.v3'
+          - $ref: '#/components/schemas/No_eei.v3'
+        billing:
+          $ref: '#/components/schemas/Billing.v3'
+        importer_address:
+          $ref: '#/components/schemas/Address.v3'
+        broker_address:
+          $ref: '#/components/schemas/Address.v3'
+          x-stoplight:
+            id: 8djt33ak5cn15
+        passport:
+          type: object
+          description: Passport Object
+          properties:
+            number:
+              type: string
+              description: Passport Number
+            issue_date:
+              type: string
+              description: Issue Date in YYYY-MM-DD
+        additional_charges:
+          type: array
+          description: This array contains additional_charges object. Additional charge to be added to the commercial invoice of this shipment. Only applies to FedEx, DHL Express, UPS currently.
+          x-stoplight:
+            id: qt0kscrrlaouw
+          maxItems: 3
+          items:
+            x-stoplight:
+              id: 6tyw0klcpr1cu
+            type: object
+            properties:
+              type:
+                type: string
+                x-stoplight:
+                  id: 49qh2pv3p384p
+                enum:
+                - insurance
+                - freight
+                - other
+              charge:
+                $ref: '#/components/schemas/Money.v3'
+                description: 'Money object: additional charge to be added to the commercial invoice of this shipment.'
+                x-stoplight:
+                  id: l4jm0oe5wytlv
+    Regulatory_data_item.v3:
+      title: RegulatoryDataItem
+      x-stoplight:
+        id: regulatory-data-item-v3
+      description: 'A CPSC regulatory data entry associated with an item. The shape varies by `fill_mode`. Supported carriers: UPS, FedEx.'
+      x-tags:
+      - Primitive
+      oneOf:
+      - title: CpscDisclaimer
+        type: object
+        description: 'CPSC regulation data filled via disclaimer mode. Supported carriers: UPS, FedEx.'
+        required:
+        - regulation_code
+        - fill_mode
+        - disclaim_code
+        - intended_use_code
+        properties:
+          regulation_code:
+            type: string
+            enum:
+            - CPSC
+            description: Regulation code identifying the applicable regulation.
+          fill_mode:
+            type: string
+            enum:
+            - disclaimer
+            description: Indicates the CPSC compliance fill mode.
+          disclaim_code:
+            type: string
+            enum:
+            - A
+            - B
+            description: '`A` = not regulated by CPSC; `B` = no certificate needed per agency guidance.'
+          intended_use_code:
+            type: string
+            description: Intended use of goods for customs assessment.
+          intended_use_description:
+            type: string
+            description: Supplemental info when `intended_use_code` is `980.000`.
+      - title: CpscReference
+        type: object
+        description: 'CPSC regulation data filled via certificate reference mode. Supported carriers: UPS, FedEx.'
+        required:
+        - regulation_code
+        - fill_mode
+        - certifier_id
+        - product_id
+        - version_id
+        properties:
+          regulation_code:
+            type: string
+            enum:
+            - CPSC
+            description: Regulation code identifying the applicable regulation.
+          fill_mode:
+            type: string
+            enum:
+            - reference
+            description: Indicates the CPSC compliance fill mode.
+          certifier_id:
+            type: string
+            description: Importer's ID in the CPSC Product Registry.
+          product_id:
+            type: string
+            description: Product's ID in the CPSC Product Registry.
+          version_id:
+            type: string
+            description: Version ID of the product certificate in the CPSC Product Registry.
+    Weight.v3:
+      title: Weight
+      x-stoplight:
+        id: sqe056qqggctt
+      type: object
+      description: 'Weight object: unit weight of the item'
       x-tags:
       - Primitive
       examples: []
       properties:
-        certificate_of_origin:
-          type: object
+        unit:
+          type: string
+          description: weight unit
+          enum:
+          - lb
+          - kg
+          - oz
+          - g
+        value:
+          type: number
+          description: value of Weight
+      required:
+      - unit
+      - value
+    Reference.v3:
+      title: Reference
+      x-stoplight:
+        id: pwqp1323bhe8q
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'id of referring object
+
+            '
+      x-tags:
+      - Primitive
+      examples: []
+      description: 'Reference object: the description of reference information'
+    No_eei.v3:
+      title: NOEEI
+      x-stoplight:
+        id: 190bfme3fnjwm
+      type: object
+      description: 'NOEEI object: the description of NOEEI Type'
+      x-tags:
+      - Primitive
+      examples: []
+      properties:
+        type:
+          type: string
+          description: 'Accepts: no_eei.'
+        ftr_exemption:
+          type: string
+          enum:
+          - noeei_30_37_a
+          - noeei_30_37_h
+          - noeei_30_36
+      required:
+      - type
+    Item.v3:
+      title: Item
+      x-stoplight:
+        id: 85gwiiinn20p1
+      type: object
+      description: 'Item object: the description of item information'
+      x-tags:
+      - Primitive
+      examples: []
+      required:
+      - quantity
+      - description
+      properties:
+        quantity:
+          type: integer
+          description: 'The quantity of the item Minimum: 1'
+        description:
+          type: string
+          description: The description of the item
+        description_cn:
+          type: string
+          description: 'the description of the item in Chinese '
+        price:
+          $ref: '#/components/schemas/Money.v3'
+        item_id:
+          type: string
+          description: The ID of the item
+        origin_country:
+          type: string
+          description: Country in ISO 3166-1 alpha 3 code
+        weight:
+          $ref: '#/components/schemas/Weight.v3'
+        sku:
+          type: string
+          description: The sku of the item.
+        hs_code:
+          type: string
+          description: The HS Code (Harmonized Commodity Description and Coding System) of the item.
+        outbound_hs_code:
+          type: string
+          description: The HS Code (Harmonized Commodity Description and Coding System) of the item as required by the exporting country's customs regulations.
+        return_reason:
+          type: string
           x-stoplight:
-            id: 8ym9fdpkio3kg
-          description: Certificate of Origin
-          properties:
-            content:
-              type: string
-              x-stoplight:
-                id: 15ttnisv8i78x
-              description: PDF base64 content
-        commercial_invoice:
-          type: object
+            id: 86krhz0houiz2
+          description: The reason of return
+        dimension:
+          $ref: '#/components/schemas/Dimension.v3'
           x-stoplight:
-            id: 230t2s7bkj322
-          description: Commercial Invoice
-          properties:
-            content:
-              type: string
-              x-stoplight:
-                id: 4onz5x8ubx3ty
-              description: PDF base64 content
-        'customs_declaration ':
-          type: object
+            id: prw8rr4twlc9v
+        barcode:
+          type: string
           x-stoplight:
-            id: okk99pm1vxfb3
-          description: Customs Declaration
-          properties:
-            content:
-              type: string
-              x-stoplight:
-                id: oa5b3hmvayhxc
-              description: PDF base64 content
+            id: o455vzu1p8jam
+          description: The barcode of item
+        regulatory_data:
+          type: array
+          description: 'CPSC regulatory data entries associated with this item. Supported carriers: UPS, FedEx.'
+          items:
+            $ref: '#/components/schemas/Regulatory_data_item.v3'
   securitySchemes:
     as-api-key:
       name: as-api-key

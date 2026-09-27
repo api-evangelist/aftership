@@ -169,25 +169,32 @@ paths:
       - Address Validations (Beta)
 components:
   schemas:
-    Error.v3:
+    Address_validation.v3:
+      title: AddressValidation
+      x-stoplight:
+        id: dlhxyq4goztjs
       type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
+      description: The Address Validation object is used to provide information about an address, including the recommended address if available. Production and sandbox APIs support `USA` addresses by default, and you can contact our support team to enable `AUS, BEL, DNK, and DEU` in our sandbox API for testing as well.
       x-tags:
-      - Envelope
+      - Resource
+      examples: []
       properties:
-        path:
+        id:
           type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
+        status:
           type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
+          description: Validation result of the address
+          enum:
+          - valid
+          - invalid
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address.v3'
+        recommended_address:
+          $ref: '#/components/schemas/Address.v3'
     Address.v3:
       type: object
       x-stoplight:
@@ -359,6 +366,25 @@ components:
             lng:
               type: number
               description: longitude number
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Meta.v3:
       description: Meta data object.
       type: object
@@ -388,32 +414,6 @@ components:
       required:
       - code
       - message
-    Address_validation.v3:
-      title: AddressValidation
-      x-stoplight:
-        id: dlhxyq4goztjs
-      type: object
-      description: The Address Validation object is used to provide information about an address, including the recommended address if available. Production and sandbox APIs support `USA` addresses by default, and you can contact our support team to enable `AUS, BEL, DNK, and DEU` in our sandbox API for testing as well.
-      x-tags:
-      - Resource
-      examples: []
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Validation result of the address
-          enum:
-          - valid
-          - invalid
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address.v3'
-        recommended_address:
-          $ref: '#/components/schemas/Address.v3'
   securitySchemes:
     as-api-key:
       name: as-api-key

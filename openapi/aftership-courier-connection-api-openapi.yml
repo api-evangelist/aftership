@@ -275,30 +275,6 @@ paths:
       description: Delete a courier connection.
 components:
   schemas:
-    Meta.v1:
-      title: meta
-      type: object
-      description: Meta data
-      required:
-      - code
-      properties:
-        code:
-          type: integer
-          example: 200
-          description: meta code
-        message:
-          type: string
-          description: error message, only exist if the response status is not 2xx
-        type:
-          type: string
-          enum:
-          - BadRequest
-          - Unauthorized
-          - Forbidden
-          - NotFound
-          - TooManyRequests
-          - InternalError
-          description: error type, only exist if the response status is not 2xx
     Courier_connection:
       x-stoplight:
         id: h993xw7eds2r0
@@ -392,6 +368,30 @@ components:
                 x-stoplight:
                   id: v74u6j9mo413l
       description: Courier connection response for getting courier connections
+    Meta.v1:
+      title: meta
+      type: object
+      description: Meta data
+      required:
+      - code
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: meta code
+        message:
+          type: string
+          description: error message, only exist if the response status is not 2xx
+        type:
+          type: string
+          enum:
+          - BadRequest
+          - Unauthorized
+          - Forbidden
+          - NotFound
+          - TooManyRequests
+          - InternalError
+          description: error type, only exist if the response status is not 2xx
   securitySchemes:
     as-api-key:
       name: as-api-key

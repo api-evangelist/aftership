@@ -33,6 +33,28 @@ paths:
         $ref: '#/components/requestBodies/CreateReturnsPageDeepLink'
       description: This API is used to generate a deep link that redirects the user to a returns page with pre-filled information. It is suitable for scenarios where a return submission link needs to be constructed and sent to the shopper, allowing them to submit an RMA more conveniently without having to manually open the returns page and entering order details.
 components:
+  responses:
+    CreateReturnsPageDeepLink:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20100'
+                x-stoplight:
+                  id: 133gcrm601701
+              data:
+                type: object
+                x-stoplight:
+                  id: 4p5arwlo7blvx
+                properties:
+                  url:
+                    type: string
+                    x-stoplight:
+                      id: 8f4dzmt7hgujj
+          examples: {}
   schemas:
     Meta_20100:
       x-stoplight:
@@ -67,28 +89,6 @@ components:
           x-stoplight:
             id: zr92gwd3jfayh
           example: The request has been fulfilled and a new resource has been created.
-  responses:
-    CreateReturnsPageDeepLink:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              meta:
-                $ref: '#/components/schemas/Meta_20100'
-                x-stoplight:
-                  id: 133gcrm601701
-              data:
-                type: object
-                x-stoplight:
-                  id: 4p5arwlo7blvx
-                properties:
-                  url:
-                    type: string
-                    x-stoplight:
-                      id: 8f4dzmt7hgujj
-          examples: {}
   requestBodies:
     CreateReturnsPageDeepLink:
       content:

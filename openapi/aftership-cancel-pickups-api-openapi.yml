@@ -283,47 +283,21 @@ paths:
       - Cancel Pickups
 components:
   schemas:
-    Cancel_pickup.v3:
-      title: CancelPickup
+    Reference.v3:
+      title: Reference
       x-stoplight:
-        id: jgle7lqc6xxxj
+        id: pwqp1323bhe8q
       type: object
-      description: 'Cancel Pickup object: the description of cancel pickup object'
       properties:
         id:
           type: string
-          x-stoplight:
-            id: bwqr7ztwl631p
-        status:
-          type: string
-          x-stoplight:
-            id: 0r93vfcowv3h6
-          enum:
-          - cancelling
-          - cancelled
-          - failed
-        pickup:
-          $ref: '#/components/schemas/Reference.v3'
-          x-stoplight:
-            id: idaarrs82dppb
-        created_at:
-          type: string
-          x-stoplight:
-            id: y0gzu3zuv27yw
-          description: 'the timestamp of created_at
-
-
-            Example: `2022-05-18T09:17:38+00:00`'
-        updated_at:
-          type: string
-          x-stoplight:
-            id: h651ir6ht6h52
-          description: 'the timestamp of updated_at
-
-
-            Example: `2022-05-18T09:17:38+00:00`
+          description: 'id of referring object
 
             '
+      x-tags:
+      - Primitive
+      examples: []
+      description: 'Reference object: the description of reference information'
     Error.v3:
       type: object
       title: Error
@@ -372,21 +346,47 @@ components:
       required:
       - code
       - message
-    Reference.v3:
-      title: Reference
+    Cancel_pickup.v3:
+      title: CancelPickup
       x-stoplight:
-        id: pwqp1323bhe8q
+        id: jgle7lqc6xxxj
       type: object
+      description: 'Cancel Pickup object: the description of cancel pickup object'
       properties:
         id:
           type: string
-          description: 'id of referring object
+          x-stoplight:
+            id: bwqr7ztwl631p
+        status:
+          type: string
+          x-stoplight:
+            id: 0r93vfcowv3h6
+          enum:
+          - cancelling
+          - cancelled
+          - failed
+        pickup:
+          $ref: '#/components/schemas/Reference.v3'
+          x-stoplight:
+            id: idaarrs82dppb
+        created_at:
+          type: string
+          x-stoplight:
+            id: y0gzu3zuv27yw
+          description: 'the timestamp of created_at
+
+
+            Example: `2022-05-18T09:17:38+00:00`'
+        updated_at:
+          type: string
+          x-stoplight:
+            id: h651ir6ht6h52
+          description: 'the timestamp of updated_at
+
+
+            Example: `2022-05-18T09:17:38+00:00`
 
             '
-      x-tags:
-      - Primitive
-      examples: []
-      description: 'Reference object: the description of reference information'
   securitySchemes:
     as-api-key:
       name: as-api-key

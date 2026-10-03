@@ -675,49 +675,25 @@ paths:
                     $ref: '#/components/schemas/Product_variant.v1'
 components:
   schemas:
-    Meta.v1:
-      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
-
-
-        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
+    Error.v1:
       type: object
-      x-examples: {}
-      title: Meta
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
       x-tags:
       - Envelope
-      examples:
-      - code: 20000
-        type: OK
-        message: The request was successfully processed by AfterShip.
-      additionalProperties: false
-      required:
-      - code
-      - type
-      - message
       properties:
-        code:
-          type: number
-          default: 20000
-          example: 20000
-          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        type:
+        path:
           type: string
-          minLength: 1
-          example: OK
-          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        message:
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
           type: string
-          minLength: 1
-          example: The request was successfully processed by AfterShip.
-          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        errors:
-          type: array
-          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-
-
-            '
-          items:
-            $ref: '#/components/schemas/Error.v1'
+          description: A human-readable description of the error.
+          example: Title is invalid
     Product_variant.v1:
       title: product_variant.v1
       x-stoplight:
@@ -818,25 +794,6 @@ components:
           x-stoplight:
             id: qtm2ifhlv0r4i
           description: To indicate if next page is available.
-    Error.v1:
-      type: object
-      title: Error
-      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The JSON path of the request object to indicate the error location.
-          example: data.product.title
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: Title is invalid
     Weight.v1:
       description: The unit weight of the item.
       title: Weight
@@ -989,6 +946,49 @@ components:
           type: string
           description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the product was updated in AfterShip system.
           example: '2021-04-15T20:02:09Z'
+    Meta.v1:
+      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
+      type: object
+      x-examples: {}
+      title: Meta
+      x-tags:
+      - Envelope
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      additionalProperties: false
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        errors:
+          type: array
+          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+
+
+            '
+          items:
+            $ref: '#/components/schemas/Error.v1'
   parameters:
     as-store-id:
       name: as-store-id

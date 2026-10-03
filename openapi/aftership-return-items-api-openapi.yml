@@ -71,21 +71,6 @@ paths:
       - Return items
 components:
   responses:
-    UpdateReturnItems:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              meta:
-                $ref: '#/components/schemas/Meta_20000'
-                x-stoplight:
-                  id: gb6g16v7bzjyo
-              data:
-                $ref: '#/components/schemas/Return_item'
-                x-stoplight:
-                  id: 9kxjirjxt007p
     UpdateReturnItemsError404:
       description: 'A 404 will be returned:
 
@@ -111,6 +96,21 @@ components:
                   type: NotFound
                   message: Return item not found
                 data: null
+    UpdateReturnItems:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Meta_20000'
+                x-stoplight:
+                  id: gb6g16v7bzjyo
+              data:
+                $ref: '#/components/schemas/Return_item'
+                x-stoplight:
+                  id: 9kxjirjxt007p
   schemas:
     Return_item:
       x-stoplight:
@@ -547,55 +547,6 @@ components:
             id: swlaoo3bwpteo
           default: false
           description: Whether this return item is marked as a green return item. When true, no physical return is required for this item.
-    Meta:
-      title: Meta
-      x-stoplight:
-        id: dxay0rufhj07b
-      type: object
-      examples:
-      - code: 20000
-        type: OK
-        message: The request was successfully processed by AfterShip.
-      properties:
-        code:
-          type: number
-          default: 20000
-          example: 20000
-          description: Error code in integer format.
-        type:
-          type: string
-          minLength: 1
-          example: OK
-          description: 'Response type string for the reference. '
-        message:
-          type: string
-          minLength: 1
-          example: The request was successfully processed by AfterShip.
-          description: Human-readable response message.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    Item_tag:
-      x-stoplight:
-        id: q94m5j9owjozk
-      title: ItemTag
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the item tag.
-          example: da1c35a503364bf8bb851ffaa49028c4
-        name:
-          type: string
-          description: The name of the item tag.
-          example: Defective
-        created_at:
-          type: string
-          x-stoplight:
-            id: nuzjnjy1v00m2
-          description: The create time of the item-tag.
-          example: '2023-07-15T00:00:00Z'
     Error:
       type: object
       examples:
@@ -614,18 +565,6 @@ components:
           example: quantity must be 1 or greater
       description: Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
       title: Error
-    Money:
-      type: object
-      title: Money
-      properties:
-        amount:
-          type: string
-          example: '99.99'
-          description: The amount represented with two decimal places.
-        currency:
-          type: string
-          example: USD
-          description: The currency code, using ISO 4217 standards.
     Meta_20000:
       description: Meta data object.
       x-stoplight:
@@ -659,6 +598,67 @@ components:
           x-stoplight:
             id: pf8hdo8p7yqdz
           example: The request was successfully processed by AfterShip.
+    Meta:
+      title: Meta
+      x-stoplight:
+        id: dxay0rufhj07b
+      type: object
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: 'Response type string for the reference. '
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Money:
+      type: object
+      title: Money
+      properties:
+        amount:
+          type: string
+          example: '99.99'
+          description: The amount represented with two decimal places.
+        currency:
+          type: string
+          example: USD
+          description: The currency code, using ISO 4217 standards.
+    Item_tag:
+      x-stoplight:
+        id: q94m5j9owjozk
+      title: ItemTag
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the item tag.
+          example: da1c35a503364bf8bb851ffaa49028c4
+        name:
+          type: string
+          description: The name of the item tag.
+          example: Defective
+        created_at:
+          type: string
+          x-stoplight:
+            id: nuzjnjy1v00m2
+          description: The create time of the item-tag.
+          example: '2023-07-15T00:00:00Z'
   requestBodies:
     UpdateReturnItems:
       content:

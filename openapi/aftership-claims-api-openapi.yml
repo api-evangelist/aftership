@@ -1530,69 +1530,25 @@ paths:
       description: API Endpoint
 components:
   schemas:
-    Meta.v1:
-      description: Meta data object.
+    Error.v1:
       type: object
-      x-examples: {}
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
       examples:
-      - code: 20000
-        type: OK
-        message: The request was successfully processed by AfterShip.
-      title: Meta
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: data.policy_id
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: data.policy_id must not be 32 characters
       x-tags:
       - Envelope
-      properties:
-        code:
-          type: number
-          default: 20000
-          enum:
-          - 20000
-          - 20100
-          - 40400
-          - 42200
-          - 50000
-        type:
-          type: string
-          minLength: 1
-        message:
-          type: string
-          minLength: 1
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error.v1'
-      required:
-      - code
-      - type
-      - message
-    Pagination.v1:
-      description: Pagination data
-      type: object
-      x-examples:
-        example-1:
-          page: 1
-          limit: 10
-          total: 9734043
-      title: Pagination
-      examples: []
-      x-tags:
-      - Envelope
-      properties:
-        page:
-          type: number
-          minimum: 1
-          default: 1
-        limit:
-          type: number
-          minimum: 1
-          maximum: 1000
-          default: 20
-        total:
-          type: number
-      required:
-      - page
-      - limit
-      - total
     Claim.v1:
       title: Claim
       x-stoplight:
@@ -1773,6 +1729,41 @@ components:
           description: "time payment was made for the claim in ISO8601 format \n\n null if the claim has not been paid yet"
           minLength: 1
           pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$
+    Meta.v1:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          enum:
+          - 20000
+          - 20100
+          - 40400
+          - 42200
+          - 50000
+        type:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error.v1'
+      required:
+      - code
+      - type
+      - message
     Amount.v1:
       title: Amount
       type: object
@@ -1797,25 +1788,6 @@ components:
       required:
       - amount
       - currency
-    Error.v1:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: data.policy_id
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: data.policy_id must not be 32 characters
-      x-tags:
-      - Envelope
     Order_item.v1:
       type: object
       x-stoplight:
@@ -1861,377 +1833,58 @@ components:
       - title
       - quantity
       - unit_insured_amount
-    Claim:
-      title: Claim
-      x-stoplight:
-        id: iidsz0rdrzaox
+    Pagination.v1:
+      description: Pagination data
       type: object
-      properties:
-        id:
-          type: string
-        note:
-          type: string
-        approval_note:
-          type:
-          - string
-          - 'null'
-          description: A note included when the claim was approved.
-        warranty_page:
-          type: object
-          description: The warranty page from which the claim was submitted.
-          properties:
-            id:
-              type: string
-              description: Unique identifier of the warranty page, UUID v4 without hyphens (e.g. 006b053d93564aaab58f95c0a90e06eb).
-            name:
-              type: string
-              description: Merchant-configured name of the warranty page.
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Claim_item'
-        order:
-          type: object
-          properties:
-            address:
-              $ref: '#/components/schemas/Address'
-            customer:
-              type: object
-              properties:
-                contact:
-                  type: object
-                  properties:
-                    email:
-                      type: string
-                    phone_number:
-                      type: string
-                last_name:
-                  type: string
-                first_name:
-                  type: string
-            order_name:
-              type: string
-            place_of_purchase:
-              type: object
-              properties:
-                proof:
-                  type: array
-                  items:
-                    type: object
-                option:
-                  type: 'null'
-        status:
-          type: string
-          enum:
-          - under_review
-          - approved
-          - in_process
-          - completed
-          - rejected
-          - canceled
-        flow_type:
-          type: string
-          enum:
-          - no_order_number
-          - required_order_number
-        created_at:
-          type: string
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the claim was created.
-          example: '2026-05-19T10:00:00Z'
-        process_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the claim entered processing.
-          example: '2026-05-19T10:00:00Z'
-        rma_number:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the claim was last updated.
-          example: '2026-05-19T10:00:00Z'
-        approved_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the claim was approved.
-          example: '2026-05-19T10:00:00Z'
-        canceled_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the claim was canceled.
-          example: '2026-05-19T10:00:00Z'
-        rejected_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the claim was rejected.
-          example: '2026-05-19T10:00:00Z'
-        completed_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the claim was completed.
-          example: '2026-05-19T10:00:00Z'
-        shipping_address:
-          $ref: '#/components/schemas/Address'
-        contact_email:
-          type: string
-          x-stoplight:
-            id: tatax8xv0ifi3
-        organization:
-          type: object
-          properties:
-            id:
-              type: string
-        cancel_reason:
-          type:
-          - string
-          - 'null'
-          description: A free-form reason describing why the claim was canceled.
-        reject_reason:
-          type:
-          - string
-          - 'null'
-          description: A free-form reason describing why the claim was rejected.
-        dynamic_fields:
-          type: object
-          properties:
-            order_information:
-              type: object
-              properties:
-                textArea1:
-                  type: object
-                  description: The textArea1 field is just an example, and its value depends on your dynamic setting on the warranty order information page.
-                  x-stoplight:
-                    id: 8hqyovntzurfo
-                  properties:
-                    value:
-                      type: string
-            additional_information:
-              type: object
-              properties:
-                textArea1:
-                  type: object
-                  description: The textArea1 field is just an example, and its value depends on your dynamic setting on the warranty additional information page.
-                  x-stoplight:
-                    id: 6usm6hid38axu
-                  properties:
-                    value:
-                      type: string
-        inbound_shipments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Claim_shipment'
-        outbound_shipments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Claim_shipment'
-        receiving_status:
-          type: string
-          x-stoplight:
-            id: vgis2u9jvcojq
-          default: not_received
-          enum:
-          - received
-          - not_received
-        received_at:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: hlygyz29e0cyu
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the returned item was marked as received.
-          example: '2026-05-19T10:00:00Z'
-      description: A claim resource.
-    Claim_shipment:
-      type: object
-      x-stoplight:
-        id: vwub1e1ftq9be
       x-examples:
-        Example 1:
-          id: e5e50af0438a4f109c21117d4604587c
-          label:
-            url: https://files.am-usercontent.io/return-center/e6f77e704c71767c1bd04a4981cfe4c8/2c67de38e2524da58818988ba9fe9ea6.test-6.pdf
-            invoice_url: null
-            qrcode: null
-          tracking_number: '123123123'
-          tracking_slug: estes
-          tracking_status: Pending
-          tracking_status_updated_at: '2023-12-21T07:30:42.23002Z'
-          item_selections:
-          - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
-            quantity: 1
-          created_at: '2023-12-21T07:30:35.281997Z'
-          updated_at: '2023-12-21T07:30:42.23002Z'
+        example-1:
+          page: 1
+          limit: 10
+          total: 9734043
+      title: Pagination
+      examples: []
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: number
+          minimum: 1
+          default: 1
+        limit:
+          type: number
+          minimum: 1
+          maximum: 1000
+          default: 20
+        total:
+          type: number
+      required:
+      - page
+      - limit
+      - total
+    ItemTag:
+      title: ItemTag
+      x-stoplight:
+        id: 8wwwff48758hx
+      type: object
+      description: A merchant-defined tag that can be added to claim items.
       properties:
         id:
           type: string
-        label:
-          type: object
-          properties:
-            url:
-              type:
-              - string
-              - 'null'
-            invoice_url:
-              type:
-              - string
-              - 'null'
-            qrcode:
-              type:
-              - string
-              - 'null'
-        tracking_number:
-          type:
-          - string
-          - 'null'
-        tracking_slug:
-          type:
-          - string
-          - 'null'
-        tracking_status:
-          type:
-          - string
-          - 'null'
-        tracking_status_updated_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the shipment tracking status was last updated.
-          example: '2026-05-19T10:03:00Z'
-        item_selections:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              quantity:
-                type: integer
-        ship_from:
           x-stoplight:
-            id: 4afmgig3mqr4f
-          oneOf:
-          - $ref: '#/components/schemas/Address'
-            x-stoplight:
-              id: fvzreq373bv1a
-          - x-stoplight:
-              id: xc5sqz17lbfms
-            type:
-            - 'null'
-        ship_to:
+            id: r4fbyaanpn8i9
+          description: The unique identifier for the item tag.
+        name:
+          type: string
           x-stoplight:
-            id: g6qptlu8k4h9o
-          oneOf:
-          - $ref: '#/components/schemas/Address'
-            x-stoplight:
-              id: l0s42i8q2832v
-          - x-stoplight:
-              id: cwwe6qrye7j91
-            type:
-            - 'null'
+            id: 4r1fyg1jjzxon
+          description: The name of the item tag.
         created_at:
           type: string
+          x-stoplight:
+            id: a41sqbbkajk6n
+          description: The date and time, formatted in ISO 8601, when the item tag was created.
           format: date-time
-          description: The date and time, formatted in ISO 8601, when the shipment was created.
           example: '2026-05-19T10:00:00Z'
-        updated_at:
-          type: string
-          format: date-time
-          description: The date and time, formatted in ISO 8601, when the shipment was last updated.
-          example: '2026-05-19T10:00:00Z'
-      title: ClaimShipment
-      description: A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource.
-    Address:
-      type: object
-      x-stoplight:
-        id: 7cc87e0eb2a0d
-      title: Address
-      properties:
-        contact_name:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: lwugfye8q3bt0
-          description: 'The name of the contact person associated with the address.
-
-            '
-        company_name:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: jozyy6y4x6hal
-          description: 'The name of the company or organization associated with the address.
-
-            '
-        address_line_1:
-          type:
-          - string
-          - 'null'
-          description: First line of the street address.
-        address_line_2:
-          type:
-          - string
-          - 'null'
-          description: Second line of the street address.
-        city:
-          type:
-          - string
-          - 'null'
-          title: The City Schema
-          description: The location's city, town, or village.
-        state:
-          title: The State Schema
-          description: The state or region of the location, such as a province, state, or prefecture.
-          type:
-          - string
-          - 'null'
-        postal_code:
-          type:
-          - string
-          - 'null'
-          title: The Postal_code Schema
-          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
-        country:
-          title: The Country Schema
-          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
-          example: USA
-          type:
-          - string
-          - 'null'
-        phone_number:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: lio9zgakvzqhp
-          description: 'The contact phone number associated with the address.
-
-            '
-        email:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: ox7s3omkrkk3f
-          description: The email associated with the address.
     Claim_item:
       type: object
       x-examples:
@@ -2467,43 +2120,106 @@ components:
           description: The date and time, formatted in ISO 8601, when the claim item was last updated.
           example: '2026-05-19T10:00:00Z'
       description: A claim item resource.
-    ItemTag:
-      title: ItemTag
-      x-stoplight:
-        id: 8wwwff48758hx
+    Claim_shipment:
       type: object
-      description: A merchant-defined tag that can be added to claim items.
+      x-stoplight:
+        id: vwub1e1ftq9be
+      x-examples:
+        Example 1:
+          id: e5e50af0438a4f109c21117d4604587c
+          label:
+            url: https://files.am-usercontent.io/return-center/e6f77e704c71767c1bd04a4981cfe4c8/2c67de38e2524da58818988ba9fe9ea6.test-6.pdf
+            invoice_url: null
+            qrcode: null
+          tracking_number: '123123123'
+          tracking_slug: estes
+          tracking_status: Pending
+          tracking_status_updated_at: '2023-12-21T07:30:42.23002Z'
+          item_selections:
+          - id: c83fd9f0c4e343de9d21fbf0acf5ebd9
+            quantity: 1
+          created_at: '2023-12-21T07:30:35.281997Z'
+          updated_at: '2023-12-21T07:30:42.23002Z'
       properties:
         id:
           type: string
+        label:
+          type: object
+          properties:
+            url:
+              type:
+              - string
+              - 'null'
+            invoice_url:
+              type:
+              - string
+              - 'null'
+            qrcode:
+              type:
+              - string
+              - 'null'
+        tracking_number:
+          type:
+          - string
+          - 'null'
+        tracking_slug:
+          type:
+          - string
+          - 'null'
+        tracking_status:
+          type:
+          - string
+          - 'null'
+        tracking_status_updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment tracking status was last updated.
+          example: '2026-05-19T10:03:00Z'
+        item_selections:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              quantity:
+                type: integer
+        ship_from:
           x-stoplight:
-            id: r4fbyaanpn8i9
-          description: The unique identifier for the item tag.
-        name:
-          type: string
+            id: 4afmgig3mqr4f
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+            x-stoplight:
+              id: fvzreq373bv1a
+          - x-stoplight:
+              id: xc5sqz17lbfms
+            type:
+            - 'null'
+        ship_to:
           x-stoplight:
-            id: 4r1fyg1jjzxon
-          description: The name of the item tag.
+            id: g6qptlu8k4h9o
+          oneOf:
+          - $ref: '#/components/schemas/Address'
+            x-stoplight:
+              id: l0s42i8q2832v
+          - x-stoplight:
+              id: cwwe6qrye7j91
+            type:
+            - 'null'
         created_at:
           type: string
-          x-stoplight:
-            id: a41sqbbkajk6n
-          description: The date and time, formatted in ISO 8601, when the item tag was created.
           format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment was created.
           example: '2026-05-19T10:00:00Z'
-    Money:
-      description: The store credit value.
-      title: Money
-      type: object
-      properties:
-        amount:
+        updated_at:
           type: string
-          description: The amount represented with two decimal places.
-          example: '99.99'
-        currency:
-          type: string
-          description: The currency code, using ISO 4217 standards.
-          example: USD
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the shipment was last updated.
+          example: '2026-05-19T10:00:00Z'
+      title: ClaimShipment
+      description: A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource.
     Meta_20000:
       description: Meta data object.
       type: object
@@ -2525,6 +2241,290 @@ components:
           type: string
           minLength: 1
           example: The request was successfully processed by AfterShip.
+    Money:
+      description: The store credit value.
+      title: Money
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount represented with two decimal places.
+          example: '99.99'
+        currency:
+          type: string
+          description: The currency code, using ISO 4217 standards.
+          example: USD
+    Address:
+      type: object
+      x-stoplight:
+        id: 7cc87e0eb2a0d
+      title: Address
+      properties:
+        contact_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lwugfye8q3bt0
+          description: 'The name of the contact person associated with the address.
+
+            '
+        company_name:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: jozyy6y4x6hal
+          description: 'The name of the company or organization associated with the address.
+
+            '
+        address_line_1:
+          type:
+          - string
+          - 'null'
+          description: First line of the street address.
+        address_line_2:
+          type:
+          - string
+          - 'null'
+          description: Second line of the street address.
+        city:
+          type:
+          - string
+          - 'null'
+          title: The City Schema
+          description: The location's city, town, or village.
+        state:
+          title: The State Schema
+          description: The state or region of the location, such as a province, state, or prefecture.
+          type:
+          - string
+          - 'null'
+        postal_code:
+          type:
+          - string
+          - 'null'
+          title: The Postal_code Schema
+          description: The postal code of the location (also known as zip code, postcode, Eircode, etc.).
+        country:
+          title: The Country Schema
+          description: The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          example: USA
+          type:
+          - string
+          - 'null'
+        phone_number:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: lio9zgakvzqhp
+          description: 'The contact phone number associated with the address.
+
+            '
+        email:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: ox7s3omkrkk3f
+          description: The email associated with the address.
+    Claim:
+      title: Claim
+      x-stoplight:
+        id: iidsz0rdrzaox
+      type: object
+      properties:
+        id:
+          type: string
+        note:
+          type: string
+        approval_note:
+          type:
+          - string
+          - 'null'
+          description: A note included when the claim was approved.
+        warranty_page:
+          type: object
+          description: The warranty page from which the claim was submitted.
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the warranty page, UUID v4 without hyphens (e.g. 006b053d93564aaab58f95c0a90e06eb).
+            name:
+              type: string
+              description: Merchant-configured name of the warranty page.
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Claim_item'
+        order:
+          type: object
+          properties:
+            address:
+              $ref: '#/components/schemas/Address'
+            customer:
+              type: object
+              properties:
+                contact:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    phone_number:
+                      type: string
+                last_name:
+                  type: string
+                first_name:
+                  type: string
+            order_name:
+              type: string
+            place_of_purchase:
+              type: object
+              properties:
+                proof:
+                  type: array
+                  items:
+                    type: object
+                option:
+                  type: 'null'
+        status:
+          type: string
+          enum:
+          - under_review
+          - approved
+          - in_process
+          - completed
+          - rejected
+          - canceled
+        flow_type:
+          type: string
+          enum:
+          - no_order_number
+          - required_order_number
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was created.
+          example: '2026-05-19T10:00:00Z'
+        process_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim entered processing.
+          example: '2026-05-19T10:00:00Z'
+        rma_number:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was last updated.
+          example: '2026-05-19T10:00:00Z'
+        approved_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was approved.
+          example: '2026-05-19T10:00:00Z'
+        canceled_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was canceled.
+          example: '2026-05-19T10:00:00Z'
+        rejected_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was rejected.
+          example: '2026-05-19T10:00:00Z'
+        completed_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the claim was completed.
+          example: '2026-05-19T10:00:00Z'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        contact_email:
+          type: string
+          x-stoplight:
+            id: tatax8xv0ifi3
+        organization:
+          type: object
+          properties:
+            id:
+              type: string
+        cancel_reason:
+          type:
+          - string
+          - 'null'
+          description: A free-form reason describing why the claim was canceled.
+        reject_reason:
+          type:
+          - string
+          - 'null'
+          description: A free-form reason describing why the claim was rejected.
+        dynamic_fields:
+          type: object
+          properties:
+            order_information:
+              type: object
+              properties:
+                textArea1:
+                  type: object
+                  description: The textArea1 field is just an example, and its value depends on your dynamic setting on the warranty order information page.
+                  x-stoplight:
+                    id: 8hqyovntzurfo
+                  properties:
+                    value:
+                      type: string
+            additional_information:
+              type: object
+              properties:
+                textArea1:
+                  type: object
+                  description: The textArea1 field is just an example, and its value depends on your dynamic setting on the warranty additional information page.
+                  x-stoplight:
+                    id: 6usm6hid38axu
+                  properties:
+                    value:
+                      type: string
+        inbound_shipments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Claim_shipment'
+        outbound_shipments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Claim_shipment'
+        receiving_status:
+          type: string
+          x-stoplight:
+            id: vgis2u9jvcojq
+          default: not_received
+          enum:
+          - received
+          - not_received
+        received_at:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: hlygyz29e0cyu
+          format: date-time
+          description: The date and time, formatted in ISO 8601, when the returned item was marked as received.
+          example: '2026-05-19T10:00:00Z'
+      description: A claim resource.
   securitySchemes:
     as-api-key:
       name: as-api-key

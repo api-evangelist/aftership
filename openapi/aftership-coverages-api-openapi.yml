@@ -743,69 +743,128 @@ paths:
       - Coverages
 components:
   schemas:
-    Meta.v1:
-      description: Meta data object.
+    Error.v1:
       type: object
-      x-examples: {}
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
       examples:
-      - code: 20000
-        type: OK
-        message: The request was successfully processed by AfterShip.
-      title: Meta
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: data.policy_id
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: data.policy_id must not be 32 characters
       x-tags:
       - Envelope
-      properties:
-        code:
-          type: number
-          default: 20000
-          enum:
-          - 20000
-          - 20100
-          - 40400
-          - 42200
-          - 50000
-        type:
-          type: string
-          minLength: 1
-        message:
-          type: string
-          minLength: 1
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error.v1'
-      required:
-      - code
-      - type
-      - message
-    Pagination.v1:
-      description: Pagination data
+    Address.v1:
       type: object
       x-examples:
         example-1:
-          page: 1
-          limit: 10
-          total: 9734043
-      title: Pagination
-      examples: []
+          type: residential
+          street: Jones Avenue
+          street_number: '1161'
+          district: Winston Salem
+          country: USA
+          postal_code: '27101'
+          city: NC
+          state:
+            name: New York
+            code: NC
+          country_region:
+            name: American
+            code: USA
+          coordinate:
+            longitude: 0
+            latitude: 0
+      x-internal: false
+      title: Address
       x-tags:
-      - Envelope
+      - Primitive
+      examples:
+      - street_1: 1104, South University Avenue
+        street_2: ''
+        postal_code: '53916'
+        city: Beaver Dam
+        state:
+          name: Wisconsin
+        country_region:
+          code: USA
+        phone: '+14155552671'
+        email: example@example.com
+        first_name: Joe
+        last_name: Smith
       properties:
-        page:
-          type: number
-          minimum: 1
-          default: 1
-        limit:
-          type: number
-          minimum: 1
-          maximum: 1000
-          default: 20
-        total:
-          type: number
+        street_1:
+          type: string
+          minLength: 1
+          description: Street address 1, a complete line
+          example: Jones Avenue
+        street_2:
+          type: string
+          minLength: 1
+          description: Street address 2, a complete line
+          example: Jones Avenue
+        street_3:
+          type: string
+          minLength: 1
+          description: Street address 3, a complete line
+          example: Jones Avenue
+        postal_code:
+          type: string
+          minLength: 1
+          description: Postal code / zip code
+          example: '27101'
+        city:
+          type: string
+          minLength: 1
+          description: City name, e.g. San Jose
+          example: NC
+        state:
+          type: object
+          description: State object
+          required:
+          - name
+          properties:
+            name:
+              type: string
+              description: State name, e.g. California
+              example: New York
+        country_region:
+          description: Country region object
+          type: object
+          required:
+          - code
+          properties:
+            code:
+              type: string
+              description: Country code, ISO 3166-1 alpha 3 standard, e.g. USA
+              example: USA
+        phone:
+          type: string
+          example: '+14155552671'
+        email:
+          type: string
+          example: example@example.com
+        first_name:
+          type: string
+          example: Joe
+        last_name:
+          type: string
+          example: Smith
       required:
-      - page
-      - limit
-      - total
+      - street_1
+      - postal_code
+      - city
+      - state
+      - country_region
+      - first_name
+      - last_name
     Coverage.v1:
       x-stoplight:
         id: 4638c8b43cf9f
@@ -935,6 +994,41 @@ components:
       - shipping_address
       - sender_address
       - subtotal
+    Meta.v1:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          enum:
+          - 20000
+          - 20100
+          - 40400
+          - 42200
+          - 50000
+        type:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error.v1'
+      required:
+      - code
+      - type
+      - message
     Amount.v1:
       title: Amount
       type: object
@@ -959,151 +1053,6 @@ components:
       required:
       - amount
       - currency
-    Error.v1:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: data.policy_id
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: data.policy_id must not be 32 characters
-      x-tags:
-      - Envelope
-    Tracking.v1:
-      title: Tracking
-      type: object
-      description: tracking information about package.
-      x-examples:
-        example-1:
-          slug: string
-          tracking_number: string
-      x-tags:
-      - Primitive
-      required:
-      - slug
-      - tracking_number
-      - ship_date
-      properties:
-        slug:
-          type: string
-        tracking_number:
-          type: string
-        ship_date:
-          type: string
-          format: date
-          description: ship_date should be in UTC timezone.
-    Address.v1:
-      type: object
-      x-examples:
-        example-1:
-          type: residential
-          street: Jones Avenue
-          street_number: '1161'
-          district: Winston Salem
-          country: USA
-          postal_code: '27101'
-          city: NC
-          state:
-            name: New York
-            code: NC
-          country_region:
-            name: American
-            code: USA
-          coordinate:
-            longitude: 0
-            latitude: 0
-      x-internal: false
-      title: Address
-      x-tags:
-      - Primitive
-      examples:
-      - street_1: 1104, South University Avenue
-        street_2: ''
-        postal_code: '53916'
-        city: Beaver Dam
-        state:
-          name: Wisconsin
-        country_region:
-          code: USA
-        phone: '+14155552671'
-        email: example@example.com
-        first_name: Joe
-        last_name: Smith
-      properties:
-        street_1:
-          type: string
-          minLength: 1
-          description: Street address 1, a complete line
-          example: Jones Avenue
-        street_2:
-          type: string
-          minLength: 1
-          description: Street address 2, a complete line
-          example: Jones Avenue
-        street_3:
-          type: string
-          minLength: 1
-          description: Street address 3, a complete line
-          example: Jones Avenue
-        postal_code:
-          type: string
-          minLength: 1
-          description: Postal code / zip code
-          example: '27101'
-        city:
-          type: string
-          minLength: 1
-          description: City name, e.g. San Jose
-          example: NC
-        state:
-          type: object
-          description: State object
-          required:
-          - name
-          properties:
-            name:
-              type: string
-              description: State name, e.g. California
-              example: New York
-        country_region:
-          description: Country region object
-          type: object
-          required:
-          - code
-          properties:
-            code:
-              type: string
-              description: Country code, ISO 3166-1 alpha 3 standard, e.g. USA
-              example: USA
-        phone:
-          type: string
-          example: '+14155552671'
-        email:
-          type: string
-          example: example@example.com
-        first_name:
-          type: string
-          example: Joe
-        last_name:
-          type: string
-          example: Smith
-      required:
-      - street_1
-      - postal_code
-      - city
-      - state
-      - country_region
-      - first_name
-      - last_name
     Order_item.v1:
       type: object
       x-stoplight:
@@ -1149,6 +1098,57 @@ components:
       - title
       - quantity
       - unit_insured_amount
+    Tracking.v1:
+      title: Tracking
+      type: object
+      description: tracking information about package.
+      x-examples:
+        example-1:
+          slug: string
+          tracking_number: string
+      x-tags:
+      - Primitive
+      required:
+      - slug
+      - tracking_number
+      - ship_date
+      properties:
+        slug:
+          type: string
+        tracking_number:
+          type: string
+        ship_date:
+          type: string
+          format: date
+          description: ship_date should be in UTC timezone.
+    Pagination.v1:
+      description: Pagination data
+      type: object
+      x-examples:
+        example-1:
+          page: 1
+          limit: 10
+          total: 9734043
+      title: Pagination
+      examples: []
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: number
+          minimum: 1
+          default: 1
+        limit:
+          type: number
+          minimum: 1
+          maximum: 1000
+          default: 20
+        total:
+          type: number
+      required:
+      - page
+      - limit
+      - total
   securitySchemes:
     as-api-key:
       name: as-api-key

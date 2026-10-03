@@ -64,6 +64,39 @@ paths:
       - Return Dropoffs
 components:
   schemas:
+    Meta_20100:
+      x-stoplight:
+        id: j2ma59pd3ad4u
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20100
+          example: 20100
+          x-stoplight:
+            id: 4mulf0jqqaqdm
+        type:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: emncqaq4949tf
+          example: Created
+        message:
+          type: string
+          minLength: 1
+          x-stoplight:
+            id: zr92gwd3jfayh
+          example: The request has been fulfilled and a new resource has been created.
     Dropoff_drop:
       x-stoplight:
         id: 5hreiwh469yc9
@@ -133,39 +166,6 @@ components:
           x-stoplight:
             id: y64hd47deeshb
           format: date-time
-    Meta_20100:
-      x-stoplight:
-        id: j2ma59pd3ad4u
-      description: Meta data object.
-      type: object
-      x-examples: {}
-      examples: []
-      title: Meta
-      x-tags:
-      - Envelope
-      required:
-      - code
-      - type
-      - message
-      properties:
-        code:
-          type: number
-          default: 20100
-          example: 20100
-          x-stoplight:
-            id: 4mulf0jqqaqdm
-        type:
-          type: string
-          minLength: 1
-          x-stoplight:
-            id: emncqaq4949tf
-          example: Created
-        message:
-          type: string
-          minLength: 1
-          x-stoplight:
-            id: zr92gwd3jfayh
-          example: The request has been fulfilled and a new resource has been created.
     Dropoff_drop_item:
       x-stoplight:
         id: 32js15uchnk68

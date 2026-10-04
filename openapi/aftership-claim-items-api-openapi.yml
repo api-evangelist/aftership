@@ -148,27 +148,6 @@ paths:
                   updated_at: '2026-05-19T10:03:00Z'
 components:
   schemas:
-    Meta_20000:
-      description: Meta data object.
-      type: object
-      x-examples: {}
-      examples: []
-      title: Meta
-      x-tags:
-      - Envelope
-      properties:
-        code:
-          type: number
-          default: 20000
-          example: 20000
-        type:
-          type: string
-          minLength: 1
-          example: OK
-        message:
-          type: string
-          minLength: 1
-          example: The request was successfully processed by AfterShip.
     ItemTag:
       title: ItemTag
       x-stoplight:
@@ -193,6 +172,27 @@ components:
           description: The date and time, formatted in ISO 8601, when the item tag was created.
           format: date-time
           example: '2026-05-19T10:00:00Z'
+    Meta_20000:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+        type:
+          type: string
+          minLength: 1
+          example: OK
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
     Money:
       description: The store credit value.
       title: Money

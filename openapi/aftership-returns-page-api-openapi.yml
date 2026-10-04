@@ -33,28 +33,29 @@ paths:
         $ref: '#/components/requestBodies/CreateReturnsPageDeepLink'
       description: This API is used to generate a deep link that redirects the user to a returns page with pre-filled information. It is suitable for scenarios where a return submission link needs to be constructed and sent to the shopper, allowing them to submit an RMA more conveniently without having to manually open the returns page and entering order details.
 components:
-  responses:
+  requestBodies:
     CreateReturnsPageDeepLink:
-      description: ''
       content:
         application/json:
           schema:
             type: object
+            x-examples:
+              Example 1:
+                order_number: '1025'
+                email: zy.liao@aftership.com
+                postal_code: '07302'
+            required:
+            - order_number
             properties:
-              meta:
-                $ref: '#/components/schemas/Meta_20100'
+              order_number:
+                type: string
+              customer_email:
+                type: string
+                format: email
                 x-stoplight:
-                  id: 133gcrm601701
-              data:
-                type: object
-                x-stoplight:
-                  id: 4p5arwlo7blvx
-                properties:
-                  url:
-                    type: string
-                    x-stoplight:
-                      id: 8f4dzmt7hgujj
-          examples: {}
+                  id: v4zxoxphxd33g
+              postal_code:
+                type: string
   schemas:
     Meta_20100:
       x-stoplight:
@@ -89,29 +90,28 @@ components:
           x-stoplight:
             id: zr92gwd3jfayh
           example: The request has been fulfilled and a new resource has been created.
-  requestBodies:
+  responses:
     CreateReturnsPageDeepLink:
+      description: ''
       content:
         application/json:
           schema:
             type: object
-            x-examples:
-              Example 1:
-                order_number: '1025'
-                email: zy.liao@aftership.com
-                postal_code: '07302'
-            required:
-            - order_number
             properties:
-              order_number:
-                type: string
-              customer_email:
-                type: string
-                format: email
+              meta:
+                $ref: '#/components/schemas/Meta_20100'
                 x-stoplight:
-                  id: v4zxoxphxd33g
-              postal_code:
-                type: string
+                  id: 133gcrm601701
+              data:
+                type: object
+                x-stoplight:
+                  id: 4p5arwlo7blvx
+                properties:
+                  url:
+                    type: string
+                    x-stoplight:
+                      id: 8f4dzmt7hgujj
+          examples: {}
   securitySchemes:
     as-api-key:
       name: as-api-key

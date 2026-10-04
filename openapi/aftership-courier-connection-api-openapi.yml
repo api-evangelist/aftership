@@ -322,6 +322,30 @@ components:
             id: jr9fxq11w9ghx
           description: The date and time the courier connection was updated. It uses the format YYYY-MM-DDTHH:mm:ssZ for the timezone GMT +0.
           example: '2023-01-19T08:47:10+00:00'
+    Meta.v1:
+      title: meta
+      type: object
+      description: Meta data
+      required:
+      - code
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: meta code
+        message:
+          type: string
+          description: error message, only exist if the response status is not 2xx
+        type:
+          type: string
+          enum:
+          - BadRequest
+          - Unauthorized
+          - Forbidden
+          - NotFound
+          - TooManyRequests
+          - InternalError
+          description: error type, only exist if the response status is not 2xx
     Courier_connection_response_get_multiple:
       title: Courier connection response for get courier connections
       x-stoplight:
@@ -368,30 +392,6 @@ components:
                 x-stoplight:
                   id: v74u6j9mo413l
       description: Courier connection response for getting courier connections
-    Meta.v1:
-      title: meta
-      type: object
-      description: Meta data
-      required:
-      - code
-      properties:
-        code:
-          type: integer
-          example: 200
-          description: meta code
-        message:
-          type: string
-          description: error message, only exist if the response status is not 2xx
-        type:
-          type: string
-          enum:
-          - BadRequest
-          - Unauthorized
-          - Forbidden
-          - NotFound
-          - TooManyRequests
-          - InternalError
-          description: error type, only exist if the response status is not 2xx
   securitySchemes:
     as-api-key:
       name: as-api-key

@@ -436,34 +436,6 @@ components:
       - Primitive
       examples: []
       description: 'Reference object: the description of reference information'
-    Cancel_label.v3:
-      title: CancelLabel
-      x-stoplight:
-        id: z2mr6rgdbtram
-      type: object
-      description: 'Cancel Label object: the description of cancel label object'
-      x-tags:
-      - Resource
-      examples: []
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - cancelling
-          - cancelled
-          - failed
-        label:
-          $ref: '#/components/schemas/Reference.v3'
-        created_at:
-          type: string
-          description: the timestamp of created_at
-          example: '2022-05-18T09:17:38+00:00'
-        updated_at:
-          type: string
-          example: '2022-05-18T09:17:38+00:00'
-          description: the timestamp of updated_at
     Meta.v3:
       description: Meta data object.
       type: object
@@ -512,6 +484,34 @@ components:
           type: string
           description: A human-readable description of the error.
           example: account.email is invalid
+    Cancel_label.v3:
+      title: CancelLabel
+      x-stoplight:
+        id: z2mr6rgdbtram
+      type: object
+      description: 'Cancel Label object: the description of cancel label object'
+      x-tags:
+      - Resource
+      examples: []
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - cancelling
+          - cancelled
+          - failed
+        label:
+          $ref: '#/components/schemas/Reference.v3'
+        created_at:
+          type: string
+          description: the timestamp of created_at
+          example: '2022-05-18T09:17:38+00:00'
+        updated_at:
+          type: string
+          example: '2022-05-18T09:17:38+00:00'
+          description: the timestamp of updated_at
   securitySchemes:
     as-api-key:
       name: as-api-key

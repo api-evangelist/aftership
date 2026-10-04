@@ -1922,65 +1922,6 @@ paths:
       - Tracking
 components:
   schemas:
-    Tag.v1:
-      x-stoplight:
-        id: zcw4ttoz76bsj
-      type: string
-      title: tag
-      enum:
-      - Pending
-      - InfoReceived
-      - InTransit
-      - OutForDelivery
-      - AttemptFail
-      - Delivered
-      - AvailableForPickup
-      - Exception
-      - Expired
-      description: 'Current status of tracking. ([See tag definition](../../docs/enum/delivery_statuses.md))<div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
-      example: Delivered
-    Tracking_response_get_multiple.v1:
-      title: Tracking response for get trackings
-      type: object
-      description: Tracking response for getting tracking
-      required:
-      - meta
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta.v1'
-        data:
-          type: object
-          properties:
-            pagination:
-              type: object
-              description: The Pagination holds the information for the pagination when the response contains multiple objects.
-              x-stoplight:
-                id: br2w36rzkm6jc
-              properties:
-                total:
-                  type: integer
-                  x-stoplight:
-                    id: zxfmih684rjbd
-                  description: The total number of trackings.
-                  example: 100
-                next_cursor:
-                  type: string
-                  x-stoplight:
-                    id: myfrcvk07kece
-                  description: A string representing the cursor value for the next page of results.
-                  example: WzE3MTk5OTIwMzIzNTMsImE0NWQ5NDg5ODU4NzQzMjA5YjBjYjRlZjE3ZTBjNGVhIl0=
-                has_next_page:
-                  type: boolean
-                  x-stoplight:
-                    id: zmeas9mpkz2ds
-                  description: To indicate if next page is available.
-            trackings:
-              description: Array of [tracking object](../../model/resource/tracking.json)
-              type: array
-              items:
-                $ref: '#/components/schemas/Tracking'
-                x-stoplight:
-                  id: tdehjrjz0yj1s
     Tracking:
       description: 'Object describes the tracking information.
 
@@ -3292,18 +3233,65 @@ components:
           - TooManyRequests
           - InternalError
           description: error type, only exist if the response status is not 2xx
-    Tracking_response.v1:
-      title: Tracking response
+    Tag.v1:
+      x-stoplight:
+        id: zcw4ttoz76bsj
+      type: string
+      title: tag
+      enum:
+      - Pending
+      - InfoReceived
+      - InTransit
+      - OutForDelivery
+      - AttemptFail
+      - Delivered
+      - AvailableForPickup
+      - Exception
+      - Expired
+      description: 'Current status of tracking. ([See tag definition](../../docs/enum/delivery_statuses.md))<div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
+      example: Delivered
+    Tracking_response_get_multiple.v1:
+      title: Tracking response for get trackings
       type: object
-      description: Tracking response for returning single tracking
+      description: Tracking response for getting tracking
       required:
       - meta
-      - data
       properties:
         meta:
           $ref: '#/components/schemas/Meta.v1'
         data:
-          $ref: '#/components/schemas/Tracking'
+          type: object
+          properties:
+            pagination:
+              type: object
+              description: The Pagination holds the information for the pagination when the response contains multiple objects.
+              x-stoplight:
+                id: br2w36rzkm6jc
+              properties:
+                total:
+                  type: integer
+                  x-stoplight:
+                    id: zxfmih684rjbd
+                  description: The total number of trackings.
+                  example: 100
+                next_cursor:
+                  type: string
+                  x-stoplight:
+                    id: myfrcvk07kece
+                  description: A string representing the cursor value for the next page of results.
+                  example: WzE3MTk5OTIwMzIzNTMsImE0NWQ5NDg5ODU4NzQzMjA5YjBjYjRlZjE3ZTBjNGVhIl0=
+                has_next_page:
+                  type: boolean
+                  x-stoplight:
+                    id: zmeas9mpkz2ds
+                  description: To indicate if next page is available.
+            trackings:
+              description: Array of [tracking object](../../model/resource/tracking.json)
+              type: array
+              items:
+                $ref: '#/components/schemas/Tracking'
+                x-stoplight:
+                  id: tdehjrjz0yj1s
     Checkpoint:
       x-stoplight:
         id: ag7g0fudz5euk
@@ -3495,6 +3483,18 @@ components:
           description: Unique hash identifier for each checkpoint event, could be used for deduplication.
           example: a1b2c3d4e5f6789012345678901234567890abcd
           readOnly: true
+    Tracking_response.v1:
+      title: Tracking response
+      type: object
+      description: Tracking response for returning single tracking
+      required:
+      - meta
+      - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+        data:
+          $ref: '#/components/schemas/Tracking'
   securitySchemes:
     as-api-key:
       name: as-api-key

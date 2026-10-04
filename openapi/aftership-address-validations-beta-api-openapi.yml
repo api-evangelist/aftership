@@ -169,6 +169,32 @@ paths:
       - Address Validations (Beta)
 components:
   schemas:
+    Address_validation.v3:
+      title: AddressValidation
+      x-stoplight:
+        id: dlhxyq4goztjs
+      type: object
+      description: The Address Validation object is used to provide information about an address, including the recommended address if available. Production and sandbox APIs support `USA` addresses by default, and you can contact our support team to enable `AUS, BEL, DNK, and DEU` in our sandbox API for testing as well.
+      x-tags:
+      - Resource
+      examples: []
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Validation result of the address
+          enum:
+          - valid
+          - invalid
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address.v3'
+        recommended_address:
+          $ref: '#/components/schemas/Address.v3'
     Address.v3:
       type: object
       x-stoplight:
@@ -340,32 +366,6 @@ components:
             lng:
               type: number
               description: longitude number
-    Address_validation.v3:
-      title: AddressValidation
-      x-stoplight:
-        id: dlhxyq4goztjs
-      type: object
-      description: The Address Validation object is used to provide information about an address, including the recommended address if available. Production and sandbox APIs support `USA` addresses by default, and you can contact our support team to enable `AUS, BEL, DNK, and DEU` in our sandbox API for testing as well.
-      x-tags:
-      - Resource
-      examples: []
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Validation result of the address
-          enum:
-          - valid
-          - invalid
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address.v3'
-        recommended_address:
-          $ref: '#/components/schemas/Address.v3'
     Meta.v3:
       description: Meta data object.
       type: object

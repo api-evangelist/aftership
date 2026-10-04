@@ -198,78 +198,6 @@ paths:
       - Address
 components:
   schemas:
-    Meta:
-      description: Meta data object.
-      x-stoplight:
-        id: 229b1ccd2b284
-      type: object
-      x-examples: {}
-      examples: []
-      title: Meta
-      x-tags:
-      - Envelope
-      properties:
-        code:
-          type: number
-          description: Code
-          default: 200
-          example: 200
-          x-stoplight:
-            id: 4nvljuh02q2sp
-        message:
-          type: string
-          example: OK
-          description: Error message, only exist if the response status is not 2xx
-          x-stoplight:
-            id: n9cu3ycb9indb
-        details:
-          type:
-          - array
-          - 'null'
-          items:
-            type: object
-            properties:
-              path:
-                type: string
-                example: data
-                x-stoplight:
-                  id: bm31koxbo53j8
-              info:
-                type: string
-                minLength: 0
-                maxLength: 255
-                example: data.%s is required for this request.
-                x-stoplight:
-                  id: c6h4q6tomjec8
-            x-stoplight:
-              id: o8vwwley8u0v5
-          x-stoplight:
-            id: 0oqp8jy1bhybm
-      required:
-      - code
-    Error:
-      type: object
-      x-stoplight:
-        id: 2f9c47cab76ed
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples: []
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The JSON path of the request object to indicate the error location.
-          example: data.request_address.postal_code
-          x-stoplight:
-            id: mcru7zcz84dy9
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: data.request_address.postal_code is invalid
-          x-stoplight:
-            id: ulljpx2y8s2eg
     Address:
       title: Address
       x-stoplight:
@@ -410,6 +338,78 @@ components:
               example: -121.89
               x-stoplight:
                 id: eub9nvcupbwyb
+    Meta:
+      description: Meta data object.
+      x-stoplight:
+        id: 229b1ccd2b284
+      type: object
+      x-examples: {}
+      examples: []
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          description: Code
+          default: 200
+          example: 200
+          x-stoplight:
+            id: 4nvljuh02q2sp
+        message:
+          type: string
+          example: OK
+          description: Error message, only exist if the response status is not 2xx
+          x-stoplight:
+            id: n9cu3ycb9indb
+        details:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                example: data
+                x-stoplight:
+                  id: bm31koxbo53j8
+              info:
+                type: string
+                minLength: 0
+                maxLength: 255
+                example: data.%s is required for this request.
+                x-stoplight:
+                  id: c6h4q6tomjec8
+            x-stoplight:
+              id: o8vwwley8u0v5
+          x-stoplight:
+            id: 0oqp8jy1bhybm
+      required:
+      - code
+    Error:
+      type: object
+      x-stoplight:
+        id: 2f9c47cab76ed
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples: []
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.request_address.postal_code
+          x-stoplight:
+            id: mcru7zcz84dy9
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: data.request_address.postal_code is invalid
+          x-stoplight:
+            id: ulljpx2y8s2eg
   securitySchemes:
     as-api-key:
       name: as-api-key

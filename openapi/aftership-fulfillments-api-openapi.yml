@@ -1097,6 +1097,290 @@ paths:
       - Fulfillments
 components:
   schemas:
+    Opening_hours.v1:
+      description: The regular opening hours of the location.
+      title: OpeningHours
+      x-stoplight:
+        id: n7s4wz0dwk5ai
+      type: object
+      properties:
+        sunday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        monday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        tuesday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        wednesday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        thursday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        friday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+        saturday:
+          $ref: '#/components/schemas/Opening_hour_period.v1'
+      x-tags:
+      - Primitive
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
+    Meta.v1:
+      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
+      type: object
+      x-examples: {}
+      title: Meta
+      x-tags:
+      - Envelope
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      additionalProperties: false
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        errors:
+          type: array
+          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+
+
+            '
+          items:
+            $ref: '#/components/schemas/Error.v1'
+    Pagination.v2:
+      title: Pagination
+      x-stoplight:
+        id: 6twr4wc3wp9lu
+      type: object
+      examples:
+      - page: 1
+        limit: 10
+        has_next_page: false
+      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
+      x-tags:
+      - Envelope
+      properties:
+        page:
+          type: integer
+          x-stoplight:
+            id: 5ld3b35057z8s
+          description: Page number.
+        limit:
+          type: integer
+          x-stoplight:
+            id: qmvbmlfjchyh5
+          description: Maximum object count per page.
+        has_next_page:
+          type: boolean
+          x-stoplight:
+            id: qtm2ifhlv0r4i
+          description: To indicate if next page is available.
+    Fulfillment.v1:
+      x-stoplight:
+        id: qnklgttqrn1fg
+      title: Fulfillment
+      type: object
+      x-tags:
+      - Resource
+      description: 'The `Fulfillment` model encapsulates the details of processing and delivering orders in an eCommerce context. It includes information such as fulfillment status, shipment tracking, the items to be fulfilled, and so on.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/common_scenarios/tracking/bopis.md)</div>'
+      additionalProperties: false
+      required:
+      - id
+      - order_id
+      - delivery_method
+      - status
+      - line_items
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: 3z259q39en5fr
+          description: The unique identifier of the fulfillment. If a custom ID was provided in the request, that value is used; otherwise, a system-generated UUID is assigned. You can use this ID to manage this resource in related API calls.
+          example: '423562565'
+        order_id:
+          type: string
+          x-stoplight:
+            id: 9zw2pi119wjnl
+          description: It should be the same as the `order.id` of the `Order` resource.
+          example: '5187092316403'
+        delivery_method:
+          type: string
+          enum:
+          - pickup
+          - shipping
+          x-stoplight:
+            id: t9hsy1t30zkh8
+          description: 'Delivery method of the order. For BOPIS related feature, please specify `pickup`.
+
+
+            For more information about pickup order, please check the detailed [BOPIS introduction page](../../docs/common_scenarios/tracking/bopis.md).
+
+            '
+          example: shipping
+        status:
+          type: string
+          description: "The status of the fulfillment. Depending of on the `delivery_method`, the allowed values are different.\n\nAllowed values: \n\ndelivery_method is shipping:\n`pending`, `processing`, `shipped`, `canceled`, and the custom defined statuses.\n\ndelivery_method is pickup:\n`pending`, `processing`, `ready_for_pickup`, `picked_up`, `canceled`, and the custom defined statuses."
+          example: processing
+        line_items:
+          type: array
+          description: The items which included in this fulifllment.
+          items:
+            type: object
+            required:
+            - id
+            - product_id
+            - product_variant_id
+            - sku
+            - quantity
+            properties:
+              id:
+                type: string
+                x-stoplight:
+                  id: vh27skvspcy3e
+                description: 'A unique identifier for the line item in your system. The value should be exist in one of the items in the corresponding order.
+
+
+                  Note that it should be the same as the `order.items.*.id` of the `Order` resource.
+
+                  '
+                example: '13097711141107'
+              product_id:
+                type: string
+                x-stoplight:
+                  id: 62p41vjigs5st
+                description: 'The ID of the product in your system.
+
+
+                  Note that it should be the same as the `product.id` of the `Product` resource.
+
+                  '
+                example: '8021450916083'
+              product_variant_id:
+                type: string
+                description: 'The ID of the product variant in source system.
+
+
+                  Note that it should be the same as the `product.variants.id` of the `Product` resource.'
+                example: '43768285298931'
+              product_title:
+                type: string
+                description: 'The title of the product.
+
+                  '
+                example: Power Mobile Phone
+              product_variant_title:
+                type: string
+                description: 'The title of the product variant.
+
+                  '
+                example: Power Mobile Phone (While)
+              sku:
+                type: string
+                description: 'The item''s SKU (stock keeping unit).
+
+                  '
+                example: SKU001
+              quantity:
+                type: integer
+                description: The number of items in this fulfillment.
+                example: 1
+              unit_price:
+                $ref: '#/components/schemas/Money.v1'
+                description: The price of the item before discounts and taxes have been applied.
+              unit_weight:
+                $ref: '#/components/schemas/Weight.v1'
+                description: The item's weight.
+              image_urls:
+                type: array
+                description: Image urls of this product variant.
+                items:
+                  type: string
+                  example: https://example.com/product/image.png
+        source_created_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the fulfillment was created in your e-commerce system.
+          example: '2021-04-15T20:02:09Z'
+        source_updated_at:
+          type: string
+          format: date-time
+          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the fulfillment was updated in your e-commerce system.
+          example: '2021-04-16T20:02:09Z'
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time (ISO 8601 format) when the fulfillment was created in AfterShip.
+          example: '2021-04-15T20:02:09Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time (ISO 8601 format) when the fulfillment was updated in AfterShip.
+          example: '2021-04-16T20:02:09Z'
+        ship_from_location:
+          type: object
+          description: The location information where the fulfillment shipped from.
+          additionalProperties: false
+          properties:
+            location_id:
+              type: string
+              description: The unique identifier for the location, as provided by AfterShip. You can manage and configure these locations [here](https://organization.automizely.com/warehouses).
+              example: 489b4bdec18d45d387752d63fb51ee1d
+            address:
+              $ref: '#/components/schemas/Address.v1'
+              description: The address object of this location.
+        pickup_location:
+          $ref: '#/components/schemas/Pickup_location.v1'
+          description: The location information where the fulfillment is designated to be pickup from.
+        trackings:
+          type: array
+          description: The shipment information of the fulfillment.
+          items:
+            $ref: '#/components/schemas/Tracking.v1'
+        pickup_info:
+          $ref: '#/components/schemas/Pickup.v1'
+          description: The pickup information of the fulfillment.
+          x-stoplight:
+            id: pl9ahbkgvzsfd
     Address_with_coordinate.v1:
       description: The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.
       type: object
@@ -1209,152 +1493,6 @@ components:
             latitude:
               type: number
               description: The latitude of the address.
-    Pickup_location.v1:
-      x-stoplight:
-        id: ou78lfdhqjx26
-      description: The location information where the fulfillment is designated to be pickup from. Mandatory when the delivery method of the fulfillment is `pickup`.
-      title: PickupLocation
-      type: object
-      x-tags:
-      - Primitive
-      properties:
-        location_id:
-          type: string
-          x-stoplight:
-            id: o6v7ot5p5owq0
-          description: The unique identifier for the address. You can find or create the corresponding value [here](https://organization.automizely.com/warehouses).
-          example: e9ec84ff351e45e089a7b75ae497e1ae
-        address:
-          $ref: '#/components/schemas/Address_with_coordinate.v1'
-          x-stoplight:
-            id: xd0n6n4djzcml
-          description: Address of the pickup location.
-        opening_hours:
-          $ref: '#/components/schemas/Opening_hours.v1'
-          x-stoplight:
-            id: xwxu19pd0nc0h
-          description: Opening hours information of the pickup location.
-    Opening_hours.v1:
-      description: The regular opening hours of the location.
-      title: OpeningHours
-      x-stoplight:
-        id: n7s4wz0dwk5ai
-      type: object
-      properties:
-        sunday:
-          $ref: '#/components/schemas/Opening_hour_period.v1'
-        monday:
-          $ref: '#/components/schemas/Opening_hour_period.v1'
-        tuesday:
-          $ref: '#/components/schemas/Opening_hour_period.v1'
-        wednesday:
-          $ref: '#/components/schemas/Opening_hour_period.v1'
-        thursday:
-          $ref: '#/components/schemas/Opening_hour_period.v1'
-        friday:
-          $ref: '#/components/schemas/Opening_hour_period.v1'
-        saturday:
-          $ref: '#/components/schemas/Opening_hour_period.v1'
-      x-tags:
-      - Primitive
-    Error.v1:
-      type: object
-      title: Error
-      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The JSON path of the request object to indicate the error location.
-          example: data.product.title
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: Title is invalid
-    Pickup.v1:
-      x-stoplight:
-        id: xuy8sphna6ej7
-      description: 'To indicate the detailed pickup instruction of the order when the delivery method of the order is `pickup`.
-
-
-        For further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../docs/common_scenarios/tracking/bopis.md).'
-      title: Pickup
-      type: object
-      x-tags:
-      - Primitive
-      properties:
-        instructions:
-          type: string
-          description: 'Instructions for the pickup process.
-
-
-            The value specified in this field will take precedence if provided through the API. If not specified, it will default to the pickup location''s instructions set in the AfterShip Admin Portal.'
-          example: Shop open from Mon to Fri
-        estimated_ready_for_pickup_at:
-          type: object
-          description: 'The expected date and time when the items in this fulfillment order will be ready for pickup.
-
-
-            This information will be displayed on the Brand Tracking Page and included in customer notifications.'
-          x-stoplight:
-            id: la1jawtei2np5
-          properties:
-            min:
-              type: string
-              format: date-time
-              description: The earliest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
-              example: '2021-04-15T20:02:09Z'
-            max:
-              type: string
-              format: date-time
-              description: The latest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
-              example: '2021-04-15T20:02:09Z'
-        pickup_deadline_at:
-          type: string
-          x-stoplight:
-            id: lvr0jt3nk49b5
-          format: date-time
-          description: 'The latest time by which the pickup must be completed, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
-
-
-            This information will be displayed on the Brand Tracking Page.
-
-
-            '
-          example: '2021-04-15T20:02:09Z'
-    Pagination.v2:
-      title: Pagination
-      x-stoplight:
-        id: 6twr4wc3wp9lu
-      type: object
-      examples:
-      - page: 1
-        limit: 10
-        has_next_page: false
-      description: The `Pagination` holds the information for the pagination when the response contains multiple objects.
-      x-tags:
-      - Envelope
-      properties:
-        page:
-          type: integer
-          x-stoplight:
-            id: 5ld3b35057z8s
-          description: Page number.
-        limit:
-          type: integer
-          x-stoplight:
-            id: qmvbmlfjchyh5
-          description: Maximum object count per page.
-        has_next_page:
-          type: boolean
-          x-stoplight:
-            id: qtm2ifhlv0r4i
-          description: To indicate if next page is available.
     Address.v1:
       description: Billing address of the order.
       type: object
@@ -1454,109 +1592,6 @@ components:
           type: string
           description: The phone number of the person associated to the address.
           maxLength: 256
-    Weight.v1:
-      description: The unit weight of the item.
-      title: Weight
-      x-stoplight:
-        id: 6ffc0efbd7bf5
-      type: object
-      examples:
-      - unit: kg
-        value: 10
-      x-tags:
-      - Primitive
-      properties:
-        unit:
-          type: string
-          enum:
-          - kg
-          - lb
-          - oz
-          - g
-          description: 'The weight unit eg: g or kg.'
-        value:
-          type: number
-          description: The value of the weight.
-          example: 10
-    Opening_hour_period.v1:
-      title: OpeningHourPeriod
-      x-stoplight:
-        id: 2g4w1syylsphw
-      type: object
-      additionalProperties: false
-      description: The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day.
-      x-tags:
-      - Primitive
-      properties:
-        open:
-          type: boolean
-          default: false
-          x-stoplight:
-            id: qbb3rmmdfdhxy
-          description: Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`.
-        from:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: fvyfkui68t3gt
-          description: The start time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
-          example: '10:30'
-        to:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: sk5yjthy1achl
-          description: The end time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
-          example: '20:30'
-      examples:
-      - open: true
-        from: '10:30'
-        to: '20:30'
-    Meta.v1:
-      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
-
-
-        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
-      type: object
-      x-examples: {}
-      title: Meta
-      x-tags:
-      - Envelope
-      examples:
-      - code: 20000
-        type: OK
-        message: The request was successfully processed by AfterShip.
-      additionalProperties: false
-      required:
-      - code
-      - type
-      - message
-      properties:
-        code:
-          type: number
-          default: 20000
-          example: 20000
-          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        type:
-          type: string
-          minLength: 1
-          example: OK
-          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        message:
-          type: string
-          minLength: 1
-          example: The request was successfully processed by AfterShip.
-          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        errors:
-          type: array
-          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-
-
-            '
-          items:
-            $ref: '#/components/schemas/Error.v1'
     Money.v1:
       description: The unit price of the item.
       title: Money
@@ -1757,177 +1792,42 @@ components:
           type: string
           description: The amount value in string format.
           example: '10'
-    Fulfillment.v1:
+    Opening_hour_period.v1:
+      title: OpeningHourPeriod
       x-stoplight:
-        id: qnklgttqrn1fg
-      title: Fulfillment
+        id: 2g4w1syylsphw
       type: object
-      x-tags:
-      - Resource
-      description: 'The `Fulfillment` model encapsulates the details of processing and delivering orders in an eCommerce context. It includes information such as fulfillment status, shipment tracking, the items to be fulfilled, and so on.
-
-
-        <div style="visibility:hidden; height: 0">[url](../../docs/common_scenarios/tracking/bopis.md)</div>'
       additionalProperties: false
-      required:
-      - id
-      - order_id
-      - delivery_method
-      - status
-      - line_items
-      - created_at
-      - updated_at
+      description: The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day.
+      x-tags:
+      - Primitive
       properties:
-        id:
-          type: string
+        open:
+          type: boolean
+          default: false
           x-stoplight:
-            id: 3z259q39en5fr
-          description: The unique identifier of the fulfillment. If a custom ID was provided in the request, that value is used; otherwise, a system-generated UUID is assigned. You can use this ID to manage this resource in related API calls.
-          example: '423562565'
-        order_id:
-          type: string
+            id: qbb3rmmdfdhxy
+          description: Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`.
+        from:
+          type:
+          - string
+          - 'null'
           x-stoplight:
-            id: 9zw2pi119wjnl
-          description: It should be the same as the `order.id` of the `Order` resource.
-          example: '5187092316403'
-        delivery_method:
-          type: string
-          enum:
-          - pickup
-          - shipping
+            id: fvyfkui68t3gt
+          description: The start time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
+          example: '10:30'
+        to:
+          type:
+          - string
+          - 'null'
           x-stoplight:
-            id: t9hsy1t30zkh8
-          description: 'Delivery method of the order. For BOPIS related feature, please specify `pickup`.
-
-
-            For more information about pickup order, please check the detailed [BOPIS introduction page](../../docs/common_scenarios/tracking/bopis.md).
-
-            '
-          example: shipping
-        status:
-          type: string
-          description: "The status of the fulfillment. Depending of on the `delivery_method`, the allowed values are different.\n\nAllowed values: \n\ndelivery_method is shipping:\n`pending`, `processing`, `shipped`, `canceled`, and the custom defined statuses.\n\ndelivery_method is pickup:\n`pending`, `processing`, `ready_for_pickup`, `picked_up`, `canceled`, and the custom defined statuses."
-          example: processing
-        line_items:
-          type: array
-          description: The items which included in this fulifllment.
-          items:
-            type: object
-            required:
-            - id
-            - product_id
-            - product_variant_id
-            - sku
-            - quantity
-            properties:
-              id:
-                type: string
-                x-stoplight:
-                  id: vh27skvspcy3e
-                description: 'A unique identifier for the line item in your system. The value should be exist in one of the items in the corresponding order.
-
-
-                  Note that it should be the same as the `order.items.*.id` of the `Order` resource.
-
-                  '
-                example: '13097711141107'
-              product_id:
-                type: string
-                x-stoplight:
-                  id: 62p41vjigs5st
-                description: 'The ID of the product in your system.
-
-
-                  Note that it should be the same as the `product.id` of the `Product` resource.
-
-                  '
-                example: '8021450916083'
-              product_variant_id:
-                type: string
-                description: 'The ID of the product variant in source system.
-
-
-                  Note that it should be the same as the `product.variants.id` of the `Product` resource.'
-                example: '43768285298931'
-              product_title:
-                type: string
-                description: 'The title of the product.
-
-                  '
-                example: Power Mobile Phone
-              product_variant_title:
-                type: string
-                description: 'The title of the product variant.
-
-                  '
-                example: Power Mobile Phone (While)
-              sku:
-                type: string
-                description: 'The item''s SKU (stock keeping unit).
-
-                  '
-                example: SKU001
-              quantity:
-                type: integer
-                description: The number of items in this fulfillment.
-                example: 1
-              unit_price:
-                $ref: '#/components/schemas/Money.v1'
-                description: The price of the item before discounts and taxes have been applied.
-              unit_weight:
-                $ref: '#/components/schemas/Weight.v1'
-                description: The item's weight.
-              image_urls:
-                type: array
-                description: Image urls of this product variant.
-                items:
-                  type: string
-                  example: https://example.com/product/image.png
-        source_created_at:
-          type: string
-          format: date-time
-          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the fulfillment was created in your e-commerce system.
-          example: '2021-04-15T20:02:09Z'
-        source_updated_at:
-          type: string
-          format: date-time
-          description: The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the fulfillment was updated in your e-commerce system.
-          example: '2021-04-16T20:02:09Z'
-        created_at:
-          type: string
-          format: date-time
-          description: The date and time (ISO 8601 format) when the fulfillment was created in AfterShip.
-          example: '2021-04-15T20:02:09Z'
-        updated_at:
-          type: string
-          format: date-time
-          description: The date and time (ISO 8601 format) when the fulfillment was updated in AfterShip.
-          example: '2021-04-16T20:02:09Z'
-        ship_from_location:
-          type: object
-          description: The location information where the fulfillment shipped from.
-          additionalProperties: false
-          properties:
-            location_id:
-              type: string
-              description: The unique identifier for the location, as provided by AfterShip. You can manage and configure these locations [here](https://organization.automizely.com/warehouses).
-              example: 489b4bdec18d45d387752d63fb51ee1d
-            address:
-              $ref: '#/components/schemas/Address.v1'
-              description: The address object of this location.
-        pickup_location:
-          $ref: '#/components/schemas/Pickup_location.v1'
-          description: The location information where the fulfillment is designated to be pickup from.
-        trackings:
-          type: array
-          description: The shipment information of the fulfillment.
-          items:
-            $ref: '#/components/schemas/Tracking.v1'
-        pickup_info:
-          $ref: '#/components/schemas/Pickup.v1'
-          description: The pickup information of the fulfillment.
-          x-stoplight:
-            id: pl9ahbkgvzsfd
+            id: sk5yjthy1achl
+          description: The end time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
+          example: '20:30'
+      examples:
+      - open: true
+        from: '10:30'
+        to: '20:30'
     Tracking.v1:
       title: Tracking
       x-stoplight:
@@ -1967,6 +1867,106 @@ components:
               id: g2wj5ar3j83w6
             description: Unique courier code. For a complete list of available courier codes, click <a target='_blank' href='https://www.aftership.com/docs/tracking/others/supported-couriers'>here</a>.
       type: object
+    Pickup.v1:
+      x-stoplight:
+        id: xuy8sphna6ej7
+      description: 'To indicate the detailed pickup instruction of the order when the delivery method of the order is `pickup`.
+
+
+        For further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../docs/common_scenarios/tracking/bopis.md).'
+      title: Pickup
+      type: object
+      x-tags:
+      - Primitive
+      properties:
+        instructions:
+          type: string
+          description: 'Instructions for the pickup process.
+
+
+            The value specified in this field will take precedence if provided through the API. If not specified, it will default to the pickup location''s instructions set in the AfterShip Admin Portal.'
+          example: Shop open from Mon to Fri
+        estimated_ready_for_pickup_at:
+          type: object
+          description: 'The expected date and time when the items in this fulfillment order will be ready for pickup.
+
+
+            This information will be displayed on the Brand Tracking Page and included in customer notifications.'
+          x-stoplight:
+            id: la1jawtei2np5
+          properties:
+            min:
+              type: string
+              format: date-time
+              description: The earliest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+              example: '2021-04-15T20:02:09Z'
+            max:
+              type: string
+              format: date-time
+              description: The latest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+              example: '2021-04-15T20:02:09Z'
+        pickup_deadline_at:
+          type: string
+          x-stoplight:
+            id: lvr0jt3nk49b5
+          format: date-time
+          description: 'The latest time by which the pickup must be completed, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+
+
+            This information will be displayed on the Brand Tracking Page.
+
+
+            '
+          example: '2021-04-15T20:02:09Z'
+    Weight.v1:
+      description: The unit weight of the item.
+      title: Weight
+      x-stoplight:
+        id: 6ffc0efbd7bf5
+      type: object
+      examples:
+      - unit: kg
+        value: 10
+      x-tags:
+      - Primitive
+      properties:
+        unit:
+          type: string
+          enum:
+          - kg
+          - lb
+          - oz
+          - g
+          description: 'The weight unit eg: g or kg.'
+        value:
+          type: number
+          description: The value of the weight.
+          example: 10
+    Pickup_location.v1:
+      x-stoplight:
+        id: ou78lfdhqjx26
+      description: The location information where the fulfillment is designated to be pickup from. Mandatory when the delivery method of the fulfillment is `pickup`.
+      title: PickupLocation
+      type: object
+      x-tags:
+      - Primitive
+      properties:
+        location_id:
+          type: string
+          x-stoplight:
+            id: o6v7ot5p5owq0
+          description: The unique identifier for the address. You can find or create the corresponding value [here](https://organization.automizely.com/warehouses).
+          example: e9ec84ff351e45e089a7b75ae497e1ae
+        address:
+          $ref: '#/components/schemas/Address_with_coordinate.v1'
+          x-stoplight:
+            id: xd0n6n4djzcml
+          description: Address of the pickup location.
+        opening_hours:
+          $ref: '#/components/schemas/Opening_hours.v1'
+          x-stoplight:
+            id: xwxu19pd0nc0h
+          description: Opening hours information of the pickup location.
   parameters:
     as-store-id:
       name: as-store-id

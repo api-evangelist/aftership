@@ -1469,6 +1469,58 @@ paths:
         id: 0xlo21h5n3o1j
 components:
   schemas:
+    Shipper_account.v3:
+      title: ShipperAccount
+      x-stoplight:
+        id: btwx9pxk00w1m
+      type: object
+      x-tags:
+      - Resource
+      examples: []
+      description: 'ShipperAccount object: the description of shipper account information'
+      properties:
+        id:
+          type: string
+          description: 'Shipper Account ID
+
+            '
+        address:
+          $ref: '#/components/schemas/Address.v3'
+        slug:
+          type: string
+          description: Couirer slug
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+          - deleted
+        description:
+          type: string
+          description: 'The description of the account
+
+            '
+        type:
+          type: string
+          description: The type of the shipper_account
+          enum:
+          - default
+          - user
+        timezone:
+          type: string
+          description: 'Shipper account timezone
+
+            '
+        created_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+        updated_at:
+          type: string
+          description: 'A formatted date.
+
+            '
     Address.v3:
       type: object
       x-stoplight:
@@ -1640,58 +1692,6 @@ components:
             lng:
               type: number
               description: longitude number
-    Shipper_account.v3:
-      title: ShipperAccount
-      x-stoplight:
-        id: btwx9pxk00w1m
-      type: object
-      x-tags:
-      - Resource
-      examples: []
-      description: 'ShipperAccount object: the description of shipper account information'
-      properties:
-        id:
-          type: string
-          description: 'Shipper Account ID
-
-            '
-        address:
-          $ref: '#/components/schemas/Address.v3'
-        slug:
-          type: string
-          description: Couirer slug
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-          - deleted
-        description:
-          type: string
-          description: 'The description of the account
-
-            '
-        type:
-          type: string
-          description: The type of the shipper_account
-          enum:
-          - default
-          - user
-        timezone:
-          type: string
-          description: 'Shipper account timezone
-
-            '
-        created_at:
-          type: string
-          description: 'A formatted date.
-
-            '
-        updated_at:
-          type: string
-          description: 'A formatted date.
-
-            '
     Meta.v3:
       description: Meta data object.
       type: object

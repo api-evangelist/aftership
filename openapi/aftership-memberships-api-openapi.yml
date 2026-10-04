@@ -775,29 +775,6 @@ paths:
       - Memberships
 components:
   schemas:
-    Role.v1:
-      description: Object describes role information.
-      type: object
-      x-examples:
-        example-1:
-          code: admin
-          name: Admin
-      examples: []
-      title: Role
-      properties:
-        code:
-          type: string
-          minLength: 1
-          description: role code
-        name:
-          type: string
-          minLength: 1
-          description: role name
-      required:
-      - code
-      - name
-      x-tags:
-      - Resource
     Error.v1:
       type: object
       title: Error
@@ -817,57 +794,6 @@ components:
           type: string
           description: A human-readable description of the error.
           example: account.email is invalid
-    Membership.v1:
-      description: Object describes membership information.
-      type: object
-      x-examples:
-        example-1:
-          id: 3ea1910b07394a95bf7cdaa611d3cc3f
-          organization:
-            id: 511ceb52969b400a93e3422c743ae34a
-          account:
-            id: 74d998151a1b4668bee5a283712dd57e
-            email: example@mydomain.com
-          role:
-            code: admin
-            name: Admin
-      examples: []
-      title: Membership
-      x-tags:
-      - Resource
-      properties:
-        id:
-          type: string
-          minLength: 1
-        organization:
-          type: object
-          required:
-          - id
-          properties:
-            id:
-              type: string
-              minLength: 1
-        account:
-          type: object
-          required:
-          - id
-          - email
-          properties:
-            id:
-              type: string
-              minLength: 1
-              description: Identity of account.
-            email:
-              type: string
-              minLength: 1
-              description: Email ID, which should be registered with AfterShip already.
-        role:
-          $ref: '#/components/schemas/Role.v1'
-      required:
-      - id
-      - organization
-      - account
-      - role
     Meta.v1:
       description: Meta data object.
       type: object
@@ -925,6 +851,80 @@ components:
       - total
       x-tags:
       - Envelope
+    Membership.v1:
+      description: Object describes membership information.
+      type: object
+      x-examples:
+        example-1:
+          id: 3ea1910b07394a95bf7cdaa611d3cc3f
+          organization:
+            id: 511ceb52969b400a93e3422c743ae34a
+          account:
+            id: 74d998151a1b4668bee5a283712dd57e
+            email: example@mydomain.com
+          role:
+            code: admin
+            name: Admin
+      examples: []
+      title: Membership
+      x-tags:
+      - Resource
+      properties:
+        id:
+          type: string
+          minLength: 1
+        organization:
+          type: object
+          required:
+          - id
+          properties:
+            id:
+              type: string
+              minLength: 1
+        account:
+          type: object
+          required:
+          - id
+          - email
+          properties:
+            id:
+              type: string
+              minLength: 1
+              description: Identity of account.
+            email:
+              type: string
+              minLength: 1
+              description: Email ID, which should be registered with AfterShip already.
+        role:
+          $ref: '#/components/schemas/Role.v1'
+      required:
+      - id
+      - organization
+      - account
+      - role
+    Role.v1:
+      description: Object describes role information.
+      type: object
+      x-examples:
+        example-1:
+          code: admin
+          name: Admin
+      examples: []
+      title: Role
+      properties:
+        code:
+          type: string
+          minLength: 1
+          description: role code
+        name:
+          type: string
+          minLength: 1
+          description: role name
+      required:
+      - code
+      - name
+      x-tags:
+      - Resource
   securitySchemes:
     as-api-key:
       name: as-api-key

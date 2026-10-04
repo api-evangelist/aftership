@@ -473,6 +473,213 @@ paths:
       description: url
 components:
   schemas:
+    Predict_tags:
+      x-stoplight:
+        id: f7yf0iz8y2ves
+      title: PredictTag
+      type: object
+      description: Predict product tag object.
+      properties:
+        tag:
+          type: string
+          x-stoplight:
+            id: srfassnhnlf26
+          description: Product label prediction result.
+          example: Edition|Limited Edition
+        confidence_score:
+          type: number
+          x-stoplight:
+            id: s382p3flsl1do
+          description: The confidence score represents the probability that AfterShip Personalization believes the item has those tags. The higher the value, the more likely the product has these tags.
+          minimum: 0
+          example: 0.92
+    Error.v1:
+      type: object
+      title: Error
+      examples:
+      - path: includeFilters
+        info: The include_filters field only supports tags, categories
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: number
+          description: A 1 to 5-digit integer that represents the status of the request.
+        path:
+          type: string
+          description: JSON path of the request object where the error happens.
+        info:
+          type: string
+          description: The verbal description of the error that was detected in the request JSON at the specified JSON path.
+    Tagging_product:
+      x-stoplight:
+        id: 15awqw2p3a68o
+      title: TaggingProduct
+      type: object
+      description: Partial Commerce Product object to be tagged.
+      required:
+      - title
+      - varint
+      properties:
+        source_id:
+          type: string
+          x-stoplight:
+            id: o3954k8z36ez7
+          description: A unique identifier for the product.
+          example: '456212412'
+        title:
+          type: string
+          x-stoplight:
+            id: 0zkng7nl7o48q
+          description: The title of the product.
+          example: COVERGIRL Eye Enhancers 4-Kit Eyeshadow, 235 Pure Romance, 0.19 oz
+        categories:
+          type: array
+          x-stoplight:
+            id: q3c5ogsojr06b
+          description: Catogories for the product used for filtering and searching products.
+          items:
+            x-stoplight:
+              id: qlosi7ae3xkz3
+            type: string
+            example: Beauty & Personal Care
+        tags:
+          type: array
+          x-stoplight:
+            id: jajni0meqoc1t
+          description: Tags that are used for filtering and search.
+          items:
+            x-stoplight:
+              id: ohzwv1hgeihtu
+            type: string
+            example: Sale
+        description:
+          type: string
+          x-stoplight:
+            id: snpdfh79yek58
+          description: Description of a product.
+          example: 'COVERGIRL Eye Enhancers 4-Kit Eyeshadow, 235 Pure Romance, 0.19 oz. COVERGIRL Sheerly Nudes Eye Enhancers Eyeshadow Kit is the easiest way to create natural, flawless eyes that are perfect for your day AND nighttime looks! With its impeccably creamy-soft formula and incredible array of high-shimmer hues, you can wear anything from a light wash of beige hues, to bold taupes with reflective shimmer with this nude eyeshadow palette. You can also mix them all together for an ombre and natural eyeshadow look. But don''t forget about those adorable dual foam applicators in this eyeshadow palette. These easy-to-use wands have spongy tips so you can apply your eyeshadow in a breeze. BLENDS EASILY: The silky-sheer formula is easy to blend and buildable for perfect natural eyeshadow looks. SILKY SHEER FORMULA: Goes on smooth and stays put, so you can wear it alone or layer it with your favorite eyeshadow. DOUBLE ENDED APPLICATOR: The dual foam applicators have spongy tips for easy application. MULTIPLE OPTIONS: This eyeshadow palette is available in matte, pearly, & sparkly collections. CRUELTY FREE: We do not test our products on animals'
+        image_urls:
+          type: array
+          x-stoplight:
+            id: etfusx6c3zr87
+          description: URLs of the images.
+          items:
+            x-stoplight:
+              id: 1pgiszkmedigs
+            type: string
+            example: https://i5.walmartimages.com/seo/COVERGIRL-Eye-Enhancers-4-Kit-Eyeshadow-235-Pure-Romance-0-19-oz_76734754-76dc-4a3b-9287-c5995daaae87.511e781327fa72fb79ea8d0d75c10c87.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF
+        varint:
+          type: object
+          x-stoplight:
+            id: 4ru3htaqg9uc8
+          description: Variants of a product.
+          required:
+          - title
+          properties:
+            source_id:
+              type: string
+              x-stoplight:
+                id: w5q1xnhsuns2x
+              description: A unique identifier for the product variant.
+              example: a92138421
+            title:
+              type: string
+              x-stoplight:
+                id: synkfoqe95rjm
+              description: The title of the product variant
+              example: blue / small
+            image_urls:
+              type: array
+              x-stoplight:
+                id: vspx6v22s5ha1
+              description: URLs of the images.
+              items:
+                x-stoplight:
+                  id: 512t9445pt5dc
+                type: string
+                example: https://i5.walmartimages.com/seo/COVERGIRL-Eye-Enhancers-4-Kit-Eyeshadow-235-Pure-Romance-0-19-oz_76734754-76dc-4a3b-9287-c5995daaae87.511e781327fa72fb79ea8d0d75c10c87.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF
+    Meta.v1:
+      x-stoplight:
+        id: 2sv02c3cjwlkg
+      title: Meta
+      type: object
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      required:
+      - code
+      properties:
+        code:
+          type: number
+          example: 200
+          description: A 1 to 5-digit integer that represents the status of the request.
+          x-stoplight:
+            id: y17kqny5tj8br
+        message:
+          type: string
+          description: A human-readable string message that gives a short description to the specific meta code.
+          x-stoplight:
+            id: hd5r8ha2s2ptd
+        type:
+          type: string
+          enum:
+          - OK
+          - BadRequest
+          - Unauthorized
+          - Forbidden
+          - NotFound
+          - UnprocessableEntity
+          - TooManyRequests
+          - InternalError
+          description: A human-readable short string which is the type of HTTP status, e.g. `OK` for a 200 HTTP status, or `BadRequest` for a 400 HTTP status.
+          x-stoplight:
+            id: l3mnpcga6n3rg
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error.v1'
+    Partial_product:
+      x-stoplight:
+        id: d9z7q7pp2cpg9
+      title: PartialProduct
+      type: object
+      description: Partial Commerce Product object.
+      required:
+      - source_id
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: qvoh36lrc02n8
+          description: Unique identifier generated by AfterShip.
+          example: f74f8af7578042b0991e104533158ad1
+        source_id:
+          type: string
+          x-stoplight:
+            id: 69wi7113ojvbf
+          description: A unique identifier for the product.
+          example: 00093d19495447a2a082bfe44d75658a
+        variants:
+          type: array
+          x-stoplight:
+            id: tzqnhrcqfvuu1
+          description: Variants of a product.
+          items:
+            x-stoplight:
+              id: mzzgj6ecdofbg
+            type: object
+            required:
+            - source_id
+            properties:
+              source_id:
+                type: string
+                x-stoplight:
+                  id: ezium75ikx5tb
+                description: A unique identifier for the product variant.
+                example: 00b0a1e329cf4ecc861136ed0ab94fc2
     Search_request:
       title: SearchRequest
       x-stoplight:
@@ -587,6 +794,37 @@ components:
         sort: -relevance
         page: 1
         limit: 20
+    Pagination.v1:
+      x-stoplight:
+        id: 9hqb9poi6rpo9
+      title: Pagination
+      type: object
+      description: ''
+      required:
+      - limit
+      - page
+      - total
+      properties:
+        limit:
+          type: number
+          x-stoplight:
+            id: ohdu6ql6x3rmf
+          example: 100
+          default: 10
+          minimum: 1
+          maximum: 100
+        page:
+          type: number
+          x-stoplight:
+            id: gz7ap10xaxw5s
+          example: 1
+          default: 1
+          maximum: 1000
+        total:
+          type: number
+          x-stoplight:
+            id: s5srwn7j8b9mj
+          example: 100
     Recommend_type:
       x-stoplight:
         id: q17knw21q1vnt
@@ -599,156 +837,110 @@ components:
       - COMPLEMENTS
       - SIMILAR
       description: Default algorithm configuration type.
-    Error.v1:
-      type: object
-      title: Error
-      examples:
-      - path: includeFilters
-        info: The include_filters field only supports tags, categories
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        code:
-          type: number
-          description: A 1 to 5-digit integer that represents the status of the request.
-        path:
-          type: string
-          description: JSON path of the request object where the error happens.
-        info:
-          type: string
-          description: The verbal description of the error that was detected in the request JSON at the specified JSON path.
-    Recommend_response:
-      title: RecommendResponse
+    Tagging_response:
+      title: TaggingResponse
       x-stoplight:
-        id: 2lrbrrm8m4nib
+        id: 2fh77f38s16yr
       type: object
       properties:
         meta:
           $ref: '#/components/schemas/Meta.v1'
           x-stoplight:
-            id: 8rdxq41ji46au
+            id: 8iu7kxnz3yttb
         data:
           type: object
           x-stoplight:
-            id: 6l84iyt6uale0
+            id: 783yix4byf0xf
           properties:
-            products:
+            predict_category:
+              $ref: '#/components/schemas/Predict_categories'
+              x-stoplight:
+                id: 80ar3hy4llmxd
+            predict_tags:
               type: array
               x-stoplight:
-                id: ogy96bv76fj9v
+                id: 29235ja7u6m12
               items:
-                $ref: '#/components/schemas/Partial_product'
+                $ref: '#/components/schemas/Predict_tags'
                 x-stoplight:
-                  id: ptj3zdl9e0v3r
-    Predict_tags:
+                  id: f7yf0iz8y2ves
+    Tagging_platform:
       x-stoplight:
-        id: f7yf0iz8y2ves
-      title: PredictTag
+        id: bik2lfr0jimzb
+      title: TaggingPlatform
+      enum:
+      - TTS
+      - Walmart
+      - AfterShip
+      description: Target e-commerce platform. The classification system of the platform will be used for prediction.
+    Tagging_request:
+      title: TaggingRequest
+      x-stoplight:
+        id: u55it5gfc2076
       type: object
-      description: Predict product tag object.
+      required:
+      - product
+      - platform
       properties:
-        tag:
+        product:
+          $ref: '#/components/schemas/Tagging_product'
+          x-stoplight:
+            id: 15awqw2p3a68o
+        platform:
+          $ref: '#/components/schemas/Tagging_platform'
+          x-stoplight:
+            id: bik2lfr0jimzb
+    Suggest_response:
+      title: SuggestResponse
+      x-stoplight:
+        id: 8y07dc4bs8ize
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+          x-stoplight:
+            id: bb2u900ifaw18
+        data:
+          type: object
+          x-stoplight:
+            id: cn07ag00tv6l7
+          properties:
+            suggestion:
+              type: object
+              x-stoplight:
+                id: czuf5e0xqz58p
+              description: Suggestion object.
+              properties:
+                texts:
+                  type: array
+                  x-stoplight:
+                    id: dxhb12hqeplt1
+                  description: Search text suggestions.
+                  items:
+                    x-stoplight:
+                      id: jj1ydm9oxwm0a
+                    type: string
+                    example: shirt
+    Predict_categories:
+      x-stoplight:
+        id: 80ar3hy4llmxd
+      title: PredictCategory
+      type: object
+      description: Predict product category object.
+      properties:
+        category:
           type: string
           x-stoplight:
-            id: srfassnhnlf26
-          description: Product label prediction result.
-          example: Edition|Limited Edition
+            id: ebr51h41q9unf
+          description: Prediction result of target platform product category.
+          example: Beauty & Personal Care > Makeup > Eyeshadow
         confidence_score:
           type: number
           x-stoplight:
-            id: s382p3flsl1do
-          description: The confidence score represents the probability that AfterShip Personalization believes the item has those tags. The higher the value, the more likely the product has these tags.
+            id: dci5uyxqw6yct
+          description: The confidence score represents the probability that AfterShip Personalization believes the item belongs to that category. The higher the value, the more likely the product belongs to that category.
           minimum: 0
           example: 0.92
-    Tagging_product:
-      x-stoplight:
-        id: 15awqw2p3a68o
-      title: TaggingProduct
-      type: object
-      description: Partial Commerce Product object to be tagged.
-      required:
-      - title
-      - varint
-      properties:
-        source_id:
-          type: string
-          x-stoplight:
-            id: o3954k8z36ez7
-          description: A unique identifier for the product.
-          example: '456212412'
-        title:
-          type: string
-          x-stoplight:
-            id: 0zkng7nl7o48q
-          description: The title of the product.
-          example: COVERGIRL Eye Enhancers 4-Kit Eyeshadow, 235 Pure Romance, 0.19 oz
-        categories:
-          type: array
-          x-stoplight:
-            id: q3c5ogsojr06b
-          description: Catogories for the product used for filtering and searching products.
-          items:
-            x-stoplight:
-              id: qlosi7ae3xkz3
-            type: string
-            example: Beauty & Personal Care
-        tags:
-          type: array
-          x-stoplight:
-            id: jajni0meqoc1t
-          description: Tags that are used for filtering and search.
-          items:
-            x-stoplight:
-              id: ohzwv1hgeihtu
-            type: string
-            example: Sale
-        description:
-          type: string
-          x-stoplight:
-            id: snpdfh79yek58
-          description: Description of a product.
-          example: 'COVERGIRL Eye Enhancers 4-Kit Eyeshadow, 235 Pure Romance, 0.19 oz. COVERGIRL Sheerly Nudes Eye Enhancers Eyeshadow Kit is the easiest way to create natural, flawless eyes that are perfect for your day AND nighttime looks! With its impeccably creamy-soft formula and incredible array of high-shimmer hues, you can wear anything from a light wash of beige hues, to bold taupes with reflective shimmer with this nude eyeshadow palette. You can also mix them all together for an ombre and natural eyeshadow look. But don''t forget about those adorable dual foam applicators in this eyeshadow palette. These easy-to-use wands have spongy tips so you can apply your eyeshadow in a breeze. BLENDS EASILY: The silky-sheer formula is easy to blend and buildable for perfect natural eyeshadow looks. SILKY SHEER FORMULA: Goes on smooth and stays put, so you can wear it alone or layer it with your favorite eyeshadow. DOUBLE ENDED APPLICATOR: The dual foam applicators have spongy tips for easy application. MULTIPLE OPTIONS: This eyeshadow palette is available in matte, pearly, & sparkly collections. CRUELTY FREE: We do not test our products on animals'
-        image_urls:
-          type: array
-          x-stoplight:
-            id: etfusx6c3zr87
-          description: URLs of the images.
-          items:
-            x-stoplight:
-              id: 1pgiszkmedigs
-            type: string
-            example: https://i5.walmartimages.com/seo/COVERGIRL-Eye-Enhancers-4-Kit-Eyeshadow-235-Pure-Romance-0-19-oz_76734754-76dc-4a3b-9287-c5995daaae87.511e781327fa72fb79ea8d0d75c10c87.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF
-        varint:
-          type: object
-          x-stoplight:
-            id: 4ru3htaqg9uc8
-          description: Variants of a product.
-          required:
-          - title
-          properties:
-            source_id:
-              type: string
-              x-stoplight:
-                id: w5q1xnhsuns2x
-              description: A unique identifier for the product variant.
-              example: a92138421
-            title:
-              type: string
-              x-stoplight:
-                id: synkfoqe95rjm
-              description: The title of the product variant
-              example: blue / small
-            image_urls:
-              type: array
-              x-stoplight:
-                id: vspx6v22s5ha1
-              description: URLs of the images.
-              items:
-                x-stoplight:
-                  id: 512t9445pt5dc
-                type: string
-                example: https://i5.walmartimages.com/seo/COVERGIRL-Eye-Enhancers-4-Kit-Eyeshadow-235-Pure-Romance-0-19-oz_76734754-76dc-4a3b-9287-c5995daaae87.511e781327fa72fb79ea8d0d75c10c87.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF
     Suggest_request:
       title: SuggestRequest
       x-stoplight:
@@ -777,86 +969,44 @@ components:
           default: 10
           maximum: 20
           example: 5
-    Partial_product:
+    Search_response:
+      title: SearchResponse
       x-stoplight:
-        id: d9z7q7pp2cpg9
-      title: PartialProduct
+        id: niecbi8x11f4i
       type: object
-      description: Partial Commerce Product object.
-      required:
-      - source_id
       properties:
-        id:
-          type: string
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
           x-stoplight:
-            id: qvoh36lrc02n8
-          description: Unique identifier generated by AfterShip.
-          example: f74f8af7578042b0991e104533158ad1
-        source_id:
-          type: string
+            id: 2sv02c3cjwlkg
+        data:
+          type: object
           x-stoplight:
-            id: 69wi7113ojvbf
-          description: A unique identifier for the product.
-          example: 00093d19495447a2a082bfe44d75658a
-        variants:
-          type: array
-          x-stoplight:
-            id: tzqnhrcqfvuu1
-          description: Variants of a product.
-          items:
-            x-stoplight:
-              id: mzzgj6ecdofbg
-            type: object
-            required:
-            - source_id
-            properties:
-              source_id:
-                type: string
+            id: qijbxdk7qsdlw
+          required:
+          - products
+          - pagination
+          properties:
+            products:
+              type: array
+              x-stoplight:
+                id: w7rtjnkgre71h
+              items:
+                $ref: '#/components/schemas/Partial_product'
                 x-stoplight:
-                  id: ezium75ikx5tb
-                description: A unique identifier for the product variant.
-                example: 00b0a1e329cf4ecc861136ed0ab94fc2
-    Meta.v1:
-      x-stoplight:
-        id: 2sv02c3cjwlkg
-      title: Meta
-      type: object
-      examples:
-      - code: 200
-        type: OK
-        message: Everything worked as expected.
-      required:
-      - code
-      properties:
-        code:
-          type: number
-          example: 200
-          description: A 1 to 5-digit integer that represents the status of the request.
-          x-stoplight:
-            id: y17kqny5tj8br
-        message:
-          type: string
-          description: A human-readable string message that gives a short description to the specific meta code.
-          x-stoplight:
-            id: hd5r8ha2s2ptd
-        type:
-          type: string
-          enum:
-          - OK
-          - BadRequest
-          - Unauthorized
-          - Forbidden
-          - NotFound
-          - UnprocessableEntity
-          - TooManyRequests
-          - InternalError
-          description: A human-readable short string which is the type of HTTP status, e.g. `OK` for a 200 HTTP status, or `BadRequest` for a 400 HTTP status.
-          x-stoplight:
-            id: l3mnpcga6n3rg
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error.v1'
+                  id: wn6dslcrz2y5k
+            faceting:
+              x-stoplight:
+                id: yd3fqiywz1p1r
+              type: object
+              additionalProperties:
+                x-stoplight:
+                  id: w5l6dhiy08lqk
+                type: object
+            pagination:
+              $ref: '#/components/schemas/Pagination.v1'
+              x-stoplight:
+                id: 9hqb9poi6rpo9
     Recommend_request:
       title: RecommendRequest
       x-stoplight:
@@ -921,179 +1071,29 @@ components:
             x-stoplight:
               id: d9z7q7pp2cpg9
       description: ''
-    Tagging_platform:
+    Recommend_response:
+      title: RecommendResponse
       x-stoplight:
-        id: bik2lfr0jimzb
-      title: TaggingPlatform
-      enum:
-      - TTS
-      - Walmart
-      - AfterShip
-      description: Target e-commerce platform. The classification system of the platform will be used for prediction.
-    Search_response:
-      title: SearchResponse
-      x-stoplight:
-        id: niecbi8x11f4i
+        id: 2lrbrrm8m4nib
       type: object
       properties:
         meta:
           $ref: '#/components/schemas/Meta.v1'
           x-stoplight:
-            id: 2sv02c3cjwlkg
+            id: 8rdxq41ji46au
         data:
           type: object
           x-stoplight:
-            id: qijbxdk7qsdlw
-          required:
-          - products
-          - pagination
+            id: 6l84iyt6uale0
           properties:
             products:
               type: array
               x-stoplight:
-                id: w7rtjnkgre71h
+                id: ogy96bv76fj9v
               items:
                 $ref: '#/components/schemas/Partial_product'
                 x-stoplight:
-                  id: wn6dslcrz2y5k
-            faceting:
-              x-stoplight:
-                id: yd3fqiywz1p1r
-              type: object
-              additionalProperties:
-                x-stoplight:
-                  id: w5l6dhiy08lqk
-                type: object
-            pagination:
-              $ref: '#/components/schemas/Pagination.v1'
-              x-stoplight:
-                id: 9hqb9poi6rpo9
-    Tagging_request:
-      title: TaggingRequest
-      x-stoplight:
-        id: u55it5gfc2076
-      type: object
-      required:
-      - product
-      - platform
-      properties:
-        product:
-          $ref: '#/components/schemas/Tagging_product'
-          x-stoplight:
-            id: 15awqw2p3a68o
-        platform:
-          $ref: '#/components/schemas/Tagging_platform'
-          x-stoplight:
-            id: bik2lfr0jimzb
-    Tagging_response:
-      title: TaggingResponse
-      x-stoplight:
-        id: 2fh77f38s16yr
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta.v1'
-          x-stoplight:
-            id: 8iu7kxnz3yttb
-        data:
-          type: object
-          x-stoplight:
-            id: 783yix4byf0xf
-          properties:
-            predict_category:
-              $ref: '#/components/schemas/Predict_categories'
-              x-stoplight:
-                id: 80ar3hy4llmxd
-            predict_tags:
-              type: array
-              x-stoplight:
-                id: 29235ja7u6m12
-              items:
-                $ref: '#/components/schemas/Predict_tags'
-                x-stoplight:
-                  id: f7yf0iz8y2ves
-    Suggest_response:
-      title: SuggestResponse
-      x-stoplight:
-        id: 8y07dc4bs8ize
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta.v1'
-          x-stoplight:
-            id: bb2u900ifaw18
-        data:
-          type: object
-          x-stoplight:
-            id: cn07ag00tv6l7
-          properties:
-            suggestion:
-              type: object
-              x-stoplight:
-                id: czuf5e0xqz58p
-              description: Suggestion object.
-              properties:
-                texts:
-                  type: array
-                  x-stoplight:
-                    id: dxhb12hqeplt1
-                  description: Search text suggestions.
-                  items:
-                    x-stoplight:
-                      id: jj1ydm9oxwm0a
-                    type: string
-                    example: shirt
-    Pagination.v1:
-      x-stoplight:
-        id: 9hqb9poi6rpo9
-      title: Pagination
-      type: object
-      description: ''
-      required:
-      - limit
-      - page
-      - total
-      properties:
-        limit:
-          type: number
-          x-stoplight:
-            id: ohdu6ql6x3rmf
-          example: 100
-          default: 10
-          minimum: 1
-          maximum: 100
-        page:
-          type: number
-          x-stoplight:
-            id: gz7ap10xaxw5s
-          example: 1
-          default: 1
-          maximum: 1000
-        total:
-          type: number
-          x-stoplight:
-            id: s5srwn7j8b9mj
-          example: 100
-    Predict_categories:
-      x-stoplight:
-        id: 80ar3hy4llmxd
-      title: PredictCategory
-      type: object
-      description: Predict product category object.
-      properties:
-        category:
-          type: string
-          x-stoplight:
-            id: ebr51h41q9unf
-          description: Prediction result of target platform product category.
-          example: Beauty & Personal Care > Makeup > Eyeshadow
-        confidence_score:
-          type: number
-          x-stoplight:
-            id: dci5uyxqw6yct
-          description: The confidence score represents the probability that AfterShip Personalization believes the item belongs to that category. The higher the value, the more likely the product belongs to that category.
-          minimum: 0
-          example: 0.92
+                  id: ptj3zdl9e0v3r
   securitySchemes:
     as-api-key:
       name: as-api-key

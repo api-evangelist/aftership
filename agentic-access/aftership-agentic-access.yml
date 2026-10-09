@@ -1,4 +1,4 @@
-generated: '2026-08-27'
+generated: '2026-09-23'
 method: generated
 source: openapi/aftership-address-api-openapi.yml, openapi/aftership-address-validations-beta-api-openapi.yml,
   openapi/aftership-cancel-labels-api-openapi.yml, openapi/aftership-cancel-pickups-api-openapi.yml,
@@ -18,12 +18,12 @@ description: Recommended x-agentic-access execution contracts, classified heuris
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 131
+  operations: 130
   by_action_class:
-    acting: 85
+    acting: 84
     connected: 46
   by_consequence:
-    write: 64
+    write: 63
     read: 46
     physical: 21
   human_in_the_loop_required: 0
@@ -334,16 +334,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /couriers
-  method: get
-  operationId: get-couriers
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /couriers/detect
   method: post
   operationId: detect-courier
@@ -558,18 +548,12 @@ operations:
   method: post
   operationId: post-discoveries-search
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /discoveries/tagging
   method: post
   operationId: post-discoveries-tagging
@@ -726,7 +710,7 @@ operations:
     audit: required
 - path: /item-tags
   method: get
-  operationId: get-item-tags
+  operationId: list-item-tags
   x-agentic-access:
     action-class: connected
     consequence: read

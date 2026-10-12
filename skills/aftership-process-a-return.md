@@ -17,7 +17,7 @@ operations:
   - post-returns-rma-rma_number-attach-shipments
   - post-returns-rma-rma_number-dropoffs-dropoff_id-drops
   - post-create-return-deep-link
-  - get-item-tags
+  - list-item-tags
 generated: '2026-08-27'
 method: generated
 source: openapi/aftership-returns-api-openapi.yml + https://www.aftership.com/docs/returns/quickstart/api-quick-start

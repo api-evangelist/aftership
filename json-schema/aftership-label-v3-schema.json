@@ -1,0 +1,714 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-label-v3-schema.json",
+  "title": "Label",
+  "description": "Label object: the description of label object\n<div style=\"visibility:hidden; height: 0\">This array contains service_options object. Please refer to [all service options](../../docs/enum/all-service-options.md) and [service options list](../../docs/enum/service-options-lists.md) for details.\nThis array contains reference data. Please refer to [reference](../model/premitive/reference.v3.json)  object for label object details.</div>",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-labels-api-openapi.yml#/components/schemas/Label.v3",
+  "x-stoplight": {
+    "id": "ylsizdlwyes98"
+  },
+  "type": "object",
+  "x-tags": [
+    "Resource"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Label ID\n"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "creating",
+        "created",
+        "cancelling",
+        "cancelled",
+        "manifesting",
+        "manifested",
+        "failed"
+      ]
+    },
+    "ship_date": {
+      "type": "string"
+    },
+    "tracking_numbers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "carrier_references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pickup_reference": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "iqkqrpp9ikcvx"
+            }
+          },
+          "pickup_location_code": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "iqkqrpp9ikcvx"
+            }
+          },
+          "piece_tracking_numbers": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "f72uui9k49xbc"
+            },
+            "items": {
+              "x-stoplight": {
+                "id": "wyu6ga7f9l0xf"
+              },
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "files": {
+      "$ref": "#/$defs/Files.v3"
+    },
+    "rate": {
+      "$ref": "#/$defs/Rate.v3"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "A formatted date.\n"
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "A formatted date.\n"
+    },
+    "references": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Reference information for a label\n",
+      "items": {
+        "type": "string"
+      }
+    },
+    "shipper_account": {
+      "$ref": "#/$defs/Reference.v3"
+    },
+    "service_type": {
+      "type": "string",
+      "description": "Service Types\n"
+    },
+    "order_number": {
+      "type": "string",
+      "description": "A user-defined order number used to identify an order.\n"
+    },
+    "service_options": {
+      "type": "array",
+      "additionalProperties": {
+        "type": "object"
+      },
+      "description": "This array contains service_options object. Please refer to [all service options](../../docs/enum/all-service-options.md) and [service types and service options list](../../docs/enum/service-types-and-service-options-lists.md) for details.",
+      "items": {
+        "type": "object"
+      }
+    },
+    "order_id": {
+      "type": "string",
+      "description": "Unique identification of the order."
+    },
+    "custom_fields": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "cjvgp0c32bvvq"
+      },
+      "description": "Custom fields that accept an object with string field.\n\n- Maximum charater limit for a key name: 30\n- Maximum count for a key-value pair in a custom field object: 25\n- Maximum value length: 512 charaters\n- Supported value type: String only (object and array are prohibited)",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "carrier_redirect_link": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Delivery instructions (delivery date or address) can be modified by visiting the link if supported by a carrier.",
+      "x-stoplight": {
+        "id": "0uax9qas0iiae"
+      }
+    }
+  },
+  "$defs": {
+    "Files.v3": {
+      "title": "Files",
+      "x-stoplight": {
+        "id": "pyla12mztsmlr"
+      },
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "description": "Files object: the description of 6 different file objects(label, qr_code, invoice, customs_declaration, packing_slip, manifest)",
+      "properties": {
+        "label": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": "string",
+              "enum": [
+                "3x5",
+                "4x4",
+                "4x5",
+                "4x6",
+                "4x6.75",
+                "4x7",
+                "4x8",
+                "a4",
+                "a5",
+                "a6",
+                "default",
+                "8.5x6.3"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": "string",
+              "description": "Label file type. (set to \"pdf\" if not provided)",
+              "enum": [
+                "pdf",
+                "zpl"
+              ]
+            }
+          }
+        },
+        "qr_code": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": "string",
+              "enum": [
+                "1x1",
+                "2x2"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": "string",
+              "enum": [
+                "png"
+              ]
+            }
+          }
+        },
+        "invoice": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "a4"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "pdf"
+              ]
+            }
+          }
+        },
+        "customs_declaration": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "a4"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "pdf"
+              ]
+            }
+          }
+        },
+        "packing_slip": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "a4"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "pdf"
+              ]
+            }
+          }
+        },
+        "manifest": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "a4"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "pdf"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Money.v3": {
+      "title": "Money",
+      "x-stoplight": {
+        "id": "okc04k6a0ua3b"
+      },
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "currency": {
+          "type": "string",
+          "enum": [
+            "AED",
+            "AFN",
+            "ALL",
+            "AMD",
+            "ANG",
+            "AOA",
+            "ARS",
+            "AUD",
+            "AWG",
+            "AZN",
+            "BAM",
+            "BBD",
+            "BDT",
+            "BGN",
+            "BHD",
+            "BIF",
+            "BMD",
+            "BND",
+            "BOB",
+            "BOV",
+            "BRL",
+            "BSD",
+            "BTN",
+            "BWP",
+            "BYN",
+            "BZD",
+            "CAD",
+            "CDF",
+            "CHE",
+            "CHF",
+            "CHW",
+            "CLF",
+            "CLP",
+            "CNY",
+            "COP",
+            "COU",
+            "CRC",
+            "CUC",
+            "CUP",
+            "CVE",
+            "CZK",
+            "DJF",
+            "DKK",
+            "DOP",
+            "DZD",
+            "EGP",
+            "ERN",
+            "ETB",
+            "EUR",
+            "FJD",
+            "FKP",
+            "GBP",
+            "GEL",
+            "GHS",
+            "GIP",
+            "GMD",
+            "GNF",
+            "GTQ",
+            "GYD",
+            "HKD",
+            "HNL",
+            "HRK",
+            "HTG",
+            "HUF",
+            "IDR",
+            "ILS",
+            "INR",
+            "IQD",
+            "IRR",
+            "ISK",
+            "JMD",
+            "JOD",
+            "JPY",
+            "KES",
+            "KGS",
+            "KHR",
+            "KMF",
+            "KPW",
+            "KRW",
+            "KWD",
+            "KYD",
+            "KZT",
+            "LAK",
+            "LBP",
+            "LKR",
+            "LRD",
+            "LSL",
+            "LYD",
+            "MAD",
+            "MDL",
+            "MGA",
+            "MKD",
+            "MMK",
+            "MNT",
+            "MOP",
+            "MRU",
+            "MUR",
+            "MVR",
+            "MWK",
+            "MXN",
+            "MXV",
+            "MYR",
+            "MZN",
+            "NAD",
+            "NGN",
+            "NIO",
+            "NOK",
+            "NPR",
+            "NZD",
+            "OMR",
+            "PAB",
+            "PEN",
+            "PGK",
+            "PHP",
+            "PKR",
+            "PLN",
+            "PYG",
+            "QAR",
+            "RON",
+            "RSD",
+            "RUB",
+            "RWF",
+            "SAR",
+            "SBD",
+            "SCR",
+            "SDG",
+            "SEK",
+            "SGD",
+            "SHP",
+            "SLL",
+            "SOS",
+            "SRD",
+            "SSP",
+            "STN",
+            "SVC",
+            "SYP",
+            "SZL",
+            "THB",
+            "TJS",
+            "TMT",
+            "TND",
+            "TOP",
+            "TRY",
+            "TTD",
+            "TWD",
+            "TZS",
+            "UAH",
+            "UGX",
+            "USD",
+            "USN",
+            "UYI",
+            "UYW",
+            "UYU",
+            "UZS",
+            "VES",
+            "VND",
+            "VUV",
+            "WST",
+            "XAF",
+            "XAU",
+            "XBA",
+            "XBB",
+            "XBC",
+            "XBD",
+            "XCD",
+            "XDR",
+            "XOF",
+            "XPD",
+            "XPF",
+            "XPT",
+            "XSU",
+            "XTS",
+            "XXX",
+            "YER",
+            "ZAR",
+            "ZMW",
+            "ZWL"
+          ],
+          "description": "Currency of Money"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Amount of Money"
+        }
+      },
+      "description": "The money object is used to represent the currency amount."
+    },
+    "Rate.v3": {
+      "title": "Rate",
+      "x-stoplight": {
+        "id": "gzq8uf274umrg"
+      },
+      "type": "object",
+      "description": "Rate object: the description of rate information",
+      "x-tags": [
+        "Resource"
+      ],
+      "properties": {
+        "charge_weight": {
+          "$ref": "#/$defs/Weight.v3"
+        },
+        "total_charge": {
+          "$ref": "#/$defs/Money.v3"
+        },
+        "shipper_account": {
+          "type": "object",
+          "description": "Shipper Account (brief information for rate and manifest responses)\n",
+          "required": [
+            "id",
+            "slug"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "slug": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        },
+        "service_type": {
+          "type": "string",
+          "description": "Service Types\n"
+        },
+        "service_name": {
+          "type": "string",
+          "description": "name of service\n"
+        },
+        "pickup_deadline": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "A formatted date.\n"
+        },
+        "booking_cut_off": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "A formatted date.\n"
+        },
+        "delivery_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "A formatted date.\n"
+        },
+        "transit_time": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "transit time"
+        },
+        "detailed_charges": {
+          "type": "array",
+          "description": "Courier charges, it may be different for different couriers",
+          "items": {
+            "type": [
+              "object",
+              "array"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "detailed charges type"
+              },
+              "charge": {
+                "$ref": "#/$defs/Money.v3"
+              }
+            }
+          }
+        },
+        "error_message": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "error information"
+        },
+        "info_message": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "other information of request/response"
+        }
+      },
+      "required": [
+        "shipper_account",
+        "service_type",
+        "service_name"
+      ]
+    },
+    "Reference.v3": {
+      "title": "Reference",
+      "x-stoplight": {
+        "id": "pwqp1323bhe8q"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id of referring object\n"
+        }
+      },
+      "x-tags": [
+        "Primitive"
+      ],
+      "description": "Reference object: the description of reference information"
+    },
+    "Weight.v3": {
+      "title": "Weight",
+      "x-stoplight": {
+        "id": "sqe056qqggctt"
+      },
+      "type": "object",
+      "description": "Weight object: unit weight of the item",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "description": "weight unit",
+          "enum": [
+            "lb",
+            "kg",
+            "oz",
+            "g"
+          ]
+        },
+        "value": {
+          "type": "number",
+          "description": "value of Weight"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    }
+  }
+}

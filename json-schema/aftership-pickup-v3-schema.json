@@ -1,0 +1,448 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-pickup-v3-schema.json",
+  "title": "Pickup",
+  "description": "Pickup object: the description of pickup information",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-pickups-api-openapi.yml#/components/schemas/Pickup.v3",
+  "x-stoplight": {
+    "id": "dnu7w6c2lryrd"
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "6shh25v9yirmh"
+      },
+      "description": "Pickup ID"
+    },
+    "status": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "bgy62xipikko1"
+      },
+      "enum": [
+        "creating",
+        "created",
+        "failed",
+        "cancelling",
+        "cancelled"
+      ]
+    },
+    "pickup_confirmation_numbers": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "xbigmmmrfzia7"
+      },
+      "description": "The confirmation numbers dispatch from carrier when pickup success",
+      "items": {
+        "x-stoplight": {
+          "id": "u8b77786y8vnt"
+        },
+        "type": "string"
+      }
+    },
+    "pickup_location_code": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "uz99jzt40cpfl"
+      },
+      "description": "The pickup location code dispatch from carrier when pickup success"
+    },
+    "pickup_date": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "uz99jzt40cpfl"
+      },
+      "description": "Pickup Date in YYYY-MM-DD"
+    },
+    "pickup_start_time": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "k4gfz3e6csald"
+      },
+      "description": "A formatted date"
+    },
+    "pickup_end_time": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "0lkft6pgp7k4h"
+      },
+      "description": "A formatted date"
+    },
+    "pickup_from": {
+      "$ref": "#/$defs/Address.v3",
+      "x-stoplight": {
+        "id": "nbr45ggkh7584"
+      },
+      "description": "Address object: the description of pickup address information"
+    },
+    "ship_to": {
+      "$ref": "#/$defs/Address.v3",
+      "x-stoplight": {
+        "id": "6x1lv7sr6iaig"
+      }
+    },
+    "label_ids": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "y481cmhzpq3qi"
+      },
+      "description": "Labels array, it contains all the label need to pickup",
+      "items": {
+        "x-stoplight": {
+          "id": "yovnn28g7hvny"
+        },
+        "type": "string"
+      }
+    },
+    "pickup_parcels": {
+      "x-stoplight": {
+        "id": "qa1rp9rr56de3"
+      },
+      "type": "array",
+      "description": "Parcel detail information",
+      "items": {
+        "$ref": "#/$defs/Pickup_parcel.v3",
+        "x-stoplight": {
+          "id": "fg0pldgeqxskl"
+        }
+      }
+    },
+    "shipper_account": {
+      "$ref": "#/$defs/Reference.v3",
+      "x-stoplight": {
+        "id": "ca9pepi3lt94n"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "gsq5ui26timom"
+      },
+      "description": "A formatted date"
+    },
+    "updated_at": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "t4i229d75aonh"
+      },
+      "description": "A formatted date"
+    }
+  },
+  "$defs": {
+    "Address.v3": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "c01e28f80783b"
+      },
+      "title": "Address",
+      "description": "Address object: the description of address information",
+      "x-tags": [
+        "Primitive"
+      ],
+      "required": [
+        "street1",
+        "country",
+        "contact_name"
+      ],
+      "properties": {
+        "street1": {
+          "type": "string",
+          "description": "address_line1 of address\n"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country in ISO 3166-1 alpha 3 code"
+        },
+        "contact_name": {
+          "type": "string",
+          "description": "contact_name of address"
+        },
+        "phone": {
+          "type": "string",
+          "description": "contact_phone of address"
+        },
+        "fax": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "fax_number of address"
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "email of address"
+        },
+        "company_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "company_name of address"
+        },
+        "street2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "address_line2 of address"
+        },
+        "street3": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "address_line3 of address"
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "city of address"
+        },
+        "state": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "state of address"
+        },
+        "postal_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "postal_code of address"
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "type of address",
+          "enum": [
+            "residential",
+            "business"
+          ]
+        },
+        "tax_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "tax id"
+        },
+        "tax_id_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "tax id type. Only applies to DHL Express, DHL eCommerce US, DHL eCommerce UK.\n- vat: Value-Added tax\n- gst: Goods and Service Tax\n- eori: European Union Registration and Identification\n- ioss: Import One Stop Shop\n- pan: Pan-Aarav\n- ukims: UK Internal Market Scheme\n- other: Other\n",
+          "x-stoplight": {
+            "id": "7rtl96ei81zeb"
+          },
+          "enum": [
+            "vat",
+            "gst",
+            "eori",
+            "ioss",
+            "pan",
+            "ukims",
+            "other"
+          ]
+        },
+        "identification_number": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "identification number",
+          "x-stoplight": {
+            "id": "u1nqwj1dvhw67"
+          }
+        },
+        "identification_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "identification type\n- mil: Military Number\n- nid: National Identity Card\n- pas: Passport\n- other: Other",
+          "x-stoplight": {
+            "id": "gh9ttmhi0xmik"
+          },
+          "enum": [
+            "mil",
+            "nid",
+            "pas",
+            "other"
+          ]
+        },
+        "eori_number": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "eori number"
+        },
+        "location": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "lat": {
+              "type": "number",
+              "description": "latitude number"
+            },
+            "lng": {
+              "type": "number",
+              "description": "longitude number"
+            }
+          }
+        }
+      }
+    },
+    "Dimension.v3": {
+      "title": "Dimension",
+      "x-stoplight": {
+        "id": "k8cgrqqlq38rn"
+      },
+      "type": "object",
+      "description": "Dimension object: the description of width/height/depth information",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "width": {
+          "type": "number",
+          "description": "width"
+        },
+        "height": {
+          "type": "number",
+          "description": "height"
+        },
+        "depth": {
+          "type": "number",
+          "description": "depth"
+        },
+        "unit": {
+          "type": "string",
+          "description": "unit",
+          "enum": [
+            "cm",
+            "in",
+            "mm",
+            "m",
+            "ft",
+            "yd"
+          ]
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "depth",
+        "unit"
+      ]
+    },
+    "Pickup_parcel.v3": {
+      "x-stoplight": {
+        "id": "rg6vxf4hy1fwr"
+      },
+      "title": "PickupParcel",
+      "type": "object",
+      "description": "PickupParcel object: the description of pickup parcel information",
+      "x-tags": [
+        "Primitive"
+      ],
+      "required": [
+        "weight",
+        "quantity"
+      ],
+      "properties": {
+        "weight": {
+          "$ref": "#/$defs/Weight.v3",
+          "x-stoplight": {
+            "id": "n58yvlrsix94t"
+          }
+        },
+        "quantity": {
+          "type": "integer",
+          "x-stoplight": {
+            "id": "cvh46u2j0b88f"
+          },
+          "description": "The quantity of the packages. Minimum: 1"
+        },
+        "service_type": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "44aaqvxjye7j3"
+          },
+          "description": "Service Type. Required for `UPS` and `DHL Express`"
+        },
+        "dimension": {
+          "$ref": "#/$defs/Dimension.v3",
+          "x-stoplight": {
+            "id": "vf9xym5596paa"
+          }
+        }
+      }
+    },
+    "Reference.v3": {
+      "title": "Reference",
+      "x-stoplight": {
+        "id": "pwqp1323bhe8q"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id of referring object\n"
+        }
+      },
+      "x-tags": [
+        "Primitive"
+      ],
+      "description": "Reference object: the description of reference information"
+    },
+    "Weight.v3": {
+      "title": "Weight",
+      "x-stoplight": {
+        "id": "sqe056qqggctt"
+      },
+      "type": "object",
+      "description": "Weight object: unit weight of the item",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "description": "weight unit",
+          "enum": [
+            "lb",
+            "kg",
+            "oz",
+            "g"
+          ]
+        },
+        "value": {
+          "type": "number",
+          "description": "value of Weight"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    }
+  }
+}

@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: AfterShip Gorgias Tracking Ticket
+  summary: Open a Gorgias ticket carrying live AfterShip tracking status.
+  description: Mirrors the Gorgias tile on the AfterShip integrations page ("Connect
+    Gorgias with AfterShip Tracking to sync real-time trac..."). Reads a tracking
+    and opens a support ticket with its status.
+  version: 1.0.0
+sourceDescriptions:
+- name: aftershipTracking
+  url: https://raw.githubusercontent.com/api-evangelist/aftership/refs/heads/main/openapi/aftership-tracking-api-openapi.yml
+  type: openapi
+- name: gorgiasTickets
+  url: https://raw.githubusercontent.com/api-evangelist/gorgias/refs/heads/main/openapi/gorgias-tickets-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: trackingToGorgiasTicket
+  inputs:
+    type: object
+    required:
+    - trackingId
+    - customerEmail
+    properties:
+      trackingId:
+        type: string
+      customerEmail:
+        type: string
+  steps:
+  - stepId: getTracking
+    operationId: $sourceDescriptions.aftershipTracking.get-tracking-by-id
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.trackingId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tag: $response.body#/data/tag
+      trackingNumber: $response.body#/data/tracking_number
+  - stepId: createTicket
+    operationId: $sourceDescriptions.gorgiasTickets.createTicket
+    requestBody:
+      contentType: application/json
+      payload:
+        channel: api
+        via: api
+        customer:
+          email: $inputs.customerEmail
+        subject: Shipment $steps.getTracking.outputs.trackingNumber
+        messages:
+        - channel: api
+          via: api
+          from_agent: false
+          body_text: 'Tracking status: $steps.getTracking.outputs.tag'
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      ticketId: $response.body#/id
+  outputs:
+    ticketId: $steps.createTicket.outputs.ticketId
+x-integration:
+  partner: gorgias
+  edge_evidence: https://www.aftership.com/integrations
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: enrich-pipeline local-v5
+  guessed_steps:
+  - step: createTicket
+    cause: partner-contract
+    why: createTicket 201 response declares no schema, so the ticket id output path
+      is not settled by the spec; payload fields taken from the Ticket schema name
+      list only.

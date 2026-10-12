@@ -1,0 +1,805 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-claim-schema.json",
+  "title": "Claim",
+  "description": "A claim resource.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-claims-api-openapi.yml#/components/schemas/Claim",
+  "x-stoplight": {
+    "id": "iidsz0rdrzaox"
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "approval_note": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A note included when the claim was approved."
+    },
+    "warranty_page": {
+      "type": "object",
+      "description": "The warranty page from which the claim was submitted.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the warranty page, UUID v4 without hyphens (e.g. 006b053d93564aaab58f95c0a90e06eb)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Merchant-configured name of the warranty page."
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Claim_item"
+      }
+    },
+    "order": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "customer": {
+          "type": "object",
+          "properties": {
+            "contact": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "phone_number": {
+                  "type": "string"
+                }
+              }
+            },
+            "last_name": {
+              "type": "string"
+            },
+            "first_name": {
+              "type": "string"
+            }
+          }
+        },
+        "order_name": {
+          "type": "string"
+        },
+        "place_of_purchase": {
+          "type": "object",
+          "properties": {
+            "proof": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "option": {
+              "type": "null"
+            }
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "under_review",
+        "approved",
+        "in_process",
+        "completed",
+        "rejected",
+        "canceled"
+      ]
+    },
+    "flow_type": {
+      "type": "string",
+      "enum": [
+        "no_order_number",
+        "required_order_number"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the claim was created."
+    },
+    "process_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the claim entered processing."
+    },
+    "rma_number": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the claim was last updated."
+    },
+    "approved_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the claim was approved."
+    },
+    "canceled_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the claim was canceled."
+    },
+    "rejected_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the claim was rejected."
+    },
+    "completed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the claim was completed."
+    },
+    "shipping_address": {
+      "$ref": "#/$defs/Address"
+    },
+    "contact_email": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "tatax8xv0ifi3"
+      }
+    },
+    "organization": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "cancel_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A free-form reason describing why the claim was canceled."
+    },
+    "reject_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A free-form reason describing why the claim was rejected."
+    },
+    "dynamic_fields": {
+      "type": "object",
+      "properties": {
+        "order_information": {
+          "type": "object",
+          "properties": {
+            "textArea1": {
+              "type": "object",
+              "description": "The textArea1 field is just an example, and its value depends on your dynamic setting on the warranty order information page.",
+              "x-stoplight": {
+                "id": "8hqyovntzurfo"
+              },
+              "properties": {
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "additional_information": {
+          "type": "object",
+          "properties": {
+            "textArea1": {
+              "type": "object",
+              "description": "The textArea1 field is just an example, and its value depends on your dynamic setting on the warranty additional information page.",
+              "x-stoplight": {
+                "id": "6usm6hid38axu"
+              },
+              "properties": {
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "inbound_shipments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/Claim_shipment"
+      }
+    },
+    "outbound_shipments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/Claim_shipment"
+      }
+    },
+    "receiving_status": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "vgis2u9jvcojq"
+      },
+      "default": "not_received",
+      "enum": [
+        "received",
+        "not_received"
+      ]
+    },
+    "received_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-stoplight": {
+        "id": "hlygyz29e0cyu"
+      },
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the returned item was marked as received."
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "7cc87e0eb2a0d"
+      },
+      "title": "Address",
+      "properties": {
+        "contact_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "lwugfye8q3bt0"
+          },
+          "description": "The name of the contact person associated with the address.\n"
+        },
+        "company_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "jozyy6y4x6hal"
+          },
+          "description": "The name of the company or organization associated with the address.\n"
+        },
+        "address_line_1": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "First line of the street address."
+        },
+        "address_line_2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Second line of the street address."
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The City Schema",
+          "description": "The location's city, town, or village."
+        },
+        "state": {
+          "title": "The State Schema",
+          "description": "The state or region of the location, such as a province, state, or prefecture.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "postal_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Postal_code Schema",
+          "description": "The postal code of the location (also known as zip code, postcode, Eircode, etc.)."
+        },
+        "country": {
+          "title": "The Country Schema",
+          "description": "The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phone_number": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "lio9zgakvzqhp"
+          },
+          "description": "The contact phone number associated with the address.\n"
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "ox7s3omkrkk3f"
+          },
+          "description": "The email associated with the address."
+        }
+      }
+    },
+    "Claim_item": {
+      "type": "object",
+      "title": "ClaimItem",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "product_title": {
+          "type": "string"
+        },
+        "variant_title": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "unit_price": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "string"
+            }
+          }
+        },
+        "discounted_price": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "string"
+            }
+          }
+        },
+        "tax": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Tax amount for the item. Only populated for order flow; null for non-order flows.",
+          "properties": {
+            "currency": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "string"
+            }
+          }
+        },
+        "discounted_price_including_tax": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Discounted price including tax (presentment). Only populated for order flow; null for non-order flows.",
+          "properties": {
+            "currency": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "string"
+            }
+          }
+        },
+        "product_tags": {
+          "type": "array",
+          "description": "Platform product tags. Populated for order and store product flows; empty array for CSV or no-source flows.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            }
+          }
+        },
+        "source_variant_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sku": {
+          "type": "string"
+        },
+        "issue_description": {
+          "type": "object",
+          "properties": {
+            "reason": {
+              "type": "string"
+            },
+            "subreason": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "x-stoplight": {
+                "id": "8mq63hp3hkoa1"
+              }
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "files": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "x-stoplight": {
+                  "id": "jd8itav7wje17"
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "process_item_resolution_method": {
+          "type": "string",
+          "enum": [
+            "repair_item",
+            "replace_item",
+            "send_repair_kit",
+            "issue_store_credit",
+            "other"
+          ]
+        },
+        "process_item_details": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "store_credit": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The store credit created for this claim item.",
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/Money",
+              "description": "The store credit value."
+            }
+          }
+        },
+        "replacement_order": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The replacement order created for this claim item.",
+          "properties": {
+            "order_name": {
+              "type": "string",
+              "description": "The replacement order name from the e-commerce platform."
+            },
+            "items": {
+              "type": "array",
+              "description": "Replacement order items.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "external_id": {
+                    "type": "string",
+                    "description": "The identifier of the replacement order item on the e-commerce platform."
+                  },
+                  "product_title": {
+                    "type": "string",
+                    "description": "The product title of the replacement item."
+                  },
+                  "variant_title": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The variant title of the replacement item."
+                  },
+                  "sku": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The SKU of the replacement item."
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "description": "The quantity of the replacement item."
+                  },
+                  "unit_price": {
+                    "$ref": "#/$defs/Money",
+                    "description": "The unit price of the replacement item."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "product_source": {
+          "type": "string"
+        },
+        "shopper_notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "item_tags": {
+          "type": "array",
+          "description": "Merchant item tags applied to this claim item.",
+          "items": {
+            "$ref": "#/$defs/ItemTag"
+          }
+        },
+        "merchant_uploaded_image_urls": {
+          "type": "array",
+          "x-stoplight": {
+            "id": "qa9ytrxgst8fg"
+          },
+          "items": {
+            "x-stoplight": {
+              "id": "k8itzg50h5wee"
+            },
+            "type": "string"
+          },
+          "description": "Merchant-uploaded image URLs attached to this claim item."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time, formatted in ISO 8601, when the claim item was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time, formatted in ISO 8601, when the claim item was last updated."
+        }
+      },
+      "description": "A claim item resource."
+    },
+    "Claim_shipment": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "vwub1e1ftq9be"
+      },
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "invoice_url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "qrcode": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "tracking_number": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tracking_slug": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tracking_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tracking_status_updated_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "The date and time, formatted in ISO 8601, when the shipment tracking status was last updated."
+        },
+        "item_selections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "ship_from": {
+          "x-stoplight": {
+            "id": "4afmgig3mqr4f"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Address",
+              "x-stoplight": {
+                "id": "fvzreq373bv1a"
+              }
+            },
+            {
+              "x-stoplight": {
+                "id": "xc5sqz17lbfms"
+              },
+              "type": [
+                "null"
+              ]
+            }
+          ]
+        },
+        "ship_to": {
+          "x-stoplight": {
+            "id": "g6qptlu8k4h9o"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Address",
+              "x-stoplight": {
+                "id": "l0s42i8q2832v"
+              }
+            },
+            {
+              "x-stoplight": {
+                "id": "cwwe6qrye7j91"
+              },
+              "type": [
+                "null"
+              ]
+            }
+          ]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time, formatted in ISO 8601, when the shipment was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time, formatted in ISO 8601, when the shipment was last updated."
+        }
+      },
+      "title": "ClaimShipment",
+      "description": "A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource."
+    },
+    "ItemTag": {
+      "title": "ItemTag",
+      "x-stoplight": {
+        "id": "8wwwff48758hx"
+      },
+      "type": "object",
+      "description": "A merchant-defined tag that can be added to claim items.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "r4fbyaanpn8i9"
+          },
+          "description": "The unique identifier for the item tag."
+        },
+        "name": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "4r1fyg1jjzxon"
+          },
+          "description": "The name of the item tag."
+        },
+        "created_at": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "a41sqbbkajk6n"
+          },
+          "description": "The date and time, formatted in ISO 8601, when the item tag was created.",
+          "format": "date-time"
+        }
+      }
+    },
+    "Money": {
+      "description": "The store credit value.",
+      "title": "Money",
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "description": "The amount represented with two decimal places."
+        },
+        "currency": {
+          "type": "string",
+          "description": "The currency code, using ISO 4217 standards."
+        }
+      }
+    }
+  }
+}

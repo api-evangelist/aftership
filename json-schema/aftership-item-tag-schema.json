@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-item-tag-schema.json",
+  "title": "ItemTag",
+  "description": "A merchant-defined tag that can be added to claim items.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-item-tags-api-openapi.yml#/components/schemas/ItemTag",
+  "x-stoplight": {
+    "id": "8wwwff48758hx"
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "r4fbyaanpn8i9"
+      },
+      "description": "The unique identifier for the item tag."
+    },
+    "name": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "4r1fyg1jjzxon"
+      },
+      "description": "The name of the item tag."
+    },
+    "created_at": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "a41sqbbkajk6n"
+      },
+      "description": "The date and time, formatted in ISO 8601, when the item tag was created.",
+      "format": "date-time"
+    }
+  }
+}

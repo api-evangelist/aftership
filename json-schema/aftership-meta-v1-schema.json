@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-meta-v1-schema.json",
+  "title": "Meta",
+  "description": "Meta data object.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-claims-api-openapi.yml#/components/schemas/Meta.v1",
+  "type": "object",
+  "x-tags": [
+    "Envelope"
+  ],
+  "properties": {
+    "code": {
+      "type": "number",
+      "default": 20000,
+      "enum": [
+        20000,
+        20100,
+        40400,
+        42200,
+        50000
+      ]
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Error.v1"
+      }
+    }
+  },
+  "required": [
+    "code",
+    "type",
+    "message"
+  ],
+  "$defs": {
+    "Error.v1": {
+      "type": "object",
+      "title": "Error",
+      "description": "Each error object contains a \"path\" key and an \"info\" key. The \"path\" is the JSON path of the request object to indicate the error location. The \"info\" is a human-readable description of the error.",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The json path of the request object to indicate the error location"
+        },
+        "info": {
+          "type": "string",
+          "description": "A human-readable description of the error."
+        }
+      },
+      "x-tags": [
+        "Envelope"
+      ]
+    }
+  }
+}

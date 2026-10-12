@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-store-v1-schema.json",
+  "title": "Store",
+  "description": "A `Store` represents your actual retail outlet or an online store. All other resources within the API, including orders and products, are linked to a specific store.\n\nBefore you can utilize any features of the Commerce API, you must first create a store. After the store has been created, you will obtain a store ID. This ID is necessary for creating subsequent resources within the API.\n\n> **Activating the store** <br />  <br /> Please contact the support team or your customer success manager together with your Storeto activate the connection between your store and AfterShip products.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-stores-api-openapi.yml#/components/schemas/Store.v1",
+  "x-stoplight": {
+    "id": "67b89e472d9db"
+  },
+  "type": "object",
+  "x-tags": [
+    "Resource"
+  ],
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "currency"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The id should be used as the `as-store-id` header value when calling other resource endpoints.\n\nThe unique identifier of the store. If a custom ID was provided in the request, that value is used; otherwise, a system-generated UUID is assigned. You can use this ID to manage this resource in related API calls.",
+      "maxLength": 32,
+      "readOnly": true
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The timestamp indicating when a store was created in AfterShip, formatted in ISO 8601 standard."
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "The timestamp indicating when a store was updated in AfterShip, formatted in ISO 8601 standard."
+    },
+    "source_created_at": {
+      "type": "string",
+      "description": "Timestamp marking the creation of the store, formatted in [ISO 8601 standard](https://en.wikipedia.org/wiki/ISO_8601)."
+    },
+    "source_updated_at": {
+      "type": "string",
+      "description": "The timestamp indicating the last update to the store, formatted in [ISO 8601 standard](https://en.wikipedia.org/wiki/ISO_8601)."
+    },
+    "platform": {
+      "description": "Identifies the platform associated with the store. For instance, a value of 'shopify' signifies that the store is based on Shopify, whereas a value of 'aftership' indicates the store originates from AfterShip.",
+      "type": "string",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The shop's name.",
+      "maxLength": 256
+    },
+    "support_email": {
+      "type": "string",
+      "description": "Support email address for your store.",
+      "maxLength": 256
+    },
+    "owner_email": {
+      "type": "string",
+      "description": "The email address of the store owner.",
+      "maxLength": 256
+    },
+    "timezone_identifier": {
+      "type": "string",
+      "description": "The name of the timezone of your store located, as defined by the [IANA timezone database standard](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).",
+      "maxLength": 256
+    },
+    "weight_unit": {
+      "type": "string",
+      "description": "Unit of measurement for weight used by the store, such as \"lb\" or \"kg\"",
+      "maxLength": 64
+    },
+    "currency": {
+      "type": "string",
+      "description": "Indicates the currency used by the store. The currency should be specified using the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) three-letter currency code (e.g., 'USD' for US Dollar, 'EUR' for Euro). ",
+      "maxLength": 3
+    },
+    "phone": {
+      "type": "string",
+      "description": "The store's phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).",
+      "maxLength": 256
+    },
+    "url": {
+      "type": "string",
+      "description": "The URL of the store.",
+      "maxLength": 2083
+    },
+    "description": {
+      "type": "string",
+      "description": "The text description of the store.",
+      "maxLength": 10240
+    },
+    "categories": {
+      "type": "array",
+      "description": "The supported product category name of the store.",
+      "maxItems": 100,
+      "items": {
+        "type": "string",
+        "maxLength": 256
+      }
+    },
+    "address": {
+      "description": "The physical address of the store.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "street_1": {
+          "type": "string",
+          "title": "The Street_1 Schema",
+          "description": "First line of the store's street address.",
+          "maxLength": 256
+        },
+        "street_2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_2 Schema",
+          "description": "Second line of the store's street address.",
+          "maxLength": 256
+        },
+        "street_3": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_3 Schema",
+          "description": "Third line of the store's street address.",
+          "maxLength": 256
+        },
+        "city": {
+          "type": "string",
+          "title": "The City Schema",
+          "description": "The city, town, or village where the store is located.",
+          "maxLength": 256
+        },
+        "state": {
+          "type": "string",
+          "title": "The State Schema",
+          "description": "Indicates the state or region where the store is located, such as a province, state, or prefecture.",
+          "maxLength": 256
+        },
+        "postal_code": {
+          "type": "string",
+          "title": "The Postal_code Schema",
+          "description": "The postal code of the store (also known as zip code, postcode, Eircode, etc.).",
+          "maxLength": 256
+        },
+        "country_region": {
+          "type": "string",
+          "title": "The Country Schema",
+          "description": "The store's country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coordinate": {
+          "type": "object",
+          "description": "Store address coordinate.",
+          "additionalProperties": false,
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "description": "The latitude of the store address."
+            },
+            "longitude": {
+              "type": "number",
+              "description": "The longitude of the store address."
+            }
+          }
+        }
+      }
+    }
+  }
+}

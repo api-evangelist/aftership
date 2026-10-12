@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-pickup-parcel-v3-schema.json",
+  "title": "PickupParcel",
+  "description": "PickupParcel object: the description of pickup parcel information",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-pickups-api-openapi.yml#/components/schemas/Pickup_parcel.v3",
+  "x-stoplight": {
+    "id": "rg6vxf4hy1fwr"
+  },
+  "type": "object",
+  "x-tags": [
+    "Primitive"
+  ],
+  "required": [
+    "weight",
+    "quantity"
+  ],
+  "properties": {
+    "weight": {
+      "$ref": "#/$defs/Weight.v3",
+      "x-stoplight": {
+        "id": "n58yvlrsix94t"
+      }
+    },
+    "quantity": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "cvh46u2j0b88f"
+      },
+      "description": "The quantity of the packages. Minimum: 1"
+    },
+    "service_type": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "44aaqvxjye7j3"
+      },
+      "description": "Service Type. Required for `UPS` and `DHL Express`"
+    },
+    "dimension": {
+      "$ref": "#/$defs/Dimension.v3",
+      "x-stoplight": {
+        "id": "vf9xym5596paa"
+      }
+    }
+  },
+  "$defs": {
+    "Dimension.v3": {
+      "title": "Dimension",
+      "x-stoplight": {
+        "id": "k8cgrqqlq38rn"
+      },
+      "type": "object",
+      "description": "Dimension object: the description of width/height/depth information",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "width": {
+          "type": "number",
+          "description": "width"
+        },
+        "height": {
+          "type": "number",
+          "description": "height"
+        },
+        "depth": {
+          "type": "number",
+          "description": "depth"
+        },
+        "unit": {
+          "type": "string",
+          "description": "unit",
+          "enum": [
+            "cm",
+            "in",
+            "mm",
+            "m",
+            "ft",
+            "yd"
+          ]
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "depth",
+        "unit"
+      ]
+    },
+    "Weight.v3": {
+      "title": "Weight",
+      "x-stoplight": {
+        "id": "sqe056qqggctt"
+      },
+      "type": "object",
+      "description": "Weight object: unit weight of the item",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "description": "weight unit",
+          "enum": [
+            "lb",
+            "kg",
+            "oz",
+            "g"
+          ]
+        },
+        "value": {
+          "type": "number",
+          "description": "value of Weight"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    }
+  }
+}

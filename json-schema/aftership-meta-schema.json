@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-meta-schema.json",
+  "title": "Meta",
+  "description": "Meta data object.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-address-api-openapi.yml#/components/schemas/Meta",
+  "x-stoplight": {
+    "id": "229b1ccd2b284"
+  },
+  "type": "object",
+  "x-tags": [
+    "Envelope"
+  ],
+  "properties": {
+    "code": {
+      "type": "number",
+      "description": "Code",
+      "default": 200,
+      "x-stoplight": {
+        "id": "4nvljuh02q2sp"
+      }
+    },
+    "message": {
+      "type": "string",
+      "description": "Error message, only exist if the response status is not 2xx",
+      "x-stoplight": {
+        "id": "n9cu3ycb9indb"
+      }
+    },
+    "details": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "bm31koxbo53j8"
+            }
+          },
+          "info": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 255,
+            "x-stoplight": {
+              "id": "c6h4q6tomjec8"
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "o8vwwley8u0v5"
+        }
+      },
+      "x-stoplight": {
+        "id": "0oqp8jy1bhybm"
+      }
+    }
+  },
+  "required": [
+    "code"
+  ]
+}

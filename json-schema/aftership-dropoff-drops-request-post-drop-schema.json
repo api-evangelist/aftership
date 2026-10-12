@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-dropoff-drops-request-post-drop-schema.json",
+  "title": "dropoff_drops_request_post_drop",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-return-dropoffs-api-openapi.yml#/components/schemas/Dropoff_drops_request_post_drop",
+  "x-stoplight": {
+    "id": "6fgkguamawsn7"
+  },
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "91x74zkiliwox"
+      },
+      "items": {
+        "$ref": "#/$defs/Dropoff_drop_item",
+        "x-stoplight": {
+          "id": "32js15uchnk68"
+        }
+      }
+    },
+    "dropped_at": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "y64hd47deeshb"
+      },
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "Dropoff_drop_item": {
+      "x-stoplight": {
+        "id": "32js15uchnk68"
+      },
+      "title": "dropoff_drop_item.v2",
+      "type": "object",
+      "properties": {
+        "external_order_item_id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "c4ccz3bk66kd1"
+          }
+        },
+        "quantity": {
+          "type": "integer",
+          "x-stoplight": {
+            "id": "s1osc9vs02t47"
+          },
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

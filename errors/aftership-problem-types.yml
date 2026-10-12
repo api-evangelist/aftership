@@ -4,18 +4,14 @@ source: https://www.aftership.com/docs/tracking/quickstart/request-errors
 docs: https://www.aftership.com/docs/tracking/quickstart/request-errors
 format: vendor-envelope
 rfc9457: false
-description: AfterShip does NOT use RFC 9457 application/problem+json. Every response — success or failure — is
-  wrapped in a vendor envelope with a meta block carrying a numeric code, a machine-readable type, an errors array
-  and a human message, plus a data object. The HTTP status and meta.code diverge in places (meta.code 4004 is returned
-  with HTTP 404; meta.code 4012 with HTTP 400), so clients must read meta.code, not the status line, to branch.
+description: AfterShip does NOT use RFC 9457 application/problem+json. Every response — success or failure — is wrapped in a vendor envelope with a meta block carrying a numeric code, a machine-readable type, an errors array and a human message, plus a data object. The HTTP status and meta.code diverge in places (meta.code 4004 is returned with HTTP 404; meta.code 4012 with HTTP 400), so clients must read meta.code, not the status line, to branch.
 envelope:
   shape: '{"meta":{"code":<int>,"type":"<string>","message":"<string>","errors":[]},"data":{}}'
   error_field: meta
   code_field: meta.code
   type_field: meta.type
   message_field: meta.message
-  observed: https://api.aftership.com/v4/openapi.json -> 401 {"data":{},"meta":{"type":"Unauthorized","code":401,"errors":[],"message":"The
-    API key is invalid."}}
+  observed: https://api.aftership.com/v4/openapi.json -> 401 {"data":{},"meta":{"type":"Unauthorized","code":401,"errors":[],"message":"The API key is invalid."}}
 notes:
 - '[field_name] is a dynamic value, e.g. destination_postal_code, tracking_account_number.'
 - 'The MCP gateway adds a "source" key to meta (observed value: "gateway").'
@@ -60,14 +56,11 @@ errors:
 - http_status: 400
   meta_code: 4011
   meta_type: BadRequest
-  message: 'Missing or invalid value of the required fields for this courier. Besides tracking_number, also required:
-    [field_name]'
+  message: 'Missing or invalid value of the required fields for this courier. Besides tracking_number, also required: [field_name]'
 - http_status: 400
   meta_code: 4012
   meta_type: BadRequest
-  message: Unable to import shipment — carrier not on the approved auto-detection list, carrier unrecognised, invalid
-    tracking-number format, carrier no longer supported, or tracking number does not belong to a carrier in that
-    group.
+  message: Unable to import shipment — carrier not on the approved auto-detection list, carrier unrecognised, invalid tracking-number format, carrier no longer supported, or tracking number does not belong to a carrier in that group.
 - http_status: 400
   meta_code: 4013
   meta_type: BadRequest
@@ -116,3 +109,119 @@ errors:
   meta_code: 504
   meta_type: InternalError
   message: Something went wrong on AfterShip's end.
+problems:
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 400
+  description: The request was invalid or cannot be otherwise served.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4001
+  description: Invalid JSON data.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4003
+  description: Tracking already exists.
+- status: 404
+  title: BadRequest
+  type: BadRequest
+  code: 4004
+  description: Tracking does not exist.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4005
+  description: The value of tracking_number is invalid.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4007
+  description: tracking_number is required.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4008
+  description: The value of [field_name] is invalid.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4009
+  description: '[field_name] is required.'
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4010
+  description: The value of slug is invalid.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4011
+  description: 'Missing or invalid value of the required fields for this courier. Besides tracking_number, also required: [field_name]'
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4012
+  description: Unable to import shipment — carrier not on the approved auto-detection list, carrier unrecognised, invalid tracking-number format, carrier no longer supported, or tracking number does not belong to a carrier in that group.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4013
+  description: Retrack is not allowed. You can only retrack an inactive tracking.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4015
+  description: The value of id is invalid.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4016
+  description: Retrack is not allowed. You can only retrack each shipment once.
+- status: 400
+  title: BadRequest
+  type: BadRequest
+  code: 4017
+  description: The format of tracking_number is invalid.
+- status: 401
+  title: Unauthorized
+  type: Unauthorized
+  code: 401
+  description: The API key is invalid.
+- status: 403
+  title: Forbidden
+  type: Forbidden
+  code: 403
+  description: The request is understood, but it has been refused or access is not allowed.
+- status: 404
+  title: NotFound
+  type: NotFound
+  code: 404
+  description: The URI requested is invalid or the resource requested does not exist.
+- status: 429
+  title: TooManyRequests
+  type: TooManyRequests
+  code: 429
+  description: You have exceeded the API call rate limit.
+- status: 500
+  title: InternalError
+  type: InternalError
+  code: 500
+  description: Something went wrong on AfterShip's end.
+- status: 502
+  title: InternalError
+  type: InternalError
+  code: 502
+  description: Something went wrong on AfterShip's end.
+- status: 503
+  title: InternalError
+  type: InternalError
+  code: 503
+  description: Something went wrong on AfterShip's end.
+- status: 504
+  title: InternalError
+  type: InternalError
+  code: 504
+  description: Something went wrong on AfterShip's end.

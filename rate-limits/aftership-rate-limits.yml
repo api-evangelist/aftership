@@ -1,3 +1,4 @@
+name: AfterShip API Rate Limits
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
@@ -15,8 +16,7 @@ sources:
 - https://www.aftership.com/docs/returns/quickstart/rate-limit
 - https://www.aftership.com/pricing
 - https://github.com/AfterShip/tracking-and-returns-mcp
-description: Published AfterShip rate limits. From API version 2024-07 the Tracking API moved from a flat 10 req/sec
-  per organization to a PER-ENDPOINT limit; Shipping and Returns remain a flat 10 req/sec per organization.
+description: Published AfterShip rate limits. From API version 2024-07 the Tracking API moved from a flat 10 req/sec per organization to a PER-ENDPOINT limit; Shipping and Returns remain a flat 10 req/sec per organization.
 tags:
 - Shipping
 - Tracking
@@ -77,6 +77,8 @@ limits:
   window: 1 second
   limit: 20
   unit: requests
+  limit_text: POST /trackings 20
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API GET /trackings
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -84,6 +86,8 @@ limits:
   window: 1 second
   limit: 6
   unit: requests
+  limit_text: GET /trackings 6
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API GET /trackings/:id
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -91,6 +95,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: GET /trackings/:id 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API PUT /trackings/:id
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -98,6 +104,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: PUT /trackings/:id 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API DELETE /trackings/:id
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -105,6 +113,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: DELETE /trackings/:id 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API POST /trackings/:id/retrack
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -112,6 +122,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: POST /trackings/:id/retrack 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API POST /trackings/:id/mark-as-completed
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -119,6 +131,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: POST /trackings/:id/mark-as-completed 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API POST /couriers/detect
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -126,6 +140,8 @@ limits:
   window: 1 second
   limit: 3
   unit: requests
+  limit_text: POST /couriers/detect 3
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API GET /couriers
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -133,6 +149,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: GET /couriers 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API POST /estimated-delivery-date/predict
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -140,6 +158,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: POST /estimated-delivery-date/predict 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API POST /estimated-delivery-date/predict-batch
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -147,6 +167,8 @@ limits:
   window: 1 second
   limit: 20
   unit: requests
+  limit_text: POST /estimated-delivery-date/predict-batch 20
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API POST /courier-connections
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -154,6 +176,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: POST /courier-connections 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API GET /courier-connections
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -161,6 +185,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: GET /courier-connections 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API GET /courier-connections/:id
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -168,6 +194,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: GET /courier-connections/:id 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API PATCH /courier-connections/:id
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -175,6 +203,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: PATCH /courier-connections/:id 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Tracking API DELETE /courier-connections/:id
   api: AfterShip Tracking API
   scope: per-endpoint per-organization
@@ -182,6 +212,8 @@ limits:
   window: 1 second
   limit: 5
   unit: requests
+  limit_text: DELETE /courier-connections/:id 5
+  source: https://www.aftership.com/docs/tracking/quickstart/rate-limit
 - name: Shipping API default
   api: AfterShip Shipping API
   scope: per-organization
@@ -189,6 +221,7 @@ limits:
   limit: 10
   unit: requests
   source: https://www.aftership.com/docs/shipping/quickstart/rate-limit
+  limit_quote: AfterShip Shipping API has a rate limit of 10 requests/sec per organization to optimize performance.
 - name: Returns API default
   api: AfterShip Returns API
   scope: per-organization
@@ -196,6 +229,7 @@ limits:
   limit: 10
   unit: requests
   source: https://www.aftership.com/docs/returns/quickstart/rate-limit
+  limit_quote: AfterShip API has a rate limit of 10 requests/second per organization to optimize performance.
 - name: Tracking plan ceiling (Premium)
   api: AfterShip Tracking API
   scope: per-plan
@@ -204,19 +238,20 @@ limits:
   unit: requests
   note: 'The Tracking pricing page states "Premium: 10 req/sec rate limit" for the API & webhooks entitlement.'
   source: https://www.aftership.com/pricing
+  limit_quote: 'Premium: 10 req/sec rate limit.'
 - name: Public MCP fair-use limit
   api: AfterShip Tracking & Returns MCP
   scope: per-client (shared public endpoint)
   window: unstated
   limit: null
   unit: requests
-  note: 'mcp.aftership.com applies an undisclosed fair-use limit. Probed 2026-08-27: POST https://mcp.aftership.com/tracking/public
-    returned HTTP 429 with ratelimit-limit: 100000, ratelimit-remaining: 0, retry-after: 31090 and meta.type TooManyRequests
-    / meta.source gateway. Automated or bulk use is explicitly not permitted.'
-  source: https://github.com/AfterShip/tracking-and-returns-mcp
+  note: 'mcp.aftership.com applies an undisclosed fair-use limit. Probed 2026-08-27: POST https://mcp.aftership.com/tracking/public returned HTTP 429 with ratelimit-limit: 100000, ratelimit-remaining: 0, retry-after: 31090 and meta.type TooManyRequests / meta.source gateway. Automated or bulk use is explicitly not permitted.'
+  source: https://raw.githubusercontent.com/AfterShip/tracking-and-returns-mcp/main/README.md
+  limit_quote: AfterShip applies rate limits to this endpoint.
 policies:
 - name: Backoff Strategy
   description: Clients should implement exponential backoff with jitter and honor Retry-After on 429.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+note: Rows whose quote lives on a page other than the file-level source carry it as limit_quote with that row's own source (each fetched verbatim 2026-10-12); check-economics.py reads only the file-level source.

@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-claim-shipment-schema.json",
+  "title": "ClaimShipment",
+  "description": "A shipment in the shared claim resource. API-only async label generation fields are documented on shipment operation responses, not in this shared resource.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-claim-shipments-api-openapi.yml#/components/schemas/Claim_shipment",
+  "type": "object",
+  "x-stoplight": {
+    "id": "vwub1e1ftq9be"
+  },
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "label": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "invoice_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qrcode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "tracking_number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tracking_slug": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tracking_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tracking_status_updated_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the shipment tracking status was last updated."
+    },
+    "item_selections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "ship_from": {
+      "x-stoplight": {
+        "id": "4afmgig3mqr4f"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/Address",
+          "x-stoplight": {
+            "id": "fvzreq373bv1a"
+          }
+        },
+        {
+          "x-stoplight": {
+            "id": "xc5sqz17lbfms"
+          },
+          "type": [
+            "null"
+          ]
+        }
+      ]
+    },
+    "ship_to": {
+      "x-stoplight": {
+        "id": "g6qptlu8k4h9o"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/Address",
+          "x-stoplight": {
+            "id": "l0s42i8q2832v"
+          }
+        },
+        {
+          "x-stoplight": {
+            "id": "cwwe6qrye7j91"
+          },
+          "type": [
+            "null"
+          ]
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the shipment was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the shipment was last updated."
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "7cc87e0eb2a0d"
+      },
+      "title": "Address",
+      "properties": {
+        "contact_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "lwugfye8q3bt0"
+          },
+          "description": "The name of the contact person associated with the address.\n"
+        },
+        "company_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "jozyy6y4x6hal"
+          },
+          "description": "The name of the company or organization associated with the address.\n"
+        },
+        "address_line_1": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "First line of the street address."
+        },
+        "address_line_2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Second line of the street address."
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The City Schema",
+          "description": "The location's city, town, or village."
+        },
+        "state": {
+          "title": "The State Schema",
+          "description": "The state or region of the location, such as a province, state, or prefecture.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "postal_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Postal_code Schema",
+          "description": "The postal code of the location (also known as zip code, postcode, Eircode, etc.)."
+        },
+        "country": {
+          "title": "The Country Schema",
+          "description": "The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phone_number": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "lio9zgakvzqhp"
+          },
+          "description": "The contact phone number associated with the address.\n"
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "ox7s3omkrkk3f"
+          },
+          "description": "The email associated with the address."
+        }
+      }
+    }
+  }
+}

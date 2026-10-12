@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-claim-v1-schema.json",
+  "title": "Claim",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-claims-api-openapi.yml#/components/schemas/Claim.v1",
+  "x-stoplight": {
+    "id": "hqvy8ouqw523t"
+  },
+  "x-tags": [
+    "Resource"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "claim id"
+    },
+    "number": {
+      "type": "string",
+      "minLength": 1,
+      "description": "claim number from insurance supplier"
+    },
+    "coverage_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "coverage id that this claim is associated with"
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "unsubmitted",
+        "submitted",
+        "under_review",
+        "approved",
+        "paid",
+        "closed",
+        "denied",
+        "waiting_on_documents"
+      ],
+      "description": "claim status"
+    },
+    "resolve_status": {
+      "type": "string",
+      "minLength": 1,
+      "enum": [
+        "precheck",
+        "to_be_resolved",
+        "denied",
+        "resolved"
+      ],
+      "description": "resolve status of the claim"
+    },
+    "resolved_resolution_method": {
+      "type": "string",
+      "description": "resolution method selected for the claim",
+      "enum": [
+        "refund_to_original_payment_method",
+        "refund_to_store_credit",
+        "reship_the_same_items",
+        "other"
+      ]
+    },
+    "resolved_resolution_detail": {
+      "type": "string",
+      "description": "details on resolution method when resolved_resolution_method is 'other'"
+    },
+    "customer_resolution_method": {
+      "type": "string",
+      "description": "resolution method expected by the customer",
+      "enum": [
+        "refund_to_original_payment_method",
+        "refund_to_store_credit",
+        "reship_the_same_items",
+        "other"
+      ]
+    },
+    "customer_resolution_detail": {
+      "type": "string",
+      "description": "details on resolution method expected by the customer when customer_resolution_method is 'other'"
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$",
+      "description": "created time in ISO8601 format"
+    },
+    "updated_at": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$",
+      "description": "updated time in ISO8601 format"
+    },
+    "issue_type": {
+      "type": "string",
+      "enum": [
+        "lost_in_transit",
+        "porch_pirated",
+        "damaged"
+      ],
+      "description": "type of issue for the claim"
+    },
+    "issue_desc": {
+      "type": "string",
+      "description": "description of the issue"
+    },
+    "issue_commodity": {
+      "type": "string",
+      "description": "the category of the claimed items"
+    },
+    "claim_items": {
+      "type": "array",
+      "description": "items being claimed",
+      "items": {
+        "$ref": "#/$defs/Order_item.v1"
+      }
+    },
+    "claim_items_amount": {
+      "$ref": "#/$defs/Amount.v1"
+    },
+    "shipping_amount": {
+      "$ref": "#/$defs/Amount.v1"
+    },
+    "claim_submit_amount": {
+      "$ref": "#/$defs/Amount.v1"
+    },
+    "uploaded_documents": {
+      "type": "array",
+      "description": "supporting documents",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file_name": {
+            "type": "string",
+            "description": "name of the uploaded document"
+          },
+          "created_at": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$",
+            "description": "created time in ISO8601 format"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL of the uploaded document"
+          },
+          "url_expired_at": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$",
+            "description": "expiration time of the URL in ISO8601 format"
+          }
+        }
+      }
+    },
+    "required_document_types": {
+      "type": "array",
+      "description": "types of documents required for the claim approval process",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_payment_amount": {
+      "$ref": "#/$defs/Amount.v1"
+    },
+    "paid_at": {
+      "type": "string",
+      "description": "time payment was made for the claim in ISO8601 format \n\n null if the claim has not been paid yet",
+      "minLength": 1,
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$"
+    }
+  },
+  "$defs": {
+    "Amount.v1": {
+      "title": "Amount",
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "amount": {
+          "type": "string",
+          "pattern": "^[0-9.]+$"
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "minLength": 3,
+          "maxLength": 3,
+          "description": "Only support USD for now"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ]
+    },
+    "Order_item.v1": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "33da09c0dfb8c"
+      },
+      "title": "Order Item",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "description": "A globally-unique identifier for the item."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the product"
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "Quantity of the item in order"
+        },
+        "unit_insured_amount": {
+          "$ref": "#/$defs/Amount.v1",
+          "description": "Indicate the insured amount for each individual  item"
+        },
+        "sku": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SKU of the product item"
+        },
+        "image_urls": {
+          "type": "array",
+          "description": "item image urls",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "source_id",
+        "title",
+        "quantity",
+        "unit_insured_amount"
+      ]
+    }
+  }
+}

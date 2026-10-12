@@ -1,0 +1,175 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/aftership/integrations
+- https://n8n.io/integrations/aftership/
+- https://composio.dev/toolkits/aftership
+- https://monid.ai/tools/aftership
+checked:
+- https://apps.shopify.com/aftership
+- https://composio.dev/toolkits/aftership
+- https://monid.ai/tools/aftership
+- https://n8n.io/integrations/aftership/
+- https://www.aftership.com/integrations
+- https://www.make.com/en/integrations/aftership
+- https://zapier.com/apps/aftership/integrations
+summary: null
+marketplace_apps: []
+edges:
+- partner_name: Shopify
+  partner: shopify
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: ecommerce-platform
+  operations: []
+  use_case: Connect Shopify with AfterShip Tracking to centralize shipment...
+- partner_name: Salesforce Commerce Cloud
+  partner: salesforce-commerce-cloud
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: ecommerce-platform
+  operations: []
+  use_case: Integrate SFCC with AfterShip Tracking to deliver real-time sh...
+- partner_name: Magento 2
+  partner: magento
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: ecommerce-platform
+  operations: []
+  use_case: Use Magento 2 with AfterShip Tracking to automate shipment imp...
+- partner_name: BigCommerce
+  partner: bigcommerce
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: ecommerce-platform
+  operations: []
+  use_case: BigCommerce with AfterShip Tracking to auto-sync order...
+- partner_name: eBay
+  partner: ebay
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: ecommerce-platform
+  operations: []
+  use_case: Connect your eBay US store to AfterShip Tracking to auto-impor...
+- partner_name: Amazon Seller Central
+  partner: amazon-seller-central
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: ecommerce-platform
+  operations: []
+  use_case: Connect Amazon Seller Central with AfterShip to auto-import MC...
+- partner_name: Klaviyo
+  partner: klaviyo
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: marketing
+  operations: []
+  use_case: Connect Klaviyo with AfterShip Tracking to power automated shi...
+- partner_name: Gorgias
+  partner: gorgias
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: customer-support
+  operations: []
+  use_case: Connect Gorgias with AfterShip Tracking to sync real-time trac...
+- partner_name: Attentive
+  partner: attentive
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: marketing
+  operations: []
+  use_case: Connect Attentive with AfterShip Tracking to feed shipment sta...
+- partner_name: ShipStation
+  partner: shipstation
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: 3pl-warehouse
+  operations: []
+  use_case: Connect ShipStation to AfterShip Tracking to auto-import shipm...
+- partner_name: NetSuite
+  partner: netsuite
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: erp
+  operations: []
+  use_case: Connect NetSuite with AfterShip Tracking to automate shipment ...
+- partner_name: Yotpo
+  partner: yotpo
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: reviews-loyalty
+  operations: []
+- partner_name: ShipBob
+  partner: shipbob
+  type: claimed
+  evidence: https://www.aftership.com/integrations
+  marketplace: null
+  direction: unknown
+  category: 3pl-warehouse
+  operations: []
+- partner_name: Shopify
+  partner: shopify
+  type: marketplace
+  evidence: https://apps.shopify.com/aftership
+  marketplace: Shopify App Store
+  direction: provider-built
+  category: ecommerce-platform
+  operations: []
+templates: []
+skips:
+- label: Shopify
+  cause: catalog
+  why: Not authored this run (cap and time); both specs present, workflow not yet generated.
+- label: Salesforce Commerce Cloud
+  cause: catalog
+  why: Not authored this run (cap and time); both specs present, workflow not yet generated.
+- label: Magento 2
+  cause: catalog
+  why: Not authored this run (cap and time); both specs present, workflow not yet generated.
+- label: BigCommerce
+  cause: catalog
+  why: Not authored this run (cap and time); both specs present, workflow not yet generated.
+- label: eBay
+  cause: catalog
+  why: Not authored this run (cap and time); both specs present, workflow not yet generated.
+- label: Amazon Seller Central
+  cause: catalog
+  why: Not authored this run (cap and time); both specs present, workflow not yet generated.
+- label: Attentive
+  cause: catalog
+  why: Not authored this run (cap and time); both specs present, workflow not yet generated.
+- label: Yotpo
+  cause: catalog
+  why: Not authored this run (cap and time); both specs present, workflow not yet generated.
+- label: ShipBob
+  cause: catalog
+  why: Not authored this run (cap and time); both specs present, workflow not yet generated.
+- label: NetSuite
+  cause: partner-contract
+  why: No NetSuite OpenAPI in the catalog (pending-partner-spec).
+note: Zapier and n8n app pages return 404; make.com returned 403 to a plain GET. Partners recorded are the named
+  tiles on the AfterShip integrations page (fetched 2026-10-12, 200); the "All" lists behind it were not enumerated.

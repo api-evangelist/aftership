@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-reference-v3-schema.json",
+  "title": "Reference",
+  "description": "Reference object: the description of reference information",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-pickups-api-openapi.yml#/components/schemas/Reference.v3",
+  "x-stoplight": {
+    "id": "pwqp1323bhe8q"
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "id of referring object\n"
+    }
+  },
+  "x-tags": [
+    "Primitive"
+  ]
+}

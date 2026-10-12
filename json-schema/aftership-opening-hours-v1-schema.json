@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-opening-hours-v1-schema.json",
+  "title": "OpeningHours",
+  "description": "The regular opening hours of the location.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-locations-api-openapi.yml#/components/schemas/Opening_hours.v1",
+  "x-stoplight": {
+    "id": "n7s4wz0dwk5ai"
+  },
+  "type": "object",
+  "properties": {
+    "sunday": {
+      "$ref": "#/$defs/Opening_hour_period.v1"
+    },
+    "monday": {
+      "$ref": "#/$defs/Opening_hour_period.v1"
+    },
+    "tuesday": {
+      "$ref": "#/$defs/Opening_hour_period.v1"
+    },
+    "wednesday": {
+      "$ref": "#/$defs/Opening_hour_period.v1"
+    },
+    "thursday": {
+      "$ref": "#/$defs/Opening_hour_period.v1"
+    },
+    "friday": {
+      "$ref": "#/$defs/Opening_hour_period.v1"
+    },
+    "saturday": {
+      "$ref": "#/$defs/Opening_hour_period.v1"
+    }
+  },
+  "x-tags": [
+    "Primitive"
+  ],
+  "$defs": {
+    "Opening_hour_period.v1": {
+      "title": "OpeningHourPeriod",
+      "x-stoplight": {
+        "id": "2g4w1syylsphw"
+      },
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day.",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "open": {
+          "type": "boolean",
+          "default": false,
+          "x-stoplight": {
+            "id": "qbb3rmmdfdhxy"
+          },
+          "description": "Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`."
+        },
+        "from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "fvyfkui68t3gt"
+          },
+          "description": "The start time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`."
+        },
+        "to": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "sk5yjthy1achl"
+          },
+          "description": "The end time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`."
+        }
+      }
+    }
+  }
+}

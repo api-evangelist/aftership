@@ -1,0 +1,1470 @@
+{
+  "@context": {
+    "@vocab": "https://aftership.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "aftership": "https://aftership.com/schema#",
+    "Address": "aftership:Address",
+    "type": {
+      "@id": "aftership:type",
+      "@type": "xsd:string"
+    },
+    "street_1": {
+      "@id": "aftership:street_1",
+      "@type": "xsd:string"
+    },
+    "street_2": {
+      "@id": "aftership:street_2",
+      "@type": "xsd:string"
+    },
+    "street_3": {
+      "@id": "aftership:street_3",
+      "@type": "xsd:string"
+    },
+    "street_number": {
+      "@id": "aftership:street_number",
+      "@type": "xsd:string"
+    },
+    "district": {
+      "@id": "aftership:district",
+      "@type": "xsd:string"
+    },
+    "county": {
+      "@id": "aftership:county",
+      "@type": "xsd:string"
+    },
+    "postal_code": {
+      "@id": "aftership:postal_code",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "aftership:city",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "aftership:state"
+    },
+    "country_region": {
+      "@id": "aftership:country_region"
+    },
+    "coordinate": {
+      "@id": "aftership:coordinate"
+    },
+    "Meta": "aftership:Meta",
+    "code": {
+      "@id": "aftership:code",
+      "@type": "xsd:decimal"
+    },
+    "message": {
+      "@id": "aftership:message",
+      "@type": "xsd:string"
+    },
+    "details": {
+      "@id": "aftership:details",
+      "@container": "@list"
+    },
+    "Error": "aftership:Error",
+    "path": {
+      "@id": "aftership:path",
+      "@type": "xsd:string"
+    },
+    "info": {
+      "@id": "aftership:info",
+      "@type": "xsd:string"
+    },
+    "Address_validation.v3": "aftership:Address_validation.v3",
+    "id": {
+      "@id": "aftership:id",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "aftership:status",
+      "@type": "xsd:string"
+    },
+    "created_at": {
+      "@id": "aftership:created_at",
+      "@type": "xsd:string"
+    },
+    "updated_at": {
+      "@id": "aftership:updated_at",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "aftership:address",
+      "@type": "@id"
+    },
+    "recommended_address": {
+      "@id": "aftership:recommended_address",
+      "@type": "@id"
+    },
+    "Address.v3": "aftership:Address.v3",
+    "street1": {
+      "@id": "aftership:street1",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "aftership:country",
+      "@type": "xsd:string"
+    },
+    "contact_name": {
+      "@id": "aftership:contact_name",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "aftership:phone",
+      "@type": "xsd:string"
+    },
+    "fax": {
+      "@id": "aftership:fax",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "aftership:email",
+      "@type": "xsd:string"
+    },
+    "company_name": {
+      "@id": "aftership:company_name",
+      "@type": "xsd:string"
+    },
+    "street2": {
+      "@id": "aftership:street2",
+      "@type": "xsd:string"
+    },
+    "street3": {
+      "@id": "aftership:street3",
+      "@type": "xsd:string"
+    },
+    "tax_id": {
+      "@id": "aftership:tax_id",
+      "@type": "xsd:string"
+    },
+    "tax_id_type": {
+      "@id": "aftership:tax_id_type",
+      "@type": "xsd:string"
+    },
+    "identification_number": {
+      "@id": "aftership:identification_number",
+      "@type": "xsd:string"
+    },
+    "identification_type": {
+      "@id": "aftership:identification_type",
+      "@type": "xsd:string"
+    },
+    "eori_number": {
+      "@id": "aftership:eori_number",
+      "@type": "xsd:string"
+    },
+    "location": {
+      "@id": "aftership:location"
+    },
+    "Meta.v3": "aftership:Meta.v3",
+    "retryable": {
+      "@id": "aftership:retryable",
+      "@type": "xsd:boolean"
+    },
+    "Error.v3": "aftership:Error.v3",
+    "Reference.v3": "aftership:Reference.v3",
+    "Cancel_label.v3": "aftership:Cancel_label.v3",
+    "label": {
+      "@id": "aftership:label",
+      "@type": "@id"
+    },
+    "Cancel_pickup.v3": "aftership:Cancel_pickup.v3",
+    "pickup": {
+      "@id": "aftership:pickup",
+      "@type": "@id"
+    },
+    "ItemTag": "aftership:ItemTag",
+    "name": {
+      "@id": "aftership:name",
+      "@type": "xsd:string"
+    },
+    "Meta_20000": "aftership:Meta_20000",
+    "Money": "aftership:Money",
+    "amount": {
+      "@id": "aftership:amount",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "aftership:currency",
+      "@type": "xsd:string"
+    },
+    "Claim_item": "aftership:Claim_item",
+    "source_id": {
+      "@id": "aftership:source_id",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "aftership:title",
+      "@type": "xsd:string"
+    },
+    "product_title": {
+      "@id": "aftership:product_title",
+      "@type": "xsd:string"
+    },
+    "variant_title": {
+      "@id": "aftership:variant_title",
+      "@type": "xsd:string"
+    },
+    "quantity": {
+      "@id": "aftership:quantity",
+      "@type": "xsd:integer"
+    },
+    "unit_price": {
+      "@id": "aftership:unit_price"
+    },
+    "discounted_price": {
+      "@id": "aftership:discounted_price"
+    },
+    "tax": {
+      "@id": "aftership:tax"
+    },
+    "discounted_price_including_tax": {
+      "@id": "aftership:discounted_price_including_tax"
+    },
+    "product_tags": {
+      "@id": "aftership:product_tags",
+      "@container": "@list"
+    },
+    "image": {
+      "@id": "aftership:image"
+    },
+    "source_variant_id": {
+      "@id": "aftership:source_variant_id",
+      "@type": "xsd:string"
+    },
+    "sku": {
+      "@id": "aftership:sku",
+      "@type": "xsd:string"
+    },
+    "issue_description": {
+      "@id": "aftership:issue_description"
+    },
+    "process_item_resolution_method": {
+      "@id": "aftership:process_item_resolution_method",
+      "@type": "xsd:string"
+    },
+    "process_item_details": {
+      "@id": "aftership:process_item_details",
+      "@type": "xsd:string"
+    },
+    "store_credit": {
+      "@id": "aftership:store_credit"
+    },
+    "replacement_order": {
+      "@id": "aftership:replacement_order"
+    },
+    "product_source": {
+      "@id": "aftership:product_source",
+      "@type": "xsd:string"
+    },
+    "shopper_notes": {
+      "@id": "aftership:shopper_notes",
+      "@type": "xsd:string"
+    },
+    "item_tags": {
+      "@id": "aftership:item_tags",
+      "@container": "@list"
+    },
+    "merchant_uploaded_image_urls": {
+      "@id": "aftership:merchant_uploaded_image_urls",
+      "@container": "@list"
+    },
+    "Claim_shipment": "aftership:Claim_shipment",
+    "tracking_number": {
+      "@id": "aftership:tracking_number",
+      "@type": "xsd:string"
+    },
+    "tracking_slug": {
+      "@id": "aftership:tracking_slug",
+      "@type": "xsd:string"
+    },
+    "tracking_status": {
+      "@id": "aftership:tracking_status",
+      "@type": "xsd:string"
+    },
+    "tracking_status_updated_at": {
+      "@id": "aftership:tracking_status_updated_at",
+      "@type": "xsd:dateTime"
+    },
+    "item_selections": {
+      "@id": "aftership:item_selections",
+      "@container": "@list"
+    },
+    "ship_from": {
+      "@id": "aftership:ship_from"
+    },
+    "ship_to": {
+      "@id": "aftership:ship_to"
+    },
+    "Error.v1": "aftership:Error.v1",
+    "Meta.v1": "aftership:Meta.v1",
+    "errors": {
+      "@id": "aftership:errors",
+      "@container": "@list"
+    },
+    "Amount.v1": "aftership:Amount.v1",
+    "Pagination.v1": "aftership:Pagination.v1",
+    "page": {
+      "@id": "aftership:page",
+      "@type": "xsd:decimal"
+    },
+    "limit": {
+      "@id": "aftership:limit",
+      "@type": "xsd:decimal"
+    },
+    "total": {
+      "@id": "aftership:total",
+      "@type": "xsd:decimal"
+    },
+    "Order_item.v1": "aftership:Order_item.v1",
+    "unit_insured_amount": {
+      "@id": "aftership:unit_insured_amount",
+      "@type": "@id"
+    },
+    "image_urls": {
+      "@id": "aftership:image_urls",
+      "@container": "@list"
+    },
+    "Claim.v1": "aftership:Claim.v1",
+    "number": {
+      "@id": "aftership:number",
+      "@type": "xsd:string"
+    },
+    "coverage_id": {
+      "@id": "aftership:coverage_id",
+      "@type": "xsd:string"
+    },
+    "resolve_status": {
+      "@id": "aftership:resolve_status",
+      "@type": "xsd:string"
+    },
+    "resolved_resolution_method": {
+      "@id": "aftership:resolved_resolution_method",
+      "@type": "xsd:string"
+    },
+    "resolved_resolution_detail": {
+      "@id": "aftership:resolved_resolution_detail",
+      "@type": "xsd:string"
+    },
+    "customer_resolution_method": {
+      "@id": "aftership:customer_resolution_method",
+      "@type": "xsd:string"
+    },
+    "customer_resolution_detail": {
+      "@id": "aftership:customer_resolution_detail",
+      "@type": "xsd:string"
+    },
+    "issue_type": {
+      "@id": "aftership:issue_type",
+      "@type": "xsd:string"
+    },
+    "issue_desc": {
+      "@id": "aftership:issue_desc",
+      "@type": "xsd:string"
+    },
+    "issue_commodity": {
+      "@id": "aftership:issue_commodity",
+      "@type": "xsd:string"
+    },
+    "claim_items": {
+      "@id": "aftership:claim_items",
+      "@container": "@list"
+    },
+    "claim_items_amount": {
+      "@id": "aftership:claim_items_amount",
+      "@type": "@id"
+    },
+    "shipping_amount": {
+      "@id": "aftership:shipping_amount",
+      "@type": "@id"
+    },
+    "claim_submit_amount": {
+      "@id": "aftership:claim_submit_amount",
+      "@type": "@id"
+    },
+    "uploaded_documents": {
+      "@id": "aftership:uploaded_documents",
+      "@container": "@list"
+    },
+    "required_document_types": {
+      "@id": "aftership:required_document_types",
+      "@container": "@list"
+    },
+    "claim_payment_amount": {
+      "@id": "aftership:claim_payment_amount",
+      "@type": "@id"
+    },
+    "paid_at": {
+      "@id": "aftership:paid_at",
+      "@type": "xsd:string"
+    },
+    "Claim": "aftership:Claim",
+    "note": {
+      "@id": "aftership:note",
+      "@type": "xsd:string"
+    },
+    "approval_note": {
+      "@id": "aftership:approval_note",
+      "@type": "xsd:string"
+    },
+    "warranty_page": {
+      "@id": "aftership:warranty_page"
+    },
+    "items": {
+      "@id": "aftership:items",
+      "@container": "@list"
+    },
+    "order": {
+      "@id": "aftership:order"
+    },
+    "flow_type": {
+      "@id": "aftership:flow_type",
+      "@type": "xsd:string"
+    },
+    "process_at": {
+      "@id": "aftership:process_at",
+      "@type": "xsd:dateTime"
+    },
+    "rma_number": {
+      "@id": "aftership:rma_number",
+      "@type": "xsd:string"
+    },
+    "approved_at": {
+      "@id": "aftership:approved_at",
+      "@type": "xsd:dateTime"
+    },
+    "canceled_at": {
+      "@id": "aftership:canceled_at",
+      "@type": "xsd:dateTime"
+    },
+    "rejected_at": {
+      "@id": "aftership:rejected_at",
+      "@type": "xsd:dateTime"
+    },
+    "completed_at": {
+      "@id": "aftership:completed_at",
+      "@type": "xsd:dateTime"
+    },
+    "shipping_address": {
+      "@id": "aftership:shipping_address",
+      "@type": "@id"
+    },
+    "contact_email": {
+      "@id": "aftership:contact_email",
+      "@type": "xsd:string"
+    },
+    "organization": {
+      "@id": "aftership:organization"
+    },
+    "cancel_reason": {
+      "@id": "aftership:cancel_reason",
+      "@type": "xsd:string"
+    },
+    "reject_reason": {
+      "@id": "aftership:reject_reason",
+      "@type": "xsd:string"
+    },
+    "dynamic_fields": {
+      "@id": "aftership:dynamic_fields"
+    },
+    "inbound_shipments": {
+      "@id": "aftership:inbound_shipments",
+      "@container": "@list"
+    },
+    "outbound_shipments": {
+      "@id": "aftership:outbound_shipments",
+      "@container": "@list"
+    },
+    "receiving_status": {
+      "@id": "aftership:receiving_status",
+      "@type": "xsd:string"
+    },
+    "received_at": {
+      "@id": "aftership:received_at",
+      "@type": "xsd:dateTime"
+    },
+    "Credential_field": "aftership:Credential_field",
+    "required": {
+      "@id": "aftership:required",
+      "@type": "xsd:boolean"
+    },
+    "Courier": "aftership:Courier",
+    "slug": {
+      "@id": "aftership:slug",
+      "@type": "xsd:string"
+    },
+    "other_name": {
+      "@id": "aftership:other_name",
+      "@type": "xsd:string"
+    },
+    "web_url": {
+      "@id": "aftership:web_url",
+      "@type": "@id"
+    },
+    "required_fields": {
+      "@id": "aftership:required_fields",
+      "@container": "@list"
+    },
+    "optional_fields": {
+      "@id": "aftership:optional_fields",
+      "@container": "@list"
+    },
+    "default_language": {
+      "@id": "aftership:default_language",
+      "@type": "xsd:string"
+    },
+    "support_languages": {
+      "@id": "aftership:support_languages",
+      "@container": "@list"
+    },
+    "service_from_country_regions": {
+      "@id": "aftership:service_from_country_regions",
+      "@container": "@list"
+    },
+    "credentials": {
+      "@id": "aftership:credentials"
+    },
+    "Courier_response.v1": "aftership:Courier_response.v1",
+    "meta": {
+      "@id": "aftership:meta",
+      "@type": "@id"
+    },
+    "data": {
+      "@id": "aftership:data"
+    },
+    "Additional_fields.v1": "aftership:Additional_fields.v1",
+    "Courier_connection": "aftership:Courier_connection",
+    "courier_slug": {
+      "@id": "aftership:courier_slug",
+      "@type": "xsd:string"
+    },
+    "Courier_connection_response_get_multiple": "aftership:Courier_connection_response_get_multiple",
+    "Courier.v3": "aftership:Courier.v3",
+    "operations": {
+      "@id": "aftership:operations"
+    },
+    "paper_sizes": {
+      "@id": "aftership:paper_sizes",
+      "@container": "@list"
+    },
+    "courier_service_types": {
+      "@id": "aftership:courier_service_types",
+      "@container": "@list"
+    },
+    "courier_box_types": {
+      "@id": "aftership:courier_box_types",
+      "@container": "@list"
+    },
+    "Coverage.v1": "aftership:Coverage.v1",
+    "policy_number": {
+      "@id": "aftership:policy_number",
+      "@type": "xsd:string"
+    },
+    "policy_detail_url": {
+      "@id": "aftership:policy_detail_url",
+      "@type": "xsd:string"
+    },
+    "premium": {
+      "@id": "aftership:premium",
+      "@type": "@id"
+    },
+    "effective_time": {
+      "@id": "aftership:effective_time",
+      "@type": "xsd:string"
+    },
+    "expiration_time": {
+      "@id": "aftership:expiration_time",
+      "@type": "xsd:string"
+    },
+    "sender_address": {
+      "@id": "aftership:sender_address",
+      "@type": "@id"
+    },
+    "trackings": {
+      "@id": "aftership:trackings",
+      "@container": "@list"
+    },
+    "subtotal": {
+      "@id": "aftership:subtotal",
+      "@type": "@id"
+    },
+    "shipping_total": {
+      "@id": "aftership:shipping_total",
+      "@type": "@id"
+    },
+    "premium_paid_by": {
+      "@id": "aftership:premium_paid_by",
+      "@type": "xsd:string"
+    },
+    "Address.v1": "aftership:Address.v1",
+    "first_name": {
+      "@id": "aftership:first_name",
+      "@type": "xsd:string"
+    },
+    "last_name": {
+      "@id": "aftership:last_name",
+      "@type": "xsd:string"
+    },
+    "Tracking.v1": "aftership:Tracking.v1",
+    "ship_date": {
+      "@id": "aftership:ship_date",
+      "@type": "xsd:date"
+    },
+    "Predict_tags": "aftership:Predict_tags",
+    "tag": {
+      "@id": "aftership:tag",
+      "@type": "xsd:string"
+    },
+    "confidence_score": {
+      "@id": "aftership:confidence_score",
+      "@type": "xsd:decimal"
+    },
+    "Tagging_product": "aftership:Tagging_product",
+    "categories": {
+      "@id": "aftership:categories",
+      "@container": "@list"
+    },
+    "tags": {
+      "@id": "aftership:tags",
+      "@container": "@list"
+    },
+    "description": {
+      "@id": "aftership:description",
+      "@type": "xsd:string"
+    },
+    "varint": {
+      "@id": "aftership:varint"
+    },
+    "Partial_product": "aftership:Partial_product",
+    "variants": {
+      "@id": "aftership:variants",
+      "@container": "@list"
+    },
+    "Search_request": "aftership:Search_request",
+    "session_id": {
+      "@id": "aftership:session_id",
+      "@type": "xsd:string"
+    },
+    "query": {
+      "@id": "aftership:query",
+      "@type": "xsd:string"
+    },
+    "image_url": {
+      "@id": "aftership:image_url",
+      "@type": "xsd:string"
+    },
+    "image_base64": {
+      "@id": "aftership:image_base64",
+      "@type": "xsd:string"
+    },
+    "include_filters": {
+      "@id": "aftership:include_filters",
+      "@container": "@list"
+    },
+    "exclude_filters": {
+      "@id": "aftership:exclude_filters",
+      "@container": "@list"
+    },
+    "faceting": {
+      "@id": "aftership:faceting",
+      "@container": "@list"
+    },
+    "sort": {
+      "@id": "aftership:sort",
+      "@type": "xsd:string"
+    },
+    "Recommend_type": "aftership:Recommend_type",
+    "Tagging_response": "aftership:Tagging_response",
+    "Tagging_platform": "aftership:Tagging_platform",
+    "Tagging_request": "aftership:Tagging_request",
+    "product": {
+      "@id": "aftership:product",
+      "@type": "@id"
+    },
+    "platform": {
+      "@id": "aftership:platform",
+      "@type": "@id"
+    },
+    "Suggest_response": "aftership:Suggest_response",
+    "Predict_categories": "aftership:Predict_categories",
+    "category": {
+      "@id": "aftership:category",
+      "@type": "xsd:string"
+    },
+    "Suggest_request": "aftership:Suggest_request",
+    "Search_response": "aftership:Search_response",
+    "Recommend_request": "aftership:Recommend_request",
+    "products": {
+      "@id": "aftership:products",
+      "@container": "@list"
+    },
+    "Recommend_response": "aftership:Recommend_response",
+    "Tracking.v2": "aftership:Tracking.v2",
+    "substatus": {
+      "@id": "aftership:substatus",
+      "@type": "xsd:string"
+    },
+    "additional_fields": {
+      "@id": "aftership:additional_fields"
+    },
+    "tracking_url": {
+      "@id": "aftership:tracking_url",
+      "@type": "xsd:string"
+    },
+    "shipping_provider": {
+      "@id": "aftership:shipping_provider",
+      "@type": "xsd:string"
+    },
+    "Shipping_method.v2": "aftership:Shipping_method.v2",
+    "Opening_hours.v2": "aftership:Opening_hours.v2",
+    "sunday": {
+      "@id": "aftership:sunday",
+      "@container": "@list"
+    },
+    "monday": {
+      "@id": "aftership:monday",
+      "@container": "@list"
+    },
+    "tuesday": {
+      "@id": "aftership:tuesday",
+      "@container": "@list"
+    },
+    "wednesday": {
+      "@id": "aftership:wednesday",
+      "@container": "@list"
+    },
+    "thursday": {
+      "@id": "aftership:thursday",
+      "@container": "@list"
+    },
+    "friday": {
+      "@id": "aftership:friday",
+      "@container": "@list"
+    },
+    "saturday": {
+      "@id": "aftership:saturday",
+      "@container": "@list"
+    },
+    "Address.v2": "aftership:Address.v2",
+    "raw_location": {
+      "@id": "aftership:raw_location",
+      "@type": "xsd:string"
+    },
+    "Estimated_delivery_date.v1": "aftership:Estimated_delivery_date.v1",
+    "estimated_delivery_date_min": {
+      "@id": "aftership:estimated_delivery_date_min",
+      "@type": "xsd:date"
+    },
+    "estimated_delivery_date_max": {
+      "@id": "aftership:estimated_delivery_date_max",
+      "@type": "xsd:date"
+    },
+    "Attachment.v1": "aftership:Attachment.v1",
+    "filename": {
+      "@id": "aftership:filename",
+      "@type": "xsd:string"
+    },
+    "content_type": {
+      "@id": "aftership:content_type",
+      "@type": "xsd:string"
+    },
+    "Money.v1": "aftership:Money.v1",
+    "symbol": {
+      "@id": "aftership:symbol",
+      "@type": "xsd:string"
+    },
+    "Store.v1": "aftership:Store.v1",
+    "url": {
+      "@id": "aftership:url",
+      "@type": "xsd:string"
+    },
+    "logo_url": {
+      "@id": "aftership:logo_url",
+      "@type": "xsd:string"
+    },
+    "Opening_hour_period.v2": "aftership:Opening_hour_period.v2",
+    "open": {
+      "@id": "aftership:open",
+      "@type": "xsd:boolean"
+    },
+    "from": {
+      "@id": "aftership:from",
+      "@type": "xsd:string"
+    },
+    "to": {
+      "@id": "aftership:to",
+      "@type": "xsd:string"
+    },
+    "Pickup_address.v2": "aftership:Pickup_address.v2",
+    "Date_time.v1": "aftership:Date_time.v1",
+    "date": {
+      "@id": "aftership:date",
+      "@type": "xsd:string"
+    },
+    "time": {
+      "@id": "aftership:time",
+      "@type": "xsd:string"
+    },
+    "utc_offset": {
+      "@id": "aftership:utc_offset",
+      "@type": "xsd:decimal"
+    },
+    "timezone_identifier": {
+      "@id": "aftership:timezone_identifier",
+      "@type": "xsd:string"
+    },
+    "Email_header.v1": "aftership:Email_header.v1",
+    "value": {
+      "@id": "aftership:value",
+      "@type": "xsd:string"
+    },
+    "Order.v2": "aftership:Order.v2",
+    "placed_at": {
+      "@id": "aftership:placed_at",
+      "@type": "@id"
+    },
+    "store": {
+      "@id": "aftership:store",
+      "@type": "@id"
+    },
+    "shipping_method": {
+      "@id": "aftership:shipping_method",
+      "@type": "@id"
+    },
+    "billing_address": {
+      "@id": "aftership:billing_address",
+      "@type": "@id"
+    },
+    "tax_total": {
+      "@id": "aftership:tax_total",
+      "@type": "@id"
+    },
+    "discount_total": {
+      "@id": "aftership:discount_total",
+      "@type": "@id"
+    },
+    "other_prices": {
+      "@id": "aftership:other_prices",
+      "@container": "@list"
+    },
+    "estimated_delivery_datetime": {
+      "@id": "aftership:estimated_delivery_datetime",
+      "@type": "@id"
+    },
+    "requires_shipping": {
+      "@id": "aftership:requires_shipping",
+      "@type": "xsd:boolean"
+    },
+    "Order_total.v1": "aftership:Order_total.v1",
+    "Subtotal.v1": "aftership:Subtotal.v1",
+    "Order.v1": "aftership:Order.v1",
+    "order_number": {
+      "@id": "aftership:order_number",
+      "@type": "xsd:string"
+    },
+    "order_url": {
+      "@id": "aftership:order_url",
+      "@type": "xsd:string"
+    },
+    "order_status": {
+      "@id": "aftership:order_status",
+      "@type": "xsd:string"
+    },
+    "order_total": {
+      "@id": "aftership:order_total",
+      "@type": "@id"
+    },
+    "estimated_delivery_date": {
+      "@id": "aftership:estimated_delivery_date",
+      "@type": "@id"
+    },
+    "Shipping_total.v1": "aftership:Shipping_total.v1",
+    "Money.v2": "aftership:Money.v2",
+    "raw_symbol": {
+      "@id": "aftership:raw_symbol",
+      "@type": "xsd:string"
+    },
+    "Pickup.v2": "aftership:Pickup.v2",
+    "instructions": {
+      "@id": "aftership:instructions",
+      "@type": "xsd:string"
+    },
+    "barcode": {
+      "@id": "aftership:barcode"
+    },
+    "pickup_action_url": {
+      "@id": "aftership:pickup_action_url",
+      "@type": "xsd:string"
+    },
+    "available_datetime": {
+      "@id": "aftership:available_datetime"
+    },
+    "Date_time.v2": "aftership:Date_time.v2",
+    "Pickup_location.v2": "aftership:Pickup_location.v2",
+    "raw_address": {
+      "@id": "aftership:raw_address",
+      "@type": "xsd:string"
+    },
+    "raw_opening_hours": {
+      "@id": "aftership:raw_opening_hours",
+      "@type": "xsd:string"
+    },
+    "opening_hours": {
+      "@id": "aftership:opening_hours",
+      "@type": "@id"
+    },
+    "Phone.v2": "aftership:Phone.v2",
+    "calling_code": {
+      "@id": "aftership:calling_code",
+      "@type": "xsd:string"
+    },
+    "phone_number": {
+      "@id": "aftership:phone_number",
+      "@type": "xsd:string"
+    },
+    "Estimated_delivery_datetime.v2": "aftership:Estimated_delivery_datetime.v2",
+    "min": {
+      "@id": "aftership:min",
+      "@type": "@id"
+    },
+    "max": {
+      "@id": "aftership:max",
+      "@type": "@id"
+    },
+    "raw_delivery_text": {
+      "@id": "aftership:raw_delivery_text",
+      "@type": "xsd:string"
+    },
+    "Order_item.v2": "aftership:Order_item.v2",
+    "external_product_id": {
+      "@id": "aftership:external_product_id",
+      "@type": "xsd:string"
+    },
+    "compare_unit_price": {
+      "@id": "aftership:compare_unit_price",
+      "@type": "@id"
+    },
+    "total_price": {
+      "@id": "aftership:total_price",
+      "@type": "@id"
+    },
+    "compare_total_price": {
+      "@id": "aftership:compare_total_price",
+      "@type": "@id"
+    },
+    "variant_description": {
+      "@id": "aftership:variant_description",
+      "@type": "xsd:string"
+    },
+    "Discount_total.v2": "aftership:Discount_total.v2",
+    "Shipping_method.v1": "aftership:Shipping_method.v1",
+    "Shipping_total.v2": "aftership:Shipping_total.v2",
+    "Subtotal.v2": "aftership:Subtotal.v2",
+    "Discount_total.v1": "aftership:Discount_total.v1",
+    "Phone.v1": "aftership:Phone.v1",
+    "country_region_code": {
+      "@id": "aftership:country_region_code",
+      "@type": "xsd:string"
+    },
+    "Tax_total.v2": "aftership:Tax_total.v2",
+    "Order_total.v2": "aftership:Order_total.v2",
+    "Store.v2": "aftership:Store.v2",
+    "Tax_total.v1": "aftership:Tax_total.v1",
+    "Estimated_delivery_date_Request": "aftership:Estimated_delivery_date_Request",
+    "service_type_name": {
+      "@id": "aftership:service_type_name",
+      "@type": "xsd:string"
+    },
+    "origin_address": {
+      "@id": "aftership:origin_address"
+    },
+    "destination_address": {
+      "@id": "aftership:destination_address"
+    },
+    "weight": {
+      "@id": "aftership:weight"
+    },
+    "package_count": {
+      "@id": "aftership:package_count",
+      "@type": "xsd:integer"
+    },
+    "pickup_time": {
+      "@id": "aftership:pickup_time",
+      "@type": "xsd:string"
+    },
+    "estimated_pickup": {
+      "@id": "aftership:estimated_pickup"
+    },
+    "Estimated_delivery_date_Response": "aftership:Estimated_delivery_date_Response",
+    "confidence_code": {
+      "@id": "aftership:confidence_code",
+      "@type": "xsd:decimal"
+    },
+    "Opening_hours.v1": "aftership:Opening_hours.v1",
+    "Pagination.v2": "aftership:Pagination.v2",
+    "has_next_page": {
+      "@id": "aftership:has_next_page",
+      "@type": "xsd:boolean"
+    },
+    "Fulfillment.v1": "aftership:Fulfillment.v1",
+    "order_id": {
+      "@id": "aftership:order_id",
+      "@type": "xsd:string"
+    },
+    "delivery_method": {
+      "@id": "aftership:delivery_method",
+      "@type": "xsd:string"
+    },
+    "line_items": {
+      "@id": "aftership:line_items",
+      "@container": "@list"
+    },
+    "source_created_at": {
+      "@id": "aftership:source_created_at",
+      "@type": "xsd:dateTime"
+    },
+    "source_updated_at": {
+      "@id": "aftership:source_updated_at",
+      "@type": "xsd:dateTime"
+    },
+    "ship_from_location": {
+      "@id": "aftership:ship_from_location"
+    },
+    "pickup_location": {
+      "@id": "aftership:pickup_location",
+      "@type": "@id"
+    },
+    "pickup_info": {
+      "@id": "aftership:pickup_info",
+      "@type": "@id"
+    },
+    "Address_with_coordinate.v1": "aftership:Address_with_coordinate.v1",
+    "company": {
+      "@id": "aftership:company",
+      "@type": "xsd:string"
+    },
+    "Opening_hour_period.v1": "aftership:Opening_hour_period.v1",
+    "Pickup.v1": "aftership:Pickup.v1",
+    "estimated_ready_for_pickup_at": {
+      "@id": "aftership:estimated_ready_for_pickup_at"
+    },
+    "pickup_deadline_at": {
+      "@id": "aftership:pickup_deadline_at",
+      "@type": "xsd:dateTime"
+    },
+    "Weight.v1": "aftership:Weight.v1",
+    "unit": {
+      "@id": "aftership:unit",
+      "@type": "xsd:string"
+    },
+    "Pickup_location.v1": "aftership:Pickup_location.v1",
+    "location_id": {
+      "@id": "aftership:location_id",
+      "@type": "xsd:string"
+    },
+    "Rate.v3": "aftership:Rate.v3",
+    "charge_weight": {
+      "@id": "aftership:charge_weight",
+      "@type": "@id"
+    },
+    "total_charge": {
+      "@id": "aftership:total_charge",
+      "@type": "@id"
+    },
+    "shipper_account": {
+      "@id": "aftership:shipper_account"
+    },
+    "service_type": {
+      "@id": "aftership:service_type",
+      "@type": "xsd:string"
+    },
+    "service_name": {
+      "@id": "aftership:service_name",
+      "@type": "xsd:string"
+    },
+    "pickup_deadline": {
+      "@id": "aftership:pickup_deadline",
+      "@type": "xsd:string"
+    },
+    "booking_cut_off": {
+      "@id": "aftership:booking_cut_off",
+      "@type": "xsd:string"
+    },
+    "delivery_date": {
+      "@id": "aftership:delivery_date",
+      "@type": "xsd:string"
+    },
+    "transit_time": {
+      "@id": "aftership:transit_time",
+      "@type": "xsd:integer"
+    },
+    "detailed_charges": {
+      "@id": "aftership:detailed_charges",
+      "@container": "@list"
+    },
+    "error_message": {
+      "@id": "aftership:error_message",
+      "@type": "xsd:string"
+    },
+    "info_message": {
+      "@id": "aftership:info_message",
+      "@type": "xsd:string"
+    },
+    "Invoice.v3": "aftership:Invoice.v3",
+    "number_of_copies": {
+      "@id": "aftership:number_of_copies",
+      "@type": "xsd:integer"
+    },
+    "signature_name": {
+      "@id": "aftership:signature_name",
+      "@type": "xsd:string"
+    },
+    "declaration_statement": {
+      "@id": "aftership:declaration_statement",
+      "@type": "xsd:string"
+    },
+    "Payment_method_account.v3": "aftership:Payment_method_account.v3",
+    "account_number": {
+      "@id": "aftership:account_number",
+      "@type": "xsd:string"
+    },
+    "Dimension.v3": "aftership:Dimension.v3",
+    "width": {
+      "@id": "aftership:width",
+      "@type": "xsd:decimal"
+    },
+    "height": {
+      "@id": "aftership:height",
+      "@type": "xsd:decimal"
+    },
+    "depth": {
+      "@id": "aftership:depth",
+      "@type": "xsd:decimal"
+    },
+    "Weight.v3": "aftership:Weight.v3",
+    "Aes.v3": "aftership:Aes.v3",
+    "itn_number": {
+      "@id": "aftership:itn_number",
+      "@type": "xsd:string"
+    },
+    "Billing.v3": "aftership:Billing.v3",
+    "paid_by": {
+      "@id": "aftership:paid_by",
+      "@type": "xsd:string"
+    },
+    "method": {
+      "@id": "aftership:method",
+      "@type": "@id"
+    },
+    "Files.v3": "aftership:Files.v3",
+    "qr_code": {
+      "@id": "aftership:qr_code"
+    },
+    "invoice": {
+      "@id": "aftership:invoice"
+    },
+    "customs_declaration": {
+      "@id": "aftership:customs_declaration"
+    },
+    "packing_slip": {
+      "@id": "aftership:packing_slip"
+    },
+    "manifest": {
+      "@id": "aftership:manifest"
+    },
+    "Input_files.v3": "aftership:Input_files.v3",
+    "certificate_of_origin": {
+      "@id": "aftership:certificate_of_origin"
+    },
+    "commercial_invoice": {
+      "@id": "aftership:commercial_invoice"
+    },
+    "Money.v3": "aftership:Money.v3",
+    "Customs.v3": "aftership:Customs.v3",
+    "purpose": {
+      "@id": "aftership:purpose",
+      "@type": "xsd:string"
+    },
+    "terms_of_trade": {
+      "@id": "aftership:terms_of_trade",
+      "@type": "xsd:string"
+    },
+    "eei": {
+      "@id": "aftership:eei"
+    },
+    "billing": {
+      "@id": "aftership:billing",
+      "@type": "@id"
+    },
+    "importer_address": {
+      "@id": "aftership:importer_address",
+      "@type": "@id"
+    },
+    "broker_address": {
+      "@id": "aftership:broker_address",
+      "@type": "@id"
+    },
+    "passport": {
+      "@id": "aftership:passport"
+    },
+    "additional_charges": {
+      "@id": "aftership:additional_charges",
+      "@container": "@list"
+    },
+    "No_eei.v3": "aftership:No_eei.v3",
+    "ftr_exemption": {
+      "@id": "aftership:ftr_exemption",
+      "@type": "xsd:string"
+    },
+    "Shipment.v3": "aftership:Shipment.v3",
+    "ship_from_display": {
+      "@id": "aftership:ship_from_display",
+      "@type": "@id"
+    },
+    "parcels": {
+      "@id": "aftership:parcels",
+      "@container": "@list"
+    },
+    "return_to": {
+      "@id": "aftership:return_to",
+      "@type": "@id"
+    },
+    "delivery_instructions": {
+      "@id": "aftership:delivery_instructions",
+      "@type": "xsd:string"
+    },
+    "Item.v3": "aftership:Item.v3",
+    "description_cn": {
+      "@id": "aftership:description_cn",
+      "@type": "xsd:string"
+    },
+    "price": {
+      "@id": "aftership:price",
+      "@type": "@id"
+    },
+    "item_id": {
+      "@id": "aftership:item_id",
+      "@type": "xsd:string"
+    },
+    "origin_country": {
+      "@id": "aftership:origin_country",
+      "@type": "xsd:string"
+    },
+    "hs_code": {
+      "@id": "aftership:hs_code",
+      "@type": "xsd:string"
+    },
+    "outbound_hs_code": {
+      "@id": "aftership:outbound_hs_code",
+      "@type": "xsd:string"
+    },
+    "return_reason": {
+      "@id": "aftership:return_reason",
+      "@type": "xsd:string"
+    },
+    "dimension": {
+      "@id": "aftership:dimension",
+      "@type": "@id"
+    },
+    "regulatory_data": {
+      "@id": "aftership:regulatory_data",
+      "@container": "@list"
+    },
+    "Label.v3": "aftership:Label.v3",
+    "tracking_numbers": {
+      "@id": "aftership:tracking_numbers",
+      "@container": "@list"
+    },
+    "carrier_references": {
+      "@id": "aftership:carrier_references",
+      "@container": "@list"
+    },
+    "files": {
+      "@id": "aftership:files",
+      "@type": "@id"
+    },
+    "rate": {
+      "@id": "aftership:rate",
+      "@type": "@id"
+    },
+    "references": {
+      "@id": "aftership:references",
+      "@container": "@list"
+    },
+    "service_options": {
+      "@id": "aftership:service_options",
+      "@container": "@list"
+    },
+    "custom_fields": {
+      "@id": "aftership:custom_fields"
+    },
+    "carrier_redirect_link": {
+      "@id": "aftership:carrier_redirect_link",
+      "@type": "xsd:string"
+    },
+    "Parcel.v3": "aftership:Parcel.v3",
+    "box_type": {
+      "@id": "aftership:box_type",
+      "@type": "xsd:string"
+    },
+    "Location.v1": "aftership:Location.v1",
+    "source": {
+      "@id": "aftership:source",
+      "@type": "xsd:string"
+    },
+    "order_processing": {
+      "@id": "aftership:order_processing"
+    },
+    "pickup_setting": {
+      "@id": "aftership:pickup_setting"
+    },
+    "Location.v3": "aftership:Location.v3",
+    "distance": {
+      "@id": "aftership:distance",
+      "@type": "xsd:decimal"
+    },
+    "distance_unit": {
+      "@id": "aftership:distance_unit",
+      "@type": "xsd:string"
+    },
+    "services": {
+      "@id": "aftership:services",
+      "@container": "@list"
+    },
+    "business_hours": {
+      "@id": "aftership:business_hours",
+      "@container": "@list"
+    },
+    "location_type": {
+      "@id": "aftership:location_type",
+      "@type": "xsd:string"
+    },
+    "business_classification": {
+      "@id": "aftership:business_classification",
+      "@type": "xsd:string"
+    },
+    "courier_specific": {
+      "@id": "aftership:courier_specific"
+    },
+    "Manifest.v3": "aftership:Manifest.v3",
+    "labels": {
+      "@id": "aftership:labels",
+      "@container": "@list"
+    },
+    "Membership.v1": "aftership:Membership.v1",
+    "account": {
+      "@id": "aftership:account"
+    },
+    "role": {
+      "@id": "aftership:role",
+      "@type": "@id"
+    },
+    "Role.v1": "aftership:Role.v1",
+    "Customer.v1": "aftership:Customer.v1",
+    "emails": {
+      "@id": "aftership:emails",
+      "@container": "@list"
+    },
+    "phones": {
+      "@id": "aftership:phones",
+      "@container": "@list"
+    },
+    "locale": {
+      "@id": "aftership:locale",
+      "@type": "xsd:string"
+    },
+    "Status_timestamps.v1": "aftership:Status_timestamps.v1",
+    "opened_at": {
+      "@id": "aftership:opened_at",
+      "@type": "xsd:dateTime"
+    },
+    "closed_at": {
+      "@id": "aftership:closed_at",
+      "@type": "xsd:dateTime"
+    },
+    "Pickup.v3": "aftership:Pickup.v3",
+    "pickup_confirmation_numbers": {
+      "@id": "aftership:pickup_confirmation_numbers",
+      "@container": "@list"
+    },
+    "pickup_location_code": {
+      "@id": "aftership:pickup_location_code",
+      "@type": "xsd:string"
+    },
+    "pickup_date": {
+      "@id": "aftership:pickup_date",
+      "@type": "xsd:string"
+    },
+    "pickup_start_time": {
+      "@id": "aftership:pickup_start_time",
+      "@type": "xsd:string"
+    },
+    "pickup_end_time": {
+      "@id": "aftership:pickup_end_time",
+      "@type": "xsd:string"
+    },
+    "pickup_from": {
+      "@id": "aftership:pickup_from",
+      "@type": "@id"
+    },
+    "label_ids": {
+      "@id": "aftership:label_ids",
+      "@container": "@list"
+    },
+    "pickup_parcels": {
+      "@id": "aftership:pickup_parcels",
+      "@container": "@list"
+    },
+    "Pickup_parcel.v3": "aftership:Pickup_parcel.v3",
+    "Product.v1": "aftership:Product.v1",
+    "published": {
+      "@id": "aftership:published",
+      "@type": "xsd:boolean"
+    },
+    "Product_variant.v1": "aftership:Product_variant.v1",
+    "available_quantity": {
+      "@id": "aftership:available_quantity",
+      "@type": "xsd:integer"
+    },
+    "compare_at_price": {
+      "@id": "aftership:compare_at_price",
+      "@type": "xsd:string"
+    },
+    "allow_backorder": {
+      "@id": "aftership:allow_backorder",
+      "@type": "xsd:boolean"
+    },
+    "options": {
+      "@id": "aftership:options",
+      "@container": "@list"
+    },
+    "Rate_record.v3": "aftership:Rate_record.v3",
+    "rates": {
+      "@id": "aftership:rates",
+      "@container": "@list"
+    },
+    "Dropoff_drops_request_post_drop": "aftership:Dropoff_drops_request_post_drop",
+    "dropped_at": {
+      "@id": "aftership:dropped_at",
+      "@type": "xsd:dateTime"
+    },
+    "Dropoff_drop_item": "aftership:Dropoff_drop_item",
+    "external_order_item_id": {
+      "@id": "aftership:external_order_item_id",
+      "@type": "xsd:string"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "AfterShip API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects AfterShip's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-12) from openapi/aftership-address-api-openapi.yml, openapi/aftership-address-validations-beta-api-openapi.yml, openapi/aftership-cancel-labels-api-openapi.yml.",
+  "dcterms:created": "2026-10-12",
+  "dcterms:source": [
+    "openapi/aftership-address-api-openapi.yml",
+    "openapi/aftership-address-validations-beta-api-openapi.yml",
+    "openapi/aftership-cancel-labels-api-openapi.yml",
+    "openapi/aftership-cancel-pickups-api-openapi.yml",
+    "openapi/aftership-claim-items-api-openapi.yml"
+  ]
+}

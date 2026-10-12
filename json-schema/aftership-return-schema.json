@@ -1,0 +1,2516 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-return-schema.json",
+  "title": "Return",
+  "description": "<div style=\"display:none; height: 0\">[url](/docs/enum/platforms.md)</div>",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-returns-api-openapi.yml#/components/schemas/Return",
+  "type": "object",
+  "x-stoplight": {
+    "id": "0jq12hby7re52"
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "uguvcl6vpq542"
+      }
+    },
+    "organization": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "vowslkac1g97c"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "bkx7w9udgrh5d"
+          }
+        }
+      }
+    },
+    "rma_number": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "ch89c3c9iyzl1"
+      }
+    },
+    "contact_email": {
+      "type": "string",
+      "description": "The contact email address for the return.",
+      "x-stoplight": {
+        "id": "a2c3d4e5f6g7h"
+      }
+    },
+    "filed_by": {
+      "enum": [
+        "shopper",
+        "merchant",
+        "customer_support"
+      ],
+      "x-stoplight": {
+        "id": "uo7dlr7kjz8p3"
+      }
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "approved",
+        "done",
+        "rejected",
+        "expired"
+      ],
+      "x-stoplight": {
+        "id": "hqacreuxv6tce"
+      }
+    },
+    "approved_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The timestamp when this return was approved.",
+      "x-stoplight": {
+        "id": "j6nsqp702fyjq"
+      }
+    },
+    "auto_approved": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Indicates whether the return was automatically approved.",
+      "x-stoplight": {
+        "id": "owm1dix0l0cbv"
+      }
+    },
+    "rejected_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The timestamp when this return was rejected.",
+      "x-stoplight": {
+        "id": "ddbro31280khu"
+      }
+    },
+    "reject_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The reason for the return rejection.",
+      "x-stoplight": {
+        "id": "66gazjsdhzw4r"
+      }
+    },
+    "auto_rejected": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Indicates whether the return was automatically rejected.",
+      "x-stoplight": {
+        "id": "o03wtszj1504j"
+      }
+    },
+    "resolved_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The timestamp when this return was resolved.",
+      "x-stoplight": {
+        "id": "184pdspa8y0y0"
+      }
+    },
+    "auto_resolved": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Indicates whether the return was automatically resolved.",
+      "x-stoplight": {
+        "id": "0cszxadqktjys"
+      }
+    },
+    "refunded_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The timestamp when this return was refunded.",
+      "x-stoplight": {
+        "id": "1ma2eumogk7mc"
+      }
+    },
+    "auto_refunded": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Indicates whether the return was automatically refunded.",
+      "x-stoplight": {
+        "id": "71chosr31lm1t"
+      }
+    },
+    "auto_received": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Indicates whether the return has triggered an automatic receive.",
+      "x-stoplight": {
+        "id": "pz7kr7ucvo50h"
+      }
+    },
+    "expired_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The timestamp when this return was expired.",
+      "x-stoplight": {
+        "id": "ojym85rr7c653"
+      }
+    },
+    "shop_now": {
+      "type": "boolean",
+      "description": "Whether the \"Shop Now\" feature (also known as \"Exchange for other items\") has been used.",
+      "x-stoplight": {
+        "id": "5ukd741ftug2v"
+      }
+    },
+    "merchant_note": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-stoplight": {
+        "id": "sdjg0gvce8is4"
+      }
+    },
+    "return_total_including_tax": {
+      "oneOf": [
+        {
+          "type": "object",
+          "$ref": "#/$defs/Money",
+          "x-stoplight": {
+            "id": "wze17i0uncp4r"
+          }
+        },
+        {
+          "type": [
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "ddx4ecapbacyv"
+          }
+        }
+      ],
+      "x-stoplight": {
+        "id": "jz57sfh4zcti1"
+      }
+    },
+    "return_tax": {
+      "oneOf": [
+        {
+          "type": "object",
+          "$ref": "#/$defs/Money",
+          "x-stoplight": {
+            "id": "rab8xfsh3afnt"
+          }
+        },
+        {
+          "type": [
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "4b819ad0r2uf6"
+          }
+        }
+      ],
+      "description": "The tax amount associated with the return.",
+      "x-stoplight": {
+        "id": "0cn90pqlp634v"
+      }
+    },
+    "refund_destination": {
+      "x-stoplight": {
+        "id": "raid0ie9oeoig"
+      },
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "original_payment",
+        "store_credit"
+      ]
+    },
+    "refunded_total": {
+      "description": "The total amount refunded for the return.",
+      "oneOf": [
+        {
+          "type": "object",
+          "$ref": "#/$defs/Money",
+          "x-stoplight": {
+            "id": "pua85mv3dg2uc"
+          }
+        },
+        {
+          "x-stoplight": {
+            "id": "mbeuze1biu93p"
+          },
+          "type": [
+            "null"
+          ]
+        }
+      ],
+      "x-stoplight": {
+        "id": "iohmf9fw7le3d"
+      }
+    },
+    "estimated_refund_total": {
+      "x-stoplight": {
+        "id": "jjqsxnc3hyrou"
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "$ref": "#/$defs/Money",
+          "x-stoplight": {
+            "id": "w0fjam88nlahu"
+          }
+        },
+        {
+          "type": [
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "jkrat9zipxh1f"
+          }
+        }
+      ]
+    },
+    "checkout_total": {
+      "x-stoplight": {
+        "id": "1ciuvzwdo67tq"
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "$ref": "#/$defs/Money",
+          "x-stoplight": {
+            "id": "iyjakb570i3ix"
+          }
+        },
+        {
+          "type": [
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "ihiegpmowh4fu"
+          }
+        }
+      ]
+    },
+    "shipping_address": {
+      "$ref": "#/$defs/Address",
+      "description": "The shipping address for the return.",
+      "x-stoplight": {
+        "id": "d5f6g7h8i9j0k"
+      }
+    },
+    "order": {
+      "$ref": "#/$defs/Order",
+      "x-stoplight": {
+        "id": "c6emqfzr1b3sp"
+      }
+    },
+    "return_items": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "1gvqxtsx3dekd"
+      },
+      "items": {
+        "$ref": "#/$defs/Return_item",
+        "x-stoplight": {
+          "id": "rsbuiw94xkgco"
+        }
+      }
+    },
+    "return_method": {
+      "$ref": "#/$defs/Return_method",
+      "x-stoplight": {
+        "id": "i9a7uqiwwflbr"
+      }
+    },
+    "exchange": {
+      "x-stoplight": {
+        "id": "oj71bdjlpsjka"
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "$ref": "#/$defs/Exchange",
+          "x-stoplight": {
+            "id": "8n689pupnq8fh"
+          }
+        },
+        {
+          "type": [
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "aqbb3efa8kqm7"
+          }
+        }
+      ]
+    },
+    "instant_exchange": {
+      "x-stoplight": {
+        "id": "a1qg226i6zk9k"
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "$ref": "#/$defs/Instant_exchange",
+          "x-stoplight": {
+            "id": "seoh4kukxl01u"
+          }
+        },
+        {
+          "type": [
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "lx2esa1bl5r99"
+          }
+        }
+      ]
+    },
+    "receivings": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "k3pj2dvgtqwjv"
+      },
+      "items": {
+        "$ref": "#/$defs/Receiving",
+        "x-stoplight": {
+          "id": "b6lxmjgycvc07"
+        }
+      }
+    },
+    "is_gift_return": {
+      "type": "boolean",
+      "description": "Indicates whether this is a gift return.",
+      "x-stoplight": {
+        "id": "gqc983nzid86p"
+      }
+    },
+    "shipments": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "to0ct81w40c7b"
+      },
+      "items": {
+        "$ref": "#/$defs/Return_shipment",
+        "x-stoplight": {
+          "id": "r3rb6iy8jfovb"
+        }
+      }
+    },
+    "restocks": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "a5qt9sjt4xsk7"
+      },
+      "items": {
+        "$ref": "#/$defs/Restock",
+        "x-stoplight": {
+          "id": "8ot5nksvht5cw"
+        }
+      }
+    },
+    "cost_of_return": {
+      "oneOf": [
+        {
+          "type": "object",
+          "$ref": "#/$defs/Cost_of_return",
+          "x-stoplight": {
+            "id": "y2f9q9tz7b97p"
+          }
+        },
+        {
+          "type": [
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "aeu0gleqy56v2"
+          }
+        }
+      ],
+      "x-stoplight": {
+        "id": "5s46h8gbz3r23"
+      }
+    },
+    "refunds": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "3edmngrl663cc"
+      },
+      "items": {
+        "$ref": "#/$defs/Refund",
+        "x-stoplight": {
+          "id": "jy7axzp9nmy7v"
+        }
+      }
+    },
+    "dropoffs": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "7gaiuxe9ql9ma"
+      },
+      "items": {
+        "$ref": "#/$defs/Dropoff",
+        "x-stoplight": {
+          "id": "suypn47zwslqj"
+        }
+      }
+    },
+    "outcomes": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "djjr4pyxr2rwk"
+      },
+      "description": "Expected result of the return",
+      "items": {
+        "x-stoplight": {
+          "id": "omw05ks21ryrx"
+        },
+        "type": "string",
+        "enum": [
+          "exchange",
+          "refund",
+          "upsell",
+          "store_credit"
+        ]
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "30km8fnulhob8"
+      }
+    },
+    "shipping_status": {
+      "x-stoplight": {
+        "id": "ibdwsbv6z734e"
+      },
+      "type": "string",
+      "enum": [
+        "no_label",
+        "pending",
+        "in_transit",
+        "delivered",
+        "partially_received",
+        "received",
+        "partially_dropped",
+        "dropped",
+        "void"
+      ],
+      "description": "The shipping status at the return level."
+    },
+    "exceptions": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "1v4ub45v9mg69"
+      },
+      "description": "Exceptions in the return that require manual handling",
+      "items": {
+        "x-stoplight": {
+          "id": "cens5ey3u5gvx"
+        },
+        "type": "string",
+        "enum": [
+          "exchange_failed",
+          "restock_failed",
+          "generate_label_failed",
+          "refund_failed",
+          "charge_failed",
+          "flagged"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "7cc87e0eb2a0d"
+      },
+      "title": "Address",
+      "required": [
+        "contact_name",
+        "street_1",
+        "city",
+        "state",
+        "postal_code",
+        "country_region"
+      ],
+      "properties": {
+        "contact_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "lwugfye8q3bt0"
+          },
+          "description": "The name of the contact person associated with the address.\n"
+        },
+        "company_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "jozyy6y4x6hal"
+          },
+          "description": "The name of the company or organization associated with the address.\n"
+        },
+        "street_1": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_1 Schema",
+          "description": "First line of the street address."
+        },
+        "street_2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_2 Schema",
+          "description": "Second line of the street address."
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The City Schema",
+          "description": "The location's city, town, or village."
+        },
+        "state": {
+          "title": "The State Schema",
+          "description": "The state or region of the location, such as a province, state, or prefecture.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "2n3yyt164fwtn"
+              },
+              "description": "The state or region of the location, such as a province, state, or prefecture.\n\n"
+            }
+          }
+        },
+        "postal_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Postal_code Schema",
+          "description": "The postal code of the location (also known as zip code, postcode, Eircode, etc.)."
+        },
+        "country_region": {
+          "title": "The Country Schema",
+          "description": "The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "ttabbo8vl3xur"
+              },
+              "description": "The address country/region in ISO 3166-1 alpha-3 format.\n\n"
+            }
+          }
+        },
+        "phone": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "lio9zgakvzqhp"
+          },
+          "description": "The contact phone number associated with the address.\n"
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "ox7s3omkrkk3f"
+          },
+          "description": "The email associated with the address."
+        }
+      }
+    },
+    "Cost_of_return": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "y2f9q9tz7b97p"
+      },
+      "title": "CostOfReturn",
+      "properties": {
+        "charged": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Money"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "This field indicates the cost of return that has already been charged. If payment or refund has not yet occurred, this value will be null, as the cost of return has not been actually charged yet."
+        },
+        "value": {
+          "$ref": "#/$defs/Money",
+          "description": "This field indicates the cost of return that should be charged."
+        }
+      }
+    },
+    "Dropoff": {
+      "x-stoplight": {
+        "id": "suypn47zwslqj"
+      },
+      "title": "Dropoff",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the dropoff.",
+          "nullable": false,
+          "x-stoplight": {
+            "id": "lbtp35qudr2ge"
+          }
+        },
+        "qr_code_url": {
+          "type": "string",
+          "description": "The QR code URL provided by the dropoff service provider to the shopper.",
+          "nullable": false,
+          "x-stoplight": {
+            "id": "o91erddureyez"
+          }
+        },
+        "dropoff_number": {
+          "type": "string",
+          "description": "The identifier of this dropoff resource on the dropoff service provider's side (e.g., Express Code from Happy Returns).",
+          "nullable": false,
+          "x-stoplight": {
+            "id": "47rhr30ryrg2p"
+          }
+        },
+        "service_provider": {
+          "type": "string",
+          "enum": [
+            "happy-returns",
+            "retail-reworks"
+          ],
+          "description": "The dropoff service provider used for this operation.",
+          "nullable": false,
+          "x-stoplight": {
+            "id": "trk619v8ht66g"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation time of the dropoff record.",
+          "nullable": false,
+          "x-stoplight": {
+            "id": "cki52lrmfkun4"
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "created",
+            "dropped",
+            "partially_dropped"
+          ],
+          "description": "The current status of the dropoff.",
+          "x-stoplight": {
+            "id": "2fd15xo10wonz"
+          }
+        },
+        "items": {
+          "type": "array",
+          "description": "The list of items included in the dropoff operation.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "external_order_item_id": {
+                "type": "string",
+                "description": "The ID of the item on the e-commerce platform.",
+                "x-stoplight": {
+                  "id": "383ubdcctiyjo"
+                }
+              },
+              "quantity": {
+                "type": "number",
+                "description": "The number of items included in the dropoff.",
+                "x-stoplight": {
+                  "id": "7ew44n8e0vhgc"
+                }
+              }
+            },
+            "x-stoplight": {
+              "id": "btzmrmtuwzly4"
+            }
+          },
+          "x-stoplight": {
+            "id": "1psoblvyrcaqf"
+          }
+        },
+        "shipments": {
+          "description": "The list of shipments associated with this dropoff.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Dropoff_shipment",
+            "x-stoplight": {
+              "id": "29fh0z7bhc6hm"
+            }
+          },
+          "x-stoplight": {
+            "id": "6tzkxfpx4jexk"
+          }
+        }
+      }
+    },
+    "Dropoff_shipment": {
+      "x-stoplight": {
+        "id": "29fh0z7bhc6hm"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the dropoff shipment."
+        },
+        "external_id": {
+          "type": "string",
+          "description": "The ID of the shipment on the e-commerce platform."
+        },
+        "service_provider_carrier_code": {
+          "type": "string",
+          "description": "The identifier provided by the dropoff provider representing the logistics carrier for the package, which may differ from the slug provided by AfterShip Tracking."
+        },
+        "tracking_number": {
+          "type": "string",
+          "description": "The tracking number for the dropoff shipment."
+        },
+        "items": {
+          "type": "array",
+          "description": "The list of items included in the dropoff shipment.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "external_order_item_id": {
+                "type": "string",
+                "description": "The ID of the item on the e-commerce platform."
+              },
+              "quantity": {
+                "type": "number",
+                "description": "The number of items included in the dropoff shipment."
+              },
+              "return_bag_barcodes": {
+                "type": "array",
+                "description": "The barcode on the corresponding item when the dropoff provider sends the package to the merchant.",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "title": "DropoffShipment"
+    },
+    "Exchange": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "8n689pupnq8fh"
+      },
+      "title": "Exchange",
+      "properties": {
+        "order": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The order details associated with the exchange. This field will only have a value after an order has been created.",
+          "properties": {
+            "external_id": {
+              "type": "string",
+              "description": "The identifier for the source order."
+            },
+            "order_number": {
+              "type": "string",
+              "description": "The order number associated with the original order."
+            },
+            "customer": {
+              "type": "object",
+              "description": "Contains the customer's basic information.",
+              "properties": {
+                "emails": {
+                  "type": "array",
+                  "description": "A list of email addresses associated with the customer.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "locale": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "x-stoplight": {
+                    "id": "e53mtt4fe256v"
+                  }
+                }
+              }
+            },
+            "country": {
+              "type": "string",
+              "description": "The country related to the order."
+            },
+            "store": {
+              "type": "object",
+              "description": "Contains brief information about the store.",
+              "properties": {
+                "platform": {
+                  "type": "string",
+                  "description": "The e-commerce platform where the store is located."
+                },
+                "external_id": {
+                  "type": "string",
+                  "description": "The identifier of the store on the e-commerce platform."
+                }
+              }
+            }
+          }
+        },
+        "items": {
+          "type": "array",
+          "description": "The list of items included in the exchange.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "external_product_id": {
+                "type": "string",
+                "description": "The ID of the product on the e-commerce platform."
+              },
+              "external_variant_id": {
+                "type": "string",
+                "description": "The ID of the variant on the e-commerce platform."
+              },
+              "sku": {
+                "type": "string",
+                "description": "The SKU of the item."
+              },
+              "title": {
+                "type": "string",
+                "description": "The title of the product."
+              },
+              "variant_to_replace": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "description": "This field only has a value when using replacement. In the context of replacement, this field refers to the information of the item used for replacement in the original order.",
+                "properties": {
+                  "external_id": {
+                    "type": "string",
+                    "description": "The id of the variant on the e-commerce platform."
+                  },
+                  "external_product_id": {
+                    "type": "string",
+                    "description": "The id of the product on the e-commerce platform."
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "The title of the varient."
+                  },
+                  "sku": {
+                    "type": "string",
+                    "description": "The sku of the item."
+                  }
+                }
+              },
+              "quantity": {
+                "type": "number",
+                "nullable": false,
+                "description": "This field indicates the quantity of the exchange item."
+              },
+              "unit_display_price": {
+                "description": "The display price of each item.",
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "$ref": "#/$defs/Money",
+                    "x-stoplight": {
+                      "id": "kz8ffcugbg1po"
+                    }
+                  },
+                  {
+                    "type": [
+                      "null"
+                    ],
+                    "x-stoplight": {
+                      "id": "e4daz1wgnfxtb"
+                    }
+                  }
+                ]
+              },
+              "product_title": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "bkqvmmtgmr2qe"
+                }
+              },
+              "variant_title": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "0o38vt7r4wf3v"
+                }
+              },
+              "product_image_urls": {
+                "type": "array",
+                "description": "A list of image URLs for the product.",
+                "items": {
+                  "type": "string"
+                },
+                "x-stoplight": {
+                  "id": "e6f7g8h9i0j1k"
+                }
+              }
+            }
+          }
+        },
+        "tax_total": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Money"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The total amount of tax applied to the exchange."
+        },
+        "bonus_credits": {
+          "type": "array",
+          "description": "The bonus credits applied to the exchange.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "extra_credit",
+                  "pre_discount_credit"
+                ],
+                "description": "The type of bonus credit."
+              },
+              "value": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/Money"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "This field is available when the type is pre_discount_credit or when the type is extra_credit with a mode of fixed amount."
+              },
+              "rate": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "This field is available when the type is extra_credit with a mode of percentage."
+              },
+              "used": {
+                "$ref": "#/$defs/Money",
+                "description": "Indicates the actual amount of bonus credit used."
+              }
+            }
+          }
+        },
+        "bonus_credits_used_total": {
+          "description": "The total value of bonus credits used in the exchange.",
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "#/$defs/Money",
+              "x-stoplight": {
+                "id": "upg6z4yewpcx1"
+              }
+            },
+            {
+              "x-stoplight": {
+                "id": "k1k9lwv4xbcd0"
+              },
+              "type": [
+                "null"
+              ]
+            }
+          ]
+        },
+        "exchange_total_including_tax": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Money"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Total value including tax for the exchange."
+        },
+        "charge_by": {
+          "x-stoplight": {
+            "id": "z1jq3blfrqjof"
+          },
+          "type": "string",
+          "enum": [
+            "aftership",
+            "other"
+          ],
+          "description": "The party responsible for collecting the fee incurred by the exchange."
+        }
+      }
+    },
+    "Instant_exchange": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "seoh4kukxl01u"
+      },
+      "title": "InstantExchange",
+      "properties": {
+        "status": {
+          "x-stoplight": {
+            "id": "r59povuw4wgof"
+          },
+          "enum": [
+            "pending",
+            "charged",
+            "canceled",
+            "failed"
+          ],
+          "description": "The status of the instant exchange payment. \"pending\" means the shopper has authorized the charge, \"charged\" means the merchant has successfully collected the payment, and \"canceled\" means the payment is no longer required and has been canceled."
+        },
+        "payment": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The unique identifier for the payment."
+            },
+            "external_id": {
+              "type": "string",
+              "description": "The identifier for this payment on the third-party payment platform."
+            },
+            "total": {
+              "description": "The total amount and currency of this payment.",
+              "oneOf": [
+                {
+                  "type": "object",
+                  "$ref": "#/$defs/Money",
+                  "x-stoplight": {
+                    "id": "44db4xhavpl8o"
+                  }
+                },
+                {
+                  "type": [
+                    "null"
+                  ],
+                  "x-stoplight": {
+                    "id": "yeo77qd6efa8q"
+                  }
+                }
+              ]
+            },
+            "gateway": {
+              "type": "string",
+              "enum": [
+                "stripe"
+              ],
+              "description": "The payment gateway used for this transaction. Currently, we only support Stripe."
+            }
+          }
+        }
+      }
+    },
+    "Item_tag": {
+      "x-stoplight": {
+        "id": "q94m5j9owjozk"
+      },
+      "title": "ItemTag",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the item tag."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the item tag."
+        },
+        "created_at": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "nuzjnjy1v00m2"
+          },
+          "description": "The create time of the item-tag."
+        }
+      }
+    },
+    "Money": {
+      "type": "object",
+      "title": "Money",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "description": "The amount represented with two decimal places."
+        },
+        "currency": {
+          "type": "string",
+          "description": "The currency code, using ISO 4217 standards."
+        }
+      }
+    },
+    "Order": {
+      "x-stoplight": {
+        "id": "c6emqfzr1b3sp"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "crbdqq21eqthj"
+          }
+        },
+        "external_id": {
+          "type": "string",
+          "description": "The order ID of the original order on the e-commerce platform."
+        },
+        "order_number": {
+          "type": "string",
+          "description": "The order number of the original order on the e-commerce platform."
+        },
+        "order_name": {
+          "type": "string",
+          "description": "The order name of the original order on the e-commerce platform."
+        },
+        "customer": {
+          "type": "object",
+          "description": "The basic information of the customer. Currently, only the customer’s email address is returned.",
+          "properties": {
+            "emails": {
+              "type": "array",
+              "minItems": 1,
+              "description": "A list of email addresses associated with the customer.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "locale": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "x-stoplight": {
+                "id": "6ib05xw495kjo"
+              },
+              "description": "The language code of the customer, eg: en-US.\n\n"
+            }
+          }
+        },
+        "country_region": {
+          "type": "string",
+          "description": "The sales region of the original order, represented by the ISO 3166-1 alpha-3 country code.",
+          "x-stoplight": {
+            "id": "uwg74gkpt0yr7"
+          }
+        },
+        "store": {
+          "type": "object",
+          "description": "The brief information of the store associated with the original order.",
+          "properties": {
+            "platform": {
+              "type": "string",
+              "description": "The e-commerce platform where the store is located. ([See platform defination](/docs/enum/platforms.md))",
+              "enum": [
+                "shopify",
+                "sfcc",
+                "automizely-private",
+                "bigcommerce",
+                "magento-2",
+                "woocommerce",
+                "shoplazza",
+                "wix",
+                "shopware-6",
+                "squarespace"
+              ]
+            },
+            "external_id": {
+              "type": "string",
+              "description": "The identifier of the store on the e-commerce platform."
+            }
+          }
+        },
+        "placed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The date and time when the order was placed, in ISO 8601 format (UTC).",
+          "format": "date-time"
+        }
+      }
+    },
+    "Receiving": {
+      "x-stoplight": {
+        "id": "b6lxmjgycvc07"
+      },
+      "title": "Receiving",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the receiving operation"
+        },
+        "items": {
+          "type": "array",
+          "description": "The items involved in this receive operation",
+          "items": {
+            "type": "object",
+            "properties": {
+              "external_id": {
+                "type": "string",
+                "description": "The ID of the item. If the returned item is an entire bundle, the external_id here actually refers to the child item within the bundle, as we only allow the received operation on items within the bundle, not on the bundle itself."
+              },
+              "external_product_id": {
+                "type": "string",
+                "description": "The ID of the product on the e-commerce platform"
+              },
+              "external_variant_id": {
+                "type": "string",
+                "description": "The ID of the variant on the e-commerce platform"
+              },
+              "sku": {
+                "type": "string",
+                "description": "The SKU of the item on the e-commerce platform"
+              },
+              "quantity": {
+                "type": "number",
+                "description": "The number of items received in this receive operation"
+              },
+              "gradings": {
+                "type": "array",
+                "description": "Grading information. The merchant can assign a quality inspection grade to the item for this receive operation. Each item can be assigned multiple grades, but the total number cannot exceed the quantity of this receive operation.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "grade": {
+                      "type": "string",
+                      "enum": [
+                        "a",
+                        "b",
+                        "c",
+                        "d"
+                      ],
+                      "description": "The quality inspection grade"
+                    },
+                    "quantity": {
+                      "type": "number",
+                      "description": "The quantity of items"
+                    },
+                    "notes": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "The notes of the inspection, can be filled with any information you require"
+                    },
+                    "image_urls": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "description": "The URL to images of quality inspection, such as images of items, evidence of quality inspection, etc.",
+                      "items": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "inspector": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "The inspector of the inspection, can be filled with any identifier you require"
+                    },
+                    "inspected_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "format": "date-time",
+                      "description": "The date of the inspection"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "received_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date-time (ISO string in UTC) when the items were received"
+        }
+      }
+    },
+    "Refund": {
+      "x-stoplight": {
+        "id": "jy7axzp9nmy7v"
+      },
+      "title": "Refund",
+      "type": "object",
+      "properties": {
+        "destination": {
+          "type": "string",
+          "enum": [
+            "original_payment",
+            "store_credit",
+            "refundid"
+          ],
+          "description": "The refund destination."
+        },
+        "external_id": {
+          "type": "string",
+          "description": "The identifier for this refund on the e-commerce platform."
+        },
+        "gateway": {
+          "type": "string",
+          "enum": [],
+          "description": "The payment gateway used for processing the refund."
+        },
+        "store_credit_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The identifier of the issued store credit on the platform, such as a gift card code. Available only when using refund to store credit."
+        },
+        "total": {
+          "description": "The amount and currency of the refund.",
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "#/$defs/Money",
+              "x-stoplight": {
+                "id": "gpogs6usf81z2"
+              }
+            },
+            {
+              "type": [
+                "null"
+              ],
+              "x-stoplight": {
+                "id": "mqgzjr9b0t6ob"
+              }
+            }
+          ]
+        },
+        "items": {
+          "type": "array",
+          "description": "The details of the refund items.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "external_order_item_id": {
+                "type": "string",
+                "description": "The ID of the item on the e-commerce platform."
+              },
+              "external_product_id": {
+                "type": "string",
+                "description": "The ID of the product on the e-commerce platform."
+              },
+              "external_variant_id": {
+                "type": "string",
+                "description": "The ID of the variant on the e-commerce platform."
+              },
+              "sku": {
+                "type": "string",
+                "description": "The SKU of the item."
+              },
+              "title": {
+                "type": "string",
+                "description": "The title of the product."
+              },
+              "refund_quantity": {
+                "type": "number",
+                "description": "The quantity of refunds for the item."
+              }
+            }
+          }
+        },
+        "transactions": {
+          "type": "array",
+          "x-stoplight": {
+            "id": "n1sdfjcq04cwt"
+          },
+          "description": "The refund transaction records on the e-commerce platform. Shopify only for now.",
+          "items": {
+            "x-stoplight": {
+              "id": "kg9mxwhps8str"
+            },
+            "type": "object",
+            "properties": {
+              "external_id": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "swypi05z4mpb0"
+                },
+                "description": "The ID on the e-commerce platform for this refund transaction."
+              },
+              "parent_external_id": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "3vlwxktmvv9nt"
+                },
+                "description": "The ID on the e-commerce platform of the original transaction in the order that this refund corresponds to.\n"
+              },
+              "payment_gateway": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "vumge7eskw8wu"
+                },
+                "description": "The payment gateway used for the refund."
+              },
+              "refunded_amount": {
+                "$ref": "#/$defs/Money",
+                "x-stoplight": {
+                  "id": "pjyv95l52zmv7"
+                },
+                "description": "The amount of this refund transaction.\n"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Restock": {
+      "x-stoplight": {
+        "id": "8ot5nksvht5cw"
+      },
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "x-stoplight": {
+            "id": "vv0wt0crptqgk"
+          },
+          "items": {
+            "x-stoplight": {
+              "id": "qfea5fm4dap5a"
+            },
+            "type": "object",
+            "properties": {
+              "external_order_item_id": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "ik2pc0qq5yioe"
+                }
+              },
+              "quantity": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "u3m2t5dfnbtd8"
+                }
+              },
+              "location": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "x-stoplight": {
+                  "id": "w9pgfdzccchsv"
+                },
+                "properties": {
+                  "external_id": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "2a5282k4t4wkd"
+                    }
+                  },
+                  "name": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "pgijq1mc4e6xm"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Return_item": {
+      "x-stoplight": {
+        "id": "9kxjirjxt007p"
+      },
+      "type": "object",
+      "title": "ReturnItem",
+      "x-internal": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the item.",
+          "x-stoplight": {
+            "id": "8qgyrtsvdbqj1"
+          }
+        },
+        "external_order_item_id": {
+          "type": "string",
+          "description": "The ID of the item on the e-commerce platform.",
+          "x-stoplight": {
+            "id": "ermjek6xti21b"
+          }
+        },
+        "external_product_id": {
+          "type": "string",
+          "description": "The ID of the product on the e-commerce platform.",
+          "x-stoplight": {
+            "id": "ht7ov6l0rzg7l"
+          }
+        },
+        "external_variant_id": {
+          "type": "string",
+          "description": "The ID of the variant on the e-commerce platform.",
+          "x-stoplight": {
+            "id": "v4j06695712jw"
+          }
+        },
+        "sku": {
+          "type": "string",
+          "description": "The SKU of the item.",
+          "x-stoplight": {
+            "id": "4h2vj0wf1fc9o"
+          }
+        },
+        "product_title": {
+          "type": "string",
+          "description": "The title of the product.",
+          "x-stoplight": {
+            "id": "8i96q9ejn037n"
+          }
+        },
+        "intended_return_quantity": {
+          "type": "integer",
+          "description": "The number of items that the customer plans or expects to return.",
+          "x-stoplight": {
+            "id": "cf2xpcveyjhie"
+          }
+        },
+        "variant_title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The title of the variant.",
+          "x-stoplight": {
+            "id": "rle3p0bkghuzy"
+          }
+        },
+        "return_reason": {
+          "type": "string",
+          "description": "The return reason provided by the customer.",
+          "x-stoplight": {
+            "id": "7osq3ur1uzwcx"
+          }
+        },
+        "return_reason_comment": {
+          "type": "string",
+          "description": "Additional information provided by the customer regarding the reason for the return.",
+          "x-stoplight": {
+            "id": "vrmncvwdkjfm5"
+          }
+        },
+        "return_subreason": {
+          "type": "string",
+          "description": "If the return reason supports sub-reasons, this is the sub-reason provided by the customer.",
+          "x-stoplight": {
+            "id": "aj4upgbmsl0ah"
+          }
+        },
+        "ordered_quantity": {
+          "type": "integer",
+          "description": "The purchase quantity of the item in the original order.",
+          "x-stoplight": {
+            "id": "aonj70wgv6cpd"
+          }
+        },
+        "refund_quantity": {
+          "type": "integer",
+          "description": "The number of items that need to be refunded.",
+          "x-stoplight": {
+            "id": "mohkqco5hocj4"
+          }
+        },
+        "return_quantity": {
+          "type": "integer",
+          "description": "The number of items that need to be returned.",
+          "x-stoplight": {
+            "id": "wq2q2ooibmqxr"
+          }
+        },
+        "received_quantity": {
+          "type": "integer",
+          "description": "The number of items that have been received by the merchant.",
+          "x-stoplight": {
+            "id": "ya7la00p35awf"
+          }
+        },
+        "restocked_quantity": {
+          "type": "integer",
+          "description": "The number of items that have been restocked by the merchant.",
+          "x-stoplight": {
+            "id": "cxr5gp7x2d5a0"
+          }
+        },
+        "removed_quantity": {
+          "type": "integer",
+          "description": "The number of items that have been removed by the merchant.",
+          "x-stoplight": {
+            "id": "gchhc1eiicphl"
+          }
+        },
+        "unit_display_price": {
+          "description": "The display price of each item.",
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "#/$defs/Money",
+              "x-stoplight": {
+                "id": "cqxqoix5eypsx"
+              }
+            },
+            {
+              "x-stoplight": {
+                "id": "tlqy24brncw68"
+              },
+              "type": [
+                "null"
+              ]
+            }
+          ],
+          "x-stoplight": {
+            "id": "0z313s55xkp1z"
+          }
+        },
+        "unit_discounted_price_including_tax": {
+          "description": "The tax-inclusive discounted price for each item, representing the actual amount paid by the buyer.",
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "#/$defs/Money",
+              "x-stoplight": {
+                "id": "m8fc8vf2krfpx"
+              }
+            },
+            {
+              "x-stoplight": {
+                "id": "r92b8kt4t6zyx"
+              },
+              "type": [
+                "null"
+              ]
+            }
+          ],
+          "x-stoplight": {
+            "id": "i9yyfzcrte8d8"
+          }
+        },
+        "unit_discount": {
+          "description": "The discount allocated to each item.",
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "#/$defs/Money",
+              "x-stoplight": {
+                "id": "xjvbecngb7vis"
+              }
+            },
+            {
+              "x-stoplight": {
+                "id": "kj4r4633yoevz"
+              },
+              "type": [
+                "null"
+              ]
+            }
+          ],
+          "x-stoplight": {
+            "id": "1dn8ajtxryrds"
+          }
+        },
+        "unit_tax": {
+          "description": "The tax allocated to each item.",
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "#/$defs/Money",
+              "x-stoplight": {
+                "id": "u1nk16ip7bpxj"
+              }
+            },
+            {
+              "x-stoplight": {
+                "id": "y7q8d6toejurz"
+              },
+              "type": [
+                "null"
+              ]
+            }
+          ],
+          "x-stoplight": {
+            "id": "ipwjndigalglo"
+          }
+        },
+        "properties": {
+          "type": "array",
+          "description": "Custom properties filled in by the customer when purchasing the product.",
+          "x-stoplight": {
+            "id": "sfi42vf3k54ft"
+          },
+          "items": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "3pda0g4yslqqu"
+            },
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Custom property name.",
+                "x-stoplight": {
+                  "id": "17oj3pip2m153"
+                }
+              },
+              "value": {
+                "type": "string",
+                "description": "Custom property value.",
+                "x-stoplight": {
+                  "id": "0uxxza5377nup"
+                }
+              }
+            }
+          }
+        },
+        "shopper_uploaded_image_urls": {
+          "type": "array",
+          "description": "The images provided by the customer when submitting a return.",
+          "x-stoplight": {
+            "id": "3x59w4vwjjwd0"
+          },
+          "items": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "hg16an4lr5pwl"
+            }
+          }
+        },
+        "product_image_urls": {
+          "type": "array",
+          "description": "The images of the product.",
+          "x-stoplight": {
+            "id": "s7nrg3m1msvqs"
+          },
+          "items": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "k5jy5l292154b"
+            }
+          }
+        },
+        "product_categories": {
+          "type": "array",
+          "description": "The product categories configured on the e-commerce platform.",
+          "x-stoplight": {
+            "id": "o7c3fdivpkqcy"
+          },
+          "items": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "cw30yb9nr4a92"
+            }
+          }
+        },
+        "product_tags": {
+          "type": "array",
+          "description": "The product tags configured on the e-commerce platform.",
+          "x-stoplight": {
+            "id": "vyn5guy5vpxf9"
+          },
+          "items": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "3tge4x61tizib"
+            }
+          }
+        },
+        "item_tags": {
+          "type": "array",
+          "description": "The tags applied by the merchant to this return item.",
+          "x-stoplight": {
+            "id": "geup1h97kn00w"
+          },
+          "items": {
+            "$ref": "#/$defs/Item_tag",
+            "x-stoplight": {
+              "id": "kjx3797vzy7x1"
+            }
+          }
+        },
+        "merchant_uploaded_image_urls": {
+          "type": "array",
+          "description": "The images uploaded by the merchant for this return item.",
+          "x-stoplight": {
+            "id": "85g4si2ngk5eh"
+          },
+          "items": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "dzl08raonlnp6"
+            }
+          }
+        },
+        "bundled_items": {
+          "type": "array",
+          "description": "When the item being returned is a whole bundle, this array will represent its child items.",
+          "x-stoplight": {
+            "id": "vyh66x2vtumab"
+          },
+          "items": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "tftfpwsxf8cwo"
+            },
+            "properties": {
+              "external_id": {
+                "type": "string",
+                "description": "The ID of the item on the e-commerce platform.",
+                "x-stoplight": {
+                  "id": "s5lpf09r07kra"
+                }
+              },
+              "external_product_id": {
+                "type": "string",
+                "description": "The ID of the product on the e-commerce platform.",
+                "x-stoplight": {
+                  "id": "1pldjafyiept0"
+                }
+              },
+              "external_variant_id": {
+                "type": "string",
+                "description": "The ID of the variant on the e-commerce platform.",
+                "x-stoplight": {
+                  "id": "6gjn8i1iutnm5"
+                }
+              },
+              "sku": {
+                "type": "string",
+                "description": "The SKU of the item.",
+                "x-stoplight": {
+                  "id": "ukm2h7b8re6hv"
+                }
+              },
+              "product_title": {
+                "type": "string",
+                "description": "The title of the product.",
+                "x-stoplight": {
+                  "id": "9f775ewsdyes4"
+                }
+              },
+              "variant_title": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The title of the variant.",
+                "x-stoplight": {
+                  "id": "i9o1ujhvhfj2b"
+                }
+              },
+              "unit_display_price": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "$ref": "#/$defs/Money",
+                    "x-stoplight": {
+                      "id": "1mjeby2x7r278"
+                    }
+                  },
+                  {
+                    "x-stoplight": {
+                      "id": "afgkpofk42xd8"
+                    },
+                    "type": [
+                      "null"
+                    ]
+                  }
+                ],
+                "description": "The display price of each item.",
+                "x-stoplight": {
+                  "id": "x1kob53ndccyh"
+                }
+              },
+              "unit_discounted_price_including_tax": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "$ref": "#/$defs/Money",
+                    "x-stoplight": {
+                      "id": "lvqoe62n04z5c"
+                    }
+                  },
+                  {
+                    "x-stoplight": {
+                      "id": "po4kl95mxnkg8"
+                    },
+                    "type": [
+                      "null"
+                    ]
+                  }
+                ],
+                "description": "The tax-inclusive discounted price for each item, representing the actual amount paid by the buyer.",
+                "x-stoplight": {
+                  "id": "jnrr8mjbo8ywo"
+                }
+              },
+              "unit_discount": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "$ref": "#/$defs/Money",
+                    "x-stoplight": {
+                      "id": "ne6fvupxraec2"
+                    }
+                  },
+                  {
+                    "x-stoplight": {
+                      "id": "ej38q887538d2"
+                    },
+                    "type": [
+                      "null"
+                    ]
+                  }
+                ],
+                "description": "The discount allocated to each item.",
+                "x-stoplight": {
+                  "id": "14rf7r5k2k0dn"
+                }
+              },
+              "unit_tax": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "$ref": "#/$defs/Money",
+                    "x-stoplight": {
+                      "id": "uu7wn74wiemqm"
+                    }
+                  },
+                  {
+                    "x-stoplight": {
+                      "id": "9xg7vwmw3f46l"
+                    },
+                    "type": [
+                      "null"
+                    ]
+                  }
+                ],
+                "description": "The tax allocated to each item.",
+                "x-stoplight": {
+                  "id": "k89kygp8v9ibc"
+                }
+              },
+              "product_categories": {
+                "type": "array",
+                "description": "The product categories configured on the e-commerce platform.",
+                "x-stoplight": {
+                  "id": "qgfztkadw0npo"
+                },
+                "items": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "p7h7svklmdjpn"
+                  }
+                }
+              },
+              "product_tags": {
+                "type": "array",
+                "description": "The product tags configured on the e-commerce platform.",
+                "x-stoplight": {
+                  "id": "sspcgczz7g7sk"
+                },
+                "items": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "wnr5mql4c8lk8"
+                  }
+                }
+              },
+              "intended_return_quantity": {
+                "type": "number",
+                "description": "The number of items that the customer plans or expects to return.",
+                "x-stoplight": {
+                  "id": "i8gzk2brj4yyh"
+                }
+              },
+              "return_quantity": {
+                "type": "number",
+                "description": "The number of items that need to be returned.",
+                "x-stoplight": {
+                  "id": "v1ggsc7kl8u1e"
+                }
+              },
+              "received_quantity": {
+                "type": "number",
+                "description": "The number of items that have been received by the merchant.",
+                "x-stoplight": {
+                  "id": "hce5gccf8eswn"
+                }
+              },
+              "ordered_quantity": {
+                "type": "number",
+                "description": "The purchase quantity of the item in the original order.",
+                "x-stoplight": {
+                  "id": "sw0ltz2my5f5t"
+                }
+              }
+            }
+          }
+        },
+        "exchange_variant": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Exchange variant associated with this return item. Available only when using replacement.",
+          "x-stoplight": {
+            "id": "tjq9ggrfnis07"
+          },
+          "properties": {
+            "external_product_id": {
+              "type": "string",
+              "description": "The ID of the product on the e-commerce platform.",
+              "x-stoplight": {
+                "id": "5jrfod76kj3pw"
+              }
+            },
+            "external_variant_id": {
+              "type": "string",
+              "description": "The ID of the variant on the e-commerce platform.",
+              "x-stoplight": {
+                "id": "d4hg34nim04l2"
+              }
+            },
+            "sku": {
+              "type": "string",
+              "description": "The SKU of the item.",
+              "x-stoplight": {
+                "id": "oxrm5bp6d0bxw"
+              }
+            },
+            "product_title": {
+              "type": "string",
+              "description": "The title of the product.",
+              "x-stoplight": {
+                "id": "8c1zcwsletcgd"
+              }
+            },
+            "title": {
+              "type": "string",
+              "description": "The title of the variant.",
+              "x-stoplight": {
+                "id": "akp2uyxtybosq"
+              }
+            },
+            "unit_display_price": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "$ref": "#/$defs/Money",
+                  "x-stoplight": {
+                    "id": "4jjcpmvgmkb1z"
+                  }
+                },
+                {
+                  "x-stoplight": {
+                    "id": "v7zqzrln1uztv"
+                  },
+                  "type": [
+                    "null"
+                  ]
+                }
+              ],
+              "description": "The display price of each item.",
+              "x-stoplight": {
+                "id": "l8miv9gxtlgeo"
+              }
+            }
+          }
+        },
+        "parent_item_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "When the item being returned is one of the child items in a bundle, this ID will represent its parent item, which is the bundle ID.",
+          "x-stoplight": {
+            "id": "xx6fbtjg6rc2h"
+          }
+        },
+        "green_return": {
+          "type": "boolean",
+          "x-stoplight": {
+            "id": "swlaoo3bwpteo"
+          },
+          "default": false,
+          "description": "Whether this return item is marked as a green return item. When true, no physical return is required for this item."
+        }
+      }
+    },
+    "Return_method": {
+      "x-stoplight": {
+        "id": "i9a7uqiwwflbr"
+      },
+      "type": "object",
+      "title": "ReturnMethod",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "retailer_label",
+            "customer_courier",
+            "happy_returns",
+            "in_store",
+            "green_return",
+            "carrier_dropoff",
+            "retail_reworks",
+            "carrier_pickup"
+          ],
+          "description": "The type of return method."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the return method."
+        },
+        "zone": {
+          "type": "object",
+          "description": "Details about the zone.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the zone."
+            }
+          }
+        },
+        "rule": {
+          "type": "object",
+          "description": "Details about the rule.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the rule."
+            }
+          }
+        }
+      }
+    },
+    "Return_shipment": {
+      "x-stoplight": {
+        "id": "r3rb6iy8jfovb"
+      },
+      "type": "object",
+      "title": "ReturnShipment",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the shipment.",
+          "x-stoplight": {
+            "id": "5arkrapxn89hr"
+          }
+        },
+        "tracking_number": {
+          "type": "string",
+          "description": "The tracking number for the shipment.",
+          "x-stoplight": {
+            "id": "k4pdwkggoupzh"
+          }
+        },
+        "tracking_status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The current status of the shipment. All possible tracking statuses can be found on https://www.aftership.com/docs/tracking/enum/delivery-statuses",
+          "x-stoplight": {
+            "id": "0vb66rt2nnqj2"
+          }
+        },
+        "slug": {
+          "type": "string",
+          "description": "A unique identifier for the shipment. All supported slugs can be found on [https://track.aftership.com/couriers/download](https://track.aftership.com/couriers/download#_ga=2.55753835.1395222502.1626745658-1175677371.1626745658)",
+          "x-stoplight": {
+            "id": "ldhe5ns08yxzu"
+          }
+        },
+        "items": {
+          "type": "array",
+          "description": "The list of items included in the shipment.",
+          "x-stoplight": {
+            "id": "l9ybuje9mobz7"
+          },
+          "items": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "t47uz4de5jq1j"
+            },
+            "properties": {
+              "external_order_item_id": {
+                "type": "string",
+                "description": "The ID of the item on the e-commerce platform.",
+                "x-stoplight": {
+                  "id": "7q11pploq6xi2"
+                }
+              },
+              "quantity": {
+                "type": "integer",
+                "description": "The number of items included in the shipment.",
+                "x-stoplight": {
+                  "id": "pekdf7ixjd3d1"
+                }
+              }
+            }
+          }
+        },
+        "label": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The shipping label associated with the shipment.",
+          "x-stoplight": {
+            "id": "pi9n73mcfjcmw"
+          },
+          "properties": {
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "The URL for accessing the shipment label.",
+              "x-stoplight": {
+                "id": "c0h625s1htqk3"
+              }
+            },
+            "aftership_shipping_slug": {
+              "type": "string",
+              "description": "The slug used for Aftership Shipping integration.",
+              "x-stoplight": {
+                "id": "re5xq39imnh56"
+              }
+            },
+            "slug": {
+              "type": "string",
+              "description": "The slug used for Aftership Tracking integration.",
+              "x-stoplight": {
+                "id": "1fc5ort9wbvs3"
+              }
+            },
+            "total_charge": {
+              "description": "The total charge associated with the shipment label.",
+              "oneOf": [
+                {
+                  "type": "object",
+                  "$ref": "#/$defs/Money",
+                  "x-stoplight": {
+                    "id": "jadnogdp3uhau"
+                  }
+                },
+                {
+                  "type": [
+                    "null"
+                  ],
+                  "x-stoplight": {
+                    "id": "h7nls43c3295z"
+                  }
+                }
+              ],
+              "x-stoplight": {
+                "id": "4qi90nqfzrt24"
+              }
+            },
+            "qr_code_url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "x-stoplight": {
+                "id": "nxlqfzhh3peoi"
+              },
+              "description": "The URL for accessing the shipment QR Code."
+            }
+          }
+        },
+        "packing_slip_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The URL for the packing slip related to the shipment.",
+          "x-stoplight": {
+            "id": "dniwhofyjpowk"
+          }
+        },
+        "shipping_documents_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The URL for the shipping documents.",
+          "x-stoplight": {
+            "id": "wj4w0x3dlgsn8"
+          }
+        },
+        "shipping_documents_components": {
+          "type": "array",
+          "description": "The components of the shipping documents.",
+          "x-stoplight": {
+            "id": "y0k2tz5xqt3w7"
+          },
+          "items": {
+            "x-stoplight": {
+              "id": "uyvpszy1ukoyj"
+            },
+            "enum": [
+              "label",
+              "packing_slip",
+              "conditional_shipping_document"
+            ]
+          }
+        },
+        "conditional_shipping_document_urls": {
+          "type": "array",
+          "description": "The URLs for any conditional shipping documents.",
+          "x-stoplight": {
+            "id": "a1ppsy1s1dp3d"
+          },
+          "items": {
+            "type": "string",
+            "description": "The URLs for any conditional shipping documents.",
+            "x-stoplight": {
+              "id": "5js43ilpgi6bv"
+            }
+          }
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "shopper_upload",
+            "merchant_upload",
+            "merchant_api",
+            "merchant_generate"
+          ],
+          "description": "The source of the shipment label.",
+          "x-stoplight": {
+            "id": "ybftkb2uvrqtw"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "n8k5y1jb99emm"
+          },
+          "description": "The date-time (ISO string in UTC) when the shipment was created"
+        },
+        "tracking_status_updated_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "ckc1cmg8mxnc9"
+          },
+          "description": "The date-time (ISO string in UTC)  when the last time the shipment's tracking status was updated."
+        },
+        "ship_from": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Address"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ship_to": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Address"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "invoice_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The URL for the invoice associated with the shipment.",
+          "x-stoplight": {
+            "id": "n4kqw2mxe8pzj"
+          }
+        }
+      }
+    }
+  }
+}

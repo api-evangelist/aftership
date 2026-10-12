@@ -1,0 +1,63 @@
+arazzo: 1.0.1
+info:
+  title: AfterShip ShipStation Import Shipments
+  summary: Pull shipped labels from ShipStation and register each tracking number
+    with AfterShip Tracking.
+  description: Mirrors the ShipStation tile on the AfterShip integrations page ("Connect
+    ShipStation to AfterShip Tracking to auto-import shipm..."). Lists ShipStation
+    shipments for an order and creates an AfterShip tracking from the first shipment.
+  version: 1.0.0
+sourceDescriptions:
+- name: shipstationShipments
+  url: https://raw.githubusercontent.com/api-evangelist/shipstation/refs/heads/main/openapi/shipstation-shipments-api-openapi.yml
+  type: openapi
+- name: aftershipTracking
+  url: https://raw.githubusercontent.com/api-evangelist/aftership/refs/heads/main/openapi/aftership-tracking-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: importShipStationShipment
+  inputs:
+    type: object
+    required:
+    - orderNumber
+    properties:
+      orderNumber:
+        type: string
+  steps:
+  - stepId: listShipments
+    operationId: $sourceDescriptions.shipstationShipments.listShipments
+    parameters:
+    - name: orderNumber
+      in: query
+      value: $inputs.orderNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackingNumber: $response.body#/shipments/0/trackingNumber
+      carrierCode: $response.body#/shipments/0/carrierCode
+      orderNumber: $response.body#/shipments/0/orderNumber
+  - stepId: createTracking
+    operationId: $sourceDescriptions.aftershipTracking.create-tracking
+    requestBody:
+      contentType: application/json
+      payload:
+        tracking_number: $steps.listShipments.outputs.trackingNumber
+        order_number: $steps.listShipments.outputs.orderNumber
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      trackingId: $response.body#/data/id
+  outputs:
+    trackingId: $steps.createTracking.outputs.trackingId
+x-integration:
+  partner: shipstation
+  edge_evidence: https://www.aftership.com/integrations
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: enrich-pipeline local-v5
+  guessed_steps:
+  - step: createTracking
+    cause: catalog
+    why: ShipStation carrierCode values are not mapped to AfterShip courier slugs;
+      slug is omitted and left to AfterShip auto-detection.

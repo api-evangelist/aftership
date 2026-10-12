@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-pagination-schema.json",
+  "title": "Pagination",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-returns-api-openapi.yml#/components/schemas/Pagination",
+  "x-stoplight": {
+    "id": "qkut8x4mvr8k5"
+  },
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "limit": {
+      "type": "integer"
+    },
+    "has_next_page": {
+      "type": "boolean"
+    }
+  }
+}

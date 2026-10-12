@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-input-files-v3-schema.json",
+  "title": "InputFiles",
+  "description": "Files object: additional shipping documents to upload with label generation. Only applies to FedEx, DHL Express currently.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-labels-api-openapi.yml#/components/schemas/Input_files.v3",
+  "x-stoplight": {
+    "id": "alsibm32aw646"
+  },
+  "type": "object",
+  "x-tags": [
+    "Primitive"
+  ],
+  "properties": {
+    "certificate_of_origin": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "8ym9fdpkio3kg"
+      },
+      "description": "Certificate of Origin",
+      "properties": {
+        "content": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "15ttnisv8i78x"
+          },
+          "description": "PDF base64 content"
+        }
+      }
+    },
+    "commercial_invoice": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "230t2s7bkj322"
+      },
+      "description": "Commercial Invoice",
+      "properties": {
+        "content": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "4onz5x8ubx3ty"
+          },
+          "description": "PDF base64 content"
+        }
+      }
+    },
+    "customs_declaration ": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "okk99pm1vxfb3"
+      },
+      "description": "Customs Declaration",
+      "properties": {
+        "content": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "oa5b3hmvayhxc"
+          },
+          "description": "PDF base64 content"
+        }
+      }
+    }
+  }
+}

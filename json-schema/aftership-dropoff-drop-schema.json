@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-dropoff-drop-schema.json",
+  "title": "dropoff_drop.v2",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-return-dropoffs-api-openapi.yml#/components/schemas/Dropoff_drop",
+  "x-stoplight": {
+    "id": "5hreiwh469yc9"
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "qs584afzsamn0"
+      }
+    },
+    "items": {
+      "x-stoplight": {
+        "id": "3c3tnv4c70phd"
+      },
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Dropoff_drop_item",
+        "x-stoplight": {
+          "id": "0ujwxp64fype8"
+        }
+      }
+    },
+    "dropped_at": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "vmaco91wtu9h4"
+      },
+      "format": "date-time"
+    },
+    "created_at": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "be7jb7f3ioeuh"
+      },
+      "format": "date-time"
+    },
+    "return": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "u3mywmrly96sf"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "wd0jiu7eoe2h3"
+          }
+        },
+        "rma_number": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "63k6hfyfgson1"
+          }
+        }
+      }
+    },
+    "dropoff": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "hdf8vwh2ibffe"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "whs8vwq0ktnz9"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Dropoff_drop_item": {
+      "x-stoplight": {
+        "id": "32js15uchnk68"
+      },
+      "title": "dropoff_drop_item.v2",
+      "type": "object",
+      "properties": {
+        "external_order_item_id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "c4ccz3bk66kd1"
+          }
+        },
+        "quantity": {
+          "type": "integer",
+          "x-stoplight": {
+            "id": "s1osc9vs02t47"
+          },
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

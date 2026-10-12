@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-order-item-v1-schema.json",
+  "title": "Order Item",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-coverages-api-openapi.yml#/components/schemas/Order_item.v1",
+  "type": "object",
+  "x-stoplight": {
+    "id": "33da09c0dfb8c"
+  },
+  "x-tags": [
+    "Primitive"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "description": "A globally-unique identifier for the item."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Name of the product"
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "Quantity of the item in order"
+    },
+    "unit_insured_amount": {
+      "$ref": "#/$defs/Amount.v1",
+      "description": "Indicate the insured amount for each individual  item"
+    },
+    "sku": {
+      "type": "string",
+      "minLength": 1,
+      "description": "SKU of the product item"
+    },
+    "image_urls": {
+      "type": "array",
+      "description": "item image urls",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "source_id",
+    "title",
+    "quantity",
+    "unit_insured_amount"
+  ],
+  "$defs": {
+    "Amount.v1": {
+      "title": "Amount",
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "amount": {
+          "type": "string",
+          "pattern": "^[0-9.]+$"
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "minLength": 3,
+          "maxLength": 3,
+          "description": "Only support USD for now"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ]
+    }
+  }
+}

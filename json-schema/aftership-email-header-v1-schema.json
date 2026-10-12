@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-email-header-v1-schema.json",
+  "title": "EmailHeader",
+  "description": "Email Header",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-email-parses-api-openapi.yml#/components/schemas/Email_header.v1",
+  "x-stoplight": {
+    "id": "ye2154vzyci7n"
+  },
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "gam9lrkmm5urv"
+      },
+      "description": "Email header name.",
+      "maxLength": 128
+    },
+    "value": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "64zsdril3lj4p"
+      },
+      "description": "Email header value.",
+      "maxLength": 10240
+    }
+  },
+  "required": [
+    "name",
+    "value"
+  ]
+}

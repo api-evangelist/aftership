@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-pickup-v1-schema.json",
+  "title": "Pickup",
+  "description": "To indicate the detailed pickup instruction of the order when the delivery method of the order is `pickup`.\n\nFor further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../docs/common_scenarios/tracking/bopis.md).",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-fulfillments-api-openapi.yml#/components/schemas/Pickup.v1",
+  "x-stoplight": {
+    "id": "xuy8sphna6ej7"
+  },
+  "type": "object",
+  "x-tags": [
+    "Primitive"
+  ],
+  "properties": {
+    "instructions": {
+      "type": "string",
+      "description": "Instructions for the pickup process.\n\nThe value specified in this field will take precedence if provided through the API. If not specified, it will default to the pickup location's instructions set in the AfterShip Admin Portal."
+    },
+    "estimated_ready_for_pickup_at": {
+      "type": "object",
+      "description": "The expected date and time when the items in this fulfillment order will be ready for pickup.\n\nThis information will be displayed on the Brand Tracking Page and included in customer notifications.",
+      "x-stoplight": {
+        "id": "la1jawtei2np5"
+      },
+      "properties": {
+        "min": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The earliest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)."
+        },
+        "max": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The latest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)."
+        }
+      }
+    },
+    "pickup_deadline_at": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "lvr0jt3nk49b5"
+      },
+      "format": "date-time",
+      "description": "The latest time by which the pickup must be completed, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).\n\nThis information will be displayed on the Brand Tracking Page.\n\n"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-search-request-schema.json",
+  "title": "SearchRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-discoveries-api-openapi.yml#/components/schemas/Search_request",
+  "x-stoplight": {
+    "id": "n5odwp633zoq3"
+  },
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "xauqk3a834vnj"
+      },
+      "description": "Session unique identifier. It is recommended to use this [package](https://www.npmjs.com/package/uuid) to generate UUID."
+    },
+    "query": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "23ih46ozoyuzf"
+      },
+      "description": "The search query. This parameter is required for the [semantic search scenario](../../docs/scenarios/search/semantic_search.md)."
+    },
+    "image_url": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "fps0ngtfs57wv"
+      },
+      "description": "URL of the image. This parameter is required for the [visual search scenario](../../docs/scenarios/search/visual_search.md). Note: Either `image_url` or `image_base64` must be provided, but not both."
+    },
+    "image_base64": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "j8puyvj8ckblq"
+      },
+      "description": "Base64-encoded image data. This parameter is required for the [visual search scenario](../../docs/scenarios/search/visual_search.md). Note: Either `image_url` or `image_base64` must be provided, but not both."
+    },
+    "include_filters": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "2wr81f6lukscf"
+      },
+      "description": "Include products that correspond to the specified attribute. For the supported filter key, please refer to the [filter key](../../docs/enum/filter_key.md), and for the format of the filter, please refer to the following examples:\n- Conjunctive filtering: [\"tags:Sale\", \"price:[48,56)\"] means tags contain any of ('Sale') and price greater than or equal to 48 and less than 56\n- Disjunctive filtering: [\"tags:Sofa,Couch,Bed\"] means tags contain any of ('Sofa', 'Couch', 'Bed')",
+      "items": {
+        "x-stoplight": {
+          "id": "9h2gcylnczlkg"
+        },
+        "type": "string"
+      }
+    },
+    "exclude_filters": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "dihcqlcd6o43h"
+      },
+      "description": "Exclude products that correspond to the specified attribute. For the supported filter key, please refer to the [filter key](../../docs/enum/filter_key.md), and for the format of the filter, please refer to the following examples:\n- Conjunctive filtering: [\"!tags:Sale\", \"!categories:Furniture\"] means tags not contain any of ('Sale') and categories not contain any of ('Furniture')\n- Disjunctive filtering: [\"!tags:Sofa,Couch,Bed\"] means tags not contain any of ('Sofa', 'Couch', 'Bed')",
+      "items": {
+        "x-stoplight": {
+          "id": "rdqz816hn0g77"
+        },
+        "type": "string"
+      }
+    },
+    "faceting": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "60ulwjjjzwqkd"
+      },
+      "description": "To apply multiple filters along certain discrete attributes or facets of the overall data collection. Selecting fewer facets for aggregation may help improve retrieval speed. For supported facets, please refer to [filter key](../../docs/enum/filter_key.md).",
+      "items": {
+        "x-stoplight": {
+          "id": "b8vcytv0gf3n7"
+        },
+        "type": "string"
+      }
+    },
+    "sort": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "ll74ms4pqc80n"
+      },
+      "description": "To specify sort order based on attribute values of the requested resource instances, and for multiple sort attributes, separate the sort attributes by commas (`,`) in the \"sort\" request parameter.\n- Ascending order: For example, use `+relevance` to control the returned products to be sorted in **ascending order of the relevance**.\n- Dscending order: For example, use `-price,-relevance` to control the returned products to be sorted in **descending order of the price**, and within each group of products with the same `price`, products are sorted in **descending order of the relevance** attribute.\nSupport sort attributes: `relevance`, `title`, `price`, `created_at`, `updated_at`\n",
+      "default": "-relevance"
+    },
+    "page": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "zmxxhjtgkyau2"
+      },
+      "description": "The page to query. Maximum page number is bounded by total number of queried products.",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "limit": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "hhvhs9p7clpa0"
+      },
+      "description": "The number of products each page contains.",
+      "default": 10,
+      "maximum": 100
+    }
+  }
+}

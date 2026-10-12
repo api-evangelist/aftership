@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-error-schema.json",
+  "title": "Error",
+  "description": "Each error object contains a \"path\" key and an \"info\" key. The \"path\" is the JSON path of the request object to indicate the error location. The \"info\" is a human-readable description of the error.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-address-api-openapi.yml#/components/schemas/Error",
+  "type": "object",
+  "x-stoplight": {
+    "id": "2f9c47cab76ed"
+  },
+  "additionalProperties": false,
+  "x-tags": [
+    "Envelope"
+  ],
+  "properties": {
+    "path": {
+      "type": "string",
+      "description": "The JSON path of the request object to indicate the error location.",
+      "x-stoplight": {
+        "id": "mcru7zcz84dy9"
+      }
+    },
+    "info": {
+      "type": "string",
+      "description": "A human-readable description of the error.",
+      "x-stoplight": {
+        "id": "ulljpx2y8s2eg"
+      }
+    }
+  }
+}

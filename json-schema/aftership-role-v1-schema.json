@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-role-v1-schema.json",
+  "title": "Role",
+  "description": "Object describes role information.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-roles-api-openapi.yml#/components/schemas/Role.v1",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "minLength": 1,
+      "description": "role code"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "role name"
+    }
+  },
+  "required": [
+    "code",
+    "name"
+  ],
+  "x-tags": [
+    "Resource"
+  ]
+}

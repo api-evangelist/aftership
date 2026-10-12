@@ -1,0 +1,820 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-order-v1-schema.json",
+  "title": "Order",
+  "description": "The order object contains at least 1 order information (`order.order_number` + `order.store`) or 1 tracking information (`order.trackings.n.tracking_number`).  See [Minimum Valid Parsing Result](../../docs/other/minimum_valid_parsing_result.md).",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-email-parses-api-openapi.yml#/components/schemas/Order.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "x-tags": [
+    "Primitive"
+  ],
+  "properties": {
+    "order_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Order number."
+    },
+    "order_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "placed_at": {
+      "$ref": "#/$defs/Date_time.v1"
+    },
+    "order_status": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Order status.",
+      "enum": [
+        "open",
+        "closed",
+        "canceled"
+      ]
+    },
+    "store": {
+      "$ref": "#/$defs/Store.v1"
+    },
+    "items": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Items in this order.",
+      "items": {
+        "$ref": "#/$defs/Order_item.v1"
+      }
+    },
+    "shipping_address": {
+      "$ref": "#/$defs/Address.v1"
+    },
+    "shipping_method": {
+      "$ref": "#/$defs/Shipping_method.v1"
+    },
+    "billing_address": {
+      "$ref": "#/$defs/Address.v1"
+    },
+    "order_total": {
+      "$ref": "#/$defs/Order_total.v1"
+    },
+    "subtotal": {
+      "$ref": "#/$defs/Subtotal.v1"
+    },
+    "shipping_total": {
+      "$ref": "#/$defs/Shipping_total.v1"
+    },
+    "tax_total": {
+      "$ref": "#/$defs/Tax_total.v1"
+    },
+    "discount_total": {
+      "$ref": "#/$defs/Discount_total.v1"
+    },
+    "other_prices": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "All other prices defined by the store (except `order_total`, `subtotal`, `shipping_total`, `tax_total`, `discount_total`).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Price description."
+          },
+          "price": {
+            "$ref": "#/$defs/Money.v1"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      }
+    },
+    "trackings": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Trackings parsed from the email.",
+      "items": {
+        "$ref": "#/$defs/Tracking.v1"
+      }
+    },
+    "estimated_delivery_date": {
+      "$ref": "#/$defs/Estimated_delivery_date.v1"
+    }
+  },
+  "required": [
+    "order_number",
+    "order_url",
+    "placed_at",
+    "order_status",
+    "store",
+    "items",
+    "shipping_address",
+    "shipping_method",
+    "billing_address",
+    "order_total",
+    "subtotal",
+    "shipping_total",
+    "tax_total",
+    "discount_total",
+    "other_prices",
+    "trackings",
+    "estimated_delivery_date"
+  ],
+  "$defs": {
+    "Address.v1": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "Address",
+      "additionalProperties": false,
+      "x-tags": [
+        "Primitive"
+      ],
+      "required": [
+        "raw_location",
+        "phone"
+      ],
+      "properties": {
+        "raw_location": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Address raw location."
+        },
+        "phone": {
+          "$ref": "#/$defs/Phone.v1"
+        }
+      }
+    },
+    "Date_time.v1": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "",
+      "additionalProperties": false,
+      "title": "DateTime",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Date string in YYYY-MM-DD format."
+        },
+        "time": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Time string in HH:mm:ss format"
+        },
+        "utc_offset": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "UTC offset in hour."
+        },
+        "timezone_identifier": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Timezone identifier follows timezone database name."
+        }
+      },
+      "required": [
+        "date",
+        "time",
+        "utc_offset",
+        "timezone_identifier"
+      ]
+    },
+    "Discount_total.v1": {
+      "x-stoplight": {
+        "id": "g03jbkf1cag7o"
+      },
+      "title": "Money",
+      "description": "Total discount amount.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The amount. It can be negative."
+        },
+        "currency": {
+          "description": "The currency.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "symbol": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The symbol of currency.",
+          "x-stoplight": {
+            "id": "9z1kythbmznrd"
+          }
+        }
+      },
+      "required": [
+        "amount",
+        "currency",
+        "symbol"
+      ]
+    },
+    "Estimated_delivery_date.v1": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "It refers to the estimated delivery date parsed from the email. The maximum will be null if the estimated delivery date does not have a valid time range.",
+      "additionalProperties": false,
+      "title": "EstimatedDeliveryDate",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "estimated_delivery_date_min": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "It refers to the starting value of the estimated delivery date."
+        },
+        "estimated_delivery_date_max": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "It refers to the ending value of the estimated delivery date. It will be null if the estimated delivery date does not have a valid time range."
+        }
+      },
+      "required": [
+        "estimated_delivery_date_min",
+        "estimated_delivery_date_max"
+      ]
+    },
+    "Money.v1": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "The money object is used to represent the currency amount. In some cases, if it cannot parse the currency from the symbol, the currency will be null while the symbol will have a value.",
+      "additionalProperties": false,
+      "title": "Money",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The amount. It can be negative."
+        },
+        "currency": {
+          "description": "The currency.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "symbol": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The symbol of currency.",
+          "x-stoplight": {
+            "id": "9z1kythbmznrd"
+          }
+        }
+      },
+      "required": [
+        "amount",
+        "currency",
+        "symbol"
+      ]
+    },
+    "Order_item.v1": {
+      "type": "object",
+      "description": "The product item of an order or a tracking.",
+      "additionalProperties": false,
+      "title": "OrderItem",
+      "x-tags": [
+        "Primitive"
+      ],
+      "required": [
+        "external_product_id",
+        "product_title",
+        "url",
+        "image_url",
+        "quantity",
+        "unit_price",
+        "compare_unit_price",
+        "total_price",
+        "compare_total_price",
+        "variant_description",
+        "status"
+      ],
+      "properties": {
+        "external_product_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The product id in the store."
+        },
+        "product_title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The product title.",
+          "x-stoplight": {
+            "id": "3yavjqyltt363"
+          }
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "The product URL on the store’s website.",
+          "format": "uri"
+        },
+        "image_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "The image URL of the product.",
+          "format": "uri"
+        },
+        "quantity": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "The item quantity of the order."
+        },
+        "unit_price": {
+          "$ref": "#/$defs/Money.v1"
+        },
+        "compare_unit_price": {
+          "$ref": "#/$defs/Money.v1"
+        },
+        "total_price": {
+          "$ref": "#/$defs/Money.v1"
+        },
+        "compare_total_price": {
+          "$ref": "#/$defs/Money.v1"
+        },
+        "variant_description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The variant description."
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "ok3ani70lqifx"
+          },
+          "description": "Represents the item's display status.\n\n\n`null`: Unable to parse status\n\n`canceled` : The item was canceled"
+        }
+      }
+    },
+    "Order_total.v1": {
+      "title": "Money",
+      "description": "Order total amount.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The amount. It can be negative."
+        },
+        "currency": {
+          "description": "The currency.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "symbol": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The symbol of currency.",
+          "x-stoplight": {
+            "id": "9z1kythbmznrd"
+          }
+        }
+      },
+      "required": [
+        "amount",
+        "currency",
+        "symbol"
+      ]
+    },
+    "Phone.v1": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "The phone number object.",
+      "additionalProperties": false,
+      "title": "Phone",
+      "x-tags": [
+        "Primitive"
+      ],
+      "required": [
+        "country_region_code",
+        "number"
+      ],
+      "properties": {
+        "country_region_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The country region code of the phone.",
+          "x-stoplight": {
+            "id": "qhp19iy0oul69"
+          }
+        },
+        "number": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Phone number.",
+          "x-stoplight": {
+            "id": "4dv5xgxsexxf9"
+          }
+        }
+      }
+    },
+    "Shipping_method.v1": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "ShippingMethod",
+      "description": "The shipping method.",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The shipping method title."
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "x-tags": [
+        "Primitive"
+      ]
+    },
+    "Shipping_total.v1": {
+      "x-stoplight": {
+        "id": "mq71x3x12c9g8"
+      },
+      "title": "Money",
+      "description": "Total shipping amount.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The amount. It can be negative."
+        },
+        "currency": {
+          "description": "The currency.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "symbol": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The symbol of currency.",
+          "x-stoplight": {
+            "id": "9z1kythbmznrd"
+          }
+        }
+      },
+      "required": [
+        "amount",
+        "currency",
+        "symbol"
+      ]
+    },
+    "Store.v1": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Store object",
+      "title": "Store",
+      "additionalProperties": false,
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Store name."
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Store website URL"
+        },
+        "logo_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The logo image url of the store."
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The contact email of the store."
+        },
+        "phone": {
+          "$ref": "#/$defs/Phone.v1"
+        }
+      },
+      "required": [
+        "name",
+        "url",
+        "logo_url",
+        "email",
+        "phone"
+      ]
+    },
+    "Subtotal.v1": {
+      "x-stoplight": {
+        "id": "4y231zm0tcg6c"
+      },
+      "title": "Money",
+      "description": "Order subtotal amount.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The amount. It can be negative."
+        },
+        "currency": {
+          "description": "The currency.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "symbol": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The symbol of currency.",
+          "x-stoplight": {
+            "id": "9z1kythbmznrd"
+          }
+        }
+      },
+      "required": [
+        "amount",
+        "currency",
+        "symbol"
+      ]
+    },
+    "Tax_total.v1": {
+      "x-stoplight": {
+        "id": "pe0o32z8jfcsk"
+      },
+      "title": "Money",
+      "description": "Total tax amount.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The amount. It can be negative."
+        },
+        "currency": {
+          "description": "The currency.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "symbol": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The symbol of currency.",
+          "x-stoplight": {
+            "id": "9z1kythbmznrd"
+          }
+        }
+      },
+      "required": [
+        "amount",
+        "currency",
+        "symbol"
+      ]
+    },
+    "Tracking.v1": {
+      "type": "object",
+      "description": "Tracking information parsed from the email",
+      "additionalProperties": false,
+      "title": "Tracking",
+      "x-tags": [
+        "Primitive"
+      ],
+      "required": [
+        "status",
+        "tracking_number",
+        "slug",
+        "additional_fields",
+        "items"
+      ],
+      "properties": {
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Tracking status.",
+          "enum": [
+            "Delivered",
+            "Exception",
+            "AttemptFail",
+            "InTransit",
+            "InfoReceived",
+            "OutForDelivery",
+            "Expired",
+            "Pending",
+            "AvailableForPickup"
+          ]
+        },
+        "tracking_number": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Tracking number."
+        },
+        "slug": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Unique code of the courier."
+        },
+        "additional_fields": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Additional information to identify the shipment and ensure its uniqueness.",
+          "properties": {
+            "postal_code": {
+              "type": "string",
+              "description": "The postal code of the tracking."
+            },
+            "ship_date": {
+              "type": "string",
+              "description": "The shipping date of the tracking is in YYYY-MM-DD format."
+            },
+            "state": {
+              "type": "string",
+              "description": "The state of the tracking."
+            },
+            "origin_country": {
+              "type": "string",
+              "description": "The origin country of the tracking."
+            },
+            "destination_country": {
+              "type": "string",
+              "description": "The destination country of the tracking."
+            }
+          }
+        },
+        "items": {
+          "type": "array",
+          "uniqueItems": true,
+          "description": "Items in the package.",
+          "items": {
+            "$ref": "#/$defs/Order_item.v1"
+          }
+        },
+        "tracking_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "q0zt896pfbmcq"
+          },
+          "description": "The tracking_link is the link to the tracking page.\n"
+        }
+      }
+    }
+  }
+}

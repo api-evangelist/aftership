@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-meta-20100-schema.json",
+  "title": "Meta",
+  "description": "Meta data object.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-return-dropoffs-api-openapi.yml#/components/schemas/Meta_20100",
+  "x-stoplight": {
+    "id": "j2ma59pd3ad4u"
+  },
+  "type": "object",
+  "x-tags": [
+    "Envelope"
+  ],
+  "required": [
+    "code",
+    "type",
+    "message"
+  ],
+  "properties": {
+    "code": {
+      "type": "number",
+      "default": 20100,
+      "x-stoplight": {
+        "id": "4mulf0jqqaqdm"
+      }
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "x-stoplight": {
+        "id": "emncqaq4949tf"
+      }
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "x-stoplight": {
+        "id": "zr92gwd3jfayh"
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+arazzo: 1.0.1
+info:
+  title: AfterShip Klaviyo Shipment Status Event
+  summary: Read an AfterShip tracking and push its status into Klaviyo as an event.
+  description: Mirrors the Klaviyo tile on the AfterShip integrations page ("Connect
+    Klaviyo with AfterShip Tracking to power automated shi..."). Gets one tracking
+    and records its tag as a Klaviyo event that flows can trigger on.
+  version: 1.0.0
+sourceDescriptions:
+- name: aftershipTracking
+  url: https://raw.githubusercontent.com/api-evangelist/aftership/refs/heads/main/openapi/aftership-tracking-api-openapi.yml
+  type: openapi
+- name: klaviyoEvents
+  url: https://raw.githubusercontent.com/api-evangelist/klaviyo/refs/heads/main/openapi/klaviyo-events-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: trackingToKlaviyoEvent
+  inputs:
+    type: object
+    required:
+    - trackingId
+    - email
+    properties:
+      trackingId:
+        type: string
+      email:
+        type: string
+  steps:
+  - stepId: getTracking
+    operationId: $sourceDescriptions.aftershipTracking.get-tracking-by-id
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.trackingId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tag: $response.body#/data/tag
+      trackingNumber: $response.body#/data/tracking_number
+      slug: $response.body#/data/slug
+  - stepId: createEvent
+    operationId: $sourceDescriptions.klaviyoEvents.create_event
+    requestBody:
+      contentType: application/vnd.api+json
+      payload:
+        data:
+          type: event
+          attributes:
+            properties:
+              tracking_number: $steps.getTracking.outputs.trackingNumber
+              courier: $steps.getTracking.outputs.slug
+              status: $steps.getTracking.outputs.tag
+            metric:
+              data:
+                type: metric
+                attributes:
+                  name: AfterShip Shipment Update
+            profile:
+              data:
+                type: profile
+                attributes:
+                  email: $inputs.email
+    successCriteria:
+    - condition: $statusCode == 202
+  outputs:
+    status: $steps.getTracking.outputs.tag
+x-integration:
+  partner: klaviyo
+  edge_evidence: https://www.aftership.com/integrations
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: enrich-pipeline local-v5
+  guessed_steps:
+  - step: createEvent
+    cause: partner-contract
+    why: EventCreateQueryV2 payload shape written from the Klaviyo JSON:API convention;
+      nested metric/profile structure not re-verified against every schema level.

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-weight-v1-schema.json",
+  "title": "Weight",
+  "description": "The unit weight of the item.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-products-api-openapi.yml#/components/schemas/Weight.v1",
+  "x-stoplight": {
+    "id": "6ffc0efbd7bf5"
+  },
+  "type": "object",
+  "x-tags": [
+    "Primitive"
+  ],
+  "properties": {
+    "unit": {
+      "type": "string",
+      "enum": [
+        "kg",
+        "lb",
+        "oz",
+        "g"
+      ],
+      "description": "The weight unit eg: g or kg."
+    },
+    "value": {
+      "type": "number",
+      "description": "The value of the weight."
+    }
+  }
+}

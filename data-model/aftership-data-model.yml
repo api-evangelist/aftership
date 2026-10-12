@@ -1,11 +1,7 @@
 generated: '2026-08-27'
 method: derived
-source: openapi/_original/*.yml and the refined openapi/*.yml (components.schemas $ref graph and *_id reference
-  fields)
-description: 'Entity-relationship graph derived from the $ref links and id-reference fields in the ten published
-  AfterShip OpenAPI documents. Ten independent product APIs share one post-purchase spine: a Tracking record is
-  the hub, and Returns, Warranty claims, Protection coverages and Shipping labels all attach to shipments by tracking
-  number or shipment identifier rather than by a single global foreign key.'
+source: openapi/_original/*.yml and the refined openapi/*.yml (components.schemas $ref graph and *_id reference fields)
+description: 'Entity-relationship graph derived from the $ref links and id-reference fields in the ten published AfterShip OpenAPI documents. Ten independent product APIs share one post-purchase spine: a Tracking record is the hub, and Returns, Warranty claims, Protection coverages and Shipping labels all attach to shipments by tracking number or shipment identifier rather than by a single global foreign key.'
 entity_count: 137
 relationship_count: 169
 core_domains:
@@ -15,8 +11,7 @@ core_domains:
   - Checkpoint
   - Courier
   - CourierConnection
-  note: Tracking is the platform hub. As of 2026-07 it carries shipment_direction plus return_shipment / forward_shipment
-    links, which is the explicit join between outbound and return legs.
+  note: Tracking is the platform hub. As of 2026-07 it carries shipment_direction plus return_shipment / forward_shipment links, which is the explicit join between outbound and return legs.
 - domain: Returns
   root: Return
   keys:
@@ -30,8 +25,7 @@ core_domains:
   - Manifest
   - Pickup
   - ShipperAccount
-  note: Shipper accounts hold carrier credentials; rates, labels, manifests and pickups all reference a shipper
-    account.
+  note: Shipper accounts hold carrier credentials; rates, labels, manifests and pickups all reference a shipper account.
 - domain: Commerce
   root: Order
   children:
@@ -57,73 +51,89 @@ entities:
   source: openapi/_original/aftership-warranty-api-openapi.yml
   field_count: 10
   id_fields: []
+  name: Address
 - entity: Address.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 13
   id_fields: []
+  name: Address.v1
 - entity: Address.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 6
   id_fields: []
+  name: Address.v2
 - entity: Address.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 19
   id_fields:
   - tax_id
+  name: Address.v3
 - entity: Address_validation.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 6
   id_fields:
   - id
+  name: Address_validation.v3
 - entity: Address_with_coordinate.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 14
   id_fields: []
+  name: Address_with_coordinate.v1
 - entity: Aes.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Aes.v3
 - entity: Amount.v1
   source: openapi/_original/aftership-protection-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Amount.v1
 - entity: Attachment.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Attachment.v1
 - entity: Benefit
   source: openapi/_original/aftership-warranty-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Benefit
 - entity: Billing.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Billing.v3
 - entity: Cancel_label.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 5
   id_fields:
   - id
+  name: Cancel_label.v3
 - entity: Cancel_pickup.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 5
   id_fields:
   - id
+  name: Cancel_pickup.v3
 - entity: Checkpoint
   source: openapi/aftership-tracking-api-openapi.yml
   field_count: 18
   id_fields: []
+  name: Checkpoint
 - entity: Claim
   source: openapi/_original/aftership-warranty-api-openapi.yml
   field_count: 26
   id_fields:
   - id
+  name: Claim
 - entity: Claim.v1
   source: openapi/_original/aftership-protection-api-openapi.yml
   field_count: 22
   id_fields:
   - id
   - coverage_id
+  name: Claim.v1
 - entity: Claim_item
   source: openapi/_original/aftership-warranty-api-openapi.yml
   field_count: 25
@@ -131,235 +141,288 @@ entities:
   - id
   - source_id
   - source_variant_id
+  name: Claim_item
 - entity: Claim_shipment
   source: openapi/_original/aftership-warranty-api-openapi.yml
   field_count: 11
   id_fields:
   - id
+  name: Claim_shipment
 - entity: Cost_of_return
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Cost_of_return
 - entity: Courier.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 8
   id_fields: []
+  name: Courier.v3
 - entity: Coverage.v1
   source: openapi/_original/aftership-protection-api-openapi.yml
   field_count: 17
   id_fields:
   - id
   - source_id
+  name: Coverage.v1
 - entity: Customer.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 6
   id_fields:
   - id
+  name: Customer.v1
 - entity: Customs.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 8
   id_fields: []
+  name: Customs.v3
 - entity: Date_time.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Date_time.v1
 - entity: Date_time.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Date_time.v2
 - entity: Dimension.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Dimension.v3
 - entity: Discount_total.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Discount_total.v1
 - entity: Discount_total.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Discount_total.v2
 - entity: Dropoff
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 8
   id_fields:
   - id
+  name: Dropoff
 - entity: Dropoff_shipment
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 5
   id_fields:
   - id
   - external_id
+  name: Dropoff_shipment
 - entity: Email_header.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Email_header.v1
 - entity: Error
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Error
 - entity: Error.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Error.v1
 - entity: Error.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Error.v3
 - entity: Estimated_delivery_date.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Estimated_delivery_date.v1
 - entity: Estimated_delivery_datetime.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Estimated_delivery_datetime.v2
 - entity: Exchange
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 7
   id_fields: []
+  name: Exchange
 - entity: Files.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 6
   id_fields: []
+  name: Files.v3
 - entity: Fulfillment.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 13
   id_fields:
   - id
   - order_id
+  name: Fulfillment.v1
 - entity: Input_files.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Input_files.v3
 - entity: Instant_exchange
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Instant_exchange
 - entity: Invoice.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 6
   id_fields: []
+  name: Invoice.v3
 - entity: Item.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 14
   id_fields:
   - item_id
+  name: Item.v3
 - entity: ItemTag
   source: openapi/_original/aftership-warranty-api-openapi.yml
   field_count: 3
   id_fields:
   - id
+  name: ItemTag
 - entity: Item_tag
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 3
   id_fields:
   - id
+  name: Item_tag
 - entity: Label.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 17
   id_fields:
   - id
   - order_id
+  name: Label.v3
 - entity: Location.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 10
   id_fields:
   - id
+  name: Location.v1
 - entity: Location.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 12
   id_fields:
   - location_id
+  name: Location.v3
 - entity: Manifest.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 7
   id_fields:
   - id
+  name: Manifest.v3
 - entity: Membership.v1
   source: openapi/_original/aftership-members-api-openapi.yml
   field_count: 4
   id_fields:
   - id
+  name: Membership.v1
 - entity: Meta
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Meta
 - entity: Meta.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Meta.v1
 - entity: Meta.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Meta.v3
 - entity: Meta_20000
   source: openapi/_original/aftership-warranty-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Meta_20000
 - entity: Meta_20100
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Meta_20100
 - entity: Meta_20200
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Meta_20200
 - entity: Money
   source: openapi/_original/aftership-warranty-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Money
 - entity: Money.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Money.v1
 - entity: Money.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Money.v2
 - entity: Money.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Money.v3
 - entity: No_eei.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: No_eei.v3
 - entity: Opening_hour_period.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Opening_hour_period.v1
 - entity: Opening_hour_period.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Opening_hour_period.v2
 - entity: Opening_hours.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 7
   id_fields: []
+  name: Opening_hours.v1
 - entity: Opening_hours.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 7
   id_fields: []
+  name: Opening_hours.v2
 - entity: Order
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 8
   id_fields:
   - id
   - external_id
+  name: Order
 - entity: Order.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 29
   id_fields:
   - id
+  name: Order.v1
 - entity: Order.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 19
   id_fields: []
+  name: Order.v2
 - entity: Order_custom_fields.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 0
   id_fields: []
+  name: Order_custom_fields.v1
 - entity: Order_item.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 17
@@ -367,151 +430,185 @@ entities:
   - id
   - product_id
   - product_variant_id
+  name: Order_item.v1
 - entity: Order_item.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 11
   id_fields:
   - external_product_id
+  name: Order_item.v2
 - entity: Order_total.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Order_total.v1
 - entity: Order_total.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Order_total.v2
 - entity: Pagination
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Pagination
 - entity: Pagination.v1
   source: openapi/_original/aftership-members-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Pagination.v1
 - entity: Pagination.v2
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Pagination.v2
 - entity: Parcel.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 5
   id_fields: []
+  name: Parcel.v3
 - entity: Partial_product
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 3
   id_fields:
   - id
   - source_id
+  name: Partial_product
 - entity: Payment_method_account.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Payment_method_account.v3
 - entity: Phone.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Phone.v1
 - entity: Phone.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Phone.v2
 - entity: Pickup.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Pickup.v1
 - entity: Pickup.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 6
   id_fields: []
+  name: Pickup.v2
 - entity: Pickup.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 14
   id_fields:
   - id
+  name: Pickup.v3
 - entity: Pickup_address.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 5
   id_fields: []
+  name: Pickup_address.v2
 - entity: Pickup_location.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 3
   id_fields:
   - location_id
+  name: Pickup_location.v1
 - entity: Pickup_location.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Pickup_location.v2
 - entity: Pickup_parcel.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Pickup_parcel.v3
 - entity: Predict_categories
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Predict_categories
 - entity: Predict_tags
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Predict_tags
 - entity: Product.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 15
   id_fields:
   - id
+  name: Product.v1
 - entity: Product_variant.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 10
   id_fields:
   - id
+  name: Product_variant.v1
 - entity: Rate.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 12
   id_fields: []
+  name: Rate.v3
 - entity: Rate_record.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 5
   id_fields:
   - id
+  name: Rate_record.v3
 - entity: Receiving
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 3
   id_fields:
   - id
+  name: Receiving
 - entity: Recommend_request
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 6
   id_fields:
   - session_id
+  name: Recommend_request
 - entity: Recommend_response
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Recommend_response
 - entity: Recommend_type
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 0
   id_fields: []
+  name: Recommend_type
 - entity: Reference.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 1
   id_fields:
   - id
+  name: Reference.v3
 - entity: Refund
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 7
   id_fields:
   - external_id
+  name: Refund
 - entity: Regulatory_data_item.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 0
   id_fields: []
+  name: Regulatory_data_item.v3
 - entity: Restock
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 1
   id_fields: []
+  name: Restock
 - entity: Return
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 42
   id_fields:
   - id
+  name: Return
 - entity: Return_item
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 32
@@ -521,112 +618,138 @@ entities:
   - external_product_id
   - external_variant_id
   - parent_item_id
+  name: Return_item
 - entity: Return_method
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 4
   id_fields: []
+  name: Return_method
 - entity: Return_shipment
   source: openapi/aftership-returns-api-openapi.yml
   field_count: 16
   id_fields:
   - id
+  name: Return_shipment
 - entity: Role.v1
   source: openapi/_original/aftership-members-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Role.v1
 - entity: Search_request
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 10
   id_fields:
   - session_id
+  name: Search_request
 - entity: Search_response
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Search_response
 - entity: Shipment.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 7
   id_fields: []
+  name: Shipment.v3
 - entity: Shipper_account.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 9
   id_fields:
   - id
+  name: Shipper_account.v3
 - entity: Shipping_method.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 1
   id_fields: []
+  name: Shipping_method.v1
 - entity: Shipping_method.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 1
   id_fields: []
+  name: Shipping_method.v2
 - entity: Shipping_total.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Shipping_total.v1
 - entity: Shipping_total.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Shipping_total.v2
 - entity: Status_timestamps.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Status_timestamps.v1
 - entity: Store.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 17
   id_fields:
   - id
+  name: Store.v1
 - entity: Store.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 6
   id_fields: []
+  name: Store.v2
 - entity: Subtotal.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Subtotal.v1
 - entity: Subtotal.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Subtotal.v2
 - entity: Suggest_request
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 3
   id_fields:
   - session_id
+  name: Suggest_request
 - entity: Suggest_response
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Suggest_response
 - entity: Tag.v1
   source: openapi/aftership-tracking-api-openapi.yml
   field_count: 0
   id_fields: []
+  name: Tag.v1
 - entity: Tagging_platform
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 0
   id_fields: []
+  name: Tagging_platform
 - entity: Tagging_product
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 7
   id_fields:
   - source_id
+  name: Tagging_product
 - entity: Tagging_request
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Tagging_request
 - entity: Tagging_response
   source: openapi/_original/aftership-personalization-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Tagging_response
 - entity: Tax_total.v1
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Tax_total.v1
 - entity: Tax_total.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 3
   id_fields: []
+  name: Tax_total.v2
 - entity: Tracking
   source: openapi/aftership-tracking-api-openapi.yml
   field_count: 80
@@ -636,35 +759,43 @@ entities:
   - order_id
   - courier_connection_id
   - location_id
+  name: Tracking
 - entity: Tracking.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 0
   id_fields: []
+  name: Tracking.v1
 - entity: Tracking.v2
   source: openapi/_original/aftership-parser-api-openapi.yml
   field_count: 8
   id_fields: []
+  name: Tracking.v2
 - entity: Tracking_response.v1
   source: openapi/aftership-tracking-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Tracking_response.v1
 - entity: Tracking_response_get_multiple.v1
   source: openapi/aftership-tracking-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Tracking_response_get_multiple.v1
 - entity: Warranty_registrations
   source: openapi/_original/aftership-warranty-api-openapi.yml
   field_count: 8
   id_fields:
   - id
+  name: Warranty_registrations
 - entity: Weight.v1
   source: openapi/_original/aftership-commerce-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Weight.v1
 - entity: Weight.v3
   source: openapi/_original/aftership-shipping-api-openapi.yml
   field_count: 2
   id_fields: []
+  name: Weight.v3
 relationships:
 - from: Meta.v1
   type: has_many
@@ -1511,5 +1642,4 @@ relationships:
   to: Dropoff
   via: dropoffs
   source: openapi/aftership-returns-api-openapi.yml
-note: Truncated to the first 400 entities and 600 relationships; the full graph is recomputable from the specs in
-  this repo.
+note: Truncated to the first 400 entities and 600 relationships; the full graph is recomputable from the specs in this repo.

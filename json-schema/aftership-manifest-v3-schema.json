@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-manifest-v3-schema.json",
+  "title": "Manifest",
+  "description": "Manifest object: the description of manifest informaiont",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-manifests-api-openapi.yml#/components/schemas/Manifest.v3",
+  "x-stoplight": {
+    "id": "1e0uz3ywnb74k"
+  },
+  "type": "object",
+  "x-tags": [
+    "Resource"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "shipper_account": {
+      "type": "object",
+      "description": "Shipper account object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "slug"
+      ]
+    },
+    "labels": {
+      "type": "array",
+      "description": "Labels array, it contains all the label object",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "manifested": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "files": {
+      "$ref": "#/$defs/Files.v3"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "A formatted date.\n"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "Files.v3": {
+      "title": "Files",
+      "x-stoplight": {
+        "id": "pyla12mztsmlr"
+      },
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "description": "Files object: the description of 6 different file objects(label, qr_code, invoice, customs_declaration, packing_slip, manifest)",
+      "properties": {
+        "label": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": "string",
+              "enum": [
+                "3x5",
+                "4x4",
+                "4x5",
+                "4x6",
+                "4x6.75",
+                "4x7",
+                "4x8",
+                "a4",
+                "a5",
+                "a6",
+                "default",
+                "8.5x6.3"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": "string",
+              "description": "Label file type. (set to \"pdf\" if not provided)",
+              "enum": [
+                "pdf",
+                "zpl"
+              ]
+            }
+          }
+        },
+        "qr_code": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": "string",
+              "enum": [
+                "1x1",
+                "2x2"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": "string",
+              "enum": [
+                "png"
+              ]
+            }
+          }
+        },
+        "invoice": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "a4"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "pdf"
+              ]
+            }
+          }
+        },
+        "customs_declaration": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "a4"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "pdf"
+              ]
+            }
+          }
+        },
+        "packing_slip": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "a4"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "pdf"
+              ]
+            }
+          }
+        },
+        "manifest": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "paper_size": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "a4"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "URL of the file"
+            },
+            "file_type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "pdf"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

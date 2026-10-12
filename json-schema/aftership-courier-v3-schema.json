@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-courier-v3-schema.json",
+  "title": "Courier",
+  "description": "Courier object: the description of supported couriers\n<div style=\"visibility:hidden; height: 0\">\nCourier slug, please check [supported couriers](https://www.aftership.com/docs/shipping/others/supported-couriers) for details \n</div>",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-couriers-api-openapi.yml#/components/schemas/Courier.v3",
+  "type": "object",
+  "x-tags": [
+    "Primitive"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "Courier slug, please check [supported couriers](https://www.aftership.com/docs/shipping/others/supported-couriers) for details"
+    },
+    "name": {
+      "type": "string",
+      "description": "Courier slug, please check [supported couriers](https://www.aftership.com/docs/shipping/others/supported-couriers) for details "
+    },
+    "operations": {
+      "type": "object",
+      "description": "The function that this courier supports",
+      "properties": {
+        "post@labels": {
+          "type": "boolean"
+        },
+        "post@cancel-labels": {
+          "type": "boolean"
+        },
+        "post@rates": {
+          "type": "boolean"
+        },
+        "post@manifests": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ship_from": {
+      "type": "string"
+    },
+    "ship_to": {
+      "type": "string"
+    },
+    "paper_sizes": {
+      "type": "array",
+      "description": "This courier supported all paper_sizes",
+      "items": {
+        "type": "string"
+      }
+    },
+    "courier_service_types": {
+      "type": "array",
+      "description": "This courier supported all servcie_types and service_names",
+      "items": {
+        "type": "object",
+        "properties": {
+          "service_type": {
+            "type": "string",
+            "description": "Service type of this couirer"
+          },
+          "service_name": {
+            "type": "string",
+            "description": "Service name of this couirer"
+          },
+          "is_domestic": {
+            "type": "string"
+          },
+          "ship_from.country": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "courier_box_types": {
+      "type": "array",
+      "description": "This courier supported all box_types",
+      "items": {
+        "type": "object",
+        "properties": {
+          "box_name": {
+            "type": "string",
+            "description": "Box name of this courier"
+          },
+          "box_type": {
+            "type": "string",
+            "description": "Box type of this courier"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "slug",
+    "name",
+    "operations",
+    "paper_sizes",
+    "courier_service_types",
+    "courier_box_types"
+  ]
+}

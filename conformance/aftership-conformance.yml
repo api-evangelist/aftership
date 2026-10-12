@@ -1,18 +1,18 @@
 generated: '2026-08-27'
 method: searched
-source: https://www.aftership.com/security + https://accounts.aftership.com/auth/realms/business/.well-known/openid-configuration
-  + the ten harvested OpenAPI documents
+source: https://www.aftership.com/security + https://accounts.aftership.com/auth/realms/business/.well-known/openid-configuration + the ten harvested
+  OpenAPI documents
 standards:
 - id: openapi
   conforms: true
   version: 3.1.0
-  evidence: 'All ten harvested specs declare openapi: 3.1.0 and are downloadable from the provider docs via the
-    Stoplight export URL each spec names in info.description.'
+  evidence: 'All ten harvested specs declare openapi: 3.1.0 and are downloadable from the provider docs via the Stoplight export URL each spec
+    names in info.description.'
 - id: oauth2
   conforms: true
   evidence: OAuth 2.0 authorization-code flow for Partner Dashboard public apps, documented at /docs/tracking/quickstart/authentication/oauth/overview;
-    live authorization server at https://accounts.aftership.com/auth/realms/business advertises authorization_code,
-    client_credentials, refresh_token, device_code and token-exchange grants.
+    live authorization server at https://accounts.aftership.com/auth/realms/business advertises authorization_code, client_credentials, refresh_token,
+    device_code and token-exchange grants.
 - id: oidc
   conforms: true
   evidence: OpenID Connect Discovery 1.0 document served at https://accounts.aftership.com/auth/realms/business/.well-known/openid-configuration
@@ -22,21 +22,20 @@ standards:
   evidence: 'code_challenge_methods_supported: ["plain","S256"] in the OIDC discovery document.'
 - id: rfc9728
   conforms: true
-  evidence: OAuth 2.0 Protected Resource Metadata served at https://mcp.aftership.com/.well-known/oauth-protected-resource
-    (HTTP 200), naming the AfterShip business realm as authorization server.
+  evidence: OAuth 2.0 Protected Resource Metadata served at https://mcp.aftership.com/.well-known/oauth-protected-resource (HTTP 200), naming
+    the AfterShip business realm as authorization server.
 - id: mcp
   conforms: true
   version: '2025-03-26'
-  evidence: AfterShip publishes a Streamable HTTP MCP server at https://mcp.aftership.com/tracking/public and states
-    MCP spec 2025-03-26 in its own README.
+  evidence: AfterShip publishes a Streamable HTTP MCP server at https://mcp.aftership.com/tracking/public and states MCP spec 2025-03-26 in its
+    own README.
 - id: rfc9457
   conforms: false
-  evidence: No application/problem+json media type appears in any harvested spec; AfterShip uses a proprietary meta/data
-    envelope (see errors/aftership-problem-types.yml).
+  evidence: No application/problem+json media type appears in any harvested spec; AfterShip uses a proprietary meta/data envelope (see errors/aftership-problem-types.yml).
 - id: idempotency
   conforms: false
-  evidence: No Idempotency-Key header, idempotency parameter or idempotency documentation was found in the ten harvested
-    specs or the quickstart docs.
+  evidence: No Idempotency-Key header, idempotency parameter or idempotency documentation was found in the ten harvested specs or the quickstart
+    docs.
 - id: pagination
   conforms: true
   evidence: Cursor and page/limit pagination objects appear in the harvested specs (e.g. CourierConnectionResponseForGetCourierConnectionsDataPagination
@@ -52,8 +51,11 @@ standards:
   evidence: Not applicable — AfterShip is an ecommerce logistics provider, not healthcare.
 - id: saml
   conforms: true
-  evidence: SAML / OIDC SSO with customer IdPs (Okta, Azure AD) is listed as an Enterprise plan entitlement on the
-    pricing page, and SSO is named in the Trust Centre product-security highlights.
+  evidence: SAML / OIDC SSO with customer IdPs (Okta, Azure AD) is listed as an Enterprise plan entitlement on the pricing page, and SSO is named
+    in the Trust Centre product-security highlights.
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
 domain_standards:
   market: Ecommerce post-purchase / multi-carrier shipping
   searched:
@@ -66,12 +68,11 @@ domain_standards:
   - schema.org ParcelDelivery
   - OpenTravel
   found: []
-  note: 'No domain standard is declared by any AfterShip contract. The market itself is carrier-federated rather
-    than standardised: AfterShip normalises 1,400+ proprietary carrier formats behind a proprietary "slug" vocabulary
-    (openapi/aftership-tracking-api-openapi.yml, Slug Groups enum) and a proprietary delivery-status and sub-status
-    enum (Delivered_005, Exception_016, InTransit_011, ...). This is a reward-only check with no penalty: the enum
-    IS the de-facto interchange vocabulary a large part of the ecommerce tracking market integrates against, but
-    it is AfterShip''s, not a standards body''s.'
+  note: 'No domain standard is declared by any AfterShip contract. The market itself is carrier-federated rather than standardised: AfterShip
+    normalises 1,400+ proprietary carrier formats behind a proprietary "slug" vocabulary (openapi/aftership-tracking-api-openapi.yml, Slug Groups
+    enum) and a proprietary delivery-status and sub-status enum (Delivered_005, Exception_016, InTransit_011, ...). This is a reward-only check
+    with no penalty: the enum IS the de-facto interchange vocabulary a large part of the ecommerce tracking market integrates against, but it
+    is AfterShip''s, not a standards body''s.'
 compliance:
   certifications:
   - SOC 2 Type II

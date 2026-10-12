@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-address-schema.json",
+  "title": "Address",
+  "description": "Common address object.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-address-api-openapi.yml#/components/schemas/Address",
+  "x-stoplight": {
+    "id": "wf5stdk2dsa8x"
+  },
+  "type": "object",
+  "required": [
+    "street_1",
+    "country_region"
+  ],
+  "properties": {
+    "type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "business",
+        "residential"
+      ],
+      "x-stoplight": {
+        "id": "q0v7wmt7mkc1v"
+      }
+    },
+    "street_1": {
+      "type": [
+        "string"
+      ],
+      "description": "Address_line1 of address.",
+      "x-stoplight": {
+        "id": "9z5cvs9nz2unv"
+      }
+    },
+    "street_2": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Address_line2 of address.",
+      "x-stoplight": {
+        "id": "ai877742scg8x"
+      }
+    },
+    "street_3": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Address_line3 of address.",
+      "x-stoplight": {
+        "id": "n3by19l2h0g9x"
+      }
+    },
+    "street_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Street number.",
+      "x-stoplight": {
+        "id": "4fdewtnakc53j"
+      }
+    },
+    "district": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "District name.",
+      "x-stoplight": {
+        "id": "s5t7hwes79ea3"
+      }
+    },
+    "county": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "County name.",
+      "x-stoplight": {
+        "id": "giv972mvwdus1"
+      }
+    },
+    "postal_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Postal code.",
+      "x-stoplight": {
+        "id": "359dg95n8piab"
+      }
+    },
+    "city": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "City name.",
+      "x-stoplight": {
+        "id": "ecp7mlz6568qm"
+      }
+    },
+    "state": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "State object",
+      "x-stoplight": {
+        "id": "u4ov8hvy5j8b8"
+      },
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "State name.",
+          "x-stoplight": {
+            "id": "u4te0xgikbdpf"
+          }
+        },
+        "code": {
+          "type": "string",
+          "description": "State code, ISO 3166-2 standard.",
+          "x-stoplight": {
+            "id": "097enlxpy5nys"
+          }
+        }
+      }
+    },
+    "country_region": {
+      "type": "object",
+      "description": "Country region object.",
+      "x-stoplight": {
+        "id": "zdiuww8msb8ic"
+      },
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Country name.",
+          "x-stoplight": {
+            "id": "os0s1j0baobqv"
+          }
+        },
+        "code": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-3.",
+          "x-stoplight": {
+            "id": "04lannme527d7"
+          }
+        }
+      }
+    },
+    "coordinate": {
+      "type": "object",
+      "description": "Coordinate object.",
+      "x-stoplight": {
+        "id": "jriy3n7k498z5"
+      },
+      "properties": {
+        "longitude": {
+          "type": "number",
+          "description": "Longitude value.",
+          "x-stoplight": {
+            "id": "nyr2io0zydwxg"
+          }
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Latitude value.",
+          "x-stoplight": {
+            "id": "eub9nvcupbwyb"
+          }
+        }
+      }
+    }
+  }
+}

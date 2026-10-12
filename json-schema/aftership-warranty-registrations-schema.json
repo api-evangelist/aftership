@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-warranty-registrations-schema.json",
+  "title": "WarrantyRegistration",
+  "description": "A WarrantyRegistration represents the binding relationship between a warranty plan and an order item, including plan status, benefit quantities, and related metadata.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-warranty-registrations-api-openapi.yml#/components/schemas/Warranty_registrations",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the warranty registration."
+    },
+    "registration_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The external registration number, if one exists."
+    },
+    "plan_name": {
+      "type": "string",
+      "description": "The plan name shown to merchants and shoppers."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current registration status.",
+      "enum": [
+        "valid",
+        "invalid",
+        "expired"
+      ]
+    },
+    "invalidated_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the warranty registration was invalidated."
+    },
+    "invalidated_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A free-form reason describing why the warranty registration was invalidated."
+    },
+    "expired_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The date and time, formatted in ISO 8601, when the warranty registration expires. Null means the plan does not expire."
+    },
+    "benefits": {
+      "type": "object",
+      "description": "The benefits included in the warranty registration.",
+      "properties": {
+        "repair_item": {
+          "$ref": "#/$defs/Benefit"
+        },
+        "send_repair_kit": {
+          "$ref": "#/$defs/Benefit"
+        },
+        "replace_item": {
+          "$ref": "#/$defs/Benefit"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Benefit": {
+      "title": "Benefit",
+      "type": "object",
+      "description": "A benefit object containing the configured total quantity and the remaining quantity calculated by the system.",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "The total benefit quantity. Use -1 for unlimited benefits."
+        },
+        "remaining": {
+          "type": "integer",
+          "description": "The remaining benefit quantity. Use -1 for unlimited benefits."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-invoice-v3-schema.json",
+  "title": "Invoice",
+  "description": "Invoice object: the description of invoice type, commercial invoice will be generated if field is present in the request body",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-labels-api-openapi.yml#/components/schemas/Invoice.v3",
+  "x-stoplight": {
+    "id": "tp761p7l8ne5l"
+  },
+  "type": [
+    "object",
+    "null"
+  ],
+  "required": [
+    "date"
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "description": "Invoice date in YYYY-MM-DD\n"
+    },
+    "number": {
+      "type": "string",
+      "description": "Invoice number\n"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "commercial",
+        "proforma"
+      ]
+    },
+    "number_of_copies": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "signature_name": {
+      "type": "string",
+      "description": "Signature name showing on invoice. Only applies to FedEx, DHL Express currently."
+    },
+    "declaration_statement": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "squ0dj6tlgbdn"
+      },
+      "description": "Declaration statement showing on invoice. Only applies to FedEx, DHL Express currently."
+    }
+  }
+}

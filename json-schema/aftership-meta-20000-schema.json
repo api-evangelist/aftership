@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-meta-20000-schema.json",
+  "title": "Meta",
+  "description": "Meta data object.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-claim-items-api-openapi.yml#/components/schemas/Meta_20000",
+  "type": "object",
+  "x-tags": [
+    "Envelope"
+  ],
+  "properties": {
+    "code": {
+      "type": "number",
+      "default": 20000
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

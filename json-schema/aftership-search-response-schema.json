@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-search-response-schema.json",
+  "title": "SearchResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-discoveries-api-openapi.yml#/components/schemas/Search_response",
+  "x-stoplight": {
+    "id": "niecbi8x11f4i"
+  },
+  "type": "object",
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/Meta.v1",
+      "x-stoplight": {
+        "id": "2sv02c3cjwlkg"
+      }
+    },
+    "data": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "qijbxdk7qsdlw"
+      },
+      "required": [
+        "products",
+        "pagination"
+      ],
+      "properties": {
+        "products": {
+          "type": "array",
+          "x-stoplight": {
+            "id": "w7rtjnkgre71h"
+          },
+          "items": {
+            "$ref": "#/$defs/Partial_product",
+            "x-stoplight": {
+              "id": "wn6dslcrz2y5k"
+            }
+          }
+        },
+        "faceting": {
+          "x-stoplight": {
+            "id": "yd3fqiywz1p1r"
+          },
+          "type": "object",
+          "additionalProperties": {
+            "x-stoplight": {
+              "id": "w5l6dhiy08lqk"
+            },
+            "type": "object"
+          }
+        },
+        "pagination": {
+          "$ref": "#/$defs/Pagination.v1",
+          "x-stoplight": {
+            "id": "9hqb9poi6rpo9"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Error.v1": {
+      "type": "object",
+      "title": "Error",
+      "additionalProperties": false,
+      "x-tags": [
+        "Envelope"
+      ],
+      "properties": {
+        "code": {
+          "type": "number",
+          "description": "A 1 to 5-digit integer that represents the status of the request."
+        },
+        "path": {
+          "type": "string",
+          "description": "JSON path of the request object where the error happens."
+        },
+        "info": {
+          "type": "string",
+          "description": "The verbal description of the error that was detected in the request JSON at the specified JSON path."
+        }
+      }
+    },
+    "Meta.v1": {
+      "x-stoplight": {
+        "id": "2sv02c3cjwlkg"
+      },
+      "title": "Meta",
+      "type": "object",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "number",
+          "description": "A 1 to 5-digit integer that represents the status of the request.",
+          "x-stoplight": {
+            "id": "y17kqny5tj8br"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable string message that gives a short description to the specific meta code.",
+          "x-stoplight": {
+            "id": "hd5r8ha2s2ptd"
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "BadRequest",
+            "Unauthorized",
+            "Forbidden",
+            "NotFound",
+            "UnprocessableEntity",
+            "TooManyRequests",
+            "InternalError"
+          ],
+          "description": "A human-readable short string which is the type of HTTP status, e.g. `OK` for a 200 HTTP status, or `BadRequest` for a 400 HTTP status.",
+          "x-stoplight": {
+            "id": "l3mnpcga6n3rg"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Error.v1"
+          }
+        }
+      }
+    },
+    "Pagination.v1": {
+      "x-stoplight": {
+        "id": "9hqb9poi6rpo9"
+      },
+      "title": "Pagination",
+      "type": "object",
+      "description": "",
+      "required": [
+        "limit",
+        "page",
+        "total"
+      ],
+      "properties": {
+        "limit": {
+          "type": "number",
+          "x-stoplight": {
+            "id": "ohdu6ql6x3rmf"
+          },
+          "default": 10,
+          "minimum": 1,
+          "maximum": 100
+        },
+        "page": {
+          "type": "number",
+          "x-stoplight": {
+            "id": "gz7ap10xaxw5s"
+          },
+          "default": 1,
+          "maximum": 1000
+        },
+        "total": {
+          "type": "number",
+          "x-stoplight": {
+            "id": "s5srwn7j8b9mj"
+          }
+        }
+      }
+    },
+    "Partial_product": {
+      "x-stoplight": {
+        "id": "d9z7q7pp2cpg9"
+      },
+      "title": "PartialProduct",
+      "type": "object",
+      "description": "Partial Commerce Product object.",
+      "required": [
+        "source_id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "qvoh36lrc02n8"
+          },
+          "description": "Unique identifier generated by AfterShip."
+        },
+        "source_id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "69wi7113ojvbf"
+          },
+          "description": "A unique identifier for the product."
+        },
+        "variants": {
+          "type": "array",
+          "x-stoplight": {
+            "id": "tzqnhrcqfvuu1"
+          },
+          "description": "Variants of a product.",
+          "items": {
+            "x-stoplight": {
+              "id": "mzzgj6ecdofbg"
+            },
+            "type": "object",
+            "required": [
+              "source_id"
+            ],
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "ezium75ikx5tb"
+                },
+                "description": "A unique identifier for the product variant."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

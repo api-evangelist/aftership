@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-location-v1-schema.json",
+  "title": "Location",
+  "description": "A `Location` represents a warehouse, store, or other physical place used for fulfillment, order processing, and pickup settings. Location resources are scoped to the organization and are not bound to a store.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-locations-api-openapi.yml#/components/schemas/Location.v1",
+  "x-stoplight": {
+    "id": "location-resource-v1"
+  },
+  "type": "object",
+  "x-tags": [
+    "Resource"
+  ],
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "source",
+    "address",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the location. For locations created through Commerce API, this is the custom ID supplied when creating the location, or a system-generated UUID if no custom ID was provided. For ecommerce platform-sourced locations, the ID is returned in the format `app-<platform>-<app_key>-<external_id>`.",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The location name.",
+      "maxLength": 256
+    },
+    "source": {
+      "type": "string",
+      "description": "The source of the location. `manual` means the location was created through Commerce API. `platform` means the location was imported from an ecommerce platform.",
+      "enum": [
+        "manual",
+        "platform"
+      ],
+      "readOnly": true
+    },
+    "address": {
+      "$ref": "#/$defs/Address_with_coordinate.v1",
+      "description": "The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty."
+    },
+    "timezone_identifier": {
+      "type": "string",
+      "description": "The name of the timezone where the location is located, as defined by the [IANA timezone database standard](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).",
+      "maxLength": 256
+    },
+    "opening_hours": {
+      "$ref": "#/$defs/Opening_hours.v1",
+      "description": "The regular opening hours of the location."
+    },
+    "order_processing": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The order processing setting for this location.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether order processing is enabled for this location."
+        },
+        "order_cutoff_time": {
+          "type": "string",
+          "description": "The daily cutoff time for processing orders in `HH:mm` format."
+        },
+        "order_processing_duration_days": {
+          "type": "integer",
+          "description": "The number of business days needed to process an order. Use `0` when fulfillment can be completed within 1 business day.",
+          "minimum": 0
+        }
+      }
+    },
+    "pickup_setting": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The pickup setting for this location.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether pickup is enabled for this location."
+        },
+        "instructions": {
+          "type": "string",
+          "description": "Pickup instructions shown to the customer.",
+          "maxLength": 2048
+        },
+        "order_processing_duration_seconds_min": {
+          "type": "integer",
+          "description": "The minimum number of seconds needed before the order is ready for pickup.",
+          "minimum": 0
+        },
+        "order_processing_duration_seconds_max": {
+          "type": "integer",
+          "description": "The maximum number of seconds needed before the order is ready for pickup.",
+          "minimum": 0
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the location was created in AfterShip, formatted in ISO 8601.",
+      "readOnly": true
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the location was updated in AfterShip, formatted in ISO 8601.",
+      "readOnly": true
+    }
+  },
+  "$defs": {
+    "Address_with_coordinate.v1": {
+      "description": "The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.",
+      "type": "object",
+      "x-stoplight": {
+        "id": "nu2sh0erm8041"
+      },
+      "title": "AddressWithCoordinate",
+      "x-tags": [
+        "Primitive"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "street_1",
+        "state",
+        "country_region"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "The Type Schema",
+          "description": "The type of address.",
+          "enum": [
+            "business",
+            "residential"
+          ]
+        },
+        "street_1": {
+          "type": "string",
+          "title": "The Street_1 Schema",
+          "description": "First line of the street address.",
+          "maxLength": 256
+        },
+        "street_2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_2 Schema",
+          "description": "Second line of the street address.",
+          "maxLength": 256
+        },
+        "street_3": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_3 Schema",
+          "description": "Third line of the street address.",
+          "maxLength": 256
+        },
+        "city": {
+          "type": "string",
+          "title": "The City Schema",
+          "description": "The location's city, town, or village.",
+          "maxLength": 256
+        },
+        "state": {
+          "type": "string",
+          "title": "The State Schema",
+          "description": "The state or region of the location, such as a province, state, or prefecture.",
+          "maxLength": 256
+        },
+        "postal_code": {
+          "type": "string",
+          "title": "The Postal_code Schema",
+          "description": "The postal code of the location (also known as zip code, postcode, Eircode, etc.).",
+          "maxLength": 256
+        },
+        "country_region": {
+          "type": "string",
+          "title": "The Country Schema",
+          "description": "The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "company": {
+          "type": "string",
+          "title": "The Company Schema",
+          "description": "The name of the company associated to the address.",
+          "maxLength": 256
+        },
+        "first_name": {
+          "type": "string",
+          "title": "The First_name Schema",
+          "description": "The first name of the person associated to the address.",
+          "maxLength": 256
+        },
+        "last_name": {
+          "type": "string",
+          "title": "The Last_name Schema",
+          "description": "The last name of the person associated to the address.",
+          "maxLength": 256
+        },
+        "email": {
+          "type": "string",
+          "title": "The Email Schema",
+          "description": "The email address of the person associated to the address.",
+          "maxLength": 256
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the person associated to the address.",
+          "maxLength": 256
+        },
+        "coordinate": {
+          "type": "object",
+          "description": "The coordinate of the address.",
+          "properties": {
+            "longitude": {
+              "type": "number",
+              "description": "The longitude of the address."
+            },
+            "latitude": {
+              "type": "number",
+              "description": "The latitude of the address."
+            }
+          }
+        }
+      }
+    },
+    "Opening_hour_period.v1": {
+      "title": "OpeningHourPeriod",
+      "x-stoplight": {
+        "id": "2g4w1syylsphw"
+      },
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day.",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "open": {
+          "type": "boolean",
+          "default": false,
+          "x-stoplight": {
+            "id": "qbb3rmmdfdhxy"
+          },
+          "description": "Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`."
+        },
+        "from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "fvyfkui68t3gt"
+          },
+          "description": "The start time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`."
+        },
+        "to": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "sk5yjthy1achl"
+          },
+          "description": "The end time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`."
+        }
+      }
+    },
+    "Opening_hours.v1": {
+      "description": "The regular opening hours of the location.",
+      "title": "OpeningHours",
+      "x-stoplight": {
+        "id": "n7s4wz0dwk5ai"
+      },
+      "type": "object",
+      "properties": {
+        "sunday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "monday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "tuesday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "wednesday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "thursday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "friday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "saturday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        }
+      },
+      "x-tags": [
+        "Primitive"
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-attachment-v1-schema.json",
+  "title": "Attachment",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-email-parses-api-openapi.yml#/components/schemas/Attachment.v1",
+  "x-stoplight": {
+    "id": "jqxxfufazshzz"
+  },
+  "type": "object",
+  "properties": {
+    "filename": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "0cj14fzi0lygx"
+      },
+      "description": "The filename of the attachment. "
+    },
+    "content_type": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "g3o2u0fj4vthf"
+      },
+      "description": "The MIME type of the file. See [MIME Type](https://www.iana.org/assignments/media-types/media-types.xhtml)."
+    },
+    "data": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "qlt11h2pi72yc"
+      },
+      "description": "The body data of a attachment part as a base64url encoded string. \n\nA base64-encoded string."
+    }
+  },
+  "required": [
+    "filename",
+    "content_type",
+    "data"
+  ]
+}

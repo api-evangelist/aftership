@@ -1,0 +1,722 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-shipment-v3-schema.json",
+  "title": "Shipment",
+  "description": "Shipment object: the description of shipment information\n<div style=\"visibility:hidden; height: 0\">\nrefer to [shipment](../model/resource/label.v3.json) object.\n</div>",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-labels-api-openapi.yml#/components/schemas/Shipment.v3",
+  "type": "object",
+  "x-stoplight": {
+    "id": "jp89xbgwpyeu7"
+  },
+  "x-tags": [
+    "Primitive"
+  ],
+  "required": [
+    "ship_from",
+    "ship_to",
+    "parcels"
+  ],
+  "properties": {
+    "tax_total": {
+      "$ref": "#/$defs/Money.v3",
+      "x-stoplight": {
+        "id": "utb4m5c64j0bw"
+      }
+    },
+    "ship_from": {
+      "$ref": "#/$defs/Address.v3"
+    },
+    "ship_from_display": {
+      "description": "Address object: An optional address object that lets you customize the ship from details shown on the shipping label.<br/>This is only for visual display and won't change actual shipping routes or carrier operations.<br/>Supported slug: `purolator`,`canada-post`",
+      "$ref": "#/$defs/Address.v3"
+    },
+    "ship_to": {
+      "$ref": "#/$defs/Address.v3"
+    },
+    "parcels": {
+      "type": "array",
+      "description": "Parcels of shipment",
+      "items": {
+        "$ref": "#/$defs/Parcel.v3"
+      }
+    },
+    "return_to": {
+      "$ref": "#/$defs/Address.v3"
+    },
+    "delivery_instructions": {
+      "type": "string",
+      "description": "Instructions to aid in prompt delivery of the shipment."
+    }
+  },
+  "$defs": {
+    "Address.v3": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "c01e28f80783b"
+      },
+      "title": "Address",
+      "description": "Address object: the description of address information",
+      "x-tags": [
+        "Primitive"
+      ],
+      "required": [
+        "street1",
+        "country",
+        "contact_name"
+      ],
+      "properties": {
+        "street1": {
+          "type": "string",
+          "description": "address_line1 of address\n"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country in ISO 3166-1 alpha 3 code"
+        },
+        "contact_name": {
+          "type": "string",
+          "description": "contact_name of address"
+        },
+        "phone": {
+          "type": "string",
+          "description": "contact_phone of address"
+        },
+        "fax": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "fax_number of address"
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "email of address"
+        },
+        "company_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "company_name of address"
+        },
+        "street2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "address_line2 of address"
+        },
+        "street3": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "address_line3 of address"
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "city of address"
+        },
+        "state": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "state of address"
+        },
+        "postal_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "postal_code of address"
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "type of address",
+          "enum": [
+            "residential",
+            "business"
+          ]
+        },
+        "tax_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "tax id"
+        },
+        "tax_id_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "tax id type. Only applies to DHL Express, DHL eCommerce US, DHL eCommerce UK.\n- vat: Value-Added tax\n- gst: Goods and Service Tax\n- eori: European Union Registration and Identification\n- ioss: Import One Stop Shop\n- pan: Pan-Aarav\n- ukims: UK Internal Market Scheme\n- other: Other\n",
+          "x-stoplight": {
+            "id": "7rtl96ei81zeb"
+          },
+          "enum": [
+            "vat",
+            "gst",
+            "eori",
+            "ioss",
+            "pan",
+            "ukims",
+            "other"
+          ]
+        },
+        "identification_number": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "identification number",
+          "x-stoplight": {
+            "id": "u1nqwj1dvhw67"
+          }
+        },
+        "identification_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "identification type\n- mil: Military Number\n- nid: National Identity Card\n- pas: Passport\n- other: Other",
+          "x-stoplight": {
+            "id": "gh9ttmhi0xmik"
+          },
+          "enum": [
+            "mil",
+            "nid",
+            "pas",
+            "other"
+          ]
+        },
+        "eori_number": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "eori number"
+        },
+        "location": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "lat": {
+              "type": "number",
+              "description": "latitude number"
+            },
+            "lng": {
+              "type": "number",
+              "description": "longitude number"
+            }
+          }
+        }
+      }
+    },
+    "Dimension.v3": {
+      "title": "Dimension",
+      "x-stoplight": {
+        "id": "k8cgrqqlq38rn"
+      },
+      "type": "object",
+      "description": "Dimension object: the description of width/height/depth information",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "width": {
+          "type": "number",
+          "description": "width"
+        },
+        "height": {
+          "type": "number",
+          "description": "height"
+        },
+        "depth": {
+          "type": "number",
+          "description": "depth"
+        },
+        "unit": {
+          "type": "string",
+          "description": "unit",
+          "enum": [
+            "cm",
+            "in",
+            "mm",
+            "m",
+            "ft",
+            "yd"
+          ]
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "depth",
+        "unit"
+      ]
+    },
+    "Item.v3": {
+      "title": "Item",
+      "x-stoplight": {
+        "id": "85gwiiinn20p1"
+      },
+      "type": "object",
+      "description": "Item object: the description of item information",
+      "x-tags": [
+        "Primitive"
+      ],
+      "required": [
+        "quantity",
+        "description"
+      ],
+      "properties": {
+        "quantity": {
+          "type": "integer",
+          "description": "The quantity of the item Minimum: 1"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the item"
+        },
+        "description_cn": {
+          "type": "string",
+          "description": "the description of the item in Chinese "
+        },
+        "price": {
+          "$ref": "#/$defs/Money.v3"
+        },
+        "item_id": {
+          "type": "string",
+          "description": "The ID of the item"
+        },
+        "origin_country": {
+          "type": "string",
+          "description": "Country in ISO 3166-1 alpha 3 code"
+        },
+        "weight": {
+          "$ref": "#/$defs/Weight.v3"
+        },
+        "sku": {
+          "type": "string",
+          "description": "The sku of the item."
+        },
+        "hs_code": {
+          "type": "string",
+          "description": "The HS Code (Harmonized Commodity Description and Coding System) of the item."
+        },
+        "outbound_hs_code": {
+          "type": "string",
+          "description": "The HS Code (Harmonized Commodity Description and Coding System) of the item as required by the exporting country's customs regulations."
+        },
+        "return_reason": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "86krhz0houiz2"
+          },
+          "description": "The reason of return"
+        },
+        "dimension": {
+          "$ref": "#/$defs/Dimension.v3",
+          "x-stoplight": {
+            "id": "prw8rr4twlc9v"
+          }
+        },
+        "barcode": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "o455vzu1p8jam"
+          },
+          "description": "The barcode of item"
+        },
+        "regulatory_data": {
+          "type": "array",
+          "description": "CPSC regulatory data entries associated with this item. Supported carriers: UPS, FedEx.",
+          "items": {
+            "$ref": "#/$defs/Regulatory_data_item.v3"
+          }
+        }
+      }
+    },
+    "Money.v3": {
+      "title": "Money",
+      "x-stoplight": {
+        "id": "okc04k6a0ua3b"
+      },
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "currency": {
+          "type": "string",
+          "enum": [
+            "AED",
+            "AFN",
+            "ALL",
+            "AMD",
+            "ANG",
+            "AOA",
+            "ARS",
+            "AUD",
+            "AWG",
+            "AZN",
+            "BAM",
+            "BBD",
+            "BDT",
+            "BGN",
+            "BHD",
+            "BIF",
+            "BMD",
+            "BND",
+            "BOB",
+            "BOV",
+            "BRL",
+            "BSD",
+            "BTN",
+            "BWP",
+            "BYN",
+            "BZD",
+            "CAD",
+            "CDF",
+            "CHE",
+            "CHF",
+            "CHW",
+            "CLF",
+            "CLP",
+            "CNY",
+            "COP",
+            "COU",
+            "CRC",
+            "CUC",
+            "CUP",
+            "CVE",
+            "CZK",
+            "DJF",
+            "DKK",
+            "DOP",
+            "DZD",
+            "EGP",
+            "ERN",
+            "ETB",
+            "EUR",
+            "FJD",
+            "FKP",
+            "GBP",
+            "GEL",
+            "GHS",
+            "GIP",
+            "GMD",
+            "GNF",
+            "GTQ",
+            "GYD",
+            "HKD",
+            "HNL",
+            "HRK",
+            "HTG",
+            "HUF",
+            "IDR",
+            "ILS",
+            "INR",
+            "IQD",
+            "IRR",
+            "ISK",
+            "JMD",
+            "JOD",
+            "JPY",
+            "KES",
+            "KGS",
+            "KHR",
+            "KMF",
+            "KPW",
+            "KRW",
+            "KWD",
+            "KYD",
+            "KZT",
+            "LAK",
+            "LBP",
+            "LKR",
+            "LRD",
+            "LSL",
+            "LYD",
+            "MAD",
+            "MDL",
+            "MGA",
+            "MKD",
+            "MMK",
+            "MNT",
+            "MOP",
+            "MRU",
+            "MUR",
+            "MVR",
+            "MWK",
+            "MXN",
+            "MXV",
+            "MYR",
+            "MZN",
+            "NAD",
+            "NGN",
+            "NIO",
+            "NOK",
+            "NPR",
+            "NZD",
+            "OMR",
+            "PAB",
+            "PEN",
+            "PGK",
+            "PHP",
+            "PKR",
+            "PLN",
+            "PYG",
+            "QAR",
+            "RON",
+            "RSD",
+            "RUB",
+            "RWF",
+            "SAR",
+            "SBD",
+            "SCR",
+            "SDG",
+            "SEK",
+            "SGD",
+            "SHP",
+            "SLL",
+            "SOS",
+            "SRD",
+            "SSP",
+            "STN",
+            "SVC",
+            "SYP",
+            "SZL",
+            "THB",
+            "TJS",
+            "TMT",
+            "TND",
+            "TOP",
+            "TRY",
+            "TTD",
+            "TWD",
+            "TZS",
+            "UAH",
+            "UGX",
+            "USD",
+            "USN",
+            "UYI",
+            "UYW",
+            "UYU",
+            "UZS",
+            "VES",
+            "VND",
+            "VUV",
+            "WST",
+            "XAF",
+            "XAU",
+            "XBA",
+            "XBB",
+            "XBC",
+            "XBD",
+            "XCD",
+            "XDR",
+            "XOF",
+            "XPD",
+            "XPF",
+            "XPT",
+            "XSU",
+            "XTS",
+            "XXX",
+            "YER",
+            "ZAR",
+            "ZMW",
+            "ZWL"
+          ],
+          "description": "Currency of Money"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Amount of Money"
+        }
+      },
+      "description": "The money object is used to represent the currency amount."
+    },
+    "Parcel.v3": {
+      "title": "Parcel",
+      "x-stoplight": {
+        "id": "39w3kevp07phy"
+      },
+      "type": "object",
+      "description": "Parcel object: the description of parcel information",
+      "properties": {
+        "box_type": {
+          "type": "string",
+          "description": "Type of box for packaging"
+        },
+        "dimension": {
+          "$ref": "#/$defs/Dimension.v3"
+        },
+        "items": {
+          "description": "items of package Item object, use to describe product to ship\n",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item.v3"
+          }
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the parcel"
+        },
+        "weight": {
+          "$ref": "#/$defs/Weight.v3"
+        }
+      },
+      "required": [
+        "box_type",
+        "dimension",
+        "items"
+      ],
+      "x-tags": [
+        "Primitive"
+      ]
+    },
+    "Regulatory_data_item.v3": {
+      "title": "RegulatoryDataItem",
+      "x-stoplight": {
+        "id": "regulatory-data-item-v3"
+      },
+      "description": "A CPSC regulatory data entry associated with an item. The shape varies by `fill_mode`. Supported carriers: UPS, FedEx.",
+      "x-tags": [
+        "Primitive"
+      ],
+      "oneOf": [
+        {
+          "title": "CpscDisclaimer",
+          "type": "object",
+          "description": "CPSC regulation data filled via disclaimer mode. Supported carriers: UPS, FedEx.",
+          "required": [
+            "regulation_code",
+            "fill_mode",
+            "disclaim_code",
+            "intended_use_code"
+          ],
+          "properties": {
+            "regulation_code": {
+              "type": "string",
+              "enum": [
+                "CPSC"
+              ],
+              "description": "Regulation code identifying the applicable regulation."
+            },
+            "fill_mode": {
+              "type": "string",
+              "enum": [
+                "disclaimer"
+              ],
+              "description": "Indicates the CPSC compliance fill mode."
+            },
+            "disclaim_code": {
+              "type": "string",
+              "enum": [
+                "A",
+                "B"
+              ],
+              "description": "`A` = not regulated by CPSC; `B` = no certificate needed per agency guidance."
+            },
+            "intended_use_code": {
+              "type": "string",
+              "description": "Intended use of goods for customs assessment."
+            },
+            "intended_use_description": {
+              "type": "string",
+              "description": "Supplemental info when `intended_use_code` is `980.000`."
+            }
+          }
+        },
+        {
+          "title": "CpscReference",
+          "type": "object",
+          "description": "CPSC regulation data filled via certificate reference mode. Supported carriers: UPS, FedEx.",
+          "required": [
+            "regulation_code",
+            "fill_mode",
+            "certifier_id",
+            "product_id",
+            "version_id"
+          ],
+          "properties": {
+            "regulation_code": {
+              "type": "string",
+              "enum": [
+                "CPSC"
+              ],
+              "description": "Regulation code identifying the applicable regulation."
+            },
+            "fill_mode": {
+              "type": "string",
+              "enum": [
+                "reference"
+              ],
+              "description": "Indicates the CPSC compliance fill mode."
+            },
+            "certifier_id": {
+              "type": "string",
+              "description": "Importer's ID in the CPSC Product Registry."
+            },
+            "product_id": {
+              "type": "string",
+              "description": "Product's ID in the CPSC Product Registry."
+            },
+            "version_id": {
+              "type": "string",
+              "description": "Version ID of the product certificate in the CPSC Product Registry."
+            }
+          }
+        }
+      ]
+    },
+    "Weight.v3": {
+      "title": "Weight",
+      "x-stoplight": {
+        "id": "sqe056qqggctt"
+      },
+      "type": "object",
+      "description": "Weight object: unit weight of the item",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "description": "weight unit",
+          "enum": [
+            "lb",
+            "kg",
+            "oz",
+            "g"
+          ]
+        },
+        "value": {
+          "type": "number",
+          "description": "value of Weight"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ]
+    }
+  }
+}

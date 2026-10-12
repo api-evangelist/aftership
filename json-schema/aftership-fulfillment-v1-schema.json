@@ -1,0 +1,837 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-fulfillment-v1-schema.json",
+  "title": "Fulfillment",
+  "description": "The `Fulfillment` model encapsulates the details of processing and delivering orders in an eCommerce context. It includes information such as fulfillment status, shipment tracking, the items to be fulfilled, and so on.\n\n<div style=\"visibility:hidden; height: 0\">[url](../../docs/common_scenarios/tracking/bopis.md)</div>",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-fulfillments-api-openapi.yml#/components/schemas/Fulfillment.v1",
+  "x-stoplight": {
+    "id": "qnklgttqrn1fg"
+  },
+  "type": "object",
+  "x-tags": [
+    "Resource"
+  ],
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "order_id",
+    "delivery_method",
+    "status",
+    "line_items",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "3z259q39en5fr"
+      },
+      "description": "The unique identifier of the fulfillment. If a custom ID was provided in the request, that value is used; otherwise, a system-generated UUID is assigned. You can use this ID to manage this resource in related API calls."
+    },
+    "order_id": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "9zw2pi119wjnl"
+      },
+      "description": "It should be the same as the `order.id` of the `Order` resource."
+    },
+    "delivery_method": {
+      "type": "string",
+      "enum": [
+        "pickup",
+        "shipping"
+      ],
+      "x-stoplight": {
+        "id": "t9hsy1t30zkh8"
+      },
+      "description": "Delivery method of the order. For BOPIS related feature, please specify `pickup`.\n\nFor more information about pickup order, please check the detailed [BOPIS introduction page](../../docs/common_scenarios/tracking/bopis.md).\n"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the fulfillment. Depending of on the `delivery_method`, the allowed values are different.\n\nAllowed values: \n\ndelivery_method is shipping:\n`pending`, `processing`, `shipped`, `canceled`, and the custom defined statuses.\n\ndelivery_method is pickup:\n`pending`, `processing`, `ready_for_pickup`, `picked_up`, `canceled`, and the custom defined statuses."
+    },
+    "line_items": {
+      "type": "array",
+      "description": "The items which included in this fulifllment.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "product_id",
+          "product_variant_id",
+          "sku",
+          "quantity"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "vh27skvspcy3e"
+            },
+            "description": "A unique identifier for the line item in your system. The value should be exist in one of the items in the corresponding order.\n\nNote that it should be the same as the `order.items.*.id` of the `Order` resource.\n"
+          },
+          "product_id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "62p41vjigs5st"
+            },
+            "description": "The ID of the product in your system.\n\nNote that it should be the same as the `product.id` of the `Product` resource.\n"
+          },
+          "product_variant_id": {
+            "type": "string",
+            "description": "The ID of the product variant in source system.\n\nNote that it should be the same as the `product.variants.id` of the `Product` resource."
+          },
+          "product_title": {
+            "type": "string",
+            "description": "The title of the product.\n"
+          },
+          "product_variant_title": {
+            "type": "string",
+            "description": "The title of the product variant.\n"
+          },
+          "sku": {
+            "type": "string",
+            "description": "The item's SKU (stock keeping unit).\n"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "The number of items in this fulfillment."
+          },
+          "unit_price": {
+            "$ref": "#/$defs/Money.v1",
+            "description": "The price of the item before discounts and taxes have been applied."
+          },
+          "unit_weight": {
+            "$ref": "#/$defs/Weight.v1",
+            "description": "The item's weight."
+          },
+          "image_urls": {
+            "type": "array",
+            "description": "Image urls of this product variant.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "source_created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the fulfillment was created in your e-commerce system."
+    },
+    "source_updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601), indicating when the fulfillment was updated in your e-commerce system."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time (ISO 8601 format) when the fulfillment was created in AfterShip."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time (ISO 8601 format) when the fulfillment was updated in AfterShip."
+    },
+    "ship_from_location": {
+      "type": "object",
+      "description": "The location information where the fulfillment shipped from.",
+      "additionalProperties": false,
+      "properties": {
+        "location_id": {
+          "type": "string",
+          "description": "The unique identifier for the location, as provided by AfterShip. You can manage and configure these locations [here](https://organization.automizely.com/warehouses)."
+        },
+        "address": {
+          "$ref": "#/$defs/Address.v1",
+          "description": "The address object of this location."
+        }
+      }
+    },
+    "pickup_location": {
+      "$ref": "#/$defs/Pickup_location.v1",
+      "description": "The location information where the fulfillment is designated to be pickup from."
+    },
+    "trackings": {
+      "type": "array",
+      "description": "The shipment information of the fulfillment.",
+      "items": {
+        "$ref": "#/$defs/Tracking.v1"
+      }
+    },
+    "pickup_info": {
+      "$ref": "#/$defs/Pickup.v1",
+      "description": "The pickup information of the fulfillment.",
+      "x-stoplight": {
+        "id": "pl9ahbkgvzsfd"
+      }
+    }
+  },
+  "$defs": {
+    "Address.v1": {
+      "description": "Billing address of the order.",
+      "type": "object",
+      "x-stoplight": {
+        "id": "7cc87e0eb2a0d"
+      },
+      "title": "Address",
+      "x-tags": [
+        "Primitive"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "street_1",
+        "state",
+        "country_region"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "The Type Schema",
+          "description": "The type of address.",
+          "enum": [
+            "business",
+            "residential"
+          ]
+        },
+        "street_1": {
+          "type": "string",
+          "title": "The Street_1 Schema",
+          "description": "First line of the street address.",
+          "maxLength": 256
+        },
+        "street_2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_2 Schema",
+          "description": "Second line of the street address.",
+          "maxLength": 256
+        },
+        "street_3": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_3 Schema",
+          "description": "Third line of the street address.",
+          "maxLength": 256
+        },
+        "city": {
+          "type": "string",
+          "title": "The City Schema",
+          "description": "The location's city, town, or village.",
+          "maxLength": 256
+        },
+        "state": {
+          "type": "string",
+          "title": "The State Schema",
+          "description": "The state or region of the location, such as a province, state, or prefecture.",
+          "maxLength": 256
+        },
+        "postal_code": {
+          "type": "string",
+          "title": "The Postal_code Schema",
+          "description": "The postal code of the location (also known as zip code, postcode, Eircode, etc.).",
+          "maxLength": 256
+        },
+        "country_region": {
+          "type": "string",
+          "title": "The Country Schema",
+          "description": "The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format. API will automatically convert input to uppercase.",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "company": {
+          "type": "string",
+          "title": "The Company Schema",
+          "description": "The name of the company associated to the address.",
+          "maxLength": 256
+        },
+        "first_name": {
+          "type": "string",
+          "title": "The First_name Schema",
+          "description": "The first name of the person associated to the address.",
+          "maxLength": 256
+        },
+        "last_name": {
+          "type": "string",
+          "title": "The Last_name Schema",
+          "description": "The last name of the person associated to the address.",
+          "maxLength": 256
+        },
+        "email": {
+          "type": "string",
+          "title": "The Email Schema",
+          "description": "The email address of the person associated to the address.",
+          "maxLength": 256
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the person associated to the address.",
+          "maxLength": 256
+        }
+      }
+    },
+    "Address_with_coordinate.v1": {
+      "description": "The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.",
+      "type": "object",
+      "x-stoplight": {
+        "id": "nu2sh0erm8041"
+      },
+      "title": "AddressWithCoordinate",
+      "x-tags": [
+        "Primitive"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "street_1",
+        "state",
+        "country_region"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "The Type Schema",
+          "description": "The type of address.",
+          "enum": [
+            "business",
+            "residential"
+          ]
+        },
+        "street_1": {
+          "type": "string",
+          "title": "The Street_1 Schema",
+          "description": "First line of the street address.",
+          "maxLength": 256
+        },
+        "street_2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_2 Schema",
+          "description": "Second line of the street address.",
+          "maxLength": 256
+        },
+        "street_3": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The Street_3 Schema",
+          "description": "Third line of the street address.",
+          "maxLength": 256
+        },
+        "city": {
+          "type": "string",
+          "title": "The City Schema",
+          "description": "The location's city, town, or village.",
+          "maxLength": 256
+        },
+        "state": {
+          "type": "string",
+          "title": "The State Schema",
+          "description": "The state or region of the location, such as a province, state, or prefecture.",
+          "maxLength": 256
+        },
+        "postal_code": {
+          "type": "string",
+          "title": "The Postal_code Schema",
+          "description": "The postal code of the location (also known as zip code, postcode, Eircode, etc.).",
+          "maxLength": 256
+        },
+        "country_region": {
+          "type": "string",
+          "title": "The Country Schema",
+          "description": "The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "company": {
+          "type": "string",
+          "title": "The Company Schema",
+          "description": "The name of the company associated to the address.",
+          "maxLength": 256
+        },
+        "first_name": {
+          "type": "string",
+          "title": "The First_name Schema",
+          "description": "The first name of the person associated to the address.",
+          "maxLength": 256
+        },
+        "last_name": {
+          "type": "string",
+          "title": "The Last_name Schema",
+          "description": "The last name of the person associated to the address.",
+          "maxLength": 256
+        },
+        "email": {
+          "type": "string",
+          "title": "The Email Schema",
+          "description": "The email address of the person associated to the address.",
+          "maxLength": 256
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the person associated to the address.",
+          "maxLength": 256
+        },
+        "coordinate": {
+          "type": "object",
+          "description": "The coordinate of the address.",
+          "properties": {
+            "longitude": {
+              "type": "number",
+              "description": "The longitude of the address."
+            },
+            "latitude": {
+              "type": "number",
+              "description": "The latitude of the address."
+            }
+          }
+        }
+      }
+    },
+    "Money.v1": {
+      "description": "The unit price of the item.",
+      "title": "Money",
+      "x-stoplight": {
+        "id": "b2024e5c6f23f"
+      },
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "currency": {
+          "type": "string",
+          "enum": [
+            "AED",
+            "AFN",
+            "ALL",
+            "AMD",
+            "ANG",
+            "AOA",
+            "ARS",
+            "AUD",
+            "AWG",
+            "AZN",
+            "BAM",
+            "BBD",
+            "BDT",
+            "BGN",
+            "BHD",
+            "BIF",
+            "BMD",
+            "BND",
+            "BOB",
+            "BOV",
+            "BRL",
+            "BSD",
+            "BTN",
+            "BWP",
+            "BYN",
+            "BZD",
+            "CAD",
+            "CDF",
+            "CHE",
+            "CHF",
+            "CHW",
+            "CLF",
+            "CLP",
+            "CNY",
+            "COP",
+            "COU",
+            "CRC",
+            "CUC",
+            "CUP",
+            "CVE",
+            "CZK",
+            "DJF",
+            "DKK",
+            "DOP",
+            "DZD",
+            "EGP",
+            "ERN",
+            "ETB",
+            "EUR",
+            "FJD",
+            "FKP",
+            "GBP",
+            "GEL",
+            "GHS",
+            "GIP",
+            "GMD",
+            "GNF",
+            "GTQ",
+            "GYD",
+            "HKD",
+            "HNL",
+            "HRK",
+            "HTG",
+            "HUF",
+            "IDR",
+            "ILS",
+            "INR",
+            "IQD",
+            "IRR",
+            "ISK",
+            "JMD",
+            "JOD",
+            "JPY",
+            "KES",
+            "KGS",
+            "KHR",
+            "KMF",
+            "KPW",
+            "KRW",
+            "KWD",
+            "KYD",
+            "KZT",
+            "LAK",
+            "LBP",
+            "LKR",
+            "LRD",
+            "LSL",
+            "LYD",
+            "MAD",
+            "MDL",
+            "MGA",
+            "MKD",
+            "MMK",
+            "MNT",
+            "MOP",
+            "MRU",
+            "MUR",
+            "MVR",
+            "MWK",
+            "MXN",
+            "MXV",
+            "MYR",
+            "MZN",
+            "NAD",
+            "NGN",
+            "NIO",
+            "NOK",
+            "NPR",
+            "NZD",
+            "OMR",
+            "PAB",
+            "PEN",
+            "PGK",
+            "PHP",
+            "PKR",
+            "PLN",
+            "PYG",
+            "QAR",
+            "RON",
+            "RSD",
+            "RUB",
+            "RWF",
+            "SAR",
+            "SBD",
+            "SCR",
+            "SDG",
+            "SEK",
+            "SGD",
+            "SHP",
+            "SLL",
+            "SOS",
+            "SRD",
+            "SSP",
+            "STN",
+            "SVC",
+            "SYP",
+            "SZL",
+            "THB",
+            "TJS",
+            "TMT",
+            "TND",
+            "TOP",
+            "TRY",
+            "TTD",
+            "TWD",
+            "TZS",
+            "UAH",
+            "UGX",
+            "USD",
+            "USN",
+            "UYI",
+            "UYU",
+            "UYW",
+            "UZS",
+            "VES",
+            "VND",
+            "VUV",
+            "WST",
+            "XAF",
+            "XAU",
+            "XBA",
+            "XBB",
+            "XBC",
+            "XBD",
+            "XCD",
+            "XDR",
+            "XOF",
+            "XPD",
+            "XPF",
+            "XPT",
+            "XSU",
+            "XTS",
+            "XUA",
+            "XXX",
+            "YER",
+            "ZAR",
+            "ZMW",
+            "ZWL"
+          ],
+          "description": "Currency code for the amount, adhering to the ISO 4217 standard."
+        },
+        "amount": {
+          "type": "string",
+          "description": "The amount value in string format."
+        }
+      }
+    },
+    "Opening_hour_period.v1": {
+      "title": "OpeningHourPeriod",
+      "x-stoplight": {
+        "id": "2g4w1syylsphw"
+      },
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day.",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "open": {
+          "type": "boolean",
+          "default": false,
+          "x-stoplight": {
+            "id": "qbb3rmmdfdhxy"
+          },
+          "description": "Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`."
+        },
+        "from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "fvyfkui68t3gt"
+          },
+          "description": "The start time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`."
+        },
+        "to": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-stoplight": {
+            "id": "sk5yjthy1achl"
+          },
+          "description": "The end time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`."
+        }
+      }
+    },
+    "Opening_hours.v1": {
+      "description": "The regular opening hours of the location.",
+      "title": "OpeningHours",
+      "x-stoplight": {
+        "id": "n7s4wz0dwk5ai"
+      },
+      "type": "object",
+      "properties": {
+        "sunday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "monday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "tuesday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "wednesday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "thursday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "friday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        },
+        "saturday": {
+          "$ref": "#/$defs/Opening_hour_period.v1"
+        }
+      },
+      "x-tags": [
+        "Primitive"
+      ]
+    },
+    "Pickup.v1": {
+      "x-stoplight": {
+        "id": "xuy8sphna6ej7"
+      },
+      "description": "To indicate the detailed pickup instruction of the order when the delivery method of the order is `pickup`.\n\nFor further details on pickup / BOPIS orders, refer to our comprehensive [BOPIS introduction page](../docs/common_scenarios/tracking/bopis.md).",
+      "title": "Pickup",
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "instructions": {
+          "type": "string",
+          "description": "Instructions for the pickup process.\n\nThe value specified in this field will take precedence if provided through the API. If not specified, it will default to the pickup location's instructions set in the AfterShip Admin Portal."
+        },
+        "estimated_ready_for_pickup_at": {
+          "type": "object",
+          "description": "The expected date and time when the items in this fulfillment order will be ready for pickup.\n\nThis information will be displayed on the Brand Tracking Page and included in customer notifications.",
+          "x-stoplight": {
+            "id": "la1jawtei2np5"
+          },
+          "properties": {
+            "min": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The earliest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)."
+            },
+            "max": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The latest anticipated date and time, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)."
+            }
+          }
+        },
+        "pickup_deadline_at": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "lvr0jt3nk49b5"
+          },
+          "format": "date-time",
+          "description": "The latest time by which the pickup must be completed, formatted in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).\n\nThis information will be displayed on the Brand Tracking Page.\n\n"
+        }
+      }
+    },
+    "Pickup_location.v1": {
+      "x-stoplight": {
+        "id": "ou78lfdhqjx26"
+      },
+      "description": "The location information where the fulfillment is designated to be pickup from. Mandatory when the delivery method of the fulfillment is `pickup`.",
+      "title": "PickupLocation",
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "location_id": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "o6v7ot5p5owq0"
+          },
+          "description": "The unique identifier for the address. You can find or create the corresponding value [here](https://organization.automizely.com/warehouses)."
+        },
+        "address": {
+          "$ref": "#/$defs/Address_with_coordinate.v1",
+          "x-stoplight": {
+            "id": "xd0n6n4djzcml"
+          },
+          "description": "Address of the pickup location."
+        },
+        "opening_hours": {
+          "$ref": "#/$defs/Opening_hours.v1",
+          "x-stoplight": {
+            "id": "xwxu19pd0nc0h"
+          },
+          "description": "Opening hours information of the pickup location."
+        }
+      }
+    },
+    "Tracking.v1": {
+      "title": "Tracking",
+      "x-stoplight": {
+        "id": "wugw7lvo5asco"
+      },
+      "description": "Represents shipment tracking information. This object supports two mutually exclusive usage patterns:\n\nReference Mode: Pass the tracking ID which created via the <a target='_blank' href='https://www.aftership.com/docs/tracking/sxafu5cay1usl-create-a-tracking'>Tracking API</a>. This enables full tracking capabilities.\n\nInline Mode: Pass the tracking_number (and optional slug) directly. This is strictly for record-keeping purposes and does not create an active tracking task, and hence AfterShip system would not provide status updates to this tracking number.",
+      "x-tags": [
+        "Primitive"
+      ],
+      "oneOf": [
+        {
+          "title": "Reference Mode",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "x8fzwnwtejyio"
+              },
+              "description": "The unique identifier of a tracking resource previously created via the <a target='_blank' href='https://www.aftership.com/docs/tracking/sxafu5cay1usl-create-a-tracking'>Tracking API</a>."
+            }
+          }
+        },
+        {
+          "title": "Inline Mode",
+          "x-stoplight": {
+            "id": "oqruujqsvdt22"
+          },
+          "required": [
+            "tracking_number"
+          ],
+          "properties": {
+            "tracking_number": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "a8z8ptxolucqz"
+              }
+            },
+            "slug": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "g2wj5ar3j83w6"
+              },
+              "description": "Unique courier code. For a complete list of available courier codes, click <a target='_blank' href='https://www.aftership.com/docs/tracking/others/supported-couriers'>here</a>."
+            }
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "Weight.v1": {
+      "description": "The unit weight of the item.",
+      "title": "Weight",
+      "x-stoplight": {
+        "id": "6ffc0efbd7bf5"
+      },
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "enum": [
+            "kg",
+            "lb",
+            "oz",
+            "g"
+          ],
+          "description": "The weight unit eg: g or kg."
+        },
+        "value": {
+          "type": "number",
+          "description": "The value of the weight."
+        }
+      }
+    }
+  }
+}

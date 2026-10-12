@@ -1,0 +1,114 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 8
+  own: 4
+  other_domain: 1
+  platform: 3
+  roles:
+  - api
+  - collections
+  - identity
+  - other
+  - source
+  - status
+  - support
+  - website
+hosts:
+- host: accounts.aftership.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Login
+  serves:
+  - identity
+  vendor: keycloak
+  registrable_domain: aftership.com
+  role: identity
+  relation: own
+- host: api.aftership.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: aftership.com
+  role: api
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: support.aftership.com
+  found_by:
+  - pointer
+  types:
+  - Support
+  serves: []
+  registrable_domain: aftership.com
+  role: support
+  relation: own
+- host: www.aftership.com
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - Newsroom
+  - BlogRSS
+  - Website
+  - DeveloperPortal
+  - Documentation
+  - APIReference
+  - GettingStarted
+  - HelpCenter
+  - Blog
+  - Pricing
+  - SignUp
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - docs
+  - cdn
+  vendor: cloudflare
+  registrable_domain: aftership.com
+  role: website
+  relation: own
+- host: www.aftershipstatus.com
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: aftershipstatus.com
+  role: status
+  relation: other-domain
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.postman.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Postman
+  serves:
+  - api-collections
+  vendor: postman
+  registrable_domain: postman.com
+  role: collections
+  relation: platform

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-suggest-request-schema.json",
+  "title": "SuggestRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-discoveries-api-openapi.yml#/components/schemas/Suggest_request",
+  "x-stoplight": {
+    "id": "0335tnzocslwv"
+  },
+  "type": "object",
+  "required": [
+    "query"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "fxaj0ftvmvdt9"
+      },
+      "description": "The search query."
+    },
+    "session_id": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "9d92wxs978zdq"
+      },
+      "description": "Session unique identifier. It is recommended to use this [package](https://www.npmjs.com/package/uuid) to generate UUID."
+    },
+    "limit": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "pag4271bn8h5o"
+      },
+      "description": "The number of suggestions each page contains.",
+      "default": 10,
+      "maximum": 20
+    }
+  }
+}

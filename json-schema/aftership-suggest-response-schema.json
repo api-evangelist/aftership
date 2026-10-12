@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-suggest-response-schema.json",
+  "title": "SuggestResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-discoveries-api-openapi.yml#/components/schemas/Suggest_response",
+  "x-stoplight": {
+    "id": "8y07dc4bs8ize"
+  },
+  "type": "object",
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/Meta.v1",
+      "x-stoplight": {
+        "id": "bb2u900ifaw18"
+      }
+    },
+    "data": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "cn07ag00tv6l7"
+      },
+      "properties": {
+        "suggestion": {
+          "type": "object",
+          "x-stoplight": {
+            "id": "czuf5e0xqz58p"
+          },
+          "description": "Suggestion object.",
+          "properties": {
+            "texts": {
+              "type": "array",
+              "x-stoplight": {
+                "id": "dxhb12hqeplt1"
+              },
+              "description": "Search text suggestions.",
+              "items": {
+                "x-stoplight": {
+                  "id": "jj1ydm9oxwm0a"
+                },
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Error.v1": {
+      "type": "object",
+      "title": "Error",
+      "additionalProperties": false,
+      "x-tags": [
+        "Envelope"
+      ],
+      "properties": {
+        "code": {
+          "type": "number",
+          "description": "A 1 to 5-digit integer that represents the status of the request."
+        },
+        "path": {
+          "type": "string",
+          "description": "JSON path of the request object where the error happens."
+        },
+        "info": {
+          "type": "string",
+          "description": "The verbal description of the error that was detected in the request JSON at the specified JSON path."
+        }
+      }
+    },
+    "Meta.v1": {
+      "x-stoplight": {
+        "id": "2sv02c3cjwlkg"
+      },
+      "title": "Meta",
+      "type": "object",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "number",
+          "description": "A 1 to 5-digit integer that represents the status of the request.",
+          "x-stoplight": {
+            "id": "y17kqny5tj8br"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable string message that gives a short description to the specific meta code.",
+          "x-stoplight": {
+            "id": "hd5r8ha2s2ptd"
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "BadRequest",
+            "Unauthorized",
+            "Forbidden",
+            "NotFound",
+            "UnprocessableEntity",
+            "TooManyRequests",
+            "InternalError"
+          ],
+          "description": "A human-readable short string which is the type of HTTP status, e.g. `OK` for a 200 HTTP status, or `BadRequest` for a 400 HTTP status.",
+          "x-stoplight": {
+            "id": "l3mnpcga6n3rg"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Error.v1"
+          }
+        }
+      }
+    }
+  }
+}

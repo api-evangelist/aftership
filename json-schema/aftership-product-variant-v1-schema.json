@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-product-variant-v1-schema.json",
+  "title": "product_variant.v1",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-products-api-openapi.yml#/components/schemas/Product_variant.v1",
+  "x-stoplight": {
+    "id": "9x15f6937soxi"
+  },
+  "type": "object",
+  "required": [
+    "id",
+    "sku",
+    "price"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A unique identifier for the product variant in your system.",
+      "maxLength": 32,
+      "x-stoplight": {
+        "id": "fv6ts8zm4xms8"
+      }
+    },
+    "sku": {
+      "type": "string",
+      "description": "The product SKU of the product variant.",
+      "maxLength": 1024
+    },
+    "price": {
+      "type": "string",
+      "description": "The price of the product variant.",
+      "maxLength": 100
+    },
+    "available_quantity": {
+      "type": "integer",
+      "description": "Available quantity of the product variant."
+    },
+    "image_urls": {
+      "type": "array",
+      "maxItems": 100,
+      "description": "The product image URL of the product variant.",
+      "items": {
+        "type": "string",
+        "maxLength": 1024
+      }
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the product variant.",
+      "maxLength": 1024
+    },
+    "compare_at_price": {
+      "type": "string",
+      "description": "The original price of the item before an adjustment or a sale.",
+      "maxLength": 100
+    },
+    "weight": {
+      "$ref": "#/$defs/Weight.v1",
+      "description": "The weight information of the product variant."
+    },
+    "allow_backorder": {
+      "type": "boolean",
+      "description": "To specify whether customers are permitted to place an order for this out-of-stock product variant."
+    },
+    "options": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "description": "The custom product variant properties, such as size, color, and material.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The field name of the custom product property.",
+            "maxLength": 256
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of the custom product property.",
+            "maxLength": 256
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Weight.v1": {
+      "description": "The unit weight of the item.",
+      "title": "Weight",
+      "x-stoplight": {
+        "id": "6ffc0efbd7bf5"
+      },
+      "type": "object",
+      "x-tags": [
+        "Primitive"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "enum": [
+            "kg",
+            "lb",
+            "oz",
+            "g"
+          ],
+          "description": "The weight unit eg: g or kg."
+        },
+        "value": {
+          "type": "number",
+          "description": "The value of the weight."
+        }
+      }
+    }
+  }
+}

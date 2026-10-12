@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-address-with-coordinate-v1-schema.json",
+  "title": "AddressWithCoordinate",
+  "description": "The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-locations-api-openapi.yml#/components/schemas/Address_with_coordinate.v1",
+  "type": "object",
+  "x-stoplight": {
+    "id": "nu2sh0erm8041"
+  },
+  "x-tags": [
+    "Primitive"
+  ],
+  "additionalProperties": false,
+  "required": [
+    "street_1",
+    "state",
+    "country_region"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "title": "The Type Schema",
+      "description": "The type of address.",
+      "enum": [
+        "business",
+        "residential"
+      ]
+    },
+    "street_1": {
+      "type": "string",
+      "title": "The Street_1 Schema",
+      "description": "First line of the street address.",
+      "maxLength": 256
+    },
+    "street_2": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "The Street_2 Schema",
+      "description": "Second line of the street address.",
+      "maxLength": 256
+    },
+    "street_3": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "The Street_3 Schema",
+      "description": "Third line of the street address.",
+      "maxLength": 256
+    },
+    "city": {
+      "type": "string",
+      "title": "The City Schema",
+      "description": "The location's city, town, or village.",
+      "maxLength": 256
+    },
+    "state": {
+      "type": "string",
+      "title": "The State Schema",
+      "description": "The state or region of the location, such as a province, state, or prefecture.",
+      "maxLength": 256
+    },
+    "postal_code": {
+      "type": "string",
+      "title": "The Postal_code Schema",
+      "description": "The postal code of the location (also known as zip code, postcode, Eircode, etc.).",
+      "maxLength": 256
+    },
+    "country_region": {
+      "type": "string",
+      "title": "The Country Schema",
+      "description": "The address country/region in [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "company": {
+      "type": "string",
+      "title": "The Company Schema",
+      "description": "The name of the company associated to the address.",
+      "maxLength": 256
+    },
+    "first_name": {
+      "type": "string",
+      "title": "The First_name Schema",
+      "description": "The first name of the person associated to the address.",
+      "maxLength": 256
+    },
+    "last_name": {
+      "type": "string",
+      "title": "The Last_name Schema",
+      "description": "The last name of the person associated to the address.",
+      "maxLength": 256
+    },
+    "email": {
+      "type": "string",
+      "title": "The Email Schema",
+      "description": "The email address of the person associated to the address.",
+      "maxLength": 256
+    },
+    "phone": {
+      "type": "string",
+      "description": "The phone number of the person associated to the address.",
+      "maxLength": 256
+    },
+    "coordinate": {
+      "type": "object",
+      "description": "The coordinate of the address.",
+      "properties": {
+        "longitude": {
+          "type": "number",
+          "description": "The longitude of the address."
+        },
+        "latitude": {
+          "type": "number",
+          "description": "The latitude of the address."
+        }
+      }
+    }
+  }
+}

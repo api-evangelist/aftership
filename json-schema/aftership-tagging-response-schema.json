@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aftership/main/json-schema/aftership-tagging-response-schema.json",
+  "title": "TaggingResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/aftership-discoveries-api-openapi.yml#/components/schemas/Tagging_response",
+  "x-stoplight": {
+    "id": "2fh77f38s16yr"
+  },
+  "type": "object",
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/Meta.v1",
+      "x-stoplight": {
+        "id": "8iu7kxnz3yttb"
+      }
+    },
+    "data": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "783yix4byf0xf"
+      },
+      "properties": {
+        "predict_category": {
+          "$ref": "#/$defs/Predict_categories",
+          "x-stoplight": {
+            "id": "80ar3hy4llmxd"
+          }
+        },
+        "predict_tags": {
+          "type": "array",
+          "x-stoplight": {
+            "id": "29235ja7u6m12"
+          },
+          "items": {
+            "$ref": "#/$defs/Predict_tags",
+            "x-stoplight": {
+              "id": "f7yf0iz8y2ves"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Error.v1": {
+      "type": "object",
+      "title": "Error",
+      "additionalProperties": false,
+      "x-tags": [
+        "Envelope"
+      ],
+      "properties": {
+        "code": {
+          "type": "number",
+          "description": "A 1 to 5-digit integer that represents the status of the request."
+        },
+        "path": {
+          "type": "string",
+          "description": "JSON path of the request object where the error happens."
+        },
+        "info": {
+          "type": "string",
+          "description": "The verbal description of the error that was detected in the request JSON at the specified JSON path."
+        }
+      }
+    },
+    "Meta.v1": {
+      "x-stoplight": {
+        "id": "2sv02c3cjwlkg"
+      },
+      "title": "Meta",
+      "type": "object",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "number",
+          "description": "A 1 to 5-digit integer that represents the status of the request.",
+          "x-stoplight": {
+            "id": "y17kqny5tj8br"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable string message that gives a short description to the specific meta code.",
+          "x-stoplight": {
+            "id": "hd5r8ha2s2ptd"
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "BadRequest",
+            "Unauthorized",
+            "Forbidden",
+            "NotFound",
+            "UnprocessableEntity",
+            "TooManyRequests",
+            "InternalError"
+          ],
+          "description": "A human-readable short string which is the type of HTTP status, e.g. `OK` for a 200 HTTP status, or `BadRequest` for a 400 HTTP status.",
+          "x-stoplight": {
+            "id": "l3mnpcga6n3rg"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Error.v1"
+          }
+        }
+      }
+    },
+    "Predict_categories": {
+      "x-stoplight": {
+        "id": "80ar3hy4llmxd"
+      },
+      "title": "PredictCategory",
+      "type": "object",
+      "description": "Predict product category object.",
+      "properties": {
+        "category": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "ebr51h41q9unf"
+          },
+          "description": "Prediction result of target platform product category."
+        },
+        "confidence_score": {
+          "type": "number",
+          "x-stoplight": {
+            "id": "dci5uyxqw6yct"
+          },
+          "description": "The confidence score represents the probability that AfterShip Personalization believes the item belongs to that category. The higher the value, the more likely the product belongs to that category.",
+          "minimum": 0
+        }
+      }
+    },
+    "Predict_tags": {
+      "x-stoplight": {
+        "id": "f7yf0iz8y2ves"
+      },
+      "title": "PredictTag",
+      "type": "object",
+      "description": "Predict product tag object.",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "srfassnhnlf26"
+          },
+          "description": "Product label prediction result."
+        },
+        "confidence_score": {
+          "type": "number",
+          "x-stoplight": {
+            "id": "s382p3flsl1do"
+          },
+          "description": "The confidence score represents the probability that AfterShip Personalization believes the item has those tags. The higher the value, the more likely the product has these tags.",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

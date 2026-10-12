@@ -1,0 +1,133 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: aftership
+workflows:
+- file: aftership-gorgias-tracking-ticket.yml
+  title: AfterShip Gorgias Tracking Ticket
+  partner: gorgias
+  template: null
+  repos:
+  - aftership
+  - gorgias
+  steps:
+  - step: getTracking
+    repo: aftership
+    spec_file: aftership-tracking-api-openapi.yml
+    operationId: get-tracking-by-id
+    tag: Tracking
+    capability_id: BC-2510.20
+    capability: Shipment Tracking Management
+    capability_l1: BC-2510
+    intent: Get a tracking's latest status
+    effect: read
+    unmapped: null
+  - step: createTicket
+    repo: gorgias
+    spec_file: gorgias-tickets-api-openapi.yml
+    operationId: createTicket
+    tag: Tickets
+    capability_id: BC-430.10
+    capability: Customer Inquiry Management
+    capability_l1: BC-430
+    intent: null
+    effect: null
+    unmapped: null
+  connects:
+    aftership:
+      capabilities:
+      - BC-2510.20
+      tags:
+      - Tracking
+    gorgias:
+      capabilities:
+      - BC-430.10
+      tags:
+      - Tickets
+  intents:
+  - Get a tracking's latest status
+- file: aftership-klaviyo-shipment-event.yml
+  title: AfterShip Klaviyo Shipment Status Event
+  partner: klaviyo
+  template: null
+  repos:
+  - aftership
+  - klaviyo
+  steps:
+  - step: getTracking
+    repo: aftership
+    spec_file: aftership-tracking-api-openapi.yml
+    operationId: get-tracking-by-id
+    tag: Tracking
+    capability_id: BC-2510.20
+    capability: Shipment Tracking Management
+    capability_l1: BC-2510
+    intent: Get a tracking's latest status
+    effect: read
+    unmapped: null
+  - step: createEvent
+    repo: klaviyo
+    spec_file: klaviyo-events-api-openapi.yml
+    operationId: create_event
+    tag: Events
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Track an event for a profile
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    aftership:
+      capabilities:
+      - BC-2510.20
+      tags:
+      - Tracking
+    klaviyo:
+      capabilities: []
+      tags:
+      - Events
+  intents:
+  - Get a tracking's latest status
+  - Track an event for a profile
+- file: aftership-shipstation-import-shipments.yml
+  title: AfterShip ShipStation Import Shipments
+  partner: shipstation
+  template: null
+  repos:
+  - shipstation
+  - aftership
+  steps:
+  - step: listShipments
+    repo: shipstation
+    spec_file: shipstation-shipments-api-openapi.yml
+    operationId: listShipments
+    tag: Shipments
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: createTracking
+    repo: aftership
+    spec_file: aftership-tracking-api-openapi.yml
+    operationId: create-tracking
+    tag: Tracking
+    capability_id: BC-2510.20
+    capability: Shipment Tracking Management
+    capability_l1: BC-2510
+    intent: Start tracking a shipment
+    effect: write
+    unmapped: null
+  connects:
+    shipstation:
+      capabilities: []
+      tags:
+      - Shipments
+    aftership:
+      capabilities:
+      - BC-2510.20
+      tags:
+      - Tracking
+  intents:
+  - Start tracking a shipment

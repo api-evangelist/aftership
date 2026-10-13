@@ -102,12 +102,12 @@ workflows:
     spec_file: shipstation-shipments-api-openapi.yml
     operationId: listShipments
     tag: Shipments
-    capability_id: null
-    capability: null
-    capability_l1: null
+    capability_id: BC-520.50
+    capability: Logistics Operations Management
+    capability_l1: BC-520
     intent: null
     effect: null
-    unmapped: no capability edge for this spec file
+    unmapped: null
   - step: createTracking
     repo: aftership
     spec_file: aftership-tracking-api-openapi.yml
@@ -121,7 +121,8 @@ workflows:
     unmapped: null
   connects:
     shipstation:
-      capabilities: []
+      capabilities:
+      - BC-520.50
       tags:
       - Shipments
     aftership:

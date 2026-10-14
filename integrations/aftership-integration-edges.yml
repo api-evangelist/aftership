@@ -10,6 +10,7 @@ checked:
 - https://composio.dev/toolkits/aftership
 - https://monid.ai/tools/aftership
 - https://n8n.io/integrations/aftership/
+- https://registry.modelcontextprotocol.io/v0/servers
 - https://www.aftership.com/integrations
 - https://www.make.com/en/integrations/aftership
 - https://zapier.com/apps/aftership/integrations
@@ -139,6 +140,37 @@ edges:
   direction: provider-built
   category: ecommerce-platform
   operations: []
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.aftership.mcp
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: com.aftership.mcp/tracking-public
+    register_id: com.aftership.mcp/tracking-public
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - com.aftership.mcp/tracking-public
+    hosted_remote: 1
+    local_package: 0
+    transports:
+      streamable-http: 1
+    auth_declared: 0
+    catalog_declared: false
+    namespace_domains:
+    - aftership.com
+  matched_by:
+  - namespace-domain
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
 templates: []
 skips:
 - label: Shopify

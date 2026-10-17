@@ -275,6 +275,52 @@ paths:
       description: Delete a courier connection.
 components:
   schemas:
+    Courier_connection_response_get_multiple:
+      title: Courier connection response for get courier connections
+      x-stoplight:
+        id: 9o1l7x6pqo6fp
+      type: object
+      required:
+      - meta
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta.v1'
+          x-stoplight:
+            id: 6c201d370nvrt
+        data:
+          type: object
+          x-stoplight:
+            id: w25ebamui3w29
+          properties:
+            pagination:
+              type: object
+              x-stoplight:
+                id: vkvzrkb7rdj7y
+              properties:
+                total:
+                  type: integer
+                  x-stoplight:
+                    id: a4sudr3suz1mx
+                  description: The total number of courier connections.
+                next_cursor:
+                  type: string
+                  x-stoplight:
+                    id: pg0inus4ychbj
+                  description: A string representing the cursor value for the next page of results.
+                has_next_page:
+                  type: boolean
+                  x-stoplight:
+                    id: 1nmwapf8zdp7j
+                  description: To indicate if next page is available.
+            courier_connections:
+              type: array
+              x-stoplight:
+                id: 36jy9hhq1dksm
+              items:
+                $ref: '#/components/schemas/Courier_connection'
+                x-stoplight:
+                  id: v74u6j9mo413l
+      description: Courier connection response for getting courier connections
     Courier_connection:
       x-stoplight:
         id: h993xw7eds2r0
@@ -346,52 +392,6 @@ components:
           - TooManyRequests
           - InternalError
           description: error type, only exist if the response status is not 2xx
-    Courier_connection_response_get_multiple:
-      title: Courier connection response for get courier connections
-      x-stoplight:
-        id: 9o1l7x6pqo6fp
-      type: object
-      required:
-      - meta
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta.v1'
-          x-stoplight:
-            id: 6c201d370nvrt
-        data:
-          type: object
-          x-stoplight:
-            id: w25ebamui3w29
-          properties:
-            pagination:
-              type: object
-              x-stoplight:
-                id: vkvzrkb7rdj7y
-              properties:
-                total:
-                  type: integer
-                  x-stoplight:
-                    id: a4sudr3suz1mx
-                  description: The total number of courier connections.
-                next_cursor:
-                  type: string
-                  x-stoplight:
-                    id: pg0inus4ychbj
-                  description: A string representing the cursor value for the next page of results.
-                has_next_page:
-                  type: boolean
-                  x-stoplight:
-                    id: 1nmwapf8zdp7j
-                  description: To indicate if next page is available.
-            courier_connections:
-              type: array
-              x-stoplight:
-                id: 36jy9hhq1dksm
-              items:
-                $ref: '#/components/schemas/Courier_connection'
-                x-stoplight:
-                  id: v74u6j9mo413l
-      description: Courier connection response for getting courier connections
   securitySchemes:
     as-api-key:
       name: as-api-key

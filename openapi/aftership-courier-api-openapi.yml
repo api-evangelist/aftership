@@ -158,33 +158,6 @@ paths:
       - Courier
 components:
   schemas:
-    Credential_field:
-      x-stoplight:
-        id: pdnkudi6x3v5e
-      title: credential_field
-      type: object
-      examples:
-      - name: username
-        type: string
-        required: true
-      properties:
-        name:
-          type: string
-          x-stoplight:
-            id: qeajuoafnpc4x
-          description: The display name of the credential field that users must provide when creating a carrier connection.
-          example: username
-        type:
-          type: string
-          x-stoplight:
-            id: kl9858csb43ay
-          description: The data type of the credential field, indicating what kind of input is expected.
-          example: string
-        required:
-          type: boolean
-          x-stoplight:
-            id: fe9gi4g81r95f
-          description: It indicates whether the credentials field must be provided or not when creating a carrier connection.
     Courier:
       x-stoplight:
         id: dh84q02xjf082
@@ -334,6 +307,22 @@ components:
                 $ref: '#/components/schemas/Credential_field'
                 x-stoplight:
                   id: pdnkudi6x3v5e
+    Additional_fields.v1:
+      x-stoplight:
+        id: v0x73k8xspiqw
+      type: string
+      title: additional_fields
+      description: 'All available additional fields<div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
+      enum:
+      - tracking_account_number
+      - destination_postal_code
+      - destination_state
+      - tracking_key
+      - origin_country_region
+      - destination_country_region
+      - tracking_ship_date
+      example: tracking_account_number
+      pattern: ^[a-z_0-9]+$
     Meta.v1:
       title: meta
       type: object
@@ -381,22 +370,33 @@ components:
                 $ref: '#/components/schemas/Courier'
                 x-stoplight:
                   id: dh84q02xjf082
-    Additional_fields.v1:
+    Credential_field:
       x-stoplight:
-        id: v0x73k8xspiqw
-      type: string
-      title: additional_fields
-      description: 'All available additional fields<div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
-      enum:
-      - tracking_account_number
-      - destination_postal_code
-      - destination_state
-      - tracking_key
-      - origin_country_region
-      - destination_country_region
-      - tracking_ship_date
-      example: tracking_account_number
-      pattern: ^[a-z_0-9]+$
+        id: pdnkudi6x3v5e
+      title: credential_field
+      type: object
+      examples:
+      - name: username
+        type: string
+        required: true
+      properties:
+        name:
+          type: string
+          x-stoplight:
+            id: qeajuoafnpc4x
+          description: The display name of the credential field that users must provide when creating a carrier connection.
+          example: username
+        type:
+          type: string
+          x-stoplight:
+            id: kl9858csb43ay
+          description: The data type of the credential field, indicating what kind of input is expected.
+          example: string
+        required:
+          type: boolean
+          x-stoplight:
+            id: fe9gi4g81r95f
+          description: It indicates whether the credentials field must be provided or not when creating a carrier connection.
   securitySchemes:
     as-api-key:
       name: as-api-key

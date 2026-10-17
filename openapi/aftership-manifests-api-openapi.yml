@@ -1395,54 +1395,54 @@ paths:
       - as-api-key: []
 components:
   schemas:
-    Manifest.v3:
-      title: Manifest
-      x-stoplight:
-        id: 1e0uz3ywnb74k
+    Meta.v3:
+      description: Meta data object.
       type: object
-      description: 'Manifest object: the description of manifest informaiont'
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
       x-tags:
-      - Resource
-      examples: []
+      - Envelope
       properties:
-        id:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
           type: string
-        status:
-          type: string
-        shipper_account:
-          type: object
-          description: Shipper account object
-          properties:
-            id:
-              type: string
-            slug:
-              type: string
-            description:
-              type: string
-          required:
-          - id
-          - slug
-        labels:
+          description: Message of Meta
+        details:
           type: array
-          description: Labels array, it contains all the label object
+          description: Details of Meta
           items:
-            type: object
-            properties:
-              id:
-                type: string
-              manifested:
-                type: boolean
-            required:
-            - id
-        files:
-          $ref: '#/components/schemas/Files.v3'
-        created_at:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
           type: string
-          description: 'A formatted date.
-
-            '
-        updated_at:
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
           type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Files.v3:
       title: Files
       x-stoplight:
@@ -1587,54 +1587,54 @@ components:
               - 'null'
               enum:
               - pdf
-    Meta.v3:
-      description: Meta data object.
+    Manifest.v3:
+      title: Manifest
+      x-stoplight:
+        id: 1e0uz3ywnb74k
       type: object
-      x-examples: {}
-      examples:
-      - code: 200
-        type: OK
-        message: Everything worked as expected.
-      title: Meta
+      description: 'Manifest object: the description of manifest informaiont'
       x-tags:
-      - Envelope
+      - Resource
+      examples: []
       properties:
-        code:
-          type: integer
-          description: Code of Meta
-        message:
+        id:
           type: string
-          description: Message of Meta
-        details:
+        status:
+          type: string
+        shipper_account:
+          type: object
+          description: Shipper account object
+          properties:
+            id:
+              type: string
+            slug:
+              type: string
+            description:
+              type: string
+          required:
+          - id
+          - slug
+        labels:
           type: array
-          description: Details of Meta
+          description: Labels array, it contains all the label object
           items:
-            $ref: '#/components/schemas/Error.v3'
-        retryable:
-          type: boolean
-          description: Whether this request will be retryable or not
-      required:
-      - code
-      - message
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
+            type: object
+            properties:
+              id:
+                type: string
+              manifested:
+                type: boolean
+            required:
+            - id
+        files:
+          $ref: '#/components/schemas/Files.v3'
+        created_at:
           type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
+          description: 'A formatted date.
+
+            '
+        updated_at:
           type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
   securitySchemes:
     as-api-key:
       name: as-api-key

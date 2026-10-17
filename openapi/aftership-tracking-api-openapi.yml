@@ -1922,6 +1922,197 @@ paths:
       - Tracking
 components:
   schemas:
+    Checkpoint:
+      x-stoplight:
+        id: ag7g0fudz5euk
+      title: Checkpoint
+      type: object
+      description: 'Object describes checkpoint information.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/enum/events.md)[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
+      x-tags:
+      - Resource
+      properties:
+        created_at:
+          type: string
+          minLength: 1
+          description: The date and time of the checkpoint event was added to AfterShip. It uses the format `YYYY-MM-DDTHH:mm:ssZ` for the timezone GMT +0.
+          example: '2023-01-18T08:47:10+00:00'
+          x-stoplight:
+            id: zu8czui1spi5j
+        slug:
+          type: string
+          minLength: 1
+          description: The unique code of courier for this checkpoint. Get courier slug [here](../../reference/api.json/paths/~1couriers/get)
+          example: fedex
+          x-stoplight:
+            id: 4owl79ms8d3u9
+        checkpoint_time:
+          type: string
+          minLength: 1
+          description: 'The date and time of the checkpoint event, provided by the carrier. It uses the timezone of the checkpoint. The format may differ depending on how the carrier provides it:
+
+            - YYYY-MM-DDTHH:mm:ss
+
+            - YYYY-MM-DDTHH:mm:ssZ'
+          example: '2022-01-01T18:47:10-05:00'
+          x-stoplight:
+            id: 9awzp75k9febs
+        location:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: Location info provided by carrier
+          example: 13th Street, New York, NY 10011, USA, United States
+          x-stoplight:
+            id: u93y11ihmeov8
+        city:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: City info provided by carrier
+          example: New York
+          x-stoplight:
+            id: fabvm8mmikdej
+        state:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: State info provided by carrier
+          example: NY
+          x-stoplight:
+            id: 1v0inuoj4e74y
+        postal_code:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: Postal code info provided by carrier
+          example: '10011'
+          x-stoplight:
+            id: pf7bhy5eyojon
+        coordinate:
+          type:
+          - object
+          - 'null'
+          description: The latitude and longitude coordinates indicate the precise location of the shipments that are currently in transit.
+          example: null
+          x-stoplight:
+            id: zum7wa9pis108
+          properties:
+            latitude:
+              type: number
+              x-stoplight:
+                id: g76n61cbre4zl
+              description: Represents the latitude.
+              example: '37.09024'
+              readOnly: true
+            longitude:
+              type: number
+              x-stoplight:
+                id: snidkwtd2epur
+              description: Represents the longitude.
+              example: '-95.712891'
+              readOnly: true
+        country_region:
+          type:
+          - string
+          - 'null'
+          description: Country/Region ISO Alpha-3 (three letters) of the checkpoint
+          example: USA
+          x-stoplight:
+            id: j5fqociyv0ljk
+        country_region_name:
+          type:
+          - string
+          - 'null'
+          description: Country/Region name of the checkpoint, may also contain other location info.
+          example: United States
+          x-stoplight:
+            id: gsg0p1qckju58
+        message:
+          type: string
+          minLength: 1
+          description: Checkpoint message
+          example: Package delivered
+          x-stoplight:
+            id: cznxhuyp14g5q
+        tag:
+          $ref: '#/components/schemas/Tag.v1'
+          x-stoplight:
+            id: l0bsiywldok3r
+        subtag:
+          type: string
+          minLength: 1
+          description: Current subtag of checkpoint. ([See subtag definition](../../docs/enum/delivery_sub_statuses.md))
+          example: Delivered_002
+          x-stoplight:
+            id: 7w23827daymn0
+        subtag_message:
+          type: string
+          minLength: 1
+          description: Normalized checkpoint message. ([See subtag message definition](../../docs/enum/delivery_sub_statuses.md))
+          example: Picked up by customer
+          x-stoplight:
+            id: gtmk5cuw7wtwb
+        raw_tag:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          description: Checkpoint raw status provided by courier
+          example: RO
+          x-stoplight:
+            id: 9hl14tav56q2k
+        events:
+          type: array
+          x-stoplight:
+            id: yaarhzzr9lwlb
+          description: 'The array provides details about specific event(s) that occurred  to a shipment, such as "returned_to_sender". You can find the full list of events and reasons [here](../../docs/enum/events.md#events) <span style=background-color:#ff6b2b;color:white;padding:2px>(Beta Feature)</span>
+
+            - The events'' value for the same checkpoint message is subject to change as we consistently strive to enhance the performance of this feature.'
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                x-stoplight:
+                  id: ga8y1l7lzhe0n
+                description: Represents the event code.
+                example: delivered_to_neighbor
+              reason:
+                type:
+                - object
+                - 'null'
+                x-stoplight:
+                  id: d19xczf0ux5qf
+                description: Describes the specific reason that led to the event.
+                properties:
+                  code:
+                    type: string
+                    x-stoplight:
+                      id: cttlv8n2ojzes
+                    description: 'The code of the reason. '
+                    example: incorrect_missing_address
+        source:
+          x-stoplight:
+            id: 2tkhtf7zk4pwk
+          example: carrier
+          description: The source of the checkpoint, which can either be from the carrier or when the user marks the tracking as completed.
+          enum:
+          - carrier
+          - user
+        hash:
+          type: string
+          x-stoplight:
+            id: bu7ulg24vi728
+          description: Unique hash identifier for each checkpoint event, could be used for deduplication.
+          example: a1b2c3d4e5f6789012345678901234567890abcd
+          readOnly: true
     Tracking:
       description: 'Object describes the tracking information.
 
@@ -3209,6 +3400,23 @@ components:
                 id: dv0ib62o2wp78
               description: AfterShip system-assigned unique identifier of the linked outbound shipment.
               example: abc123def456789012345678901234567890abcd
+    Tag.v1:
+      x-stoplight:
+        id: zcw4ttoz76bsj
+      type: string
+      title: tag
+      enum:
+      - Pending
+      - InfoReceived
+      - InTransit
+      - OutForDelivery
+      - AttemptFail
+      - Delivered
+      - AvailableForPickup
+      - Exception
+      - Expired
+      description: 'Current status of tracking. ([See tag definition](../../docs/enum/delivery_statuses.md))<div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
+      example: Delivered
     Meta.v1:
       title: meta
       type: object
@@ -3233,23 +3441,6 @@ components:
           - TooManyRequests
           - InternalError
           description: error type, only exist if the response status is not 2xx
-    Tag.v1:
-      x-stoplight:
-        id: zcw4ttoz76bsj
-      type: string
-      title: tag
-      enum:
-      - Pending
-      - InfoReceived
-      - InTransit
-      - OutForDelivery
-      - AttemptFail
-      - Delivered
-      - AvailableForPickup
-      - Exception
-      - Expired
-      description: 'Current status of tracking. ([See tag definition](../../docs/enum/delivery_statuses.md))<div style="visibility:hidden; height: 0">[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
-      example: Delivered
     Tracking_response_get_multiple.v1:
       title: Tracking response for get trackings
       type: object
@@ -3292,197 +3483,6 @@ components:
                 $ref: '#/components/schemas/Tracking'
                 x-stoplight:
                   id: tdehjrjz0yj1s
-    Checkpoint:
-      x-stoplight:
-        id: ag7g0fudz5euk
-      title: Checkpoint
-      type: object
-      description: 'Object describes checkpoint information.
-
-
-        <div style="visibility:hidden; height: 0">[url](../../docs/enum/events.md)[url](../../docs/enum/additional_tracking_fields.md)[url](../../docs/enum/delivery_sub_statuses.md)[url](../../docs/enum/delivery_statuses.md)[url](../../docs/enum/slug_groups.md)[url](../../model/resource/tracking.json)[url](../../model/resource/checkpoint.json)[url](../../model/resource/courier.json)[url](../../model/resource/notification.json)[url](../../model/enum/additional_fields.v1.json)[url](../../model/enum/slug_group.v1.json)[url](../../model/enum/tag.v1.json)[url](../../reference/api.json/paths/~1trackings/get)[url](../../reference/api.json/paths/~1trackings/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/put)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}/delete)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1retrack/post)[url](../../reference/api.json/paths/~1trackings~1{slug}~1{tracking_number}~1mark-as-completed/post)[url](../../reference/api.json/paths/~1couriers/get)[url](../../reference/api.json/paths/~1couriers~1detect/post)[url](../../reference/api.json/paths/~1couriers~1all/get)[url](../../reference/api.json/paths/~1last_checkpoint~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}/get)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1add/post)[url](../../reference/api.json/paths/~1notifications~1{slug}~1{tracking_number}~1remove/post)</div>'
-      x-tags:
-      - Resource
-      properties:
-        created_at:
-          type: string
-          minLength: 1
-          description: The date and time of the checkpoint event was added to AfterShip. It uses the format `YYYY-MM-DDTHH:mm:ssZ` for the timezone GMT +0.
-          example: '2023-01-18T08:47:10+00:00'
-          x-stoplight:
-            id: zu8czui1spi5j
-        slug:
-          type: string
-          minLength: 1
-          description: The unique code of courier for this checkpoint. Get courier slug [here](../../reference/api.json/paths/~1couriers/get)
-          example: fedex
-          x-stoplight:
-            id: 4owl79ms8d3u9
-        checkpoint_time:
-          type: string
-          minLength: 1
-          description: 'The date and time of the checkpoint event, provided by the carrier. It uses the timezone of the checkpoint. The format may differ depending on how the carrier provides it:
-
-            - YYYY-MM-DDTHH:mm:ss
-
-            - YYYY-MM-DDTHH:mm:ssZ'
-          example: '2022-01-01T18:47:10-05:00'
-          x-stoplight:
-            id: 9awzp75k9febs
-        location:
-          type:
-          - string
-          - 'null'
-          minLength: 1
-          description: Location info provided by carrier
-          example: 13th Street, New York, NY 10011, USA, United States
-          x-stoplight:
-            id: u93y11ihmeov8
-        city:
-          type:
-          - string
-          - 'null'
-          minLength: 1
-          description: City info provided by carrier
-          example: New York
-          x-stoplight:
-            id: fabvm8mmikdej
-        state:
-          type:
-          - string
-          - 'null'
-          minLength: 1
-          description: State info provided by carrier
-          example: NY
-          x-stoplight:
-            id: 1v0inuoj4e74y
-        postal_code:
-          type:
-          - string
-          - 'null'
-          minLength: 1
-          description: Postal code info provided by carrier
-          example: '10011'
-          x-stoplight:
-            id: pf7bhy5eyojon
-        coordinate:
-          type:
-          - object
-          - 'null'
-          description: The latitude and longitude coordinates indicate the precise location of the shipments that are currently in transit.
-          example: null
-          x-stoplight:
-            id: zum7wa9pis108
-          properties:
-            latitude:
-              type: number
-              x-stoplight:
-                id: g76n61cbre4zl
-              description: Represents the latitude.
-              example: '37.09024'
-              readOnly: true
-            longitude:
-              type: number
-              x-stoplight:
-                id: snidkwtd2epur
-              description: Represents the longitude.
-              example: '-95.712891'
-              readOnly: true
-        country_region:
-          type:
-          - string
-          - 'null'
-          description: Country/Region ISO Alpha-3 (three letters) of the checkpoint
-          example: USA
-          x-stoplight:
-            id: j5fqociyv0ljk
-        country_region_name:
-          type:
-          - string
-          - 'null'
-          description: Country/Region name of the checkpoint, may also contain other location info.
-          example: United States
-          x-stoplight:
-            id: gsg0p1qckju58
-        message:
-          type: string
-          minLength: 1
-          description: Checkpoint message
-          example: Package delivered
-          x-stoplight:
-            id: cznxhuyp14g5q
-        tag:
-          $ref: '#/components/schemas/Tag.v1'
-          x-stoplight:
-            id: l0bsiywldok3r
-        subtag:
-          type: string
-          minLength: 1
-          description: Current subtag of checkpoint. ([See subtag definition](../../docs/enum/delivery_sub_statuses.md))
-          example: Delivered_002
-          x-stoplight:
-            id: 7w23827daymn0
-        subtag_message:
-          type: string
-          minLength: 1
-          description: Normalized checkpoint message. ([See subtag message definition](../../docs/enum/delivery_sub_statuses.md))
-          example: Picked up by customer
-          x-stoplight:
-            id: gtmk5cuw7wtwb
-        raw_tag:
-          type:
-          - string
-          - 'null'
-          minLength: 1
-          description: Checkpoint raw status provided by courier
-          example: RO
-          x-stoplight:
-            id: 9hl14tav56q2k
-        events:
-          type: array
-          x-stoplight:
-            id: yaarhzzr9lwlb
-          description: 'The array provides details about specific event(s) that occurred  to a shipment, such as "returned_to_sender". You can find the full list of events and reasons [here](../../docs/enum/events.md#events) <span style=background-color:#ff6b2b;color:white;padding:2px>(Beta Feature)</span>
-
-            - The events'' value for the same checkpoint message is subject to change as we consistently strive to enhance the performance of this feature.'
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-                x-stoplight:
-                  id: ga8y1l7lzhe0n
-                description: Represents the event code.
-                example: delivered_to_neighbor
-              reason:
-                type:
-                - object
-                - 'null'
-                x-stoplight:
-                  id: d19xczf0ux5qf
-                description: Describes the specific reason that led to the event.
-                properties:
-                  code:
-                    type: string
-                    x-stoplight:
-                      id: cttlv8n2ojzes
-                    description: 'The code of the reason. '
-                    example: incorrect_missing_address
-        source:
-          x-stoplight:
-            id: 2tkhtf7zk4pwk
-          example: carrier
-          description: The source of the checkpoint, which can either be from the carrier or when the user marks the tracking as completed.
-          enum:
-          - carrier
-          - user
-        hash:
-          type: string
-          x-stoplight:
-            id: bu7ulg24vi728
-          description: Unique hash identifier for each checkpoint event, could be used for deduplication.
-          example: a1b2c3d4e5f6789012345678901234567890abcd
-          readOnly: true
     Tracking_response.v1:
       title: Tracking response
       type: object

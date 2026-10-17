@@ -1469,58 +1469,54 @@ paths:
         id: 0xlo21h5n3o1j
 components:
   schemas:
-    Shipper_account.v3:
-      title: ShipperAccount
-      x-stoplight:
-        id: btwx9pxk00w1m
+    Meta.v3:
+      description: Meta data object.
       type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
       x-tags:
-      - Resource
-      examples: []
-      description: 'ShipperAccount object: the description of shipper account information'
+      - Envelope
       properties:
-        id:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
           type: string
-          description: 'Shipper Account ID
-
-            '
-        address:
-          $ref: '#/components/schemas/Address.v3'
-        slug:
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
           type: string
-          description: Couirer slug
-        status:
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
           type: string
-          enum:
-          - enabled
-          - disabled
-          - deleted
-        description:
-          type: string
-          description: 'The description of the account
-
-            '
-        type:
-          type: string
-          description: The type of the shipper_account
-          enum:
-          - default
-          - user
-        timezone:
-          type: string
-          description: 'Shipper account timezone
-
-            '
-        created_at:
-          type: string
-          description: 'A formatted date.
-
-            '
-        updated_at:
-          type: string
-          description: 'A formatted date.
-
-            '
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Address.v3:
       type: object
       x-stoplight:
@@ -1692,54 +1688,58 @@ components:
             lng:
               type: number
               description: longitude number
-    Meta.v3:
-      description: Meta data object.
+    Shipper_account.v3:
+      title: ShipperAccount
+      x-stoplight:
+        id: btwx9pxk00w1m
       type: object
-      x-examples: {}
-      examples:
-      - code: 200
-        type: OK
-        message: Everything worked as expected.
-      title: Meta
       x-tags:
-      - Envelope
+      - Resource
+      examples: []
+      description: 'ShipperAccount object: the description of shipper account information'
       properties:
-        code:
-          type: integer
-          description: Code of Meta
-        message:
+        id:
           type: string
-          description: Message of Meta
-        details:
-          type: array
-          description: Details of Meta
-          items:
-            $ref: '#/components/schemas/Error.v3'
-        retryable:
-          type: boolean
-          description: Whether this request will be retryable or not
-      required:
-      - code
-      - message
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
+          description: 'Shipper Account ID
+
+            '
+        address:
+          $ref: '#/components/schemas/Address.v3'
+        slug:
           type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
+          description: Couirer slug
+        status:
           type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
+          enum:
+          - enabled
+          - disabled
+          - deleted
+        description:
+          type: string
+          description: 'The description of the account
+
+            '
+        type:
+          type: string
+          description: The type of the shipper_account
+          enum:
+          - default
+          - user
+        timezone:
+          type: string
+          description: 'Shipper account timezone
+
+            '
+        created_at:
+          type: string
+          description: 'A formatted date.
+
+            '
+        updated_at:
+          type: string
+          description: 'A formatted date.
+
+            '
   securitySchemes:
     as-api-key:
       name: as-api-key

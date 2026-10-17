@@ -279,6 +279,23 @@ paths:
                       remaining: 2
 components:
   schemas:
+    Benefit:
+      title: Benefit
+      type: object
+      description: A benefit object containing the configured total quantity and the remaining quantity calculated by the system.
+      properties:
+        total:
+          type: integer
+          description: The total benefit quantity. Use -1 for unlimited benefits.
+          example: 1
+        remaining:
+          type: integer
+          description: The remaining benefit quantity. Use -1 for unlimited benefits.
+          example: 0
+      x-examples:
+        Example 1:
+          total: 1
+          remaining: 0
     Warranty_registrations:
       title: WarrantyRegistration
       type: object
@@ -371,23 +388,6 @@ components:
           type: string
           minLength: 1
           example: The request was successfully processed by AfterShip.
-    Benefit:
-      title: Benefit
-      type: object
-      description: A benefit object containing the configured total quantity and the remaining quantity calculated by the system.
-      properties:
-        total:
-          type: integer
-          description: The total benefit quantity. Use -1 for unlimited benefits.
-          example: 1
-        remaining:
-          type: integer
-          description: The remaining benefit quantity. Use -1 for unlimited benefits.
-          example: 0
-      x-examples:
-        Example 1:
-          total: 1
-          remaining: 0
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

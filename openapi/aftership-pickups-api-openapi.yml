@@ -469,30 +469,85 @@ paths:
       - Pickups
 components:
   schemas:
-    Weight.v3:
-      title: Weight
+    Dimension.v3:
+      title: Dimension
       x-stoplight:
-        id: sqe056qqggctt
+        id: k8cgrqqlq38rn
       type: object
-      description: 'Weight object: unit weight of the item'
+      description: 'Dimension object: the description of width/height/depth information'
       x-tags:
       - Primitive
       examples: []
       properties:
+        width:
+          type: number
+          description: width
+        height:
+          type: number
+          description: height
+        depth:
+          type: number
+          description: depth
         unit:
           type: string
-          description: weight unit
+          description: unit
           enum:
-          - lb
-          - kg
-          - oz
-          - g
-        value:
-          type: number
-          description: value of Weight
+          - cm
+          - in
+          - mm
+          - m
+          - ft
+          - yd
       required:
+      - width
+      - height
+      - depth
       - unit
-      - value
+    Reference.v3:
+      title: Reference
+      x-stoplight:
+        id: pwqp1323bhe8q
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'id of referring object
+
+            '
+      x-tags:
+      - Primitive
+      examples: []
+      description: 'Reference object: the description of reference information'
+    Pickup_parcel.v3:
+      x-stoplight:
+        id: rg6vxf4hy1fwr
+      title: PickupParcel
+      type: object
+      description: 'PickupParcel object: the description of pickup parcel information'
+      x-tags:
+      - Primitive
+      required:
+      - weight
+      - quantity
+      properties:
+        weight:
+          $ref: '#/components/schemas/Weight.v3'
+          x-stoplight:
+            id: n58yvlrsix94t
+        quantity:
+          type: integer
+          x-stoplight:
+            id: cvh46u2j0b88f
+          description: 'The quantity of the packages. Minimum: 1'
+        service_type:
+          type: string
+          x-stoplight:
+            id: 44aaqvxjye7j3
+          description: Service Type. Required for `UPS` and `DHL Express`
+        dimension:
+          $ref: '#/components/schemas/Dimension.v3'
+          x-stoplight:
+            id: vf9xym5596paa
     Pickup.v3:
       title: Pickup
       x-stoplight:
@@ -585,36 +640,78 @@ components:
           x-stoplight:
             id: t4i229d75aonh
           description: A formatted date
-    Pickup_parcel.v3:
-      x-stoplight:
-        id: rg6vxf4hy1fwr
-      title: PickupParcel
+    Error.v3:
       type: object
-      description: 'PickupParcel object: the description of pickup parcel information'
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
+    Meta.v3:
+      description: Meta data object.
+      type: object
+      x-examples: {}
+      examples:
+      - code: 200
+        type: OK
+        message: Everything worked as expected.
+      title: Meta
+      x-tags:
+      - Envelope
+      properties:
+        code:
+          type: integer
+          description: Code of Meta
+        message:
+          type: string
+          description: Message of Meta
+        details:
+          type: array
+          description: Details of Meta
+          items:
+            $ref: '#/components/schemas/Error.v3'
+        retryable:
+          type: boolean
+          description: Whether this request will be retryable or not
+      required:
+      - code
+      - message
+    Weight.v3:
+      title: Weight
+      x-stoplight:
+        id: sqe056qqggctt
+      type: object
+      description: 'Weight object: unit weight of the item'
       x-tags:
       - Primitive
-      required:
-      - weight
-      - quantity
+      examples: []
       properties:
-        weight:
-          $ref: '#/components/schemas/Weight.v3'
-          x-stoplight:
-            id: n58yvlrsix94t
-        quantity:
-          type: integer
-          x-stoplight:
-            id: cvh46u2j0b88f
-          description: 'The quantity of the packages. Minimum: 1'
-        service_type:
+        unit:
           type: string
-          x-stoplight:
-            id: 44aaqvxjye7j3
-          description: Service Type. Required for `UPS` and `DHL Express`
-        dimension:
-          $ref: '#/components/schemas/Dimension.v3'
-          x-stoplight:
-            id: vf9xym5596paa
+          description: weight unit
+          enum:
+          - lb
+          - kg
+          - oz
+          - g
+        value:
+          type: number
+          description: value of Weight
+      required:
+      - unit
+      - value
     Address.v3:
       type: object
       x-stoplight:
@@ -786,103 +883,6 @@ components:
             lng:
               type: number
               description: longitude number
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
-    Meta.v3:
-      description: Meta data object.
-      type: object
-      x-examples: {}
-      examples:
-      - code: 200
-        type: OK
-        message: Everything worked as expected.
-      title: Meta
-      x-tags:
-      - Envelope
-      properties:
-        code:
-          type: integer
-          description: Code of Meta
-        message:
-          type: string
-          description: Message of Meta
-        details:
-          type: array
-          description: Details of Meta
-          items:
-            $ref: '#/components/schemas/Error.v3'
-        retryable:
-          type: boolean
-          description: Whether this request will be retryable or not
-      required:
-      - code
-      - message
-    Reference.v3:
-      title: Reference
-      x-stoplight:
-        id: pwqp1323bhe8q
-      type: object
-      properties:
-        id:
-          type: string
-          description: 'id of referring object
-
-            '
-      x-tags:
-      - Primitive
-      examples: []
-      description: 'Reference object: the description of reference information'
-    Dimension.v3:
-      title: Dimension
-      x-stoplight:
-        id: k8cgrqqlq38rn
-      type: object
-      description: 'Dimension object: the description of width/height/depth information'
-      x-tags:
-      - Primitive
-      examples: []
-      properties:
-        width:
-          type: number
-          description: width
-        height:
-          type: number
-          description: height
-        depth:
-          type: number
-          description: depth
-        unit:
-          type: string
-          description: unit
-          enum:
-          - cm
-          - in
-          - mm
-          - m
-          - ft
-          - yd
-      required:
-      - width
-      - height
-      - depth
-      - unit
   securitySchemes:
     as-api-key:
       name: as-api-key

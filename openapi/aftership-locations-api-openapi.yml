@@ -751,6 +751,85 @@ components:
           $ref: '#/components/schemas/Opening_hour_period.v1'
       x-tags:
       - Primitive
+    Meta.v1:
+      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
+
+
+        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
+      type: object
+      x-examples: {}
+      title: Meta
+      x-tags:
+      - Envelope
+      examples:
+      - code: 20000
+        type: OK
+        message: The request was successfully processed by AfterShip.
+      additionalProperties: false
+      required:
+      - code
+      - type
+      - message
+      properties:
+        code:
+          type: number
+          default: 20000
+          example: 20000
+          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        type:
+          type: string
+          minLength: 1
+          example: OK
+          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        message:
+          type: string
+          minLength: 1
+          example: The request was successfully processed by AfterShip.
+          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
+        errors:
+          type: array
+          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+
+
+            '
+          items:
+            $ref: '#/components/schemas/Error.v1'
+    Opening_hour_period.v1:
+      title: OpeningHourPeriod
+      x-stoplight:
+        id: 2g4w1syylsphw
+      type: object
+      additionalProperties: false
+      description: The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day.
+      x-tags:
+      - Primitive
+      properties:
+        open:
+          type: boolean
+          default: false
+          x-stoplight:
+            id: qbb3rmmdfdhxy
+          description: Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`.
+        from:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: fvyfkui68t3gt
+          description: The start time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
+          example: '10:30'
+        to:
+          type:
+          - string
+          - 'null'
+          x-stoplight:
+            id: sk5yjthy1achl
+          description: The end time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
+          example: '20:30'
+      examples:
+      - open: true
+        from: '10:30'
+        to: '20:30'
     Location.v1:
       x-stoplight:
         id: location-resource-v1
@@ -912,68 +991,6 @@ components:
           description: The date and time when the location was updated in AfterShip, formatted in ISO 8601.
           example: '2026-04-24T00:00:00Z'
           readOnly: true
-    Error.v1:
-      type: object
-      title: Error
-      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.policy_id
-        info: data.policy_id must not be 32 characters
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The JSON path of the request object to indicate the error location.
-          example: data.product.title
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: Title is invalid
-    Meta.v1:
-      description: 'The `Meta` model holds the metadata of the API response, including relevant error details for debugging purposes.
-
-
-        <div style="visibility:hidden; height: 0">[url](../../docs/quickstart/request_errors.md)</div>'
-      type: object
-      x-examples: {}
-      title: Meta
-      x-tags:
-      - Envelope
-      examples:
-      - code: 20000
-        type: OK
-        message: The request was successfully processed by AfterShip.
-      additionalProperties: false
-      required:
-      - code
-      - type
-      - message
-      properties:
-        code:
-          type: number
-          default: 20000
-          example: 20000
-          description: Error code in integer format. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        type:
-          type: string
-          minLength: 1
-          example: OK
-          description: Response type string for the reference. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        message:
-          type: string
-          minLength: 1
-          example: The request was successfully processed by AfterShip.
-          description: Human-readable response message. For detailed information, please refer to the [Request Error](../../docs/quickstart/request_errors.md) introduction page.
-        errors:
-          type: array
-          description: 'Error detail object. Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-
-
-            '
-          items:
-            $ref: '#/components/schemas/Error.v1'
     Pagination.v2:
       title: Pagination
       x-stoplight:
@@ -1002,6 +1019,25 @@ components:
           x-stoplight:
             id: qtm2ifhlv0r4i
           description: To indicate if next page is available.
+    Error.v1:
+      type: object
+      title: Error
+      description: The `Error` model contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.policy_id
+        info: data.policy_id must not be 32 characters
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The JSON path of the request object to indicate the error location.
+          example: data.product.title
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: Title is invalid
     Address_with_coordinate.v1:
       description: The physical address and contact information of the location. For Location resources, `first_name` and `last_name` are joined into one contact name on write; on read, the full contact name is returned as `first_name` and `last_name` is empty. The `type` field is accepted by the schema but not used for Location resources — omit it on write; on read it is always empty.
       type: object
@@ -1114,42 +1150,6 @@ components:
             latitude:
               type: number
               description: The latitude of the address.
-    Opening_hour_period.v1:
-      title: OpeningHourPeriod
-      x-stoplight:
-        id: 2g4w1syylsphw
-      type: object
-      additionalProperties: false
-      description: The `OpeningHourPeriod` model provides detailed information about a location's operating hours for a specific day. It includes the start and end times, and indicates whether the location is open on that particular day.
-      x-tags:
-      - Primitive
-      properties:
-        open:
-          type: boolean
-          default: false
-          x-stoplight:
-            id: qbb3rmmdfdhxy
-          description: Indicate whether the store is open on this day. For locations that operate 24 hours, please set the value to `true`.
-        from:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: fvyfkui68t3gt
-          description: The start time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
-          example: '10:30'
-        to:
-          type:
-          - string
-          - 'null'
-          x-stoplight:
-            id: sk5yjthy1achl
-          description: The end time of the opening hour period in YY:MM format. For locations that operate 24 hours, please set the value to `null`.
-          example: '20:30'
-      examples:
-      - open: true
-        from: '10:30'
-        to: '20:30'
     Meta.v3:
       description: Meta data object.
       type: object
@@ -1179,6 +1179,25 @@ components:
       required:
       - code
       - message
+    Error.v3:
+      type: object
+      title: Error
+      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
+      examples:
+      - path: data.shipment.ship_from.country
+        info: data.shipment.ship_from.country is a required property
+      additionalProperties: false
+      x-tags:
+      - Envelope
+      properties:
+        path:
+          type: string
+          description: The json path of the request object to indicate the error location
+          example: account.email
+        info:
+          type: string
+          description: A human-readable description of the error.
+          example: account.email is invalid
     Location.v3:
       title: Location
       type: object
@@ -1376,25 +1395,6 @@ components:
           type:
           - object
           - 'null'
-    Error.v3:
-      type: object
-      title: Error
-      description: Each error object contains a "path" key and an "info" key. The "path" is the JSON path of the request object to indicate the error location. The "info" is a human-readable description of the error.
-      examples:
-      - path: data.shipment.ship_from.country
-        info: data.shipment.ship_from.country is a required property
-      additionalProperties: false
-      x-tags:
-      - Envelope
-      properties:
-        path:
-          type: string
-          description: The json path of the request object to indicate the error location
-          example: account.email
-        info:
-          type: string
-          description: A human-readable description of the error.
-          example: account.email is invalid
   securitySchemes:
     as-api-key:
       name: as-api-key

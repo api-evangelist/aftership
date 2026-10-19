@@ -6,12 +6,19 @@ source:
 - https://composio.dev/toolkits/aftership
 - https://monid.ai/tools/aftership
 checked:
+- https://api.nuget.org/v3
 - https://apps.shopify.com/aftership
 - https://composio.dev/toolkits/aftership
+- https://crates.io/api/v1
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://monid.ai/tools/aftership
 - https://n8n.io/integrations/aftership/
+- https://proxy.golang.org
+- https://pypi.org/pypi
 - https://registry.modelcontextprotocol.io/v0/servers
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://www.aftership.com/integrations
 - https://www.make.com/en/integrations/aftership
 - https://zapier.com/apps/aftership/integrations
@@ -216,6 +223,222 @@ edges:
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
   category: WordPress plugin
+- partner_name: Go module proxy
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official SDK (Go)
+  evidence: https://pkg.go.dev/github.com/aftership/tracking-sdk-go/v12
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/aftership/tracking-sdk-go/v12
+      version: v12.0.0
+      released: '2026-07-13'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/aftership/tracking-sdk-go/v12
+      repo_leg: github-org:aftership
+      publisher_leg: org:aftership
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: Maven Central
+  partner: maven-central
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Java/JVM)
+  evidence: https://central.sonatype.com/artifact/com.aftership/shipping-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.aftership:shipping-sdk
+      version: 3.2.0
+      released: '2026-07-17'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.aftership/shipping-sdk
+      repo_leg: github-org:aftership
+      publisher_leg: groupId:aftership.com
+      matched_by: domain
+    - name: com.aftership:tracking-sdk
+      version: 12.0.2
+      released: '2026-10-09'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.aftership/tracking-sdk
+      repo_leg: github-org:aftership
+      publisher_leg: groupId:aftership.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@aftership/tracking-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@aftership/tracking-sdk'
+      version: 17.0.0
+      released: '2026-07-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@aftership/tracking-sdk
+      repo_leg: github-org:aftership
+      publisher_leg: email:aftership.com
+      matched_by: domain
+    - name: aftership
+      version: 8.1.0
+      released: '2023-12-22'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/aftership
+      repo_leg: github-org:aftership
+      publisher_leg: email:aftership.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: NuGet Gallery
+  partner: nuget
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (.NET)
+  evidence: https://www.nuget.org/packages/AfterShipTracking
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: NuGet Gallery (public registry JSON)
+    spec_file: null
+    language: .NET
+    packages:
+    - name: AfterShipTracking
+      version: 16.0.0
+      released: '2026-07-13'
+      released_field: published
+      lapsed: false
+      page: https://www.nuget.org/packages/AfterShipTracking
+      repo_leg: domain:aftership.com
+      publisher_leg: org:aftership
+      matched_by: domain
+    - name: Aftership
+      version: 6.0.5
+      released: '2023-07-07'
+      released_field: published
+      lapsed: true
+      page: https://www.nuget.org/packages/Aftership
+      repo_leg: domain:aftership.com
+      publisher_leg: org:aftership
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/aftership/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: aftership
+      version: 1.4.1
+      released: '2022-07-21'
+      released_field: upload_time
+      lapsed: true
+      page: https://pypi.org/project/aftership/
+      repo_leg: domain:aftership.com
+      publisher_leg: email:aftership.com
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: RubyGems
+  partner: rubygems
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Ruby)
+  evidence: https://rubygems.org/gems/aftership
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: aftership
+      version: 6.0.0
+      released: '2024-01-03'
+      released_field: version_created_at
+      lapsed: true
+      page: https://rubygems.org/gems/aftership
+      repo_leg: domain:aftership.com
+      publisher_leg: org:aftership
+      matched_by: domain
+    - name: aftership-tracking-sdk
+      version: 15.0.0
+      released: '2026-07-13'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/aftership-tracking-sdk
+      repo_leg: domain:aftership.com
+      publisher_leg: org:aftership
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 templates: []
 skips:
 - label: Shopify

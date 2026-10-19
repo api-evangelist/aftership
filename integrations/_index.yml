@@ -202,3 +202,224 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: aftership-go-module-proxy
+  label: Go module proxy
+  partner_name: Go module proxy
+  category: official SDK (Go)
+  type: register
+  channel: package-registry
+  evidence: https://pkg.go.dev/github.com/aftership/tracking-sdk-go/v12
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/aftership/tracking-sdk-go/v12
+      version: v12.0.0
+      released: '2026-07-13'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/aftership/tracking-sdk-go/v12
+      repo_leg: github-org:aftership
+      publisher_leg: org:aftership
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: aftership-maven-central
+  label: Maven Central
+  partner: maven-central
+  partner_name: Maven Central
+  category: official SDK (Java/JVM)
+  type: register
+  channel: package-registry
+  evidence: https://central.sonatype.com/artifact/com.aftership/shipping-sdk
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.aftership:shipping-sdk
+      version: 3.2.0
+      released: '2026-07-17'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.aftership/shipping-sdk
+      repo_leg: github-org:aftership
+      publisher_leg: groupId:aftership.com
+      matched_by: domain
+    - name: com.aftership:tracking-sdk
+      version: 12.0.2
+      released: '2026-10-09'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.aftership/tracking-sdk
+      repo_leg: github-org:aftership
+      publisher_leg: groupId:aftership.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: aftership-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@aftership/tracking-sdk
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@aftership/tracking-sdk'
+      version: 17.0.0
+      released: '2026-07-13'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@aftership/tracking-sdk
+      repo_leg: github-org:aftership
+      publisher_leg: email:aftership.com
+      matched_by: domain
+    - name: aftership
+      version: 8.1.0
+      released: '2023-12-22'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/aftership
+      repo_leg: github-org:aftership
+      publisher_leg: email:aftership.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: aftership-nuget-gallery
+  label: NuGet Gallery
+  partner: nuget
+  partner_name: NuGet Gallery
+  category: official SDK (.NET)
+  type: register
+  channel: package-registry
+  evidence: https://www.nuget.org/packages/AfterShipTracking
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: NuGet Gallery (public registry JSON)
+    spec_file: null
+    language: .NET
+    packages:
+    - name: AfterShipTracking
+      version: 16.0.0
+      released: '2026-07-13'
+      released_field: published
+      lapsed: false
+      page: https://www.nuget.org/packages/AfterShipTracking
+      repo_leg: domain:aftership.com
+      publisher_leg: org:aftership
+      matched_by: domain
+    - name: Aftership
+      version: 6.0.5
+      released: '2023-07-07'
+      released_field: published
+      lapsed: true
+      page: https://www.nuget.org/packages/Aftership
+      repo_leg: domain:aftership.com
+      publisher_leg: org:aftership
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: aftership-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/aftership/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: aftership
+      version: 1.4.1
+      released: '2022-07-21'
+      released_field: upload_time
+      lapsed: true
+      page: https://pypi.org/project/aftership/
+      repo_leg: domain:aftership.com
+      publisher_leg: email:aftership.com
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: aftership-rubygems
+  label: RubyGems
+  partner: rubygems
+  partner_name: RubyGems
+  category: official SDK (Ruby)
+  type: register
+  channel: package-registry
+  evidence: https://rubygems.org/gems/aftership
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: aftership
+      version: 6.0.0
+      released: '2024-01-03'
+      released_field: version_created_at
+      lapsed: true
+      page: https://rubygems.org/gems/aftership
+      repo_leg: domain:aftership.com
+      publisher_leg: org:aftership
+      matched_by: domain
+    - name: aftership-tracking-sdk
+      version: 15.0.0
+      released: '2026-07-13'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/aftership-tracking-sdk
+      repo_leg: domain:aftership.com
+      publisher_leg: org:aftership
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null

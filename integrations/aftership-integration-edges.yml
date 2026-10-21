@@ -33,6 +33,8 @@ checked:
 - https://skillsmp.com/sitemap.xml
 - https://www.skills.sh/sitemap.xml
 - yotpo/integrations/yotpo-integration-edges.yml
+- bigcommerce/integrations/bigcommerce-integration-edges.yml
+- salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
@@ -432,6 +434,38 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Agent Skills (own GitHub org)
+  partner: null
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: Agent Skills package
+  evidence: https://github.com/AfterShip/tracking-and-returns-mcp
+  channel: provider-built
+  relationship: compatible
+  shape: agent-skills
+  evidence_kind: own-repo
+  degree: skill-repo
+  report_only: true
+  agent_skills:
+    org: aftership
+    current: true
+    repos:
+    - repo: AfterShip/tracking-and-returns-mcp
+      archived: false
+      lapsed: false
+      pushed: '2026-04-28'
+  contract_reference:
+    register: 'provider''s own GitHub org (GitHub REST API: repo + git tree holds SKILL.md)'
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-repo
+    matched_org: aftership
+    matched_by: org-profile-domain:aftership.com
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
+  detected_by: sweep-agent-skills.py
+  first_seen: '2026-10-20'
 - partner_name: Gorgias (own)
   partner: gorgias
   partner_match: mirror
@@ -482,38 +516,6 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: eComm and Payments
-- partner_name: Agent Skills (own GitHub org)
-  partner: null
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: Agent Skills package
-  evidence: https://github.com/AfterShip/tracking-and-returns-mcp
-  channel: provider-built
-  relationship: compatible
-  shape: agent-skills
-  evidence_kind: own-repo
-  degree: skill-repo
-  report_only: true
-  agent_skills:
-    org: aftership
-    current: true
-    repos:
-    - repo: AfterShip/tracking-and-returns-mcp
-      archived: false
-      lapsed: false
-      pushed: '2026-04-28'
-  contract_reference:
-    register: 'provider''s own GitHub org (GitHub REST API: repo + git tree holds SKILL.md)'
-    spec_file: null
-    standard: Agent Skills (agentskills.io)
-    role: agent-skills-repo
-    matched_org: aftership
-    matched_by: org-profile-domain:aftership.com
-    detected_by: sweep-agent-skills.py
-    detected: '2026-10-20'
-  detected_by: sweep-agent-skills.py
-  first_seen: '2026-10-20'
 - partner_name: Yotpo (own)
   partner: yotpo
   partner_match: mirror
@@ -530,6 +532,41 @@ edges:
   listing_count: 1
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
+- partner_name: BigCommerce (own)
+  partner: bigcommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.bigcommerce.com/apps/aftership-returns-center/
+  mirror_of: bigcommerce/integrations/bigcommerce-integration-edges.yml
+  apps:
+  - AfterShip Returns
+  - AfterShip Feed for TikTok Shop
+  listing_count: 2
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Catalog & Order Management, Returns Processing (RMA)
+- partner_name: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=44cc3d38-44f9-495c-b6b3-e2a7c4fd6aaf
+  mirror_of: salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+  apps:
+  - Aftership Returns Headless for B2C Commerce
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: eCommerce, integration
 templates: []
 skips:
 - label: Shopify

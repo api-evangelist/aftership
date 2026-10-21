@@ -410,6 +410,26 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: aftership-agent-skills-own-github-org
+  label: Agent Skills (own GitHub org)
+  partner_name: Agent Skills (own GitHub org)
+  category: Agent Skills package
+  type: register
+  channel: provider-built
+  evidence: https://github.com/AfterShip/tracking-and-returns-mcp
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: 'provider''s own GitHub org (GitHub REST API: repo + git tree holds SKILL.md)'
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-repo
+    matched_org: aftership
+    matched_by: org-profile-domain:aftership.com
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
 - slug: aftership-gorgias-own
   label: Gorgias (own)
   partner: gorgias
@@ -448,26 +468,6 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: aftership-agent-skills-own-github-org
-  label: Agent Skills (own GitHub org)
-  partner_name: Agent Skills (own GitHub org)
-  category: Agent Skills package
-  type: register
-  channel: provider-built
-  evidence: https://github.com/AfterShip/tracking-and-returns-mcp
-  source: edge
-  relationship: compatible
-  contract_reference:
-    register: 'provider''s own GitHub org (GitHub REST API: repo + git tree holds SKILL.md)'
-    spec_file: null
-    standard: Agent Skills (agentskills.io)
-    role: agent-skills-repo
-    matched_org: aftership
-    matched_by: org-profile-domain:aftership.com
-    detected_by: sweep-agent-skills.py
-    detected: '2026-10-20'
-  status: not-a-workflow
-  arazzo: null
 - slug: aftership-yotpo-own
   label: Yotpo (own)
   partner: yotpo
@@ -476,6 +476,32 @@
   marketplace: own
   channel: partner-built
   evidence: https://www.yotpo.com/integrations/aftership-personalization/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: aftership-bigcommerce-own
+  label: BigCommerce (own)
+  partner: bigcommerce
+  partner_name: BigCommerce (own)
+  category: Catalog & Order Management, Returns Processing (RMA)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.bigcommerce.com/apps/aftership-returns-center/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: aftership-salesforce-commerce-cloud-own
+  label: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_name: Salesforce Commerce Cloud (own)
+  category: eCommerce, integration
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=44cc3d38-44f9-495c-b6b3-e2a7c4fd6aaf
   source: edge
   relationship: platform-app
   status: not-a-workflow

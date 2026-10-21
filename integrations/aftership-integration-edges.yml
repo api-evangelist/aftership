@@ -35,6 +35,9 @@ checked:
 - yotpo/integrations/yotpo-integration-edges.yml
 - bigcommerce/integrations/bigcommerce-integration-edges.yml
 - salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+- https://advertising.amazon.com/partners/directory
+- https://sellercentral.amazon.com/gspn
+- https://sellercentral.amazon.com/selling-partner-appstore
 summary: null
 marketplace_apps: []
 edges:
@@ -567,6 +570,24 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: eCommerce, integration
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.185d9f16-eeb3-479c-a048-c1d9648982d2
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - AfterShip Feed for TikTok Shop
+  - AfterShip Returns
+  - AfterShip Shipping
+  - AfterShip Tracking
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
 templates: []
 skips:
 - label: Shopify

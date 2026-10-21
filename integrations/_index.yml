@@ -468,3 +468,15 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: aftership-yotpo-own
+  label: Yotpo (own)
+  partner: yotpo
+  partner_name: Yotpo (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.yotpo.com/integrations/aftership-personalization/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

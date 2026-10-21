@@ -32,6 +32,7 @@ checked:
 - https://officialskills.sh/sitemap.xml
 - https://skillsmp.com/sitemap.xml
 - https://www.skills.sh/sitemap.xml
+- yotpo/integrations/yotpo-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
@@ -513,6 +514,22 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-agent-skills.py
   first_seen: '2026-10-20'
+- partner_name: Yotpo (own)
+  partner: yotpo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.yotpo.com/integrations/aftership-personalization/
+  mirror_of: yotpo/integrations/yotpo-integration-edges.yml
+  apps:
+  - AfterShip Personalization
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
 templates: []
 skips:
 - label: Shopify

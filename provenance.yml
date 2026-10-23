@@ -39,127 +39,253 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
+  hosts/aftership-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
+    evidence: carries an API Evangelist house phrase
+  integrations/aftership-gorgias-tracking-ticket-phrasing-overlay.yaml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
+    evidence: declared in the artifact
+  integrations/aftership-gorgias-tracking-ticket.yml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
+    evidence: declared in the artifact
+  integrations/aftership-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
+  integrations/aftership-integration-map.yml:
+    method: unknown
+    evidence: no authorship recorded
+  integrations/aftership-klaviyo-shipment-event-phrasing-overlay.yaml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
+    evidence: declared in the artifact
+  integrations/aftership-klaviyo-shipment-event.yml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
+    evidence: declared in the artifact
+  integrations/aftership-shipstation-import-shipments-phrasing-overlay.yaml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
+    evidence: declared in the artifact
+  integrations/aftership-shipstation-import-shipments.yml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+    evidence: declared in the artifact
+  json-ld/aftership-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-address-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-address-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-address-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-address-validation-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-address-with-coordinate-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-amount-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-attachment-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-cancel-label-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-cancel-pickup-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-claim-item-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-claim-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-claim-shipment-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-claim-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-courier-connection-response-get-multiple-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-courier-connection-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-courier-response-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-courier-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-coverage-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-customs-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-dropoff-drop-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-dropoff-drops-request-post-drop-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-email-header-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-error-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-estimated-delivery-date-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-estimated-delivery-date-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-fulfillment-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-input-files-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-invoice-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-item-tag-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-label-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-location-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-manifest-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-membership-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-meta-20000-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-meta-20100-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-meta-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-meta-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-meta-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-money-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-money-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-opening-hours-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-order-item-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-order-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-order-v2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-pagination-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-pagination-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-pagination-v2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-pickup-location-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-pickup-parcel-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-pickup-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-pickup-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-product-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-product-variant-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-rate-record-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-recommend-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-reference-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-return-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-role-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-search-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-search-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-shipment-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-shipper-account-v3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-store-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-suggest-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-suggest-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-tagging-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-tracking-response-get-multiple-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-tracking-response-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-tracking-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-warranty-registrations-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/aftership-weight-v1-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -243,10 +369,28 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/aftership-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
   llms/aftership-api-host-llms.txt:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
+  llms/aftership-llms-provenance.yml:
     method: searched
     evidence: 'derive-llms-provenance.py: harvested'
   llms/aftership-llms.txt:
@@ -391,103 +535,205 @@ artifacts:
   overlays/aftership-address-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-address-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-address-validations-beta-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-address-validations-beta-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-cancel-labels-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-cancel-labels-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-cancel-pickups-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-cancel-pickups-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-claim-items-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-claim-items-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-claim-shipments-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-claim-shipments-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-claims-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-claims-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-courier-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-courier-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-courier-connection-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-courier-connection-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-couriers-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-couriers-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-coverages-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-coverages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-discoveries-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-discoveries-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-email-parses-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-email-parses-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-estimated-delivery-date-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-estimated-delivery-date-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-fulfillments-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-fulfillments-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-item-tags-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-item-tags-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-labels-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-labels-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-locations-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-locations-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-manifests-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-manifests-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-memberships-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-memberships-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-orders-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-orders-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-pickups-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-pickups-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-products-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-products-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-rates-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-rates-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-return-dropoffs-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-return-dropoffs-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-return-items-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-return-items-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-returns-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-returns-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-returns-page-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-returns-page-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-roles-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-roles-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-shipper-accounts-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-shipper-accounts-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-specific-shipper-accounts-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-specific-shipper-accounts-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-stores-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-stores-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/aftership-tracking-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  overlays/aftership-tracking-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/aftership-warranty-registrations-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/aftership-warranty-registrations-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   packages/aftership-packages.yml:
@@ -498,6 +744,9 @@ artifacts:
     evidence: declared in the artifact
   rate-limits/aftership-rate-limits.yml:
     method: searched
+    evidence: declared in the artifact
+  rules/aftership-rules.yml:
+    method: generated
     evidence: declared in the artifact
   sandbox/aftership-sandbox.yml:
     method: searched
@@ -529,6 +778,12 @@ artifacts:
   skills/aftership-tracking-and-returns.md:
     method: unknown
     evidence: no authorship recorded
+  vendors/aftership-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/aftership-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
   well-known/aftership-oauth-protected-resource.json:
     method: unknown
     evidence: no authorship recorded

@@ -129,7 +129,7 @@ Model Context Protocol servers that expose the API to agents.
 
 Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Aftership Agentic Access](https://apis.io/agentic-access/aftership/aftership-agentic-access/)
+- [AfterShip Agentic Access](https://apis.io/agentic-access/aftership/aftership-agentic-access/)
 
 #### JSON Schema (71)
 
@@ -172,31 +172,31 @@ Linked-data contexts for the provider's vocabulary.
 
 OpenAPI overlays, including conversational phrasing for each operation.
 
-- [Aftership Address Api Overlay](https://apis.io/overlays/aftership/aftership-address-api-overlay/)
-- [Aftership Address Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-address-api-phrasing-overlay/)
-- [Aftership Address Validations Beta Api Overlay](https://apis.io/overlays/aftership/aftership-address-validations-beta-api-overlay/)
-- [Aftership Address Validations Beta Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-address-validations-beta-api-phrasing-overlay/)
-- [Aftership Cancel Labels Api Overlay](https://apis.io/overlays/aftership/aftership-cancel-labels-api-overlay/)
-- [Aftership Cancel Labels Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-cancel-labels-api-phrasing-overlay/)
-- [Aftership Cancel Pickups Api Overlay](https://apis.io/overlays/aftership/aftership-cancel-pickups-api-overlay/)
-- [Aftership Cancel Pickups Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-cancel-pickups-api-phrasing-overlay/)
-- [Aftership Claim Items Api Overlay](https://apis.io/overlays/aftership/aftership-claim-items-api-overlay/)
-- [Aftership Claim Items Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-claim-items-api-phrasing-overlay/)
-- [Aftership Claim Shipments Api Overlay](https://apis.io/overlays/aftership/aftership-claim-shipments-api-overlay/)
-- [Aftership Claim Shipments Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-claim-shipments-api-phrasing-overlay/)
-- [Aftership Claims Api Overlay](https://apis.io/overlays/aftership/aftership-claims-api-overlay/)
-- [Aftership Claims Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-claims-api-phrasing-overlay/)
-- [Aftership Courier Api Overlay](https://apis.io/overlays/aftership/aftership-courier-api-overlay/)
-- [Aftership Courier Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-courier-api-phrasing-overlay/)
-- [Aftership Courier Connection Api Overlay](https://apis.io/overlays/aftership/aftership-courier-connection-api-overlay/)
-- [Aftership Courier Connection Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-courier-connection-api-phrasing-overlay/)
-- [Aftership Couriers Api Overlay](https://apis.io/overlays/aftership/aftership-couriers-api-overlay/)
-- [Aftership Couriers Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-couriers-api-phrasing-overlay/)
-- [Aftership Coverages Api Overlay](https://apis.io/overlays/aftership/aftership-coverages-api-overlay/)
-- [Aftership Coverages Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-coverages-api-phrasing-overlay/)
-- [Aftership Discoveries Api Overlay](https://apis.io/overlays/aftership/aftership-discoveries-api-overlay/)
-- [Aftership Discoveries Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-discoveries-api-phrasing-overlay/)
-- [Aftership Email Parses Api Overlay](https://apis.io/overlays/aftership/aftership-email-parses-api-overlay/)
+- [AfterShip Address Api Overlay](https://apis.io/overlays/aftership/aftership-address-api-overlay/)
+- [AfterShip Address Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-address-api-phrasing-overlay/)
+- [AfterShip Address Validations Beta Api Overlay](https://apis.io/overlays/aftership/aftership-address-validations-beta-api-overlay/)
+- [AfterShip Address Validations Beta Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-address-validations-beta-api-phrasing-overlay/)
+- [AfterShip Cancel Labels Api Overlay](https://apis.io/overlays/aftership/aftership-cancel-labels-api-overlay/)
+- [AfterShip Cancel Labels Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-cancel-labels-api-phrasing-overlay/)
+- [AfterShip Cancel Pickups Api Overlay](https://apis.io/overlays/aftership/aftership-cancel-pickups-api-overlay/)
+- [AfterShip Cancel Pickups Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-cancel-pickups-api-phrasing-overlay/)
+- [AfterShip Claim Items Api Overlay](https://apis.io/overlays/aftership/aftership-claim-items-api-overlay/)
+- [AfterShip Claim Items Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-claim-items-api-phrasing-overlay/)
+- [AfterShip Claim Shipments Api Overlay](https://apis.io/overlays/aftership/aftership-claim-shipments-api-overlay/)
+- [AfterShip Claim Shipments Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-claim-shipments-api-phrasing-overlay/)
+- [AfterShip Claims Api Overlay](https://apis.io/overlays/aftership/aftership-claims-api-overlay/)
+- [AfterShip Claims Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-claims-api-phrasing-overlay/)
+- [AfterShip Courier Api Overlay](https://apis.io/overlays/aftership/aftership-courier-api-overlay/)
+- [AfterShip Courier Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-courier-api-phrasing-overlay/)
+- [AfterShip Courier Connection Api Overlay](https://apis.io/overlays/aftership/aftership-courier-connection-api-overlay/)
+- [AfterShip Courier Connection Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-courier-connection-api-phrasing-overlay/)
+- [AfterShip Couriers Api Overlay](https://apis.io/overlays/aftership/aftership-couriers-api-overlay/)
+- [AfterShip Couriers Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-couriers-api-phrasing-overlay/)
+- [AfterShip Coverages Api Overlay](https://apis.io/overlays/aftership/aftership-coverages-api-overlay/)
+- [AfterShip Coverages Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-coverages-api-phrasing-overlay/)
+- [AfterShip Discoveries Api Overlay](https://apis.io/overlays/aftership/aftership-discoveries-api-overlay/)
+- [AfterShip Discoveries Api Phrasing Overlay](https://apis.io/overlays/aftership/aftership-discoveries-api-phrasing-overlay/)
+- [AfterShip Email Parses Api Overlay](https://apis.io/overlays/aftership/aftership-email-parses-api-overlay/)
 - …and 43 more published on APIs.io
 
 #### Governance rules (1)
@@ -209,34 +209,35 @@ Spectral rulesets for the provider's contracts.
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [Aftership Authentication](https://apis.io/security/aftership/aftership-authentication/)
-- [Aftership Domain Security](https://apis.io/security/aftership/aftership-domain-security/)
-- [Aftership Trust Center](https://apis.io/security/aftership/aftership-trust-center/)
-- [Aftership Vulnerability Disclosure](https://apis.io/security/aftership/aftership-vulnerability-disclosure/)
+- [AfterShip Authentication](https://apis.io/security/aftership/aftership-authentication/)
+- [AfterShip Domain Security](https://apis.io/security/aftership/aftership-domain-security/)
+- [AfterShip Trust Center](https://apis.io/security/aftership/aftership-trust-center/)
+- [AfterShip Vulnerability Disclosure](https://apis.io/security/aftership/aftership-vulnerability-disclosure/)
 
 #### OAuth scopes (1)
 
 The permissions the API asks for.
 
-- [Aftership Scopes](https://apis.io/scopes/aftership/aftership-scopes/)
+- [AfterShip Scopes](https://apis.io/scopes/aftership/aftership-scopes/)
 
-#### Plans and pricing (1)
+#### Plans and pricing (2)
 
 Published plans, tiers and prices.
 
-- [Aftership Plans Pricing](https://apis.io/plans/aftership/aftership-plans-pricing/)
+- [AfterShip Plans Pricing](https://apis.io/plans/aftership/aftership-plans-pricing/)
+- [AfterShip Price Estimates](https://apis.io/plans/aftership/aftership-price-estimates/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [Aftership Rate Limits](https://apis.io/rate-limits/aftership/aftership-rate-limits/)
+- [AfterShip Rate Limits](https://apis.io/rate-limits/aftership/aftership-rate-limits/)
 
 #### FinOps (1)
 
 What the API costs to run, by operation.
 
-- [Aftership Finops](https://apis.io/finops/aftership/aftership-finops/)
+- [AfterShip Finops](https://apis.io/finops/aftership/aftership-finops/)
 
 ## Where to find this API
 
@@ -257,18 +258,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 82.6** — exemplar · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 83.3** — exemplar · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
 | Discoverability | 81.7 |
 | Contract quality | 71.6 |
 | Contract governance | 35.6 |
-| Operational transparency | 92.1 |
+| Operational transparency | 85.7 |
 | Developer ergonomics | 81.0 |
-| Access clarity | 92.1 |
+| Access clarity | 100.0 |
 
-**Agent readiness 60.4** — agent-ready (gated down from agent-native)
+**Agent readiness 61.9** — agent-ready (gated down from agent-native)
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -278,7 +279,7 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | MCP Server | documented (partial credit) |
 | Auth Clarity | served (partial credit) |
 | Idempotency | — |
-| Error Semantics | documented (partial credit) |
+| Error Semantics | verified |
 | OpenAPI Examples | verified |
 | Rate Limit Signal | documented (partial credit) |
 | Event Surface Described | yes |
@@ -293,6 +294,10 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Agentic Commerce | — |
 | Pagination Ratio | na |
 | Operation Distinctiveness | distinct |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
 **Regulatory alignment 44.2** — Telecommunications
 
